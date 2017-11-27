@@ -46,6 +46,13 @@ def loadFullChipHistory(directory, fileName, chipID):
 			chipHistory.append(deviceRun)
 	return chipHistory
 
+def filterHistory(deviceHistory, property, value):
+	filteredHistory = []
+	for deviceRun in deviceHistory:
+		if(deviceRun[property] == value):
+			filteredHistory.append(deviceRun)
+	return filteredHistory
+
 def loadFirstRunChipHistory(directory, fileName, chipID):
 	fullChipHistory = loadFullChipHistory(directory, fileName, chipID)
 	firstRunsOnly = []
@@ -67,6 +74,7 @@ def loadMostRecentRunChipHistory(directory, fileName, chipID):
 			lastRunsOnly.append(deviceRun)
 			devicesLogged.append(deviceRun['deviceID'])
 	return lastRunsOnly
+
 
 
 

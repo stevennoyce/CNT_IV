@@ -12,7 +12,7 @@ chipID = 'C127M'
 deviceID = '19-20'
 
 #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/b2912a/data/'
+saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
 
 runTypes = {
 	0:'Quit',
@@ -54,7 +54,7 @@ additional_parameters = {
 		'limitOnOffRatioDegradation': 0.7
 	},
 	'DeviceHistory':{
-
+		'showOnlySuccessfulBurns': True
 	},
 	'ChipHistory':{
 

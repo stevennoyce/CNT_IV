@@ -118,7 +118,7 @@ def plotLinearXLogY(x, y, lineColor, lineLabel):
 def errorBarsLinearXLogY(x, y, lineColor, lineLabel):
 	ax = plt.gca()
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
-	ax.errorbar(x_unique, avg, yerr=std, color=lineColor, label=lineLabel, capsize=2, capthick=1)
+	ax.errorbar(x_unique, avg, yerr=std, color=lineColor, label=lineLabel, capsize=4, capthick=0.5, elinewidth=0.5,)
 	ax.set_yscale('log')
 
 def scatterLinearXLogY(x, y, lineColor, lineLabel, markerSize):
