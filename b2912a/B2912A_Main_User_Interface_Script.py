@@ -9,7 +9,7 @@ import Chip_History as chipHistoryScript
 ## ********** Parameters **********
 
 chipID = 'C127M'
-deviceID = '19-20'
+deviceID = '50-51'
 
 #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -54,7 +54,8 @@ additional_parameters = {
 		'limitOnOffRatioDegradation': 0.7
 	},
 	'DeviceHistory':{
-		'showOnlySuccessfulBurns': True
+		'showOnlySuccessfulBurns': False,
+		'firstRunToPlot':1,
 	},
 	'ChipHistory':{
 

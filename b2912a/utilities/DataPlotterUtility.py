@@ -13,7 +13,7 @@ titles = {
 
 color_maps = {
 	'GateSweep':'hot',
-	'BurnOut':'Greys'
+	'BurnOut':'Blues'
 }
 
 
@@ -36,16 +36,19 @@ def plotFullGateSweepHistory(deviceHistory):
 	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.7, 0, len(deviceHistory))]
 	for i in range(len(deviceHistory)):
 		plotGateSweep(ax, deviceHistory[i], colors[i])	
-	ax.annotate('Burning Away Metallic CNTs', xy=(0.3, 0.05), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
-	ax.annotate('', xy=(0.29, 0.05), xytext=(0.29,0.38), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
+	ax.annotate('Burning Away\nMetallic CNTs', xy=(0.3, 0.01*len(deviceHistory)), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
+	ax.annotate('', xy=(0.29, 0.04), xytext=(0.29,0.045*len(deviceHistory)), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{DS} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', fontsize=10, horizontalalignment='left', verticalalignment='bottom')
 
 def plotFullBurnOutHistory(deviceHistory):
 	fig, (ax1, ax2) = subplots(1, 2, 'BurnOut')
+	ax2 = plt.subplot(2,2,2)
+	ax3 = plt.subplot(2,2,4)
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=color_maps['BurnOut'])
-	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.3, 1.0, len(deviceHistory))]
+	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.6, 1.0, len(deviceHistory))]
 	for i in range(len(deviceHistory)):
-		plotBurnOut(ax1, ax2, deviceHistory[i], colors[i])
+		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
+	ax1.annotate('$V_{GS} = 15V$', xy=(0.96, 0.05), xycoords='axes fraction', fontsize=10, horizontalalignment='right', verticalalignment='bottom')
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	fig, ax = subplots(1,1,'ChipHistory')
@@ -69,7 +72,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 # ***** Figures *****
 
 def subplots(rows, columns, type):
-	fig, axes = plt.subplots(rows, columns, figsize = (8,6))
+	fig, axes = plt.subplots(rows, columns)
 	fig.suptitle(titles[type])
 	return fig, axes
 
@@ -107,20 +110,24 @@ def plotGateSweep(axis, jsonData, lineColor):
 	errorBarsLinearXLogY(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 	axis.set_xlabel('Gate Voltage, $V_{gs}$ [V]')
 	axis.set_ylabel('Drain Current, $I_D$ [A]')
-	axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
-	#axis.tight_layout(rect=[0,0,0.8,0.95])
+	axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 
-def plotBurnOut(axis1, axis2, jsonData, lineColor):
-	plotLinearXLinearY(axis1, jsonData['voltage1s'], jsonData['current1s'], lineColor, '')
-	currentThreshold = np.percentile(np.array(jsonData['current1s']), 90) * jsonData['thresholdProportion']
+def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
+	plotLinearXLinearY(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor, '')
+	currentThreshold = np.percentile(np.array(jsonData['current1s']), 90) * jsonData['thresholdProportion'] * 10**6
 	axis1.plot([0, jsonData['voltage1s'][-1]], [currentThreshold, currentThreshold], color=lineColor, label='', linestyle='--', linewidth=1)
-	axis1.set_xlabel('Drain Voltage, $V_{ds}$ [V]')
-	axis1.set_ylabel('Drain Current, $I_d$ [A]')
-	plt.tight_layout(rect=[0,0,0.95,0.95])
+	axis1.annotate('burn current', xy=(0, currentThreshold), xycoords='data', fontsize=8, horizontalalignment='left', verticalalignment='bottom', color=lineColor)
+	axis1.set_xlabel('Drain-to-Source Voltage, $V_{DS}$ [V]')
+	axis1.set_ylabel('Drain Current, $I_D$ [$\mu$A]')
 
-	plotTimeLinearY(axis2, jsonData['timestamps'], jsonData['current1s'], lineColor, '')	
+	plotTimeLinearY(axis2, jsonData['timestamps'], (np.array(jsonData['current1s'])*10**6), lineColor, '')	
 	axis2.set_xlabel('Time, $t$ [sec]')
-	axis2.set_ylabel('Drain Current, $I_d$ [A]')
+	axis2.set_ylabel('Drain Current, $I_D$ [$\mu$A]')
+
+	plotTimeLinearY(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor, '')
+	axis3.set_xlabel('Time, $t$ [sec]')
+	axis3.set_ylabel('Drain-to-Source Voltage, $V_{DS}$ [V]')
+
 	plt.tight_layout(rect=[0,0,0.95,0.95])
 
 def plotLinearXLogY(axis, x, y, lineColor, lineLabel):

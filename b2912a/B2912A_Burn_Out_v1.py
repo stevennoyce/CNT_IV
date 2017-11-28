@@ -27,7 +27,7 @@ from framework import SourceMeasureUnit as smu
 # 	'NPLC':					1,
 # 	'runDataPoints':		200,
 # 	'complianceCurrent': 	2000e-6,
-# 	'thresholdProportion':	0.7,
+# 	'thresholdProportion':	0.8,
 # 	'gateVoltageSetPoint':	15.0,
 # 	'drainVoltageMaxPoint':	10.0,
 # 	'drainVoltagePlateaus':	10
