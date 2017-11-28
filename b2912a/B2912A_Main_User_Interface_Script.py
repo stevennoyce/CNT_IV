@@ -55,7 +55,7 @@ additional_parameters = {
 	},
 	'DeviceHistory':{
 		'showOnlySuccessfulBurns': False,
-		'firstRunToPlot':1,
+		'firstRunToPlot':0,
 	},
 	'ChipHistory':{
 

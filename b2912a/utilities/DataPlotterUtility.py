@@ -7,7 +7,7 @@ import numpy as np
 
 titles = {
 	'GateSweep':'Subthreshold Sweep',
-	'BurnOut':'Metallic CNT Burn Out',
+	'BurnOut':'Metallic CNT Burnout',
 	'ChipHistory':'Chip History'
 }
 
@@ -22,10 +22,10 @@ color_maps = {
 
 def plotJSON(jsonData, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
-		fig, ax = plt.subplots(1,1,'GateSweep')
+		fig, ax = subplots(1,1,'GateSweep')
 		plotGateSweep(ax, jsonData, lineColor)
 	elif(jsonData['runType'] == 'BurnOut'):
-		fig, (ax1, ax2) = plt.subplots(1,2,'BurnOut')
+		fig, (ax1, ax2) = subplots(1,2,'BurnOut')
 		plotBurnOut(ax1, ax2, jsonData, lineColor)
 	else:
 		raise NotImplementedError("Unable to determine plot type")
@@ -37,7 +37,7 @@ def plotFullGateSweepHistory(deviceHistory):
 	for i in range(len(deviceHistory)):
 		plotGateSweep(ax, deviceHistory[i], colors[i])	
 	ax.annotate('Burning Away\nMetallic CNTs', xy=(0.3, 0.01*len(deviceHistory)), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
-	ax.annotate('', xy=(0.29, 0.04), xytext=(0.29,0.045*len(deviceHistory)), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
+	ax.annotate('', xy=(0.29, 0.04), xytext=(0.29,0.0475*len(deviceHistory)), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{DS} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', fontsize=10, horizontalalignment='left', verticalalignment='bottom')
 
 def plotFullBurnOutHistory(deviceHistory):
@@ -108,7 +108,7 @@ def nextIndexToBeDifferent(data, i):
 def plotGateSweep(axis, jsonData, lineColor):
 	#scatterLinearXLogY(axis jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
 	errorBarsLinearXLogY(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
-	axis.set_xlabel('Gate Voltage, $V_{gs}$ [V]')
+	axis.set_xlabel('Gate Voltage, $V_{GS}$ [V]')
 	axis.set_ylabel('Drain Current, $I_D$ [A]')
 	axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 
