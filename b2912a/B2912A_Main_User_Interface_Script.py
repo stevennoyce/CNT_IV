@@ -77,7 +77,7 @@ def main(parameters):
 
 		print('Parameters: ')
 		print_dict(parameters)
-		confirmation = str(input('Are parameters correct? (y/n):'))
+		confirmation = str(input('Are parameters correct? (y/n): '))
 
 		if(confirmation == 'y'):
 			runAction(parameters)

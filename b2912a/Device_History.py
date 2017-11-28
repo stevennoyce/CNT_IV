@@ -19,17 +19,17 @@ from utilities import DataLoggerUtility as dlu
 ## ********** Main **********
 
 def run(parameters):
-	burnOutFileName = 'BurnOut_' + parameters['chipID'] + '.json'
 	gateSweepFileName = 'GateSweep_' + parameters['chipID'] + '.json'
+	burnOutFileName = 'BurnOut_' + parameters['chipID'] + '.json'
 
-	burnOutHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], burnOutFileName, parameters['deviceID'])
 	gateSweepHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], gateSweepFileName, parameters['deviceID'])
+	burnOutHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], burnOutFileName, parameters['deviceID'])
 
 	if(parameters['showOnlySuccessfulBurns']):
 		burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
 
-	dpu.plotFullDeviceHistory(burnOutHistory)
-	dpu.plotFullDeviceHistory(gateSweepHistory)
+	dpu.plotFullGateSweepHistory(gateSweepHistory)
+	dpu.plotFullBurnOutHistory(burnOutHistory)
 	dpu.show()
 
 

@@ -1,18 +1,19 @@
 from matplotlib import pyplot as plt
+from matplotlib import colors as pltc
+from matplotlib import cm
 import numpy as np
 
 # ********** Constants **********
 
-figures = {
-	'GateSweep':1,
-	'BurnOut':2,
-	'ChipHistory':3
+titles = {
+	'GateSweep':'Subthreshold Sweep',
+	'BurnOut':'Metallic CNT Burn Out',
+	'ChipHistory':'Chip History'
 }
 
-titles = {
-	'GateSweep':'Gate Sweep',
-	'BurnOut':'Burn Out',
-	'ChipHistory':'Chip History'
+color_maps = {
+	'GateSweep':'hot',
+	'BurnOut':'Greys'
 }
 
 
@@ -20,20 +21,34 @@ titles = {
 # ********** API **********
 
 def plotJSON(jsonData, lineColor):
-	figure(jsonData['runType'])
 	if(jsonData['runType'] == 'GateSweep'):
-		plotGateSweep(jsonData, lineColor)
+		fig, ax = plt.subplots(1,1,'GateSweep')
+		plotGateSweep(ax, jsonData, lineColor)
 	elif(jsonData['runType'] == 'BurnOut'):
-		plotBurnOut(jsonData, lineColor)
+		fig, (ax1, ax2) = plt.subplots(1,2,'BurnOut')
+		plotBurnOut(ax1, ax2, jsonData, lineColor)
 	else:
 		raise NotImplementedError("Unable to determine plot type")
 
-def plotFullDeviceHistory(deviceHistory):
+def plotFullGateSweepHistory(deviceHistory):
+	fig, ax = subplots(1, 1, 'GateSweep')
+	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=color_maps['GateSweep'])
+	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.7, 0, len(deviceHistory))]
 	for i in range(len(deviceHistory)):
-		plotJSON(deviceHistory[i], rgbFade(i, len(deviceHistory)))
+		plotGateSweep(ax, deviceHistory[i], colors[i])	
+	ax.annotate('Burning Away Metallic CNTs', xy=(0.3, 0.05), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
+	ax.annotate('', xy=(0.29, 0.05), xytext=(0.29,0.38), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
+	ax.annotate('$V_{DS} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', fontsize=10, horizontalalignment='left', verticalalignment='bottom')
+
+def plotFullBurnOutHistory(deviceHistory):
+	fig, (ax1, ax2) = subplots(1, 2, 'BurnOut')
+	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=color_maps['BurnOut'])
+	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.3, 1.0, len(deviceHistory))]
+	for i in range(len(deviceHistory)):
+		plotBurnOut(ax1, ax2, deviceHistory[i], colors[i])
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
-	figure('ChipHistory')
+	fig, ax = subplots(1,1,'ChipHistory')
 	devices = []
 	firstOnOffRatios = []
 	for deviceRun in firstRunChipHistory:
@@ -42,29 +57,25 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	lastOnOffRatios = len(devices)*[0]
 	for deviceRun in recentRunChipHistory:
 		lastOnOffRatios[devices.index(deviceRun['deviceID'])] = np.log10(deviceRun['onOffRatio'])
-	scatterLinearXLinearY(range(len(devices)), firstOnOffRatios, 'b', 'First Run', 6)
-	scatterLinearXLinearY(range(len(devices)), lastOnOffRatios, 'r', 'Most Recent Run', 4)
-	plt.ylabel('On/Off Ratio, $log_{10}(I_{on}/I_{off})$ (Orders of Magnitude)')
-	plt.xticks(range(len(devices)), devices, rotation='vertical')
-	plt.tight_layout(rect=[0,0,0.8,0.95])
+	scatterLinearXLinearY(ax, range(len(devices)), firstOnOffRatios, 'b', 'First Run', 6)
+	scatterLinearXLinearY(ax, range(len(devices)), lastOnOffRatios, 'r', 'Most Recent Run', 4)
+	ax.set_ylabel('On/Off Ratio, $log_{10}(I_{on}/I_{off})$ (Orders of Magnitude)')
+	ax.set_xticklabels(devices)
+	ax.set_xticks(range(len(devices)))
+	ax.xaxis.set_tick_params(rotation=90)
+	fig.tight_layout(rect=[0,0,1.0,0.95])
 	
 
 # ***** Figures *****
 
-def figure(type):
-	fig = plt.figure(figures[type], figsize = (10,6))
+def subplots(rows, columns, type):
+	fig, axes = plt.subplots(rows, columns, figsize = (8,6))
 	fig.suptitle(titles[type])
-	return fig
+	return fig, axes
 
 def show():
-	plt.legend(loc='center right', bbox_to_anchor=(1.25,0.5))
 	plt.show()
 
-def rgbFade(i, numberOfLines):
-	r = 0.9 - 0.9*((i+1)/(numberOfLines))**2
-	g = 0.9 - 0.9*((i+1)/(numberOfLines))**2
-	b = 0.9 - 0.9*((i+1)/(numberOfLines))**2
-	return (r,g,b)
 
 # ***** Math *****
 
@@ -88,62 +99,57 @@ def nextIndexToBeDifferent(data, i):
 		i += 1
 	return i
 
+
 # ***** Plots *****
 
-def plotGateSweep(jsonData, lineColor):
-	scatterLinearXLogY(jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
-	#errorBarsLinearXLogY(jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
-	plt.xlabel('Gate Voltage, $V_{gs}$ [V]')
-	plt.ylabel('Drain Current, $I_D$ [A]')
-	plt.tight_layout(rect=[0,0,0.8,0.95])
+def plotGateSweep(axis, jsonData, lineColor):
+	#scatterLinearXLogY(axis jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
+	errorBarsLinearXLogY(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
+	axis.set_xlabel('Gate Voltage, $V_{gs}$ [V]')
+	axis.set_ylabel('Drain Current, $I_D$ [A]')
+	axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
+	#axis.tight_layout(rect=[0,0,0.8,0.95])
 
-def plotBurnOut(jsonData, lineColor):
-	ax1 = plt.subplot(1,2,1)
-	plotLinearXLinearY(jsonData['voltage1s'], jsonData['current1s'], lineColor, '')
+def plotBurnOut(axis1, axis2, jsonData, lineColor):
+	plotLinearXLinearY(axis1, jsonData['voltage1s'], jsonData['current1s'], lineColor, '')
 	currentThreshold = np.percentile(np.array(jsonData['current1s']), 90) * jsonData['thresholdProportion']
-	ax1.plot([0, jsonData['voltage1s'][-1]], [currentThreshold, currentThreshold], color=lineColor, label='', linestyle='--', linewidth=1)
-	ax1.set_xlabel('Drain Voltage, $V_{ds}$ [V]')
-	ax1.set_ylabel('Drain Current, $I_d$ [A]')
+	axis1.plot([0, jsonData['voltage1s'][-1]], [currentThreshold, currentThreshold], color=lineColor, label='', linestyle='--', linewidth=1)
+	axis1.set_xlabel('Drain Voltage, $V_{ds}$ [V]')
+	axis1.set_ylabel('Drain Current, $I_d$ [A]')
+	plt.tight_layout(rect=[0,0,0.95,0.95])
 
-	ax2 = plt.subplot(1,2,2)
-	plotTimeLinearY(jsonData['timestamps'], jsonData['current1s'], lineColor, '')	
-	ax2.set_xlabel('Time, $t$ [sec]')
-	ax2.set_ylabel('Drain Current, $I_d$ [A]')
+	plotTimeLinearY(axis2, jsonData['timestamps'], jsonData['current1s'], lineColor, '')	
+	axis2.set_xlabel('Time, $t$ [sec]')
+	axis2.set_ylabel('Drain Current, $I_d$ [A]')
+	plt.tight_layout(rect=[0,0,0.95,0.95])
 
-def plotLinearXLogY(x, y, lineColor, lineLabel):
-	ax = plt.gca()
-	ax.plot(x, y, color=lineColor, label=lineLabel)
-	ax.set_yscale('log')
+def plotLinearXLogY(axis, x, y, lineColor, lineLabel):
+	axis.plot(x, y, color=lineColor, label=lineLabel)
+	axis.set_yscale('log')
 
-def errorBarsLinearXLogY(x, y, lineColor, lineLabel):
-	ax = plt.gca()
+def errorBarsLinearXLogY(axis, x, y, lineColor, lineLabel):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
-	ax.errorbar(x_unique, avg, yerr=std, color=lineColor, label=lineLabel, capsize=4, capthick=0.5, elinewidth=0.5,)
-	ax.set_yscale('log')
+	axis.errorbar(x_unique, avg, yerr=std, color=lineColor, label=lineLabel, capsize=4, capthick=0.5, elinewidth=0.5,)
+	axis.set_yscale('log')
 
-def scatterLinearXLogY(x, y, lineColor, lineLabel, markerSize):
-	ax = plt.gca()
-	ax.plot(x, y, color=lineColor, label=lineLabel, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=0)
-	ax.set_yscale('log')
+def scatterLinearXLogY(axis, x, y, lineColor, lineLabel, markerSize):
+	axis.plot(x, y, color=lineColor, label=lineLabel, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=0)
+	axis.set_yscale('log')
 
-def plotLinearXLinearY(x, y, lineColor, lineLabel):
-	ax = plt.gca()
-	ax.plot(x, y, color=lineColor, label=lineLabel)
+def plotLinearXLinearY(axis, x, y, lineColor, lineLabel):
+	axis.plot(x, y, color=lineColor, label=lineLabel)
 
-def scatterLinearXLinearY(x, y, lineColor, lineLabel, markerSize):
-	ax = plt.gca()
-	ax.plot(x, y, color=lineColor, label=lineLabel, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=0)
+def scatterLinearXLinearY(axis, x, y, lineColor, lineLabel, markerSize):
+	axis.plot(x, y, color=lineColor, label=lineLabel, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=0)
 
-def plotTimeLogY(timestamps, y, lineColor, lineLabel):
+def plotTimeLogY(axis, timestamps, y, lineColor, lineLabel):
 	zeroed_timestamps = list(np.array(timestamps) - np.array(timestamps)[0])
-	ax = plt.gca()
-	ax.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel)
-	ax.set_yscale('log')
+	axis.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel)
+	axis.set_yscale('log')
 
-def plotTimeLinearY(timestamps, y, lineColor, lineLabel):
+def plotTimeLinearY(axis, timestamps, y, lineColor, lineLabel):
 	zeroed_timestamps = list(np.array(timestamps) - np.array(timestamps)[0])
-	ax = plt.gca()
-	ax.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel)
+	axis.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel)
 
 
 
