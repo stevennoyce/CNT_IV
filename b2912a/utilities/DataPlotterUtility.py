@@ -26,11 +26,13 @@ def plotJSON(jsonData, lineColor):
 		plotGateSweep(ax, jsonData, lineColor)
 	elif(jsonData['runType'] == 'BurnOut'):
 		fig, (ax1, ax2) = subplots(1,2,'BurnOut')
-		plotBurnOut(ax1, ax2, jsonData, lineColor)
+		ax2 = plt.subplot(2,2,2)
+		ax3 = plt.subplot(2,2,4)
+		plotBurnOut(ax1, ax2, ax3, jsonData, lineColor)
 	else:
 		raise NotImplementedError("Unable to determine plot type")
 
-def plotFullGateSweepHistory(deviceHistory):
+def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax = subplots(1, 1, 'GateSweep')
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=color_maps['GateSweep'])
 	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.7, 0, len(deviceHistory))]
@@ -39,8 +41,13 @@ def plotFullGateSweepHistory(deviceHistory):
 	ax.annotate('Burning Away\nMetallic CNTs', xy=(0.3, 0.01*len(deviceHistory)), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.29, 0.04), xytext=(0.29,0.0475*len(deviceHistory)), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{DS} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', fontsize=10, horizontalalignment='left', verticalalignment='bottom')
+	if(saveFigure):
+		plt.savefig('fig1.png')
+	if(not showFigure):
+		plt.close(fig)
 
-def plotFullBurnOutHistory(deviceHistory):
+
+def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, (ax1, ax2) = subplots(1, 2, 'BurnOut')
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
@@ -49,6 +56,10 @@ def plotFullBurnOutHistory(deviceHistory):
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
 	ax1.annotate('$V_{GS} = 15V$', xy=(0.96, 0.05), xycoords='axes fraction', fontsize=10, horizontalalignment='right', verticalalignment='bottom')
+	if(saveFigure):
+		plt.savefig('fig2.png')
+	if(not showFigure):
+		plt.close(fig)
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	fig, ax = subplots(1,1,'ChipHistory')

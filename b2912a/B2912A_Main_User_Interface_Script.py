@@ -1,15 +1,17 @@
 import os
 
-import B2912A_Burn_Out_v1 as burnOutScript
-import B2912A_Gate_Sweep_v2 as gateSweepScript
-import B2912A_Auto_Burn_Out_v1 as autoBurnScript
+import B2912A_Burn_Out as burnOutScript
+import B2912A_Gate_Sweep as gateSweepScript
+import B2912A_Auto_Burn_Out as autoBurnScript
+import B2912A_Static_Bias as staticBiasScript
+import B2912A_Auto_Gate_Sweep as autoGateScript
 import Device_History as deviceHistoryScript
 import Chip_History as chipHistoryScript
 
 ## ********** Parameters **********
 
 chipID = 'C127M'
-deviceID = '50-51'
+deviceID = '3-4'
 
 #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -19,8 +21,10 @@ runTypes = {
 	1:'GateSweep',
 	2:'BurnOut',
 	3:'AutoBurnOut',
-	4:'DeviceHistory',
-	5:'ChipHistory'
+	4:'StaticBias',
+	5:'AutoGateSweep',
+	6:'DeviceHistory',
+	7:'ChipHistory'
 }
 
 default_parameters = {
@@ -50,12 +54,24 @@ additional_parameters = {
 	},
 	'AutoBurnOut':{
 		'targetOnOffRatio': 100,
-		'limitBurnOutsAllowed': 8,
+		'limitBurnOutsAllowed': 1,
 		'limitOnOffRatioDegradation': 0.7
 	},
+	'StaticBias':{
+		'time': 20,
+		'complianceCurrent':	100e-6,
+		'gateVoltageSetPoint':	-15.0,
+		'drainVoltageSetPoint':	0.5,
+	},
+	'AutoGateSweep':{
+		'numberOfSweeps':2,
+		'applyStaticBiasBetweenSweeps':True,
+		'saveFiguresBetweenSweeps':True
+	},
 	'DeviceHistory':{
+		'saveFiguresGenerated':False,
 		'showOnlySuccessfulBurns': False,
-		'firstRunToPlot':0,
+		'firstRunToPlot': 0
 	},
 	'ChipHistory':{
 
@@ -67,7 +83,7 @@ def main(parameters):
 		os.system('clear')
 		print('Actions: ')
 		print_dict(runTypes)
-		choice = int(input('Choose an action (1,2,...): '))
+		choice = int(input('Choose an action (0,1,2,...): '))
 
 		if(choice == 0):
 			break
@@ -94,6 +110,12 @@ def runAction(parameters):
 		parameters['GateSweep'] = additional_parameters['GateSweep']
 		parameters['BurnOut'] = additional_parameters['BurnOut']
 		autoBurnScript.run(parameters)
+	elif(parameters['runType'] == 'StaticBias'):
+		staticBiasScript.run(parameters)
+	elif(parameters['runType'] == 'AutoGateSweep'):
+		parameters['GateSweep'] = additional_parameters['GateSweep']
+		parameters['StaticBias'] = additional_parameters['StaticBias']
+		autoGateScript.run(parameters)
 	elif(parameters['runType'] == 'DeviceHistory'):
 		deviceHistoryScript.run(parameters)
 	elif(parameters['runType'] == 'ChipHistory'):
