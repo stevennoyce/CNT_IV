@@ -38,7 +38,7 @@ def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	colors = [scalarColorMap.to_rgba(i) for i in np.linspace(0.7, 0, len(deviceHistory))]
 	for i in range(len(deviceHistory)):
 		plotGateSweep(ax, deviceHistory[i], colors[i])	
-	ax.annotate('Burning Away\nMetallic CNTs', xy=(0.3, 0.01*len(deviceHistory)), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
+	ax.annotate('Oldest to newest', xy=(0.3, 0.01*len(deviceHistory)), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.29, 0.04), xytext=(0.29,0.0475*len(deviceHistory)), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{DS} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', fontsize=10, horizontalalignment='left', verticalalignment='bottom')
 	if(saveFigure):

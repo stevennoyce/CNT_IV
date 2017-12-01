@@ -77,6 +77,9 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write("*RST") # Reset
 		self.smu.write(':system:lfrequency 60')
 
+		self.smu.write(':SENS:CURR:RANGE:AUTO ON')
+		self.smu.write(':SENS:CURR:RANGE:AUTO:LLIM 1e-8')
+
 		self.smu.write(":source1:function:mode voltage")
 		self.smu.write(":source2:function:mode voltage")
 
