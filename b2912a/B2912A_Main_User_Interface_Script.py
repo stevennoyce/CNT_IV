@@ -11,7 +11,7 @@ import Chip_History as chipHistoryScript
 ## ********** Parameters **********
 
 chipID = 'C127M'
-deviceID = '23-24'
+deviceID = '3-4'
 
 #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -37,7 +37,7 @@ default_parameters = {
 additional_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep_' + chipID,
-		'runDataPoints':600,
+		'runDataPoints': 600,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
 		'gateVoltageMinimum':	-15.0,
@@ -45,7 +45,7 @@ additional_parameters = {
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut_' + chipID,
-		'runDataPoints':1000,
+		'runDataPoints': 1000,
 		'complianceCurrent':	2000e-6,
 		'thresholdProportion':	0.8,
 		'gateVoltageSetPoint':	15.0,
@@ -61,7 +61,7 @@ additional_parameters = {
 		'time': 600,
 		'complianceCurrent':	100e-6,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	0.5,
+		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps':2,
@@ -69,9 +69,10 @@ additional_parameters = {
 		'saveFiguresBetweenSweeps':True
 	},
 	'DeviceHistory':{
-		'saveFiguresGenerated':False,
+		'saveFiguresGenerated': False,
 		'showOnlySuccessfulBurns': False,
-		'firstRunToPlot': 0
+		'numberOfOldestPlotsToExclude': 0,
+		'numberOfNewestPlotsToExclude': 0
 	},
 	'ChipHistory':{
 

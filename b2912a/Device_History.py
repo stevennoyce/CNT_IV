@@ -25,8 +25,8 @@ def run(parameters, showFigures=True):
 	gateSweepHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], gateSweepFileName, parameters['deviceID'])
 	burnOutHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], burnOutFileName, parameters['deviceID'])
 
-	gateSweepHistory = gateSweepHistory[parameters['firstRunToPlot']:]
-	burnOutHistory = burnOutHistory[parameters['firstRunToPlot']:]
+	gateSweepHistory = gateSweepHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(gateSweepHistory)-parameters['numberOfNewestPlotsToExclude']))]
+	burnOutHistory = burnOutHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(burnOutHistory)-parameters['numberOfNewestPlotsToExclude']))]
 
 	if(parameters['showOnlySuccessfulBurns']):
 		burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)

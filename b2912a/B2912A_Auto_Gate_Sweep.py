@@ -64,7 +64,8 @@ def run(parameters):
 		'NPLC':parameters['NPLC'],
 		'saveFiguresGenerated':True,
 		'showOnlySuccessfulBurns': False,
-		'firstRunToPlot': numberOfOldDeviceRuns
+		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
+		'numberOfNewestPlotsToExclude': 0
 	}
 
 	runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)

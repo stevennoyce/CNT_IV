@@ -1,6 +1,8 @@
 import B2912A_Burn_Out as burnOutScript
 import B2912A_Gate_Sweep as gateSweepScript
 import Device_History as deviceHistoryScript
+from utilities import DataLoggerUtility as dlu
+
 
 
 
@@ -61,6 +63,8 @@ def run(parameters):
 	}
 	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
 
+	numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(parameters['saveFolder'], burnOutParameters['saveFileName']+'.json', parameters['deviceID']))
+
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
 		'chipID':parameters['chipID'], 
@@ -69,7 +73,8 @@ def run(parameters):
 		'NPLC':parameters['NPLC'],
 		'saveFiguresGenerated':False,
 		'showOnlySuccessfulBurns': False,
-		'firstRunToPlot': 0
+		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
+		'numberOfNewestPlotsToExclude': 0
 	}
 
 	runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters)
