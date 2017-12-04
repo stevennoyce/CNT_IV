@@ -1,0 +1,6 @@
+C:\Users\noyce\home\Research\illumina\PSoC\PSoC5 Device Selector\PSoC5 Device Selector 1\Design01.cydsn\Design01.cyprj|39f616f2-3bbb-46b2-9f3c-07cc11842948
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|df54afb3-3b8c-436a-84bd-09fc40580758
+C:\Users\noyce\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|f9653c25-1ac5-44cb-a9f8-cf421a002204
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|9e34ab62-0f7f-4c40-bf23-34500efe296b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4a1b00c3-996a-484b-a649-db854269d553
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c38335c4-121e-41da-98cf-eb6ba29cc5b3

@@ -1,0 +1,7 @@
+C:\Users\noyce\home\Research\illumina\PSoC\Layout 2_14 Device Selector\Design01.cydsn\Design01.cyprj|b1a49c08-dcea-4720-b435-fb0a652b7177
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|77f479a9-fedd-4160-95dc-8b807edb8224
+C:\Users\noyce\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|152f1c07-9348-48e4-9ba1-a6e8521ae3e9
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|8a4170a8-34c0-4ab1-9eca-8d43aad690c1
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|58e27b05-b809-4e10-bdbb-4bebed9eb275
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|7f7a9b50-1db6-440d-973f-fb0acc2868a7
+C:\Users\noyce\home\Research\illumina\PSoC\Layout 2_14 Device Selector\Proto Board Test 1.cydsn\Proto Board Test 1.cyprj|265f8da7-ea7c-4e2a-a91f-a999a227db73

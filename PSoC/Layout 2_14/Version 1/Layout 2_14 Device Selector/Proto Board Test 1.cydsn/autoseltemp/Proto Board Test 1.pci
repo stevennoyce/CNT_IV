@@ -1,0 +1,13 @@
+# Proto Board Test 1
+# 2017-09-14 15:06:27Z
+
+# IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 2
+# IO_3@[IOP=(3)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 3
+dont_use_location 0 1
+dont_use_location 1 0
+dont_use_location 1 1
+dont_use_location OA -1 -1 1
+dont_use_location p4abufcell -1 -1 1
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0

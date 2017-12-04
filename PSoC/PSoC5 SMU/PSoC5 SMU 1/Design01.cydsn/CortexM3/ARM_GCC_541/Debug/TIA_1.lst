@@ -1,0 +1,1396 @@
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"TIA_1.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.TIA_1_Enable,"ax",%progbits
+  20              		.align	2
+  21              		.global	TIA_1_Enable
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	TIA_1_Enable, %function
+  25              	TIA_1_Enable:
+  26              	.LFB1:
+  27              		.file 1 "Generated_Source\\PSoC5\\TIA_1.c"
+   1:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/TIA_1.c **** * File Name: TIA_1.c  
+   3:Generated_Source\PSoC5/TIA_1.c **** * Version 2.0
+   4:Generated_Source\PSoC5/TIA_1.c **** *
+   5:Generated_Source\PSoC5/TIA_1.c **** * Description:
+   6:Generated_Source\PSoC5/TIA_1.c **** *  This file provides the source code to the API for the TIA User Module.
+   7:Generated_Source\PSoC5/TIA_1.c **** *
+   8:Generated_Source\PSoC5/TIA_1.c **** * Note:
+   9:Generated_Source\PSoC5/TIA_1.c **** *
+  10:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+  11:Generated_Source\PSoC5/TIA_1.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC5/TIA_1.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:Generated_Source\PSoC5/TIA_1.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:Generated_Source\PSoC5/TIA_1.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+  16:Generated_Source\PSoC5/TIA_1.c **** 
+  17:Generated_Source\PSoC5/TIA_1.c **** #include "TIA_1.h"
+  18:Generated_Source\PSoC5/TIA_1.c **** 
+  19:Generated_Source\PSoC5/TIA_1.c **** #if (!CY_PSOC5A)
+  20:Generated_Source\PSoC5/TIA_1.c ****     #if (CYDEV_VARIABLE_VDDA == 1u)
+  21:Generated_Source\PSoC5/TIA_1.c ****         #include "CyScBoostClk.h"
+  22:Generated_Source\PSoC5/TIA_1.c ****     #endif /* (CYDEV_VARIABLE_VDDA == 1u) */
+  23:Generated_Source\PSoC5/TIA_1.c **** #endif /* (!CY_PSOC5A) */
+  24:Generated_Source\PSoC5/TIA_1.c **** 
+  25:Generated_Source\PSoC5/TIA_1.c **** /* Fixed configuration of SC Block only performed once */
+  26:Generated_Source\PSoC5/TIA_1.c **** uint8 TIA_1_initVar = 0u;
+  27:Generated_Source\PSoC5/TIA_1.c **** 
+  28:Generated_Source\PSoC5/TIA_1.c **** #if (CY_PSOC5A)
+  29:Generated_Source\PSoC5/TIA_1.c ****     static TIA_1_BACKUP_STRUCT  TIA_1_P5backup;
+  30:Generated_Source\PSoC5/TIA_1.c **** #endif /* (CY_PSOC5A) */
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 2
+
+
+  31:Generated_Source\PSoC5/TIA_1.c **** 
+  32:Generated_Source\PSoC5/TIA_1.c **** 
+  33:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************   
+  34:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_Init
+  35:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+  36:Generated_Source\PSoC5/TIA_1.c **** *
+  37:Generated_Source\PSoC5/TIA_1.c **** * Summary:
+  38:Generated_Source\PSoC5/TIA_1.c **** *  Initialize component's parameters to the parameters set by user in the 
+  39:Generated_Source\PSoC5/TIA_1.c **** *  customizer of the component placed onto schematic. Usually called in 
+  40:Generated_Source\PSoC5/TIA_1.c **** *  TIA_1_Start().
+  41:Generated_Source\PSoC5/TIA_1.c **** *
+  42:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+  43:Generated_Source\PSoC5/TIA_1.c **** *  void
+  44:Generated_Source\PSoC5/TIA_1.c **** *
+  45:Generated_Source\PSoC5/TIA_1.c **** * Return:
+  46:Generated_Source\PSoC5/TIA_1.c **** *  void
+  47:Generated_Source\PSoC5/TIA_1.c **** *
+  48:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+  49:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_Init(void) 
+  50:Generated_Source\PSoC5/TIA_1.c **** {
+  51:Generated_Source\PSoC5/TIA_1.c ****     /* Set SC Block Mode to TIA - SCxx_CR0[3:1] */
+  52:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_CR0_REG = TIA_1_MODE_TIA;
+  53:Generated_Source\PSoC5/TIA_1.c ****     
+  54:Generated_Source\PSoC5/TIA_1.c ****     /*    Set SC Block CR1 Control Register fields to support TIA mode 
+  55:Generated_Source\PSoC5/TIA_1.c ****             drive field set by SetPower() API
+  56:Generated_Source\PSoC5/TIA_1.c ****             compensation Cap - 5.1 pF
+  57:Generated_Source\PSoC5/TIA_1.c ****             div2 - disable, n/a for TIA mode
+  58:Generated_Source\PSoC5/TIA_1.c ****             Mixer/PGA Gain - 0db, n/a for TIA mode   */
+  59:Generated_Source\PSoC5/TIA_1.c **** 
+  60:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_CR1_REG = (TIA_1_COMP_5P1PF |
+  61:Generated_Source\PSoC5/TIA_1.c ****                                 TIA_1_DIV2_DISABLE |
+  62:Generated_Source\PSoC5/TIA_1.c ****                                 TIA_1_GAIN_0DB);
+  63:Generated_Source\PSoC5/TIA_1.c **** 
+  64:Generated_Source\PSoC5/TIA_1.c **** 
+  65:Generated_Source\PSoC5/TIA_1.c ****     /*    Set SC Block CR2 Control Register fields to support TIA mode
+  66:Generated_Source\PSoC5/TIA_1.c ****             Bias - Low
+  67:Generated_Source\PSoC5/TIA_1.c ****             r20_r40 - 40K, n/a for TIA mode
+  68:Generated_Source\PSoC5/TIA_1.c ****             redc - set by SetCapFB() API
+  69:Generated_Source\PSoC5/TIA_1.c ****             rval - set by SetResFB() API
+  70:Generated_Source\PSoC5/TIA_1.c ****             PGA Ground Ref - disable, n/a for TIA mode    */
+  71:Generated_Source\PSoC5/TIA_1.c **** 
+  72:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_CR2_REG = (TIA_1_BIAS_LOW |
+  73:Generated_Source\PSoC5/TIA_1.c ****                                 TIA_1_R20_40B_40K |
+  74:Generated_Source\PSoC5/TIA_1.c ****                                 TIA_1_GNDVREF_DI);
+  75:Generated_Source\PSoC5/TIA_1.c ****                           
+  76:Generated_Source\PSoC5/TIA_1.c ****     /* Set default resistive feedback value */
+  77:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_SetResFB(TIA_1_INIT_RES_FEEDBACK);
+  78:Generated_Source\PSoC5/TIA_1.c ****       
+  79:Generated_Source\PSoC5/TIA_1.c ****     /* Set default capacitive feedback value */
+  80:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_SetCapFB(TIA_1_INIT_CAP_FEEDBACK);
+  81:Generated_Source\PSoC5/TIA_1.c **** 
+  82:Generated_Source\PSoC5/TIA_1.c ****     /* Set default power */
+  83:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_SetPower(TIA_1_INIT_POWER);
+  84:Generated_Source\PSoC5/TIA_1.c **** }
+  85:Generated_Source\PSoC5/TIA_1.c **** 
+  86:Generated_Source\PSoC5/TIA_1.c **** 
+  87:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************   
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 3
+
+
+  88:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_Enable
+  89:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+  90:Generated_Source\PSoC5/TIA_1.c **** *
+  91:Generated_Source\PSoC5/TIA_1.c **** * Summary:
+  92:Generated_Source\PSoC5/TIA_1.c **** *  Enables the TIA block operation
+  93:Generated_Source\PSoC5/TIA_1.c **** *
+  94:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+  95:Generated_Source\PSoC5/TIA_1.c **** *  void
+  96:Generated_Source\PSoC5/TIA_1.c **** *
+  97:Generated_Source\PSoC5/TIA_1.c **** * Return:
+  98:Generated_Source\PSoC5/TIA_1.c **** *  void
+  99:Generated_Source\PSoC5/TIA_1.c **** *
+ 100:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+ 101:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_Enable(void) 
+ 102:Generated_Source\PSoC5/TIA_1.c **** {
+  28              		.loc 1 102 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+ 103:Generated_Source\PSoC5/TIA_1.c **** 	/* This is to restore the value of register CR1 and CR2 which is saved 
+ 104:Generated_Source\PSoC5/TIA_1.c ****       in prior to the modifications in stop() API */
+ 105:Generated_Source\PSoC5/TIA_1.c **** 	#if (CY_PSOC5A)
+ 106:Generated_Source\PSoC5/TIA_1.c ****         if(TIA_1_P5backup.enableState == 1u)
+ 107:Generated_Source\PSoC5/TIA_1.c ****         {
+ 108:Generated_Source\PSoC5/TIA_1.c **** 			TIA_1_CR1_REG = TIA_1_P5backup.scCR1Reg;
+ 109:Generated_Source\PSoC5/TIA_1.c ****             TIA_1_CR2_REG =TIA_1_P5backup.scCR2Reg;
+ 110:Generated_Source\PSoC5/TIA_1.c ****             TIA_1_P5backup.enableState = 0u;
+ 111:Generated_Source\PSoC5/TIA_1.c ****         }
+ 112:Generated_Source\PSoC5/TIA_1.c ****     #endif
+ 113:Generated_Source\PSoC5/TIA_1.c ****     /* Enable power to Amp in Active mode */
+ 114:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_PM_ACT_CFG_REG |= TIA_1_ACT_PWR_EN;
+  33              		.loc 1 114 0
+  34 0000 084A     		ldr	r2, .L2
+  35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  36 0004 43F00403 		orr	r3, r3, #4
+  37 0008 1370     		strb	r3, [r2]
+ 115:Generated_Source\PSoC5/TIA_1.c **** 
+ 116:Generated_Source\PSoC5/TIA_1.c ****     /* Enable the power to Amp in Alternative active mode*/
+ 117:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_PM_STBY_CFG_REG |= TIA_1_STBY_PWR_EN;
+  38              		.loc 1 117 0
+  39 000a 1032     		adds	r2, r2, #16
+  40 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  41 000e 43F00403 		orr	r3, r3, #4
+  42 0012 1370     		strb	r3, [r2]
+ 118:Generated_Source\PSoC5/TIA_1.c ****     
+ 119:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_PUMP_CR1_REG |= TIA_1_PUMP_CR1_SC_CLKSEL;
+  43              		.loc 1 119 0
+  44 0014 02F5A552 		add	r2, r2, #5280
+  45 0018 1E32     		adds	r2, r2, #30
+  46 001a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  47 001c 43F08003 		orr	r3, r3, #128
+  48 0020 1370     		strb	r3, [r2]
+  49 0022 7047     		bx	lr
+  50              	.L3:
+  51              		.align	2
+  52              	.L2:
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 4
+
+
+  53 0024 A9430040 		.word	1073759145
+  54              		.cfi_endproc
+  55              	.LFE1:
+  56              		.size	TIA_1_Enable, .-TIA_1_Enable
+  57              		.section	.text.TIA_1_Stop,"ax",%progbits
+  58              		.align	2
+  59              		.global	TIA_1_Stop
+  60              		.thumb
+  61              		.thumb_func
+  62              		.type	TIA_1_Stop, %function
+  63              	TIA_1_Stop:
+  64              	.LFB3:
+ 120:Generated_Source\PSoC5/TIA_1.c ****     
+ 121:Generated_Source\PSoC5/TIA_1.c ****     #if (!CY_PSOC5A)
+ 122:Generated_Source\PSoC5/TIA_1.c ****         #if (CYDEV_VARIABLE_VDDA == 1u)
+ 123:Generated_Source\PSoC5/TIA_1.c ****             if(CyScPumpEnabled == 1u)
+ 124:Generated_Source\PSoC5/TIA_1.c ****             {
+ 125:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_BSTCLK_REG &= (uint8)(~TIA_1_BST_CLK_INDEX_MASK);
+ 126:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_BSTCLK_REG |= TIA_1_BST_CLK_EN | CyScBoostClk__INDEX;
+ 127:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_SC_MISC_REG |= TIA_1_PUMP_FORCE;
+ 128:Generated_Source\PSoC5/TIA_1.c ****                 CyScBoostClk_Start();
+ 129:Generated_Source\PSoC5/TIA_1.c ****             }
+ 130:Generated_Source\PSoC5/TIA_1.c ****             else
+ 131:Generated_Source\PSoC5/TIA_1.c ****             {
+ 132:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_BSTCLK_REG &= (uint8)(~TIA_1_BST_CLK_EN);
+ 133:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_SC_MISC_REG &= (uint8)(~TIA_1_PUMP_FORCE);
+ 134:Generated_Source\PSoC5/TIA_1.c ****             }
+ 135:Generated_Source\PSoC5/TIA_1.c ****         #endif /* (CYDEV_VARIABLE_VDDA == 1u) */
+ 136:Generated_Source\PSoC5/TIA_1.c ****     #endif /* (!CY_PSOC5A) */
+ 137:Generated_Source\PSoC5/TIA_1.c **** }
+ 138:Generated_Source\PSoC5/TIA_1.c **** 
+ 139:Generated_Source\PSoC5/TIA_1.c **** 
+ 140:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************
+ 141:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_Start
+ 142:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+ 143:Generated_Source\PSoC5/TIA_1.c **** *
+ 144:Generated_Source\PSoC5/TIA_1.c **** * Summary:
+ 145:Generated_Source\PSoC5/TIA_1.c **** *  The start function initializes the TIA with the default values and enables
+ 146:Generated_Source\PSoC5/TIA_1.c **** *  power to the SC block.
+ 147:Generated_Source\PSoC5/TIA_1.c **** *
+ 148:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+ 149:Generated_Source\PSoC5/TIA_1.c **** *  void
+ 150:Generated_Source\PSoC5/TIA_1.c **** *
+ 151:Generated_Source\PSoC5/TIA_1.c **** * Return:
+ 152:Generated_Source\PSoC5/TIA_1.c **** *  void 
+ 153:Generated_Source\PSoC5/TIA_1.c **** *
+ 154:Generated_Source\PSoC5/TIA_1.c **** * Global variables:
+ 155:Generated_Source\PSoC5/TIA_1.c **** *  TIA_1_initVar: Used to check the initial configuration, modified 
+ 156:Generated_Source\PSoC5/TIA_1.c **** *  when this function is called for the first time.
+ 157:Generated_Source\PSoC5/TIA_1.c **** *
+ 158:Generated_Source\PSoC5/TIA_1.c **** * Theory:
+ 159:Generated_Source\PSoC5/TIA_1.c **** *  Full initialization of the SC Block configuration registers is only perfomed
+ 160:Generated_Source\PSoC5/TIA_1.c **** *  the first time the routine executes - global variable  is used to
+ 161:Generated_Source\PSoC5/TIA_1.c **** *  TIA_1_initVar is used to indicate that the static configuration 
+ 162:Generated_Source\PSoC5/TIA_1.c **** *  has been completed.
+ 163:Generated_Source\PSoC5/TIA_1.c **** *
+ 164:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 5
+
+
+ 165:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_Start(void) 
+ 166:Generated_Source\PSoC5/TIA_1.c **** {
+ 167:Generated_Source\PSoC5/TIA_1.c ****     if(TIA_1_initVar == 0u)
+ 168:Generated_Source\PSoC5/TIA_1.c ****     {
+ 169:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_initVar = 1u;  
+ 170:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_Init();
+ 171:Generated_Source\PSoC5/TIA_1.c ****     }
+ 172:Generated_Source\PSoC5/TIA_1.c **** 
+ 173:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_Enable();
+ 174:Generated_Source\PSoC5/TIA_1.c **** }
+ 175:Generated_Source\PSoC5/TIA_1.c **** 
+ 176:Generated_Source\PSoC5/TIA_1.c **** 
+ 177:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************
+ 178:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_Stop
+ 179:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+ 180:Generated_Source\PSoC5/TIA_1.c **** *
+ 181:Generated_Source\PSoC5/TIA_1.c **** * Summary: 
+ 182:Generated_Source\PSoC5/TIA_1.c **** *  Disables power to SC block.
+ 183:Generated_Source\PSoC5/TIA_1.c **** *
+ 184:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+ 185:Generated_Source\PSoC5/TIA_1.c **** *  void
+ 186:Generated_Source\PSoC5/TIA_1.c **** *
+ 187:Generated_Source\PSoC5/TIA_1.c **** * Return:
+ 188:Generated_Source\PSoC5/TIA_1.c **** *  void
+ 189:Generated_Source\PSoC5/TIA_1.c **** *
+ 190:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+ 191:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_Stop(void) 
+ 192:Generated_Source\PSoC5/TIA_1.c **** {
+  65              		.loc 1 192 0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+ 193:Generated_Source\PSoC5/TIA_1.c ****      /* Disble power to the Amp in Active mode template*/
+ 194:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_PM_ACT_CFG_REG &= (uint8)(~TIA_1_ACT_PWR_EN);
+  70              		.loc 1 194 0
+  71 0000 054A     		ldr	r2, .L5
+  72 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  73 0004 03F0FB03 		and	r3, r3, #251
+  74 0008 1370     		strb	r3, [r2]
+ 195:Generated_Source\PSoC5/TIA_1.c **** 
+ 196:Generated_Source\PSoC5/TIA_1.c ****     /* Disble power to the Amp in Alternative active mode template*/
+ 197:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_PM_STBY_CFG_REG &= (uint8)(~TIA_1_STBY_PWR_EN);
+  75              		.loc 1 197 0
+  76 000a 1032     		adds	r2, r2, #16
+  77 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  78 000e 03F0FB03 		and	r3, r3, #251
+  79 0012 1370     		strb	r3, [r2]
+  80 0014 7047     		bx	lr
+  81              	.L6:
+  82 0016 00BF     		.align	2
+  83              	.L5:
+  84 0018 A9430040 		.word	1073759145
+  85              		.cfi_endproc
+  86              	.LFE3:
+  87              		.size	TIA_1_Stop, .-TIA_1_Stop
+  88              		.section	.text.TIA_1_SetPower,"ax",%progbits
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 6
+
+
+  89              		.align	2
+  90              		.global	TIA_1_SetPower
+  91              		.thumb
+  92              		.thumb_func
+  93              		.type	TIA_1_SetPower, %function
+  94              	TIA_1_SetPower:
+  95              	.LFB4:
+ 198:Generated_Source\PSoC5/TIA_1.c ****     
+ 199:Generated_Source\PSoC5/TIA_1.c ****     #if (!CY_PSOC5A)
+ 200:Generated_Source\PSoC5/TIA_1.c ****         #if (CYDEV_VARIABLE_VDDA == 1u)
+ 201:Generated_Source\PSoC5/TIA_1.c ****             TIA_1_BSTCLK_REG &= (uint8)(~TIA_1_BST_CLK_EN);
+ 202:Generated_Source\PSoC5/TIA_1.c ****             /* Disable pumps only if there aren't any SC block in use */
+ 203:Generated_Source\PSoC5/TIA_1.c ****             if ((TIA_1_PM_ACT_CFG_REG & TIA_1_PM_ACT_CFG_MASK) == 0u)
+ 204:Generated_Source\PSoC5/TIA_1.c ****             {
+ 205:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_SC_MISC_REG &= (uint8)(~TIA_1_PUMP_FORCE);
+ 206:Generated_Source\PSoC5/TIA_1.c ****                 TIA_1_PUMP_CR1_REG &= (uint8)(~TIA_1_PUMP_CR1_SC_CLKSEL);
+ 207:Generated_Source\PSoC5/TIA_1.c ****                 CyScBoostClk_Stop();
+ 208:Generated_Source\PSoC5/TIA_1.c ****             }
+ 209:Generated_Source\PSoC5/TIA_1.c ****         #endif /* CYDEV_VARIABLE_VDDA == 1u */
+ 210:Generated_Source\PSoC5/TIA_1.c ****     #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+ 211:Generated_Source\PSoC5/TIA_1.c ****         
+ 212:Generated_Source\PSoC5/TIA_1.c ****     /* This sets TIA in zero current mode and output routes are valid */
+ 213:Generated_Source\PSoC5/TIA_1.c ****     #if (CY_PSOC5A)
+ 214:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_P5backup.scCR1Reg = TIA_1_CR1_REG;
+ 215:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_P5backup.scCR2Reg = TIA_1_CR2_REG;
+ 216:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_CR1_REG = 0x00u;
+ 217:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_CR2_REG = 0x00u;
+ 218:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_P5backup.enableState = 1u;
+ 219:Generated_Source\PSoC5/TIA_1.c ****     #endif /* (CY_PSOC5A) */
+ 220:Generated_Source\PSoC5/TIA_1.c **** }
+ 221:Generated_Source\PSoC5/TIA_1.c **** 
+ 222:Generated_Source\PSoC5/TIA_1.c **** 
+ 223:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************
+ 224:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_SetPower
+ 225:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+ 226:Generated_Source\PSoC5/TIA_1.c **** *
+ 227:Generated_Source\PSoC5/TIA_1.c **** * Summary:
+ 228:Generated_Source\PSoC5/TIA_1.c **** *  Set the drive power of the TIA.
+ 229:Generated_Source\PSoC5/TIA_1.c **** *
+ 230:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+ 231:Generated_Source\PSoC5/TIA_1.c **** *  Power: Sets power level between (0) and (3) high power.
+ 232:Generated_Source\PSoC5/TIA_1.c **** *
+ 233:Generated_Source\PSoC5/TIA_1.c **** * Return:
+ 234:Generated_Source\PSoC5/TIA_1.c **** *  void
+ 235:Generated_Source\PSoC5/TIA_1.c **** *
+ 236:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+ 237:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_SetPower(uint8 power) 
+ 238:Generated_Source\PSoC5/TIA_1.c **** {
+  96              		.loc 1 238 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+ 101              	.LVL0:
+ 239:Generated_Source\PSoC5/TIA_1.c ****     uint8 tmpCR;
+ 240:Generated_Source\PSoC5/TIA_1.c **** 
+ 241:Generated_Source\PSoC5/TIA_1.c ****     /* Sets drive bits in SC Block Control Register 1:  SCxx_CR[1:0] */
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 7
+
+
+ 242:Generated_Source\PSoC5/TIA_1.c ****     tmpCR = TIA_1_CR1_REG & (uint8)(~TIA_1_DRIVE_MASK);
+ 102              		.loc 1 242 0
+ 103 0000 044A     		ldr	r2, .L8
+ 104 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 105 0004 03F0FC03 		and	r3, r3, #252
+ 106              	.LVL1:
+ 243:Generated_Source\PSoC5/TIA_1.c ****     tmpCR |= (power & TIA_1_DRIVE_MASK);
+ 107              		.loc 1 243 0
+ 108 0008 00F00300 		and	r0, r0, #3
+ 109              	.LVL2:
+ 110 000c 1843     		orrs	r0, r0, r3
+ 111              	.LVL3:
+ 244:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_CR1_REG = tmpCR;  
+ 112              		.loc 1 244 0
+ 113 000e 1070     		strb	r0, [r2]
+ 114 0010 7047     		bx	lr
+ 115              	.L9:
+ 116 0012 00BF     		.align	2
+ 117              	.L8:
+ 118 0014 09580040 		.word	1073764361
+ 119              		.cfi_endproc
+ 120              	.LFE4:
+ 121              		.size	TIA_1_SetPower, .-TIA_1_SetPower
+ 122              		.section	.text.TIA_1_SetResFB,"ax",%progbits
+ 123              		.align	2
+ 124              		.global	TIA_1_SetResFB
+ 125              		.thumb
+ 126              		.thumb_func
+ 127              		.type	TIA_1_SetResFB, %function
+ 128              	TIA_1_SetResFB:
+ 129              	.LFB5:
+ 245:Generated_Source\PSoC5/TIA_1.c **** }
+ 246:Generated_Source\PSoC5/TIA_1.c **** 
+ 247:Generated_Source\PSoC5/TIA_1.c **** 
+ 248:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************
+ 249:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_SetResFB
+ 250:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+ 251:Generated_Source\PSoC5/TIA_1.c **** *
+ 252:Generated_Source\PSoC5/TIA_1.c **** * Summary:
+ 253:Generated_Source\PSoC5/TIA_1.c **** *  This function sets value for the resistive feedback of the amplifier.
+ 254:Generated_Source\PSoC5/TIA_1.c **** *
+ 255:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+ 256:Generated_Source\PSoC5/TIA_1.c **** *  res_feedback: specifies resistive feedback value (see header file for gain 
+ 257:Generated_Source\PSoC5/TIA_1.c **** *                values.)
+ 258:Generated_Source\PSoC5/TIA_1.c **** *
+ 259:Generated_Source\PSoC5/TIA_1.c **** * Return:
+ 260:Generated_Source\PSoC5/TIA_1.c **** *  void
+ 261:Generated_Source\PSoC5/TIA_1.c **** *
+ 262:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+ 263:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_SetResFB(uint8 res_feedback) 
+ 264:Generated_Source\PSoC5/TIA_1.c **** {
+ 130              		.loc 1 264 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 0
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		@ link register save eliminated.
+ 135              	.LVL4:
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 8
+
+
+ 265:Generated_Source\PSoC5/TIA_1.c ****     /* Only set new gain if it is a valid gain */
+ 266:Generated_Source\PSoC5/TIA_1.c ****     if( res_feedback <= TIA_1_RES_FEEDBACK_MAX)
+ 136              		.loc 1 266 0
+ 137 0000 0728     		cmp	r0, #7
+ 138 0002 09D8     		bhi	.L10
+ 267:Generated_Source\PSoC5/TIA_1.c ****     {
+ 268:Generated_Source\PSoC5/TIA_1.c ****         /* Clear SCxx_CR2 rval bits - SCxx_CR2[6:4] */
+ 269:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_CR2_REG &= (uint8)(~TIA_1_RVAL_MASK);
+ 139              		.loc 1 269 0
+ 140 0004 054B     		ldr	r3, .L12
+ 141 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 142 0008 02F08F02 		and	r2, r2, #143
+ 143 000c 1A70     		strb	r2, [r3]
+ 270:Generated_Source\PSoC5/TIA_1.c **** 
+ 271:Generated_Source\PSoC5/TIA_1.c ****         /* Set resistive feedback value */
+ 272:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_CR2_REG |= (uint8)(res_feedback << 4);
+ 144              		.loc 1 272 0
+ 145 000e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 146 0010 0001     		lsls	r0, r0, #4
+ 147              	.LVL5:
+ 148 0012 C0B2     		uxtb	r0, r0
+ 149 0014 1043     		orrs	r0, r0, r2
+ 150 0016 1870     		strb	r0, [r3]
+ 151              	.L10:
+ 152 0018 7047     		bx	lr
+ 153              	.L13:
+ 154 001a 00BF     		.align	2
+ 155              	.L12:
+ 156 001c 0A580040 		.word	1073764362
+ 157              		.cfi_endproc
+ 158              	.LFE5:
+ 159              		.size	TIA_1_SetResFB, .-TIA_1_SetResFB
+ 160              		.section	.text.TIA_1_SetCapFB,"ax",%progbits
+ 161              		.align	2
+ 162              		.global	TIA_1_SetCapFB
+ 163              		.thumb
+ 164              		.thumb_func
+ 165              		.type	TIA_1_SetCapFB, %function
+ 166              	TIA_1_SetCapFB:
+ 167              	.LFB6:
+ 273:Generated_Source\PSoC5/TIA_1.c ****     }
+ 274:Generated_Source\PSoC5/TIA_1.c **** }
+ 275:Generated_Source\PSoC5/TIA_1.c **** 
+ 276:Generated_Source\PSoC5/TIA_1.c **** 
+ 277:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************
+ 278:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_SetCapFB
+ 279:Generated_Source\PSoC5/TIA_1.c **** ********************************************************************************
+ 280:Generated_Source\PSoC5/TIA_1.c **** *
+ 281:Generated_Source\PSoC5/TIA_1.c **** * Summary:
+ 282:Generated_Source\PSoC5/TIA_1.c **** *  This function sets the value for the capacitive feedback of the amplifier.
+ 283:Generated_Source\PSoC5/TIA_1.c **** *
+ 284:Generated_Source\PSoC5/TIA_1.c **** * Parameters:
+ 285:Generated_Source\PSoC5/TIA_1.c **** *  cap_feedback: specifies capacitive feedback value (see header file for gain 
+ 286:Generated_Source\PSoC5/TIA_1.c **** *                values.)
+ 287:Generated_Source\PSoC5/TIA_1.c **** *
+ 288:Generated_Source\PSoC5/TIA_1.c **** * Return:
+ 289:Generated_Source\PSoC5/TIA_1.c **** *  void
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 9
+
+
+ 290:Generated_Source\PSoC5/TIA_1.c **** *
+ 291:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
+ 292:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_SetCapFB(uint8 cap_feedback) 
+ 293:Generated_Source\PSoC5/TIA_1.c **** {
+ 168              		.loc 1 293 0
+ 169              		.cfi_startproc
+ 170              		@ args = 0, pretend = 0, frame = 0
+ 171              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172              		@ link register save eliminated.
+ 173              	.LVL6:
+ 294:Generated_Source\PSoC5/TIA_1.c ****     /* Only set new gain if it is a valid gain */
+ 295:Generated_Source\PSoC5/TIA_1.c ****     if( cap_feedback <= TIA_1_CAP_FEEDBACK_MAX)
+ 174              		.loc 1 295 0
+ 175 0000 0328     		cmp	r0, #3
+ 176 0002 09D8     		bhi	.L14
+ 296:Generated_Source\PSoC5/TIA_1.c ****     {
+ 297:Generated_Source\PSoC5/TIA_1.c ****         /* Clear SCxx_CR2 redc bits -  - CR2[3:2] */
+ 298:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_CR2_REG &= (uint8)(~TIA_1_REDC_MASK);
+ 177              		.loc 1 298 0
+ 178 0004 054B     		ldr	r3, .L16
+ 179 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 180 0008 02F0F302 		and	r2, r2, #243
+ 181 000c 1A70     		strb	r2, [r3]
+ 299:Generated_Source\PSoC5/TIA_1.c **** 
+ 300:Generated_Source\PSoC5/TIA_1.c ****         /* Set redc capacitive feedback value */
+ 301:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_CR2_REG |= (uint8)(cap_feedback << 2);
+ 182              		.loc 1 301 0
+ 183 000e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 184 0010 8000     		lsls	r0, r0, #2
+ 185              	.LVL7:
+ 186 0012 C0B2     		uxtb	r0, r0
+ 187 0014 1043     		orrs	r0, r0, r2
+ 188 0016 1870     		strb	r0, [r3]
+ 189              	.L14:
+ 190 0018 7047     		bx	lr
+ 191              	.L17:
+ 192 001a 00BF     		.align	2
+ 193              	.L16:
+ 194 001c 0A580040 		.word	1073764362
+ 195              		.cfi_endproc
+ 196              	.LFE6:
+ 197              		.size	TIA_1_SetCapFB, .-TIA_1_SetCapFB
+ 198              		.section	.text.TIA_1_Init,"ax",%progbits
+ 199              		.align	2
+ 200              		.global	TIA_1_Init
+ 201              		.thumb
+ 202              		.thumb_func
+ 203              		.type	TIA_1_Init, %function
+ 204              	TIA_1_Init:
+ 205              	.LFB0:
+  50:Generated_Source\PSoC5/TIA_1.c ****     /* Set SC Block Mode to TIA - SCxx_CR0[3:1] */
+ 206              		.loc 1 50 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210 0000 10B5     		push	{r4, lr}
+ 211              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 10
+
+
+ 212              		.cfi_offset 4, -8
+ 213              		.cfi_offset 14, -4
+  52:Generated_Source\PSoC5/TIA_1.c ****     
+ 214              		.loc 1 52 0
+ 215 0002 0224     		movs	r4, #2
+ 216 0004 084B     		ldr	r3, .L20
+ 217 0006 1C70     		strb	r4, [r3]
+  60:Generated_Source\PSoC5/TIA_1.c ****                                 TIA_1_DIV2_DISABLE |
+ 218              		.loc 1 60 0
+ 219 0008 0C22     		movs	r2, #12
+ 220 000a 0133     		adds	r3, r3, #1
+ 221 000c 1A70     		strb	r2, [r3]
+  72:Generated_Source\PSoC5/TIA_1.c ****                                 TIA_1_R20_40B_40K |
+ 222              		.loc 1 72 0
+ 223 000e 0122     		movs	r2, #1
+ 224 0010 0133     		adds	r3, r3, #1
+ 225 0012 1A70     		strb	r2, [r3]
+  77:Generated_Source\PSoC5/TIA_1.c ****       
+ 226              		.loc 1 77 0
+ 227 0014 0720     		movs	r0, #7
+ 228 0016 FFF7FEFF 		bl	TIA_1_SetResFB
+ 229              	.LVL8:
+  80:Generated_Source\PSoC5/TIA_1.c **** 
+ 230              		.loc 1 80 0
+ 231 001a 0320     		movs	r0, #3
+ 232 001c FFF7FEFF 		bl	TIA_1_SetCapFB
+ 233              	.LVL9:
+  83:Generated_Source\PSoC5/TIA_1.c **** }
+ 234              		.loc 1 83 0
+ 235 0020 2046     		mov	r0, r4
+ 236 0022 FFF7FEFF 		bl	TIA_1_SetPower
+ 237              	.LVL10:
+ 238 0026 10BD     		pop	{r4, pc}
+ 239              	.L21:
+ 240              		.align	2
+ 241              	.L20:
+ 242 0028 08580040 		.word	1073764360
+ 243              		.cfi_endproc
+ 244              	.LFE0:
+ 245              		.size	TIA_1_Init, .-TIA_1_Init
+ 246              		.section	.text.TIA_1_Start,"ax",%progbits
+ 247              		.align	2
+ 248              		.global	TIA_1_Start
+ 249              		.thumb
+ 250              		.thumb_func
+ 251              		.type	TIA_1_Start, %function
+ 252              	TIA_1_Start:
+ 253              	.LFB2:
+ 166:Generated_Source\PSoC5/TIA_1.c ****     if(TIA_1_initVar == 0u)
+ 254              		.loc 1 166 0
+ 255              		.cfi_startproc
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258 0000 08B5     		push	{r3, lr}
+ 259              		.cfi_def_cfa_offset 8
+ 260              		.cfi_offset 3, -8
+ 261              		.cfi_offset 14, -4
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 11
+
+
+ 167:Generated_Source\PSoC5/TIA_1.c ****     {
+ 262              		.loc 1 167 0
+ 263 0002 054B     		ldr	r3, .L25
+ 264 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 265 0006 23B9     		cbnz	r3, .L23
+ 169:Generated_Source\PSoC5/TIA_1.c ****         TIA_1_Init();
+ 266              		.loc 1 169 0
+ 267 0008 0122     		movs	r2, #1
+ 268 000a 034B     		ldr	r3, .L25
+ 269 000c 1A70     		strb	r2, [r3]
+ 170:Generated_Source\PSoC5/TIA_1.c ****     }
+ 270              		.loc 1 170 0
+ 271 000e FFF7FEFF 		bl	TIA_1_Init
+ 272              	.LVL11:
+ 273              	.L23:
+ 173:Generated_Source\PSoC5/TIA_1.c **** }
+ 274              		.loc 1 173 0
+ 275 0012 FFF7FEFF 		bl	TIA_1_Enable
+ 276              	.LVL12:
+ 277 0016 08BD     		pop	{r3, pc}
+ 278              	.L26:
+ 279              		.align	2
+ 280              	.L25:
+ 281 0018 00000000 		.word	.LANCHOR0
+ 282              		.cfi_endproc
+ 283              	.LFE2:
+ 284              		.size	TIA_1_Start, .-TIA_1_Start
+ 285              		.global	TIA_1_initVar
+ 286              		.bss
+ 287              		.set	.LANCHOR0,. + 0
+ 288              		.type	TIA_1_initVar, %object
+ 289              		.size	TIA_1_initVar, 1
+ 290              	TIA_1_initVar:
+ 291 0000 00       		.space	1
+ 292              		.text
+ 293              	.Letext0:
+ 294              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 295              		.section	.debug_info,"",%progbits
+ 296              	.Ldebug_info0:
+ 297 0000 D1010000 		.4byte	0x1d1
+ 298 0004 0400     		.2byte	0x4
+ 299 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 300 000a 04       		.byte	0x4
+ 301 000b 01       		.uleb128 0x1
+ 302 000c 4D000000 		.4byte	.LASF26
+ 303 0010 0C       		.byte	0xc
+ 304 0011 27010000 		.4byte	.LASF27
+ 305 0015 6C010000 		.4byte	.LASF28
+ 306 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 307 001d 00000000 		.4byte	0
+ 308 0021 00000000 		.4byte	.Ldebug_line0
+ 309 0025 02       		.uleb128 0x2
+ 310 0026 01       		.byte	0x1
+ 311 0027 06       		.byte	0x6
+ 312 0028 37020000 		.4byte	.LASF0
+ 313 002c 02       		.uleb128 0x2
+ 314 002d 01       		.byte	0x1
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 12
+
+
+ 315 002e 08       		.byte	0x8
+ 316 002f 3F000000 		.4byte	.LASF1
+ 317 0033 02       		.uleb128 0x2
+ 318 0034 02       		.byte	0x2
+ 319 0035 05       		.byte	0x5
+ 320 0036 D8010000 		.4byte	.LASF2
+ 321 003a 02       		.uleb128 0x2
+ 322 003b 02       		.byte	0x2
+ 323 003c 07       		.byte	0x7
+ 324 003d 15000000 		.4byte	.LASF3
+ 325 0041 02       		.uleb128 0x2
+ 326 0042 04       		.byte	0x4
+ 327 0043 05       		.byte	0x5
+ 328 0044 22020000 		.4byte	.LASF4
+ 329 0048 02       		.uleb128 0x2
+ 330 0049 04       		.byte	0x4
+ 331 004a 07       		.byte	0x7
+ 332 004b E0000000 		.4byte	.LASF5
+ 333 004f 02       		.uleb128 0x2
+ 334 0050 08       		.byte	0x8
+ 335 0051 05       		.byte	0x5
+ 336 0052 C5010000 		.4byte	.LASF6
+ 337 0056 02       		.uleb128 0x2
+ 338 0057 08       		.byte	0x8
+ 339 0058 07       		.byte	0x7
+ 340 0059 46010000 		.4byte	.LASF7
+ 341 005d 03       		.uleb128 0x3
+ 342 005e 04       		.byte	0x4
+ 343 005f 05       		.byte	0x5
+ 344 0060 696E7400 		.ascii	"int\000"
+ 345 0064 02       		.uleb128 0x2
+ 346 0065 04       		.byte	0x4
+ 347 0066 07       		.byte	0x7
+ 348 0067 1A010000 		.4byte	.LASF8
+ 349 006b 04       		.uleb128 0x4
+ 350 006c F2000000 		.4byte	.LASF12
+ 351 0070 02       		.byte	0x2
+ 352 0071 9201     		.2byte	0x192
+ 353 0073 2C000000 		.4byte	0x2c
+ 354 0077 02       		.uleb128 0x2
+ 355 0078 04       		.byte	0x4
+ 356 0079 04       		.byte	0x4
+ 357 007a 39000000 		.4byte	.LASF9
+ 358 007e 02       		.uleb128 0x2
+ 359 007f 08       		.byte	0x8
+ 360 0080 04       		.byte	0x4
+ 361 0081 07010000 		.4byte	.LASF10
+ 362 0085 02       		.uleb128 0x2
+ 363 0086 01       		.byte	0x1
+ 364 0087 08       		.byte	0x8
+ 365 0088 D3010000 		.4byte	.LASF11
+ 366 008c 04       		.uleb128 0x4
+ 367 008d DB000000 		.4byte	.LASF13
+ 368 0091 02       		.byte	0x2
+ 369 0092 3C02     		.2byte	0x23c
+ 370 0094 98000000 		.4byte	0x98
+ 371 0098 05       		.uleb128 0x5
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 13
+
+
+ 372 0099 6B000000 		.4byte	0x6b
+ 373 009d 02       		.uleb128 0x2
+ 374 009e 08       		.byte	0x8
+ 375 009f 04       		.byte	0x4
+ 376 00a0 2B020000 		.4byte	.LASF14
+ 377 00a4 02       		.uleb128 0x2
+ 378 00a5 04       		.byte	0x4
+ 379 00a6 07       		.byte	0x7
+ 380 00a7 BC010000 		.4byte	.LASF15
+ 381 00ab 06       		.uleb128 0x6
+ 382 00ac FC010000 		.4byte	.LASF16
+ 383 00b0 01       		.byte	0x1
+ 384 00b1 65       		.byte	0x65
+ 385 00b2 00000000 		.4byte	.LFB1
+ 386 00b6 28000000 		.4byte	.LFE1-.LFB1
+ 387 00ba 01       		.uleb128 0x1
+ 388 00bb 9C       		.byte	0x9c
+ 389 00bc 06       		.uleb128 0x6
+ 390 00bd 28000000 		.4byte	.LASF17
+ 391 00c1 01       		.byte	0x1
+ 392 00c2 BF       		.byte	0xbf
+ 393 00c3 00000000 		.4byte	.LFB3
+ 394 00c7 1C000000 		.4byte	.LFE3-.LFB3
+ 395 00cb 01       		.uleb128 0x1
+ 396 00cc 9C       		.byte	0x9c
+ 397 00cd 07       		.uleb128 0x7
+ 398 00ce F8000000 		.4byte	.LASF18
+ 399 00d2 01       		.byte	0x1
+ 400 00d3 ED       		.byte	0xed
+ 401 00d4 00000000 		.4byte	.LFB4
+ 402 00d8 18000000 		.4byte	.LFE4-.LFB4
+ 403 00dc 01       		.uleb128 0x1
+ 404 00dd 9C       		.byte	0x9c
+ 405 00de 01010000 		.4byte	0x101
+ 406 00e2 08       		.uleb128 0x8
+ 407 00e3 33000000 		.4byte	.LASF20
+ 408 00e7 01       		.byte	0x1
+ 409 00e8 ED       		.byte	0xed
+ 410 00e9 6B000000 		.4byte	0x6b
+ 411 00ed 00000000 		.4byte	.LLST0
+ 412 00f1 09       		.uleb128 0x9
+ 413 00f2 00000000 		.4byte	.LASF29
+ 414 00f6 01       		.byte	0x1
+ 415 00f7 EF       		.byte	0xef
+ 416 00f8 6B000000 		.4byte	0x6b
+ 417 00fc 21000000 		.4byte	.LLST1
+ 418 0100 00       		.byte	0
+ 419 0101 0A       		.uleb128 0xa
+ 420 0102 5D010000 		.4byte	.LASF19
+ 421 0106 01       		.byte	0x1
+ 422 0107 0701     		.2byte	0x107
+ 423 0109 00000000 		.4byte	.LFB5
+ 424 010d 20000000 		.4byte	.LFE5-.LFB5
+ 425 0111 01       		.uleb128 0x1
+ 426 0112 9C       		.byte	0x9c
+ 427 0113 28010000 		.4byte	0x128
+ 428 0117 0B       		.uleb128 0xb
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 14
+
+
+ 429 0118 E2010000 		.4byte	.LASF21
+ 430 011c 01       		.byte	0x1
+ 431 011d 0701     		.2byte	0x107
+ 432 011f 6B000000 		.4byte	0x6b
+ 433 0123 3F000000 		.4byte	.LLST2
+ 434 0127 00       		.byte	0
+ 435 0128 0A       		.uleb128 0xa
+ 436 0129 06000000 		.4byte	.LASF22
+ 437 012d 01       		.byte	0x1
+ 438 012e 2401     		.2byte	0x124
+ 439 0130 00000000 		.4byte	.LFB6
+ 440 0134 20000000 		.4byte	.LFE6-.LFB6
+ 441 0138 01       		.uleb128 0x1
+ 442 0139 9C       		.byte	0x9c
+ 443 013a 4F010000 		.4byte	0x14f
+ 444 013e 0B       		.uleb128 0xb
+ 445 013f EF010000 		.4byte	.LASF23
+ 446 0143 01       		.byte	0x1
+ 447 0144 2401     		.2byte	0x124
+ 448 0146 6B000000 		.4byte	0x6b
+ 449 014a 60000000 		.4byte	.LLST3
+ 450 014e 00       		.byte	0
+ 451 014f 07       		.uleb128 0x7
+ 452 0150 09020000 		.4byte	.LASF24
+ 453 0154 01       		.byte	0x1
+ 454 0155 31       		.byte	0x31
+ 455 0156 00000000 		.4byte	.LFB0
+ 456 015a 2C000000 		.4byte	.LFE0-.LFB0
+ 457 015e 01       		.uleb128 0x1
+ 458 015f 9C       		.byte	0x9c
+ 459 0160 9B010000 		.4byte	0x19b
+ 460 0164 0C       		.uleb128 0xc
+ 461 0165 1A000000 		.4byte	.LVL8
+ 462 0169 01010000 		.4byte	0x101
+ 463 016d 77010000 		.4byte	0x177
+ 464 0171 0D       		.uleb128 0xd
+ 465 0172 01       		.uleb128 0x1
+ 466 0173 50       		.byte	0x50
+ 467 0174 01       		.uleb128 0x1
+ 468 0175 37       		.byte	0x37
+ 469 0176 00       		.byte	0
+ 470 0177 0C       		.uleb128 0xc
+ 471 0178 20000000 		.4byte	.LVL9
+ 472 017c 28010000 		.4byte	0x128
+ 473 0180 8A010000 		.4byte	0x18a
+ 474 0184 0D       		.uleb128 0xd
+ 475 0185 01       		.uleb128 0x1
+ 476 0186 50       		.byte	0x50
+ 477 0187 01       		.uleb128 0x1
+ 478 0188 33       		.byte	0x33
+ 479 0189 00       		.byte	0
+ 480 018a 0E       		.uleb128 0xe
+ 481 018b 26000000 		.4byte	.LVL10
+ 482 018f CD000000 		.4byte	0xcd
+ 483 0193 0D       		.uleb128 0xd
+ 484 0194 01       		.uleb128 0x1
+ 485 0195 50       		.byte	0x50
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 15
+
+
+ 486 0196 02       		.uleb128 0x2
+ 487 0197 74       		.byte	0x74
+ 488 0198 00       		.sleb128 0
+ 489 0199 00       		.byte	0
+ 490 019a 00       		.byte	0
+ 491 019b 07       		.uleb128 0x7
+ 492 019c 0E010000 		.4byte	.LASF25
+ 493 01a0 01       		.byte	0x1
+ 494 01a1 A5       		.byte	0xa5
+ 495 01a2 00000000 		.4byte	.LFB2
+ 496 01a6 1C000000 		.4byte	.LFE2-.LFB2
+ 497 01aa 01       		.uleb128 0x1
+ 498 01ab 9C       		.byte	0x9c
+ 499 01ac C3010000 		.4byte	0x1c3
+ 500 01b0 0F       		.uleb128 0xf
+ 501 01b1 12000000 		.4byte	.LVL11
+ 502 01b5 4F010000 		.4byte	0x14f
+ 503 01b9 0F       		.uleb128 0xf
+ 504 01ba 16000000 		.4byte	.LVL12
+ 505 01be AB000000 		.4byte	0xab
+ 506 01c2 00       		.byte	0
+ 507 01c3 10       		.uleb128 0x10
+ 508 01c4 14020000 		.4byte	.LASF30
+ 509 01c8 01       		.byte	0x1
+ 510 01c9 1A       		.byte	0x1a
+ 511 01ca 6B000000 		.4byte	0x6b
+ 512 01ce 05       		.uleb128 0x5
+ 513 01cf 03       		.byte	0x3
+ 514 01d0 00000000 		.4byte	TIA_1_initVar
+ 515 01d4 00       		.byte	0
+ 516              		.section	.debug_abbrev,"",%progbits
+ 517              	.Ldebug_abbrev0:
+ 518 0000 01       		.uleb128 0x1
+ 519 0001 11       		.uleb128 0x11
+ 520 0002 01       		.byte	0x1
+ 521 0003 25       		.uleb128 0x25
+ 522 0004 0E       		.uleb128 0xe
+ 523 0005 13       		.uleb128 0x13
+ 524 0006 0B       		.uleb128 0xb
+ 525 0007 03       		.uleb128 0x3
+ 526 0008 0E       		.uleb128 0xe
+ 527 0009 1B       		.uleb128 0x1b
+ 528 000a 0E       		.uleb128 0xe
+ 529 000b 55       		.uleb128 0x55
+ 530 000c 17       		.uleb128 0x17
+ 531 000d 11       		.uleb128 0x11
+ 532 000e 01       		.uleb128 0x1
+ 533 000f 10       		.uleb128 0x10
+ 534 0010 17       		.uleb128 0x17
+ 535 0011 00       		.byte	0
+ 536 0012 00       		.byte	0
+ 537 0013 02       		.uleb128 0x2
+ 538 0014 24       		.uleb128 0x24
+ 539 0015 00       		.byte	0
+ 540 0016 0B       		.uleb128 0xb
+ 541 0017 0B       		.uleb128 0xb
+ 542 0018 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 16
+
+
+ 543 0019 0B       		.uleb128 0xb
+ 544 001a 03       		.uleb128 0x3
+ 545 001b 0E       		.uleb128 0xe
+ 546 001c 00       		.byte	0
+ 547 001d 00       		.byte	0
+ 548 001e 03       		.uleb128 0x3
+ 549 001f 24       		.uleb128 0x24
+ 550 0020 00       		.byte	0
+ 551 0021 0B       		.uleb128 0xb
+ 552 0022 0B       		.uleb128 0xb
+ 553 0023 3E       		.uleb128 0x3e
+ 554 0024 0B       		.uleb128 0xb
+ 555 0025 03       		.uleb128 0x3
+ 556 0026 08       		.uleb128 0x8
+ 557 0027 00       		.byte	0
+ 558 0028 00       		.byte	0
+ 559 0029 04       		.uleb128 0x4
+ 560 002a 16       		.uleb128 0x16
+ 561 002b 00       		.byte	0
+ 562 002c 03       		.uleb128 0x3
+ 563 002d 0E       		.uleb128 0xe
+ 564 002e 3A       		.uleb128 0x3a
+ 565 002f 0B       		.uleb128 0xb
+ 566 0030 3B       		.uleb128 0x3b
+ 567 0031 05       		.uleb128 0x5
+ 568 0032 49       		.uleb128 0x49
+ 569 0033 13       		.uleb128 0x13
+ 570 0034 00       		.byte	0
+ 571 0035 00       		.byte	0
+ 572 0036 05       		.uleb128 0x5
+ 573 0037 35       		.uleb128 0x35
+ 574 0038 00       		.byte	0
+ 575 0039 49       		.uleb128 0x49
+ 576 003a 13       		.uleb128 0x13
+ 577 003b 00       		.byte	0
+ 578 003c 00       		.byte	0
+ 579 003d 06       		.uleb128 0x6
+ 580 003e 2E       		.uleb128 0x2e
+ 581 003f 00       		.byte	0
+ 582 0040 3F       		.uleb128 0x3f
+ 583 0041 19       		.uleb128 0x19
+ 584 0042 03       		.uleb128 0x3
+ 585 0043 0E       		.uleb128 0xe
+ 586 0044 3A       		.uleb128 0x3a
+ 587 0045 0B       		.uleb128 0xb
+ 588 0046 3B       		.uleb128 0x3b
+ 589 0047 0B       		.uleb128 0xb
+ 590 0048 27       		.uleb128 0x27
+ 591 0049 19       		.uleb128 0x19
+ 592 004a 11       		.uleb128 0x11
+ 593 004b 01       		.uleb128 0x1
+ 594 004c 12       		.uleb128 0x12
+ 595 004d 06       		.uleb128 0x6
+ 596 004e 40       		.uleb128 0x40
+ 597 004f 18       		.uleb128 0x18
+ 598 0050 9742     		.uleb128 0x2117
+ 599 0052 19       		.uleb128 0x19
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 17
+
+
+ 600 0053 00       		.byte	0
+ 601 0054 00       		.byte	0
+ 602 0055 07       		.uleb128 0x7
+ 603 0056 2E       		.uleb128 0x2e
+ 604 0057 01       		.byte	0x1
+ 605 0058 3F       		.uleb128 0x3f
+ 606 0059 19       		.uleb128 0x19
+ 607 005a 03       		.uleb128 0x3
+ 608 005b 0E       		.uleb128 0xe
+ 609 005c 3A       		.uleb128 0x3a
+ 610 005d 0B       		.uleb128 0xb
+ 611 005e 3B       		.uleb128 0x3b
+ 612 005f 0B       		.uleb128 0xb
+ 613 0060 27       		.uleb128 0x27
+ 614 0061 19       		.uleb128 0x19
+ 615 0062 11       		.uleb128 0x11
+ 616 0063 01       		.uleb128 0x1
+ 617 0064 12       		.uleb128 0x12
+ 618 0065 06       		.uleb128 0x6
+ 619 0066 40       		.uleb128 0x40
+ 620 0067 18       		.uleb128 0x18
+ 621 0068 9742     		.uleb128 0x2117
+ 622 006a 19       		.uleb128 0x19
+ 623 006b 01       		.uleb128 0x1
+ 624 006c 13       		.uleb128 0x13
+ 625 006d 00       		.byte	0
+ 626 006e 00       		.byte	0
+ 627 006f 08       		.uleb128 0x8
+ 628 0070 05       		.uleb128 0x5
+ 629 0071 00       		.byte	0
+ 630 0072 03       		.uleb128 0x3
+ 631 0073 0E       		.uleb128 0xe
+ 632 0074 3A       		.uleb128 0x3a
+ 633 0075 0B       		.uleb128 0xb
+ 634 0076 3B       		.uleb128 0x3b
+ 635 0077 0B       		.uleb128 0xb
+ 636 0078 49       		.uleb128 0x49
+ 637 0079 13       		.uleb128 0x13
+ 638 007a 02       		.uleb128 0x2
+ 639 007b 17       		.uleb128 0x17
+ 640 007c 00       		.byte	0
+ 641 007d 00       		.byte	0
+ 642 007e 09       		.uleb128 0x9
+ 643 007f 34       		.uleb128 0x34
+ 644 0080 00       		.byte	0
+ 645 0081 03       		.uleb128 0x3
+ 646 0082 0E       		.uleb128 0xe
+ 647 0083 3A       		.uleb128 0x3a
+ 648 0084 0B       		.uleb128 0xb
+ 649 0085 3B       		.uleb128 0x3b
+ 650 0086 0B       		.uleb128 0xb
+ 651 0087 49       		.uleb128 0x49
+ 652 0088 13       		.uleb128 0x13
+ 653 0089 02       		.uleb128 0x2
+ 654 008a 17       		.uleb128 0x17
+ 655 008b 00       		.byte	0
+ 656 008c 00       		.byte	0
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 18
+
+
+ 657 008d 0A       		.uleb128 0xa
+ 658 008e 2E       		.uleb128 0x2e
+ 659 008f 01       		.byte	0x1
+ 660 0090 3F       		.uleb128 0x3f
+ 661 0091 19       		.uleb128 0x19
+ 662 0092 03       		.uleb128 0x3
+ 663 0093 0E       		.uleb128 0xe
+ 664 0094 3A       		.uleb128 0x3a
+ 665 0095 0B       		.uleb128 0xb
+ 666 0096 3B       		.uleb128 0x3b
+ 667 0097 05       		.uleb128 0x5
+ 668 0098 27       		.uleb128 0x27
+ 669 0099 19       		.uleb128 0x19
+ 670 009a 11       		.uleb128 0x11
+ 671 009b 01       		.uleb128 0x1
+ 672 009c 12       		.uleb128 0x12
+ 673 009d 06       		.uleb128 0x6
+ 674 009e 40       		.uleb128 0x40
+ 675 009f 18       		.uleb128 0x18
+ 676 00a0 9742     		.uleb128 0x2117
+ 677 00a2 19       		.uleb128 0x19
+ 678 00a3 01       		.uleb128 0x1
+ 679 00a4 13       		.uleb128 0x13
+ 680 00a5 00       		.byte	0
+ 681 00a6 00       		.byte	0
+ 682 00a7 0B       		.uleb128 0xb
+ 683 00a8 05       		.uleb128 0x5
+ 684 00a9 00       		.byte	0
+ 685 00aa 03       		.uleb128 0x3
+ 686 00ab 0E       		.uleb128 0xe
+ 687 00ac 3A       		.uleb128 0x3a
+ 688 00ad 0B       		.uleb128 0xb
+ 689 00ae 3B       		.uleb128 0x3b
+ 690 00af 05       		.uleb128 0x5
+ 691 00b0 49       		.uleb128 0x49
+ 692 00b1 13       		.uleb128 0x13
+ 693 00b2 02       		.uleb128 0x2
+ 694 00b3 17       		.uleb128 0x17
+ 695 00b4 00       		.byte	0
+ 696 00b5 00       		.byte	0
+ 697 00b6 0C       		.uleb128 0xc
+ 698 00b7 898201   		.uleb128 0x4109
+ 699 00ba 01       		.byte	0x1
+ 700 00bb 11       		.uleb128 0x11
+ 701 00bc 01       		.uleb128 0x1
+ 702 00bd 31       		.uleb128 0x31
+ 703 00be 13       		.uleb128 0x13
+ 704 00bf 01       		.uleb128 0x1
+ 705 00c0 13       		.uleb128 0x13
+ 706 00c1 00       		.byte	0
+ 707 00c2 00       		.byte	0
+ 708 00c3 0D       		.uleb128 0xd
+ 709 00c4 8A8201   		.uleb128 0x410a
+ 710 00c7 00       		.byte	0
+ 711 00c8 02       		.uleb128 0x2
+ 712 00c9 18       		.uleb128 0x18
+ 713 00ca 9142     		.uleb128 0x2111
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 19
+
+
+ 714 00cc 18       		.uleb128 0x18
+ 715 00cd 00       		.byte	0
+ 716 00ce 00       		.byte	0
+ 717 00cf 0E       		.uleb128 0xe
+ 718 00d0 898201   		.uleb128 0x4109
+ 719 00d3 01       		.byte	0x1
+ 720 00d4 11       		.uleb128 0x11
+ 721 00d5 01       		.uleb128 0x1
+ 722 00d6 31       		.uleb128 0x31
+ 723 00d7 13       		.uleb128 0x13
+ 724 00d8 00       		.byte	0
+ 725 00d9 00       		.byte	0
+ 726 00da 0F       		.uleb128 0xf
+ 727 00db 898201   		.uleb128 0x4109
+ 728 00de 00       		.byte	0
+ 729 00df 11       		.uleb128 0x11
+ 730 00e0 01       		.uleb128 0x1
+ 731 00e1 31       		.uleb128 0x31
+ 732 00e2 13       		.uleb128 0x13
+ 733 00e3 00       		.byte	0
+ 734 00e4 00       		.byte	0
+ 735 00e5 10       		.uleb128 0x10
+ 736 00e6 34       		.uleb128 0x34
+ 737 00e7 00       		.byte	0
+ 738 00e8 03       		.uleb128 0x3
+ 739 00e9 0E       		.uleb128 0xe
+ 740 00ea 3A       		.uleb128 0x3a
+ 741 00eb 0B       		.uleb128 0xb
+ 742 00ec 3B       		.uleb128 0x3b
+ 743 00ed 0B       		.uleb128 0xb
+ 744 00ee 49       		.uleb128 0x49
+ 745 00ef 13       		.uleb128 0x13
+ 746 00f0 3F       		.uleb128 0x3f
+ 747 00f1 19       		.uleb128 0x19
+ 748 00f2 02       		.uleb128 0x2
+ 749 00f3 18       		.uleb128 0x18
+ 750 00f4 00       		.byte	0
+ 751 00f5 00       		.byte	0
+ 752 00f6 00       		.byte	0
+ 753              		.section	.debug_loc,"",%progbits
+ 754              	.Ldebug_loc0:
+ 755              	.LLST0:
+ 756 0000 00000000 		.4byte	.LVL0
+ 757 0004 0C000000 		.4byte	.LVL2
+ 758 0008 0100     		.2byte	0x1
+ 759 000a 50       		.byte	0x50
+ 760 000b 0C000000 		.4byte	.LVL2
+ 761 000f 18000000 		.4byte	.LFE4
+ 762 0013 0400     		.2byte	0x4
+ 763 0015 F3       		.byte	0xf3
+ 764 0016 01       		.uleb128 0x1
+ 765 0017 50       		.byte	0x50
+ 766 0018 9F       		.byte	0x9f
+ 767 0019 00000000 		.4byte	0
+ 768 001d 00000000 		.4byte	0
+ 769              	.LLST1:
+ 770 0021 08000000 		.4byte	.LVL1
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 20
+
+
+ 771 0025 0E000000 		.4byte	.LVL3
+ 772 0029 0100     		.2byte	0x1
+ 773 002b 53       		.byte	0x53
+ 774 002c 0E000000 		.4byte	.LVL3
+ 775 0030 18000000 		.4byte	.LFE4
+ 776 0034 0100     		.2byte	0x1
+ 777 0036 50       		.byte	0x50
+ 778 0037 00000000 		.4byte	0
+ 779 003b 00000000 		.4byte	0
+ 780              	.LLST2:
+ 781 003f 00000000 		.4byte	.LVL4
+ 782 0043 12000000 		.4byte	.LVL5
+ 783 0047 0100     		.2byte	0x1
+ 784 0049 50       		.byte	0x50
+ 785 004a 12000000 		.4byte	.LVL5
+ 786 004e 20000000 		.4byte	.LFE5
+ 787 0052 0400     		.2byte	0x4
+ 788 0054 F3       		.byte	0xf3
+ 789 0055 01       		.uleb128 0x1
+ 790 0056 50       		.byte	0x50
+ 791 0057 9F       		.byte	0x9f
+ 792 0058 00000000 		.4byte	0
+ 793 005c 00000000 		.4byte	0
+ 794              	.LLST3:
+ 795 0060 00000000 		.4byte	.LVL6
+ 796 0064 12000000 		.4byte	.LVL7
+ 797 0068 0100     		.2byte	0x1
+ 798 006a 50       		.byte	0x50
+ 799 006b 12000000 		.4byte	.LVL7
+ 800 006f 20000000 		.4byte	.LFE6
+ 801 0073 0400     		.2byte	0x4
+ 802 0075 F3       		.byte	0xf3
+ 803 0076 01       		.uleb128 0x1
+ 804 0077 50       		.byte	0x50
+ 805 0078 9F       		.byte	0x9f
+ 806 0079 00000000 		.4byte	0
+ 807 007d 00000000 		.4byte	0
+ 808              		.section	.debug_aranges,"",%progbits
+ 809 0000 4C000000 		.4byte	0x4c
+ 810 0004 0200     		.2byte	0x2
+ 811 0006 00000000 		.4byte	.Ldebug_info0
+ 812 000a 04       		.byte	0x4
+ 813 000b 00       		.byte	0
+ 814 000c 0000     		.2byte	0
+ 815 000e 0000     		.2byte	0
+ 816 0010 00000000 		.4byte	.LFB1
+ 817 0014 28000000 		.4byte	.LFE1-.LFB1
+ 818 0018 00000000 		.4byte	.LFB3
+ 819 001c 1C000000 		.4byte	.LFE3-.LFB3
+ 820 0020 00000000 		.4byte	.LFB4
+ 821 0024 18000000 		.4byte	.LFE4-.LFB4
+ 822 0028 00000000 		.4byte	.LFB5
+ 823 002c 20000000 		.4byte	.LFE5-.LFB5
+ 824 0030 00000000 		.4byte	.LFB6
+ 825 0034 20000000 		.4byte	.LFE6-.LFB6
+ 826 0038 00000000 		.4byte	.LFB0
+ 827 003c 2C000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 21
+
+
+ 828 0040 00000000 		.4byte	.LFB2
+ 829 0044 1C000000 		.4byte	.LFE2-.LFB2
+ 830 0048 00000000 		.4byte	0
+ 831 004c 00000000 		.4byte	0
+ 832              		.section	.debug_ranges,"",%progbits
+ 833              	.Ldebug_ranges0:
+ 834 0000 00000000 		.4byte	.LFB1
+ 835 0004 28000000 		.4byte	.LFE1
+ 836 0008 00000000 		.4byte	.LFB3
+ 837 000c 1C000000 		.4byte	.LFE3
+ 838 0010 00000000 		.4byte	.LFB4
+ 839 0014 18000000 		.4byte	.LFE4
+ 840 0018 00000000 		.4byte	.LFB5
+ 841 001c 20000000 		.4byte	.LFE5
+ 842 0020 00000000 		.4byte	.LFB6
+ 843 0024 20000000 		.4byte	.LFE6
+ 844 0028 00000000 		.4byte	.LFB0
+ 845 002c 2C000000 		.4byte	.LFE0
+ 846 0030 00000000 		.4byte	.LFB2
+ 847 0034 1C000000 		.4byte	.LFE2
+ 848 0038 00000000 		.4byte	0
+ 849 003c 00000000 		.4byte	0
+ 850              		.section	.debug_line,"",%progbits
+ 851              	.Ldebug_line0:
+ 852 0000 D3000000 		.section	.debug_str,"MS",%progbits,1
+ 852      02004200 
+ 852      00000201 
+ 852      FB0E0D00 
+ 852      01010101 
+ 853              	.LASF29:
+ 854 0000 746D7043 		.ascii	"tmpCR\000"
+ 854      5200
+ 855              	.LASF22:
+ 856 0006 5449415F 		.ascii	"TIA_1_SetCapFB\000"
+ 856      315F5365 
+ 856      74436170 
+ 856      464200
+ 857              	.LASF3:
+ 858 0015 73686F72 		.ascii	"short unsigned int\000"
+ 858      7420756E 
+ 858      7369676E 
+ 858      65642069 
+ 858      6E7400
+ 859              	.LASF17:
+ 860 0028 5449415F 		.ascii	"TIA_1_Stop\000"
+ 860      315F5374 
+ 860      6F7000
+ 861              	.LASF20:
+ 862 0033 706F7765 		.ascii	"power\000"
+ 862      7200
+ 863              	.LASF9:
+ 864 0039 666C6F61 		.ascii	"float\000"
+ 864      7400
+ 865              	.LASF1:
+ 866 003f 756E7369 		.ascii	"unsigned char\000"
+ 866      676E6564 
+ 866      20636861 
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 22
+
+
+ 866      7200
+ 867              	.LASF26:
+ 868 004d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 868      43313120 
+ 868      352E342E 
+ 868      31203230 
+ 868      31363036 
+ 869 0080 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 869      20726576 
+ 869      6973696F 
+ 869      6E203233 
+ 869      37373135 
+ 870 00b3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 870      66756E63 
+ 870      74696F6E 
+ 870      2D736563 
+ 870      74696F6E 
+ 871              	.LASF13:
+ 872 00db 72656738 		.ascii	"reg8\000"
+ 872      00
+ 873              	.LASF5:
+ 874 00e0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 874      20756E73 
+ 874      69676E65 
+ 874      6420696E 
+ 874      7400
+ 875              	.LASF12:
+ 876 00f2 75696E74 		.ascii	"uint8\000"
+ 876      3800
+ 877              	.LASF18:
+ 878 00f8 5449415F 		.ascii	"TIA_1_SetPower\000"
+ 878      315F5365 
+ 878      74506F77 
+ 878      657200
+ 879              	.LASF10:
+ 880 0107 646F7562 		.ascii	"double\000"
+ 880      6C6500
+ 881              	.LASF25:
+ 882 010e 5449415F 		.ascii	"TIA_1_Start\000"
+ 882      315F5374 
+ 882      61727400 
+ 883              	.LASF8:
+ 884 011a 756E7369 		.ascii	"unsigned int\000"
+ 884      676E6564 
+ 884      20696E74 
+ 884      00
+ 885              	.LASF27:
+ 886 0127 47656E65 		.ascii	"Generated_Source\\PSoC5\\TIA_1.c\000"
+ 886      72617465 
+ 886      645F536F 
+ 886      75726365 
+ 886      5C50536F 
+ 887              	.LASF7:
+ 888 0146 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 888      206C6F6E 
+ 888      6720756E 
+ 888      7369676E 
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 23
+
+
+ 888      65642069 
+ 889              	.LASF19:
+ 890 015d 5449415F 		.ascii	"TIA_1_SetResFB\000"
+ 890      315F5365 
+ 890      74526573 
+ 890      464200
+ 891              	.LASF28:
+ 892 016c 433A5C55 		.ascii	"C:\\Users\\noyce\\home\\Research\\illumina\\PSoC\\P"
+ 892      73657273 
+ 892      5C6E6F79 
+ 892      63655C68 
+ 892      6F6D655C 
+ 893 0198 536F4335 		.ascii	"SoC5 SMU\\PSoC5 SMU 1\\Design01.cydsn\000"
+ 893      20534D55 
+ 893      5C50536F 
+ 893      43352053 
+ 893      4D552031 
+ 894              	.LASF15:
+ 895 01bc 73697A65 		.ascii	"sizetype\000"
+ 895      74797065 
+ 895      00
+ 896              	.LASF6:
+ 897 01c5 6C6F6E67 		.ascii	"long long int\000"
+ 897      206C6F6E 
+ 897      6720696E 
+ 897      7400
+ 898              	.LASF11:
+ 899 01d3 63686172 		.ascii	"char\000"
+ 899      00
+ 900              	.LASF2:
+ 901 01d8 73686F72 		.ascii	"short int\000"
+ 901      7420696E 
+ 901      7400
+ 902              	.LASF21:
+ 903 01e2 7265735F 		.ascii	"res_feedback\000"
+ 903      66656564 
+ 903      6261636B 
+ 903      00
+ 904              	.LASF23:
+ 905 01ef 6361705F 		.ascii	"cap_feedback\000"
+ 905      66656564 
+ 905      6261636B 
+ 905      00
+ 906              	.LASF16:
+ 907 01fc 5449415F 		.ascii	"TIA_1_Enable\000"
+ 907      315F456E 
+ 907      61626C65 
+ 907      00
+ 908              	.LASF24:
+ 909 0209 5449415F 		.ascii	"TIA_1_Init\000"
+ 909      315F496E 
+ 909      697400
+ 910              	.LASF30:
+ 911 0214 5449415F 		.ascii	"TIA_1_initVar\000"
+ 911      315F696E 
+ 911      69745661 
+ 911      7200
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\cc1tPwt3.s 			page 24
+
+
+ 912              	.LASF4:
+ 913 0222 6C6F6E67 		.ascii	"long int\000"
+ 913      20696E74 
+ 913      00
+ 914              	.LASF14:
+ 915 022b 6C6F6E67 		.ascii	"long double\000"
+ 915      20646F75 
+ 915      626C6500 
+ 916              	.LASF0:
+ 917 0237 7369676E 		.ascii	"signed char\000"
+ 917      65642063 
+ 917      68617200 
+ 918              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

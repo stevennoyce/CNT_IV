@@ -1,0 +1,921 @@
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB32:
+  27              		.file 1 "main.c"
+   1:main.c        **** #include "project.h"
+   2:main.c        **** 
+   3:main.c        **** struct Selector_I2C_Struct {
+   4:main.c        **** 	struct {
+   5:main.c        **** 		uint8 subAddress;
+   6:main.c        **** 		uint8 data[126];
+   7:main.c        **** 	} write;
+   8:main.c        **** 	struct {
+   9:main.c        **** 		uint8 subAddress;
+  10:main.c        **** 		uint8 data[126];
+  11:main.c        **** 	} read;
+  12:main.c        **** 	uint8 busAddress;
+  13:main.c        **** };
+  14:main.c        **** 
+  15:main.c        **** int main(void) {
+  28              		.loc 1 15 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 256
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 30B5     		push	{r4, r5, lr}
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+  35              		.cfi_offset 5, -8
+  36              		.cfi_offset 14, -4
+  37 0002 C1B0     		sub	sp, sp, #260
+  38              		.cfi_def_cfa_offset 272
+  16:main.c        **** 	CyGlobalIntEnable;
+  39              		.loc 1 16 0
+  40              		.syntax divided
+  41              	@ 16 "main.c" 1
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 2
+
+
+  42 0004 62B6     		CPSIE   i
+  43              	@ 0 "" 2
+  17:main.c        **** 	
+  18:main.c        **** 	struct Selector_I2C_Struct selector;
+  19:main.c        **** 	uint8 I2C_Bus_Addresses[4] = {0x66, 0x11, 0x44, 0x22};
+  20:main.c        **** 	
+  21:main.c        **** 	EZI2C_1_Start();
+  44              		.loc 1 21 0
+  45              		.thumb
+  46              		.syntax unified
+  47 0006 FFF7FEFF 		bl	EZI2C_1_Start
+  48              	.LVL0:
+  22:main.c        **** 	EZI2C_1_EzI2CSetAddress1(I2C_Bus_Addresses[1]);
+  49              		.loc 1 22 0
+  50 000a 1120     		movs	r0, #17
+  51 000c FFF7FEFF 		bl	EZI2C_1_EzI2CSetAddress1
+  52              	.LVL1:
+  23:main.c        **** 	EZI2C_1_EzI2CSetBuffer1(sizeof(selector), sizeof(selector), (uint8*) &selector);
+  53              		.loc 1 23 0
+  54 0010 6A46     		mov	r2, sp
+  55 0012 FF21     		movs	r1, #255
+  56 0014 FF20     		movs	r0, #255
+  57 0016 FFF7FEFF 		bl	EZI2C_1_EzI2CSetBuffer1
+  58              	.LVL2:
+  59              	.L6:
+  60              	.LBB2:
+  24:main.c        **** 	
+  25:main.c        **** 	while(1) {
+  26:main.c        **** 		for (uint8 i = 0; i < AMux_1_CHANNELS && i < sizeof(selector.write.data); i++) {
+  61              		.loc 1 26 0
+  62 001a 0024     		movs	r4, #0
+  63 001c 11E0     		b	.L2
+  64              	.LVL3:
+  65              	.L5:
+  27:main.c        **** 			// Code 0xC0 stands for COnnect
+  28:main.c        **** 			if (selector.write.data[i] == 0xC0) {
+  66              		.loc 1 28 0
+  67 001e 2500     		movs	r5, r4
+  68 0020 2300     		movs	r3, r4
+  69 0022 6B44     		add	r3, r3, sp
+  70 0024 5B78     		ldrb	r3, [r3, #1]
+  71 0026 C02B     		cmp	r3, #192
+  72 0028 02D1     		bne	.L3
+  29:main.c        **** 				AMux_1_Select(i);
+  73              		.loc 1 29 0
+  74 002a 2000     		movs	r0, r4
+  75 002c FFF7FEFF 		bl	AMux_1_Select
+  76              	.LVL4:
+  77              	.L3:
+  30:main.c        **** 			}
+  31:main.c        **** 			
+  32:main.c        **** 			// Code 0xD1 stands for DIsconnects
+  33:main.c        **** 			if (selector.write.data[i] == 0xD1) {
+  78              		.loc 1 33 0
+  79 0030 6D44     		add	r5, r5, sp
+  80 0032 6B78     		ldrb	r3, [r5, #1]
+  81 0034 D12B     		cmp	r3, #209
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 3
+
+
+  82 0036 02D1     		bne	.L4
+  34:main.c        **** 				AMux_1_Disconnect(i);
+  83              		.loc 1 34 0
+  84 0038 2000     		movs	r0, r4
+  85 003a FFF7FEFF 		bl	AMux_1_Unset
+  86              	.LVL5:
+  87              	.L4:
+  26:main.c        **** 			// Code 0xC0 stands for COnnect
+  88              		.loc 1 26 0 discriminator 2
+  89 003e 0134     		adds	r4, r4, #1
+  90              	.LVL6:
+  91 0040 E4B2     		uxtb	r4, r4
+  92              	.LVL7:
+  93              	.L2:
+  26:main.c        **** 			// Code 0xC0 stands for COnnect
+  94              		.loc 1 26 0 is_stmt 0 discriminator 1
+  95 0042 212C     		cmp	r4, #33
+  96 0044 EBD9     		bls	.L5
+  97 0046 E8E7     		b	.L6
+  98              	.LBE2:
+  99              		.cfi_endproc
+ 100              	.LFE32:
+ 101              		.size	main, .-main
+ 102              		.text
+ 103              	.Letext0:
+ 104              		.file 2 "Generated_Source\\PSoC4/AMux_1.h"
+ 105              		.file 3 "Generated_Source\\PSoC4/cyfitter_cfg.h"
+ 106              		.file 4 "Generated_Source\\PSoC4/EZI2C_1.h"
+ 107              		.file 5 "Generated_Source\\PSoC4/EZI2C_1_EZI2C.h"
+ 108              		.file 6 "Generated_Source\\PSoC4/cytypes.h"
+ 109              		.section	.debug_info,"",%progbits
+ 110              	.Ldebug_info0:
+ 111 0000 0C020000 		.4byte	0x20c
+ 112 0004 0400     		.2byte	0x4
+ 113 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 114 000a 04       		.byte	0x4
+ 115 000b 01       		.uleb128 0x1
+ 116 000c CD000000 		.4byte	.LASF25
+ 117 0010 0C       		.byte	0xc
+ 118 0011 80010000 		.4byte	.LASF26
+ 119 0015 9E010000 		.4byte	.LASF27
+ 120 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 121 001d 00000000 		.4byte	0
+ 122 0021 00000000 		.4byte	.Ldebug_line0
+ 123 0025 02       		.uleb128 0x2
+ 124 0026 01       		.byte	0x1
+ 125 0027 06       		.byte	0x6
+ 126 0028 2B020000 		.4byte	.LASF0
+ 127 002c 02       		.uleb128 0x2
+ 128 002d 01       		.byte	0x1
+ 129 002e 08       		.byte	0x8
+ 130 002f 53000000 		.4byte	.LASF1
+ 131 0033 02       		.uleb128 0x2
+ 132 0034 02       		.byte	0x2
+ 133 0035 05       		.byte	0x5
+ 134 0036 F4010000 		.4byte	.LASF2
+ 135 003a 02       		.uleb128 0x2
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 4
+
+
+ 136 003b 02       		.byte	0x2
+ 137 003c 07       		.byte	0x7
+ 138 003d 2C000000 		.4byte	.LASF3
+ 139 0041 02       		.uleb128 0x2
+ 140 0042 04       		.byte	0x4
+ 141 0043 05       		.byte	0x5
+ 142 0044 FE010000 		.4byte	.LASF4
+ 143 0048 02       		.uleb128 0x2
+ 144 0049 04       		.byte	0x4
+ 145 004a 07       		.byte	0x7
+ 146 004b 61000000 		.4byte	.LASF5
+ 147 004f 02       		.uleb128 0x2
+ 148 0050 08       		.byte	0x8
+ 149 0051 05       		.byte	0x5
+ 150 0052 72010000 		.4byte	.LASF6
+ 151 0056 02       		.uleb128 0x2
+ 152 0057 08       		.byte	0x8
+ 153 0058 07       		.byte	0x7
+ 154 0059 A8000000 		.4byte	.LASF7
+ 155 005d 03       		.uleb128 0x3
+ 156 005e 04       		.byte	0x4
+ 157 005f 05       		.byte	0x5
+ 158 0060 696E7400 		.ascii	"int\000"
+ 159 0064 02       		.uleb128 0x2
+ 160 0065 04       		.byte	0x4
+ 161 0066 07       		.byte	0x7
+ 162 0067 9B000000 		.4byte	.LASF8
+ 163 006b 04       		.uleb128 0x4
+ 164 006c 73000000 		.4byte	.LASF28
+ 165 0070 06       		.byte	0x6
+ 166 0071 D201     		.2byte	0x1d2
+ 167 0073 2C000000 		.4byte	0x2c
+ 168 0077 02       		.uleb128 0x2
+ 169 0078 04       		.byte	0x4
+ 170 0079 04       		.byte	0x4
+ 171 007a 48000000 		.4byte	.LASF9
+ 172 007e 02       		.uleb128 0x2
+ 173 007f 08       		.byte	0x8
+ 174 0080 04       		.byte	0x4
+ 175 0081 7F000000 		.4byte	.LASF10
+ 176 0085 02       		.uleb128 0x2
+ 177 0086 01       		.byte	0x1
+ 178 0087 08       		.byte	0x8
+ 179 0088 87010000 		.4byte	.LASF11
+ 180 008c 02       		.uleb128 0x2
+ 181 008d 08       		.byte	0x8
+ 182 008e 04       		.byte	0x4
+ 183 008f 1F020000 		.4byte	.LASF12
+ 184 0093 02       		.uleb128 0x2
+ 185 0094 04       		.byte	0x4
+ 186 0095 07       		.byte	0x7
+ 187 0096 5B010000 		.4byte	.LASF13
+ 188 009a 05       		.uleb128 0x5
+ 189 009b 7F       		.byte	0x7f
+ 190 009c 01       		.byte	0x1
+ 191 009d 04       		.byte	0x4
+ 192 009e BB000000 		.4byte	0xbb
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 5
+
+
+ 193 00a2 06       		.uleb128 0x6
+ 194 00a3 90000000 		.4byte	.LASF14
+ 195 00a7 01       		.byte	0x1
+ 196 00a8 05       		.byte	0x5
+ 197 00a9 6B000000 		.4byte	0x6b
+ 198 00ad 00       		.byte	0
+ 199 00ae 06       		.uleb128 0x6
+ 200 00af 4E000000 		.4byte	.LASF15
+ 201 00b3 01       		.byte	0x1
+ 202 00b4 06       		.byte	0x6
+ 203 00b5 BB000000 		.4byte	0xbb
+ 204 00b9 01       		.byte	0x1
+ 205 00ba 00       		.byte	0
+ 206 00bb 07       		.uleb128 0x7
+ 207 00bc 6B000000 		.4byte	0x6b
+ 208 00c0 CB000000 		.4byte	0xcb
+ 209 00c4 08       		.uleb128 0x8
+ 210 00c5 93000000 		.4byte	0x93
+ 211 00c9 7D       		.byte	0x7d
+ 212 00ca 00       		.byte	0
+ 213 00cb 05       		.uleb128 0x5
+ 214 00cc 7F       		.byte	0x7f
+ 215 00cd 01       		.byte	0x1
+ 216 00ce 08       		.byte	0x8
+ 217 00cf EC000000 		.4byte	0xec
+ 218 00d3 06       		.uleb128 0x6
+ 219 00d4 90000000 		.4byte	.LASF14
+ 220 00d8 01       		.byte	0x1
+ 221 00d9 09       		.byte	0x9
+ 222 00da 6B000000 		.4byte	0x6b
+ 223 00de 00       		.byte	0
+ 224 00df 06       		.uleb128 0x6
+ 225 00e0 4E000000 		.4byte	.LASF15
+ 226 00e4 01       		.byte	0x1
+ 227 00e5 0A       		.byte	0xa
+ 228 00e6 BB000000 		.4byte	0xbb
+ 229 00ea 01       		.byte	0x1
+ 230 00eb 00       		.byte	0
+ 231 00ec 09       		.uleb128 0x9
+ 232 00ed 18000000 		.4byte	.LASF29
+ 233 00f1 FF       		.byte	0xff
+ 234 00f2 01       		.byte	0x1
+ 235 00f3 03       		.byte	0x3
+ 236 00f4 1D010000 		.4byte	0x11d
+ 237 00f8 06       		.uleb128 0x6
+ 238 00f9 79000000 		.4byte	.LASF16
+ 239 00fd 01       		.byte	0x1
+ 240 00fe 07       		.byte	0x7
+ 241 00ff 9A000000 		.4byte	0x9a
+ 242 0103 00       		.byte	0
+ 243 0104 06       		.uleb128 0x6
+ 244 0105 8B000000 		.4byte	.LASF17
+ 245 0109 01       		.byte	0x1
+ 246 010a 0B       		.byte	0xb
+ 247 010b CB000000 		.4byte	0xcb
+ 248 010f 7F       		.byte	0x7f
+ 249 0110 06       		.uleb128 0x6
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 6
+
+
+ 250 0111 00000000 		.4byte	.LASF18
+ 251 0115 01       		.byte	0x1
+ 252 0116 0C       		.byte	0xc
+ 253 0117 6B000000 		.4byte	0x6b
+ 254 011b FE       		.byte	0xfe
+ 255 011c 00       		.byte	0
+ 256 011d 0A       		.uleb128 0xa
+ 257 011e 86000000 		.4byte	.LASF30
+ 258 0122 01       		.byte	0x1
+ 259 0123 0F       		.byte	0xf
+ 260 0124 5D000000 		.4byte	0x5d
+ 261 0128 00000000 		.4byte	.LFB32
+ 262 012c 48000000 		.4byte	.LFE32-.LFB32
+ 263 0130 01       		.uleb128 0x1
+ 264 0131 9C       		.byte	0x9c
+ 265 0132 C8010000 		.4byte	0x1c8
+ 266 0136 0B       		.uleb128 0xb
+ 267 0137 3F000000 		.4byte	.LASF19
+ 268 013b 01       		.byte	0x1
+ 269 013c 12       		.byte	0x12
+ 270 013d EC000000 		.4byte	0xec
+ 271 0141 03       		.uleb128 0x3
+ 272 0142 91       		.byte	0x91
+ 273 0143 F07D     		.sleb128 -272
+ 274 0145 0C       		.uleb128 0xc
+ 275 0146 8C010000 		.4byte	.LASF31
+ 276 014a 01       		.byte	0x1
+ 277 014b 13       		.byte	0x13
+ 278 014c C8010000 		.4byte	0x1c8
+ 279 0150 0D       		.uleb128 0xd
+ 280 0151 1A000000 		.4byte	.LBB2
+ 281 0155 2E000000 		.4byte	.LBE2-.LBB2
+ 282 0159 8F010000 		.4byte	0x18f
+ 283 015d 0E       		.uleb128 0xe
+ 284 015e 6900     		.ascii	"i\000"
+ 285 0160 01       		.byte	0x1
+ 286 0161 1A       		.byte	0x1a
+ 287 0162 6B000000 		.4byte	0x6b
+ 288 0166 00000000 		.4byte	.LLST0
+ 289 016a 0F       		.uleb128 0xf
+ 290 016b 30000000 		.4byte	.LVL4
+ 291 016f D8010000 		.4byte	0x1d8
+ 292 0173 7E010000 		.4byte	0x17e
+ 293 0177 10       		.uleb128 0x10
+ 294 0178 01       		.uleb128 0x1
+ 295 0179 50       		.byte	0x50
+ 296 017a 02       		.uleb128 0x2
+ 297 017b 74       		.byte	0x74
+ 298 017c 00       		.sleb128 0
+ 299 017d 00       		.byte	0
+ 300 017e 11       		.uleb128 0x11
+ 301 017f 3E000000 		.4byte	.LVL5
+ 302 0183 E3010000 		.4byte	0x1e3
+ 303 0187 10       		.uleb128 0x10
+ 304 0188 01       		.uleb128 0x1
+ 305 0189 50       		.byte	0x50
+ 306 018a 02       		.uleb128 0x2
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 7
+
+
+ 307 018b 74       		.byte	0x74
+ 308 018c 00       		.sleb128 0
+ 309 018d 00       		.byte	0
+ 310 018e 00       		.byte	0
+ 311 018f 12       		.uleb128 0x12
+ 312 0190 0A000000 		.4byte	.LVL0
+ 313 0194 EE010000 		.4byte	0x1ee
+ 314 0198 0F       		.uleb128 0xf
+ 315 0199 10000000 		.4byte	.LVL1
+ 316 019d F9010000 		.4byte	0x1f9
+ 317 01a1 AB010000 		.4byte	0x1ab
+ 318 01a5 10       		.uleb128 0x10
+ 319 01a6 01       		.uleb128 0x1
+ 320 01a7 50       		.byte	0x50
+ 321 01a8 01       		.uleb128 0x1
+ 322 01a9 41       		.byte	0x41
+ 323 01aa 00       		.byte	0
+ 324 01ab 11       		.uleb128 0x11
+ 325 01ac 1A000000 		.4byte	.LVL2
+ 326 01b0 04020000 		.4byte	0x204
+ 327 01b4 10       		.uleb128 0x10
+ 328 01b5 01       		.uleb128 0x1
+ 329 01b6 50       		.byte	0x50
+ 330 01b7 02       		.uleb128 0x2
+ 331 01b8 08       		.byte	0x8
+ 332 01b9 FF       		.byte	0xff
+ 333 01ba 10       		.uleb128 0x10
+ 334 01bb 01       		.uleb128 0x1
+ 335 01bc 51       		.byte	0x51
+ 336 01bd 02       		.uleb128 0x2
+ 337 01be 08       		.byte	0x8
+ 338 01bf FF       		.byte	0xff
+ 339 01c0 10       		.uleb128 0x10
+ 340 01c1 01       		.uleb128 0x1
+ 341 01c2 52       		.byte	0x52
+ 342 01c3 02       		.uleb128 0x2
+ 343 01c4 7D       		.byte	0x7d
+ 344 01c5 00       		.sleb128 0
+ 345 01c6 00       		.byte	0
+ 346 01c7 00       		.byte	0
+ 347 01c8 07       		.uleb128 0x7
+ 348 01c9 6B000000 		.4byte	0x6b
+ 349 01cd D8010000 		.4byte	0x1d8
+ 350 01d1 08       		.uleb128 0x8
+ 351 01d2 93000000 		.4byte	0x93
+ 352 01d6 03       		.byte	0x3
+ 353 01d7 00       		.byte	0
+ 354 01d8 13       		.uleb128 0x13
+ 355 01d9 BF000000 		.4byte	.LASF20
+ 356 01dd BF000000 		.4byte	.LASF20
+ 357 01e1 02       		.byte	0x2
+ 358 01e2 57       		.byte	0x57
+ 359 01e3 13       		.uleb128 0x13
+ 360 01e4 0B000000 		.4byte	.LASF21
+ 361 01e8 0B000000 		.4byte	.LASF21
+ 362 01ec 03       		.byte	0x3
+ 363 01ed 1B       		.byte	0x1b
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 8
+
+
+ 364 01ee 13       		.uleb128 0x13
+ 365 01ef 64010000 		.4byte	.LASF22
+ 366 01f3 64010000 		.4byte	.LASF22
+ 367 01f7 04       		.byte	0x4
+ 368 01f8 6E       		.byte	0x6e
+ 369 01f9 13       		.uleb128 0x13
+ 370 01fa 37020000 		.4byte	.LASF23
+ 371 01fe 37020000 		.4byte	.LASF23
+ 372 0202 05       		.byte	0x5
+ 373 0203 A0       		.byte	0xa0
+ 374 0204 13       		.uleb128 0x13
+ 375 0205 07020000 		.4byte	.LASF24
+ 376 0209 07020000 		.4byte	.LASF24
+ 377 020d 05       		.byte	0x5
+ 378 020e A2       		.byte	0xa2
+ 379 020f 00       		.byte	0
+ 380              		.section	.debug_abbrev,"",%progbits
+ 381              	.Ldebug_abbrev0:
+ 382 0000 01       		.uleb128 0x1
+ 383 0001 11       		.uleb128 0x11
+ 384 0002 01       		.byte	0x1
+ 385 0003 25       		.uleb128 0x25
+ 386 0004 0E       		.uleb128 0xe
+ 387 0005 13       		.uleb128 0x13
+ 388 0006 0B       		.uleb128 0xb
+ 389 0007 03       		.uleb128 0x3
+ 390 0008 0E       		.uleb128 0xe
+ 391 0009 1B       		.uleb128 0x1b
+ 392 000a 0E       		.uleb128 0xe
+ 393 000b 55       		.uleb128 0x55
+ 394 000c 17       		.uleb128 0x17
+ 395 000d 11       		.uleb128 0x11
+ 396 000e 01       		.uleb128 0x1
+ 397 000f 10       		.uleb128 0x10
+ 398 0010 17       		.uleb128 0x17
+ 399 0011 00       		.byte	0
+ 400 0012 00       		.byte	0
+ 401 0013 02       		.uleb128 0x2
+ 402 0014 24       		.uleb128 0x24
+ 403 0015 00       		.byte	0
+ 404 0016 0B       		.uleb128 0xb
+ 405 0017 0B       		.uleb128 0xb
+ 406 0018 3E       		.uleb128 0x3e
+ 407 0019 0B       		.uleb128 0xb
+ 408 001a 03       		.uleb128 0x3
+ 409 001b 0E       		.uleb128 0xe
+ 410 001c 00       		.byte	0
+ 411 001d 00       		.byte	0
+ 412 001e 03       		.uleb128 0x3
+ 413 001f 24       		.uleb128 0x24
+ 414 0020 00       		.byte	0
+ 415 0021 0B       		.uleb128 0xb
+ 416 0022 0B       		.uleb128 0xb
+ 417 0023 3E       		.uleb128 0x3e
+ 418 0024 0B       		.uleb128 0xb
+ 419 0025 03       		.uleb128 0x3
+ 420 0026 08       		.uleb128 0x8
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 9
+
+
+ 421 0027 00       		.byte	0
+ 422 0028 00       		.byte	0
+ 423 0029 04       		.uleb128 0x4
+ 424 002a 16       		.uleb128 0x16
+ 425 002b 00       		.byte	0
+ 426 002c 03       		.uleb128 0x3
+ 427 002d 0E       		.uleb128 0xe
+ 428 002e 3A       		.uleb128 0x3a
+ 429 002f 0B       		.uleb128 0xb
+ 430 0030 3B       		.uleb128 0x3b
+ 431 0031 05       		.uleb128 0x5
+ 432 0032 49       		.uleb128 0x49
+ 433 0033 13       		.uleb128 0x13
+ 434 0034 00       		.byte	0
+ 435 0035 00       		.byte	0
+ 436 0036 05       		.uleb128 0x5
+ 437 0037 13       		.uleb128 0x13
+ 438 0038 01       		.byte	0x1
+ 439 0039 0B       		.uleb128 0xb
+ 440 003a 0B       		.uleb128 0xb
+ 441 003b 3A       		.uleb128 0x3a
+ 442 003c 0B       		.uleb128 0xb
+ 443 003d 3B       		.uleb128 0x3b
+ 444 003e 0B       		.uleb128 0xb
+ 445 003f 01       		.uleb128 0x1
+ 446 0040 13       		.uleb128 0x13
+ 447 0041 00       		.byte	0
+ 448 0042 00       		.byte	0
+ 449 0043 06       		.uleb128 0x6
+ 450 0044 0D       		.uleb128 0xd
+ 451 0045 00       		.byte	0
+ 452 0046 03       		.uleb128 0x3
+ 453 0047 0E       		.uleb128 0xe
+ 454 0048 3A       		.uleb128 0x3a
+ 455 0049 0B       		.uleb128 0xb
+ 456 004a 3B       		.uleb128 0x3b
+ 457 004b 0B       		.uleb128 0xb
+ 458 004c 49       		.uleb128 0x49
+ 459 004d 13       		.uleb128 0x13
+ 460 004e 38       		.uleb128 0x38
+ 461 004f 0B       		.uleb128 0xb
+ 462 0050 00       		.byte	0
+ 463 0051 00       		.byte	0
+ 464 0052 07       		.uleb128 0x7
+ 465 0053 01       		.uleb128 0x1
+ 466 0054 01       		.byte	0x1
+ 467 0055 49       		.uleb128 0x49
+ 468 0056 13       		.uleb128 0x13
+ 469 0057 01       		.uleb128 0x1
+ 470 0058 13       		.uleb128 0x13
+ 471 0059 00       		.byte	0
+ 472 005a 00       		.byte	0
+ 473 005b 08       		.uleb128 0x8
+ 474 005c 21       		.uleb128 0x21
+ 475 005d 00       		.byte	0
+ 476 005e 49       		.uleb128 0x49
+ 477 005f 13       		.uleb128 0x13
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 10
+
+
+ 478 0060 2F       		.uleb128 0x2f
+ 479 0061 0B       		.uleb128 0xb
+ 480 0062 00       		.byte	0
+ 481 0063 00       		.byte	0
+ 482 0064 09       		.uleb128 0x9
+ 483 0065 13       		.uleb128 0x13
+ 484 0066 01       		.byte	0x1
+ 485 0067 03       		.uleb128 0x3
+ 486 0068 0E       		.uleb128 0xe
+ 487 0069 0B       		.uleb128 0xb
+ 488 006a 0B       		.uleb128 0xb
+ 489 006b 3A       		.uleb128 0x3a
+ 490 006c 0B       		.uleb128 0xb
+ 491 006d 3B       		.uleb128 0x3b
+ 492 006e 0B       		.uleb128 0xb
+ 493 006f 01       		.uleb128 0x1
+ 494 0070 13       		.uleb128 0x13
+ 495 0071 00       		.byte	0
+ 496 0072 00       		.byte	0
+ 497 0073 0A       		.uleb128 0xa
+ 498 0074 2E       		.uleb128 0x2e
+ 499 0075 01       		.byte	0x1
+ 500 0076 3F       		.uleb128 0x3f
+ 501 0077 19       		.uleb128 0x19
+ 502 0078 03       		.uleb128 0x3
+ 503 0079 0E       		.uleb128 0xe
+ 504 007a 3A       		.uleb128 0x3a
+ 505 007b 0B       		.uleb128 0xb
+ 506 007c 3B       		.uleb128 0x3b
+ 507 007d 0B       		.uleb128 0xb
+ 508 007e 27       		.uleb128 0x27
+ 509 007f 19       		.uleb128 0x19
+ 510 0080 49       		.uleb128 0x49
+ 511 0081 13       		.uleb128 0x13
+ 512 0082 8701     		.uleb128 0x87
+ 513 0084 19       		.uleb128 0x19
+ 514 0085 11       		.uleb128 0x11
+ 515 0086 01       		.uleb128 0x1
+ 516 0087 12       		.uleb128 0x12
+ 517 0088 06       		.uleb128 0x6
+ 518 0089 40       		.uleb128 0x40
+ 519 008a 18       		.uleb128 0x18
+ 520 008b 9742     		.uleb128 0x2117
+ 521 008d 19       		.uleb128 0x19
+ 522 008e 01       		.uleb128 0x1
+ 523 008f 13       		.uleb128 0x13
+ 524 0090 00       		.byte	0
+ 525 0091 00       		.byte	0
+ 526 0092 0B       		.uleb128 0xb
+ 527 0093 34       		.uleb128 0x34
+ 528 0094 00       		.byte	0
+ 529 0095 03       		.uleb128 0x3
+ 530 0096 0E       		.uleb128 0xe
+ 531 0097 3A       		.uleb128 0x3a
+ 532 0098 0B       		.uleb128 0xb
+ 533 0099 3B       		.uleb128 0x3b
+ 534 009a 0B       		.uleb128 0xb
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 11
+
+
+ 535 009b 49       		.uleb128 0x49
+ 536 009c 13       		.uleb128 0x13
+ 537 009d 02       		.uleb128 0x2
+ 538 009e 18       		.uleb128 0x18
+ 539 009f 00       		.byte	0
+ 540 00a0 00       		.byte	0
+ 541 00a1 0C       		.uleb128 0xc
+ 542 00a2 34       		.uleb128 0x34
+ 543 00a3 00       		.byte	0
+ 544 00a4 03       		.uleb128 0x3
+ 545 00a5 0E       		.uleb128 0xe
+ 546 00a6 3A       		.uleb128 0x3a
+ 547 00a7 0B       		.uleb128 0xb
+ 548 00a8 3B       		.uleb128 0x3b
+ 549 00a9 0B       		.uleb128 0xb
+ 550 00aa 49       		.uleb128 0x49
+ 551 00ab 13       		.uleb128 0x13
+ 552 00ac 00       		.byte	0
+ 553 00ad 00       		.byte	0
+ 554 00ae 0D       		.uleb128 0xd
+ 555 00af 0B       		.uleb128 0xb
+ 556 00b0 01       		.byte	0x1
+ 557 00b1 11       		.uleb128 0x11
+ 558 00b2 01       		.uleb128 0x1
+ 559 00b3 12       		.uleb128 0x12
+ 560 00b4 06       		.uleb128 0x6
+ 561 00b5 01       		.uleb128 0x1
+ 562 00b6 13       		.uleb128 0x13
+ 563 00b7 00       		.byte	0
+ 564 00b8 00       		.byte	0
+ 565 00b9 0E       		.uleb128 0xe
+ 566 00ba 34       		.uleb128 0x34
+ 567 00bb 00       		.byte	0
+ 568 00bc 03       		.uleb128 0x3
+ 569 00bd 08       		.uleb128 0x8
+ 570 00be 3A       		.uleb128 0x3a
+ 571 00bf 0B       		.uleb128 0xb
+ 572 00c0 3B       		.uleb128 0x3b
+ 573 00c1 0B       		.uleb128 0xb
+ 574 00c2 49       		.uleb128 0x49
+ 575 00c3 13       		.uleb128 0x13
+ 576 00c4 02       		.uleb128 0x2
+ 577 00c5 17       		.uleb128 0x17
+ 578 00c6 00       		.byte	0
+ 579 00c7 00       		.byte	0
+ 580 00c8 0F       		.uleb128 0xf
+ 581 00c9 898201   		.uleb128 0x4109
+ 582 00cc 01       		.byte	0x1
+ 583 00cd 11       		.uleb128 0x11
+ 584 00ce 01       		.uleb128 0x1
+ 585 00cf 31       		.uleb128 0x31
+ 586 00d0 13       		.uleb128 0x13
+ 587 00d1 01       		.uleb128 0x1
+ 588 00d2 13       		.uleb128 0x13
+ 589 00d3 00       		.byte	0
+ 590 00d4 00       		.byte	0
+ 591 00d5 10       		.uleb128 0x10
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 12
+
+
+ 592 00d6 8A8201   		.uleb128 0x410a
+ 593 00d9 00       		.byte	0
+ 594 00da 02       		.uleb128 0x2
+ 595 00db 18       		.uleb128 0x18
+ 596 00dc 9142     		.uleb128 0x2111
+ 597 00de 18       		.uleb128 0x18
+ 598 00df 00       		.byte	0
+ 599 00e0 00       		.byte	0
+ 600 00e1 11       		.uleb128 0x11
+ 601 00e2 898201   		.uleb128 0x4109
+ 602 00e5 01       		.byte	0x1
+ 603 00e6 11       		.uleb128 0x11
+ 604 00e7 01       		.uleb128 0x1
+ 605 00e8 31       		.uleb128 0x31
+ 606 00e9 13       		.uleb128 0x13
+ 607 00ea 00       		.byte	0
+ 608 00eb 00       		.byte	0
+ 609 00ec 12       		.uleb128 0x12
+ 610 00ed 898201   		.uleb128 0x4109
+ 611 00f0 00       		.byte	0
+ 612 00f1 11       		.uleb128 0x11
+ 613 00f2 01       		.uleb128 0x1
+ 614 00f3 31       		.uleb128 0x31
+ 615 00f4 13       		.uleb128 0x13
+ 616 00f5 00       		.byte	0
+ 617 00f6 00       		.byte	0
+ 618 00f7 13       		.uleb128 0x13
+ 619 00f8 2E       		.uleb128 0x2e
+ 620 00f9 00       		.byte	0
+ 621 00fa 3F       		.uleb128 0x3f
+ 622 00fb 19       		.uleb128 0x19
+ 623 00fc 3C       		.uleb128 0x3c
+ 624 00fd 19       		.uleb128 0x19
+ 625 00fe 6E       		.uleb128 0x6e
+ 626 00ff 0E       		.uleb128 0xe
+ 627 0100 03       		.uleb128 0x3
+ 628 0101 0E       		.uleb128 0xe
+ 629 0102 3A       		.uleb128 0x3a
+ 630 0103 0B       		.uleb128 0xb
+ 631 0104 3B       		.uleb128 0x3b
+ 632 0105 0B       		.uleb128 0xb
+ 633 0106 00       		.byte	0
+ 634 0107 00       		.byte	0
+ 635 0108 00       		.byte	0
+ 636              		.section	.debug_loc,"",%progbits
+ 637              	.Ldebug_loc0:
+ 638              	.LLST0:
+ 639 0000 1A000000 		.4byte	.LVL2
+ 640 0004 1E000000 		.4byte	.LVL3
+ 641 0008 0200     		.2byte	0x2
+ 642 000a 30       		.byte	0x30
+ 643 000b 9F       		.byte	0x9f
+ 644 000c 1E000000 		.4byte	.LVL3
+ 645 0010 40000000 		.4byte	.LVL6
+ 646 0014 0100     		.2byte	0x1
+ 647 0016 54       		.byte	0x54
+ 648 0017 42000000 		.4byte	.LVL7
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 13
+
+
+ 649 001b 48000000 		.4byte	.LFE32
+ 650 001f 0100     		.2byte	0x1
+ 651 0021 54       		.byte	0x54
+ 652 0022 00000000 		.4byte	0
+ 653 0026 00000000 		.4byte	0
+ 654              		.section	.debug_aranges,"",%progbits
+ 655 0000 1C000000 		.4byte	0x1c
+ 656 0004 0200     		.2byte	0x2
+ 657 0006 00000000 		.4byte	.Ldebug_info0
+ 658 000a 04       		.byte	0x4
+ 659 000b 00       		.byte	0
+ 660 000c 0000     		.2byte	0
+ 661 000e 0000     		.2byte	0
+ 662 0010 00000000 		.4byte	.LFB32
+ 663 0014 48000000 		.4byte	.LFE32-.LFB32
+ 664 0018 00000000 		.4byte	0
+ 665 001c 00000000 		.4byte	0
+ 666              		.section	.debug_ranges,"",%progbits
+ 667              	.Ldebug_ranges0:
+ 668 0000 00000000 		.4byte	.LFB32
+ 669 0004 48000000 		.4byte	.LFE32
+ 670 0008 00000000 		.4byte	0
+ 671 000c 00000000 		.4byte	0
+ 672              		.section	.debug_line,"",%progbits
+ 673              	.Ldebug_line0:
+ 674 0000 AA000000 		.section	.debug_str,"MS",%progbits,1
+ 674      02007F00 
+ 674      00000201 
+ 674      FB0E0D00 
+ 674      01010101 
+ 675              	.LASF18:
+ 676 0000 62757341 		.ascii	"busAddress\000"
+ 676      64647265 
+ 676      737300
+ 677              	.LASF21:
+ 678 000b 414D7578 		.ascii	"AMux_1_Unset\000"
+ 678      5F315F55 
+ 678      6E736574 
+ 678      00
+ 679              	.LASF29:
+ 680 0018 53656C65 		.ascii	"Selector_I2C_Struct\000"
+ 680      63746F72 
+ 680      5F493243 
+ 680      5F537472 
+ 680      75637400 
+ 681              	.LASF3:
+ 682 002c 73686F72 		.ascii	"short unsigned int\000"
+ 682      7420756E 
+ 682      7369676E 
+ 682      65642069 
+ 682      6E7400
+ 683              	.LASF19:
+ 684 003f 73656C65 		.ascii	"selector\000"
+ 684      63746F72 
+ 684      00
+ 685              	.LASF9:
+ 686 0048 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 14
+
+
+ 686      7400
+ 687              	.LASF15:
+ 688 004e 64617461 		.ascii	"data\000"
+ 688      00
+ 689              	.LASF1:
+ 690 0053 756E7369 		.ascii	"unsigned char\000"
+ 690      676E6564 
+ 690      20636861 
+ 690      7200
+ 691              	.LASF5:
+ 692 0061 6C6F6E67 		.ascii	"long unsigned int\000"
+ 692      20756E73 
+ 692      69676E65 
+ 692      6420696E 
+ 692      7400
+ 693              	.LASF28:
+ 694 0073 75696E74 		.ascii	"uint8\000"
+ 694      3800
+ 695              	.LASF16:
+ 696 0079 77726974 		.ascii	"write\000"
+ 696      6500
+ 697              	.LASF10:
+ 698 007f 646F7562 		.ascii	"double\000"
+ 698      6C6500
+ 699              	.LASF30:
+ 700 0086 6D61696E 		.ascii	"main\000"
+ 700      00
+ 701              	.LASF17:
+ 702 008b 72656164 		.ascii	"read\000"
+ 702      00
+ 703              	.LASF14:
+ 704 0090 73756241 		.ascii	"subAddress\000"
+ 704      64647265 
+ 704      737300
+ 705              	.LASF8:
+ 706 009b 756E7369 		.ascii	"unsigned int\000"
+ 706      676E6564 
+ 706      20696E74 
+ 706      00
+ 707              	.LASF7:
+ 708 00a8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 708      206C6F6E 
+ 708      6720756E 
+ 708      7369676E 
+ 708      65642069 
+ 709              	.LASF20:
+ 710 00bf 414D7578 		.ascii	"AMux_1_Select\000"
+ 710      5F315F53 
+ 710      656C6563 
+ 710      7400
+ 711              	.LASF25:
+ 712 00cd 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 712      43313120 
+ 712      352E342E 
+ 712      31203230 
+ 712      31363036 
+ 713 0100 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 15
+
+
+ 713      20726576 
+ 713      6973696F 
+ 713      6E203233 
+ 713      37373135 
+ 714 0133 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 714      66756E63 
+ 714      74696F6E 
+ 714      2D736563 
+ 714      74696F6E 
+ 715              	.LASF13:
+ 716 015b 73697A65 		.ascii	"sizetype\000"
+ 716      74797065 
+ 716      00
+ 717              	.LASF22:
+ 718 0164 455A4932 		.ascii	"EZI2C_1_Start\000"
+ 718      435F315F 
+ 718      53746172 
+ 718      7400
+ 719              	.LASF6:
+ 720 0172 6C6F6E67 		.ascii	"long long int\000"
+ 720      206C6F6E 
+ 720      6720696E 
+ 720      7400
+ 721              	.LASF26:
+ 722 0180 6D61696E 		.ascii	"main.c\000"
+ 722      2E6300
+ 723              	.LASF11:
+ 724 0187 63686172 		.ascii	"char\000"
+ 724      00
+ 725              	.LASF31:
+ 726 018c 4932435F 		.ascii	"I2C_Bus_Addresses\000"
+ 726      4275735F 
+ 726      41646472 
+ 726      65737365 
+ 726      7300
+ 727              	.LASF27:
+ 728 019e 433A5C55 		.ascii	"C:\\Users\\noyce\\home\\Research\\illumina\\PSoC\\L"
+ 728      73657273 
+ 728      5C6E6F79 
+ 728      63655C68 
+ 728      6F6D655C 
+ 729 01ca 61796F75 		.ascii	"ayout 2_14 Device Selector\\Design01.cydsn\000"
+ 729      7420325F 
+ 729      31342044 
+ 729      65766963 
+ 729      65205365 
+ 730              	.LASF2:
+ 731 01f4 73686F72 		.ascii	"short int\000"
+ 731      7420696E 
+ 731      7400
+ 732              	.LASF4:
+ 733 01fe 6C6F6E67 		.ascii	"long int\000"
+ 733      20696E74 
+ 733      00
+ 734              	.LASF24:
+ 735 0207 455A4932 		.ascii	"EZI2C_1_EzI2CSetBuffer1\000"
+ 735      435F315F 
+ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccGwF8H6.s 			page 16
+
+
+ 735      457A4932 
+ 735      43536574 
+ 735      42756666 
+ 736              	.LASF12:
+ 737 021f 6C6F6E67 		.ascii	"long double\000"
+ 737      20646F75 
+ 737      626C6500 
+ 738              	.LASF0:
+ 739 022b 7369676E 		.ascii	"signed char\000"
+ 739      65642063 
+ 739      68617200 
+ 740              	.LASF23:
+ 741 0237 455A4932 		.ascii	"EZI2C_1_EzI2CSetAddress1\000"
+ 741      435F315F 
+ 741      457A4932 
+ 741      43536574 
+ 741      41646472 
+ 742              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

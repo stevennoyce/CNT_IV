@@ -1,0 +1,6 @@
+E:\PSoC\PSoC5 Device Selector\PSoC5 Device Selector 1\Design01.cydsn\Design01.cyprj|aff270b5-b108-4817-97d8-71ce515478e0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|bc2c80bf-111b-4805-a6b2-d0f05255fdcc
+C:\Users\FanklinLab_2\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|e316b960-74ac-4ff9-90d9-4484f7657cb9
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|2f1f5236-4997-49fe-a7dc-cac0d1a71628
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|b202fbc8-7cf4-468a-9670-e76adab62601
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|0ba70049-3a7f-4ef2-a04d-d475bdbbe927
