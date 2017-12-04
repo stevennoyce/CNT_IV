@@ -1,0 +1,20 @@
+#ignore all files except those that have an extension
+*
+!*/
+!**/*.*
+
+#don't ignore makefiles
+!makefile
+!Makefile
+
+#ignore compiled files
+*.pyc
+*.jar
+*.exe
+
+#ignore annoying OS and backup files
+*.DS_Store
+*.db
+*~
+*#
+*.bak
