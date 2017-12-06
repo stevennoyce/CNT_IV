@@ -33,7 +33,8 @@ def run(parameters, showFigures=True):
 
 	dpu.plotFullGateSweepHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
 	dpu.plotFullBurnOutHistory(burnOutHistory, parameters['saveFiguresGenerated'], showFigures)
-	
+	dpu.plotOnCurrentHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+
 	if(showFigures):
 		dpu.show()
 

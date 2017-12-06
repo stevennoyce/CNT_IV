@@ -99,13 +99,17 @@ def runGateSweep(smu_instance, saveFolder, saveFileName, startVoltage, endVoltag
 		'current2s':current2s,
 		'timestamps':timestamps,
 		'gateVoltages':gateVoltages,
-		'onOffRatio':onOffRatio(current1s)
+		'onOffRatio':onOffRatio(current1s),
+		'onCurrent':onCurrent(current1s)
 	}
 
 def onOffRatio(drainCurrent):
 	absDrainCurrent = abs(np.array(drainCurrent))
 	return (np.percentile(absDrainCurrent, 99))/(np.percentile(absDrainCurrent, 5))
 
+def onCurrent(drainCurrent):
+	absDrainCurrent = abs(np.array(drainCurrent))
+	return np.percentile(absDrainCurrent, 99)
 
 	
 

@@ -8,6 +8,7 @@ import numpy as np
 titles = {
 	'GateSweep':'Subthreshold Sweep',
 	'BurnOut':'Metallic CNT Burnout',
+	'OnCurrent':'Device On Current History',
 	'ChipHistory':'Chip History'
 }
 
@@ -46,7 +47,6 @@ def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	if(not showFigure):
 		plt.close(fig)
 
-
 def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, (ax1, ax2) = subplots(1, 2, 'BurnOut')
 	ax2 = plt.subplot(2,2,2)
@@ -61,6 +61,19 @@ def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	if(not showFigure):
 		plt.close(fig)
 
+def plotOnCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
+	fig, ax = subplots(1, 1, 'OnCurrent')
+	onCurrents = []
+	for deviceRun in deviceHistory:
+		onCurrents.append(deviceRun['onCurrent'])
+	scatterLinearXLogY(ax, range(len(onCurrents)), onCurrents, 'b', 'On Currents', 6)
+	ax.set_ylabel('On Current, $(I_{on})$ [A]')
+	ax.set_xlabel('Data From Subthreshold Sweeps Over Time')
+	if(saveFigure):
+		plt.savefig('fig3.png')
+	if(not showFigure):
+		plt.close(fig)
+
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	fig, ax = subplots(1,1,'ChipHistory')
 	devices = []
@@ -71,14 +84,17 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	lastOnOffRatios = len(devices)*[0]
 	for deviceRun in recentRunChipHistory:
 		lastOnOffRatios[devices.index(deviceRun['deviceID'])] = np.log10(deviceRun['onOffRatio'])
+
+	lastOnOffRatios, devices, firstOnOffRatios = zip(*(reversed(sorted(zip(lastOnOffRatios, devices, firstOnOffRatios)))))
+
 	scatterLinearXLinearY(ax, range(len(devices)), firstOnOffRatios, 'b', 'First Run', 6)
 	scatterLinearXLinearY(ax, range(len(devices)), lastOnOffRatios, 'r', 'Most Recent Run', 4)
 	ax.set_ylabel('On/Off Ratio, $log_{10}(I_{on}/I_{off})$ (Orders of Magnitude)')
+	ax.set_xlabel('Device')
 	ax.set_xticklabels(devices)
 	ax.set_xticks(range(len(devices)))
 	ax.xaxis.set_tick_params(rotation=90)
 	fig.tight_layout(rect=[0,0,1.0,0.95])
-	
 
 # ***** Figures *****
 
@@ -167,7 +183,7 @@ def plotTimeLogY(axis, timestamps, y, lineColor, lineLabel):
 
 def plotTimeLinearY(axis, timestamps, y, lineColor, lineLabel):
 	zeroed_timestamps = list(np.array(timestamps) - np.array(timestamps)[0])
-	axis.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel)
+	axis.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel, marker='o', markersize = 1, linewidth=1)
 
 
 

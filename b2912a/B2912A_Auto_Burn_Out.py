@@ -71,17 +71,17 @@ def run(parameters):
 		'deviceID':parameters['deviceID'],
 		'saveFolder':parameters['saveFolder'],
 		'NPLC':parameters['NPLC'],
-		'saveFiguresGenerated':False,
+		'saveFiguresGenerated':True,
 		'showOnlySuccessfulBurns': False,
 		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
 		'numberOfNewestPlotsToExclude': 0
 	}
 
-	runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters)
+	runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHistoryParameters)
 
 	deviceHistoryScript.run(deviceHistoryParameters)
 
-def runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters):
+def runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHistoryParameters):
 	targetOnOffRatio = parameters['targetOnOffRatio']
 	allowedDegradationFactor = parameters['limitOnOffRatioDegradation']
 	burnOutLimit = parameters['limitBurnOutsAllowed']
@@ -93,13 +93,18 @@ def runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters):
 	while((previousOnOffRatio < targetOnOffRatio) and (burnOutCount < burnOutLimit)):
 		burnOutScript.run(burnOutParameters, True, False)
 		sweepResults = gateSweepScript.run(gateSweepParameters, True, False)
-		currentOnOffRatio = sweepResults['onOffRatio']
 
+		currentOnOffRatio = sweepResults['onOffRatio']
 		if(currentOnOffRatio < allowedDegradationFactor*previousOnOffRatio):
 			break
-
-		burnOutCount += 1
 		previousOnOffRatio = currentOnOffRatio
+
+		deviceHistoryScript.run(deviceHistoryParameters, False)
+		burnOutCount += 1
+		print('Completed sweep #'+str(burnOutCount))
+		print('On/Off ratio: '+str(currentOnOffRatio))
+		print('On current: {:.4e}'.format(sweepResults['onCurrent']))
+		
 
 
 if __name__ == '__main__':

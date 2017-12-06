@@ -77,7 +77,7 @@ def runBurnOutSweep(smu_instance, saveFolder, saveFileName, thresholdProportion,
 
 	drainVoltages = dgu.stepValues(voltageStart, voltageSetPoint, voltagePlateaus, points)
 
-	for drainVoltage in drainVoltages:
+	for i, drainVoltage in enumerate(drainVoltages):
 		smu_instance.setParameter(":source1:voltage {}".format(drainVoltage))
 		measurement = smu_instance.takeMeasurement()
 
@@ -95,12 +95,17 @@ def runBurnOutSweep(smu_instance, saveFolder, saveFileName, thresholdProportion,
 		voltage2s.append(voltage2)
 		current2s.append(current2)
 		timestamps.append(timestamp)
-
+		
 		current1_threshold = np.percentile(np.array(current1s), 90) * thresholdProportion
+		current1_recent_measurements = [current1]
 
-		if(thresholdCrossed(current1_threshold, current1)):
+		if(drainVoltages[i] == drainVoltages[i-1]):
+			current1_recent_measurements = current1s[-3:]
+
+		if(thresholdCrossed(current1_threshold, current1_recent_measurements)):
 			burned = True
 			break
+			
 
 	smu_instance.rampDrainVoltage(drainVoltage, 0, 20)
 
@@ -115,8 +120,15 @@ def runBurnOutSweep(smu_instance, saveFolder, saveFileName, thresholdProportion,
 		'thresholdCurrent':current1_threshold
 	}
 
-def thresholdCrossed(threshold, current):
-	return (current < (threshold)) and (threshold > 50e-9)
+def thresholdCrossed(threshold, recent_measurements):
+	if(threshold < 50e-9):
+		return False
+
+	for current in recent_measurements: 
+		if(current > threshold):
+			return False
+
+	return True
 
 
 	

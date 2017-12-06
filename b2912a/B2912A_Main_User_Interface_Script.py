@@ -10,8 +10,8 @@ import Chip_History as chipHistoryScript
 
 ## ********** Parameters **********
 
-chipID = 'C127M'
-deviceID = '3-4'
+chipID = 'C127E'
+deviceID = '6-7'
 
 #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -54,7 +54,7 @@ additional_parameters = {
 	},
 	'AutoBurnOut':{
 		'targetOnOffRatio': 100,
-		'limitBurnOutsAllowed': 1,
+		'limitBurnOutsAllowed': 8,
 		'limitOnOffRatioDegradation': 0.7
 	},
 	'StaticBias':{
@@ -64,8 +64,8 @@ additional_parameters = {
 		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps':2,
-		'applyStaticBiasBetweenSweeps':False,
+		'numberOfSweeps':6,
+		'applyStaticBiasBetweenSweeps':True,
 		'saveFiguresBetweenSweeps':True
 	},
 	'DeviceHistory':{
