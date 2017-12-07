@@ -13,8 +13,9 @@ import Chip_History as chipHistoryScript
 chipID = 'C127E'
 deviceID = '6-7'
 
-#saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
+# saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
+# saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
+saveFolder = 'data/'
 
 runTypes = {
 	0:'Quit',
@@ -64,7 +65,7 @@ additional_parameters = {
 		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps':6*24,
+		'numberOfSweeps':6*18,
 		'applyStaticBiasBetweenSweeps':True,
 		'saveFiguresBetweenSweeps':True
 	},
@@ -81,7 +82,7 @@ additional_parameters = {
 
 def main(parameters):
 	while(True):
-		os.system('clear')
+		os.system('cls' if os.name == 'nt' else 'clear')
 		print('Actions: ')
 		print_dict(runTypes)
 		choice = int(input('Choose an action (0,1,2,...): '))
@@ -132,3 +133,4 @@ def print_dict(dict):
 
 if __name__ == '__main__':
     main(default_parameters)
+
