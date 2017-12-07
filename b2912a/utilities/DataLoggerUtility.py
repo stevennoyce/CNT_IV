@@ -27,7 +27,10 @@ def loadJSON(loadDirectoryPath, loadFileName):
 	jsonData = []
 	with open(loadDirectoryPath + loadFileName) as file:
 		for line in file:
-			jsonData.append(json.loads(str(line)))
+			try:
+				jsonData.append(json.loads(str(line)))
+			except:
+				print('Error loading JSON line')
 	return jsonData
 
 def loadFullDeviceHistory(directory, fileName, deviceID):

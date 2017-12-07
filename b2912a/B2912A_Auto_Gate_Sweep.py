@@ -85,7 +85,7 @@ def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, devi
 		gateSweepScript.run(gateSweepParameters, True, False)
 		deviceHistoryScript.run(deviceHistoryParameters, False)
 		sweepCount += 1
-		print('Completed sweep #'+str(sweepCount))
+		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))
 		
 
 

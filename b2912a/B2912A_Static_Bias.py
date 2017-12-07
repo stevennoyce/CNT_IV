@@ -1,4 +1,5 @@
 import time
+import sys
 
 from framework import SourceMeasureUnit as smu
 
@@ -20,9 +21,14 @@ def run(parameters):
 
 	smu_instance.rampGateVoltage(0, parameters['gateVoltageSetPoint'], 20)
 	smu_instance.rampDrainVoltage(0, parameters['drainVoltageSetPoint'], 20)
+	
+	progressBarLength = 70
+	print('')
+	for i in range(progressBarLength):
+		time.sleep(parameters['time']/progressBarLength)
+		print('\r[' + i*'=' + (progressBarLength-i-1)*' ' + ']', end='')
 
-	time.sleep(parameters['time'])
-
+	print('')
 	smu_instance.rampDownVoltages()
 
 

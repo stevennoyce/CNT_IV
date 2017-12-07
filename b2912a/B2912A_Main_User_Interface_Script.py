@@ -15,7 +15,8 @@ deviceID = '6-7'
 
 # saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 # saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
-saveFolder = 'data/'
+# saveFolder = 'data/'
+saveFolder = 'C:/Users/noyce/home/Research/illumina/CNT_IV/b2912a/data/'
 
 runTypes = {
 	0:'Quit',
@@ -65,7 +66,7 @@ additional_parameters = {
 		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps':6*18,
+		'numberOfSweeps':6*24,
 		'applyStaticBiasBetweenSweeps':True,
 		'saveFiguresBetweenSweeps':True
 	},
