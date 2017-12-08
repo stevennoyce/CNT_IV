@@ -10,8 +10,8 @@ import Chip_History as chipHistoryScript
 
 ## ********** Parameters **********
 
-chipID = 'C127E'
-deviceID = '6-7'
+chipID = 'C127D'
+deviceID = '3-4'
 
 # saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 # saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -38,7 +38,7 @@ default_parameters = {
 
 additional_parameters = {
 	'GateSweep':{
-		'saveFileName': 'GateSweep_' + chipID,
+		'saveFileName': 'GateSweep',
 		'runDataPoints': 600,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
@@ -46,7 +46,7 @@ additional_parameters = {
 		'gateVoltageMaximum':	15.0
 	},
 	'BurnOut':{
-		'saveFileName': 'BurnOut_' + chipID,
+		'saveFileName': 'BurnOut',
 		'runDataPoints': 1000,
 		'complianceCurrent':	2000e-6,
 		'thresholdProportion':	0.8,

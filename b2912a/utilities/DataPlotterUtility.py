@@ -69,6 +69,7 @@ def plotOnCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
 	scatterLinearXLogY(ax, range(len(onCurrents)), onCurrents, 'b', 'On Currents', 6)
 	ax.set_ylabel('On Current, $(I_{on})$ [A]')
 	ax.set_xlabel('Data From Subthreshold Sweeps Over Time')
+	fig.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
 		plt.savefig('fig3.png')
 	if(not showFigure):
@@ -94,7 +95,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	ax.set_xticklabels(devices)
 	ax.set_xticks(range(len(devices)))
 	ax.xaxis.set_tick_params(rotation=90)
-	fig.tight_layout(rect=[0,0,1.0,0.95])
+	fig.tight_layout(rect=[0,0,0.95,0.95])
 
 # ***** Figures *****
 
@@ -138,6 +139,8 @@ def plotGateSweep(axis, jsonData, lineColor):
 	axis.set_xlabel('Gate Voltage, $V_{GS}$ [V]')
 	axis.set_ylabel('Drain Current, $I_D$ [A]')
 	axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
+
+	plt.tight_layout(rect=[0,0,0.95,0.95])
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plotLinearXLinearY(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor, '')

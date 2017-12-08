@@ -42,11 +42,12 @@ def loadFullDeviceHistory(directory, fileName, deviceID):
 	return deviceHistory
 
 def loadFullChipHistory(directory, fileName, chipID):
-	jsonData = loadJSON(directory, fileName)
 	chipHistory = []
-	for deviceRun in jsonData:
-		if(deviceRun['chipID'] == chipID):
-			chipHistory.append(deviceRun)
+	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
+		jsonData = loadJSON(directory + deviceSubdirectory + '/', fileName)
+		for deviceRun in jsonData:
+			if(deviceRun['chipID'] == chipID):
+				chipHistory.append(deviceRun)
 	return chipHistory
 
 def filterHistory(deviceHistory, property, value):

@@ -17,11 +17,12 @@ from utilities import DataLoggerUtility as dlu
 ## ********** Main **********
 
 def run(parameters):
-	burnOutFileName = 'BurnOut_' + parameters['chipID'] + '.json'
-	gateSweepFileName = 'GateSweep_' + parameters['chipID'] + '.json'
+	burnOutFileName = 'BurnOut.json'
+	gateSweepFileName = 'GateSweep.json'
+	chipDirectory = parameters['saveFolder'] + parameters['chipID'] + '/'
 
-	firstRunChipHistory = dlu.loadFirstRunChipHistory(parameters['saveFolder'], gateSweepFileName, parameters['chipID'])
-	recentRunChipHistory = dlu.loadMostRecentRunChipHistory(parameters['saveFolder'], gateSweepFileName, parameters['chipID'])
+	firstRunChipHistory = dlu.loadFirstRunChipHistory(chipDirectory, gateSweepFileName, parameters['chipID'])
+	recentRunChipHistory = dlu.loadMostRecentRunChipHistory(chipDirectory, gateSweepFileName, parameters['chipID'])
 
 	dpu.plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory)
 	dpu.show()

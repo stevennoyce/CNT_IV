@@ -36,15 +36,16 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, isSavingResults=True, isPlottingResults=True):
-	dlu.makeFolder(parameters['saveFolder'])
-	dlu.initCSV(parameters['saveFolder'], parameters['saveFileName'])
+	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	dlu.makeFolder(workingDirectory)
+	dlu.initCSV(workingDirectory, parameters['saveFileName'])
 
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
 	#smu_instance = smu.SimulationSMU()
 
 	smu_instance.rampDrainVoltage(0, parameters['drainVoltageSetPoint'], 20)
 	results = runGateSweep( smu_instance, 
-							parameters['saveFolder'], 
+							workingDirectory, 
 							parameters['saveFileName'], 
 							parameters['gateVoltageMinimum'], 
 							parameters['gateVoltageMaximum'], 
@@ -54,7 +55,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	jsonData = {**parameters, **results}
 	
 	if(isSavingResults):
-		dlu.saveJSON(parameters['saveFolder'], parameters['saveFileName'], jsonData)
+		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, 'b')
@@ -63,7 +64,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 
-def runGateSweep(smu_instance, saveFolder, saveFileName, startVoltage, endVoltage, steps):
+def runGateSweep(smu_instance, workingDirectory, saveFileName, startVoltage, endVoltage, steps):
 	voltage1s = []
 	current1s = []
 	voltage2s = []
@@ -84,7 +85,7 @@ def runGateSweep(smu_instance, saveFolder, saveFileName, startVoltage, endVoltag
 		timestamp = time.time()
 
 		csvData = [timestamp, voltage1, current1, voltage2, current2]
-		dlu.saveCSV(saveFolder, saveFileName, csvData)
+		dlu.saveCSV(workingDirectory, saveFileName, csvData)
 		
 		voltage1s.append(voltage1)
 		current1s.append(current1)
@@ -100,16 +101,20 @@ def runGateSweep(smu_instance, saveFolder, saveFileName, startVoltage, endVoltag
 		'timestamps':timestamps,
 		'gateVoltages':gateVoltages,
 		'onOffRatio':onOffRatio(current1s),
-		'onCurrent':onCurrent(current1s)
+		'onCurrent':onCurrent(current1s),
+		'offCurrent':offCurrent(current1s)
 	}
 
 def onOffRatio(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return (np.percentile(absDrainCurrent, 99))/(np.percentile(absDrainCurrent, 5))
+	return onCurrent(drainCurrent)/offCurrent(drainCurrent)
 
 def onCurrent(drainCurrent):
 	absDrainCurrent = abs(np.array(drainCurrent))
 	return np.percentile(absDrainCurrent, 99)
+
+def offCurrent(drainCurrent):
+	absDrainCurrent = abs(np.array(drainCurrent))
+	return (np.percentile(absDrainCurrent, 5))
 
 	
 

@@ -24,7 +24,7 @@ from utilities import DataLoggerUtility as dlu
 # 	'limitBurnOutsAllowed': 8,
 # 	'limitOnOffRatioDegradation': 0.7,
 # 	'GateSweep':{
-# 		'saveFileName': 'GateSweep_' + chipID,
+# 		'saveFileName': 'GateSweep',
 # 		'runDataPoints':600,
 # 		'complianceCurrent':	100e-6,
 # 		'drainVoltageSetPoint':	0.5,
@@ -32,7 +32,7 @@ from utilities import DataLoggerUtility as dlu
 # 		'gateVoltageMaximum':	15.0
 # 	},
 # 	'BurnOut':{
-# 		'saveFileName': 'BurnOut_' + chipID,
+# 		'saveFileName': 'BurnOut',
 # 		'runDataPoints':1000,
 # 		'complianceCurrent':	2000e-6,
 # 		'thresholdProportion':	0.75,
@@ -63,7 +63,11 @@ def run(parameters):
 	}
 	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
 
-	numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(parameters['saveFolder'], burnOutParameters['saveFileName']+'.json', parameters['deviceID']))
+	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	try:
+		numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(workingDirectory, burnOutParameters['saveFileName']+'.json', parameters['deviceID']))
+	except:
+		numberOfOldDeviceRuns = 0
 
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
@@ -104,6 +108,7 @@ def runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHis
 		print('Completed sweep #'+str(burnOutCount))
 		print('On/Off ratio: '+str(currentOnOffRatio))
 		print('On current: {:.4e}'.format(sweepResults['onCurrent']))
+		print('Off current: {:.4e}'.format(sweepResults['offCurrent']))
 		
 
 

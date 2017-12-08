@@ -38,15 +38,16 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, isSavingResults=True, isPlottingResults=True):
-	dlu.makeFolder(parameters['saveFolder'])
-	dlu.initCSV(parameters['saveFolder'], parameters['saveFileName'])
+	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	dlu.makeFolder(workingDirectory)
+	dlu.initCSV(workingDirectory, parameters['saveFileName'])
 
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
 	#smu_instance = smu.SimulationSMU()
 
 	smu_instance.rampGateVoltage(0, parameters['gateVoltageSetPoint'], 20)
 	results = runBurnOutSweep(	smu_instance, 
-								parameters['saveFolder'], 
+								workingDirectory, 
 								parameters['saveFileName'], 
 								parameters['thresholdProportion'], 
 								0, 
@@ -58,7 +59,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	jsonData = {**parameters, **results}
 
 	if(isSavingResults):
-		dlu.saveJSON(parameters['saveFolder'], parameters['saveFileName'], jsonData)
+		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, 'b')
@@ -66,7 +67,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runBurnOutSweep(smu_instance, saveFolder, saveFileName, thresholdProportion, voltageStart, voltageSetPoint, voltagePlateaus, points):
+def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, voltageStart, voltageSetPoint, voltagePlateaus, points):
 	current1_threshold = -1
 	burned = False
 	voltage1s = []
@@ -88,7 +89,7 @@ def runBurnOutSweep(smu_instance, saveFolder, saveFileName, thresholdProportion,
 		timestamp = time.time()
 
 		csvData = [timestamp, voltage1, current1, voltage2, current2]
-		dlu.saveCSV(saveFolder, saveFileName, csvData)
+		dlu.saveCSV(workingDirectory, saveFileName, csvData)
 
 		voltage1s.append(voltage1)
 		current1s.append(current1)

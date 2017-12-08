@@ -19,11 +19,12 @@ from utilities import DataLoggerUtility as dlu
 ## ********** Main **********
 
 def run(parameters, showFigures=True):
-	gateSweepFileName = 'GateSweep_' + parameters['chipID'] + '.json'
-	burnOutFileName = 'BurnOut_' + parameters['chipID'] + '.json'
+	gateSweepFileName = 'GateSweep.json'
+	burnOutFileName = 'BurnOut.json'
+	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 
-	gateSweepHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], gateSweepFileName, parameters['deviceID'])
-	burnOutHistory = dlu.loadFullDeviceHistory(parameters['saveFolder'], burnOutFileName, parameters['deviceID'])
+	gateSweepHistory = dlu.loadFullDeviceHistory(workingDirectory, gateSweepFileName, parameters['deviceID'])
+	burnOutHistory = dlu.loadFullDeviceHistory(workingDirectory, burnOutFileName, parameters['deviceID'])
 
 	gateSweepHistory = gateSweepHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(gateSweepHistory)-parameters['numberOfNewestPlotsToExclude']))]
 	burnOutHistory = burnOutHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(burnOutHistory)-parameters['numberOfNewestPlotsToExclude']))]

@@ -20,7 +20,7 @@ from utilities import DataLoggerUtility as dlu
 # 	'numberOfSweeps':3,
 # 	'applyStaticBiasBetweenSweeps':True,
 # 	'GateSweep':{
-# 		'saveFileName': 'GateSweep_' + chipID,
+# 		'saveFileName': 'GateSweep',
 # 		'runDataPoints':600,
 # 		'complianceCurrent':	100e-6,
 # 		'drainVoltageSetPoint':	0.5,
@@ -54,7 +54,11 @@ def run(parameters):
 	}
 	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
 
-	numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(parameters['saveFolder'], gateSweepParameters['saveFileName']+'.json', parameters['deviceID']))
+	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	try:
+		numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(workingDirectory, gateSweepParameters['saveFileName']+'.json', parameters['deviceID']))
+	except:
+		numberOfOldDeviceRuns = 0
 
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
@@ -82,10 +86,13 @@ def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, devi
 		if(parameters['applyStaticBiasBetweenSweeps']):
 			print('Applying static bias of V_GS='+str(staticBiasParameters['gateVoltageSetPoint'])+'V, V_DS='+str(staticBiasParameters['drainVoltageSetPoint'])+'V for '+str(staticBiasParameters['time'])+' seconds...')
 			staticBiasScript.run(staticBiasParameters)
-		gateSweepScript.run(gateSweepParameters, True, False)
+		sweepResults = gateSweepScript.run(gateSweepParameters, True, False)
 		deviceHistoryScript.run(deviceHistoryParameters, False)
 		sweepCount += 1
 		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))
+		print('On/Off ratio: '+str(sweepResults['onOffRatio']))
+		print('On current: {:.4e}'.format(sweepResults['onCurrent']))
+		print('Off current: {:.4e}'.format(sweepResults['offCurrent']))
 		
 
 
