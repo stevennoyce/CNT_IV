@@ -19,6 +19,7 @@ def saveCSV(saveDirectoryPath, saveFileName, csvData):
 # ***** JSON *****
 
 def saveJSON(saveDirectoryPath, saveFileName, jsonData):
+	index = 0
 	with open(saveDirectoryPath + saveFileName + '.json', 'a') as file:
 		json.dump(jsonData, file)
 		file.write('\r\n')
