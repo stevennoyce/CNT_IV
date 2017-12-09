@@ -11,7 +11,7 @@ import Chip_History as chipHistoryScript
 ## ********** Parameters **********
 
 chipID = 'C127E'
-deviceID = '6-7'
+deviceID = '5-6'
 
 # saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 # saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
