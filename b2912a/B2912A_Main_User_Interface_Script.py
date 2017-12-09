@@ -66,7 +66,7 @@ additional_parameters = {
 		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps':6*24,
+		'numberOfSweeps':6*12,
 		'applyStaticBiasBetweenSweeps':True,
 		'saveFiguresBetweenSweeps':True
 	},
