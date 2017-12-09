@@ -92,6 +92,9 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":sense2:curr:nplc {}".format(NPLC))
 		self.smu.write(":sense2:curr:prot {}".format(complianceCurrent))
 
+		self.smu.write(":outp1 ON")
+		self.smu.write(":outp2 ON")
+
 	def setParameter(self, parameter):
 		self.smu.write(parameter)
 
