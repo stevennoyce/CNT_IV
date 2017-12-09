@@ -60,7 +60,7 @@ additional_parameters = {
 		'limitOnOffRatioDegradation': 0.7
 	},
 	'StaticBias':{
-		'time': 6,
+		'time': 600,
 		'complianceCurrent':	100e-6,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	0.5
