@@ -23,18 +23,22 @@ def run(parameters, showFigures=True):
 	burnOutFileName = 'BurnOut.json'
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 
-	gateSweepHistory = dlu.loadFullDeviceHistory(workingDirectory, gateSweepFileName, parameters['deviceID'])
-	burnOutHistory = dlu.loadFullDeviceHistory(workingDirectory, burnOutFileName, parameters['deviceID'])
+	try:
+		gateSweepHistory = dlu.loadFullDeviceHistory(workingDirectory, gateSweepFileName, parameters['deviceID'])
+		gateSweepHistory = gateSweepHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(gateSweepHistory)-parameters['numberOfNewestPlotsToExclude']))]
+		dpu.plotFullGateSweepHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+		dpu.plotOnCurrentHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+	except FileNotFoundError:
+		print("Error: Unable to find Gate Sweep history.")
 
-	gateSweepHistory = gateSweepHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(gateSweepHistory)-parameters['numberOfNewestPlotsToExclude']))]
-	burnOutHistory = burnOutHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(burnOutHistory)-parameters['numberOfNewestPlotsToExclude']))]
-
-	if(parameters['showOnlySuccessfulBurns']):
-		burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
-
-	dpu.plotFullGateSweepHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
-	dpu.plotFullBurnOutHistory(burnOutHistory, parameters['saveFiguresGenerated'], showFigures)
-	dpu.plotOnCurrentHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+	try:
+		burnOutHistory = dlu.loadFullDeviceHistory(workingDirectory, burnOutFileName, parameters['deviceID'])
+		burnOutHistory = burnOutHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(burnOutHistory)-parameters['numberOfNewestPlotsToExclude']))]
+		if(parameters['showOnlySuccessfulBurns']):
+			burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
+		dpu.plotFullBurnOutHistory(burnOutHistory, parameters['saveFiguresGenerated'], showFigures)
+	except FileNotFoundError:
+		print("Error: Unable to find Burnout History")
 
 	if(showFigures):
 		dpu.show()

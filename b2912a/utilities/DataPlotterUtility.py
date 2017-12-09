@@ -95,6 +95,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	ax.set_xticklabels(devices)
 	ax.set_xticks(range(len(devices)))
 	ax.xaxis.set_tick_params(rotation=90)
+	ax.legend(loc='best', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 	fig.tight_layout(rect=[0,0,0.95,0.95])
 
 # ***** Figures *****

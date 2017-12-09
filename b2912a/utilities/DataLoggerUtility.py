@@ -22,7 +22,7 @@ def saveJSON(directory, saveFileName, jsonData):
 	with open(directory + saveFileName + '.json', 'a') as file:
 		jsonData['index'] = loadJSONIndex(directory)
 		json.dump(jsonData, file)
-		file.write('\r\n')
+		file.write('\n')
 
 def loadJSON(directory, loadFileName):
 	jsonData = []
@@ -47,7 +47,7 @@ def loadJSONIndex(directory):
 
 	with open(directory + 'index.json', 'w') as file:
 		json.dump(indexData, file)
-		file.write('\r\n')
+		file.write('\n')
 	return index
 
 def loadFullDeviceHistory(directory, fileName, deviceID):
