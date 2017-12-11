@@ -87,7 +87,7 @@ def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, devi
 
 	while(sweepCount < numberOfSweeps):
 		if(parameters['applyStaticBiasBetweenSweeps']):
-			print('Applying static bias of V_GS='+str(staticBiasParameters['gateVoltageSetPoint'])+'V, V_DS='+str(staticBiasParameters['drainVoltageSetPoint'])+'V for '+str(staticBiasParameters['time'])+' seconds...')
+			print('Applying static bias of V_GS='+str(staticBiasParameters['gateVoltageSetPoint'])+'V, V_DS='+str(staticBiasParameters['drainVoltageSetPoint'])+'V for '+str(staticBiasParameters['biasTime'])+' seconds...')
 			staticBiasScript.run(staticBiasParameters, True, False)
 		sweepResults = gateSweepScript.run(gateSweepParameters, True, False)
 		deviceHistoryScript.run(deviceHistoryParameters, False)
