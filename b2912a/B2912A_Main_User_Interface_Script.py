@@ -10,8 +10,8 @@ import Chip_History as chipHistoryScript
 
 ## ********** Parameters **********
 
-chipID = 'C127D'
-deviceID = '13-14'
+chipID = 'C127E'
+deviceID = '6-7'
 
 # saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 # saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -61,15 +61,15 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 360,
+		'runDataPoints': 60*3,
 		'complianceCurrent':	100e-6,
-		'startUpSettlingDelay': 5,
-		'biasTime': 60*60,
+		'startUpSettlingDelay': 2,
+		'biasTime': 60*30,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 12,
+		'numberOfSweeps': 2*24,
 		'applyStaticBiasBetweenSweeps': True,
 		'saveFiguresBetweenSweeps': 	True
 	},
