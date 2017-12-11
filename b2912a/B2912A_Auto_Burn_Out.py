@@ -75,10 +75,13 @@ def run(parameters):
 		'deviceID':parameters['deviceID'],
 		'saveFolder':parameters['saveFolder'],
 		'NPLC':parameters['NPLC'],
+		'plotGateSweeps': True,
+		'plotBurnOuts': True,
+		'plotStaticBias': False,
 		'saveFiguresGenerated':True,
-		'showOnlySuccessfulBurns': False,
 		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
-		'numberOfNewestPlotsToExclude': 0
+		'numberOfNewestPlotsToExclude': 0,
+		'showOnlySuccessfulBurns': False
 	}
 
 	runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHistoryParameters)

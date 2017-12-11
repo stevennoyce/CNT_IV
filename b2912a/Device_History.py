@@ -21,24 +21,35 @@ from utilities import DataLoggerUtility as dlu
 def run(parameters, showFigures=True):
 	gateSweepFileName = 'GateSweep.json'
 	burnOutFileName = 'BurnOut.json'
+	staticBiasFileName = 'StaticBias.json'
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 
-	try:
-		gateSweepHistory = dlu.loadFullDeviceHistory(workingDirectory, gateSweepFileName, parameters['deviceID'])
-		gateSweepHistory = gateSweepHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(gateSweepHistory)-parameters['numberOfNewestPlotsToExclude']))]
-		dpu.plotFullGateSweepHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
-		dpu.plotOnCurrentHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
-	except FileNotFoundError:
-		print("Error: Unable to find Gate Sweep history.")
+	if(parameters['plotGateSweeps']):
+		try:
+			gateSweepHistory = dlu.loadFullDeviceHistory(workingDirectory, gateSweepFileName, parameters['deviceID'])
+			gateSweepHistory = gateSweepHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(gateSweepHistory)-parameters['numberOfNewestPlotsToExclude']))]
+			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+		except FileNotFoundError:
+			print("Error: Unable to find Gate Sweep history.")
 
-	try:
-		burnOutHistory = dlu.loadFullDeviceHistory(workingDirectory, burnOutFileName, parameters['deviceID'])
-		burnOutHistory = burnOutHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(burnOutHistory)-parameters['numberOfNewestPlotsToExclude']))]
-		if(parameters['showOnlySuccessfulBurns']):
-			burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
-		dpu.plotFullBurnOutHistory(burnOutHistory, parameters['saveFiguresGenerated'], showFigures)
-	except FileNotFoundError:
-		print("Error: Unable to find Burnout History")
+	if(parameters['plotBurnOuts']):
+		try:
+			burnOutHistory = dlu.loadFullDeviceHistory(workingDirectory, burnOutFileName, parameters['deviceID'])
+			burnOutHistory = burnOutHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(burnOutHistory)-parameters['numberOfNewestPlotsToExclude']))]
+			if(parameters['showOnlySuccessfulBurns']):
+				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
+			dpu.plotFullBurnOutHistory(burnOutHistory, parameters['saveFiguresGenerated'], showFigures)
+		except FileNotFoundError:
+			print("Error: Unable to find Burnout History")
+
+	if(parameters['plotStaticBias']):
+		try:
+			staticBiasHistory = dlu.loadFullDeviceHistory(workingDirectory, staticBiasFileName, parameters['deviceID'])
+			staticBiasHistory = staticBiasHistory[parameters['numberOfOldestPlotsToExclude']:max(0,(len(staticBiasHistory)-parameters['numberOfNewestPlotsToExclude']))]
+			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters['saveFiguresGenerated'], showFigures)
+		except FileNotFoundError:
+			print("Error: Unable to find Static Bias History")
 
 	if(showFigures):
 		dpu.show()

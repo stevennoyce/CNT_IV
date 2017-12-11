@@ -11,7 +11,7 @@ import Chip_History as chipHistoryScript
 ## ********** Parameters **********
 
 chipID = 'C127D'
-deviceID = '2-3'
+deviceID = '3-4'
 
 # saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
 # saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
@@ -60,21 +60,27 @@ additional_parameters = {
 		'limitOnOffRatioDegradation': 0.7
 	},
 	'StaticBias':{
-		'time': 600,
+		'saveFileName': 'StaticBias',
+		'runDataPoints': 200,
 		'complianceCurrent':	100e-6,
+		'startUpSettlingDelay': 2,
+		'biasTime': 60*10,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	1
+		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps':6*12,
-		'applyStaticBiasBetweenSweeps':True,
-		'saveFiguresBetweenSweeps':True
+		'numberOfSweeps': 6*24,
+		'applyStaticBiasBetweenSweeps': True,
+		'saveFiguresBetweenSweeps': 	True
 	},
 	'DeviceHistory':{
+		'plotGateSweeps': 	True,
+		'plotBurnOuts': 	True,
+		'plotStaticBias': 	True,
 		'saveFiguresGenerated': False,
-		'showOnlySuccessfulBurns': False,
 		'numberOfOldestPlotsToExclude': 0,
-		'numberOfNewestPlotsToExclude': 0
+		'numberOfNewestPlotsToExclude': 0,
+		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
 
