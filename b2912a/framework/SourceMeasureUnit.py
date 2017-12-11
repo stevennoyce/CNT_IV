@@ -95,6 +95,8 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":outp1 ON")
 		self.smu.write(":outp2 ON")
 
+		self.smu.write("*WAI") # Explicitly wait for all of these commands to finish before handling new commands
+
 	def setParameter(self, parameter):
 		self.smu.write(parameter)
 
