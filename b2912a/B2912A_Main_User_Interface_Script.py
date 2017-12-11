@@ -61,15 +61,15 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 200,
+		'runDataPoints': 60*3,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60*10,
+		'biasTime': 60*30,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 6*24,
+		'numberOfSweeps': 2*24,
 		'applyStaticBiasBetweenSweeps': True,
 		'saveFiguresBetweenSweeps': 	True
 	},
