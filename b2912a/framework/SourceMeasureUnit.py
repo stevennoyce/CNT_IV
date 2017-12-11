@@ -30,8 +30,8 @@ class SourceMeasureUnit:
 	def rampDownVoltages(self):
 		source1_voltage = self.takeMeasurement()[0]
 		source2_voltage = self.takeMeasurement()[6]
-		self.rampDrainVoltage(source1_voltage, 0, 30)
-		self.rampGateVoltage(source2_voltage, 0, 30)
+		self.rampDrainVoltage(source1_voltage, 0, 40)
+		self.rampGateVoltage(source2_voltage, 0, 40)
 
 
 class SimulationSMU(SourceMeasureUnit):

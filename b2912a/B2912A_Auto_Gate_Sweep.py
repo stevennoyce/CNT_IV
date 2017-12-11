@@ -50,6 +50,7 @@ def run(parameters):
 		'runType':'StaticBias',
 		'chipID':parameters['chipID'], 
 		'deviceID':parameters['deviceID'],
+		'saveFolder':parameters['saveFolder'],
 		'NPLC':parameters['NPLC']
 	}
 	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
@@ -66,16 +67,18 @@ def run(parameters):
 		'deviceID':parameters['deviceID'],
 		'saveFolder':parameters['saveFolder'],
 		'NPLC':parameters['NPLC'],
+		'plotGateSweeps': True,
+		'plotBurnOuts': False,
+		'plotStaticBias': parameters['applyStaticBiasBetweenSweeps'],
 		'saveFiguresGenerated':True,
-		'showOnlySuccessfulBurns': False,
 		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
-		'numberOfNewestPlotsToExclude': 0
+		'numberOfNewestPlotsToExclude': 0,
+		'showOnlySuccessfulBurns': False
 	}
 
 	runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
 
 	deviceHistoryScript.run(deviceHistoryParameters)
-
 	
 
 def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
@@ -85,7 +88,7 @@ def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, devi
 	while(sweepCount < numberOfSweeps):
 		if(parameters['applyStaticBiasBetweenSweeps']):
 			print('Applying static bias of V_GS='+str(staticBiasParameters['gateVoltageSetPoint'])+'V, V_DS='+str(staticBiasParameters['drainVoltageSetPoint'])+'V for '+str(staticBiasParameters['time'])+' seconds...')
-			staticBiasScript.run(staticBiasParameters)
+			staticBiasScript.run(staticBiasParameters, True, False)
 		sweepResults = gateSweepScript.run(gateSweepParameters, True, False)
 		deviceHistoryScript.run(deviceHistoryParameters, False)
 		sweepCount += 1

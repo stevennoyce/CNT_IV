@@ -8,13 +8,15 @@ import numpy as np
 titles = {
 	'GateSweep':'Subthreshold Sweep',
 	'BurnOut':'Metallic CNT Burnout',
+	'StaticBias':'Static Bias',
 	'OnCurrent':'Device On/Off Current History',
 	'ChipHistory':'Chip History'
 }
 
 color_maps = {
 	'GateSweep':'hot',
-	'BurnOut':'Blues'
+	'BurnOut':'Blues',
+	'StaticBias':'Blues'
 }
 
 
@@ -30,6 +32,9 @@ def plotJSON(jsonData, lineColor):
 		ax2 = plt.subplot(2,2,2)
 		ax3 = plt.subplot(2,2,4)
 		plotBurnOut(ax1, ax2, ax3, jsonData, lineColor)
+	elif(jsonData['runType'] == 'StaticBias'):
+		fig, ax = initFigure(1,1,'StaticBias')
+		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
 	adjustFigure(fig, saveFigure=False, showFigure=True)
@@ -54,7 +59,15 @@ def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	ax1.annotate('$V_{GS} = 15V$', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
 	adjustFigure(fig, saveFigure, showFigure)
 
-def plotOnCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
+	fig, ax = initFigure(1, 1, 'StaticBias')
+	colors = colorsFromMap(color_maps['StaticBias'], 0.6, 1.0, len(deviceHistory))
+	for i in range(len(deviceHistory)):
+		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
+		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset)
+	adjustFigure(fig, saveFigure, showFigure)
+
+def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax1 = initFigure(1, 1, 'OnCurrent')
 	ax2 = ax1.twinx()
 	onCurrents = []
@@ -106,7 +119,7 @@ def show():
 # ***** Device Plots *****
 
 def plotGateSweep(axis, jsonData, lineColor):
-	#scatter(axis jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
+	#scatter(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
 	plotWithErrorBars(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{GS}$ [V]', y_label='Drain Current, $I_D$ [A]')
@@ -126,6 +139,9 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor, '')
 	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain-to-Source Voltage, $V_{DS}$ [V]')
 
+def plotStaticBias(axis, jsonData, lineColor, timeOffset):
+	plotOverTime(axis, jsonData['timestamps'], (np.array(jsonData['current1s'])*10**6), lineColor, '', timeOffset)	
+	axisLabels(axis, x_label='Time, $t$ [sec]', y_label='Drain Current, $I_D$ [$\mu$A]')
 
 
 # ***** Figures *****
@@ -160,8 +176,8 @@ def plotWithErrorBars(axis, x, y, lineColor, lineLabel):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
 	axis.errorbar(x_unique, avg, yerr=std, color=lineColor, label=lineLabel, capsize=4, capthick=0.5, elinewidth=0.5,)
 
-def plotOverTime(axis, timestamps, y, lineColor, lineLabel):
-	zeroed_timestamps = list(np.array(timestamps) - np.array(timestamps)[0])
+def plotOverTime(axis, timestamps, y, lineColor, lineLabel, offset=0):
+	zeroed_timestamps = list( np.array(timestamps) - timestamps[0] + offset )
 	axis.plot(zeroed_timestamps, y, color=lineColor, label=lineLabel, marker='o', markersize = 1, linewidth=1)
 
 
