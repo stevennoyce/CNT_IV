@@ -7,6 +7,9 @@
 !makefile
 !Makefile
 
+#ignore generated plots
+*.png
+
 #ignore compiled files
 *.pyc
 *.jar
