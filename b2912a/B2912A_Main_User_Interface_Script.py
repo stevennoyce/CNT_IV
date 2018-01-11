@@ -8,6 +8,8 @@ import B2912A_Auto_Gate_Sweep as autoGateScript
 import Device_History as deviceHistoryScript
 import Chip_History as chipHistoryScript
 
+from utilities import DataLoggerUtility as dlu
+
 ## ********** Parameters **********
 
 chipID = 'C127D'
@@ -75,8 +77,10 @@ additional_parameters = {
 		'plotBurnOuts': 	False,
 		'plotStaticBias': 	True,
 		'saveFiguresGenerated': False,
-		'numberOfOldestPlotsToExclude': 0,
-		'numberOfNewestPlotsToExclude': 0,
+		'excludeDataBeforeJSONIndex': 0,
+		'excludeDataAfterJSONIndex':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
@@ -128,6 +132,9 @@ def runAction(parameters):
 		chipHistoryScript.run(parameters)
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
+
+	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	dlu.incrementJSONExperiementNumber(workingDirectory)
 
 def print_dict(dict):
 	keys = list(dict.keys())

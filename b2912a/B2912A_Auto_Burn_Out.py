@@ -64,10 +64,7 @@ def run(parameters):
 	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	try:
-		numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(workingDirectory, burnOutParameters['saveFileName']+'.json', parameters['deviceID']))
-	except:
-		numberOfOldDeviceRuns = 0
+	currentExperimentNumber = loadJSONIndex(workingDirectory)['experimentNumber']
 
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
@@ -79,8 +76,10 @@ def run(parameters):
 		'plotBurnOuts': True,
 		'plotStaticBias': False,
 		'saveFiguresGenerated':True,
-		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
-		'numberOfNewestPlotsToExclude': 0,
+		'excludeDataBeforeJSONIndex': 0,
+		'excludeDataAfterJSONIndex':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': currentExperimentNumber,
+		'excludeDataAfterJSONExperimentNumber':  currentExperimentNumber,
 		'showOnlySuccessfulBurns': False
 	}
 

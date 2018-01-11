@@ -20,9 +20,12 @@ def saveCSV(directory, saveFileName, csvData):
 
 def saveJSON(directory, saveFileName, jsonData):
 	with open(directory + saveFileName + '.json', 'a') as file:
-		jsonData['index'] = loadJSONIndex(directory)
+		indexData = loadJSONIndex(directory)
+		jsonData['index'] = indexData['index']
+		jsonData['experimentNumber'] = indexData['experimentNumber'] 
 		json.dump(jsonData, file)
 		file.write('\n')
+	incrementJSONIndex(directory)
 
 def loadJSON(directory, loadFileName):
 	jsonData = []
@@ -35,20 +38,30 @@ def loadJSON(directory, loadFileName):
 	return jsonData
 
 def loadJSONIndex(directory):
-	index = 0
 	indexData = {}
 	try:
 		with open(directory + 'index.json', 'r') as file:
 			indexData = json.loads(file.readline())
-			index = indexData['index'] + 1
-			indexData['index'] = index
 	except FileNotFoundError:	
-		indexData = {'index':0}
+		indexData = {'index':0, 'experimentNumber':0}
 
+	return indexData
+
+def incrementJSONIndex(directory):
+	indexData = loadJSONIndex(directory)
 	with open(directory + 'index.json', 'w') as file:
+		indexData['index'] += 1
 		json.dump(indexData, file)
 		file.write('\n')
-	return index
+
+def incrementJSONExperiementNumber(directory):
+	indexData = loadJSONIndex(directory)
+	with open(directory + 'index.json', 'w') as file:
+		indexData['experimentNumber'] += 1
+		json.dump(indexData, file)
+		file.write('\n')
+
+
 
 def loadFullDeviceHistory(directory, fileName, deviceID):
 	jsonData = loadJSON(directory, fileName)

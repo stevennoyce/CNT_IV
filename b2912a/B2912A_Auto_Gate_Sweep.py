@@ -56,10 +56,7 @@ def run(parameters):
 	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	try:
-		numberOfOldDeviceRuns = len(dlu.loadFullDeviceHistory(workingDirectory, gateSweepParameters['saveFileName']+'.json', parameters['deviceID']))
-	except:
-		numberOfOldDeviceRuns = 0
+	currentExperimentNumber = loadJSONIndex(workingDirectory)['experimentNumber']
 
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
@@ -73,6 +70,10 @@ def run(parameters):
 		'saveFiguresGenerated':True,
 		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
 		'numberOfNewestPlotsToExclude': 0,
+		'excludeDataBeforeJSONIndex': 0,
+		'excludeDataAfterJSONIndex':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': currentExperimentNumber,
+		'excludeDataAfterJSONExperimentNumber':  currentExperimentNumber,
 		'showOnlySuccessfulBurns': False
 	}
 
