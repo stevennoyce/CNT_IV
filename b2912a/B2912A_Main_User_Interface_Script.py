@@ -55,7 +55,7 @@ additional_parameters = {
 		'drainVoltagePlateaus': 10
 	},
 	'AutoBurnOut':{
-		'targetOnOffRatio': 100,
+		'targetOnOffRatio': 300,
 		'limitBurnOutsAllowed': 8,
 		'limitOnOffRatioDegradation': 0.7
 	},
@@ -66,11 +66,11 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	1.5
+		'drainVoltageSetPoint':	1.0
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 3,
-		'applyStaticBiasBetweenSweeps': False,
+		'numberOfSweeps': 24,
+		'applyStaticBiasBetweenSweeps': True,
 		'saveFiguresBetweenSweeps': 	True
 	},
 	'DeviceHistory':{
