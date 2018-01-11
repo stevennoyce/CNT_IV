@@ -16,7 +16,7 @@ titles = {
 color_maps = {
 	'GateSweep':'hot',
 	'BurnOut':'Blues',
-	'StaticBias':'Blues'
+	'StaticBias':'plasma'
 }
 
 
@@ -61,7 +61,7 @@ def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 
 def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax = initFigure(1, 1, 'StaticBias')
-	colors = colorsFromMap(color_maps['StaticBias'], 0.6, 1.0, len(deviceHistory))
+	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset)
@@ -142,6 +142,7 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 def plotStaticBias(axis, jsonData, lineColor, timeOffset):
 	plotOverTime(axis, jsonData['timestamps'], (np.array(jsonData['current1s'])*10**6), lineColor, '', timeOffset)	
 	axisLabels(axis, x_label='Time, $t$ [sec]', y_label='Drain Current, $I_D$ [$\mu$A]')
+
 
 
 # ***** Figures *****
