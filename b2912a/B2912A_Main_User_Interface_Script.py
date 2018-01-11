@@ -13,7 +13,7 @@ from utilities import DataLoggerUtility as dlu
 ## ********** Parameters **********
 
 chipID = 'C127D'
-deviceID = '14-15'
+deviceID = '13-14'
 
 saveFolder = 'data/'
 
