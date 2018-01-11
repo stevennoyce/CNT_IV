@@ -11,11 +11,8 @@ import Chip_History as chipHistoryScript
 ## ********** Parameters **********
 
 chipID = 'C127D'
-deviceID = '13-14'
+deviceID = '14-15'
 
-# saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-# saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
-# saveFolder = 'C:/Users/noyce/home/Research/illumina/CNT_IV/b2912a/data/'
 saveFolder = 'data/'
 
 runTypes = {
@@ -61,15 +58,15 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 60*3,
+		'runDataPoints': 60*6,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60*30,
+		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	0.5
+		'drainVoltageSetPoint':	1.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 2*24,
+		'numberOfSweeps': 24,
 		'applyStaticBiasBetweenSweeps': True,
 		'saveFiguresBetweenSweeps': 	True
 	},
