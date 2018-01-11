@@ -12,8 +12,8 @@ from utilities import DataLoggerUtility as dlu
 
 ## ********** Parameters **********
 
-chipID = 'C127D'
-deviceID = '13-14'
+chipID = 'C127E'
+deviceID = '14-15'
 
 saveFolder = 'data/'
 
@@ -49,6 +49,7 @@ additional_parameters = {
 		'runDataPoints': 1000,
 		'complianceCurrent':	2000e-6,
 		'thresholdProportion':	0.8,
+		'minimumAppliedDrainVoltage': 0.67,
 		'gateVoltageSetPoint':	15.0,
 		'drainVoltageMaxPoint':	10,
 		'drainVoltagePlateaus': 10
@@ -68,8 +69,8 @@ additional_parameters = {
 		'drainVoltageSetPoint':	1.5
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 24,
-		'applyStaticBiasBetweenSweeps': True,
+		'numberOfSweeps': 3,
+		'applyStaticBiasBetweenSweeps': False,
 		'saveFiguresBetweenSweeps': 	True
 	},
 	'DeviceHistory':{
@@ -135,6 +136,7 @@ def runAction(parameters):
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 	dlu.incrementJSONExperiementNumber(workingDirectory)
+	
 
 def print_dict(dict):
 	keys = list(dict.keys())

@@ -56,7 +56,7 @@ def run(parameters):
 	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	currentExperimentNumber = loadJSONIndex(workingDirectory)['experimentNumber']
+	currentExperimentNumber = dlu.loadJSONIndex(workingDirectory)['experimentNumber']
 
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
@@ -68,8 +68,6 @@ def run(parameters):
 		'plotBurnOuts': False,
 		'plotStaticBias': parameters['applyStaticBiasBetweenSweeps'],
 		'saveFiguresGenerated':True,
-		'numberOfOldestPlotsToExclude': numberOfOldDeviceRuns,
-		'numberOfNewestPlotsToExclude': 0,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': currentExperimentNumber,
@@ -94,9 +92,6 @@ def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, devi
 		deviceHistoryScript.run(deviceHistoryParameters, False)
 		sweepCount += 1
 		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))
-		print('On/Off ratio: '+str(sweepResults['onOffRatio']))
-		print('On current: {:.4e}'.format(sweepResults['onCurrent']))
-		print('Off current: {:.4e}'.format(sweepResults['offCurrent']))
 		
 
 

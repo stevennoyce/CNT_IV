@@ -50,6 +50,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 								workingDirectory, 
 								parameters['saveFileName'], 
 								parameters['thresholdProportion'], 
+								parameters['minimumAppliedDrainVoltage'],
 								0, 
 								parameters['drainVoltageMaxPoint'], 
 								parameters['drainVoltagePlateaus'], 
@@ -67,7 +68,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, voltageStart, voltageSetPoint, voltagePlateaus, points):
+def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, points):
 	current1_threshold = -1
 	burned = False
 	voltage1s = []
@@ -103,7 +104,7 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 		if(drainVoltages[i] == drainVoltages[i-1]):
 			current1_recent_measurements = current1s[-3:]
 
-		if(thresholdCrossed(current1_threshold, current1_recent_measurements)):
+		if(thresholdCrossed(current1_threshold, current1_recent_measurements, drainVoltages[i], minimumAppliedDrainVoltage)):
 			burned = True
 			break
 			
@@ -121,8 +122,11 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 		'thresholdCurrent':current1_threshold
 	}
 
-def thresholdCrossed(threshold, recent_measurements):
+def thresholdCrossed(threshold, recent_measurements, drainVoltage, minimumAppliedDrainVoltage):
 	if(threshold < 50e-9):
+		return False
+
+	if(drainVoltage < minimumAppliedDrainVoltage):
 		return False
 
 	for current in recent_measurements: 

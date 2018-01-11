@@ -54,6 +54,10 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 
 	jsonData = {**parameters, **results}
 	
+	print('On/Off ratio: {:.4f}'.format(results['onOffRatio']))
+	print('On current: {:.4e}'.format(results['onCurrent']))
+	print('Off current: {:.4e}'.format(results['offCurrent']))
+
 	if(isSavingResults):
 		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
 

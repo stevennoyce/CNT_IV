@@ -64,7 +64,7 @@ def run(parameters):
 	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	currentExperimentNumber = loadJSONIndex(workingDirectory)['experimentNumber']
+	currentExperimentNumber = dlu.loadJSONIndex(workingDirectory)['experimentNumber']
 
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 

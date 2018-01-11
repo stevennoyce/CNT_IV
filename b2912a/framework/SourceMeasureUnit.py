@@ -4,7 +4,6 @@ import numpy as np
 
 def getConnectionFromVisa(NPLC, complianceCurrent):
 	rm = visa.ResourceManager()
-	print(rm.list_resources())
 	instance = rm.open_resource(rm.list_resources()[0])
 	print(instance.query('*IDN?'))
 	return B2912A(instance, NPLC, complianceCurrent)
