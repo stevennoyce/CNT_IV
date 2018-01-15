@@ -75,13 +75,13 @@ additional_parameters = {
 	},
 	'DeviceHistory':{
 		'plotGateSweeps': 	True,
-		'plotBurnOuts': 	False,
+		'plotBurnOuts': 	True,
 		'plotStaticBias': 	True,
 		'saveFiguresGenerated': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 14,
+		'excludeDataAfterJSONExperimentNumber':  14,
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
@@ -134,8 +134,9 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 
-	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	dlu.incrementJSONExperiementNumber(workingDirectory)
+	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+		dlu.incrementJSONExperiementNumber(workingDirectory)
 	
 
 def print_dict(dict):
