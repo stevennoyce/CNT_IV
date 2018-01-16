@@ -108,9 +108,6 @@ def runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHis
 		deviceHistoryScript.run(deviceHistoryParameters, False)
 		burnOutCount += 1
 		print('Completed sweep #'+str(burnOutCount))
-		print('On/Off ratio: '+str(currentOnOffRatio))
-		print('On current: {:.4e}'.format(sweepResults['onCurrent']))
-		print('Off current: {:.4e}'.format(sweepResults['offCurrent']))
 		
 
 

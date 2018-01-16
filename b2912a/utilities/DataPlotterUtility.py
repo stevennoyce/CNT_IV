@@ -46,8 +46,8 @@ def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
 		plotGateSweep(ax, deviceHistory[i], colors[i], includeLegend)	
-	ax.annotate('Oldest to newest', xy=(0.3, 0.05), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
-	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.4), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
+	ax.annotate('Oldest to newest', xy=(0.3, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
+	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{DS} = $', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
 	adjustFigure(fig, saveFigure, showFigure)
 

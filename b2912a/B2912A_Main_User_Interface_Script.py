@@ -13,7 +13,7 @@ from utilities import DataLoggerUtility as dlu
 ## ********** Parameters **********
 
 chipID = 'C127E'
-deviceID = '14-15'
+deviceID = '15-16'
 
 saveFolder = 'data/'
 
@@ -49,7 +49,7 @@ additional_parameters = {
 		'runDataPoints': 1000,
 		'complianceCurrent':	2000e-6,
 		'thresholdProportion':	0.8,
-		'minimumAppliedDrainVoltage': 0.67,
+		'minimumAppliedDrainVoltage': 0.9,
 		'gateVoltageSetPoint':	15.0,
 		'drainVoltageMaxPoint':	10,
 		'drainVoltagePlateaus': 10
@@ -66,7 +66,7 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	1.75
+		'drainVoltageSetPoint':	1.5
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -80,8 +80,8 @@ additional_parameters = {
 		'saveFiguresGenerated': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 17,
-		'excludeDataAfterJSONExperimentNumber':  17,
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
