@@ -66,7 +66,7 @@ def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
-		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset)
+		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'minutes')
 	adjustFigure(fig, saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
@@ -147,10 +147,21 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
 	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain-to-Source Voltage, $V_{DS}$ [V]')
 
-def plotStaticBias(axis, jsonData, lineColor, timeOffset):
-	plotOverTime(axis, jsonData['timestamps'], (np.array(jsonData['current1s'])*10**6), lineColor, timeOffset)	
-	axisLabels(axis, x_label='Time, $t$ [sec]', y_label='Drain Current, $I_D$ [$\mu$A]')
-
+def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
+	timestamp_scale_factor = 1
+	if(timescale == 'minutes'):
+		timestamp_scale_factor = 60
+	elif(timescale == 'hours'):
+		timestamp_scale_factor = 3600
+	timestamps = (np.array(jsonData['timestamps'])/timestamp_scale_factor)
+	currents = (np.array(jsonData['current1s'])*(10**6))
+	plotOverTime(axis, timestamps, currents, lineColor, timeOffset/timestamp_scale_factor)	
+	axisLabels(axis, x_label='Time, $t$ [{:}]'.format(timescale), y_label='Drain Current, $I_D$ [$\mu$A]')
+	
+	## Measuring how quickly the current decays from its start to final value
+	#decay_threshold = np.exp(-1)*(currents[0] - currents[-1]) + currents[-1]
+	#axis.plot([0, timestamps[-1] - timestamps[0]], [decay_threshold, decay_threshold], color=lineColor, linestyle='--', linewidth=1)
+	#axis.plot([15, 15], [8, decay_threshold], color='r', linestyle='--', linewidth=1)
 
 
 # ***** Figures *****
