@@ -37,7 +37,7 @@ def plotJSON(jsonData, lineColor):
 		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
-	adjustFigure(fig, saveFigure=False, showFigure=True)
+	adjustFigure(fig, jsonData['runType'], saveFigure=False, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax = initFigure(1, 1, 'GateSweep')
@@ -49,7 +49,7 @@ def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	ax.annotate('Oldest to newest', xy=(0.3, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{DS} = $', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
-	adjustFigure(fig, saveFigure, showFigure)
+	adjustFigure(fig, 'FullGateSweep', saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut')
@@ -59,15 +59,15 @@ def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
 	ax1.annotate('$V_{GS} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
-	adjustFigure(fig, saveFigure, showFigure)
+	adjustFigure(fig, 'FullBurnOut', saveFigure, showFigure)
 
 def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax = initFigure(1, 1, 'StaticBias')
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
-		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'minutes')
-	adjustFigure(fig, saveFigure, showFigure)
+		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'hours')
+	adjustFigure(fig, 'FullStaticBias', saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax1 = initFigure(1, 1, 'OnCurrent')
@@ -92,7 +92,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True)
 	lines2, labels2 = ax2.get_legend_handles_labels()
 	ax1.legend(lines1 + lines2, labels1 + labels2, loc='best', fontsize=8)
 
-	adjustFigure(fig, saveFigure, showFigure)
+	adjustFigure(fig, 'OnAndOffCurrents', saveFigure, showFigure)
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	fig, ax = initFigure(1,1,'ChipHistory')
@@ -115,7 +115,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	tickLabels(ax, devices, rotation=90)
 	
 	ax.legend(loc='best', fontsize=8) #bbox_to_anchor=(1.25,0.5)
-	adjustFigure(fig, saveFigure=False, showFigure=True)
+	adjustFigure(fig, 'ChipHistory', saveFigure=False, showFigure=True)
 
 def show():
 	plt.show()
@@ -130,7 +130,8 @@ def plotGateSweep(axis, jsonData, lineColor, includeLabel=True):
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{GS}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
-		setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
+		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
+		setLabel(line, 'max $|I_{G}|$'+': {:.2e}'.format(max(abs(np.array(jsonData['current2s'])))))
 		axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
@@ -153,6 +154,8 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 		timestamp_scale_factor = 60
 	elif(timescale == 'hours'):
 		timestamp_scale_factor = 3600
+	elif(timescale == 'days'):
+		timestamp_scale_factor = 3600*24
 	timestamps = (np.array(jsonData['timestamps'])/timestamp_scale_factor)
 	currents = (np.array(jsonData['current1s'])*(10**6))
 	plotOverTime(axis, timestamps, currents, lineColor, timeOffset/timestamp_scale_factor)	
@@ -171,10 +174,10 @@ def initFigure(rows, columns, type):
 	fig.suptitle(titles[type])
 	return fig, axes
 
-def adjustFigure(figure, saveFigure, showFigure):
+def adjustFigure(figure, saveName, saveFigure, showFigure):
 	figure.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
-		plt.savefig('fig'+str(figure.number)+'.png')
+		plt.savefig(saveName+'.png')
 	if(not showFigure):
 		plt.close(figure)
 
