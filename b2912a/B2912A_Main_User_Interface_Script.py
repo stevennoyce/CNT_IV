@@ -15,7 +15,7 @@ from utilities import DataLoggerUtility as dlu
 
 if platform.node() == 'noyce-dell':
 	chipID = 'C127D'
-	deviceID = '9-10'
+	deviceID = '13-14'
 else:
 	chipID = 'C127E'
 	deviceID = '15-16'
