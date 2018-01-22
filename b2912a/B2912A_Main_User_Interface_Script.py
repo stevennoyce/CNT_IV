@@ -13,7 +13,7 @@ from utilities import DataLoggerUtility as dlu
 
 ## ********** Parameters **********
 
-if platform.node() is 'noyce-dell':
+if platform.node() == 'noyce-dell':
 	chipID = 'C127D'
 	deviceID = '9-10'
 else:
