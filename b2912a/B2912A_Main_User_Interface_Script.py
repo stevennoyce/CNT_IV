@@ -1,4 +1,5 @@
 import os
+import platform
 
 import B2912A_Burn_Out as burnOutScript
 import B2912A_Gate_Sweep as gateSweepScript
@@ -12,8 +13,12 @@ from utilities import DataLoggerUtility as dlu
 
 ## ********** Parameters **********
 
-chipID = 'C127E'
-deviceID = '15-16'
+if platform.node() is 'noyce-dell':
+	chipID = 'C127D'
+	deviceID = '9-10'
+else:
+	chipID = 'C127E'
+	deviceID = '15-16'
 
 saveFolder = 'data/'
 
