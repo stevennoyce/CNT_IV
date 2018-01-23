@@ -71,7 +71,7 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	1.9
+		'drainVoltageSetPoint':	2.25
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
