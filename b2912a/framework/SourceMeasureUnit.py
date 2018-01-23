@@ -1,4 +1,5 @@
 import visa
+import time
 import random as rand
 import numpy as np
 
@@ -101,6 +102,31 @@ class B2912A(SourceMeasureUnit):
 
 	def takeMeasurement(self):
 		return self.smu.query_ascii_values(':MEAS? (@1:2)')
+
+	def takeSweep(self, start, stop, points, NPLC):
+		self.smu.write(":source1:voltage:mode sweep")
+
+		self.smu.write(":source:voltage:start {}".format(start))
+		self.smu.write(":source:voltage:stop {}".format(stop)) 
+		self.smu.write(":source:voltage:points {}".format(points))
+
+		self.smu.write(":trig:source aint")
+		self.smu.write(":trig:count {}".format(points))
+		self.smu.write(":init (@1)")
+
+		time.sleep(points*NPLC/60)
+
+		currents = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
+		voltages = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
+
+		self.smu.write(":source1:voltage:mode fixed")
+
+		return {
+			'voltage1s': voltages,
+			'current1s': currents
+		}
+
+
 
 
 

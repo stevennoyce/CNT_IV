@@ -51,7 +51,8 @@ def runStaticBias(smu_instance, startUpDelay, biasTime, steps):
 	current2s = []
 	timestamps = []
 
-	time.sleep(startUpDelay)
+	if(startUpDelay > 0):
+		time.sleep(startUpDelay)
 
 	for i in range(steps):
 		time.sleep(float(biasTime)/steps)
