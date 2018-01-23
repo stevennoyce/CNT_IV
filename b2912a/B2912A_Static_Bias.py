@@ -21,6 +21,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 	dlu.makeFolder(workingDirectory)
 
+	print('Applying static bias of V_GS='+str(parameters['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['drainVoltageSetPoint'])+'V for '+str(parameters['biasTime'])+' seconds...')
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
 
 	smu_instance.rampGateVoltage(0, parameters['gateVoltageSetPoint'], 30)

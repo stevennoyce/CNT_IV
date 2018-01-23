@@ -83,22 +83,31 @@ def loadFullChipHistory(directory, fileName, chipID):
 def filterHistory(deviceHistory, property, value):
 	filteredHistory = []
 	for deviceRun in deviceHistory:
-		if(deviceRun[property] == value):
-			filteredHistory.append(deviceRun)
+		try:
+			if(deviceRun[property] == value):
+				filteredHistory.append(deviceRun)
+		except:
+			print("Unable to apply filter on '"+str(property)+"' == '"+str(value)+"'")
 	return filteredHistory
 
 def filterHistoryGreaterThan(deviceHistory, property, threshold):
 	filteredHistory = []
 	for deviceRun in deviceHistory:
-		if(deviceRun[property] >= threshold):
-			filteredHistory.append(deviceRun)
+		try:
+			if(deviceRun[property] >= threshold):
+				filteredHistory.append(deviceRun)
+		except:
+			print("Unable to apply filter on '"+str(property)+"' >= '"+str(value)+"'")
 	return filteredHistory
 
 def filterHistoryLessThan(deviceHistory, property, threshold):
 	filteredHistory = []
 	for deviceRun in deviceHistory:
-		if(deviceRun[property] <= threshold):
-			filteredHistory.append(deviceRun)
+		try:
+			if(deviceRun[property] <= threshold):
+				filteredHistory.append(deviceRun)
+		except:
+			print("Unable to apply filter on '"+str(property)+"' <= '"+str(value)+"'")
 	return filteredHistory
 
 def loadFirstRunChipHistory(directory, fileName, chipID):

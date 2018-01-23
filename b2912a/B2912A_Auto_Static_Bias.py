@@ -75,22 +75,24 @@ def run(parameters):
 		'showOnlySuccessfulBurns': False
 	}
 
-	runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
+	runAutoStaticBias(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
 
 	deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
 	
 
-def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
-	numberOfSweeps = parameters['numberOfSweeps']
-	sweepCount = 0
+def runAutoStaticBias(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
+	numberOfStaticBiases = parameters['numberOfStaticBiases']
+	biasCount = 0
 
-	while(sweepCount < numberOfSweeps):
-		gateSweepScript.run(gateSweepParameters, isSavingResults=True, isPlottingResults=False)
-		if(parameters['applyStaticBiasBetweenSweeps']):
-			staticBiasScript.run(staticBiasParameters, isSavingResults=True, isPlottingResults=False)
+	while(biasCount < numberOfStaticBiases):
+		staticBiasScript.run(staticBiasParameters, isSavingResults=True, isPlottingResults=False)
+		if(parameters['applyGateSweepBetweenBiases']):
+			gateSweepScript.run(gateSweepParameters, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
-		sweepCount += 1
-		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))
+		biasCount += 1
+		print('Completed static bias #'+str(biasCount)+' of '+str(numberOfStaticBiases))
+		staticBiasParameters['gateVoltageSetPoint'] += parameters['incrementStaticGateVoltage']
+		staticBiasParameters['drainVoltageSetPoint'] += parameters['incrementStaticDrainVoltage']
 		
 
 

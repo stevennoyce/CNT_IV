@@ -6,6 +6,7 @@ import B2912A_Gate_Sweep as gateSweepScript
 import B2912A_Auto_Burn_Out as autoBurnScript
 import B2912A_Static_Bias as staticBiasScript
 import B2912A_Auto_Gate_Sweep as autoGateScript
+import B2912A_Auto_Static_Bias as autoBiasScript
 import Device_History as deviceHistoryScript
 import Chip_History as chipHistoryScript
 
@@ -29,8 +30,9 @@ runTypes = {
 	3:'AutoBurnOut',
 	4:'StaticBias',
 	5:'AutoGateSweep',
-	6:'DeviceHistory',
-	7:'ChipHistory'
+	6:'AutoStaticBias',
+	7:'DeviceHistory',
+	8:'ChipHistory'
 }
 
 default_parameters = {
@@ -71,12 +73,17 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	2.25
+		'drainVoltageSetPoint':	1.2
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
 		'applyStaticBiasBetweenSweeps': True,
-		'saveFiguresBetweenSweeps': 	True
+	},
+	'AutoStaticBias':{
+		'numberOfStaticBiases': 10,
+		'applyGateSweepBetweenBiases': True,
+		'incrementStaticDrainVoltage': 0.2,
+		'incrementStaticGateVoltage':  0,
 	},
 	'DeviceHistory':{
 		'plotGateSweeps': 	True,
@@ -118,6 +125,10 @@ def main(parameters):
 			break
 		
 def runAction(parameters):
+	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+		dlu.incrementJSONExperiementNumber(workingDirectory)
+
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters)
 	elif(parameters['runType'] == 'BurnOut'):
@@ -132,6 +143,10 @@ def runAction(parameters):
 		parameters['GateSweep'] = additional_parameters['GateSweep']
 		parameters['StaticBias'] = additional_parameters['StaticBias']
 		autoGateScript.run(parameters)
+	elif(parameters['runType'] == 'AutoStaticBias'):
+		parameters['GateSweep'] = additional_parameters['GateSweep']
+		parameters['StaticBias'] = additional_parameters['StaticBias']
+		autoBiasScript.run(parameters)
 	elif(parameters['runType'] == 'DeviceHistory'):
 		deviceHistoryScript.run(parameters)
 	elif(parameters['runType'] == 'ChipHistory'):
@@ -139,9 +154,7 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 
-	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-		dlu.incrementJSONExperiementNumber(workingDirectory)
+	
 	
 
 def print_dict(dict):

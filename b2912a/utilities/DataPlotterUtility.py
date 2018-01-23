@@ -66,7 +66,7 @@ def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
-		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'hours')
+		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'days')
 	adjustFigure(fig, 'FullStaticBias', saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
