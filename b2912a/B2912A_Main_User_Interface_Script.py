@@ -19,7 +19,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '13-14'
 else:
 	chipID = 'C127E'
-	deviceID = '0-0'
+	deviceID = '15-16'
 
 saveFolder = 'data/'
 
@@ -68,12 +68,12 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 30,
+		'runDataPoints': 60*6,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60,
+		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	0.5
+		'drainVoltageSetPoint':	1.4
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,

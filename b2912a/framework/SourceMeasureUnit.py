@@ -134,49 +134,6 @@ class B2912A(SourceMeasureUnit):
 			'current2s': current2s
 		}
 
-	def takeDrainSweep(self, start, stop, points, NPLC):
-		self.smu.write(":source1:voltage:mode sweep")
-
-		self.smu.write(":source:voltage:start {}".format(start))
-		self.smu.write(":source:voltage:stop {}".format(stop)) 
-		self.smu.write(":source:voltage:points {}".format(points))
-
-		self.smu.write(":trig:source aint")
-		self.smu.write(":trig:count {}".format(points))
-		self.smu.write(":init (@1)")
-
-		time.sleep(points*NPLC/60)
-
-		currents = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
-		voltages = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
-
-		return {
-			'voltage1s': voltages,
-			'current1s': currents
-		}
-
-	def takeGateSweep(self, start, stop, points, NPLC):
-		self.smu.write(":source2:voltage:mode sweep")
-
-		self.smu.write(":source:voltage:start {}".format(start))
-		self.smu.write(":source:voltage:stop {}".format(stop)) 
-		self.smu.write(":source:voltage:points {}".format(points))
-
-		self.smu.write(":trig:source aint")
-		self.smu.write(":trig:count {}".format(points))
-		self.smu.write(":init (@2)")
-
-		time.sleep(points*NPLC/60)
-
-		currents = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
-		voltages = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
-
-		return {
-			'voltage2s': voltages,
-			'current2s': currents
-		}
-
-
 
 
 
