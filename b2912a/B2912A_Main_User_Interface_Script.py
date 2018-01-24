@@ -19,7 +19,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '13-14'
 else:
 	chipID = 'C127E'
-	deviceID = '15-16'
+	deviceID = '0-0'
 
 saveFolder = 'data/'
 
@@ -68,12 +68,12 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 60*6,
+		'runDataPoints': 30,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60*60,
+		'biasTime': 60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	2.7
+		'drainVoltageSetPoint':	0.5
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -128,6 +128,7 @@ def main(parameters):
 def runAction(parameters):
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+		dlu.makeFolder(workingDirectory)
 		dlu.incrementJSONExperiementNumber(workingDirectory)
 
 	if(parameters['runType'] == 'GateSweep'):

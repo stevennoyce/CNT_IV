@@ -1,4 +1,5 @@
 import time
+import numpy as np
 
 from utilities import DataLoggerUtility as dlu
 from utilities import DataPlotterUtility as dpu
@@ -28,6 +29,9 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	smu_instance.rampDrainVoltage(0, parameters['drainVoltageSetPoint'], 30)
 
 	results = runStaticBias(smu_instance, 
+							parameters['NPLC'],
+							parameters['drainVoltageSetPoint'],
+							parameters['gateVoltageSetPoint'],
 							parameters['startUpSettlingDelay'],
 							parameters['biasTime'], 
 							parameters['runDataPoints'])
@@ -44,7 +48,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runStaticBias(smu_instance, startUpDelay, biasTime, steps):
+def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint, startUpDelay, biasTime, steps):
 	voltage1s = []
 	current1s = []
 	voltage2s = []
@@ -55,15 +59,18 @@ def runStaticBias(smu_instance, startUpDelay, biasTime, steps):
 		time.sleep(startUpDelay)
 
 	for i in range(steps):
-		time.sleep(float(biasTime)/steps)
+		timeBewtweenMeasurements = float(biasTime)/steps
 
-		measurement = smu_instance.takeMeasurement()
+		start = time.time()
+
+		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, timeBewtweenMeasurements*25, NPLC)
 		timestamp = time.time()
+		print(timestamp - start)
 		
-		voltage1s.append(measurement[0])
-		current1s.append(measurement[1])
-		voltage2s.append(measurement[6])
-		current2s.append(measurement[7])
+		voltage1s.append(np.mean(measurements['voltage1s']))
+		current1s.append(np.mean(measurements['current1s']))
+		voltage2s.append(np.mean(measurements['voltage2s']))
+		current2s.append(np.mean(measurements['current2s']))
 		timestamps.append(timestamp)
 
 		print('\r[' + int(i*70.0/steps)*'=' + (70-int(i*70.0/steps)-1)*' ' + ']', end='')
