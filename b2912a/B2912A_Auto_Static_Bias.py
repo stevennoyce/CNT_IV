@@ -66,7 +66,7 @@ def run(parameters):
 		'NPLC':parameters['NPLC'],
 		'plotGateSweeps': True,
 		'plotBurnOuts': False,
-		'plotStaticBias': parameters['applyStaticBiasBetweenSweeps'],
+		'plotStaticBias': parameters['applyGateSweepBetweenBiases'],
 		'saveFiguresGenerated':True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
@@ -82,6 +82,7 @@ def run(parameters):
 
 def runAutoStaticBias(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfStaticBiases = parameters['numberOfStaticBiases']
+	incrementCount = 0
 	biasCount = 0
 
 	while(biasCount < numberOfStaticBiases):
@@ -90,9 +91,12 @@ def runAutoStaticBias(parameters, gateSweepParameters, staticBiasParameters, dev
 			gateSweepScript.run(gateSweepParameters, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 		biasCount += 1
+		incrementCount += 1
 		print('Completed static bias #'+str(biasCount)+' of '+str(numberOfStaticBiases))
-		staticBiasParameters['gateVoltageSetPoint'] += parameters['incrementStaticGateVoltage']
-		staticBiasParameters['drainVoltageSetPoint'] += parameters['incrementStaticDrainVoltage']
+		if(incrementCount >= parameters['numberOfBiasesBetweenIncrements']):
+			staticBiasParameters['gateVoltageSetPoint'] += parameters['incrementStaticGateVoltage']
+			staticBiasParameters['drainVoltageSetPoint'] += parameters['incrementStaticDrainVoltage']
+			incrementCount = 0
 		
 
 
