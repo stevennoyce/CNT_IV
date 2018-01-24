@@ -73,14 +73,14 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	2.3
+		'drainVoltageSetPoint':	2.7
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 12,
+		'numberOfStaticBiases': 24,
 		'applyGateSweepBetweenBiases': True,
 		'numberOfBiasesBetweenIncrements': 4,
 		'incrementStaticDrainVoltage': 0.2,

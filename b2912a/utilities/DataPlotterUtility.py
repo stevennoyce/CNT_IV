@@ -48,7 +48,7 @@ def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 		plotGateSweep(ax, deviceHistory[i], colors[i], includeLegend)	
 	ax.annotate('Oldest to newest', xy=(0.3, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
-	ax.annotate('$V_{DS} = $', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
+	ax.annotate('$V_{ds} = $', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
 	adjustFigure(fig, 'FullGateSweep', saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
@@ -58,15 +58,17 @@ def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
-	ax1.annotate('$V_{GS} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
+	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
 	adjustFigure(fig, 'FullBurnOut', saveFigure, showFigure)
 
 def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
 	fig, ax = initFigure(1, 1, 'StaticBias')
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
+	current_vds_range = float('inf')
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
-		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'days')
+		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'days', deviceHistory[i]['drainVoltageSetPoint'] != current_vds_range)
+		current_vds_range = deviceHistory[i]['drainVoltageSetPoint']
 	adjustFigure(fig, 'FullStaticBias', saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
@@ -148,7 +150,7 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
 	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain-to-Source Voltage, $V_{DS}$ [V]')
 
-def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
+def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', annotate_vds=False):
 	timestamp_scale_factor = 1
 	if(timescale == 'minutes'):
 		timestamp_scale_factor = 60
@@ -160,6 +162,8 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 	currents = (np.array(jsonData['current1s'])*(10**6))
 	plotOverTime(axis, timestamps, currents, lineColor, timeOffset/timestamp_scale_factor)	
 	axisLabels(axis, x_label='Time, $t$ [{:}]'.format(timescale), y_label='Drain Current, $I_D$ [$\mu$A]')
+	if(annotate_vds):
+		axis.annotate('$V_{ds} = $'+'{:.2f}V'.format(jsonData['drainVoltageSetPoint']), xy=(timeOffset/timestamp_scale_factor, min(currents)), xytext=(timeOffset/timestamp_scale_factor, max(currents)), xycoords='data', fontsize=6, ha='center', va='bottom', arrowprops=dict(arrowstyle='-', ls=':', lw=1))
 	
 	## Measuring how quickly the current decays from its start to final value
 	#decay_threshold = np.exp(-1)*(currents[0] - currents[-1]) + currents[-1]
