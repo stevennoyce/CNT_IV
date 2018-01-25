@@ -38,8 +38,8 @@ def run(parameters, showFigures=True):
 			if(parameters['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
 				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', parameters['excludeDataAfterJSONExperimentNumber'])
 
-			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
-			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 
@@ -59,7 +59,7 @@ def run(parameters, showFigures=True):
 
 			if(parameters['showOnlySuccessfulBurns']):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
-			dpu.plotFullBurnOutHistory(burnOutHistory, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotFullBurnOutHistory(burnOutHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout History")
 
@@ -77,7 +77,7 @@ def run(parameters, showFigures=True):
 			if(parameters['excludeDataAfterJSONExperimentNumber'] < float('inf')):	
 				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'experimentNumber', parameters['excludeDataAfterJSONExperimentNumber'])
 			
-			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias History")
 

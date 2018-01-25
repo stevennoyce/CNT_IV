@@ -23,7 +23,7 @@ color_maps = {
 
 # ********** API **********
 
-def plotJSON(jsonData, lineColor):
+def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
 		fig, ax = initFigure(1,1,'GateSweep')
 		plotGateSweep(ax, jsonData, lineColor)
@@ -37,9 +37,9 @@ def plotJSON(jsonData, lineColor):
 		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
-	adjustFigure(fig, jsonData['runType'], saveFigure=False, showFigure=True)
+	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
 
-def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
+def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	fig, ax = initFigure(1, 1, 'GateSweep')
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
@@ -49,9 +49,9 @@ def plotFullGateSweepHistory(deviceHistory, saveFigure=False, showFigure=True):
 	ax.annotate('Oldest to newest', xy=(0.3, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{ds} = $', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
-	adjustFigure(fig, 'FullGateSweep', saveFigure, showFigure)
+	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
-def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
+def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut')
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
@@ -59,9 +59,9 @@ def plotFullBurnOutHistory(deviceHistory, saveFigure=False, showFigure=True):
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
 	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
-	adjustFigure(fig, 'FullBurnOut', saveFigure, showFigure)
+	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
-def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	fig, ax = initFigure(1, 1, 'StaticBias')
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	current_vds_range = float('inf')
@@ -69,9 +69,9 @@ def plotFullStaticBiasHistory(deviceHistory, saveFigure=False, showFigure=True):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
 		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'days', deviceHistory[i]['drainVoltageSetPoint'] != current_vds_range)
 		current_vds_range = deviceHistory[i]['drainVoltageSetPoint']
-	adjustFigure(fig, 'FullStaticBias', saveFigure, showFigure)
+	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
-def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True):
+def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	fig, ax1 = initFigure(1, 1, 'OnCurrent')
 	ax2 = ax1.twinx()
 	onCurrents = []
@@ -94,9 +94,9 @@ def plotOnAndOffCurrentHistory(deviceHistory, saveFigure=False, showFigure=True)
 	lines2, labels2 = ax2.get_legend_handles_labels()
 	ax1.legend(lines1 + lines2, labels1 + labels2, loc='best', fontsize=8)
 
-	adjustFigure(fig, 'OnAndOffCurrents', saveFigure, showFigure)
+	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure, showFigure)
 
-def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
+def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	fig, ax = initFigure(1,1,'ChipHistory')
 	devices = []
 	firstOnOffRatios = []
@@ -117,7 +117,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory):
 	tickLabels(ax, devices, rotation=90)
 	
 	ax.legend(loc='best', fontsize=8) #bbox_to_anchor=(1.25,0.5)
-	adjustFigure(fig, 'ChipHistory', saveFigure=False, showFigure=True)
+	adjustFigure(fig, 'ChipHistory', parameters, saveFigure=False, showFigure=True)
 
 def show():
 	plt.show()
@@ -178,10 +178,11 @@ def initFigure(rows, columns, type):
 	fig.suptitle(titles[type])
 	return fig, axes
 
-def adjustFigure(figure, saveName, saveFigure, showFigure):
+def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 	figure.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
 		plt.savefig(saveName+'.png')
+		parameters['figuresSaved'].append(saveName+'.png')
 	if(not showFigure):
 		plt.close(figure)
 
