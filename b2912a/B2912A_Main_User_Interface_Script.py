@@ -39,6 +39,7 @@ default_parameters = {
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'saveFolder':saveFolder,
+	'figuresSaved':[],
 	'NPLC':1
 }
 
