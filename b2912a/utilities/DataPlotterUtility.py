@@ -182,9 +182,9 @@ def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 	figure.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
 		plt.savefig(saveName+'.png')
+		parameters['figuresSaved'].append(saveName+'.png')
 	if(not showFigure):
 		plt.close(figure)
-	parameters['figuresSaved'].append(saveName+'.png')
 
 def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=mapName)
