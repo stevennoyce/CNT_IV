@@ -62,9 +62,9 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
 
 	if(isPlottingResults):
-		dpu.plotJSON(jsonData, 'b')
+		dpu.plotJSON(jsonData, parameters, 'b')
 		dpu.show()
-
+		
 	return jsonData
 
 
