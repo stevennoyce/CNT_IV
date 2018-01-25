@@ -59,8 +59,8 @@ def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint,
 		time.sleep(startUpDelay)
 
 	for i in range(steps):
-		timeBewtweenMeasurements = float(biasTime)/steps
-		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, timeBewtweenMeasurements*30, NPLC)
+		timeBetweenMeasurements = float(biasTime)/steps
+		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, timeBetweenMeasurements*60/1.5, NPLC)
 		timestamp = time.time()
 		
 		voltage1s.append(np.mean(measurements['voltage1s']))
