@@ -40,6 +40,7 @@ default_parameters = {
 	'deviceID':deviceID,
 	'saveFolder':saveFolder,
 	'figuresSaved':[],
+	'postFigures':	True,
 	'NPLC':1
 }
 
