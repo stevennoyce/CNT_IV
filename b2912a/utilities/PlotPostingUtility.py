@@ -2,7 +2,12 @@ import base64
 import requests
 
 def postPlots(parameters):
+	print('When entering postPlots(), parameters is:')
+	print(parameters)
+	
+	# Exit function while in development so as not to cause errors
 	return
+	
 	if not parameters['postFigures']:
 		return
 	
@@ -15,14 +20,14 @@ def postPlots(parameters):
 		postURL = 'https://script.google.com/macros/s/AKfycbzflDpYVTV3NGAEEaC-hfyQTN94JhZbr75dEh_czd7XXN5mDA/exec'
 		
 		postData = {
-			'chipID': chipID,
-			'deviceID': deviceID,
-			'experimentNumber': experimentNumber,
-			'runType': runType,
+			'chipID': parameters['chipID'],
+			'deviceID': parameters['deviceID'],
+			'experimentNumber': ,
+			'runType': parameters['runType'],
 			'encodedImage': encodedImage,
-			'startIndex': 
-			'stopIndex': 
-			'imageName': 
+			'startIndex': ,
+			'stopIndex': ,
+			'imageName': plotFileName.split('.')[0]
 		}
 		
 		response = requests.post(postURL, data = postData)
