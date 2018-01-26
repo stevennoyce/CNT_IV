@@ -22,11 +22,11 @@ def postPlots(parameters):
 		postData = {
 			'chipID': parameters['chipID'],
 			'deviceID': parameters['deviceID'],
-			'experimentNumber': ,
+			#'experimentNumber': ,
 			'runType': parameters['runType'],
 			'encodedImage': encodedImage,
-			'startIndex': ,
-			'stopIndex': ,
+			#'startIndex': ,
+			#'stopIndex': ,
 			'imageName': plotFileName.split('.')[0]
 		}
 		
