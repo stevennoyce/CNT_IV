@@ -6,7 +6,7 @@ def postPlots(parameters):
 	print(parameters)
 	
 	# Exit function while in development so as not to cause errors
-	return
+	#return
 	
 	if not parameters['postFigures']:
 		return
@@ -35,3 +35,19 @@ def postPlots(parameters):
 		print('Posting plot to web service...')
 		print(response)
 		print(response.text)
+
+
+
+if __name__ == '__main__':
+	parameters = {
+		'chipID': 'C127Fake',
+		'deviceID': '8-9',
+		'experimentNumber': 4,
+		'runType': 'AutoGateSweep',
+		'figuresSaved': ['../fig1.png'],
+		'postFigures': True
+	}
+	
+	postPlots(parameters)
+	
+	print('Complete')
