@@ -6,6 +6,7 @@ import numpy as np
 def getConnectionFromVisa(NPLC, complianceCurrent):
 	rm = visa.ResourceManager()
 	instance = rm.open_resource(rm.list_resources()[0])
+	instance.timeout = 60000
 	print(instance.query('*IDN?'))
 	return B2912A(instance, NPLC, complianceCurrent)
 
@@ -120,7 +121,7 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":trig2:count {}".format(points))
 		self.smu.write(":init (@1:2)")
 
-		time.sleep(points*NPLC/30)
+		time.sleep(1.5 * points*NPLC/60)
 
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")

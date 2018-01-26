@@ -45,22 +45,12 @@ from utilities import DataLoggerUtility as dlu
 
 
 def run(parameters):
-	gateSweepParameters = {	
-		'runType':'GateSweep', 
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['saveFolder'],
-		'NPLC':parameters['NPLC']
-	}
+	gateSweepParameters = dict(parameters)
+	gateSweepParameters['runType'] = 'GateSweep'
 	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
 
-	burnOutParameters = {
-		'runType':'BurnOut',
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['saveFolder'],
-		'NPLC':parameters['NPLC']
-	}
+	burnOutParameters = dict(parameters)
+	burnOutParameters['runType'] = 'BurnOut'
 	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
@@ -71,6 +61,8 @@ def run(parameters):
 		'chipID':parameters['chipID'], 
 		'deviceID':parameters['deviceID'],
 		'saveFolder':parameters['saveFolder'],
+		'figuresSaved':parameters['figuresSaved'],
+		'postFigures':parameters['postFigures'],
 		'NPLC':parameters['NPLC'],
 		'plotGateSweeps': True,
 		'plotBurnOuts': True,

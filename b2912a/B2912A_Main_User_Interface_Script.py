@@ -11,6 +11,7 @@ import Device_History as deviceHistoryScript
 import Chip_History as chipHistoryScript
 
 from utilities import DataLoggerUtility as dlu
+from utilities import PlotPostingUtility as plotPoster
 
 ## ********** Parameters **********
 
@@ -40,6 +41,7 @@ default_parameters = {
 	'deviceID':deviceID,
 	'saveFolder':saveFolder,
 	'figuresSaved':[],
+	'postFigures':	True,
 	'NPLC':1
 }
 
@@ -156,6 +158,8 @@ def runAction(parameters):
 		chipHistoryScript.run(parameters)
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
+	
+	plotPoster.postPlots(parameters)
 
 	
 	

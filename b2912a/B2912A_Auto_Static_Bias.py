@@ -37,22 +37,12 @@ from utilities import DataLoggerUtility as dlu
 
 
 def run(parameters):
-	gateSweepParameters = {	
-		'runType':'GateSweep', 
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['saveFolder'],
-		'NPLC':parameters['NPLC']
-	}
+	gateSweepParameters = dict(parameters)
+	gateSweepParameters['runType'] = 'GateSweep'
 	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
 
-	staticBiasParameters = {
-		'runType':'StaticBias',
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['saveFolder'],
-		'NPLC':parameters['NPLC']
-	}
+	staticBiasParameters = dict(parameters)
+	staticBiasParameters['runType'] = 'StaticBias'
 	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
 
 	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
@@ -63,6 +53,8 @@ def run(parameters):
 		'chipID':parameters['chipID'], 
 		'deviceID':parameters['deviceID'],
 		'saveFolder':parameters['saveFolder'],
+		'figuresSaved':parameters['figuresSaved'],
+		'postFigures':parameters['postFigures'],
 		'NPLC':parameters['NPLC'],
 		'plotGateSweeps': True,
 		'plotBurnOuts': False,
