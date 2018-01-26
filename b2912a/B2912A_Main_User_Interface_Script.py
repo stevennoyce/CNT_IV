@@ -16,8 +16,8 @@ from utilities import PlotPostingUtility as plotPoster
 ## ********** Parameters **********
 
 if platform.node() == 'noyce-dell':
-	chipID = 'C127D'
-	deviceID = '13-14'
+	chipID = 'C127P'
+	deviceID = '1-2'
 else:
 	chipID = 'C127P'
 	deviceID = '1-2'
@@ -71,22 +71,22 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 60*2,
+		'runDataPoints': 60*6,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60*2,
+		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	1
+		'drainVoltageSetPoint':	1.2
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 4,
+		'numberOfStaticBiases': 48,
 		'applyGateSweepBetweenBiases': True,
 		'numberOfBiasesBetweenIncrements': 4,
-		'incrementStaticDrainVoltage': 0,
+		'incrementStaticDrainVoltage': 0.2,
 		'incrementStaticGateVoltage':  0
 	},
 	'DeviceHistory':{
@@ -96,7 +96,7 @@ additional_parameters = {
 		'saveFiguresGenerated': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 1,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'showOnlySuccessfulBurns': False
 	},
