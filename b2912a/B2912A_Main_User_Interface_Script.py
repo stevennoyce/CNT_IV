@@ -83,7 +83,7 @@ additional_parameters = {
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 20,
+		'numberOfStaticBiases': 48,
 		'applyGateSweepBetweenBiases': True,
 		'numberOfBiasesBetweenIncrements': 4,
 		'incrementStaticDrainVoltage': 0.2,
@@ -159,7 +159,7 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
-	plotPoster.postPlots(parameters)
+	#plotPoster.postPlots(parameters)
 
 	
 	
