@@ -81,7 +81,7 @@ additional_parameters = {
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 24,
+		'numberOfStaticBiases': 20,
 		'applyGateSweepBetweenBiases': True,
 		'numberOfBiasesBetweenIncrements': 4,
 		'incrementStaticDrainVoltage': 0.2,
