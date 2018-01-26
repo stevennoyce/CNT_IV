@@ -1,6 +1,9 @@
 import base64
 import requests
 
+def postPlots(parameters):
+	pass
+
 with open("fig1 3.png", "rb") as imageFile:
 	encodedImage = base64.b64encode(imageFile.read())
 
