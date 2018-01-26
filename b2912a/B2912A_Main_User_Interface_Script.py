@@ -19,8 +19,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127D'
 	deviceID = '13-14'
 else:
-	chipID = 'C127E'
-	deviceID = '15-16'
+	chipID = 'C127P'
+	deviceID = '1-2'
 
 saveFolder = 'data/'
 
@@ -71,22 +71,22 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 60*6,
+		'runDataPoints': 60*2,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60*60,
+		'biasTime': 60*2,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	3.9
+		'drainVoltageSetPoint':	1
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 48,
+		'numberOfStaticBiases': 4,
 		'applyGateSweepBetweenBiases': True,
 		'numberOfBiasesBetweenIncrements': 4,
-		'incrementStaticDrainVoltage': 0.2,
+		'incrementStaticDrainVoltage': 0,
 		'incrementStaticGateVoltage':  0
 	},
 	'DeviceHistory':{
@@ -96,7 +96,7 @@ additional_parameters = {
 		'saveFiguresGenerated': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataBeforeJSONExperimentNumber': 1,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'showOnlySuccessfulBurns': False
 	},
@@ -133,6 +133,7 @@ def runAction(parameters):
 		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 		dlu.makeFolder(workingDirectory)
 		dlu.incrementJSONExperiementNumber(workingDirectory)
+		parameters['experimentNumber'] = dlu.loadJSONIndex(workingDirectory)['experimentNumber'] 
 
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters)
@@ -159,7 +160,7 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
-	#plotPoster.postPlots(parameters)
+	plotPoster.postPlots(parameters)
 
 	
 	

@@ -6,11 +6,11 @@ import numpy as np
 # ********** Constants **********
 
 titles = {
-	'GateSweep':'Subthreshold Sweep',
-	'BurnOut':'Metallic CNT Burnout',
-	'StaticBias':'Static Bias',
-	'OnCurrent':'Device On/Off Current History',
-	'ChipHistory':'Chip History'
+	'GateSweep':'Subthreshold Sweep for ',
+	'BurnOut':'Metallic CNT Burnout for ',
+	'StaticBias':'Static Bias for ',
+	'OnCurrent':'Device On/Off Current History for ',
+	'ChipHistory':'Chip History for '
 }
 
 color_maps = {
@@ -25,22 +25,22 @@ color_maps = {
 
 def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
-		fig, ax = initFigure(1,1,'GateSweep')
+		fig, ax = initFigure(1, 1, 'GateSweep', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
 		plotGateSweep(ax, jsonData, lineColor)
 	elif(jsonData['runType'] == 'BurnOut'):
-		fig, (ax1, ax2) = initFigure(1,2,'BurnOut')
+		fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
 		ax2 = plt.subplot(2,2,2)
 		ax3 = plt.subplot(2,2,4)
 		plotBurnOut(ax1, ax2, ax3, jsonData, lineColor)
 	elif(jsonData['runType'] == 'StaticBias'):
-		fig, ax = initFigure(1,1,'StaticBias')
+		fig, ax = initFigure(1, 1, 'StaticBias', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
 		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
 	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax = initFigure(1, 1, 'GateSweep')
+	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
@@ -52,7 +52,7 @@ def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFi
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut')
+	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
 	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))
@@ -62,7 +62,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax = initFigure(1, 1, 'StaticBias')
+	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	timescale = 'days'
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
@@ -80,7 +80,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showF
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax1 = initFigure(1, 1, 'OnCurrent')
+	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	ax2 = ax1.twinx()
 	onCurrents = []
 	offCurrents = []
@@ -105,7 +105,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, show
 	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure, showFigure)
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
-	fig, ax = initFigure(1,1,'ChipHistory')
+	fig, ax = initFigure(1, 1, 'ChipHistory', parameters['chipID'], parameters['deviceID'], '')
 	devices = []
 	firstOnOffRatios = []
 	for deviceRun in firstRunChipHistory:
@@ -171,9 +171,9 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 
 # ***** Figures *****
 
-def initFigure(rows, columns, type):
+def initFigure(rows, columns, type, chipID, deviceID, experimentNumber):
 	fig, axes = plt.subplots(rows, columns)
-	fig.suptitle(titles[type])
+	fig.suptitle(titles[type] + chipID + ':' + deviceID + ', Experiment #' + str(experimentNumber))
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
