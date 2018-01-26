@@ -6,7 +6,7 @@ def postPlots(parameters):
 	print(parameters)
 	
 	# Exit function while in development so as not to cause errors
-	#return
+	return
 	
 	if not parameters['postFigures']:
 		return
