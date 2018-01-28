@@ -16,11 +16,11 @@ from utilities import PlotPostingUtility as plotPoster
 ## ********** Parameters **********
 
 if platform.node() == 'noyce-dell':
-	chipID = 'C127D'
-	deviceID = '13-14'
+	chipID = 'C127P'
+	deviceID = '1-2'
 else:
-	chipID = 'C127E'
-	deviceID = '15-16'
+	chipID = 'C127P'
+	deviceID = '1-2'
 
 saveFolder = 'data/'
 
@@ -76,7 +76,7 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	3.9
+		'drainVoltageSetPoint':	1.2
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -133,6 +133,7 @@ def runAction(parameters):
 		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 		dlu.makeFolder(workingDirectory)
 		dlu.incrementJSONExperiementNumber(workingDirectory)
+		parameters['experimentNumber'] = dlu.loadJSONIndex(workingDirectory)['experimentNumber'] 
 
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters)
@@ -159,7 +160,7 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
-	#plotPoster.postPlots(parameters)
+	plotPoster.postPlots(parameters)
 
 	
 	

@@ -6,11 +6,11 @@ import numpy as np
 # ********** Constants **********
 
 titles = {
-	'GateSweep':'Subthreshold Sweep',
-	'BurnOut':'Metallic CNT Burnout',
-	'StaticBias':'Static Bias',
-	'OnCurrent':'Device On/Off Current History',
-	'ChipHistory':'Chip History'
+	'GateSweep':'Subthreshold Sweep for ',
+	'BurnOut':'Metallic CNT Burnout for ',
+	'StaticBias':'Static Bias for ',
+	'OnCurrent':'Device On/Off Current History for ',
+	'ChipHistory':'Chip History for '
 }
 
 color_maps = {
@@ -25,22 +25,22 @@ color_maps = {
 
 def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
-		fig, ax = initFigure(1,1,'GateSweep')
+		fig, ax = initFigure(1, 1, 'GateSweep', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
 		plotGateSweep(ax, jsonData, lineColor)
 	elif(jsonData['runType'] == 'BurnOut'):
-		fig, (ax1, ax2) = initFigure(1,2,'BurnOut')
+		fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
 		ax2 = plt.subplot(2,2,2)
 		ax3 = plt.subplot(2,2,4)
 		plotBurnOut(ax1, ax2, ax3, jsonData, lineColor)
 	elif(jsonData['runType'] == 'StaticBias'):
-		fig, ax = initFigure(1,1,'StaticBias')
+		fig, ax = initFigure(1, 1, 'StaticBias', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
 		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
 	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax = initFigure(1, 1, 'GateSweep')
+	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
@@ -52,7 +52,7 @@ def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFi
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut')
+	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
 	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))
@@ -62,17 +62,25 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax = initFigure(1, 1, 'StaticBias')
+	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
-	current_vds_range = float('inf')
+	timescale = 'days'
+	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
+	v_ds_labels = []
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
-		plotStaticBias(ax,  deviceHistory[i], colors[i], time_offset, 'days', deviceHistory[i]['drainVoltageSetPoint'] != current_vds_range)
-		current_vds_range = deviceHistory[i]['drainVoltageSetPoint']
+		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
+		if((i == 0) or (deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint'])):
+			v_ds_labels.append({'x':time_offset, 'vds':deviceHistory[i]['drainVoltageSetPoint']})
+
+	for i in range(len(v_ds_labels)):
+		ax.annotate('', xy=(v_ds_labels[i]['x'], ax.get_ylim()[0]), xytext=(v_ds_labels[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+		ax.annotate('$V_{ds} = $'+'{:.2f}V'.format(v_ds_labels[i]['vds']), xy=(v_ds_labels[i]['x'], ax.get_ylim()[1]*(0.97-i*0.02)), xycoords='data', fontsize=6, ha='left', va='bottom')
+
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax1 = initFigure(1, 1, 'OnCurrent')
+	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
 	ax2 = ax1.twinx()
 	onCurrents = []
 	offCurrents = []
@@ -97,7 +105,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, show
 	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure, showFigure)
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
-	fig, ax = initFigure(1,1,'ChipHistory')
+	fig, ax = initFigure(1, 1, 'ChipHistory', parameters['chipID'], parameters['deviceID'], '')
 	devices = []
 	firstOnOffRatios = []
 	for deviceRun in firstRunChipHistory:
@@ -130,15 +138,15 @@ def plotGateSweep(axis, jsonData, lineColor, includeLabel=True):
 	#scatter(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
 	line = plotWithErrorBars(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor)
 	semiLogScale(axis)
-	axisLabels(axis, x_label='Gate Voltage, $V_{GS}$ [V]', y_label='Drain Current, $I_D$ [A]')
+	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
-		setLabel(line, 'max $|I_{G}|$'+': {:.2e}'.format(max(abs(np.array(jsonData['current2s'])))))
+		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(jsonData['current2s'])))))
 		axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)
-	axisLabels(axis1, x_label='Drain-to-Source Voltage, $V_{DS}$ [V]', y_label='Drain Current, $I_D$ [$\mu$A]')
+	axisLabels(axis1, x_label='Drain-to-Source Voltage, $V_{ds}$ [V]', y_label='Drain Current, $I_D$ [$\mu$A]')
 
 	currentThreshold = np.percentile(np.array(jsonData['current1s']), 90) * jsonData['thresholdProportion'] * 10**6
 	axis1.plot([0, jsonData['voltage1s'][-1]], [currentThreshold, currentThreshold], color=lineColor, linestyle='--', linewidth=1)
@@ -148,23 +156,13 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	axisLabels(axis2, x_label='Time, $t$ [sec]', y_label='Drain Current, $I_D$ [$\mu$A]')
 
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
-	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain-to-Source Voltage, $V_{DS}$ [V]')
+	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain-to-Source Voltage, $V_{ds}$ [V]')
 
-def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', annotate_vds=False):
-	timestamp_scale_factor = 1
-	if(timescale == 'minutes'):
-		timestamp_scale_factor = 60
-	elif(timescale == 'hours'):
-		timestamp_scale_factor = 3600
-	elif(timescale == 'days'):
-		timestamp_scale_factor = 3600*24
-	timestamps = (np.array(jsonData['timestamps'])/timestamp_scale_factor)
+def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 	currents = (np.array(jsonData['current1s'])*(10**6))
-	plotOverTime(axis, timestamps, currents, lineColor, timeOffset/timestamp_scale_factor)	
+	plotOverTime(axis, jsonData['timestamps'], currents, lineColor, timeOffset)	
 	axisLabels(axis, x_label='Time, $t$ [{:}]'.format(timescale), y_label='Drain Current, $I_D$ [$\mu$A]')
-	if(annotate_vds):
-		axis.annotate('$V_{ds} = $'+'{:.2f}V'.format(jsonData['drainVoltageSetPoint']), xy=(timeOffset/timestamp_scale_factor, min(currents)), xytext=(timeOffset/timestamp_scale_factor, max(currents)), xycoords='data', fontsize=6, ha='center', va='bottom', arrowprops=dict(arrowstyle='-', ls=':', lw=1))
-	
+
 	## Measuring how quickly the current decays from its start to final value
 	#decay_threshold = np.exp(-1)*(currents[0] - currents[-1]) + currents[-1]
 	#axis.plot([0, timestamps[-1] - timestamps[0]], [decay_threshold, decay_threshold], color=lineColor, linestyle='--', linewidth=1)
@@ -173,9 +171,9 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', a
 
 # ***** Figures *****
 
-def initFigure(rows, columns, type):
+def initFigure(rows, columns, type, chipID, deviceID, experimentNumber):
 	fig, axes = plt.subplots(rows, columns)
-	fig.suptitle(titles[type])
+	fig.suptitle(titles[type] + chipID + ':' + deviceID + ', Experiment #' + str(experimentNumber))
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
@@ -189,6 +187,12 @@ def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=mapName)
 	return [scalarColorMap.to_rgba(i) for i in np.linspace(colorStartPoint, colorEndPoint, numberOfColors)]
+
+def scaledData(deviceHistory, dataToScale, scalefactor):
+	data = list(deviceHistory)
+	for i in range(len(data)):
+		data[i][dataToScale] = list(np.array(data[i][dataToScale])*scalefactor)
+	return data
 
 
 
@@ -250,6 +254,22 @@ def nextIndexToBeDifferent(data, i):
 	while((i < len(data)) and (data[i] == value)):
 		i += 1
 	return i
+
+def secondsPer(amountOfTime):
+	if(amountOfTime == 'seconds'):
+		return 1
+	elif(amountOfTime == 'minutes'):
+		return 60
+	elif(amountOfTime == 'hours'):
+		return 3600
+	elif(amountOfTime == 'days'):
+		return 3600*24
+	elif(amountOfTime == 'weeks'):
+		return 3600*24*7
+	else: 
+		return 0
+
+
 
 
 
