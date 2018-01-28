@@ -82,6 +82,8 @@ def runAutoStaticBias(parameters, gateSweepParameters, staticBiasParameters, dev
 		if(parameters['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
+		if(parameters['delayBetweenBiases'] > 0):
+			time.sleep(parameters['delayBetweenBiases'])
 		biasCount += 1
 		incrementCount += 1
 		print('Completed static bias #'+str(biasCount)+' of '+str(numberOfStaticBiases))

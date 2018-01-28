@@ -140,8 +140,8 @@ def plotGateSweep(axis, jsonData, lineColor, includeLabel=True):
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
-		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
-		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(jsonData['current2s'])))))
+		setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
+		#setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(jsonData['current2s'])))))
 		axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
