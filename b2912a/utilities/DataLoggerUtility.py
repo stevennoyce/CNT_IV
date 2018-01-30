@@ -1,9 +1,16 @@
 import os
 import json
+import glob
 
 def makeFolder(folderPath):
 	if (not os.path.exists(folderPath)):
 		os.makedirs(folderPath)
+
+def emptyFolder(folderPath):
+	if os.path.exists(folderPath):
+		fileNames = glob.glob('*.png')
+		for fileName in fileNames:
+			os.remove(fileName)
 
 # ***** CSV *****
 

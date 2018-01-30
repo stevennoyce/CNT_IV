@@ -1,4 +1,5 @@
 import os
+import glob
 import base64
 import requests
 
@@ -18,7 +19,7 @@ def postPlots(parameters):
 	if not parameters['postFigures']:
 		return
 	
-	plotFileNames = parameters['figuresSaved']
+	plotFileNames = glob.glob(parameters['plotsFolder'])
 	
 	for plotFileName in plotFileNames:
 		with open(plotFileName, "rb") as plotFile:

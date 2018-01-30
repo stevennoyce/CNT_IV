@@ -184,7 +184,7 @@ def initFigure(rows, columns, type, chipID, deviceID, experimentNumber):
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 	figure.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
-		plt.savefig(saveName+'.png')
+		plt.savefig(parameters['plotsFolder'] + saveName + '.png')
 	if(not showFigure):
 		plt.close(figure)
 

@@ -38,7 +38,7 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, isSavingResults=True, isPlottingResults=True):
-	parameters['deviceDirectory'] = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
 

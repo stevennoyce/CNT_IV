@@ -49,7 +49,7 @@ def run(parameters):
 		'runType':'DeviceHistory', 
 		'chipID':parameters['chipID'], 
 		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['saveFolder'],
+		'saveFolder':parameters['dataFolder'],
 		'postFigures':parameters['postFigures'],
 		'NPLC':parameters['NPLC'],
 		'plotGateSweeps': parameters['applyGateSweepBetweenBiases'],

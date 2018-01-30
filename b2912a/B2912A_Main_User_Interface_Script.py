@@ -22,8 +22,6 @@ else:
 	chipID = 'C127E'
 	deviceID = '15-16'
 
-saveFolder = 'data/'
-
 runTypes = {
 	0:'Quit',
 	1:'GateSweep',
@@ -39,8 +37,8 @@ runTypes = {
 default_parameters = {
 	'chipID':chipID,
 	'deviceID':deviceID,
-	'saveFolder':saveFolder,
-	'figuresSaved':[],
+	'dataFolder':'data/',
+	'plotsFolder':'CurrentPlots/'
 	'postFigures':	True,
 	'NPLC':1
 }
@@ -128,12 +126,14 @@ def main(parameters):
 			runAction(parameters)
 		else:
 			break
-		
+
 def runAction(parameters):
-	parameters['deviceDirectory'] = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	dlu.makeFolder(parameters['plotsFolder'])
+	dlu.emptyFolder(parameters['plotsFolder'])
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		parameters['deviceDirectory'] = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 		dlu.makeFolder(parameters['deviceDirectory'])
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	
