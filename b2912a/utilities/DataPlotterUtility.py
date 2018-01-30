@@ -185,7 +185,6 @@ def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 	figure.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
 		plt.savefig(saveName+'.png')
-		parameters['figuresSaved'].append(saveName+'.png')
 	if(not showFigure):
 		plt.close(figure)
 

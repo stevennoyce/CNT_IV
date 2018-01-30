@@ -58,7 +58,6 @@ def run(parameters):
 		'chipID':parameters['chipID'], 
 		'deviceID':parameters['deviceID'],
 		'saveFolder':parameters['saveFolder'],
-		'figuresSaved':parameters['figuresSaved'],
 		'postFigures':parameters['postFigures'],
 		'NPLC':parameters['NPLC'],
 		'plotGateSweeps': True,
