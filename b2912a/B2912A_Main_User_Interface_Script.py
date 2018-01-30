@@ -97,8 +97,8 @@ additional_parameters = {
 		'saveFiguresGenerated': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 9,
-		'excludeDataAfterJSONExperimentNumber':  15,
+		'excludeDataBeforeJSONExperimentNumber': 12,
+		'excludeDataAfterJSONExperimentNumber':  17,
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
