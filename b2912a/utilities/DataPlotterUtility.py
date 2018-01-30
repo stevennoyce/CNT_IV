@@ -40,7 +40,8 @@ def plotJSON(jsonData, parameters, lineColor):
 	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
+	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
+	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
@@ -48,11 +49,15 @@ def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFi
 		plotGateSweep(ax, deviceHistory[i], colors[i], includeLegend)	
 	ax.annotate('Oldest to newest', xy=(0.3, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
-	ax.annotate('$V_{ds} = $', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
+	ax.annotate('$V_{ds} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
+	
+	ax.set_ylim([5*10**-13, 10**-5])
+
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
+	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
+	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
 	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))
@@ -62,7 +67,8 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
+	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
+	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
 	timescale = 'days'
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
@@ -72,15 +78,17 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showF
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
 		if((i == 0) or (deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint'])):
 			v_ds_labels.append({'x':time_offset, 'vds':deviceHistory[i]['drainVoltageSetPoint']})
+		ax.annotate('$V_{gs} = $'+'{:.1f}V'.format(deviceHistory[i]['gateVoltageSetPoint']), xy=(0.05, 0), xycoords='axes fraction', fontsize=10, ha='left', va='bottom')
 
 	for i in range(len(v_ds_labels)):
 		ax.annotate('', xy=(v_ds_labels[i]['x'], ax.get_ylim()[0]), xytext=(v_ds_labels[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
-		ax.annotate('$V_{ds} = $'+'{:.2f}V'.format(v_ds_labels[i]['vds']), xy=(v_ds_labels[i]['x'], ax.get_ylim()[1]*(0.97-i*0.02)), xycoords='data', fontsize=6, ha='left', va='bottom')
+		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(v_ds_labels[i]['vds']), xy=(v_ds_labels[i]['x'], ax.get_ylim()[1]*(0.97-i*0.03)), xycoords='data', fontsize=9, ha='left', va='bottom')
 
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']))
+	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''	
+	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
 	onCurrents = []
 	offCurrents = []
