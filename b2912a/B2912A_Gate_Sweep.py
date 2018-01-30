@@ -36,16 +36,15 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, isSavingResults=True, isPlottingResults=True):
-	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	dlu.makeFolder(workingDirectory)
-	dlu.initCSV(workingDirectory, parameters['saveFileName'])
+	dlu.makeFolder(parameters['deviceDirectory'])
+	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
 
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
 	#smu_instance = smu.SimulationSMU()
 
 	smu_instance.rampDrainVoltage(0, parameters['drainVoltageSetPoint'], 20)
 	results = runGateSweep( smu_instance, 
-							workingDirectory, 
+							parameters['deviceDirectory'], 
 							parameters['saveFileName'], 
 							parameters['gateVoltageMinimum'], 
 							parameters['gateVoltageMaximum'], 
@@ -59,7 +58,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	print('Off current: {:.4e}'.format(results['offCurrent']))
 
 	if(isSavingResults):
-		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
+		dlu.saveJSON(parameters['deviceDirectory'], parameters['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')

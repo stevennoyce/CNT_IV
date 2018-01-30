@@ -22,11 +22,10 @@ def run(parameters, showFigures=True):
 	gateSweepFileName = 'GateSweep.json'
 	burnOutFileName = 'BurnOut.json'
 	staticBiasFileName = 'StaticBias.json'
-	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-
+	
 	if(parameters['plotGateSweeps']):
 		try:
-			gateSweepHistory = dlu.loadFullDeviceHistory(workingDirectory, gateSweepFileName, parameters['deviceID'])
+			gateSweepHistory = dlu.loadFullDeviceHistory(parameters['deviceDirectory'], gateSweepFileName, parameters['deviceID'])
 			
 			if(parameters['excludeDataBeforeJSONIndex'] > 0):
 				gateSweepHistory = dlu.filterHistoryGreaterThan(gateSweepHistory, 'index', parameters['excludeDataBeforeJSONIndex'])
@@ -45,7 +44,7 @@ def run(parameters, showFigures=True):
 
 	if(parameters['plotBurnOuts']):
 		try:
-			burnOutHistory = dlu.loadFullDeviceHistory(workingDirectory, burnOutFileName, parameters['deviceID'])
+			burnOutHistory = dlu.loadFullDeviceHistory(parameters['deviceDirectory'], burnOutFileName, parameters['deviceID'])
 			
 			if(parameters['excludeDataBeforeJSONIndex'] > 0):
 				burnOutHistory = dlu.filterHistoryGreaterThan(burnOutHistory, 'index', parameters['excludeDataBeforeJSONIndex'])
@@ -65,7 +64,7 @@ def run(parameters, showFigures=True):
 
 	if(parameters['plotStaticBias']):
 		try:
-			staticBiasHistory = dlu.loadFullDeviceHistory(workingDirectory, staticBiasFileName, parameters['deviceID'])
+			staticBiasHistory = dlu.loadFullDeviceHistory(parameters['deviceDirectory'], staticBiasFileName, parameters['deviceID'])
 			
 			if(parameters['excludeDataBeforeJSONIndex'] > 0):
 				staticBiasHistory = dlu.filterHistoryGreaterThan(staticBiasHistory, 'index', parameters['excludeDataBeforeJSONIndex'])

@@ -1,9 +1,16 @@
+import os
 import base64
 import requests
+
+def makeFolder(folderPath):
+	if (not os.path.exists(folderPath)):
+		os.makedirs(folderPath)
 
 def postPlots(parameters):
 	print('When entering postPlots(), parameters is:')
 	print(parameters)
+	
+	makeFolder('CurrentPlots')
 	
 	# Exit function while in development so as not to cause errors
 	return

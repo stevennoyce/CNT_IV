@@ -130,12 +130,15 @@ def main(parameters):
 			break
 		
 def runAction(parameters):
+	parameters['deviceDirectory'] = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-		dlu.makeFolder(workingDirectory)
-		dlu.incrementJSONExperiementNumber(workingDirectory)
-		parameters['experimentNumber'] = dlu.loadJSONIndex(workingDirectory)['experimentNumber'] 
-
+		parameters['deviceDirectory'] = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+		dlu.makeFolder(parameters['deviceDirectory'])
+		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
+	
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters)
 	elif(parameters['runType'] == 'BurnOut'):
@@ -161,10 +164,11 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
+	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 	plotPoster.postPlots(parameters)
 
-	
-	
+
+
 
 def print_dict(dict):
 	keys = list(dict.keys())
