@@ -165,7 +165,7 @@ def runAction(parameters):
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
 	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
-	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters)
+	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
 	plotPoster.postPlots(parameters)
 
 
