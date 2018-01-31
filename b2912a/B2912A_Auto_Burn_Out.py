@@ -52,16 +52,12 @@ def run(parameters):
 	burnOutParameters = dict(parameters)
 	burnOutParameters['runType'] = 'BurnOut'
 	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
-
-	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	currentExperimentNumber = dlu.loadJSONIndex(workingDirectory)['experimentNumber']
-
+	
 	deviceHistoryParameters = {
 		'runType':'DeviceHistory', 
 		'chipID':parameters['chipID'], 
 		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['saveFolder'],
-		'figuresSaved':parameters['figuresSaved'],
+		'saveFolder':parameters['dataFolder'],
 		'postFigures':parameters['postFigures'],
 		'NPLC':parameters['NPLC'],
 		'plotGateSweeps': True,
@@ -70,8 +66,8 @@ def run(parameters):
 		'saveFiguresGenerated':True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': currentExperimentNumber,
-		'excludeDataAfterJSONExperimentNumber':  currentExperimentNumber,
+		'excludeDataBeforeJSONExperimentNumber': parameters['startIndexes']['experimentNumber'],
+		'excludeDataAfterJSONExperimentNumber':  parameters['startIndexes']['experimentNumber'],
 		'showOnlySuccessfulBurns': False
 	}
 

@@ -1,4 +1,5 @@
 import os
+import sys
 import platform
 
 import B2912A_Burn_Out as burnOutScript
@@ -15,14 +16,14 @@ from utilities import PlotPostingUtility as plotPoster
 
 ## ********** Parameters **********
 
+os.chdir(sys.path[0])
+
 if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '1-2'
 else:
 	chipID = 'C127E'
 	deviceID = '22-23'
-
-saveFolder = 'data/'
 
 runTypes = {
 	0:'Quit',
@@ -39,8 +40,8 @@ runTypes = {
 default_parameters = {
 	'chipID':chipID,
 	'deviceID':deviceID,
-	'saveFolder':saveFolder,
-	'figuresSaved':[],
+	'dataFolder':'data/',
+	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
 	'NPLC':1
 }
@@ -94,7 +95,7 @@ additional_parameters = {
 		'plotGateSweeps': 	True,
 		'plotBurnOuts': 	True,
 		'plotStaticBias': 	True,
-		'saveFiguresGenerated': False,
+		'saveFiguresGenerated': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
@@ -128,14 +129,18 @@ def main(parameters):
 			runAction(parameters)
 		else:
 			break
-		
-def runAction(parameters):
-	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-		dlu.makeFolder(workingDirectory)
-		dlu.incrementJSONExperiementNumber(workingDirectory)
-		parameters['experimentNumber'] = dlu.loadJSONIndex(workingDirectory)['experimentNumber'] 
 
+def runAction(parameters):
+	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	dlu.makeFolder(parameters['plotsFolder'])
+	dlu.emptyFolder(parameters['plotsFolder'])
+	
+	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		dlu.makeFolder(parameters['deviceDirectory'])
+		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
+	
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters)
 	elif(parameters['runType'] == 'BurnOut'):
@@ -161,10 +166,14 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
+	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+		dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+	
 	plotPoster.postPlots(parameters)
 
-	
-	
+
+
 
 def print_dict(dict):
 	keys = list(dict.keys())

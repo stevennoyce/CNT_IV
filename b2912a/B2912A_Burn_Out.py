@@ -38,16 +38,16 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, isSavingResults=True, isPlottingResults=True):
-	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	dlu.makeFolder(workingDirectory)
-	dlu.initCSV(workingDirectory, parameters['saveFileName'])
+	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	dlu.makeFolder(parameters['deviceDirectory'])
+	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
 
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
 	#smu_instance = smu.SimulationSMU()
 
 	smu_instance.rampGateVoltage(0, parameters['gateVoltageSetPoint'], 20)
 	results = runBurnOutSweep(	smu_instance, 
-								workingDirectory, 
+								parameters['deviceDirectory'], 
 								parameters['saveFileName'], 
 								parameters['thresholdProportion'], 
 								parameters['minimumAppliedDrainVoltage'],
@@ -60,7 +60,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	jsonData = {**parameters, **results}
 
 	if(isSavingResults):
-		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
+		dlu.saveJSON(parameters['deviceDirectory'], parameters['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')

@@ -1,9 +1,16 @@
 import os
 import json
+import glob
 
 def makeFolder(folderPath):
 	if (not os.path.exists(folderPath)):
 		os.makedirs(folderPath)
+
+def emptyFolder(folderPath):
+	if os.path.exists(folderPath):
+		fileNames = glob.glob('*.png')
+		for fileName in fileNames:
+			os.remove(fileName)
 
 # ***** CSV *****
 
@@ -18,14 +25,16 @@ def saveCSV(directory, saveFileName, csvData):
 
 # ***** JSON *****
 
-def saveJSON(directory, saveFileName, jsonData):
+def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
 	with open(directory + saveFileName + '.json', 'a') as file:
-		indexData = loadJSONIndex(directory)
-		jsonData['index'] = indexData['index']
-		jsonData['experimentNumber'] = indexData['experimentNumber'] 
+		if incrementIndex:
+			indexData = loadJSONIndex(directory)
+			jsonData['index'] = indexData['index']
+			jsonData['experimentNumber'] = indexData['experimentNumber']
+			incrementJSONIndex(directory)
+		
 		json.dump(jsonData, file)
 		file.write('\n')
-	incrementJSONIndex(directory)
 
 def loadJSON(directory, loadFileName):
 	jsonData = []

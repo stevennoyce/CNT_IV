@@ -19,8 +19,7 @@ from framework import SourceMeasureUnit as smu
 # }
 
 def run(parameters, isSavingResults=True, isPlottingResults=True):
-	workingDirectory = parameters['saveFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	dlu.makeFolder(workingDirectory)
+	dlu.makeFolder(parameters['deviceDirectory'])
 
 	print('Applying static bias of V_GS='+str(parameters['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['drainVoltageSetPoint'])+'V for '+str(parameters['biasTime'])+' seconds...')
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
@@ -40,7 +39,7 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 	jsonData = {**parameters, **results}
 	
 	if(isSavingResults):
-		dlu.saveJSON(workingDirectory, parameters['saveFileName'], jsonData)
+		dlu.saveJSON(parameters['deviceDirectory'], parameters['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')
