@@ -37,9 +37,6 @@ def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
 		file.write('\n')
 
 def loadJSON(directory, loadFileName):
-	print('Looking for {}'.format(directory + loadFileName))
-	print('AKA {}'.format(os.path.abspath(directory + loadFileName)))
-	
 	jsonData = []
 	with open(directory + loadFileName) as file:
 		for line in file:

@@ -22,7 +22,7 @@ plt.rcParams['ytick.labelsize'] = 12
 plt.rcParams['xtick.major.size'] = 6
 plt.rcParams['ytick.major.size'] = 6
 plt.rcParams['axes.axisbelow'] = False
-plt.rcParams['figure.autolayout'] = True
+# plt.rcParams['figure.autolayout'] = True
 plt.rcParams['axes.linewidth'] = 1
 plt.rcParams['xtick.major.width'] = 1
 plt.rcParams['ytick.major.width'] = 1
@@ -47,6 +47,17 @@ color_maps = {
 
 # ********** API **********
 
+def getTitleTestNumbersLabel(deviceHistory):
+	titleNumbers = ''
+	if len(deviceHistory) > 0:
+		test1Num = deviceHistory[0]['experimentNumber']
+		test2Num = deviceHistory[-1]['experimentNumber']
+		if test1Num == test2Num:
+			titleNumbers = ', Test {:}'.format(test1Num)
+		else:
+			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
+	return titleNumbers
+
 def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
 		fig, ax = initFigure(1, 1, 'GateSweep', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
@@ -64,7 +75,7 @@ def plotJSON(jsonData, parameters, lineColor):
 	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	fig.set_size_inches(4.2,4.9)
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
@@ -78,7 +89,7 @@ def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFi
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
@@ -89,7 +100,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))
 	timescale = 'days'
@@ -109,7 +120,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showF
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
-	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''	
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
 	onCurrents = []
@@ -120,7 +131,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, show
 
 	line = scatter(ax1, range(len(onCurrents)), onCurrents, 'r', 6)
 	setLabel(line, 'On Currents')
-	axisLabels(ax1, 'Data From Subthreshold Sweeps Over Time', 'On Current, $(I_{on})$ [A]')
+	axisLabels(ax1, 'Time Index of Gate Sweep [#]', 'On Current, $(I_{on})$ [A]')
 	ax1.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 
 	line = scatter(ax2, range(len(offCurrents)), offCurrents, 'b', 2)
@@ -201,9 +212,9 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 
 # ***** Figures *****
 
-def initFigure(rows, columns, type, chipID, deviceID, experimentNumber):
+def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 	fig, axes = plt.subplots(rows, columns)
-	fig.suptitle(titles[type] + chipID + ':' + deviceID + ', Experiment #' + str(experimentNumber))
+	fig.suptitle(titles[type] + chipID + ':' + deviceID + testLabel)
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
