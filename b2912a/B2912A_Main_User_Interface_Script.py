@@ -1,4 +1,5 @@
 import os
+import sys
 import platform
 
 import B2912A_Burn_Out as burnOutScript
@@ -14,6 +15,8 @@ from utilities import DataLoggerUtility as dlu
 from utilities import PlotPostingUtility as plotPoster
 
 ## ********** Parameters **********
+
+os.chdir(sys.path[0])
 
 if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
@@ -133,7 +136,6 @@ def runAction(parameters):
 	dlu.emptyFolder(parameters['plotsFolder'])
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 		dlu.makeFolder(parameters['deviceDirectory'])
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	
