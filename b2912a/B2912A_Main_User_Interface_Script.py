@@ -38,7 +38,7 @@ default_parameters = {
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'dataFolder':'data/',
-	'plotsFolder':'CurrentPlots/'
+	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
 	'NPLC':1
 }

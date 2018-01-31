@@ -3,6 +3,30 @@ from matplotlib import colors as pltc
 from matplotlib import cm
 import numpy as np
 
+# ********** Matplotlib Parameters **********
+
+plt.rcParams['mathtext.fontset'] = 'custom'
+plt.rcParams['mathtext.rm'] = 'Arial'
+plt.rcParams['mathtext.it'] = 'Arial'
+plt.rcParams['mathtext.bf'] = 'Arial:bold'
+# plt.rcParams['figure.figsize'] = [4.2,4.9] # Thin size for subthreshold curves
+plt.rcParams['axes.labelsize'] = 18
+plt.rcParams['legend.fontsize'] = 9.5
+plt.rcParams['legend.fontsize'] = 8
+plt.rcParams['xtick.top'] = True
+plt.rcParams['ytick.right'] = True
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.direction'] = 'in'
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['xtick.major.size'] = 6
+plt.rcParams['ytick.major.size'] = 6
+plt.rcParams['axes.axisbelow'] = False
+plt.rcParams['figure.autolayout'] = True
+plt.rcParams['axes.linewidth'] = 1
+plt.rcParams['xtick.major.width'] = 1
+plt.rcParams['ytick.major.width'] = 1
+
 # ********** Constants **********
 
 titles = {
@@ -42,6 +66,7 @@ def plotJSON(jsonData, parameters, lineColor):
 def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	fig.set_size_inches(4.2,4.9)
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
