@@ -30,10 +30,10 @@ plt.rcParams['ytick.major.width'] = 1
 # ********** Constants **********
 
 titles = {
-	'GateSweep':'Subthreshold Sweep for ',
+	'GateSweep':'',
 	'BurnOut':'Metallic CNT Burnout for ',
 	'StaticBias':'Static Bias for ',
-	'OnCurrent':'Device On/Off Current History for ',
+	'OnCurrent':'On/Off Current History for ',
 	'ChipHistory':'Chip History for '
 }
 
