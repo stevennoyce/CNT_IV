@@ -66,7 +66,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	titleNumbers = '{:} to #{:}'.format(deviceHistory[0]['experimentNumber'], deviceHistory[-1]['experimentNumber']) if(len(deviceHistory) > 0) else ''
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	colors = colorsFromMap(color_maps['StaticBias'], 0, 1.0, len(deviceHistory))
+	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))
 	timescale = 'days'
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
 	v_ds_labels = []
