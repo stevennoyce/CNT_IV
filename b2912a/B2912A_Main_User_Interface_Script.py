@@ -20,7 +20,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '1-2'
 else:
 	chipID = 'C127E'
-	deviceID = '15-16'
+	deviceID = '22-23'
 
 saveFolder = 'data/'
 
@@ -97,8 +97,8 @@ additional_parameters = {
 		'saveFiguresGenerated': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 12,
-		'excludeDataAfterJSONExperimentNumber':  17,
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  100,
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{

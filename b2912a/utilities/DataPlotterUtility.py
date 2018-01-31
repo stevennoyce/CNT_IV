@@ -79,7 +79,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showF
 
 	for i in range(len(v_ds_labels)):
 		ax.annotate('', xy=(v_ds_labels[i]['x'], ax.get_ylim()[0]), xytext=(v_ds_labels[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
-		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(v_ds_labels[i]['vds']), xy=(v_ds_labels[i]['x'], ax.get_ylim()[1]*(0.97-i*0.03)), xycoords='data', fontsize=9, ha='left', va='bottom')
+		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(v_ds_labels[i]['vds']), xy=(v_ds_labels[i]['x'], ax.get_ylim()[1]*(0.96-i*0.03)), xycoords='data', fontsize=9, ha='left', va='bottom')
 
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
