@@ -214,7 +214,8 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 
 def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 	fig, axes = plt.subplots(rows, columns)
-	fig.suptitle(titles[type] + chipID + ':' + deviceID + testLabel)
+	title = titles[type] + chipID + ':' + deviceID + testLabel
+	fig.suptitle(title)
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):

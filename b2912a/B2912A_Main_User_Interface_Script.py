@@ -95,7 +95,7 @@ additional_parameters = {
 		'plotGateSweeps': 	True,
 		'plotBurnOuts': 	True,
 		'plotStaticBias': 	True,
-		'saveFiguresGenerated': False,
+		'saveFiguresGenerated': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 12,
