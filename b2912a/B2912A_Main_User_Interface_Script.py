@@ -44,7 +44,7 @@ default_parameters = {
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
-	'NPLC':1
+	'NPLC':1,
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runDataPoints': 600,
