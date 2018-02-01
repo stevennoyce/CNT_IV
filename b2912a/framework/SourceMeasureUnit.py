@@ -3,12 +3,12 @@ import time
 import random as rand
 import numpy as np
 
-def getConnectionFromVisa(NPLC, complianceCurrent):
+def getConnectionFromVisa(NPLC, defaultComplianceCurrent):
 	rm = visa.ResourceManager()
 	instance = rm.open_resource(rm.list_resources()[0])
 	instance.timeout = 60000
 	print(instance.query('*IDN?'))
-	return B2912A(instance, NPLC, complianceCurrent)
+	return B2912A(instance, NPLC, defaultComplianceCurrent)
 
 
 class SourceMeasureUnit:
@@ -86,9 +86,10 @@ class SimulationSMU(SourceMeasureUnit):
 class B2912A(SourceMeasureUnit):
 	smu = None
 
-	def __init__(self, instance, NPLC):
+	def __init__(self, instance, NPLC, defaultComplianceCurrent):
 		self.smu = instance
 		self.initialize(NPLC)
+		self.setComplianceCurrent(defaultComplianceCurrent)
 
 	def initialize(self, NPLC):
 		self.smu.write("*RST") # Reset
