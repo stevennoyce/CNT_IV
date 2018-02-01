@@ -110,9 +110,9 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showF
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
-		if((i == 0) or (deviceHistory[i]['deviceHistory']['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint'])):
-			v_ds_labels.append({'x':time_offset, 'vds':deviceHistory[i]['deviceHistory']['drainVoltageSetPoint']})
-		ax.annotate('$V_{gs} = $'+'{:.1f}V'.format(deviceHistory[i]['deviceHistory']['gateVoltageSetPoint']), xy=(0.05, 0), xycoords='axes fraction', fontsize=10, ha='left', va='bottom')
+		if((i == 0) or (deviceHistory[i]['DeviceHistory']['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint'])):
+			v_ds_labels.append({'x':time_offset, 'vds':deviceHistory[i]['DeviceHistory']['drainVoltageSetPoint']})
+		ax.annotate('$V_{gs} = $'+'{:.1f}V'.format(deviceHistory[i]['DeviceHistory']['gateVoltageSetPoint']), xy=(0.05, 0), xycoords='axes fraction', fontsize=10, ha='left', va='bottom')
 
 	for i in range(len(v_ds_labels)):
 		ax.annotate('', xy=(v_ds_labels[i]['x'], ax.get_ylim()[0]), xytext=(v_ds_labels[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
