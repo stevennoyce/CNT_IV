@@ -19,7 +19,7 @@ from framework import SourceMeasureUnit as smu
 # }
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
-	print('Applying static bias of V_GS='+str(parameters['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['drainVoltageSetPoint'])+'V for '+str(parameters['biasTime'])+' seconds...')
+	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['biasTime'])+' seconds...')
 
 	dlu.makeFolder(parameters['deviceDirectory'])
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
