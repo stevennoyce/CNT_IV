@@ -111,7 +111,7 @@ def main(parameters):
 	while(True):
 		os.system('cls' if os.name == 'nt' else 'clear')
 		print('Actions: ')
-		print_dict(runTypes)
+		print_dict(runTypes, 0)
 		choice = int(input('Choose an action (0,1,2,...): '))
 
 		if(choice == 0):
@@ -119,11 +119,10 @@ def main(parameters):
 
 		parameters = dict(default_parameters)
 		parameters['runType'] = runTypes[choice]
-		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-		parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])		
+		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 
 		print('Parameters: ')
-		print_dict(parameters)
+		print_dict(parameters, 0)
 		confirmation = str(input('Are parameters correct? (y/n): '))
 
 		if(confirmation == 'y'):
@@ -138,7 +137,8 @@ def runAction(parameters):
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-	
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
+
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6)
 
 	if(parameters['runType'] == 'GateSweep'):
@@ -171,10 +171,14 @@ def runAction(parameters):
 
 
 
-def print_dict(dict):
-	keys = list(dict.keys())
+def print_dict(dictionary, numtabs):
+	keys = list(dictionary.keys())
 	for i in range(len(keys)):
-		print('  ' + str(keys[i]) + ': ' + str(dict[keys[i]]))
+		if(isinstance(dictionary[keys[i]], dict)):
+			print(" '" + str(keys[i])+ "': {")
+			print_dict(dictionary[keys[i]], numtabs+1)
+		else:
+			print(numtabs*'\t'+'  ' + str(keys[i]) + ': ' + str(dictionary[keys[i]]))
 
 
 if __name__ == '__main__':
