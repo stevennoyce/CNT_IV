@@ -39,29 +39,21 @@ from utilities import DataLoggerUtility as dlu
 def run(parameters, smu_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
-	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
 
 	staticBiasParameters = dict(parameters)
 	staticBiasParameters['runType'] = 'StaticBias'
-	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
 	
-	deviceHistoryParameters = {
-		'runType':'DeviceHistory', 
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['dataFolder'],
-		'postFigures':parameters['postFigures'],
-		'NPLC':parameters['NPLC'],
-		'plotGateSweeps': parameters['applyGateSweepBetweenBiases'],
-		'plotBurnOuts': False,
-		'plotStaticBias': True,
-		'saveFiguresGenerated':True,
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': parameters['startIndexes']['experimentNumber'],
-		'excludeDataAfterJSONExperimentNumber':  parameters['startIndexes']['experimentNumber'],
-		'showOnlySuccessfulBurns': False
-	}
+	deviceHistoryParameters = dict(parameters)
+	deviceHistoryParameters['runType'] = 'DeviceHistory'
+	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = parameters['AutoStaticBias']['applyGateSweepBetweenBiases']
+	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = False
+	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = True
+	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
 	runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
 
@@ -69,23 +61,23 @@ def run(parameters, smu_instance):
 	
 
 def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
-	numberOfStaticBiases = parameters['numberOfStaticBiases']
+	numberOfStaticBiases = parameters['AutoStaticBias']['numberOfStaticBiases']
 	incrementCount = 0
 	biasCount = 0
 
 	while(biasCount < numberOfStaticBiases):
 		staticBiasScript.run(staticBiasParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
-		if(parameters['applyGateSweepBetweenBiases']):
+		if(parameters['AutoStaticBias']['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
-		if(parameters['delayBetweenBiases'] > 0):
-			time.sleep(parameters['delayBetweenBiases'])
+		if(parameters['AutoStaticBias']['delayBetweenBiases'] > 0):
+			time.sleep(parameters['AutoStaticBias']['delayBetweenBiases'])
 		biasCount += 1
 		incrementCount += 1
 		print('Completed static bias #'+str(biasCount)+' of '+str(numberOfStaticBiases))
-		if(incrementCount >= parameters['numberOfBiasesBetweenIncrements']):
-			staticBiasParameters['gateVoltageSetPoint'] += parameters['incrementStaticGateVoltage']
-			staticBiasParameters['drainVoltageSetPoint'] += parameters['incrementStaticDrainVoltage']
+		if(incrementCount >= parameters['AutoStaticBias']['numberOfBiasesBetweenIncrements']):
+			staticBiasParameters['StaticBias']['gateVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticGateVoltage']
+			staticBiasParameters['StaticBias']['drainVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticDrainVoltage']
 			incrementCount = 0
 		
 

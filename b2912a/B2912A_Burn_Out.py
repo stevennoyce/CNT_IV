@@ -41,25 +41,25 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['drainVoltageMaxPoint'])+'V')
 	
 	dlu.makeFolder(parameters['deviceDirectory'])
-	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
-	smu_instance.setComplianceCurrent(parameters['complianceCurrent'])	
+	dlu.initCSV(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'])
+	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
 
-	smu_instance.rampGateVoltageTo(parameters['gateVoltageSetPoint'], 20)
+	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'], 20)
 	results = runBurnOutSweep(	smu_instance, 
 								parameters['deviceDirectory'], 
-								parameters['saveFileName'], 
-								parameters['thresholdProportion'], 
-								parameters['minimumAppliedDrainVoltage'],
+								parameters['BurnOut']['saveFileName'], 
+								parameters['BurnOut']['thresholdProportion'], 
+								parameters['BurnOut']['minimumAppliedDrainVoltage'],
 								0, 
-								parameters['drainVoltageMaxPoint'], 
-								parameters['drainVoltagePlateaus'], 
-								parameters['runDataPoints'])
+								parameters['BurnOut']['drainVoltageMaxPoint'], 
+								parameters['BurnOut']['drainVoltagePlateaus'], 
+								parameters['BurnOut']['runDataPoints'])
 	smu_instance.rampDownVoltages()
 
 	jsonData = {**parameters, **results}
 
 	if(isSavingResults):
-		dlu.saveJSON(parameters['deviceDirectory'], parameters['saveFileName'], jsonData)
+		dlu.saveJSON(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')

@@ -120,9 +120,11 @@ def main(parameters):
 		if(choice == 0):
 			break
 
-		parameters = {'runType': runTypes[choice]}
-		parameters = {**parameters, **default_parameters}
-		parameters = {**parameters, **additional_parameters[runTypes[choice]]}
+		parameters = dict(default_parameters)
+		parameters['runType'] = runTypes[choice]
+		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+		parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])		
+		parameters[runTypes[choice]] = additional_parameters[runTypes[choice]]
 
 		print('Parameters: ')
 		print_dict(parameters)
@@ -134,13 +136,11 @@ def main(parameters):
 			break
 
 def runAction(parameters):
-	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
-	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		dlu.makeFolder(parameters['deviceDirectory'])
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	
 	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6)
