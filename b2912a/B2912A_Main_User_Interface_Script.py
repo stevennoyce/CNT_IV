@@ -45,9 +45,6 @@ default_parameters = {
 	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
 	'NPLC':1
-}
-
-additional_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runDataPoints': 600,
@@ -124,7 +121,6 @@ def main(parameters):
 		parameters['runType'] = runTypes[choice]
 		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
 		parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])		
-		parameters[runTypes[choice]] = additional_parameters[runTypes[choice]]
 
 		print('Parameters: ')
 		print_dict(parameters)
@@ -150,18 +146,12 @@ def runAction(parameters):
 	elif(parameters['runType'] == 'BurnOut'):
 		burnOutScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'AutoBurnOut'):
-		parameters['GateSweep'] = additional_parameters['GateSweep']
-		parameters['BurnOut'] = additional_parameters['BurnOut']
 		autoBurnScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'StaticBias'):
 		staticBiasScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'AutoGateSweep'):
-		parameters['GateSweep'] = additional_parameters['GateSweep']
-		parameters['StaticBias'] = additional_parameters['StaticBias']
 		autoGateScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'AutoStaticBias'):
-		parameters['GateSweep'] = additional_parameters['GateSweep']
-		parameters['StaticBias'] = additional_parameters['StaticBias']
 		autoBiasScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'DeviceHistory'):
 		deviceHistoryScript.run(parameters)
