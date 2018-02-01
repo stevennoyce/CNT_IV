@@ -23,60 +23,62 @@ def run(parameters, showFigures=True):
 	burnOutFileName = 'BurnOut.json'
 	staticBiasFileName = 'StaticBias.json'
 	
-	if(parameters['plotGateSweeps']):
+	p = parameters['DeviceHistory']
+	
+	if(p['plotGateSweeps']):
 		try:
 			gateSweepHistory = dlu.loadFullDeviceHistory(parameters['deviceDirectory'], gateSweepFileName, parameters['deviceID'])
 			
-			if(parameters['excludeDataBeforeJSONIndex'] > 0):
-				gateSweepHistory = dlu.filterHistoryGreaterThan(gateSweepHistory, 'index', parameters['excludeDataBeforeJSONIndex'])
-			if(parameters['excludeDataAfterJSONIndex'] < float('inf')):
-				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'index', parameters['excludeDataAfterJSONIndex'])
+			if(p['excludeDataBeforeJSONIndex'] > 0):
+				gateSweepHistory = dlu.filterHistoryGreaterThan(gateSweepHistory, 'index', p['excludeDataBeforeJSONIndex'])
+			if(p['excludeDataAfterJSONIndex'] < float('inf')):
+				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'index', p['excludeDataAfterJSONIndex'])
 			
-			if(parameters['excludeDataBeforeJSONExperimentNumber'] > 0):
-				gateSweepHistory = dlu.filterHistoryGreaterThan(gateSweepHistory, 'experimentNumber', parameters['excludeDataBeforeJSONExperimentNumber'])
-			if(parameters['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
-				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', parameters['excludeDataAfterJSONExperimentNumber'])
+			if(p['excludeDataBeforeJSONExperimentNumber'] > 0):
+				gateSweepHistory = dlu.filterHistoryGreaterThan(gateSweepHistory, 'experimentNumber', p['excludeDataBeforeJSONExperimentNumber'])
+			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
+				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 
-			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
-			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters, p['saveFiguresGenerated'], showFigures)
+			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 
-	if(parameters['plotBurnOuts']):
+	if(p['plotBurnOuts']):
 		try:
 			burnOutHistory = dlu.loadFullDeviceHistory(parameters['deviceDirectory'], burnOutFileName, parameters['deviceID'])
 			
-			if(parameters['excludeDataBeforeJSONIndex'] > 0):
-				burnOutHistory = dlu.filterHistoryGreaterThan(burnOutHistory, 'index', parameters['excludeDataBeforeJSONIndex'])
-			if(parameters['excludeDataAfterJSONIndex'] < float('inf')):			
-				burnOutHistory = dlu.filterHistoryLessThan(burnOutHistory, 'index', parameters['excludeDataAfterJSONIndex'])
+			if(p['excludeDataBeforeJSONIndex'] > 0):
+				burnOutHistory = dlu.filterHistoryGreaterThan(burnOutHistory, 'index', p['excludeDataBeforeJSONIndex'])
+			if(p['excludeDataAfterJSONIndex'] < float('inf')):			
+				burnOutHistory = dlu.filterHistoryLessThan(burnOutHistory, 'index', p['excludeDataAfterJSONIndex'])
 			
-			if(parameters['excludeDataBeforeJSONExperimentNumber'] > 0):
-				burnOutHistory = dlu.filterHistoryGreaterThan(burnOutHistory, 'experimentNumber', parameters['excludeDataBeforeJSONExperimentNumber'])
-			if(parameters['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
-				burnOutHistory = dlu.filterHistoryLessThan(burnOutHistory, 'experimentNumber', parameters['excludeDataAfterJSONExperimentNumber'])
+			if(p['excludeDataBeforeJSONExperimentNumber'] > 0):
+				burnOutHistory = dlu.filterHistoryGreaterThan(burnOutHistory, 'experimentNumber', p['excludeDataBeforeJSONExperimentNumber'])
+			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
+				burnOutHistory = dlu.filterHistoryLessThan(burnOutHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 
-			if(parameters['showOnlySuccessfulBurns']):
+			if(p['showOnlySuccessfulBurns']):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
-			dpu.plotFullBurnOutHistory(burnOutHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotFullBurnOutHistory(burnOutHistory, parameters, p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout History")
 
-	if(parameters['plotStaticBias']):
+	if(p['plotStaticBias']):
 		try:
 			staticBiasHistory = dlu.loadFullDeviceHistory(parameters['deviceDirectory'], staticBiasFileName, parameters['deviceID'])
 			
-			if(parameters['excludeDataBeforeJSONIndex'] > 0):
-				staticBiasHistory = dlu.filterHistoryGreaterThan(staticBiasHistory, 'index', parameters['excludeDataBeforeJSONIndex'])
-			if(parameters['excludeDataAfterJSONIndex'] < float('inf')):
-				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'index', parameters['excludeDataAfterJSONIndex'])
+			if(p['excludeDataBeforeJSONIndex'] > 0):
+				staticBiasHistory = dlu.filterHistoryGreaterThan(staticBiasHistory, 'index', p['excludeDataBeforeJSONIndex'])
+			if(p['excludeDataAfterJSONIndex'] < float('inf')):
+				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'index', p['excludeDataAfterJSONIndex'])
 			
-			if(parameters['excludeDataBeforeJSONExperimentNumber'] > 0):
-				staticBiasHistory = dlu.filterHistoryGreaterThan(staticBiasHistory, 'experimentNumber', parameters['excludeDataBeforeJSONExperimentNumber'])
-			if(parameters['excludeDataAfterJSONExperimentNumber'] < float('inf')):	
-				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'experimentNumber', parameters['excludeDataAfterJSONExperimentNumber'])
+			if(p['excludeDataBeforeJSONExperimentNumber'] > 0):
+				staticBiasHistory = dlu.filterHistoryGreaterThan(staticBiasHistory, 'experimentNumber', p['excludeDataBeforeJSONExperimentNumber'])
+			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):	
+				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 			
-			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, parameters['saveFiguresGenerated'], showFigures)
+			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias History")
 
