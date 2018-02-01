@@ -35,14 +35,12 @@ from framework import SourceMeasureUnit as smu
 
 ## ********** Main **********
 
-def run(parameters, isSavingResults=True, isPlottingResults=True):
+def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
+	smu_instance.setComplianceCurrent(parameters['complianceCurrent'])	
 
-	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
-	#smu_instance = smu.SimulationSMU()
-
-	smu_instance.rampDrainVoltage(0, parameters['drainVoltageSetPoint'], 20)
+	smu_instance.rampDrainVoltageTo(parameters['drainVoltageSetPoint'], 20)
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
 							parameters['saveFileName'], 

@@ -13,6 +13,7 @@ import Chip_History as chipHistoryScript
 
 from utilities import DataLoggerUtility as dlu
 from utilities import PlotPostingUtility as plotPoster
+from framework import SourceMeasureUnit as smu
 
 ## ********** Parameters **********
 
@@ -77,7 +78,9 @@ additional_parameters = {
 		'startUpSettlingDelay': 2,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
-		'drainVoltageSetPoint':	1.0
+		'drainVoltageSetPoint':	1.0,
+		'groundGateWhenDone':   True,
+		'groundDrainWhenDone':  True
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -99,7 +102,7 @@ additional_parameters = {
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  100,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
@@ -132,6 +135,7 @@ def main(parameters):
 
 def runAction(parameters):
 	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
 	
@@ -139,26 +143,26 @@ def runAction(parameters):
 		dlu.makeFolder(parameters['deviceDirectory'])
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	
-	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
-	
+	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'])
+
 	if(parameters['runType'] == 'GateSweep'):
-		gateSweepScript.run(parameters)
+		gateSweepScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'BurnOut'):
-		burnOutScript.run(parameters)
+		burnOutScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'AutoBurnOut'):
 		parameters['GateSweep'] = additional_parameters['GateSweep']
 		parameters['BurnOut'] = additional_parameters['BurnOut']
-		autoBurnScript.run(parameters)
+		autoBurnScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'StaticBias'):
-		staticBiasScript.run(parameters)
+		staticBiasScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'AutoGateSweep'):
 		parameters['GateSweep'] = additional_parameters['GateSweep']
 		parameters['StaticBias'] = additional_parameters['StaticBias']
-		autoGateScript.run(parameters)
+		autoGateScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'AutoStaticBias'):
 		parameters['GateSweep'] = additional_parameters['GateSweep']
 		parameters['StaticBias'] = additional_parameters['StaticBias']
-		autoBiasScript.run(parameters)
+		autoBiasScript.run(parameters, smu_instance)
 	elif(parameters['runType'] == 'DeviceHistory'):
 		deviceHistoryScript.run(parameters)
 	elif(parameters['runType'] == 'ChipHistory'):
@@ -166,6 +170,8 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
+	smu_instance.rampDownVoltages()
+
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 		dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)

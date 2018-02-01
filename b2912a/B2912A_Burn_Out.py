@@ -37,15 +37,14 @@ from framework import SourceMeasureUnit as smu
 
 ## ********** Main **********
 
-def run(parameters, isSavingResults=True, isPlottingResults=True):
-	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'
+def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
+	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['drainVoltageMaxPoint'])+'V')
+	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
+	smu_instance.setComplianceCurrent(parameters['complianceCurrent'])	
 
-	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
-	#smu_instance = smu.SimulationSMU()
-
-	smu_instance.rampGateVoltage(0, parameters['gateVoltageSetPoint'], 20)
+	smu_instance.rampGateVoltageTo(parameters['gateVoltageSetPoint'], 20)
 	results = runBurnOutSweep(	smu_instance, 
 								parameters['deviceDirectory'], 
 								parameters['saveFileName'], 

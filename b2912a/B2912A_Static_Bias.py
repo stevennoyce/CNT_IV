@@ -18,14 +18,14 @@ from framework import SourceMeasureUnit as smu
 # 	'drainVoltageSetPoint':	0.5,
 # }
 
-def run(parameters, isSavingResults=True, isPlottingResults=True):
-	dlu.makeFolder(parameters['deviceDirectory'])
-
+def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Applying static bias of V_GS='+str(parameters['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['drainVoltageSetPoint'])+'V for '+str(parameters['biasTime'])+' seconds...')
-	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], parameters['complianceCurrent'])
 
-	smu_instance.rampGateVoltage(0, parameters['gateVoltageSetPoint'], 30)
-	smu_instance.rampDrainVoltage(0, parameters['drainVoltageSetPoint'], 30)
+	dlu.makeFolder(parameters['deviceDirectory'])
+	smu_instance.setComplianceCurrent(parameters['complianceCurrent'])	
+
+	smu_instance.rampGateVoltageTo(parameters['gateVoltageSetPoint'], steps=30)
+	smu_instance.rampDrainVoltageTo(parameters['drainVoltageSetPoint'], steps=30)
 
 	results = runStaticBias(smu_instance, 
 							parameters['NPLC'],
@@ -34,7 +34,11 @@ def run(parameters, isSavingResults=True, isPlottingResults=True):
 							parameters['startUpSettlingDelay'],
 							parameters['biasTime'], 
 							parameters['runDataPoints'])
-	smu_instance.rampDownVoltages()
+
+	if(parameters['groundGateWhenDone']):
+		smu_instance.rampGateVoltageDown(steps=40)
+	if(parameters['groundDrainWhenDone']):
+		smu_instance.rampDrainVoltageDown(steps=40)
 
 	jsonData = {**parameters, **results}
 	

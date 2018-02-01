@@ -23,10 +23,26 @@ class SourceMeasureUnit:
 		for gateVoltage in gateVoltages:
 			self.setParameter(":source2:voltage {}".format(gateVoltage))
 
+	def rampGateVoltageTo(self, voltageSetPoint, steps):
+		voltageStart = self.takeMeasurement()[6]
+		self.rampGateVoltage(voltageStart, voltageSetPoint, steps)
+
+	def rampGateVoltageDown(self, steps):
+		voltageStart = self.takeMeasurement()[6]
+		self.rampGateVoltage(voltageStart, 0, steps)
+
 	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps):
 		drainVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for drainVoltage in drainVoltages:
 			self.setParameter(":source1:voltage {}".format(drainVoltage))
+
+	def rampDrainVoltageTo(self, voltageSetPoint, steps):
+		voltageStart = self.takeMeasurement()[0]
+		self.rampDrainVoltage(voltageStart, voltageSetPoint, steps)
+
+	def rampDrainVoltageDown(self, steps):
+		voltageStart = self.takeMeasurement()[0]
+		self.rampDrainVoltage(voltageStart, 0, steps)
 
 	def rampDownVoltages(self):
 		source1_voltage = self.takeMeasurement()[0]
@@ -87,11 +103,8 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":source1:voltage 0.0")
 		self.smu.write(":source2:voltage 0.0")
 
-		self.smu.write(":sense1:curr:nplc {} (@2)".format(NPLC))
-		self.smu.write(":sense1:curr:prot {}".format(complianceCurrent))
-
+		self.smu.write(":sense1:curr:nplc {}".format(NPLC))
 		self.smu.write(":sense2:curr:nplc {}".format(NPLC))
-		self.smu.write(":sense2:curr:prot {}".format(complianceCurrent))
 
 		self.smu.write(":outp1 ON")
 		self.smu.write(":outp2 ON")
@@ -103,6 +116,10 @@ class B2912A(SourceMeasureUnit):
 
 	def takeMeasurement(self):
 		return self.smu.query_ascii_values(':MEAS? (@1:2)')
+
+	def setComplianceCurrent(self, complianceCurrent):
+		self.smu.write(":sense1:curr:prot {}".format(complianceCurrent))
+		self.smu.write(":sense2:curr:prot {}".format(complianceCurrent))
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
 		self.smu.write(":source1:voltage:mode sweep")

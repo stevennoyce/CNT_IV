@@ -44,7 +44,7 @@ from utilities import DataLoggerUtility as dlu
 
 
 
-def run(parameters):
+def run(parameters, smu_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
 	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
@@ -71,22 +71,22 @@ def run(parameters):
 		'showOnlySuccessfulBurns': False
 	}
 
-	runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHistoryParameters)
+	runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters, deviceHistoryParameters)
 
 	deviceHistoryScript.run(deviceHistoryParameters)
 
-def runAutoBurnOut(parameters, gateSweepParameters, burnOutParameters, deviceHistoryParameters):
+def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters, deviceHistoryParameters):
 	targetOnOffRatio = parameters['targetOnOffRatio']
 	allowedDegradationFactor = parameters['limitOnOffRatioDegradation']
 	burnOutLimit = parameters['limitBurnOutsAllowed']
 	burnOutCount = 0
 
-	sweepResults = gateSweepScript.run(gateSweepParameters, True, False)
+	sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
 	previousOnOffRatio = sweepResults['onOffRatio']
 
 	while((previousOnOffRatio < targetOnOffRatio) and (burnOutCount < burnOutLimit)):
-		burnOutScript.run(burnOutParameters, True, False)
-		sweepResults = gateSweepScript.run(gateSweepParameters, True, False)
+		burnOutScript.run(burnOutParameters, smu_instance, True, False)
+		sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
 
 		currentOnOffRatio = sweepResults['onOffRatio']
 		if(currentOnOffRatio < allowedDegradationFactor*previousOnOffRatio):

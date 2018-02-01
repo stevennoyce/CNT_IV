@@ -36,7 +36,7 @@ from utilities import DataLoggerUtility as dlu
 # }
 
 
-def run(parameters):
+def run(parameters, smu_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
 	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
@@ -63,19 +63,19 @@ def run(parameters):
 		'showOnlySuccessfulBurns': False
 	}
 
-	runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
+	runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
 
 	deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
 	
 
-def runAutoGateSweep(parameters, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
+def runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfSweeps = parameters['numberOfSweeps']
 	sweepCount = 0
 
 	while(sweepCount < numberOfSweeps):
-		gateSweepScript.run(gateSweepParameters, isSavingResults=True, isPlottingResults=False)
+		gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['applyStaticBiasBetweenSweeps']):
-			staticBiasScript.run(staticBiasParameters, isSavingResults=True, isPlottingResults=False)
+			staticBiasScript.run(staticBiasParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 		sweepCount += 1
 		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))
