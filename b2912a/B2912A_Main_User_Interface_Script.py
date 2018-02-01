@@ -24,7 +24,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '1-2'
 else:
 	chipID = 'C127E'
-	deviceID = '22-23'
+	deviceID = '23-24'
 
 runTypes = {
 	0:'Quit',

@@ -38,7 +38,7 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
-	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['drainVoltageMaxPoint'])+'V')
+	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['BurnOut']['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['BurnOut']['drainVoltageMaxPoint'])+'V')
 	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.initCSV(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'])
