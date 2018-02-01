@@ -59,16 +59,17 @@ def getTitleTestNumbersLabel(deviceHistory):
 	return titleNumbers
 
 def plotJSON(jsonData, parameters, lineColor):
+	titleNumbers = ', Test {:}'.format(jsonData['experimentNumber'])
 	if(jsonData['runType'] == 'GateSweep'):
-		fig, ax = initFigure(1, 1, 'GateSweep', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
+		fig, ax = initFigure(1, 1, 'GateSweep', jsonData['chipID'], jsonData['deviceID'], titleNumbers)
 		plotGateSweep(ax, jsonData, lineColor)
 	elif(jsonData['runType'] == 'BurnOut'):
-		fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
+		fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', jsonData['chipID'], jsonData['deviceID'], titleNumbers)
 		ax2 = plt.subplot(2,2,2)
 		ax3 = plt.subplot(2,2,4)
 		plotBurnOut(ax1, ax2, ax3, jsonData, lineColor)
 	elif(jsonData['runType'] == 'StaticBias'):
-		fig, ax = initFigure(1, 1, 'StaticBias', jsonData['chipID'], jsonData['deviceID'], jsonData['experimentNumber'])
+		fig, ax = initFigure(1, 1, 'StaticBias', jsonData['chipID'], jsonData['deviceID'], titleNumbers)
 		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
