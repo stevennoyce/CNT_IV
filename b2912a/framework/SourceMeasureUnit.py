@@ -86,11 +86,11 @@ class SimulationSMU(SourceMeasureUnit):
 class B2912A(SourceMeasureUnit):
 	smu = None
 
-	def __init__(self, instance, NPLC, complianceCurrent):
+	def __init__(self, instance, NPLC):
 		self.smu = instance
-		self.initialize(NPLC, complianceCurrent)
+		self.initialize(NPLC)
 
-	def initialize(self, NPLC, complianceCurrent):
+	def initialize(self, NPLC):
 		self.smu.write("*RST") # Reset
 		self.smu.write(':system:lfrequency 60')
 
