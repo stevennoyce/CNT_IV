@@ -60,6 +60,7 @@ def run(parameters, smu_instance):
 		'saveFolder':parameters['dataFolder'],
 		'postFigures':parameters['postFigures'],
 		'NPLC':parameters['NPLC'],
+		'deviceDirectory': parameters['deviceDirectory'],
 		'plotGateSweeps': True,
 		'plotBurnOuts': True,
 		'plotStaticBias': False,
