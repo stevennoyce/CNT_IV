@@ -87,7 +87,7 @@ default_parameters = {
 		'numberOfStaticBiases': 24,
 		'applyGateSweepBetweenBiases': False,
 		'delayBetweenBiases': 0,
-		'numberOfBiasesBetweenIncrements': 6,
+		'numberOfBiasesBetweenIncrements': 8,
 		'incrementStaticDrainVoltage': 0.2,
 		'incrementStaticGateVoltage':  0
 	},
