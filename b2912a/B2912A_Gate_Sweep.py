@@ -37,16 +37,16 @@ from framework import SourceMeasureUnit as smu
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	dlu.makeFolder(parameters['deviceDirectory'])
-	dlu.initCSV(parameters['deviceDirectory'], parameters['saveFileName'])
-	smu_instance.setComplianceCurrent(parameters['complianceCurrent'])	
+	dlu.initCSV(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'])
+	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
-	smu_instance.rampDrainVoltageTo(parameters['drainVoltageSetPoint'], 20)
+	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'], 20)
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
-							parameters['saveFileName'], 
-							parameters['gateVoltageMinimum'], 
-							parameters['gateVoltageMaximum'], 
-							parameters['runDataPoints'])
+							parameters['GateSweep']['saveFileName'], 
+							parameters['GateSweep']['gateVoltageMinimum'], 
+							parameters['GateSweep']['gateVoltageMaximum'], 
+							parameters['GateSweep']['runDataPoints'])
 	smu_instance.rampDownVoltages()
 
 	jsonData = {**parameters, **results}
@@ -56,7 +56,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Off current: {:.4e}'.format(results['offCurrent']))
 
 	if(isSavingResults):
-		dlu.saveJSON(parameters['deviceDirectory'], parameters['saveFileName'], jsonData)
+		dlu.saveJSON(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')

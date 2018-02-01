@@ -47,39 +47,30 @@ from utilities import DataLoggerUtility as dlu
 def run(parameters, smu_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
-	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
 
 	burnOutParameters = dict(parameters)
 	burnOutParameters['runType'] = 'BurnOut'
-	burnOutParameters = {**burnOutParameters, **parameters['BurnOut']}
 	
-	deviceHistoryParameters = {
-		'runType':'DeviceHistory', 
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['dataFolder'],
-		'postFigures':parameters['postFigures'],
-		'NPLC':parameters['NPLC'],
-		'deviceDirectory': parameters['deviceDirectory'],
-		'plotGateSweeps': True,
-		'plotBurnOuts': True,
-		'plotStaticBias': False,
-		'saveFiguresGenerated':True,
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': parameters['startIndexes']['experimentNumber'],
-		'excludeDataAfterJSONExperimentNumber':  parameters['startIndexes']['experimentNumber'],
-		'showOnlySuccessfulBurns': False
-	}
+	deviceHistoryParameters = dict(parameters)
+	deviceHistoryParameters['runType'] = 'DeviceHistory'
+	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = True
+	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = True
+	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = False
+	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
 	runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters, deviceHistoryParameters)
 
 	deviceHistoryScript.run(deviceHistoryParameters)
 
 def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters, deviceHistoryParameters):
-	targetOnOffRatio = parameters['targetOnOffRatio']
-	allowedDegradationFactor = parameters['limitOnOffRatioDegradation']
-	burnOutLimit = parameters['limitBurnOutsAllowed']
+	targetOnOffRatio = parameters['AutoBurnOut']['targetOnOffRatio']
+	allowedDegradationFactor = parameters['AutoBurnOut']['limitOnOffRatioDegradation']
+	burnOutLimit = parameters['AutoBurnOut']['limitBurnOutsAllowed']
 	burnOutCount = 0
 
 	sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)

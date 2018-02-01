@@ -22,28 +22,28 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Applying static bias of V_GS='+str(parameters['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['drainVoltageSetPoint'])+'V for '+str(parameters['biasTime'])+' seconds...')
 
 	dlu.makeFolder(parameters['deviceDirectory'])
-	smu_instance.setComplianceCurrent(parameters['complianceCurrent'])	
+	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
 
-	smu_instance.rampGateVoltageTo(parameters['gateVoltageSetPoint'], steps=30)
-	smu_instance.rampDrainVoltageTo(parameters['drainVoltageSetPoint'], steps=30)
+	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageSetPoint'], steps=30)
+	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'], steps=30)
 
 	results = runStaticBias(smu_instance, 
 							parameters['NPLC'],
-							parameters['drainVoltageSetPoint'],
-							parameters['gateVoltageSetPoint'],
-							parameters['startUpSettlingDelay'],
-							parameters['biasTime'], 
-							parameters['runDataPoints'])
+							parameters['StaticBias']['drainVoltageSetPoint'],
+							parameters['StaticBias']['gateVoltageSetPoint'],
+							parameters['StaticBias']['startUpSettlingDelay'],
+							parameters['StaticBias']['biasTime'], 
+							parameters['StaticBias']['runDataPoints'])
 
-	if(parameters['groundGateWhenDone']):
+	if(parameters['StaticBias']['groundGateWhenDone']):
 		smu_instance.rampGateVoltageDown(steps=40)
-	if(parameters['groundDrainWhenDone']):
+	if(parameters['StaticBias']['groundDrainWhenDone']):
 		smu_instance.rampDrainVoltageDown(steps=40)
 
 	jsonData = {**parameters, **results}
 	
 	if(isSavingResults):
-		dlu.saveJSON(parameters['deviceDirectory'], parameters['saveFileName'], jsonData)
+		dlu.saveJSON(parameters['deviceDirectory'], parameters['StaticBias']['saveFileName'], jsonData)
 
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')

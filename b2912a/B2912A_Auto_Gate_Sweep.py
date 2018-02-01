@@ -39,29 +39,21 @@ from utilities import DataLoggerUtility as dlu
 def run(parameters, smu_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
-	gateSweepParameters = {**gateSweepParameters, **parameters['GateSweep']}
 
 	staticBiasParameters = dict(parameters)
 	staticBiasParameters['runType'] = 'StaticBias'
-	staticBiasParameters = {**staticBiasParameters, **parameters['StaticBias']}
 	
-	deviceHistoryParameters = {
-		'runType':'DeviceHistory', 
-		'chipID':parameters['chipID'], 
-		'deviceID':parameters['deviceID'],
-		'saveFolder':parameters['dataFolder'],
-		'postFigures':parameters['postFigures'],
-		'NPLC':parameters['NPLC'],
-		'plotGateSweeps': True,
-		'plotBurnOuts': False,
-		'plotStaticBias': parameters['applyStaticBiasBetweenSweeps'],
-		'saveFiguresGenerated':True,
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': parameters['startIndexes']['experimentNumber'],
-		'excludeDataAfterJSONExperimentNumber':  parameters['startIndexes']['experimentNumber'],
-		'showOnlySuccessfulBurns': False
-	}
+	deviceHistoryParameters = dict(parameters)
+	deviceHistoryParameters['runType'] = 'DeviceHistory'
+	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = True
+	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = False
+	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = parameters['AutoGateSweep']['applyStaticBiasBetweenSweeps']
+	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
 	runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
 
@@ -69,12 +61,12 @@ def run(parameters, smu_instance):
 	
 
 def runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
-	numberOfSweeps = parameters['numberOfSweeps']
+	numberOfSweeps = parameters['AutoGateSweep']['numberOfSweeps']
 	sweepCount = 0
 
 	while(sweepCount < numberOfSweeps):
 		gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
-		if(parameters['applyStaticBiasBetweenSweeps']):
+		if(parameters['AutoGateSweep']['applyStaticBiasBetweenSweeps']):
 			staticBiasScript.run(staticBiasParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 		sweepCount += 1
