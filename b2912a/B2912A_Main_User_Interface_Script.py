@@ -24,7 +24,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '1-2'
 else:
 	chipID = 'C127E'
-	deviceID = '22-23'
+	deviceID = '0-0'
 
 runTypes = {
 	0:'Quit',
@@ -73,14 +73,14 @@ additional_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 60*6,
+		'runDataPoints': 6,
 		'complianceCurrent':	100e-6,
 		'startUpSettlingDelay': 2,
-		'biasTime': 60*60,
+		'biasTime': 6,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	1.0,
-		'groundGateWhenDone':   True,
-		'groundDrainWhenDone':  True
+		'groundGateWhenDone':   False,
+		'groundDrainWhenDone':  False
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -88,9 +88,9 @@ additional_parameters = {
 	},
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 24,
-		'applyGateSweepBetweenBiases': True,
+		'applyGateSweepBetweenBiases': False,
 		'delayBetweenBiases': 0,
-		'numberOfBiasesBetweenIncrements': 4,
+		'numberOfBiasesBetweenIncrements': 6,
 		'incrementStaticDrainVoltage': 0.2,
 		'incrementStaticGateVoltage':  0
 	},
