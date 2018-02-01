@@ -143,7 +143,7 @@ def runAction(parameters):
 		dlu.makeFolder(parameters['deviceDirectory'])
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	
-	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'])
+	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6)
 
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters, smu_instance)
