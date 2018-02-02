@@ -21,7 +21,7 @@ os.chdir(sys.path[0])
 
 if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
-	deviceID = '1-2'
+	deviceID = '15-16'
 else:
 	chipID = 'C127E'
 	deviceID = '23-24'
@@ -56,7 +56,7 @@ default_parameters = {
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
 		'runDataPoints': 1000,
-		'complianceCurrent':	2000e-6,
+		'complianceCurrent':	2e-3,
 		'thresholdProportion':	0.8,
 		'minimumAppliedDrainVoltage': 0.9,
 		'gateVoltageSetPoint':	15.0,
