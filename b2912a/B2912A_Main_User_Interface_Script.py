@@ -137,9 +137,9 @@ def runAction(parameters):
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
+		smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6)
 
-	smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6)
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters, smu_instance)
