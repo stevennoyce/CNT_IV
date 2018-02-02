@@ -3,10 +3,10 @@ import time
 import random as rand
 import numpy as np
 
-def getConnectionFromVisa(NPLC, defaultComplianceCurrent):
+def getConnectionFromVisa(NPLC, defaultComplianceCurrent, smuTimeout=60000):
 	rm = visa.ResourceManager()
 	instance = rm.open_resource(rm.list_resources()[0])
-	instance.timeout = 60000
+	instance.timeout = smuTimeout
 	print(instance.query('*IDN?'))
 	return B2912A(instance, NPLC, defaultComplianceCurrent)
 

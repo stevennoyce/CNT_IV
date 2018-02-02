@@ -137,7 +137,7 @@ def runAction(parameters):
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-		smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6)
+		smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
 
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 
