@@ -85,11 +85,13 @@ default_parameters = {
 	},
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 24,
+		'delayBetweenBiases': 30,
 		'applyGateSweepBetweenBiases': False,
-		'delayBetweenBiases': 0,
-		'numberOfBiasesBetweenIncrements': 8,
-		'incrementStaticDrainVoltage': 0.2,
-		'incrementStaticGateVoltage':  0
+		'numberOfBiasesBetweenIncrements': 6,
+		'incrementStaticDrainVoltage': 0,
+		'incrementStaticGateVoltage':  0,
+		'incrementDelayBetweenBiases': 0,
+		'incrementallyToggleGrounding': True
 	},
 	'DeviceHistory':{
 		'plotGateSweeps': 	True,
@@ -160,9 +162,8 @@ def runAction(parameters):
 	else:
 		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
 	
-	smu_instance.rampDownVoltages()
-
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		smu_instance.rampDownVoltages()
 		parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 		dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
 	

@@ -78,6 +78,10 @@ def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasP
 		if(incrementCount >= parameters['AutoStaticBias']['numberOfBiasesBetweenIncrements']):
 			staticBiasParameters['StaticBias']['gateVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticGateVoltage']
 			staticBiasParameters['StaticBias']['drainVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticDrainVoltage']
+			parameters['AutoStaticBias']['delayBetweenBiases'] += parameters['AutoStaticBias']['incrementDelayBetweenBiases']
+			if(parameters['incrementallyToggleGrounding']):
+				staticBiasParameters['StaticBias']['groundGateWhenDone'] = not staticBiasParameters['StaticBias']['groundGateWhenDone']
+				staticBiasParameters['StaticBias']['groundDrainWhenDone'] = (not staticBiasParameters['StaticBias']['groundDrainWhenDone']) and (not staticBiasParameters['StaticBias']['groundGateWhenDone'])
 			incrementCount = 0
 		
 
