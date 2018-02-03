@@ -55,10 +55,7 @@ def run(parameters, smu_instance):
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
-	runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
-
-	deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
-	
+	runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
 
 def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfStaticBiases = parameters['AutoStaticBias']['numberOfStaticBiases']
@@ -79,9 +76,9 @@ def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasP
 			staticBiasParameters['StaticBias']['gateVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticGateVoltage']
 			staticBiasParameters['StaticBias']['drainVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticDrainVoltage']
 			parameters['AutoStaticBias']['delayBetweenBiases'] += parameters['AutoStaticBias']['incrementDelayBetweenBiases']
-			if(parameters['incrementallyToggleGrounding']):
+			if(parameters['AutoStaticBias']['incrementallyToggleGrounding']):
+				staticBiasParameters['StaticBias']['groundDrainWhenDone'] = (not staticBiasParameters['StaticBias']['groundDrainWhenDone']) if(staticBiasParameters['StaticBias']['groundGateWhenDone']) else (staticBiasParameters['StaticBias']['groundDrainWhenDone'])
 				staticBiasParameters['StaticBias']['groundGateWhenDone'] = not staticBiasParameters['StaticBias']['groundGateWhenDone']
-				staticBiasParameters['StaticBias']['groundDrainWhenDone'] = (not staticBiasParameters['StaticBias']['groundDrainWhenDone']) and (not staticBiasParameters['StaticBias']['groundGateWhenDone'])
 			incrementCount = 0
 		
 

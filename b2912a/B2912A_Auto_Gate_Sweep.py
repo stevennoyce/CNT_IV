@@ -55,10 +55,7 @@ def run(parameters, smu_instance):
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
-	runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)
-
-	deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
-	
+	runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
 
 def runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfSweeps = parameters['AutoGateSweep']['numberOfSweeps']

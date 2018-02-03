@@ -65,8 +65,6 @@ def run(parameters, smu_instance):
 
 	runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters, deviceHistoryParameters)
 
-	deviceHistoryScript.run(deviceHistoryParameters)
-
 def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters, deviceHistoryParameters):
 	targetOnOffRatio = parameters['AutoBurnOut']['targetOnOffRatio']
 	allowedDegradationFactor = parameters['AutoBurnOut']['limitOnOffRatioDegradation']
