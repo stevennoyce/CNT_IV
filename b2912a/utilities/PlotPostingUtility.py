@@ -10,7 +10,7 @@ def postPlots(parameters):
 		return
 	
 	try:
-		plotFileNames = glob.glob(parameters['plotsFolder'])
+		plotFileNames = glob.glob(parameters['plotsFolder'] + '*.png')
 		
 		for plotFileName in plotFileNames:
 			with open(plotFileName, "rb") as plotFile:
