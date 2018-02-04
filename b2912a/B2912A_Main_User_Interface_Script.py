@@ -76,8 +76,8 @@ default_parameters = {
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	1.0,
-		'groundGateWhenDone':   False,
-		'groundDrainWhenDone':  False
+		'groundGateWhenDone':   True,
+		'groundDrainWhenDone':  True
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -85,13 +85,13 @@ default_parameters = {
 	},
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 24,
-		'delayBetweenBiases': 30,
+		'delayBetweenBiases': 0,
 		'applyGateSweepBetweenBiases': False,
-		'numberOfBiasesBetweenIncrements': 6,
+		'numberOfBiasesBetweenIncrements': 1,
 		'incrementStaticDrainVoltage': 0,
 		'incrementStaticGateVoltage':  0,
-		'incrementDelayBetweenBiases': 0,
-		'incrementallyToggleGrounding': True
+		'incrementDelayBetweenBiases': 1,
+		'incrementallyToggleGrounding': False
 	},
 	'DeviceHistory':{
 		'plotGateSweeps': 	True,
