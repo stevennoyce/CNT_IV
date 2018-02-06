@@ -166,8 +166,8 @@ def runAction(parameters):
 		smu_instance.rampDownVoltages()
 		parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 		dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+		plotPoster.postPlots(parameters)
 	
-	plotPoster.postPlots(parameters)
 
 
 
