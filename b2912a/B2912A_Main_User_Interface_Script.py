@@ -24,7 +24,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '15-16'
 else:
 	chipID = 'C127E'
-	deviceID = '23-24'
+	deviceID = '0-0'
 
 runTypes = {
 	0:'Quit',
@@ -72,26 +72,27 @@ default_parameters = {
 		'saveFileName': 'StaticBias',
 		'runDataPoints': 60*6,
 		'complianceCurrent':	100e-6,
-		'startUpSettlingDelay': 2,
+		'delayBeforeApplyingVoltage': 1,
+		'delayBeforeMeasurementsBegin': 0,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	1.0,
-		'groundGateWhenDone':   False,
-		'groundDrainWhenDone':  False
+		'groundGateWhenDone':   True,
+		'groundDrainWhenDone':  True
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 24,
-		'delayBetweenBiases': 0,
+		'numberOfStaticBiases': 16,
 		'applyGateSweepBetweenBiases': False,
-		'numberOfBiasesBetweenIncrements': 4,
+		'firstDelayBeforeMeasurementsBegin': 3600*4,
+		'numberOfBiasesBetweenIncrements': 1,
 		'incrementStaticDrainVoltage': 0,
 		'incrementStaticGateVoltage':  0,
-		'incrementDelayBetweenBiases': 0,
-		'incrementallyToggleGrounding': False
+		'incrementDelayBeforeReapplyingVoltage': 1,
+		'shuffleDelaysBeforeReapplyingVoltage': True
 	},
 	'DeviceHistory':{
 		'plotGateSweeps': 	True,

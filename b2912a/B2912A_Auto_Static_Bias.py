@@ -1,4 +1,5 @@
 import time
+import random
 
 import B2912A_Gate_Sweep as gateSweepScript
 import B2912A_Static_Bias as staticBiasScript
@@ -7,36 +8,8 @@ from utilities import DataLoggerUtility as dlu
 
 
 
-# ## ********** Parameters **********
-
-# chipID = 'C127-'
-
-# default_parameters = {
-# 	'runType':		'AutoGateSweep',
-# 	'chipID':		chipID,
-# 	'deviceID':		'0-0',
-# 	'saveFolder':	'/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/',
-# 	'NPLC':1,
-# 	'numberOfSweeps':3,
-# 	'applyStaticBiasBetweenSweeps':True,
-# 	'GateSweep':{
-# 		'saveFileName': 'GateSweep',
-# 		'runDataPoints':600,
-# 		'complianceCurrent':	100e-6,
-# 		'drainVoltageSetPoint':	0.5,
-# 		'gateVoltageMinimum':	-15.0,
-# 		'gateVoltageMaximum':	15.0
-# 	},
-# 	'StaticBias':{
-# 		'time': 30,
-# 		'complianceCurrent':	100e-6,
-# 		'gateVoltageSetPoint':	-15.0,
-# 		'drainVoltageSetPoint':	0.5,
-# 	}
-# }
-
-
 def run(parameters, smu_instance):
+	# Create distinct parameters for all scripts that could be run
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
 
@@ -59,33 +32,43 @@ def run(parameters, smu_instance):
 
 def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfStaticBiases = parameters['AutoStaticBias']['numberOfStaticBiases']
-	incrementCount = 0
-	biasCount = 0
+	
+	# Build arrays of all parameters that could change over the course of any given experiement
+	gateVoltageSetPointList = [staticBiasParameters['StaticBias']['gateVoltageSetPoint']]*numberOfStaticBiases
+	drainVoltageSetPointList = [staticBiasParameters['StaticBias']['drainVoltageSetPoint']]*numberOfStaticBiases
+	delayBeforeApplyingVoltageList = [staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage']]*numberOfStaticBiases
+	delayBeforeMeasurementsList = [staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin']]*numberOfStaticBiases
 
-	while(biasCount < numberOfStaticBiases):
+	currentIncrementNumber = 1
+	for i in range(numberOfStaticBiases):
+		if(i >= parameters['AutoStaticBias']['numberOfBiasesBetweenIncrements']*currentIncrementNumber):
+			currentIncrementNumber += 1
+		gateVoltageSetPointList[i] += parameters['AutoStaticBias']['incrementStaticGateVoltage']*(currentIncrementNumber-1)
+		drainVoltageSetPointList[i] += parameters['AutoStaticBias']['incrementStaticDrainVoltage']*(currentIncrementNumber-1)
+		delayBeforeApplyingVoltageList[i] += parameters['AutoStaticBias']['incrementDelayBeforeReapplyingVoltage']*(currentIncrementNumber-1)	
+	delayBeforeMeasurementsList[0] = parameters['AutoStaticBias']['firstDelayBeforeMeasurementsBegin']
+
+	if(parameters['AutoStaticBias']['shuffleDelaysBeforeReapplyingVoltage']):
+		random.shuffle(delayBeforeApplyingVoltageList)
+
+	print('Beginning AutoStaticBias test with the following parameter lists:')
+	print(' Gate Voltages:  {:} \n Drain Voltages:  {:} \n Delay Between Applying Voltages:  {:} \n Delay Before Measurements Begin:  {:}'.format(gateVoltageSetPointList, drainVoltageSetPointList, delayBeforeApplyingVoltageList, delayBeforeMeasurementsList))
+
+	# Run all Tests in this Experiment
+	for i in range(numberOfStaticBiases):
+		staticBiasParameters['StaticBias']['gateVoltageSetPoint'] = gateVoltageSetPointList[i]
+		staticBiasParameters['StaticBias']['drainVoltageSetPoint'] = drainVoltageSetPointList[i]
+		staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage'] = delayBeforeApplyingVoltageList[i]
+		staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin'] = delayBeforeMeasurementsList[i]
+
+		# Run StaticBias, GateSweep (if necessary), and save plots with DeviceHistory
 		staticBiasScript.run(staticBiasParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['AutoStaticBias']['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
-		if(parameters['AutoStaticBias']['delayBetweenBiases'] > 0):
-			time.sleep(parameters['AutoStaticBias']['delayBetweenBiases'])
-		biasCount += 1
-		incrementCount += 1
-		print('Completed static bias #'+str(biasCount)+' of '+str(numberOfStaticBiases))
-		if(incrementCount >= parameters['AutoStaticBias']['numberOfBiasesBetweenIncrements']):
-			staticBiasParameters['StaticBias']['gateVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticGateVoltage']
-			staticBiasParameters['StaticBias']['drainVoltageSetPoint'] += parameters['AutoStaticBias']['incrementStaticDrainVoltage']
-			parameters['AutoStaticBias']['delayBetweenBiases'] += parameters['AutoStaticBias']['incrementDelayBetweenBiases']
-			if(parameters['AutoStaticBias']['incrementallyToggleGrounding']):
-				staticBiasParameters['StaticBias']['groundDrainWhenDone'] = (not staticBiasParameters['StaticBias']['groundDrainWhenDone']) if(staticBiasParameters['StaticBias']['groundGateWhenDone']) else (staticBiasParameters['StaticBias']['groundDrainWhenDone'])
-				staticBiasParameters['StaticBias']['groundGateWhenDone'] = not staticBiasParameters['StaticBias']['groundGateWhenDone']
-			incrementCount = 0
+
+		print('Completed static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
 		
 
 
 
-
-
-
-if __name__ == '__main__':
-	run(default_parameters)

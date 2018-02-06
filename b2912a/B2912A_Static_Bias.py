@@ -24,14 +24,19 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	dlu.makeFolder(parameters['deviceDirectory'])
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
 
+	if(parameters['StaticBias']['delayBeforeApplyingVoltage'] > 0):
+		time.sleep(parameters['StaticBias']['delayBeforeApplyingVoltage'])
+
 	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageSetPoint'], steps=30)
 	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'], steps=30)
+
+	if(parameters['StaticBias']['delayBeforeMeasurementsBegin'] > 0):
+		time.sleep(parameters['StaticBias']['delayBeforeMeasurementsBegin'])
 
 	results = runStaticBias(smu_instance, 
 							parameters['NPLC'],
 							parameters['StaticBias']['drainVoltageSetPoint'],
 							parameters['StaticBias']['gateVoltageSetPoint'],
-							parameters['StaticBias']['startUpSettlingDelay'],
 							parameters['StaticBias']['biasTime'], 
 							parameters['StaticBias']['runDataPoints'])
 
@@ -51,15 +56,12 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint, startUpDelay, biasTime, steps):
+def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint, biasTime, steps):
 	voltage1s = []
 	current1s = []
 	voltage2s = []
 	current2s = []
 	timestamps = []
-
-	if(startUpDelay > 0):
-		time.sleep(startUpDelay)
 
 	for i in range(steps):
 		timeBetweenMeasurements = float(biasTime)/steps
