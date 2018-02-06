@@ -8,7 +8,7 @@ def makeFolder(folderPath):
 
 def emptyFolder(folderPath):
 	if os.path.exists(folderPath):
-		fileNames = glob.glob('*.png')
+		fileNames = glob.glob(folderPath + '*.png')
 		for fileName in fileNames:
 			os.remove(fileName)
 
