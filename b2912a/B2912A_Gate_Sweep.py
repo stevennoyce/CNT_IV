@@ -68,11 +68,11 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 
 def runGateSweep(smu_instance, workingDirectory, saveFileName, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps, NPLC):
-	voltage1s = []
-	current1s = []
-	voltage2s = []
-	current2s = []
-	timestamps = []
+	voltage1s = [[],[]]
+	current1s = [[],[]]
+	voltage2s = [[],[]]
+	current2s = [[],[]]
+	timestamps = [[],[]]
 
 	smu_instance.rampGateVoltage(0, gateVoltageMinimum, 20)
 	gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, steps, 3)
@@ -81,24 +81,25 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, drainVoltageSetPo
 	#reverse_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMaximum, gateVoltageMinimum, steps/2, NPLC)
 	#timestamp = time.time()
 
-	for gateVoltage in gateVoltages:
-		smu_instance.setParameter(":source2:voltage {}".format(gateVoltage))
-		measurement = smu_instance.takeMeasurement()
-		
-		voltage1 = measurement[0]
-		current1 = measurement[1]
-		voltage2 = measurement[6]
-		current2 = measurement[7]
-		timestamp = time.time()
+	for i in [0,1]:
+		for gateVoltage in gateVoltages[i]:
+			smu_instance.setParameter(":source2:voltage {}".format(gateVoltage))
+			measurement = smu_instance.takeMeasurement()
+			
+			voltage1 = measurement[0]
+			current1 = measurement[1]
+			voltage2 = measurement[6]
+			current2 = measurement[7]
+			timestamp = time.time()
 
-		csvData = [timestamp, voltage1, current1, voltage2, current2]
-		dlu.saveCSV(workingDirectory, saveFileName, csvData)
-		
-		voltage1s.append(voltage1)
-		current1s.append(current1)
-		voltage2s.append(voltage2)
-		current2s.append(current2)
-		timestamps.append(timestamp)
+			csvData = [timestamp, voltage1, current1, voltage2, current2]
+			dlu.saveCSV(workingDirectory, saveFileName, csvData)
+			
+			voltage1s[i].append(voltage1)
+			current1s[i].append(current1)
+			voltage2s[i].append(voltage2)
+			current2s[i].append(current2)
+			timestamps[i].append(timestamp)
 
 	return {
 		'voltage1s':voltage1s,

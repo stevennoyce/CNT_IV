@@ -8,7 +8,7 @@ def rampValues(start, end, points):
 
 def sweepValues(start, end, points):
 	data = rampValues(start, end, points/2)
-	return data + list(reversed(data))
+	return [data, list(reversed(data))]
 
 def stepValues(start, end, increments, points):
 	if(increments == 0):
@@ -27,4 +27,4 @@ def rampValuesWithDuplicates(start, end, points, duplicates):
 
 def sweepValuesWithDuplicates(start, end, points, duplicates):
 	data = rampValuesWithDuplicates(start, end, points/2, duplicates)
-	return data + list(reversed(data))
+	return [data, list(reversed(data))]
