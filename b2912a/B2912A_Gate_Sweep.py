@@ -44,9 +44,11 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
 							parameters['GateSweep']['saveFileName'], 
+							parameters['GateSweep']['drainVoltageSetPoint'],
 							parameters['GateSweep']['gateVoltageMinimum'], 
 							parameters['GateSweep']['gateVoltageMaximum'], 
-							parameters['GateSweep']['runDataPoints'])
+							parameters['GateSweep']['runDataPoints'],
+							parameters['NPLC'])
 	smu_instance.rampDownVoltages()
 
 	jsonData = {**parameters, **results}
@@ -65,16 +67,20 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 
-def runGateSweep(smu_instance, workingDirectory, saveFileName, startVoltage, endVoltage, steps):
+def runGateSweep(smu_instance, workingDirectory, saveFileName, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps, NPLC):
 	voltage1s = []
 	current1s = []
 	voltage2s = []
 	current2s = []
 	timestamps = []
 
-	smu_instance.rampGateVoltage(0, startVoltage, 20)
-	gateVoltages = dgu.sweepValuesWithDuplicates(startVoltage, endVoltage, steps, 3)
+	smu_instance.rampGateVoltage(0, gateVoltageMinimum, 20)
+	gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, steps, 3)
 	
+	#forward_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps/2, NPLC)
+	#reverse_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMaximum, gateVoltageMinimum, steps/2, NPLC)
+	#timestamp = time.time()
+
 	for gateVoltage in gateVoltages:
 		smu_instance.setParameter(":source2:voltage {}".format(gateVoltage))
 		measurement = smu_instance.takeMeasurement()

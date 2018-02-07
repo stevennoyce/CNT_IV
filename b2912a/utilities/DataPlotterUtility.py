@@ -100,23 +100,42 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
-def plotFullStaticBiasHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))
-	timescale = 'days'
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
-	v_ds_labels = []
+	dotted_lines = []
+	parameter_labels = {}
 	for i in range(len(deviceHistory)):
 		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
-		if((i == 0) or (deviceHistory[i]['StaticBias']['drainVoltageSetPoint'] != deviceHistory[i-1]['StaticBias']['drainVoltageSetPoint'])):
-			v_ds_labels.append({'x':time_offset, 'vds':deviceHistory[i]['StaticBias']['drainVoltageSetPoint']})
-		ax.annotate('$V_{gs} = $'+'{:.1f}V'.format(deviceHistory[i]['StaticBias']['gateVoltageSetPoint']), xy=(0.05, 0), xycoords='axes fraction', fontsize=10, ha='left', va='bottom')
 
-	for i in range(len(v_ds_labels)):
-		ax.annotate('', xy=(v_ds_labels[i]['x'], ax.get_ylim()[0]), xytext=(v_ds_labels[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
-		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(v_ds_labels[i]['vds']), xy=(v_ds_labels[i]['x'], ax.get_ylim()[1]*(0.96-i*0.03)), xycoords='data', fontsize=9, ha='left', va='bottom')
+		# Compare current plot's parameters to the next ones, and save any differences
+		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias'])):
+			dotted_lines.append({'x':time_offset})
+			for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
+				if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
+					if(key not in parameter_labels):
+						parameter_labels[key] = []
+					parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
+		
+	# Draw dotted lines between ANY plots that have different parameters
+	for i in range(len(dotted_lines)):
+		ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+	
+	# Add V_ds annotation
+	for i in range(len(parameter_labels['drainVoltageSetPoint'])):
+		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.96 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
+	# Add V_gs annotation
+	for i in range(len(parameter_labels['gateVoltageSetPoint'])):
+		ax.annotate(' $V_{gs} = $'+'{:.1f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
+
+	# Add Grounding annotation
+	# for i in range(len(parameter_labels['groundDrainWhenDone'])):
+	# 	ax.annotate(' Grounded Drain: {:}'.format(parameter_labels['groundDrainWhenDone'][i]['groundDrainWhenDone']), xy=(parameter_labels['groundDrainWhenDone'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
+	# for i in range(len(parameter_labels['groundGateWhenDone'])):
+	# 	ax.annotate(' Grounded Gate: {:}'.format(parameter_labels['groundGateWhenDone'][i]['groundGateWhenDone']), xy=(parameter_labels['groundGateWhenDone'][i]['x'], ax.get_ylim()[1]*(0.92 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
 
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 

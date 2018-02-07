@@ -78,7 +78,7 @@ def run(parameters, showFigures=True):
 			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):	
 				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 			
-			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, p['saveFiguresGenerated'], showFigures)
+			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, p['timescale'], p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias History")
 
