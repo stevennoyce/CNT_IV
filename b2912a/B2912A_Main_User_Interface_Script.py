@@ -72,13 +72,13 @@ default_parameters = {
 		'saveFileName': 'StaticBias',
 		'runDataPoints': 60*6,
 		'complianceCurrent':	100e-6,
-		'delayBeforeApplyingVoltage': 1,
+		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
 		'biasTime': 60*60,
 		'gateVoltageSetPoint':	-15.0,
 		'drainVoltageSetPoint':	1.0,
 		'groundGateWhenDone':   True,
-		'groundDrainWhenDone':  True
+		'groundDrainWhenDone':  False
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 24,
@@ -87,11 +87,11 @@ default_parameters = {
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 16,
 		'applyGateSweepBetweenBiases': False,
-		'firstDelayBeforeMeasurementsBegin': 3600*4,
-		'numberOfBiasesBetweenIncrements': 1,
+		'firstDelayBeforeMeasurementsBegin': 3600*1,
+		'numberOfBiasesBetweenIncrements': 2,
 		'incrementStaticDrainVoltage': 0,
 		'incrementStaticGateVoltage':  0,
-		'incrementDelayBeforeReapplyingVoltage': 1,
+		'incrementDelayBeforeReapplyingVoltage': 5*60,
 		'shuffleDelaysBeforeReapplyingVoltage': True
 	},
 	'DeviceHistory':{
@@ -101,7 +101,7 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataBeforeJSONExperimentNumber': 11,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'showOnlySuccessfulBurns': False
 	},
