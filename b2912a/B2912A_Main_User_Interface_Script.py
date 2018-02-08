@@ -101,8 +101,9 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 11,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'timescale': 'days',
 		'showOnlySuccessfulBurns': False
 	},
 	'ChipHistory':{
