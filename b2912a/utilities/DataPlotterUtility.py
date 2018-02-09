@@ -197,7 +197,8 @@ def show():
 
 def plotGateSweep(axis, jsonData, lineColor, includeLabel=True):
 	#scatter(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
-	line = plotWithErrorBars(axis, [(data) for sublist in jsonData['gateVoltages'] for data in sublist], abs(np.array([(data) for sublist in jsonData['current1s'] for data in sublist])), lineColor)
+
+	line = plotWithErrorBars(axis, flatten(jsonData['gateVoltages']), abs(np.array(flatten(jsonData['current1s']))), lineColor)
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
@@ -329,6 +330,12 @@ def secondsPer(amountOfTime):
 		return 3600*24*7
 	else: 
 		return 0
+
+def flatten(dataList):
+	data = list(dataList)
+	while(isinstance(data[0], list)):
+		data = [(item) for sublist in data for item in sublist]
+	return data
 
 
 
