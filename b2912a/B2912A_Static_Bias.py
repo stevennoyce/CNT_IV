@@ -40,10 +40,8 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 							parameters['StaticBias']['biasTime'], 
 							parameters['StaticBias']['runDataPoints'])
 
-	if(parameters['StaticBias']['groundGateWhenDone']):
-		smu_instance.rampGateVoltageDown(steps=40)
-	if(parameters['StaticBias']['groundDrainWhenDone']):
-		smu_instance.rampDrainVoltageDown(steps=40)
+	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'], steps=30)
+	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'], steps=30)
 
 	jsonData = {**parameters, **results}
 	

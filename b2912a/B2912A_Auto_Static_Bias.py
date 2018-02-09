@@ -36,6 +36,8 @@ def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasP
 	# Build arrays of all parameters that could change over the course of any given experiement
 	gateVoltageSetPointList = [staticBiasParameters['StaticBias']['gateVoltageSetPoint']]*numberOfStaticBiases
 	drainVoltageSetPointList = [staticBiasParameters['StaticBias']['drainVoltageSetPoint']]*numberOfStaticBiases
+	gateVoltageWhenDoneList = [staticBiasParameters['StaticBias']['gateVoltageWhenDone']]*numberOfStaticBiases
+	drainVoltageWhenDoneList = [staticBiasParameters['StaticBias']['drainVoltageWhenDone']]*numberOfStaticBiases
 	delayBeforeApplyingVoltageList = [staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage']]*numberOfStaticBiases
 	delayBeforeMeasurementsList = [staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin']]*numberOfStaticBiases
 
@@ -45,6 +47,8 @@ def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasP
 			currentIncrementNumber += 1
 		gateVoltageSetPointList[i] += parameters['AutoStaticBias']['incrementStaticGateVoltage']*(currentIncrementNumber-1)
 		drainVoltageSetPointList[i] += parameters['AutoStaticBias']['incrementStaticDrainVoltage']*(currentIncrementNumber-1)
+		gateVoltageWhenDoneList[i] += parameters['AutoStaticBias']['incrementGateVoltageWhenDone']*(currentIncrementNumber-1)
+		drainVoltageWhenDoneList[i] += parameters['AutoStaticBias']['incrementDrainVoltageWhenDone']*(currentIncrementNumber-1)
 		delayBeforeApplyingVoltageList[i] += parameters['AutoStaticBias']['incrementDelayBeforeReapplyingVoltage']*(currentIncrementNumber-1)	
 	delayBeforeMeasurementsList[0] = parameters['AutoStaticBias']['firstDelayBeforeMeasurementsBegin']
 
@@ -58,6 +62,8 @@ def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasP
 	for i in range(numberOfStaticBiases):
 		staticBiasParameters['StaticBias']['gateVoltageSetPoint'] = gateVoltageSetPointList[i]
 		staticBiasParameters['StaticBias']['drainVoltageSetPoint'] = drainVoltageSetPointList[i]
+		staticBiasParameters['StaticBias']['gateVoltageWhenDone'] = gateVoltageWhenDoneList[i]
+		staticBiasParameters['StaticBias']['drainVoltageWhenDone'] = drainVoltageWhenDoneList[i]
 		staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage'] = delayBeforeApplyingVoltageList[i]
 		staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin'] = delayBeforeMeasurementsList[i]
 
