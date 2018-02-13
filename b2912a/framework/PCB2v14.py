@@ -11,12 +11,12 @@ def getConnectionFromVisa(NPLC, defaultComplianceCurrent, smuTimeout=60000):
 	return B2912A(instance, NPLC, defaultComplianceCurrent)
 
 
-class SourceMeasureUnit:
+class PCB:
 	def setParameter(self, parameter):
-		raise NotImplementedError("Please implement SourceMeasureUnit.setParameter()")
+		raise NotImplementedError("Please implement PCB.setParameter()")
 
 	def takeMeasurement(self):
-		raise NotImplementedError("Please implement SourceMeasureUnit.takeMeasurement()")
+		raise NotImplementedError("Please implement PCB.takeMeasurement()")
 
 	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps):
 		gateVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
@@ -51,39 +51,7 @@ class SourceMeasureUnit:
 		self.rampGateVoltage(source2_voltage, 0, 40)
 
 
-class SimulationSMU(SourceMeasureUnit):
-	source1_voltage = 0
-	source2_voltage = 0
-	source1_current = 0
-	source2_current = 1e-10
-	mu_Cox_WL = 50e-6
-	thresholdVoltage = 1
-	modelError = 0.15
-
-	def setParameter(self, parameter):
-		if(":source1:voltage" in str(parameter)):
-			self.source1_voltage = float(parameter.split('voltage ')[1])
-		if(":source2:voltage" in str(parameter)):
-			self.source2_voltage = float(parameter.split('voltage ')[1])
-		self.updateModelCurrent(self.source1_voltage, self.source2_voltage, self.mu_Cox_WL, self.thresholdVoltage)
-
-	def takeMeasurement(self):
-		return [self.source1_voltage,self.source1_current,'-','-','-','-',self.source2_voltage,self.source2_current,'-','-']
-
-	def updateModelCurrent(self, v_ds, v_gs, kN, v_tn):
-		if(v_gs > v_tn):
-			if(v_ds < (v_gs - v_tn)):
-				self.source1_current = self.withError(kN * ((v_gs - v_tn)*v_ds + (v_ds*v_ds/2)))
-			else:
-				self.source1_current = self.withError((kN/2) * ((v_gs - v_tn)*(v_gs - v_tn)))
-		else:
-			self.source1_current = self.withError(1e-10)
-
-	def withError(self, measurement):
-		return measurement * (1.0 + self.modelError*(2.0*rand.random() - 1.0))
-
-
-class B2912A(SourceMeasureUnit):
+class PCB2v14(PCB):
 	smu = None
 
 	def __init__(self, instance, NPLC, defaultComplianceCurrent):
