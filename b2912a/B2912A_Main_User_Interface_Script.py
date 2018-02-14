@@ -85,16 +85,16 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': True,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 48,
+		'numberOfStaticBiases': 12,
 		'applyGateSweepBetweenBiases': False,
-		'firstDelayBeforeMeasurementsBegin': 0,
+		'firstDelayBeforeMeasurementsBegin': 60*60*6,
 		'numberOfBiasesBetweenIncrements': 1,
 		'incrementStaticGateVoltage':  0,
 		'incrementStaticDrainVoltage': 0,
-		'incrementGateVoltageWhenDone': 0.5,
+		'incrementGateVoltageWhenDone': 2,
 		'incrementDrainVoltageWhenDone': 0,
 		'incrementDelayBeforeReapplyingVoltage': 0,
-		'shuffleDelaysBeforeReapplyingVoltage': True
+		'shuffleDelaysBeforeReapplyingVoltage': False
 	},
 	'DeviceHistory':{
 		'saveFiguresGenerated': True,
@@ -103,7 +103,7 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataBeforeJSONExperimentNumber': 16,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': 'forward',
 		'timescale': 'days',
