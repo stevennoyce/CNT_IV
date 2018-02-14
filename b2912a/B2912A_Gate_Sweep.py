@@ -83,13 +83,13 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, drainVoltageSetPo
 
 	for i in [0,1]:
 		for gateVoltage in gateVoltages[i]:
-			smu_instance.setParameter(":source2:voltage {}".format(gateVoltage))
+			smu_instance.setChannel2Voltage(gateVoltage)
 			measurement = smu_instance.takeMeasurement()
 			
-			voltage1 = measurement[0]
-			current1 = measurement[1]
-			voltage2 = measurement[6]
-			current2 = measurement[7]
+			voltage1 = measurement['voltage1']
+			current1 = measurement['current1']
+			voltage2 = measurement['voltage2']
+			current2 = measurement['current2']
 			timestamp = time.time()
 
 			csvData = [timestamp, voltage1, current1, voltage2, current2]

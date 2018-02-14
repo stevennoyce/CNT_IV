@@ -23,8 +23,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '15-16'
 else:
-	chipID = 'C127E'
-	deviceID = '23-24'
+	chipID = 'C127Fake'
+	deviceID = '1-2'
 
 runTypes = {
 	0:'Quit',
@@ -50,7 +50,7 @@ default_parameters = {
 		'runDataPoints': 600,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-15.0,
+		'gateVoltageMinimum':	-15,
 		'gateVoltageMaximum':	15.0
 	},
 	'BurnOut':{
@@ -145,6 +145,8 @@ def runAction(parameters):
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 		smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
+		#smu_instance = smu.getConnectionToPCB()
+		smu_instance.setDevice(parameters['deviceID'])
 
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 
