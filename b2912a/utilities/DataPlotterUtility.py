@@ -75,7 +75,7 @@ def plotJSON(jsonData, parameters, lineColor):
 		raise NotImplementedError("Error: Unable to determine plot type")
 	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
 
-def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
+def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	fig.set_size_inches(4.2,4.9)
@@ -83,9 +83,9 @@ def plotFullGateSweepHistory(deviceHistory, parameters, saveFigure=False, showFi
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
-		plotGateSweep(ax, deviceHistory[i], colors[i], includeLegend)	
-	ax.annotate('Oldest to newest', xy=(0.3, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
-	ax.annotate('', xy=(0.29, 0.02), xytext=(0.29,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
+		plotGateSweep(ax, deviceHistory[i], colors[i], includeLegend, sweepDirection)	
+	ax.annotate('Oldest to newest', xy=(0.51, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
+	ax.annotate('', xy=(0.5, 0.02), xytext=(0.5,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{ds} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
@@ -100,7 +100,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 
-def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))
@@ -108,7 +108,10 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, saveFigure=F
 	dotted_lines = []
 	parameter_labels = {}
 	for i in range(len(deviceHistory)):
-		time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
+		if(plotInRealTime):
+			time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
+		else:
+			time_offset = (0) if(i == 0) else (time_offset + (deviceHistory[i-1]['timestamps'][-1] - deviceHistory[i-1]['timestamps'][0]))
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
 
 		# Compare current plot's parameters to the next ones, and save any differences
@@ -195,10 +198,27 @@ def show():
 
 # ***** Device Plots *****
 
-def plotGateSweep(axis, jsonData, lineColor, includeLabel=True):
+def plotGateSweep(axis, jsonData, lineColor, includeLabel=True, direction='both'):
 	#scatter(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
+	if(direction == 'forward'):
+		if(isinstance(jsonData['gateVoltages'][0], list)):	
+			x = jsonData['gateVoltages'][0]
+			y = jsonData['current1s'][0]
+		else:
+			x = jsonData['gateVoltages'][0:int(len(jsonData['gateVoltages'])/2)]
+			y = jsonData['current1s'][0:int(len(jsonData['gateVoltages'])/2)]
+	elif(direction == 'reverse'):
+		if(isinstance(jsonData['gateVoltages'][0], list)):	
+			x = jsonData['gateVoltages'][1]
+			y = jsonData['current1s'][1]
+		else:
+			x = jsonData['gateVoltages'][int(len(jsonData['gateVoltages'])/2):]
+			y = jsonData['current1s'][int(len(jsonData['gateVoltages'])/2):]
+	else:
+		x = jsonData['gateVoltages']
+		y = jsonData['current1s']
 
-	line = plotWithErrorBars(axis, flatten(jsonData['gateVoltages']), abs(np.array(flatten(jsonData['current1s']))), lineColor)
+	line = plotWithErrorBars(axis, flatten(x), abs(np.array(flatten(y))), lineColor)
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
@@ -332,7 +352,7 @@ def secondsPer(amountOfTime):
 		return 0
 
 def flatten(dataList):
-	data = list(dataList)
+	data = list([dataList])
 	while(isinstance(data[0], list)):
 		data = [(item) for sublist in data for item in sublist]
 	return data

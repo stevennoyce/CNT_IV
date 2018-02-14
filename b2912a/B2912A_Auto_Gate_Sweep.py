@@ -53,7 +53,6 @@ def run(parameters, smu_instance):
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
 	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
-	deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
 	runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
 

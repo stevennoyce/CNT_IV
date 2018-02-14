@@ -23,8 +23,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '15-16'
 else:
-	chipID = 'C127Fake'
-	deviceID = '1-2'
+	chipID = 'C127E'
+	deviceID = '23-24'
 
 runTypes = {
 	0:'Quit',
@@ -103,11 +103,12 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 16,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
-		'gateSweepDirection': 'forward',
-		'timescale': 'days',
-		'showOnlySuccessfulBurns': False
+		'gateSweepDirection': ['both','forward','reverse'][0],
+		'showOnlySuccessfulBurns': False,
+		'timescale': ['seconds','minutes','hours','days','weeks'][3],
+		'plotInRealTime': True
 	},
 	'ChipHistory':{
 
