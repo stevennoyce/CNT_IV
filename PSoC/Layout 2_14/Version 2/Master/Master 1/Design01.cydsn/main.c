@@ -785,7 +785,7 @@ int main(void) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 vdsi = strtol(location, &location, 10);
 				
-				SetVgsRaw(vdsi);
+				SetVdsRaw(vdsi);
 			} else 
 			if (strstr(ReceiveBuffer, "set-vgs-rel ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
