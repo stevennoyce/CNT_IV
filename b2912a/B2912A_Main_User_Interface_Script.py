@@ -23,8 +23,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '15-16'
 else:
-	chipID = 'C127E'
-	deviceID = '23-24'
+	chipID = 'C127Fake'
+	deviceID = '1-2'
 
 runTypes = {
 	0:'Quit',
@@ -50,7 +50,7 @@ default_parameters = {
 		'runDataPoints': 600,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-15,
+		'gateVoltageMinimum':	-15.0,
 		'gateVoltageMaximum':	15.0
 	},
 	'BurnOut':{

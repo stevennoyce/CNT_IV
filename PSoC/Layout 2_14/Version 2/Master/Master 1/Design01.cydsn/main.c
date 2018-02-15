@@ -797,7 +797,7 @@ int main(void) {
 				char* location = strstr(ReceiveBuffer, " ");
 				int8 vdsi = strtol(location, &location, 10);
 				
-				SetVgs(vdsi);
+				SetVds(vdsi);
 			} else 
 			// if (strstr(ReceiveBuffer, "set-vgs ") == &ReceiveBuffer[0]) {
 			// 	char* location = strstr(ReceiveBuffer, " ");

@@ -61,11 +61,11 @@ class SourceMeasureUnit:
 	def setParameter(self, parameter):
 		raise NotImplementedError("Please implement SourceMeasureUnit.setParameter()")
 
-	def setChannel1Voltage(self, voltage):
-		raise NotImplementedError("Please implement SourceMeasureUnit.setChannel1Voltage()")
+	def setVds(self, voltage):
+		raise NotImplementedError("Please implement SourceMeasureUnit.setVds()")
 
-	def setChannel2Voltage(self, voltage):
-		raise NotImplementedError("Please implement SourceMeasureUnit.setChannel2Voltage()")
+	def setVgs(self, voltage):
+		raise NotImplementedError("Please implement SourceMeasureUnit.setVgs()")
 
 	def takeMeasurement(self):
 		raise NotImplementedError("Please implement SourceMeasureUnit.takeMeasurement()")
@@ -82,7 +82,7 @@ class SourceMeasureUnit:
 	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps):
 		gateVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for gateVoltage in gateVoltages:
-			self.setChannel2Voltage(gateVoltage)
+			self.setVgs(gateVoltage)
 
 	def rampGateVoltageTo(self, voltageSetPoint, steps):
 		voltageStart = self.getChannel2Voltage()
@@ -95,7 +95,7 @@ class SourceMeasureUnit:
 	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps):
 		drainVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for drainVoltage in drainVoltages:
-			self.setChannel1Voltage(drainVoltage)
+			self.setVds(drainVoltage)
 
 	def rampDrainVoltageTo(self, voltageSetPoint, steps):
 		voltageStart = self.getChannel1Voltage()
@@ -150,19 +150,19 @@ class B2912A(SourceMeasureUnit):
 	def setParameter(self, parameter):
 		self.smu.write(parameter)
 
-	def setChannel1Voltage(self, voltage):
+	def setVds(self, voltage):
 		self.setParameter(":source1:voltage {}".format(voltage))
 
-	def setChannel2Voltage(self, voltage):
+	def setVgs(self, voltage):
 		self.setParameter(":source2:voltage {}".format(voltage))
 
 	def takeMeasurement(self):
 		data = self.smu.query_ascii_values(':MEAS? (@1:2)')
 		return {
-			'voltage1':data[0],
-			'current1':data[1],
-			'voltage2':data[6],
-			'current2':data[7]
+			'V_ds':data[0],
+			'I_d': data[1],
+			'V_gs':data[6],
+			'I_g': data[7]
 		}
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
@@ -221,12 +221,12 @@ class PCB2v14(SourceMeasureUnit):
 		self.ser.write( str(parameter).encode('UTF-8') )
 		time.sleep(0.1)
 
-	def setChannel1Voltage(self, voltage):
+	def setVds(self, voltage):
 		value = voltage*255.0/4.080
 		value = max(min(value, 127), -128)
 		self.setParameter("set-vds-rel {}!".format(value))
 
-	def setChannel2Voltage(self, voltage):
+	def setVgs(self, voltage):
 		value = voltage*255.0/4.080
 		value = max(min(value, 127), -128)
 		self.setParameter("set-vgs-rel {}!".format(value))

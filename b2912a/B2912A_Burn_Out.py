@@ -79,13 +79,13 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 	drainVoltages = dgu.stepValues(voltageStart, voltageSetPoint, voltagePlateaus, points)
 
 	for i, drainVoltage in enumerate(drainVoltages):
-		smu_instance.setParameter(":source1:voltage {}".format(drainVoltage))
+		smu_instance.setVds(drainVoltage)
 		measurement = smu_instance.takeMeasurement()
 
-		voltage1 = measurement[0]
-		current1 = measurement[1]
-		voltage2 = measurement[6]
-		current2 = measurement[7]
+		voltage1 = measurement['V_ds']
+		current1 = measurement['I_d']
+		voltage2 = measurement['V_gs']
+		current2 = measurement['I_g']
 		timestamp = time.time()
 
 		csvData = [timestamp, voltage1, current1, voltage2, current2]

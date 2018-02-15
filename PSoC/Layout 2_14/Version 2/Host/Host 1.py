@@ -33,8 +33,8 @@ import os
 # exit()
 
 
-saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-saveFileName = '104.csv'
+saveFolder = 'Testing/C127X/'
+saveFileName = 'Test1.csv'
 
 if not os.path.exists(saveFolder):
 	os.makedirs(saveFolder)
@@ -43,7 +43,7 @@ ser = pySerial.Serial('/dev/tty.usbmodem1411', 115200, timeout=0.1)
 # ser = pySerial.Serial('/dev/tty.HC-05-DevB', 115200, timeout=0.1)
 # ser = pySerial.Serial('COM7', 115200, timeout=0.1)
 
-ser.write(b'scan-range-wide-loop 5 7!')
+ser.write(b'scan-range-wide-loop 3 4!')
 
 time.sleep(0.1)
 
@@ -70,7 +70,7 @@ while ser.in_waiting:
 		else:
 			data = np.column_stack([data, dataline])
 			plt.cla()
-			plt.plot(data[1], abs(data[0]))
+			plt.plot(data[1], abs(data[0]*10**6))
 		
 		
 		# fig2 = plt.figure()

@@ -6,7 +6,7 @@ import ast
 import os
 
 
-saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
+saveFolder = 'Testing/'
 saveFileName = '102.csv'
 
 if not os.path.exists(saveFolder):
