@@ -47,11 +47,12 @@ default_parameters = {
 	'NPLC':1,
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
-		'runDataPoints': 600,
+		'runFastSweep': True,
+		'runDataPoints': 60,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-15.0,
-		'gateVoltageMaximum':	15.0
+		'gateVoltageMinimum':	-1.9,
+		'gateVoltageMaximum':	1.9
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -145,8 +146,8 @@ def runAction(parameters):
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-		smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
-		#smu_instance = smu.getConnectionToPCB()
+		#smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
+		smu_instance = smu.getConnectionToPCB()
 		smu_instance.setDevice(parameters['deviceID'])
 
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	

@@ -199,7 +199,6 @@ def show():
 # ***** Device Plots *****
 
 def plotGateSweep(axis, jsonData, lineColor, includeLabel=True, direction='both'):
-	#scatter(axis, jsonData['gateVoltages'], abs(np.array(jsonData['current1s'])), lineColor, '$I_{on}/I_{off}$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])), 3)
 	if(direction == 'forward'):
 		if(isinstance(jsonData['gateVoltages'][0], list)):	
 			x = jsonData['gateVoltages'][0]
@@ -215,10 +214,15 @@ def plotGateSweep(axis, jsonData, lineColor, includeLabel=True, direction='both'
 			x = jsonData['gateVoltages'][int(len(jsonData['gateVoltages'])/2):]
 			y = jsonData['current1s'][int(len(jsonData['gateVoltages'])/2):]
 	else:
-		x = jsonData['gateVoltages']
-		y = jsonData['current1s']
+		x = flatten(jsonData['gateVoltages'])
+		y = flatten(jsonData['current1s'])
 
-	line = plotWithErrorBars(axis, flatten(x), abs(np.array(flatten(y))), lineColor)
+	# data contains multiple y-values per x-value
+	if(x[0] == x[1]):
+		line = plotWithErrorBars(axis, x, abs(np.array(y)), lineColor)
+	else:
+		line = scatter(axis, x, abs(np.array(y)), lineColor, markerSize=1, lineWidth=1)
+
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
@@ -283,8 +287,8 @@ def scaledData(deviceHistory, dataToScale, scalefactor):
 def plot(axis, x, y, lineColor):
 	return axis.plot(x, y, color=lineColor)[0]
 
-def scatter(axis, x, y, lineColor, markerSize):
-	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=0)[0]
+def scatter(axis, x, y, lineColor, markerSize, lineWidth=0):
+	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=lineWidth)[0]
 
 def plotWithErrorBars(axis, x, y, lineColor):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)

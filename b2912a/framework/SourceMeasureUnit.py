@@ -73,11 +73,11 @@ class SourceMeasureUnit:
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
 		raise NotImplementedError("Please implement SourceMeasureUnit.takeSweep()")
 
-	def getChannel1Voltage(self):
-		return self.takeMeasurement()['voltage1']
+	def getVds(self):
+		return self.takeMeasurement()['V_ds']
 
-	def getChannel2Voltage(self):
-		return self.takeMeasurement()['voltage2']
+	def getVgs(self):
+		return self.takeMeasurement()['V_gs']
 
 	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps):
 		gateVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
@@ -85,11 +85,11 @@ class SourceMeasureUnit:
 			self.setVgs(gateVoltage)
 
 	def rampGateVoltageTo(self, voltageSetPoint, steps):
-		voltageStart = self.getChannel2Voltage()
+		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, voltageSetPoint, steps)
 
 	def rampGateVoltageDown(self, steps):
-		voltageStart = self.getChannel2Voltage()
+		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, 0, steps)
 
 	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps):
@@ -98,16 +98,16 @@ class SourceMeasureUnit:
 			self.setVds(drainVoltage)
 
 	def rampDrainVoltageTo(self, voltageSetPoint, steps):
-		voltageStart = self.getChannel1Voltage()
+		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, voltageSetPoint, steps)
 
 	def rampDrainVoltageDown(self, steps):
-		voltageStart = self.getChannel1Voltage()
+		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, 0, steps)
 
 	def rampDownVoltages(self):
-		source1_voltage = self.getChannel1Voltage()
-		source2_voltage = self.getChannel2Voltage()
+		source1_voltage = self.getVds()
+		source2_voltage = self.getVgs()
 		self.rampDrainVoltage(source1_voltage, 0, 40)
 		self.rampGateVoltage(source2_voltage, 0, 40)
 
@@ -190,10 +190,10 @@ class B2912A(SourceMeasureUnit):
 		voltage2s = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
 
 		return {
-			'voltage1s': voltage1s,
-			'current1s': current1s,
-			'voltage2s': voltage2s,
-			'current2s': current2s
+			'Vds_data': voltage1s,
+			'Id_data':  current1s,
+			'Vgs_data': voltage2s,
+			'Ig_data':  current2s
 		}
 
 class PCB2v14(SourceMeasureUnit):
@@ -238,10 +238,10 @@ class PCB2v14(SourceMeasureUnit):
 		print('RESPONSE: ' + str(response))
 		data = json.loads(str(response))
 		return {
-			'voltage1':data[2],
-			'current1':data[0],
-			'voltage2':data[1],
-			'current2':0
+			'V_ds':data[2],
+			'I_d': data[0],
+			'V_gs':data[1],
+			'I_g': 0
 		}
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
@@ -269,10 +269,10 @@ class PCB2v14(SourceMeasureUnit):
 		voltage2s = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
 
 		return {
-			'voltage1s': voltage1s,
-			'current1s': current1s,
-			'voltage2s': voltage2s,
-			'current2s': current2s
+			'Vds_data': voltage1s,
+			'Id_data': current1s,
+			'Vgs_data': voltage2s,
+			'Ig_data': current2s
 		}
 
 

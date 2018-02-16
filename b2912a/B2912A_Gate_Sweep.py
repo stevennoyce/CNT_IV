@@ -44,6 +44,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
 							parameters['GateSweep']['saveFileName'], 
+							parameters['GateSweep']['runFastSweep'],
 							parameters['GateSweep']['drainVoltageSetPoint'],
 							parameters['GateSweep']['gateVoltageMinimum'], 
 							parameters['GateSweep']['gateVoltageMaximum'], 
@@ -67,50 +68,62 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 
-def runGateSweep(smu_instance, workingDirectory, saveFileName, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps, NPLC):
-	voltage1s = [[],[]]
-	current1s = [[],[]]
-	voltage2s = [[],[]]
-	current2s = [[],[]]
+def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps, NPLC):
+	vds_data = [[],[]]
+	id_data = [[],[]]
+	vgs_data = [[],[]]
+	ig_data = [[],[]]
 	timestamps = [[],[]]
 
 	smu_instance.rampGateVoltage(0, gateVoltageMinimum, 20)
 	gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, steps, 3)
 	
-	#forward_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps/2, NPLC)
-	#reverse_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMaximum, gateVoltageMinimum, steps/2, NPLC)
-	#timestamp = time.time()
+	if(isFastSweep):
+		forward_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, steps/2, NPLC)
+		timestamps[0].append(time.time())
+		reverse_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMaximum, gateVoltageMinimum, steps/2, NPLC)
+		timestamps[1].append(time.time())
 
-	for i in [0,1]:
-		for gateVoltage in gateVoltages[i]:
-			smu_instance.setVgs(gateVoltage)
-			measurement = smu_instance.takeMeasurement()
-			
-			voltage1 = measurement['V_ds']
-			current1 = measurement['I_d']
-			voltage2 = measurement['V_gs']
-			current2 = measurement['I_g']
-			timestamp = time.time()
+		vds_data[0] = forward_measurements['Vds_data']
+		id_data[0]  = forward_measurements['Id_data']
+		vgs_data[0] = forward_measurements['Vgs_data']
+		ig_data[0]  = forward_measurements['Ig_data']
 
-			csvData = [timestamp, voltage1, current1, voltage2, current2]
-			dlu.saveCSV(workingDirectory, saveFileName, csvData)
-			
-			voltage1s[i].append(voltage1)
-			current1s[i].append(current1)
-			voltage2s[i].append(voltage2)
-			current2s[i].append(current2)
-			timestamps[i].append(timestamp)
+		vds_data[1] = reverse_measurements['Vds_data']
+		id_data[1]  = reverse_measurements['Id_data']
+		vgs_data[1] = reverse_measurements['Vgs_data']
+		ig_data[1]  = reverse_measurements['Ig_data']
+	else:
+		for i in [0,1]:
+			for gateVoltage in gateVoltages[i]:
+				smu_instance.setVgs(gateVoltage)
+				measurement = smu_instance.takeMeasurement()
+				
+				v_ds = measurement['V_ds']
+				i_d  = measurement['I_d']
+				v_gs = measurement['V_gs']
+				i_g  = measurement['I_g']
+				timestamp = time.time()
+
+				csvData = [timestamp, v_ds, i_d, v_gs, i_g]
+				dlu.saveCSV(workingDirectory, saveFileName, csvData)
+				
+				vds_data[i].append(v_ds)
+				id_data[i].append(i_d)
+				vgs_data[i].append(v_gs)
+				ig_data[i].append(i_g)
+				timestamps[i].append(timestamp)
 
 	return {
-		'voltage1s':voltage1s,
-		'current1s':current1s,
-		'voltage2s':voltage2s,
-		'current2s':current2s,
+		'voltage1s':vds_data,
+		'current1s':id_data,
+		'voltage2s':vgs_data,
+		'current2s':ig_data,
 		'timestamps':timestamps,
 		'gateVoltages':gateVoltages,
-		'onOffRatio':onOffRatio(current1s),
-		'onCurrent':onCurrent(current1s),
-		'offCurrent':offCurrent(current1s)
+		'onOffRatio':onOffRatio(id_data),
+		'onCurrent':onCurrent(id_data),
+		'offCurrent':offCurrent(id_data)
 	}
 
 def onOffRatio(drainCurrent):

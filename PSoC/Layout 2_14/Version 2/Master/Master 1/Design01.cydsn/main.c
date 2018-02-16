@@ -775,6 +775,12 @@ int main(void) {
 			if (strstr(ReceiveBuffer, "measure-sweep ") == &ReceiveBuffer[0]) {
 				Measure_Sweep();
 			} else 
+			if (strstr(ReceiveBuffer, "measure-gate-sweep ") == &ReceiveBuffer[0]) {
+				Measure_Gate_Sweep(0);
+			} else 
+			if (strstr(ReceiveBuffer, "measure-gate-sweep-loop ") == &ReceiveBuffer[0]) {
+				Measure_Gate_Sweep(1);
+			} else 
 			if (strstr(ReceiveBuffer, "set-vgs-raw ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 vgsi = strtol(location, &location, 10);
