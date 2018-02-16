@@ -93,6 +93,8 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, drai
 		id_data[1]  = reverse_measurements['Id_data']
 		vgs_data[1] = reverse_measurements['Vgs_data']
 		ig_data[1]  = reverse_measurements['Ig_data']
+
+		gateVoltages = vgs_data
 	else:
 		for i in [0,1]:
 			for gateVoltage in gateVoltages[i]:

@@ -39,6 +39,7 @@ runTypes = {
 }
 
 default_parameters = {
+	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'dataFolder':'data/',
@@ -48,11 +49,11 @@ default_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': True,
-		'runDataPoints': 60,
+		'runDataPoints': 200,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-1.9,
-		'gateVoltageMaximum':	1.9
+		'gateVoltageMinimum':	-15.0,
+		'gateVoltageMaximum':	15.0
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -104,7 +105,7 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataBeforeJSONExperimentNumber': 5,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
@@ -146,8 +147,14 @@ def runAction(parameters):
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-		#smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
-		smu_instance = smu.getConnectionToPCB()
+
+		if(parameters['MeasurementSystem'] == 'B2912A'):
+			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
+		elif(parameters['MeasurementSystem'] == ''):
+			smu_instance = smu.getConnectionToPCB()
+		else:
+			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, etc)")
+
 		smu_instance.setDevice(parameters['deviceID'])
 
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
@@ -169,7 +176,7 @@ def runAction(parameters):
 	elif(parameters['runType'] == 'ChipHistory'):
 		chipHistoryScript.run(parameters)
 	else:
-		raise NotImplementedError("Invalid action for the B2912A Source Measure Unit")
+		raise NotImplementedError("Invalid action for the Source Measure Unit")
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		smu_instance.rampDownVoltages()
