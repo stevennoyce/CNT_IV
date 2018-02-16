@@ -391,29 +391,39 @@ void SetVgsRaw(uint8 value) {
 }
 
 void SetVds(int16 value) {
-	if (value > 255) return;
-	if (value < -255) return;
+	if (value > 255) value = 255;
+	if (value < -255) value = -255;
 	
 	int16 absolute = (int16)value + (int16)VDAC_Ref_Data;
 	
-	if (absolute > 255) absolute = 255;
-	if (absolute < 0) absolute = 0;
-	
-	SetVdsRaw(absolute);
+	if (absolute > 255) {
+		setVdsRaw(255);
+		setRef(VDAC_Ref_Data - (absolute - 255));
+	} else if (absolute < 0) {
+		setVdsRaw(0);
+		setRef(VDAC_Ref_Data - absolute)
+	} else {
+		SetVdsRaw(absolute);
+	}
 	
 	Vds_Index_Goal_Relative = (int16)value;
 }
 
 void SetVgs(int16 value) {
-	if (value > 255) return;
-	if (value < -255) return;
+	if (value > 255) value = 255;
+	if (value < -255) value = -255;
 	
 	int16 absolute = (int16)value + (int16)VDAC_Ref_Data;
 	
-	if (absolute > 255) absolute = 255;
-	if (absolute < 0) absolute = 0;
-	
-	SetVgsRaw(absolute);
+	if (absolute > 255) {
+		setVgsRaw(255);
+		setRef(VDAC_Ref_Data - (absolute - 255));
+	} else if (absolute < 0) {
+		setVgsRaw(0);
+		setRef(VDAC_Ref_Data - absolute)
+	} else {
+		SetVgsRaw(absolute);
+	}
 	
 	Vgs_Index_Goal_Relative = (int16)value;
 }
@@ -494,57 +504,100 @@ void measure() {
 	UART_1_PutString(TransmitBuffer);
 }
 
+void Measure_Gate_Sweep_New() {
+	uint8 refTurn = 1;
+	int8 refIncrement = 1;
+	uint8 startRefIndex = 0;
+	uint8 endRefIndex = 0;
+	uint8 refIndex = startRefIndex;
+	uint8 refArrived = 0;
+	
+	int8 gateIncrement = 1;
+	uint8 startGateIndex = 0;
+	uint8 endGateIndex = 0;
+	uint8 gateIndex = startGateIndex;
+	uint8 gateArrived = 0;
+	
+	
+	while (!gateArrived || !refArrived) {
+		gateArrived = abs(gateIndex-endGateIndex) < abs(gateIncrement);
+		refArrived = abs(refIndex-endRefIndex) < abs(refIncrement);
+		
+		refTurn = !refTurn;
+		
+		if (refTurn && refArrived) continue;
+		if (!refTurn && gateArrived) continue;
+		
+		setRef(refIndex);
+		setVgsRaw(gateIndex);
+		
+		measure();
+		
+		if (refTurn) {
+			refIndex += refIncrement;
+		} else {
+			gateIndex += gateIncrement;
+		}
+		
+		if (G_Stop) break;
+		while (G_Pause);
+	}
+}
+
 void Measure_Gate_Sweep(uint8 loop) {
-	sprintf(TransmitBuffer, "\r\n[");
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
+	
+	if (Vds_Index_Goal_Relative > 0) {
+		SetRef(254 - Vds_Index_Goal_Relative);
+	} else {
+		SetRef(254);
+	}
+	
+	int8 speed = 16;
 	
 	for (uint8 l = 0; l <= loop; l++) {
-		int8 direction = 1;
+		int8 direction = 1*speed;
 		uint8 istart = 0;
-		uint8 istop = 255;
+		if (Vds_Index_Goal_Relative < 0) {
+			uint8 istart = -Vds_Index_Goal_Relative;
+		}
+		
+		uint8 istop = 256-speed;
 		
 		if (l%2 == 1) {
-			direction = -1;
-			istart = 255;
+			direction = -1*speed;
+			istart = 256-speed;
 			istop = 0;
 		}
 		
-		for (uint16 Vgsi = istart; Vgsi != istop; Vgsi += direction) {
-			int32 IdsAverage = 0;
-			int32 IdsStandardDeviation = 0;
-			
-			SetVgsRaw(Vgsi);
-			
-			ADC_Measure_uV(&IdsAverage, &IdsStandardDeviation, 100);
-			
-			// Send the collected data
-			//sprintf(TransmitBuffer, "[%d, %lu, %lu]\r\n", Vgsi, IdsAverage, IdsStandardDeviation);
-			
-			if (Vgsi > 0) {
-				sprintf(TransmitBuffer, ",");
+		for (uint8 i = istart; i != istop; i += direction) {
+			for (uint8 j = 0; j <= 1; j++) {
+				int32 IdsAverage = 0;
+				int32 IdsStandardDeviation = 0;
+				
+				if (j == 1) SetRef(254 - i + 1);
+				SetVgsRaw(i);
+				
+				ADC_Measure_uV(&IdsAverage, &IdsStandardDeviation, 33);
+				
+				float IdsAverageAmps = -1e-6/20e3*IdsAverage;
+				
+				ADC_SAR_1_StartConvert();
+				ADC_SAR_2_StartConvert();
+				while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
+				while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
+				
+				float SAR1 = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
+				float SAR2 = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
+				
+				sprintf(TransmitBuffer, "[%e,%f,%f,%f,%f]\r\n", IdsAverageAmps, getVgs(), getVds(), SAR1, SAR2);
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 				UART_1_PutString(TransmitBuffer);
+				
+				if (G_Stop) break;
+				while (G_Pause);
 			}
-			
-			float temp = -1e-6/20e3*IdsAverage;
-			
-			sprintf(TransmitBuffer, "%e", temp);
-			USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-			UART_1_PutString(TransmitBuffer);
-			
-			// sprintf(TransmitBuffer, "%lu", IdsAverage);
-			// USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-			// UART_1_PutString(TransmitBuffer);
-			
-			if (G_Stop) break;
-			while (G_Pause);
 		}
 	}
-	
-	sprintf(TransmitBuffer, "]\r\n");
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
 }
 
 void Measure_Wide_Gate_Sweep(uint8 loop) {
