@@ -390,6 +390,29 @@ void SetVgsRaw(uint8 value) {
 	}
 }
 
+void SetRefRaw(uint8 value) {
+	int8 increment = 1;
+	if (value < VDAC_Ref_Data) increment = -1;
+	
+	for (uint8 i = VDAC_Ref_Data; i != value; i += increment) {
+		
+		if (AtCompliance()) return;
+		
+		int16 new_Vgs = (int16)i + Vgs_Index_Goal_Relative;
+		int16 new_Vds = (int16)i + Vds_Index_Goal_Relative;
+		
+		if (new_Vgs > 255) new_Vgs = 255;
+		if (new_Vds > 255) new_Vds = 255;
+		
+		if (new_Vgs < 0) new_Vgs = 0;
+		if (new_Vds < 0) new_Vds = 0;
+		
+		VDAC_Ref_SetValue(i);
+		VDAC_Vgs_SetValue(new_Vgs);
+		VDAC_Vds_SetValue(new_Vds);
+	}
+}
+
 void SetVdsRel(int16 value) {
 	if (value > 255) value = 255;
 	if (value < -255) value = -255;
@@ -426,29 +449,6 @@ void SetVgsRel(int16 value) {
 	}
 	
 	Vgs_Index_Goal_Relative = (int16)value;
-}
-
-void SetRefRaw(uint8 value) {
-	int8 increment = 1;
-	if (value < VDAC_Ref_Data) increment = -1;
-	
-	for (uint8 i = VDAC_Ref_Data; i != value; i += increment) {
-		
-		if (AtCompliance()) return;
-		
-		int16 new_Vgs = (int16)i + Vgs_Index_Goal_Relative;
-		int16 new_Vds = (int16)i + Vds_Index_Goal_Relative;
-		
-		if (new_Vgs > 255) new_Vgs = 255;
-		if (new_Vds > 255) new_Vds = 255;
-		
-		if (new_Vgs < 0) new_Vgs = 0;
-		if (new_Vds < 0) new_Vds = 0;
-		
-		VDAC_Ref_SetValue(i);
-		VDAC_Vgs_SetValue(new_Vgs);
-		VDAC_Vds_SetValue(new_Vds);
-	}
 }
 
 void SetVgs(float voltage) {
