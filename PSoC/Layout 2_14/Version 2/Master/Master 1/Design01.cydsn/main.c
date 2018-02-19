@@ -420,11 +420,11 @@ void Set_Vds_Rel(int16 value) {
 	int16 absolute = (int16)value + (int16)VDAC_Ref_Data;
 	
 	if (absolute > 255) {
-		Set_Vds_Raw(255);
 		Set_Ref_Raw(VDAC_Ref_Data - (absolute - 255));
+		Set_Vds_Raw(255);
 	} else if (absolute < 0) {
-		Set_Vds_Raw(0);
 		Set_Ref_Raw(VDAC_Ref_Data - absolute);
+		Set_Vds_Raw(0);
 	} else {
 		Set_Vds_Raw(absolute);
 	}
@@ -439,11 +439,11 @@ void Set_Vgs_Rel(int16 value) {
 	int16 absolute = (int16)value + (int16)VDAC_Ref_Data;
 	
 	if (absolute > 255) {
-		Set_Vgs_Raw(255);
 		Set_Ref_Raw(VDAC_Ref_Data - (absolute - 255));
+		Set_Vgs_Raw(255);
 	} else if (absolute < 0) {
-		Set_Vgs_Raw(0);
 		Set_Ref_Raw(VDAC_Ref_Data - absolute);
+		Set_Vgs_Raw(0);
 	} else {
 		Set_Vgs_Raw(absolute);
 	}
