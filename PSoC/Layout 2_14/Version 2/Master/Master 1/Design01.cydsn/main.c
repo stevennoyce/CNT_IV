@@ -398,10 +398,10 @@ void SetVdsRel(int16 value) {
 	
 	if (absolute > 255) {
 		SetVdsRaw(255);
-		setRefRaw(VDAC_Ref_Data - (absolute - 255));
+		SetRefRaw(VDAC_Ref_Data - (absolute - 255));
 	} else if (absolute < 0) {
 		SetVdsRaw(0);
-		setRefRaw(VDAC_Ref_Data - absolute);
+		SetRefRaw(VDAC_Ref_Data - absolute);
 	} else {
 		SetVdsRaw(absolute);
 	}
@@ -417,10 +417,10 @@ void SetVgsRel(int16 value) {
 	
 	if (absolute > 255) {
 		SetVgsRaw(255);
-		setRefRaw(VDAC_Ref_Data - (absolute - 255));
+		SetRefRaw(VDAC_Ref_Data - (absolute - 255));
 	} else if (absolute < 0) {
 		SetVgsRaw(0);
-		setRefRaw(VDAC_Ref_Data - absolute);
+		SetRefRaw(VDAC_Ref_Data - absolute);
 	} else {
 		SetVgsRaw(absolute);
 	}
@@ -542,7 +542,7 @@ void Measure_Gate_Sweep_New() {
 		if (refTurn && refArrived) continue;
 		if (!refTurn && gateArrived) continue;
 		
-		setRefRaw(refIndex);
+		SetRefRaw(refIndex);
 		SetVgsRaw(gateIndex);
 		
 		Measure();
