@@ -401,7 +401,7 @@ void SetVdsRel(int16 value) {
 		setRefRaw(VDAC_Ref_Data - (absolute - 255));
 	} else if (absolute < 0) {
 		setVdsRaw(0);
-		setRefRaw(VDAC_Ref_Data - absolute)
+		setRefRaw(VDAC_Ref_Data - absolute);
 	} else {
 		SetVdsRaw(absolute);
 	}
@@ -420,7 +420,7 @@ void SetVgsRel(int16 value) {
 		setRefRaw(VDAC_Ref_Data - (absolute - 255));
 	} else if (absolute < 0) {
 		setVgsRaw(0);
-		setRefRaw(VDAC_Ref_Data - absolute)
+		setRefRaw(VDAC_Ref_Data - absolute);
 	} else {
 		SetVgsRaw(absolute);
 	}
@@ -491,7 +491,7 @@ void Zero_All_DACs() {
 	VDAC_Vgs_SetValue(0);
 }
 
-void measure() {
+void Measure() {
 	int32 IdsAverage = 0;
 	int32 IdsStandardDeviation = 0;
 	
@@ -512,9 +512,9 @@ void measure() {
 	UART_1_PutString(TransmitBuffer);
 }
 
-void measure(uint32 n) {
+void Measure_Multiple(uint32 n) {
 	for (uint32 i = 0; i < n; i++) {
-		measure();
+		Measure();
 	}
 }
 
@@ -545,7 +545,7 @@ void Measure_Gate_Sweep_New() {
 		setRefRaw(refIndex);
 		setVgsRaw(gateIndex);
 		
-		measure();
+		Measure();
 		
 		if (refTurn) {
 			refIndex += refIncrement;
@@ -661,7 +661,7 @@ void Measure_Wide_Gate_Sweep(uint8 loop) {
 	}
 }
 
-void scan(uint8 wide, uint8 loop) {
+void Scan(uint8 wide, uint8 loop) {
 	for (uint8 device = 1; device <= CONTACT_COUNT/**//2; device++) {
 		uint8 contact1 = device;
 		uint8 contact2 = device + 1;
@@ -830,13 +830,13 @@ int main(void) {
 			newData = 0;
 			
 			if (strstr(ReceiveBuffer, "measure ") == &ReceiveBuffer[0]) {
-				measure();
+				Measure();
 			} else 
 			if (strstr(ReceiveBuffer, "measure-multiple ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint32 n = strtol(location, &location, 10);
 				
-				measure(n);
+				Measure_Multiple(n);
 			} else 
 			if (strstr(ReceiveBuffer, "measure-sweep ") == &ReceiveBuffer[0]) {
 				Measure_Sweep();
@@ -890,7 +890,7 @@ int main(void) {
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 				UART_1_PutString(TransmitBuffer);
 				
-				scan(0, 0);
+				Scan(0, 0);
 				
 				sprintf(TransmitBuffer, "\r\nScan Complete\r\n");
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
