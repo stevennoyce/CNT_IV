@@ -201,25 +201,38 @@ class PCB2v14(SourceMeasureUnit):
 
 	def __init__(self, pySerial):
 		self.ser = pySerial
+		self.setParameter('connect-intermediates !')
 
 	def setComplianceCurrent(self, complianceCurrent):
 		pass
 
+	def setParameter(self, parameter):
+		self.ser.write( str(parameter).encode('UTF-8') )
+		time.sleep(0.1)
+
+	def getResponse(self)
+		time.sleep(0.1)
+		return self.ser.readline().decode(encoding='UTF-8')
+
+	def formatMeasurement(self, measurement):
+		data = json.loads(str(measurement))
+		return {
+			'V_ds':data[2],
+			'I_d': data[0],
+			'V_gs':data[1],
+			'I_g': 0
+		}
+
 	def setDevice(self, deviceID):
+		self.setParameter('disconnect-all-from-all !')
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
 		intermediate2 = (2) if(contactPad2 <= 32) else (4)
 		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
-		time.sleep(0.1)
 		while (self.ser.in_waiting):
-			print(self.ser.readline().decode(encoding='UTF-8'))
-			time.sleep(0.1)
-
-	def setParameter(self, parameter):
-		self.ser.write( str(parameter).encode('UTF-8') )
-		time.sleep(0.1)
+			print(self.getResponse())
 
 	def setVds(self, voltage):
 		self.setParameter("set-vds {}!".format(voltage))
@@ -228,47 +241,42 @@ class PCB2v14(SourceMeasureUnit):
 		self.setParameter("set-vgs {}!".format(voltage))
 
 	def takeMeasurement(self):
-		self.ser.write(b'measure !')
-		time.sleep(0.1)
-		response = self.ser.readline().decode(encoding='UTF-8')
+		self.setParameter('measure !')
+		response = self.getResponse()
 		print('RESPONSE: ' + str(response))
-		data = json.loads(str(response))
-		return {
-			'V_ds':data[2],
-			'I_d': data[0],
-			'V_gs':data[1],
-			'I_g': 0
-		}
+		return self.formatMeasurement(response)
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
-		self.smu.write(":source1:voltage:mode sweep")
-		self.smu.write(":source2:voltage:mode sweep")
+		vds_data = []
+		id_data = []
+		vgs_data = []
+		ig_data = []
 
-		self.smu.write(":source1:voltage:start {}".format(src1start))
-		self.smu.write(":source1:voltage:stop {}".format(src1stop)) 
-		self.smu.write(":source1:voltage:points {}".format(points))
-		self.smu.write(":source2:voltage:start {}".format(src2start))
-		self.smu.write(":source2:voltage:stop {}".format(src2stop)) 
-		self.smu.write(":source2:voltage:points {}".format(points))
+		if(src1start == src1stop and src2start == src2stop):
+			self.setParameter('measure-multiple !')
+			while(self.ser.in_waiting)
+				response = self.getResponse()
+				data = self.formatMeasurement(response)
+				vds_data.append(data['V_ds'])
+				id_data.append(data['I_d'])
+				vgs_data.append(data['V_gs'])
+				ig_data.append(data['I_g'])
 
-		self.smu.write(":trig1:source aint")
-		self.smu.write(":trig1:count {}".format(points))
-		self.smu.write(":trig2:source aint")
-		self.smu.write(":trig2:count {}".format(points))
-		self.smu.write(":init (@1:2)")
+			return {
+				'Vds_data': vds_data,
+				'Id_data': id_data,
+				'Vgs_data': vgs_data,
+				'Ig_data': ig_data
+			}
 
-		time.sleep(1.5 * points*NPLC/60)
 
-		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
-		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
-		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
-		voltage2s = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
+		raise NotImplementedError('PCB2v14 general sweep not implemented.')
 
 		return {
-			'Vds_data': voltage1s,
-			'Id_data': current1s,
-			'Vgs_data': voltage2s,
-			'Ig_data': current2s
+			'Vds_data': vds_data,
+			'Id_data': id_data,
+			'Vgs_data': vgs_data,
+			'Ig_data': ig_data
 		}
 
 
