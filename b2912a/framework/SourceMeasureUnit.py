@@ -222,14 +222,10 @@ class PCB2v14(SourceMeasureUnit):
 		time.sleep(0.1)
 
 	def setVds(self, voltage):
-		value = voltage*255.0/4.080
-		value = max(min(value, 127), -128)
-		self.setParameter("set-vds-rel {}!".format(value))
+		self.setParameter("set-vds {}!".format(voltage))
 
 	def setVgs(self, voltage):
-		value = voltage*255.0/4.080
-		value = max(min(value, 127), -128)
-		self.setParameter("set-vgs-rel {}!".format(value))
+		self.setParameter("set-vgs {}!".format(voltage))
 
 	def takeMeasurement(self):
 		self.ser.write(b'measure !')

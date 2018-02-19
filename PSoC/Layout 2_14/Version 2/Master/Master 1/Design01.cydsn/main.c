@@ -390,7 +390,7 @@ void SetVgsRaw(uint8 value) {
 	}
 }
 
-void SetVds(int16 value) {
+void SetVdsRel(int16 value) {
 	if (value > 255) value = 255;
 	if (value < -255) value = -255;
 	
@@ -398,10 +398,10 @@ void SetVds(int16 value) {
 	
 	if (absolute > 255) {
 		setVdsRaw(255);
-		setRef(VDAC_Ref_Data - (absolute - 255));
+		setRefRaw(VDAC_Ref_Data - (absolute - 255));
 	} else if (absolute < 0) {
 		setVdsRaw(0);
-		setRef(VDAC_Ref_Data - absolute)
+		setRefRaw(VDAC_Ref_Data - absolute)
 	} else {
 		SetVdsRaw(absolute);
 	}
@@ -409,7 +409,7 @@ void SetVds(int16 value) {
 	Vds_Index_Goal_Relative = (int16)value;
 }
 
-void SetVgs(int16 value) {
+void SetVgsRel(int16 value) {
 	if (value > 255) value = 255;
 	if (value < -255) value = -255;
 	
@@ -417,10 +417,10 @@ void SetVgs(int16 value) {
 	
 	if (absolute > 255) {
 		setVgsRaw(255);
-		setRef(VDAC_Ref_Data - (absolute - 255));
+		setRefRaw(VDAC_Ref_Data - (absolute - 255));
 	} else if (absolute < 0) {
 		setVgsRaw(0);
-		setRef(VDAC_Ref_Data - absolute)
+		setRefRaw(VDAC_Ref_Data - absolute)
 	} else {
 		SetVgsRaw(absolute);
 	}
@@ -428,7 +428,7 @@ void SetVgs(int16 value) {
 	Vgs_Index_Goal_Relative = (int16)value;
 }
 
-void SetRef(uint8 value) {
+void SetRefRaw(uint8 value) {
 	int8 increment = 1;
 	if (value < VDAC_Ref_Data) increment = -1;
 	
@@ -449,6 +449,14 @@ void SetRef(uint8 value) {
 		VDAC_Vgs_SetValue(new_Vgs);
 		VDAC_Vds_SetValue(new_Vds);
 	}
+}
+
+void SetVgs(float voltage) {
+	SetVgsRel((voltage/4.080)*255.0);
+}
+
+void SetVds(float voltage) {
+	SetVdsRel((voltage/4.080)*255.0);
 }
 
 float getRef() {
@@ -504,6 +512,12 @@ void measure() {
 	UART_1_PutString(TransmitBuffer);
 }
 
+void measure(uint32 n) {
+	for (uint32 i = 0; i < n; i++) {
+		measure();
+	}
+}
+
 void Measure_Gate_Sweep_New() {
 	uint8 refTurn = 1;
 	int8 refIncrement = 1;
@@ -528,7 +542,7 @@ void Measure_Gate_Sweep_New() {
 		if (refTurn && refArrived) continue;
 		if (!refTurn && gateArrived) continue;
 		
-		setRef(refIndex);
+		setRefRaw(refIndex);
 		setVgsRaw(gateIndex);
 		
 		measure();
@@ -547,9 +561,9 @@ void Measure_Gate_Sweep_New() {
 void Measure_Gate_Sweep(uint8 loop) {
 	
 	if (Vds_Index_Goal_Relative > 0) {
-		SetRef(254 - Vds_Index_Goal_Relative);
+		SetRefRaw(254 - Vds_Index_Goal_Relative);
 	} else {
-		SetRef(254);
+		SetRefRaw(254);
 	}
 	
 	int8 speed = 16;
@@ -574,7 +588,7 @@ void Measure_Gate_Sweep(uint8 loop) {
 				int32 IdsAverage = 0;
 				int32 IdsStandardDeviation = 0;
 				
-				if (j == 1) SetRef(254 - i + 1);
+				if (j == 1) SetRefRaw(254 - i + 1);
 				SetVgsRaw(i);
 				
 				ADC_Measure_uV(&IdsAverage, &IdsStandardDeviation, 33);
@@ -601,7 +615,7 @@ void Measure_Gate_Sweep(uint8 loop) {
 }
 
 void Measure_Wide_Gate_Sweep(uint8 loop) {
-	SetRef(254);
+	SetRefRaw(254);
 	
 	int8 speed = 16;
 	
@@ -621,7 +635,7 @@ void Measure_Wide_Gate_Sweep(uint8 loop) {
 				int32 IdsAverage = 0;
 				int32 IdsStandardDeviation = 0;
 				
-				if (j == 1) SetRef(254 - i + 1);
+				if (j == 1) SetRefRaw(254 - i + 1);
 				SetVgsRaw(i);
 				
 				ADC_Measure_uV(&IdsAverage, &IdsStandardDeviation, 33);
@@ -664,9 +678,6 @@ void scan(uint8 wide, uint8 loop) {
 		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 		UART_1_PutString(TransmitBuffer);
 		
-		// SetVdsRaw(109);
-		SetVds(-15);
-		
 		if (wide) {
 			Measure_Wide_Gate_Sweep(loop);
 		} else {
@@ -697,10 +708,6 @@ void Scan_Range(uint8 startDevice, uint8 stopDevice, uint8 wide, uint8 loop) {
 		sprintf(TransmitBuffer, "\r\n%u\r\n", device);
 		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 		UART_1_PutString(TransmitBuffer);
-		
-		// SetVdsRaw(109);
-		// SetVds(-15);
-		SetVds(-63);
 		
 		if (wide) {
 			Measure_Wide_Gate_Sweep(loop);
@@ -825,6 +832,12 @@ int main(void) {
 			if (strstr(ReceiveBuffer, "measure ") == &ReceiveBuffer[0]) {
 				measure();
 			} else 
+			if (strstr(ReceiveBuffer, "measure-multiple ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				uint32 n = strtol(location, &location, 10);
+				
+				measure(n);
+			} else 
 			if (strstr(ReceiveBuffer, "measure-sweep ") == &ReceiveBuffer[0]) {
 				Measure_Sweep();
 			} else 
@@ -850,29 +863,28 @@ int main(void) {
 				char* location = strstr(ReceiveBuffer, " ");
 				int8 vgsi = strtol(location, &location, 10);
 				
-				SetVgs(vgsi);
+				SetVgsRel(vgsi);
 			} else 
 			if (strstr(ReceiveBuffer, "set-vds-rel ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				int8 vdsi = strtol(location, &location, 10);
 				
-				SetVds(vdsi);
+				SetVdsRel(vdsi);
 			} else 
-			// if (strstr(ReceiveBuffer, "set-vgs ") == &ReceiveBuffer[0]) {
-			// 	char* location = strstr(ReceiveBuffer, " ");
-			// 	float vgs = 0;
-			// 	int8 success = sscanf(location, "%f", &vgs);
-			// 	int8 vgsi = 
+			if (strstr(ReceiveBuffer, "set-vgs ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				float vgs = 0;
+				int8 success = sscanf(location, "%f", &vgs);
 				
-			// 	SetVgs(vgsi);
-			// } else 
-			// if (strstr(ReceiveBuffer, "set-vds ") == &ReceiveBuffer[0]) {
-			// 	char* location = strstr(ReceiveBuffer, " ");
-			// 	float vds = 0;
-			// 	int8 vdsi = strtol(location, &location, 10);
+				SetVgs(vgs);
+			} else 
+			if (strstr(ReceiveBuffer, "set-vds ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				float vds = 0;
+				int8 success = sscanf(location, "%f", &vds);
 				
-			// 	SetVgs(vdsi);
-			// } else 
+				SetVds(vds);
+			} else 
 			if (strstr(ReceiveBuffer, "scan ") == &ReceiveBuffer[0]) {
 				sprintf(TransmitBuffer, "\r\nScan Starting\r\n");
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
