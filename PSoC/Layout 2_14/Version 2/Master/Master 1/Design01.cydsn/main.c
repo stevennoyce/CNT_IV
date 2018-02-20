@@ -899,13 +899,13 @@ int main(void) {
 			} else 
 			if (strstr(ReceiveBuffer, "set-vgs-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
-				float vgs = strtol(location, &location, 10);
+				float Vgs_mV = strtol(location, &location, 10);
 				
 				Set_Vgs_mV(Vgs_mV);
 			} else 
 			if (strstr(ReceiveBuffer, "set-vds-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
-				float vds = strtol(location, &location, 10);
+				float Vds_mV = strtol(location, &location, 10);
 				
 				Set_Vds_mV(Vds_mV);
 			} else 
