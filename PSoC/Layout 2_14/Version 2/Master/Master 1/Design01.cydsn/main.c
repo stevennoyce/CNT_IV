@@ -899,7 +899,7 @@ int main(void) {
 			} else 
 			if (strstr(ReceiveBuffer, "set-vgs-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
-				float Vgs_mV = float(strtol(location, &location, 10));
+				float Vgs_mV = (float)(strtol(location, &location, 10));
 				
 				Set_Vgs_mV(Vgs_mV);
 				
@@ -909,7 +909,7 @@ int main(void) {
 			} else 
 			if (strstr(ReceiveBuffer, "set-vds-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
-				float Vds_mV = float(strtol(location, &location, 10));
+				float Vds_mV = (float)(strtol(location, &location, 10));
 				
 				Set_Vds_mV(Vds_mV);
 				
