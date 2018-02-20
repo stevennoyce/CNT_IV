@@ -818,7 +818,7 @@ int main(void) {
 	
 	CyDelay(1000);
 	
-	UART_1_PutString("\r\nStarting\r\n");
+	UART_1_PutString("\r\n# Starting\r\n");
 	
 	Connect_Intermediates();
 	
@@ -829,7 +829,7 @@ int main(void) {
 	CommunicationTimer_Start();
 	CommunicationInterrupt_StartEx(CommunicationHandlerISR);
 	
-	Current_Measurement_Sample_Count = 100;
+	// Current_Measurement_Sample_Count = 100;
 	
 	while (1) {
 		G_Stop = 0;
@@ -1051,6 +1051,4 @@ int main(void) {
 		//for (uint8 i = 0; i < SELECTOR_COUNT; i++) Update_Selector(i);
 	}
 }
-
-
 
