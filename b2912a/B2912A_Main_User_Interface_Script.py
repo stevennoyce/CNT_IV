@@ -15,6 +15,13 @@ from utilities import DataLoggerUtility as dlu
 from utilities import PlotPostingUtility as plotPoster
 from framework import SourceMeasureUnit as smu
 
+def devicesInRange(startContact, endContact, skip=True):
+	contactList = set(range(startContact,endContact))
+	if(skip):
+		omitList = set(range(4,64+1,4))
+		contactList = list(contactList-omitList)
+	return ['{0:}-{1:}'.format(c, c+1) for c in contactList]
+
 ## ********** Parameters **********
 
 os.chdir(sys.path[0])
@@ -23,7 +30,7 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '15-16'
 else:
-	chipID = 'C127Fake'
+	chipID = 'C131H'
 	deviceID = '1-2'
 
 runTypes = {
@@ -42,6 +49,7 @@ default_parameters = {
 	'MeasurementSystem':['B2912A','PCB2v14'][1],
 	'chipID':chipID,
 	'deviceID':deviceID,
+	'deviceRange':devicesInRange(1,32,skip=False),
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
@@ -49,7 +57,8 @@ default_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
-		'runDataPoints': 60,
+		'runDataPoints': 120,
+		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
 		'gateVoltageMinimum':	-3.5,
@@ -83,8 +92,8 @@ default_parameters = {
 		'drainVoltageWhenDone':  1.0
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 24,
-		'applyStaticBiasBetweenSweeps': True,
+		'numberOfSweeps': 1,
+		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 12,
@@ -105,8 +114,8 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 5,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 13,
+		'excludeDataAfterJSONExperimentNumber':  13,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
@@ -129,35 +138,41 @@ def main(parameters):
 
 		parameters = dict(default_parameters)
 		parameters['runType'] = runTypes[choice]
-		parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 
 		print('Parameters: ')
 		print_dict(parameters, 0)
 		confirmation = str(input('Are parameters correct? (y/n): '))
-
-		if(confirmation == 'y'):
-			runAction(parameters)
-		else:
+		if(confirmation != 'y'):
 			break
+		
+		smu_instance = None
+		if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+			if(parameters['MeasurementSystem'] == 'B2912A'):
+				smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
+			elif(parameters['MeasurementSystem'] == 'PCB2v14'):
+				smu_instance = smu.getConnectionToPCB()
+			else:
+				raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, etc)")
 
-def runAction(parameters):
+		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0)):
+			for device in parameters['deviceRange']:
+				parameters = dict(default_parameters)
+				parameters['runType'] = runTypes[choice]
+				parameters['deviceID'] = device
+				runAction(parameters, smu_instance)
+		else:
+			runAction(parameters, smu_instance)
+
+def runAction(parameters, smu_instance):
+	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
 	
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-
-		if(parameters['MeasurementSystem'] == 'B2912A'):
-			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
-		elif(parameters['MeasurementSystem'] == 'PCB2v14'):
-			smu_instance = smu.getConnectionToPCB()
-		else:
-			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, etc)")
-
 		smu_instance.setDevice(parameters['deviceID'])
-
-	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
+		parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 
 	if(parameters['runType'] == 'GateSweep'):
 		gateSweepScript.run(parameters, smu_instance)
@@ -186,7 +201,7 @@ def runAction(parameters):
 	
 
 
-
+# *** Helper Functions ***
 
 def print_dict(dictionary, numtabs):
 	keys = list(dictionary.keys())
@@ -196,6 +211,8 @@ def print_dict(dictionary, numtabs):
 			print_dict(dictionary[keys[i]], numtabs+1)
 		else:
 			print(numtabs*'\t'+'  ' + str(keys[i]) + ': ' + str(dictionary[keys[i]]))
+
+
 
 
 if __name__ == '__main__':

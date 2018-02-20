@@ -73,13 +73,15 @@ def plotJSON(jsonData, parameters, lineColor):
 		plotStaticBias(ax, jsonData, lineColor, 0)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
-	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=False, showFigure=True)
+	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=True, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	fig.set_size_inches(4.2,4.9)
 	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
+	if(len(deviceHistory) == 1):
+		colors = ['b']
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
@@ -221,13 +223,13 @@ def plotGateSweep(axis, jsonData, lineColor, includeLabel=True, direction='both'
 	if(x[0] == x[1]):
 		line = plotWithErrorBars(axis, x, abs(np.array(y)), lineColor)
 	else:
-		line = scatter(axis, x, abs(np.array(y)), lineColor, markerSize=1, lineWidth=1)
+		line = scatter(axis, x, abs(np.array(y)), lineColor, markerSize=2, lineWidth=1)
 
 	semiLogScale(axis)
 	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
 	if(includeLabel): 
-		setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
-		#setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(jsonData['current2s'])))))
+		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
+		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
 		axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):

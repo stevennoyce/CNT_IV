@@ -17,7 +17,7 @@ def getConnectionFromVisa(NPLC, defaultComplianceCurrent, smuTimeout=60000):
 	return B2912A(instance, NPLC, defaultComplianceCurrent)
 
 def getConnectionToPCB():
-	ser = pySerial.Serial('/dev/tty.usbmodem1411', 115200, timeout=0.1)
+	ser = pySerial.Serial('/dev/tty.HC-05-DevB', 115200, timeout=0.5)
 	return PCB2v14(ser)
 
 # class SimulationSMU(SourceMeasureUnit):
@@ -210,9 +210,13 @@ class PCB2v14(SourceMeasureUnit):
 		self.ser.write( str(parameter).encode('UTF-8') )
 		time.sleep(0.1)
 
-	def getResponse(self):
-		time.sleep(0.1)
-		return self.ser.readline().decode(encoding='UTF-8')
+	def getResponse(self, startsWith=''):
+		response = self.ser.readline().decode(encoding='UTF-8')
+		if(startsWith != ''):
+			while(response[0] != startsWith):
+				response = self.ser.readline().decode(encoding='UTF-8')
+				print('SKIP')
+		return response
 
 	def formatMeasurement(self, measurement):
 		data = json.loads(str(measurement))
@@ -235,15 +239,19 @@ class PCB2v14(SourceMeasureUnit):
 			print(self.getResponse())
 
 	def setVds(self, voltage):
-		self.setParameter("set-vds-mv {:d}!".format(voltage*1000))
+		self.setParameter("set-vds-mv {:.0f}!".format(voltage*1000))
+		response = self.getResponse(startsWith='#')
+		print('VDS: ' + str(response))
 
 	def setVgs(self, voltage):
-		self.setParameter("set-vgs-mv {:d}!".format(voltage*1000))
+		self.setParameter("set-vgs-mv {:.0f}!".format(voltage*1000))
+		response = self.getResponse(startsWith='#')
+		print('VGS: ' + str(response))
 
 	def takeMeasurement(self):
 		self.setParameter('measure !')
-		response = self.getResponse()
-		print('RESPONSE: ' + str(response))
+		response = self.getResponse(startsWith='[')
+		print('MEAS: ' + str(response))
 		return self.formatMeasurement(response)
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
