@@ -1050,5 +1050,7 @@ int main(void) {
 		
 		//for (uint8 i = 0; i < SELECTOR_COUNT; i++) Update_Selector(i);
 	}
+	
+	return 0;
 }
 
