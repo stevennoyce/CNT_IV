@@ -1036,7 +1036,7 @@ int main(void) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint32 sampleCount = strtol(location, &location, 10);
 				
-				Current_Measurement_Sample_Count = sampleCount;
+				// Current_Measurement_Sample_Count = sampleCount;
 				
 				sprintf(TransmitBuffer, "# Set Current Measurement Sample Count\r\n");
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
