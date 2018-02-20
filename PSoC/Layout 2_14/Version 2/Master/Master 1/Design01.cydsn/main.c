@@ -899,21 +899,21 @@ int main(void) {
 			} else 
 			if (strstr(ReceiveBuffer, "set-vgs-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
-				float Vgs_mV = strtol(location, &location, 10);
+				long Vgs_mV = strtol(location, &location, 10);
 				
 				Set_Vgs_mV(Vgs_mV);
 				
-				sprintf(TransmitBuffer, "# Vgs set to %u mV\r\n", Vgs_mV);
+				sprintf(TransmitBuffer, "# Vgs set to %d mV\r\n", Vgs_mV);
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 				UART_1_PutString(TransmitBuffer);
 			} else 
 			if (strstr(ReceiveBuffer, "set-vds-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
-				float Vds_mV = strtol(location, &location, 10);
+				long Vds_mV = strtol(location, &location, 10);
 				
 				Set_Vds_mV(Vds_mV);
 				
-				sprintf(TransmitBuffer, "# Vds set to %u mV\r\n", Vds_mV);
+				sprintf(TransmitBuffer, "# Vds set to %d mV\r\n", Vds_mV);
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 				UART_1_PutString(TransmitBuffer);
 			} else 
