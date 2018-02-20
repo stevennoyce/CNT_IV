@@ -883,20 +883,20 @@ int main(void) {
 				
 				Set_Vds_Rel(vdsi);
 			} else 
-			if (strstr(ReceiveBuffer, "set-vgs ") == &ReceiveBuffer[0]) {
-				char* location = strstr(ReceiveBuffer, " ");
-				float vgs = 0;
-				int8 success = sscanf(location, "%f", &vgs);
+			// if (strstr(ReceiveBuffer, "set-vgs ") == &ReceiveBuffer[0]) {
+			// 	char* location = strstr(ReceiveBuffer, " ");
+			// 	float vgs = 0;
+			// 	int8 success = sscanf(location, "%f", &vgs);
 				
-				Set_Vgs(vgs);
-			} else 
-			if (strstr(ReceiveBuffer, "set-vds ") == &ReceiveBuffer[0]) {
-				char* location = strstr(ReceiveBuffer, " ");
-				float vds = 0;
-				int8 success = sscanf(location, "%f", &vds);
+			// 	Set_Vgs(vgs);
+			// } else 
+			// if (strstr(ReceiveBuffer, "set-vds ") == &ReceiveBuffer[0]) {
+			// 	char* location = strstr(ReceiveBuffer, " ");
+			// 	float vds = 0;
+			// 	int8 success = sscanf(location, "%f", &vds);
 				
-				Set_Vds(vds);
-			} else 
+			// 	Set_Vds(vds);
+			// } else 
 			if (strstr(ReceiveBuffer, "set-vgs-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				float Vgs_mV = strtol(location, &location, 10);
