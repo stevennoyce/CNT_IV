@@ -235,10 +235,10 @@ class PCB2v14(SourceMeasureUnit):
 			print(self.getResponse())
 
 	def setVds(self, voltage):
-		self.setParameter("set-vds {}!".format(voltage))
+		self.setParameter("set-vds-mv {}!".format(voltage*1000))
 
 	def setVgs(self, voltage):
-		self.setParameter("set-vgs {}!".format(voltage))
+		self.setParameter("set-vgs-mv {}!".format(voltage*1000))
 
 	def takeMeasurement(self):
 		self.setParameter('measure !')
