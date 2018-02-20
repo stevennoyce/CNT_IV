@@ -462,11 +462,16 @@ void Set_Vds(float voltage) {
 }
 
 void Set_Vgs_mV(float mV) {
-	Set_Vgs_Rel(mV/1000.0);
+	float V = mV/1000.0;
+	Set_Vgs(V);
+	
+	sprintf(TransmitBuffer, "# Vgs set to %f V\r\n", V);
+	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	UART_1_PutString(TransmitBuffer);
 }
 
 void Set_Vds_mV(float mV) {
-	Set_Vds_Rel(mV/1000.0);
+	Set_Vds(mV/1000.0);
 }
 
 float Get_Ref() {
