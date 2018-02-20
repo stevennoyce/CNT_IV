@@ -44,7 +44,7 @@ uint8 Compliance_Reached;
 int16 Vgs_Index_Goal_Relative;
 int16 Vds_Index_Goal_Relative;
 
-uint32 Current_Measurement_Sample_Count;
+// uint32 Current_Measurement_Sample_Count;
 
 void Setup_Selector_I2C_Struct(struct Selector_I2C_Struct *selector) {
 	selector->write.subAddress = 1;
