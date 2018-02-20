@@ -1032,6 +1032,7 @@ int main(void) {
 				sprintf(TransmitBuffer, "# Connected intermediates\r\n");
 				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 				UART_1_PutString(TransmitBuffer);
+			} else 
 			if (strstr(ReceiveBuffer, "Set_Current_Measurement_Sample_Count ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint32 sampleCount = strtol(location, &location, 10);
