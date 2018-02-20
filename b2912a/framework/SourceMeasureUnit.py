@@ -210,7 +210,7 @@ class PCB2v14(SourceMeasureUnit):
 		self.ser.write( str(parameter).encode('UTF-8') )
 		time.sleep(0.1)
 
-	def getResponse(self)
+	def getResponse(self):
 		time.sleep(0.1)
 		return self.ser.readline().decode(encoding='UTF-8')
 
@@ -254,7 +254,7 @@ class PCB2v14(SourceMeasureUnit):
 
 		if(src1start == src1stop and src2start == src2stop):
 			self.setParameter('measure-multiple !')
-			while(self.ser.in_waiting)
+			while(self.ser.in_waiting):
 				response = self.getResponse()
 				data = self.formatMeasurement(response)
 				vds_data.append(data['V_ds'])

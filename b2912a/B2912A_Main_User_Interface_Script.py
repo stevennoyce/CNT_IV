@@ -39,7 +39,7 @@ runTypes = {
 }
 
 default_parameters = {
-	'MeasurementSystem':['B2912A','PCB2v14'][0],
+	'MeasurementSystem':['B2912A','PCB2v14'][1],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'dataFolder':'data/',
@@ -48,12 +48,12 @@ default_parameters = {
 	'NPLC':1,
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
-		'runFastSweep': True,
-		'runDataPoints': 200,
+		'runFastSweep': False,
+		'runDataPoints': 60,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-15.0,
-		'gateVoltageMaximum':	15.0
+		'gateVoltageMinimum':	-3.5,
+		'gateVoltageMaximum':	3.5
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -150,7 +150,7 @@ def runAction(parameters):
 
 		if(parameters['MeasurementSystem'] == 'B2912A'):
 			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
-		elif(parameters['MeasurementSystem'] == ''):
+		elif(parameters['MeasurementSystem'] == 'PCB2v14'):
 			smu_instance = smu.getConnectionToPCB()
 		else:
 			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, etc)")
