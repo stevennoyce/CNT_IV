@@ -30,7 +30,7 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '15-16'
 else:
-	chipID = 'C131H'
+	chipID = 'C127Etest'
 	deviceID = '1-2'
 
 runTypes = {
@@ -49,7 +49,7 @@ default_parameters = {
 	'MeasurementSystem':['B2912A','PCB2v14'][1],
 	'chipID':chipID,
 	'deviceID':deviceID,
-	'deviceRange':devicesInRange(1,32,skip=False),
+	'deviceRange':devicesInRange(1,32,skip=True),
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
