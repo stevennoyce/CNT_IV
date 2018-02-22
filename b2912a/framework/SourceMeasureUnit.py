@@ -17,7 +17,7 @@ def getConnectionFromVisa(NPLC, defaultComplianceCurrent, smuTimeout=60000):
 	return B2912A(instance, NPLC, defaultComplianceCurrent)
 
 def getConnectionToPCB():
-	ser = pySerial.Serial('/dev/tty.HC-05-DevB', 115200, timeout=0.5)
+	ser = pySerial.Serial('COM7', 115200, timeout=0.5)
 	return PCB2v14(ser)
 
 # class SimulationSMU(SourceMeasureUnit):
