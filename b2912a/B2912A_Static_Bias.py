@@ -21,7 +21,6 @@ from framework import SourceMeasureUnit as smu
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['biasTime'])+' seconds...')
 
-	dlu.makeFolder(parameters['deviceDirectory'])
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
 
 	if(parameters['StaticBias']['delayBeforeApplyingVoltage'] > 0):
@@ -55,10 +54,10 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint, biasTime, steps):
-	voltage1s = []
-	current1s = []
-	voltage2s = []
-	current2s = []
+	vds_data = []
+	id_data = []
+	vgs_data = []
+	ig_data = []
 	timestamps = []
 
 	for i in range(steps):
@@ -66,20 +65,20 @@ def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint,
 		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, timeBetweenMeasurements*60/1.5, NPLC)
 		timestamp = time.time()
 		
-		voltage1s.append(np.mean(measurements['Vds_data']))
-		current1s.append(np.mean(measurements['Id_data']))
-		voltage2s.append(np.mean(measurements['Vgs_data']))
-		current2s.append(np.mean(measurements['Ig_data']))
+		vds_data.append(np.mean(measurements['Vds_data']))
+		id_data.append(np.mean(measurements['Id_data']))
+		vgs_data.append(np.mean(measurements['Vgs_data']))
+		ig_data.append(np.mean(measurements['Ig_data']))
 		timestamps.append(timestamp)
 
 		print('\r[' + int(i*70.0/steps)*'=' + (70-int(i*70.0/steps)-1)*' ' + ']', end='')
 	print('')
 
 	return {
-		'voltage1s':voltage1s,
-		'current1s':current1s,
-		'voltage2s':voltage2s,
-		'current2s':current2s,
+		'voltage1s':vds_data,
+		'current1s':id_data,
+		'voltage2s':vgs_data,
+		'current2s':ig_data,
 		'timestamps':timestamps
 	}
 

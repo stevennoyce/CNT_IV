@@ -40,7 +40,6 @@ from framework import SourceMeasureUnit as smu
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['BurnOut']['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['BurnOut']['drainVoltageMaxPoint'])+'V')
 	
-	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.initCSV(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'])
 	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
 
@@ -70,10 +69,10 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, points):
 	current1_threshold = -1
 	burned = False
-	voltage1s = []
-	current1s = []
-	voltage2s = []
-	current2s = []
+	vds_data = []
+	id_data = []
+	vgs_data = []
+	ig_data = []
 	timestamps = []
 
 	drainVoltages = dgu.stepValues(voltageStart, voltageSetPoint, voltagePlateaus, points)
@@ -82,28 +81,28 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 		smu_instance.setVds(drainVoltage)
 		measurement = smu_instance.takeMeasurement()
 
-		voltage1 = measurement['V_ds']
-		current1 = measurement['I_d']
-		voltage2 = measurement['V_gs']
-		current2 = measurement['I_g']
+		v_ds = measurement['V_ds']
+		i_d = measurement['I_d']
+		v_gs = measurement['V_gs']
+		i_g = measurement['I_g']
 		timestamp = time.time()
 
-		csvData = [timestamp, voltage1, current1, voltage2, current2]
+		csvData = [timestamp, v_ds, i_d, v_gs, i_g]
 		dlu.saveCSV(workingDirectory, saveFileName, csvData)
 
-		voltage1s.append(voltage1)
-		current1s.append(current1)
-		voltage2s.append(voltage2)
-		current2s.append(current2)
+		vds_data.append(v_ds)
+		id_data.append(i_d)
+		vgs_data.append(v_gs)
+		ig_data.append(i_g)
 		timestamps.append(timestamp)
 		
-		current1_threshold = np.percentile(np.array(current1s), 90) * thresholdProportion
-		current1_recent_measurements = [current1]
+		id_threshold = np.percentile(np.array(id_data), 90) * thresholdProportion
+		id_recent_measurements = [i_d]
 
 		if(drainVoltages[i] == drainVoltages[i-1]):
-			current1_recent_measurements = current1s[-3:]
+			id_recent_measurements = id_data[-3:]
 
-		if(thresholdCrossed(current1_threshold, current1_recent_measurements, drainVoltages[i], minimumAppliedDrainVoltage)):
+		if(thresholdCrossed(id_threshold, id_recent_measurements, drainVoltages[i], minimumAppliedDrainVoltage)):
 			burned = True
 			break
 			
@@ -111,14 +110,14 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 	smu_instance.rampDrainVoltage(drainVoltage, 0, 20)
 
 	return {
-		'voltage1s':voltage1s,
-		'current1s':current1s,
-		'voltage2s':voltage2s,
-		'current2s':current2s,
+		'voltage1s':vds_data,
+		'current1s':id_data,
+		'voltage2s':vgs_data,
+		'current2s':ig_data,
 		'timestamps':timestamps,
 		'drainVoltages':drainVoltages,
 		'didBurnOut':burned,
-		'thresholdCurrent':current1_threshold
+		'thresholdCurrent':id_threshold
 	}
 
 def thresholdCrossed(threshold, recent_measurements, drainVoltage, minimumAppliedDrainVoltage):

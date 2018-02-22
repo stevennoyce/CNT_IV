@@ -239,12 +239,13 @@ def initSMU(parameters):
 
 # *** User Interface ***
 
+# Present a dictionary of options to the user and get their choice.
 def selectFromDictionary(titleString, dictionary, promptString):
 	print(titleString)
 	print_dict(dictionary, 0)
 	return input(promptString)
 
-# Print a nicely formatted dictionary
+# Print a nicely formatted dictionary.
 def print_dict(dictionary, numtabs):
 	keys = list(dictionary.keys())
 	for i in range(len(keys)):

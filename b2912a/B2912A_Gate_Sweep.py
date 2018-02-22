@@ -36,7 +36,6 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
-	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.initCSV(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'])
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
