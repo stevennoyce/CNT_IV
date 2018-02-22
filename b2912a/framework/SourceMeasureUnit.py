@@ -237,6 +237,7 @@ class PCB2v14(SourceMeasureUnit):
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
 		while (self.ser.in_waiting):
 			print(self.getResponse())
+			time.sleep(0.1)
 
 	def setVds(self, voltage):
 		self.setParameter("set-vds-mv {:.0f}!".format(voltage*1000))

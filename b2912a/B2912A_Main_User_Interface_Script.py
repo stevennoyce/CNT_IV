@@ -30,8 +30,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C127P'
 	deviceID = '15-16'
 else:
-	chipID = 'C127Etest'
-	deviceID = '1-2'
+	chipID = 'C127E'
+	deviceID = '27-28'
 
 runTypes = {
 	0:'Quit',
@@ -49,7 +49,7 @@ default_parameters = {
 	'MeasurementSystem':['B2912A','PCB2v14'][1],
 	'chipID':chipID,
 	'deviceID':deviceID,
-	'deviceRange':devicesInRange(1,32,skip=True),
+	'deviceRange':[],#devicesInRange(1,32,skip=True),
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
@@ -57,7 +57,7 @@ default_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
-		'runDataPoints': 120,
+		'runDataPoints': 200,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
@@ -109,13 +109,14 @@ default_parameters = {
 	},
 	'DeviceHistory':{
 		'saveFiguresGenerated': True,
+		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
 		'plotBurnOuts':   True,
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 13,
-		'excludeDataAfterJSONExperimentNumber':  13,
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
@@ -129,32 +130,24 @@ default_parameters = {
 def main(parameters):
 	while(True):
 		os.system('cls' if os.name == 'nt' else 'clear')
-		print('Actions: ')
-		print_dict(runTypes, 0)
-		choice = int(input('Choose an action (0,1,2,...): '))
 
+		# Get user's action selection
+		choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
 		if(choice == 0):
 			break
 
+		# Allow user to confirm the parameters before continuing
 		parameters = dict(default_parameters)
 		parameters['runType'] = runTypes[choice]
-
-		print('Parameters: ')
-		print_dict(parameters, 0)
-		confirmation = str(input('Are parameters correct? (y/n): '))
+		confirmation = str(selectFromDictionary('Parameters: ', parameters, 'Are parameters correct? (y/n): '))
 		if(confirmation != 'y'):
 			break
-		
-		smu_instance = None
-		if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-			if(parameters['MeasurementSystem'] == 'B2912A'):
-				smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
-			elif(parameters['MeasurementSystem'] == 'PCB2v14'):
-				smu_instance = smu.getConnectionToPCB()
-			else:
-				raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, etc)")
 
-		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0)):
+		# Initialize measurement system
+		smu_instance = initSMU(parameters)
+		
+		# Run specified action:
+		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
 			for device in parameters['deviceRange']:
 				parameters = dict(default_parameters)
 				parameters['runType'] = runTypes[choice]
@@ -163,46 +156,95 @@ def main(parameters):
 		else:
 			runAction(parameters, smu_instance)
 
+# Run generic user action
 def runAction(parameters, smu_instance):
 	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
-	
-	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
-		smu_instance.setDevice(parameters['deviceID'])
-		parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 
-	if(parameters['runType'] == 'GateSweep'):
-		gateSweepScript.run(parameters, smu_instance)
-	elif(parameters['runType'] == 'BurnOut'):
-		burnOutScript.run(parameters, smu_instance)
-	elif(parameters['runType'] == 'AutoBurnOut'):
-		autoBurnScript.run(parameters, smu_instance)
-	elif(parameters['runType'] == 'StaticBias'):
-		staticBiasScript.run(parameters, smu_instance)
-	elif(parameters['runType'] == 'AutoGateSweep'):
-		autoGateScript.run(parameters, smu_instance)
-	elif(parameters['runType'] == 'AutoStaticBias'):
-		autoBiasScript.run(parameters, smu_instance)
-	elif(parameters['runType'] == 'DeviceHistory'):
-		deviceHistoryScript.run(parameters)
-	elif(parameters['runType'] == 'ChipHistory'):
+	if(parameters['runType'] == ['DeviceHistory']):
+		runDeviceHistory(parameters)
+	elif(parameters['runType'] == ['ChipHistory']):
 		chipHistoryScript.run(parameters)
 	else:
-		raise NotImplementedError("Invalid action for the Source Measure Unit")
-	
-	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		runSMU(parameters, smu_instance)
+
+# Run an action that interfaces with the SMU.
+def runSMU(parameters, smu_instance):
+	dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
+	smu_instance.setDevice(parameters['deviceID'])
+
+	try:
+		if(parameters['runType'] == 'GateSweep'):
+			gateSweepScript.run(parameters, smu_instance)
+		elif(parameters['runType'] == 'BurnOut'):
+			burnOutScript.run(parameters, smu_instance)
+		elif(parameters['runType'] == 'AutoBurnOut'):
+			autoBurnScript.run(parameters, smu_instance)
+		elif(parameters['runType'] == 'StaticBias'):
+			staticBiasScript.run(parameters, smu_instance)
+		elif(parameters['runType'] == 'AutoGateSweep'):
+			autoGateScript.run(parameters, smu_instance)
+		elif(parameters['runType'] == 'AutoStaticBias'):
+			autoBiasScript.run(parameters, smu_instance)
+		else:
+			raise NotImplementedError("Invalid action for the Source Measure Unit")
+	except:
 		smu_instance.rampDownVoltages()
-		parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
-		dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+		raise
+
+	smu_instance.rampDownVoltages()
+	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+	plotPoster.postPlots(parameters)
+
+# Run a "Device History" action.
+def runDeviceHistory(parameters):
+	parameters['startIndexes'] = {
+		'index': parameters['DeviceHistory']['excludeDataBeforeJSONIndex']
+		'experimentNumber': parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber']
+	}
+	parameters['endIndexes'] = {
+		'index': min(parameters['DeviceHistory']['excludeDataBeforeJSONIndex'], dlu.loadJSONIndex(parameters['deviceDirectory'])['index'])
+		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
+	} 
+
+	deviceHistoryScript.run(parameters)
+
+	if(parameters['DeviceHistory']['postFiguresGenerated']):
 		plotPoster.postPlots(parameters)
-	
 
 
-# *** Helper Functions ***
 
+
+
+# *** SMU Connection ***
+
+# Get a connection to the SMU specified in parameters.
+def initSMU(parameters):
+	smu_instance = None
+	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		if(parameters['MeasurementSystem'] == 'B2912A'):
+			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
+		elif(parameters['MeasurementSystem'] == 'PCB2v14'):
+			smu_instance = smu.getConnectionToPCB()
+		else:
+			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
+	return smu_instance
+
+
+
+
+# *** User Interface ***
+
+def selectFromDictionary(titleString, dictionary, promptString):
+	print(titleString)
+	print_dict(dictionary, 0)
+	return input(promptString)
+
+# Print a nicely formatted dictionary
 def print_dict(dictionary, numtabs):
 	keys = list(dictionary.keys())
 	for i in range(len(keys)):
