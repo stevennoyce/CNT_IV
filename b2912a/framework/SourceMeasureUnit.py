@@ -262,7 +262,7 @@ class PCB2v14(SourceMeasureUnit):
 		ig_data = []
 
 		if(src1start == src1stop and src2start == src2stop):
-			self.setParameter('measure-multiple !')
+			self.setParameter('measure-multiple {:d}!'.format(points))
 			while(self.ser.in_waiting):
 				response = self.getResponse()
 				data = self.formatMeasurement(response)
