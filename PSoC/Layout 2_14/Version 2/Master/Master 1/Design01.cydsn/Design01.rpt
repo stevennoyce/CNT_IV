@@ -1,13 +1,13 @@
-Loading plugins phase: Elapsed time ==> 0s.687ms
+Loading plugins phase: Elapsed time ==> 0s.170ms
 <CYPRESSTAG name="CyDsfit arguments...">
-cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 -s E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 -s C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 </CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 6s.749ms
+Elaboration phase: Elapsed time ==> 2s.868ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.358ms
+HDL generation phase: Elapsed time ==> 0s.159ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -25,23 +25,23 @@ HDL generation phase: Elapsed time ==> 0s.358ms
 ======================================================================
 Compiling:  Design01.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  Design01.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  Design01.v
 Program  :   vlogfe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Fri Nov 03 09:53:45 2017
+Thu Feb 15 13:43:45 2018
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 Design01.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Fri Nov 03 09:53:45 2017
+Thu Feb 15 13:43:45 2018
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'
@@ -100,11 +100,11 @@ vlogfe:  No errors.
 ======================================================================
 Compiling:  Design01.v
 Program  :   tovif
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Fri Nov 03 09:53:46 2017
+Thu Feb 15 13:43:46 2018
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -115,9 +115,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
-Linking 'E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_analog_virtualmux_v1_0\cy_analog_virtualmux_v1_0.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
@@ -139,11 +139,11 @@ tovif:  No errors.
 ======================================================================
 Compiling:  Design01.v
 Program  :   topld
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Fri Nov 03 09:53:48 2017
+Thu Feb 15 13:43:47 2018
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -154,9 +154,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
-Linking 'E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_analog_virtualmux_v1_0\cy_analog_virtualmux_v1_0.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
@@ -269,7 +269,7 @@ Detecting unused logic.
 	\UART_1:BUART:sRX:MODULE_7:gt\
 	\UART_1:BUART:sRX:MODULE_7:gte\
 	\UART_1:BUART:sRX:MODULE_7:lte\
-	Net_128
+	Net_148
 
 
 Deleted 93 User equations/components.
@@ -856,16 +856,16 @@ topld:  No errors.
 
 CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
-Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya "-.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj" -dcpsoc3 Design01.v -verilog
+Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya "-.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj" -dcpsoc3 Design01.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 5s.297ms
+Warp synthesis phase: Elapsed time ==> 3s.196ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.1.0.3210, Family: PSoC3, Started at: Friday, 03 November 2017 09:53:49
-Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\Research\illumina\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 Design01.v -verilog
+cyp3fit: V4.1.0.3210, Family: PSoC3, Started at: Thursday, 15 February 2018 13:43:48
+Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 Design01.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.265ms
+Design parsing phase: Elapsed time ==> 0s.085ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -2954,7 +2954,7 @@ Design Equations
 
     interrupt: Name =\ADC_DelSig_1:IRQ\
         PORT MAP (
-            interrupt => Net_21 );
+            interrupt => Net_140 );
         Properties:
         {
             int_type = "10"
@@ -2981,7 +2981,7 @@ Design Equations
 
     interrupt: Name =\ADC_SAR_1:IRQ\
         PORT MAP (
-            interrupt => Net_130 );
+            interrupt => Net_150 );
         Properties:
         {
             int_type = "10"
@@ -2990,7 +2990,7 @@ Design Equations
 
     interrupt: Name =\ADC_SAR_2:IRQ\
         PORT MAP (
-            interrupt => Net_135 );
+            interrupt => Net_155 );
         Properties:
         {
             int_type = "10"
@@ -3037,8 +3037,8 @@ Analog (SC/CT) Blocks         :    1 :    3 :    4 : 25.00 %
 DAC                           :      :      :      :        
   VIDAC                       :    3 :    1 :    4 : 75.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 4s.577ms
-Tech Mapping phase: Elapsed time ==> 5s.015ms
+Technology Mapping: Elapsed time ==> 0s.353ms
+Tech Mapping phase: Elapsed time ==> 0s.524ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Initial Analog Placement Results:
@@ -3092,7 +3092,7 @@ VIDAC[1]@[FFB(VIDAC,1)] : \VDAC_Ref:viDAC8\
 VIDAC[0]@[FFB(VIDAC,0)] : \VDAC_Vds:viDAC8\
 VIDAC[3]@[FFB(VIDAC,3)] : \VDAC_Vgs:viDAC8\
 
-Analog Placement phase: Elapsed time ==> 3s.890ms
+Analog Placement phase: Elapsed time ==> 2s.642ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 Net "Net_112" overuses wire "AGL[7]"
@@ -3111,7 +3111,7 @@ Net "Net_104" overuses wire "dsm0+ Wire"
 Net "Net_104" overuses wire "AGL[3]"
 Net "Net_25" overuses wire "AGL[3]"
 Net "Net_27" overuses wire "dsm0+ Wire"
-Analog Routing phase: Elapsed time ==> 0s.188ms
+Analog Routing phase: Elapsed time ==> 0s.084ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Code Generation">
 ============ Analog Final Answer Routes ============
@@ -3312,11 +3312,11 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = False
 IsVddaHalfUsedForSar1 = False
-Analog Code Generation phase: Elapsed time ==> 0s.655ms
+Analog Code Generation phase: Elapsed time ==> 0s.346ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
-I2076: Total run-time: 3.6 sec.
+I2076: Total run-time: 2.8 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -3340,14 +3340,14 @@ PLD Packing Summary
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
 </CYPRESSTAG>
-PLD Packing: Elapsed time ==> 0s.125ms
+PLD Packing: Elapsed time ==> 0s.025ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Partitioning">
 <CYPRESSTAG name="Initial Partitioning Summary">
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.437ms
+Partitioning: Elapsed time ==> 0s.214ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -4961,7 +4961,7 @@ Intr container @ [IntrContainer=(0)]:
   Intr@ [IntrContainer=(0)][IntrId=(0)] 
     interrupt: Name =\ADC_SAR_1:IRQ\
         PORT MAP (
-            interrupt => Net_130 );
+            interrupt => Net_150 );
         Properties:
         {
             int_type = "10"
@@ -4970,7 +4970,7 @@ Intr container @ [IntrContainer=(0)]:
   Intr@ [IntrContainer=(0)][IntrId=(1)] 
     interrupt: Name =\ADC_SAR_2:IRQ\
         PORT MAP (
-            interrupt => Net_135 );
+            interrupt => Net_155 );
         Properties:
         {
             int_type = "10"
@@ -5069,7 +5069,7 @@ Intr container @ [IntrContainer=(0)]:
   Intr@ [IntrContainer=(0)][IntrId=(29)] 
     interrupt: Name =\ADC_DelSig_1:IRQ\
         PORT MAP (
-            interrupt => Net_21 );
+            interrupt => Net_140 );
         Properties:
         {
             int_type = "10"
@@ -5811,7 +5811,7 @@ Decimator group 0:
             mod_dat_0 => \ADC_DelSig_1:mod_dat_0\ ,
             ext_start => __ONE__ ,
             modrst => \ADC_DelSig_1:mod_reset\ ,
-            interrupt => Net_21 );
+            interrupt => Net_140 );
         Properties:
         {
             cy_registers = ""
@@ -5941,7 +5941,7 @@ SAR group 0:
             clock => \ADC_SAR_2:Net_385\ ,
             pump_clock => \ADC_SAR_2:Net_385\ ,
             irq => \ADC_SAR_2:Net_252\ ,
-            next => Net_138 ,
+            next => Net_158 ,
             data_out_udb_11 => \ADC_SAR_2:Net_207_11\ ,
             data_out_udb_10 => \ADC_SAR_2:Net_207_10\ ,
             data_out_udb_9 => \ADC_SAR_2:Net_207_9\ ,
@@ -5954,7 +5954,7 @@ SAR group 0:
             data_out_udb_2 => \ADC_SAR_2:Net_207_2\ ,
             data_out_udb_1 => \ADC_SAR_2:Net_207_1\ ,
             data_out_udb_0 => \ADC_SAR_2:Net_207_0\ ,
-            eof_udb => Net_135 );
+            eof_udb => Net_155 );
         Properties:
         {
             cy_registers = ""
@@ -5970,7 +5970,7 @@ SAR group 0:
             clock => \ADC_SAR_1:Net_385\ ,
             pump_clock => \ADC_SAR_1:Net_385\ ,
             irq => \ADC_SAR_1:Net_252\ ,
-            next => Net_133 ,
+            next => Net_153 ,
             data_out_udb_11 => \ADC_SAR_1:Net_207_11\ ,
             data_out_udb_10 => \ADC_SAR_1:Net_207_10\ ,
             data_out_udb_9 => \ADC_SAR_1:Net_207_9\ ,
@@ -5983,7 +5983,7 @@ SAR group 0:
             data_out_udb_2 => \ADC_SAR_1:Net_207_2\ ,
             data_out_udb_1 => \ADC_SAR_1:Net_207_1\ ,
             data_out_udb_0 => \ADC_SAR_1:Net_207_0\ ,
-            eof_udb => Net_130 );
+            eof_udb => Net_150 );
         Properties:
         {
             cy_registers = ""
@@ -6023,33 +6023,33 @@ Port | Pin | Fixed |      Type |       Drive Mode |                Name | Connec
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 4s.579ms
-Digital Placement phase: Elapsed time ==> 10s.157ms
+Digital component placer commit/Report: Elapsed time ==> 0s.153ms
+Digital Placement phase: Elapsed time ==> 4s.320ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "Design01_r.vh2" --pcf-path "Design01.pco" --des-name "Design01" --dsf-path "Design01.dsf" --sdc-path "Design01.sdc" --lib-path "Design01_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 6s.545ms
+Digital Routing phase: Elapsed time ==> 4s.430ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 1s.187ms
+Bitstream Generation phase: Elapsed time ==> 0s.396ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
-Bitstream Verification phase: Elapsed time ==> 0s.281ms
+Bitstream Verification phase: Elapsed time ==> 0s.092ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in Design01_timing.html.
-Static timing analysis phase: Elapsed time ==> 1s.422ms
+Static timing analysis phase: Elapsed time ==> 0s.883ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
-Data reporting phase: Elapsed time ==> 0s.374ms
+Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.671ms
+Design database save phase: Elapsed time ==> 0s.507ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 30s.812ms
+cydsfit: Elapsed time ==> 14s.375ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 30s.828ms
-API generation phase: Elapsed time ==> 9s.843ms
-Dependency generation phase: Elapsed time ==> 0s.125ms
-Cleanup phase: Elapsed time ==> 0s.077ms
+Fitter phase: Elapsed time ==> 14s.396ms
+API generation phase: Elapsed time ==> 6s.947ms
+Dependency generation phase: Elapsed time ==> 0s.149ms
+Cleanup phase: Elapsed time ==> 0s.054ms

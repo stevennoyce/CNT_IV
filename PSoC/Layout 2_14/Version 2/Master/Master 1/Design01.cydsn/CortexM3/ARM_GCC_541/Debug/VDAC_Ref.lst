@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
   28:Generated_Source\PSoC5/VDAC_Ref.c **** 
   29:Generated_Source\PSoC5/VDAC_Ref.c **** #if (CY_PSOC5A)
   30:Generated_Source\PSoC5/VDAC_Ref.c ****     static uint8 VDAC_Ref_restoreVal = 0u;
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 2
 
 
   31:Generated_Source\PSoC5/VDAC_Ref.c **** #endif /* CY_PSOC5A */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
   85:Generated_Source\PSoC5/VDAC_Ref.c **** * Parameters:
   86:Generated_Source\PSoC5/VDAC_Ref.c **** *  void
   87:Generated_Source\PSoC5/VDAC_Ref.c **** *
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 3
 
 
   88:Generated_Source\PSoC5/VDAC_Ref.c **** * Return:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  111:Generated_Source\PSoC5/VDAC_Ref.c **** 
  112:Generated_Source\PSoC5/VDAC_Ref.c **** 
  113:Generated_Source\PSoC5/VDAC_Ref.c **** /*******************************************************************************
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 4
 
 
  114:Generated_Source\PSoC5/VDAC_Ref.c **** * Function Name: VDAC_Ref_Start
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  168:Generated_Source\PSoC5/VDAC_Ref.c **** void VDAC_Ref_Stop(void) 
  169:Generated_Source\PSoC5/VDAC_Ref.c **** {
   59              		.loc 1 169 0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 5
 
 
   60              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  194:Generated_Source\PSoC5/VDAC_Ref.c **** * Return:
  195:Generated_Source\PSoC5/VDAC_Ref.c **** *  void
  196:Generated_Source\PSoC5/VDAC_Ref.c **** *
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 6
 
 
  197:Generated_Source\PSoC5/VDAC_Ref.c **** * Theory:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  218:Generated_Source\PSoC5/VDAC_Ref.c **** *  Range: Sets one of Three valid ranges.
  219:Generated_Source\PSoC5/VDAC_Ref.c **** *
  220:Generated_Source\PSoC5/VDAC_Ref.c **** * Return:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 7
 
 
  221:Generated_Source\PSoC5/VDAC_Ref.c **** *  void 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  137              		.cfi_endproc
  138              	.LFE6:
  139              		.size	VDAC_Ref_SetValue, .-VDAC_Ref_SetValue
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 8
 
 
  140              		.section	.text.VDAC_Ref_DacTrim,"ax",%progbits
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  160              	.LVL4:
  161 000c 0633     		adds	r3, r3, #6
  162              	.LVL5:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 9
 
 
  163 000e 93F83031 		ldrb	r3, [r3, #304]	@ zero_extendqisi2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  213              		.cfi_endproc
  214              	.LFE5:
  215              		.size	VDAC_Ref_SetRange, .-VDAC_Ref_SetRange
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 10
 
 
  216              		.section	.text.VDAC_Ref_Init,"ax",%progbits
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  264              		.cfi_startproc
  265              		@ args = 0, pretend = 0, frame = 0
  266              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 11
 
 
  267 0000 08B5     		push	{r3, lr}
@@ -656,9 +656,9 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  314 000b 01       		.uleb128 0x1
  315 000c 5A000000 		.4byte	.LASF25
  316 0010 0C       		.byte	0xc
- 317 0011 28020000 		.4byte	.LASF26
- 318 0015 E8000000 		.4byte	.LASF27
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 12
+ 317 0011 4D020000 		.4byte	.LASF26
+ 318 0015 A2010000 		.4byte	.LASF27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 12
 
 
  319 0019 00000000 		.4byte	.Ldebug_ranges0+0
@@ -667,7 +667,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  322 0025 02       		.uleb128 0x2
  323 0026 01       		.byte	0x1
  324 0027 06       		.byte	0x6
- 325 0028 0A020000 		.4byte	.LASF0
+ 325 0028 2F020000 		.4byte	.LASF0
  326 002c 02       		.uleb128 0x2
  327 002d 01       		.byte	0x1
  328 002e 08       		.byte	0x8
@@ -675,27 +675,27 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  330 0033 02       		.uleb128 0x2
  331 0034 02       		.byte	0x2
  332 0035 05       		.byte	0x5
- 333 0036 F1010000 		.4byte	.LASF2
+ 333 0036 16020000 		.4byte	.LASF2
  334 003a 02       		.uleb128 0x2
  335 003b 02       		.byte	0x2
  336 003c 07       		.byte	0x7
- 337 003d 49010000 		.4byte	.LASF3
+ 337 003d FF000000 		.4byte	.LASF3
  338 0041 02       		.uleb128 0x2
  339 0042 04       		.byte	0x4
  340 0043 05       		.byte	0x5
- 341 0044 01020000 		.4byte	.LASF4
+ 341 0044 26020000 		.4byte	.LASF4
  342 0048 02       		.uleb128 0x2
  343 0049 04       		.byte	0x4
  344 004a 07       		.byte	0x7
- 345 004b 37010000 		.4byte	.LASF5
+ 345 004b ED000000 		.4byte	.LASF5
  346 004f 02       		.uleb128 0x2
  347 0050 08       		.byte	0x8
  348 0051 05       		.byte	0x5
- 349 0052 DE010000 		.4byte	.LASF6
+ 349 0052 8F010000 		.4byte	.LASF6
  350 0056 02       		.uleb128 0x2
  351 0057 08       		.byte	0x8
  352 0058 07       		.byte	0x7
- 353 0059 B7010000 		.4byte	.LASF7
+ 353 0059 6D010000 		.4byte	.LASF7
  354 005d 03       		.uleb128 0x3
  355 005e 04       		.byte	0x4
  356 005f 05       		.byte	0x5
@@ -703,9 +703,9 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  358 0064 02       		.uleb128 0x2
  359 0065 04       		.byte	0x4
  360 0066 07       		.byte	0x7
- 361 0067 98010000 		.4byte	.LASF8
+ 361 0067 4E010000 		.4byte	.LASF8
  362 006b 04       		.uleb128 0x4
- 363 006c FB010000 		.4byte	.LASF12
+ 363 006c 20020000 		.4byte	.LASF12
  364 0070 02       		.byte	0x2
  365 0071 9201     		.2byte	0x192
  366 0073 2C000000 		.4byte	0x2c
@@ -716,23 +716,23 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  371 007e 02       		.uleb128 0x2
  372 007f 08       		.byte	0x8
  373 0080 04       		.byte	0x4
- 374 0081 62010000 		.4byte	.LASF10
+ 374 0081 18010000 		.4byte	.LASF10
  375 0085 02       		.uleb128 0x2
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 13
 
 
  376 0086 01       		.byte	0x1
  377 0087 08       		.byte	0x8
- 378 0088 EC010000 		.4byte	.LASF11
+ 378 0088 9D010000 		.4byte	.LASF11
  379 008c 04       		.uleb128 0x4
- 380 008d D3010000 		.4byte	.LASF13
+ 380 008d E8000000 		.4byte	.LASF13
  381 0091 02       		.byte	0x2
  382 0092 3C02     		.2byte	0x23c
  383 0094 98000000 		.4byte	0x98
  384 0098 05       		.uleb128 0x5
  385 0099 6B000000 		.4byte	0x6b
  386 009d 06       		.uleb128 0x6
- 387 009e 88010000 		.4byte	.LASF14
+ 387 009e 3E010000 		.4byte	.LASF14
  388 00a2 01       		.byte	0x1
  389 00a3 60       		.byte	0x60
  390 00a4 00000000 		.4byte	.LFB1
@@ -740,7 +740,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  392 00ac 01       		.uleb128 0x1
  393 00ad 9C       		.byte	0x9c
  394 00ae 06       		.uleb128 0x6
- 395 00af 7A010000 		.4byte	.LASF15
+ 395 00af 30010000 		.4byte	.LASF15
  396 00b3 01       		.byte	0x1
  397 00b4 A8       		.byte	0xa8
  398 00b5 00000000 		.4byte	.LFB3
@@ -748,7 +748,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  400 00bd 01       		.uleb128 0x1
  401 00be 9C       		.byte	0x9c
  402 00bf 07       		.uleb128 0x7
- 403 00c0 A5010000 		.4byte	.LASF16
+ 403 00c0 5B010000 		.4byte	.LASF16
  404 00c4 01       		.byte	0x1
  405 00c5 CA       		.byte	0xca
  406 00c6 00000000 		.4byte	.LFB4
@@ -757,14 +757,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  409 00cf 9C       		.byte	0x9c
  410 00d0 E4000000 		.4byte	0xe4
  411 00d4 08       		.uleb128 0x8
- 412 00d5 D8010000 		.4byte	.LASF18
+ 412 00d5 89010000 		.4byte	.LASF18
  413 00d9 01       		.byte	0x1
  414 00da CA       		.byte	0xca
  415 00db 6B000000 		.4byte	0x6b
  416 00df 00000000 		.4byte	.LLST0
  417 00e3 00       		.byte	0
  418 00e4 07       		.uleb128 0x7
- 419 00e5 16020000 		.4byte	.LASF17
+ 419 00e5 3B020000 		.4byte	.LASF17
  420 00e9 01       		.byte	0x1
  421 00ea FE       		.byte	0xfe
  422 00eb 00000000 		.4byte	.LFB6
@@ -778,13 +778,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  430 00ff FE       		.byte	0xfe
  431 0100 6B000000 		.4byte	0x6b
  432 0104 01       		.uleb128 0x1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 14
 
 
  433 0105 50       		.byte	0x50
  434 0106 00       		.byte	0
  435 0107 0A       		.uleb128 0xa
- 436 0108 69010000 		.4byte	.LASF20
+ 436 0108 1F010000 		.4byte	.LASF20
  437 010c 01       		.byte	0x1
  438 010d 2101     		.2byte	0x121
  439 010f 00000000 		.4byte	.LFB7
@@ -793,7 +793,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  442 0118 9C       		.byte	0x9c
  443 0119 2E010000 		.4byte	0x12e
  444 011d 0B       		.uleb128 0xb
- 445 011e CE010000 		.4byte	.LASF28
+ 445 011e 84010000 		.4byte	.LASF28
  446 0122 01       		.byte	0x1
  447 0123 2301     		.2byte	0x123
  448 0125 6B000000 		.4byte	0x6b
@@ -809,7 +809,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  458 013e 9C       		.byte	0x9c
  459 013f 5C010000 		.4byte	0x15c
  460 0143 08       		.uleb128 0x8
- 461 0144 5C010000 		.4byte	.LASF22
+ 461 0144 12010000 		.4byte	.LASF22
  462 0148 01       		.byte	0x1
  463 0149 E4       		.byte	0xe4
  464 014a 6B000000 		.4byte	0x6b
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  487 0182 34       		.byte	0x34
  488 0183 00       		.byte	0
  489 0184 0F       		.uleb128 0xf
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 15
 
 
  490 0185 18000000 		.4byte	.LVL11
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  544 0007 03       		.uleb128 0x3
  545 0008 0E       		.uleb128 0xe
  546 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 16
 
 
  547 000a 0E       		.uleb128 0xe
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  601 0040 3F       		.uleb128 0x3f
  602 0041 19       		.uleb128 0x19
  603 0042 03       		.uleb128 0x3
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 17
 
 
  604 0043 0E       		.uleb128 0xe
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  658 007b 17       		.uleb128 0x17
  659 007c 00       		.byte	0
  660 007d 00       		.byte	0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 18
 
 
  661 007e 09       		.uleb128 0x9
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  715 00b5 00       		.byte	0
  716 00b6 0C       		.uleb128 0xc
  717 00b7 898201   		.uleb128 0x4109
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 19
 
 
  718 00ba 00       		.byte	0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  772              		.section	.debug_loc,"",%progbits
  773              	.Ldebug_loc0:
  774              	.LLST0:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 20
 
 
  775 0000 00000000 		.4byte	.LVL0
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  827 000a 04       		.byte	0x4
  828 000b 00       		.byte	0
  829 000c 0000     		.2byte	0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 21
 
 
  830 000e 0000     		.2byte	0
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  875      5F696E69 
  875      74566172 
  875      00
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 22
 
 
  876              	.LASF19:
@@ -1299,116 +1299,121 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 1
  889      74696F6E 
  889      2D736563 
  889      74696F6E 
- 890              	.LASF27:
- 891 00e8 453A5C52 		.ascii	"E:\\Research\\illumina\\PSoC\\Layout 2_14\\Version "
- 891      65736561 
- 891      7263685C 
- 891      696C6C75 
- 891      6D696E61 
- 892 0116 325C4D61 		.ascii	"2\\Master\\Master 1\\Design01.cydsn\000"
- 892      73746572 
- 892      5C4D6173 
- 892      74657220 
- 892      315C4465 
- 893              	.LASF5:
- 894 0137 6C6F6E67 		.ascii	"long unsigned int\000"
- 894      20756E73 
- 894      69676E65 
- 894      6420696E 
- 894      7400
- 895              	.LASF3:
- 896 0149 73686F72 		.ascii	"short unsigned int\000"
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 23
+ 890              	.LASF13:
+ 891 00e8 72656738 		.ascii	"reg8\000"
+ 891      00
+ 892              	.LASF5:
+ 893 00ed 6C6F6E67 		.ascii	"long unsigned int\000"
+ 893      20756E73 
+ 893      69676E65 
+ 893      6420696E 
+ 893      7400
+ 894              	.LASF3:
+ 895 00ff 73686F72 		.ascii	"short unsigned int\000"
+ 895      7420756E 
+ 895      7369676E 
+ 895      65642069 
+ 895      6E7400
+ 896              	.LASF22:
+ 897 0112 72616E67 		.ascii	"range\000"
+ 897      6500
+ 898              	.LASF10:
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 23
 
 
- 896      7420756E 
- 896      7369676E 
- 896      65642069 
- 896      6E7400
- 897              	.LASF22:
- 898 015c 72616E67 		.ascii	"range\000"
- 898      6500
- 899              	.LASF10:
- 900 0162 646F7562 		.ascii	"double\000"
- 900      6C6500
- 901              	.LASF20:
- 902 0169 56444143 		.ascii	"VDAC_Ref_DacTrim\000"
- 902      5F526566 
- 902      5F446163 
- 902      5472696D 
- 902      00
- 903              	.LASF15:
- 904 017a 56444143 		.ascii	"VDAC_Ref_Stop\000"
- 904      5F526566 
- 904      5F53746F 
- 904      7000
- 905              	.LASF14:
- 906 0188 56444143 		.ascii	"VDAC_Ref_Enable\000"
- 906      5F526566 
- 906      5F456E61 
- 906      626C6500 
- 907              	.LASF8:
- 908 0198 756E7369 		.ascii	"unsigned int\000"
- 908      676E6564 
- 908      20696E74 
- 908      00
- 909              	.LASF16:
- 910 01a5 56444143 		.ascii	"VDAC_Ref_SetSpeed\000"
- 910      5F526566 
- 910      5F536574 
- 910      53706565 
- 910      6400
- 911              	.LASF7:
- 912 01b7 6C6F6E67 		.ascii	"long long unsigned int\000"
- 912      206C6F6E 
- 912      6720756E 
- 912      7369676E 
- 912      65642069 
- 913              	.LASF28:
- 914 01ce 6D6F6465 		.ascii	"mode\000"
- 914      00
- 915              	.LASF13:
- 916 01d3 72656738 		.ascii	"reg8\000"
- 916      00
- 917              	.LASF18:
- 918 01d8 73706565 		.ascii	"speed\000"
- 918      6400
- 919              	.LASF6:
- 920 01de 6C6F6E67 		.ascii	"long long int\000"
- 920      206C6F6E 
- 920      6720696E 
- 920      7400
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczfyCs9.s 			page 24
+ 899 0118 646F7562 		.ascii	"double\000"
+ 899      6C6500
+ 900              	.LASF20:
+ 901 011f 56444143 		.ascii	"VDAC_Ref_DacTrim\000"
+ 901      5F526566 
+ 901      5F446163 
+ 901      5472696D 
+ 901      00
+ 902              	.LASF15:
+ 903 0130 56444143 		.ascii	"VDAC_Ref_Stop\000"
+ 903      5F526566 
+ 903      5F53746F 
+ 903      7000
+ 904              	.LASF14:
+ 905 013e 56444143 		.ascii	"VDAC_Ref_Enable\000"
+ 905      5F526566 
+ 905      5F456E61 
+ 905      626C6500 
+ 906              	.LASF8:
+ 907 014e 756E7369 		.ascii	"unsigned int\000"
+ 907      676E6564 
+ 907      20696E74 
+ 907      00
+ 908              	.LASF16:
+ 909 015b 56444143 		.ascii	"VDAC_Ref_SetSpeed\000"
+ 909      5F526566 
+ 909      5F536574 
+ 909      53706565 
+ 909      6400
+ 910              	.LASF7:
+ 911 016d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 911      206C6F6E 
+ 911      6720756E 
+ 911      7369676E 
+ 911      65642069 
+ 912              	.LASF28:
+ 913 0184 6D6F6465 		.ascii	"mode\000"
+ 913      00
+ 914              	.LASF18:
+ 915 0189 73706565 		.ascii	"speed\000"
+ 915      6400
+ 916              	.LASF6:
+ 917 018f 6C6F6E67 		.ascii	"long long int\000"
+ 917      206C6F6E 
+ 917      6720696E 
+ 917      7400
+ 918              	.LASF11:
+ 919 019d 63686172 		.ascii	"char\000"
+ 919      00
+ 920              	.LASF27:
+ 921 01a2 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 921      73657273 
+ 921      5C467261 
+ 921      6E6B6C69 
+ 921      6E4C6162 
+ 922 01d1 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
+ 922      434E545F 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccOyUfFS.s 			page 24
 
 
- 921              	.LASF11:
- 922 01ec 63686172 		.ascii	"char\000"
- 922      00
- 923              	.LASF2:
- 924 01f1 73686F72 		.ascii	"short int\000"
- 924      7420696E 
- 924      7400
- 925              	.LASF12:
- 926 01fb 75696E74 		.ascii	"uint8\000"
- 926      3800
- 927              	.LASF4:
- 928 0201 6C6F6E67 		.ascii	"long int\000"
- 928      20696E74 
- 928      00
- 929              	.LASF0:
- 930 020a 7369676E 		.ascii	"signed char\000"
- 930      65642063 
- 930      68617200 
- 931              	.LASF17:
- 932 0216 56444143 		.ascii	"VDAC_Ref_SetValue\000"
- 932      5F526566 
- 932      5F536574 
- 932      56616C75 
- 932      6500
- 933              	.LASF26:
- 934 0228 47656E65 		.ascii	"Generated_Source\\PSoC5\\VDAC_Ref.c\000"
- 934      72617465 
- 934      645F536F 
- 934      75726365 
- 934      5C50536F 
- 935              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 922      49565C50 
+ 922      536F435C 
+ 922      4C61796F 
+ 923 01fe 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 923      65722031 
+ 923      5C446573 
+ 923      69676E30 
+ 923      312E6379 
+ 924              	.LASF2:
+ 925 0216 73686F72 		.ascii	"short int\000"
+ 925      7420696E 
+ 925      7400
+ 926              	.LASF12:
+ 927 0220 75696E74 		.ascii	"uint8\000"
+ 927      3800
+ 928              	.LASF4:
+ 929 0226 6C6F6E67 		.ascii	"long int\000"
+ 929      20696E74 
+ 929      00
+ 930              	.LASF0:
+ 931 022f 7369676E 		.ascii	"signed char\000"
+ 931      65642063 
+ 931      68617200 
+ 932              	.LASF17:
+ 933 023b 56444143 		.ascii	"VDAC_Ref_SetValue\000"
+ 933      5F526566 
+ 933      5F536574 
+ 933      56616C75 
+ 933      6500
+ 934              	.LASF26:
+ 935 024d 47656E65 		.ascii	"Generated_Source\\PSoC5\\VDAC_Ref.c\000"
+ 935      72617465 
+ 935      645F536F 
+ 935      75726365 
+ 935      5C50536F 
+ 936              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

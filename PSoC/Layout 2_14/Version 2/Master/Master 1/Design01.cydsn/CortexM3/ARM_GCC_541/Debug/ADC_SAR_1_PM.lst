@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
   28:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** 
   29:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** 
   30:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** /*******************************************************************************
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 2
 
 
   31:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** * Function Name: ADC_SAR_1_SaveConfig
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
   47              		@ args = 0, pretend = 0, frame = 0
   48              		@ frame_needed = 0, uses_anonymous_args = 0
   49              		@ link register save eliminated.
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 3
 
 
   50 0000 7047     		bx	lr
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
   94:Generated_Source\PSoC5/ADC_SAR_1_PM.c ****         if((ADC_SAR_1_SAR_CSR0_REG & ADC_SAR_1_SAR_SOF_START_CONV) != 0u)
   76              		.loc 1 94 0
   77 000c 0A4B     		ldr	r3, .L9+4
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 4
 
 
   78 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  108:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** }
  109:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** 
  110:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 5
 
 
  111:Generated_Source\PSoC5/ADC_SAR_1_PM.c **** /*******************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  143 001a 08BD     		pop	{r3, pc}
  144              	.L15:
  145              		.align	2
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 6
 
 
  146              	.L14:
@@ -327,14 +327,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  169 000c 63000000 		.4byte	.LASF22
  170 0010 0C       		.byte	0xc
  171 0011 00000000 		.4byte	.LASF23
- 172 0015 F1000000 		.4byte	.LASF24
+ 172 0015 DE010000 		.4byte	.LASF24
  173 0019 00000000 		.4byte	.Ldebug_ranges0+0
  174 001d 00000000 		.4byte	0
  175 0021 00000000 		.4byte	.Ldebug_line0
  176 0025 02       		.uleb128 0x2
  177 0026 01       		.byte	0x1
  178 0027 06       		.byte	0x6
- 179 0028 52020000 		.4byte	.LASF0
+ 179 0028 77020000 		.4byte	.LASF0
  180 002c 02       		.uleb128 0x2
  181 002d 01       		.byte	0x1
  182 002e 08       		.byte	0x8
@@ -342,30 +342,30 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  184 0033 02       		.uleb128 0x2
  185 0034 02       		.byte	0x2
  186 0035 05       		.byte	0x5
- 187 0036 2D020000 		.4byte	.LASF2
+ 187 0036 52020000 		.4byte	.LASF2
  188 003a 02       		.uleb128 0x2
  189 003b 02       		.byte	0x2
  190 003c 07       		.byte	0x7
- 191 003d 52010000 		.4byte	.LASF3
+ 191 003d 08010000 		.4byte	.LASF3
  192 0041 02       		.uleb128 0x2
  193 0042 04       		.byte	0x4
  194 0043 05       		.byte	0x5
- 195 0044 3D020000 		.4byte	.LASF4
+ 195 0044 62020000 		.4byte	.LASF4
  196 0048 02       		.uleb128 0x2
  197 0049 04       		.byte	0x4
  198 004a 07       		.byte	0x7
- 199 004b 40010000 		.4byte	.LASF5
+ 199 004b F6000000 		.4byte	.LASF5
  200 004f 02       		.uleb128 0x2
  201 0050 08       		.byte	0x8
  202 0051 05       		.byte	0x5
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 7
 
 
- 203 0052 DF010000 		.4byte	.LASF6
+ 203 0052 90010000 		.4byte	.LASF6
  204 0056 02       		.uleb128 0x2
  205 0057 08       		.byte	0x8
  206 0058 07       		.byte	0x7
- 207 0059 B3010000 		.4byte	.LASF7
+ 207 0059 69010000 		.4byte	.LASF7
  208 005d 03       		.uleb128 0x3
  209 005e 04       		.byte	0x4
  210 005f 05       		.byte	0x5
@@ -373,9 +373,9 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  212 0064 02       		.uleb128 0x2
  213 0065 04       		.byte	0x4
  214 0066 07       		.byte	0x7
- 215 0067 8E010000 		.4byte	.LASF8
+ 215 0067 44010000 		.4byte	.LASF8
  216 006b 04       		.uleb128 0x4
- 217 006c 37020000 		.4byte	.LASF12
+ 217 006c 5C020000 		.4byte	.LASF12
  218 0070 02       		.byte	0x2
  219 0071 9201     		.2byte	0x192
  220 0073 2C000000 		.4byte	0x2c
@@ -386,13 +386,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  225 007e 02       		.uleb128 0x2
  226 007f 08       		.byte	0x8
  227 0080 04       		.byte	0x4
- 228 0081 76010000 		.4byte	.LASF10
+ 228 0081 2C010000 		.4byte	.LASF10
  229 0085 02       		.uleb128 0x2
  230 0086 01       		.byte	0x1
  231 0087 08       		.byte	0x8
- 232 0088 ED010000 		.4byte	.LASF11
+ 232 0088 9E010000 		.4byte	.LASF11
  233 008c 04       		.uleb128 0x4
- 234 008d DA010000 		.4byte	.LASF13
+ 234 008d F1000000 		.4byte	.LASF13
  235 0091 02       		.byte	0x2
  236 0092 3C02     		.2byte	0x23c
  237 0094 98000000 		.4byte	0x98
@@ -404,7 +404,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  243 00a0 2A       		.byte	0x2a
  244 00a1 B2000000 		.4byte	0xb2
  245 00a5 07       		.uleb128 0x7
- 246 00a6 46020000 		.4byte	.LASF25
+ 246 00a6 6B020000 		.4byte	.LASF25
  247 00aa 03       		.byte	0x3
  248 00ab 2C       		.byte	0x2c
  249 00ac 6B000000 		.4byte	0x6b
@@ -416,9 +416,9 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  255 00b8 2D       		.byte	0x2d
  256 00b9 9D000000 		.4byte	0x9d
  257 00bd 09       		.uleb128 0x9
- 258 00be 01020000 		.4byte	.LASF15
+ 258 00be B2010000 		.4byte	.LASF15
  259 00c2 01       		.byte	0x1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 8
 
 
  260 00c3 2C       		.byte	0x2c
@@ -427,7 +427,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  263 00cc 01       		.uleb128 0x1
  264 00cd 9C       		.byte	0x9c
  265 00ce 09       		.uleb128 0x9
- 266 00cf 9B010000 		.4byte	.LASF16
+ 266 00cf 51010000 		.4byte	.LASF16
  267 00d3 01       		.byte	0x1
  268 00d4 40       		.byte	0x40
  269 00d5 00000000 		.4byte	.LFB1
@@ -435,7 +435,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  271 00dd 01       		.uleb128 0x1
  272 00de 9C       		.byte	0x9c
  273 00df 0A       		.uleb128 0xa
- 274 00e0 CA010000 		.4byte	.LASF17
+ 274 00e0 80010000 		.4byte	.LASF17
  275 00e4 01       		.byte	0x1
  276 00e5 5A       		.byte	0x5a
  277 00e6 00000000 		.4byte	.LFB2
@@ -464,7 +464,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  300 0121 4D010000 		.4byte	0x14d
  301 0125 00       		.byte	0
  302 0126 0C       		.uleb128 0xc
- 303 0127 7D010000 		.4byte	.LASF26
+ 303 0127 33010000 		.4byte	.LASF26
  304 012b 01       		.byte	0x1
  305 012c 18       		.byte	0x18
  306 012d B2000000 		.4byte	0xb2
@@ -472,21 +472,21 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  308 0132 03       		.byte	0x3
  309 0133 00000000 		.4byte	ADC_SAR_1_backup
  310 0137 0D       		.uleb128 0xd
- 311 0138 F2010000 		.4byte	.LASF19
- 312 013c F2010000 		.4byte	.LASF19
+ 311 0138 A3010000 		.4byte	.LASF19
+ 312 013c A3010000 		.4byte	.LASF19
  313 0140 03       		.byte	0x3
  314 0141 35       		.byte	0x35
  315 0142 0D       		.uleb128 0xd
- 316 0143 65010000 		.4byte	.LASF20
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 9
+ 316 0143 1B010000 		.4byte	.LASF20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 9
 
 
- 317 0147 65010000 		.4byte	.LASF20
+ 317 0147 1B010000 		.4byte	.LASF20
  318 014b 03       		.byte	0x3
  319 014c 44       		.byte	0x44
  320 014d 0D       		.uleb128 0xd
- 321 014e 16020000 		.4byte	.LASF21
- 322 0152 16020000 		.4byte	.LASF21
+ 321 014e C7010000 		.4byte	.LASF21
+ 322 0152 C7010000 		.4byte	.LASF21
  323 0156 03       		.byte	0x3
  324 0157 D1       		.byte	0xd1
  325 0158 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  371 002b 00       		.byte	0
  372 002c 03       		.uleb128 0x3
  373 002d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 10
 
 
  374 002e 3A       		.uleb128 0x3a
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  428 0064 00       		.byte	0
  429 0065 00       		.byte	0
  430 0066 09       		.uleb128 0x9
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 11
 
 
  431 0067 2E       		.uleb128 0x2e
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  485 00a1 00       		.byte	0
  486 00a2 00       		.byte	0
  487 00a3 0C       		.uleb128 0xc
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 12
 
 
  488 00a4 34       		.uleb128 0x34
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  542 0008 00000000 		.4byte	.LFB1
  543 000c 02000000 		.4byte	.LFE1
  544 0010 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 13
 
 
  545 0014 40000000 		.4byte	.LFE2
@@ -775,117 +775,122 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 1
  566      74696F6E 
  566      2D736563 
  566      74696F6E 
- 567              	.LASF24:
- 568 00f1 453A5C52 		.ascii	"E:\\Research\\illumina\\PSoC\\Layout 2_14\\Version "
- 568      65736561 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 14
+ 567              	.LASF13:
+ 568 00f1 72656738 		.ascii	"reg8\000"
+ 568      00
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 14
 
 
- 568      7263685C 
- 568      696C6C75 
- 568      6D696E61 
- 569 011f 325C4D61 		.ascii	"2\\Master\\Master 1\\Design01.cydsn\000"
- 569      73746572 
- 569      5C4D6173 
- 569      74657220 
- 569      315C4465 
- 570              	.LASF5:
- 571 0140 6C6F6E67 		.ascii	"long unsigned int\000"
- 571      20756E73 
- 571      69676E65 
- 571      6420696E 
- 571      7400
- 572              	.LASF3:
- 573 0152 73686F72 		.ascii	"short unsigned int\000"
- 573      7420756E 
- 573      7369676E 
- 573      65642069 
- 573      6E7400
- 574              	.LASF20:
- 575 0165 4144435F 		.ascii	"ADC_SAR_1_Enable\000"
- 575      5341525F 
- 575      315F456E 
- 575      61626C65 
- 575      00
- 576              	.LASF10:
- 577 0176 646F7562 		.ascii	"double\000"
- 577      6C6500
- 578              	.LASF26:
- 579 017d 4144435F 		.ascii	"ADC_SAR_1_backup\000"
- 579      5341525F 
- 579      315F6261 
- 579      636B7570 
- 579      00
- 580              	.LASF8:
- 581 018e 756E7369 		.ascii	"unsigned int\000"
- 581      676E6564 
- 581      20696E74 
- 581      00
- 582              	.LASF16:
- 583 019b 4144435F 		.ascii	"ADC_SAR_1_RestoreConfig\000"
- 583      5341525F 
- 583      315F5265 
- 583      73746F72 
- 583      65436F6E 
- 584              	.LASF7:
- 585 01b3 6C6F6E67 		.ascii	"long long unsigned int\000"
- 585      206C6F6E 
- 585      6720756E 
- 585      7369676E 
- 585      65642069 
- 586              	.LASF17:
- 587 01ca 4144435F 		.ascii	"ADC_SAR_1_Sleep\000"
- 587      5341525F 
- 587      315F536C 
- 587      65657000 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\cczSHwIU.s 			page 15
+ 569              	.LASF5:
+ 570 00f6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 570      20756E73 
+ 570      69676E65 
+ 570      6420696E 
+ 570      7400
+ 571              	.LASF3:
+ 572 0108 73686F72 		.ascii	"short unsigned int\000"
+ 572      7420756E 
+ 572      7369676E 
+ 572      65642069 
+ 572      6E7400
+ 573              	.LASF20:
+ 574 011b 4144435F 		.ascii	"ADC_SAR_1_Enable\000"
+ 574      5341525F 
+ 574      315F456E 
+ 574      61626C65 
+ 574      00
+ 575              	.LASF10:
+ 576 012c 646F7562 		.ascii	"double\000"
+ 576      6C6500
+ 577              	.LASF26:
+ 578 0133 4144435F 		.ascii	"ADC_SAR_1_backup\000"
+ 578      5341525F 
+ 578      315F6261 
+ 578      636B7570 
+ 578      00
+ 579              	.LASF8:
+ 580 0144 756E7369 		.ascii	"unsigned int\000"
+ 580      676E6564 
+ 580      20696E74 
+ 580      00
+ 581              	.LASF16:
+ 582 0151 4144435F 		.ascii	"ADC_SAR_1_RestoreConfig\000"
+ 582      5341525F 
+ 582      315F5265 
+ 582      73746F72 
+ 582      65436F6E 
+ 583              	.LASF7:
+ 584 0169 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 584      206C6F6E 
+ 584      6720756E 
+ 584      7369676E 
+ 584      65642069 
+ 585              	.LASF17:
+ 586 0180 4144435F 		.ascii	"ADC_SAR_1_Sleep\000"
+ 586      5341525F 
+ 586      315F536C 
+ 586      65657000 
+ 587              	.LASF6:
+ 588 0190 6C6F6E67 		.ascii	"long long int\000"
+ 588      206C6F6E 
+ 588      6720696E 
+ 588      7400
+ 589              	.LASF11:
+ 590 019e 63686172 		.ascii	"char\000"
+ 590      00
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccfZ6ju2.s 			page 15
 
 
- 588              	.LASF13:
- 589 01da 72656738 		.ascii	"reg8\000"
- 589      00
- 590              	.LASF6:
- 591 01df 6C6F6E67 		.ascii	"long long int\000"
- 591      206C6F6E 
- 591      6720696E 
- 591      7400
- 592              	.LASF11:
- 593 01ed 63686172 		.ascii	"char\000"
- 593      00
- 594              	.LASF19:
- 595 01f2 4144435F 		.ascii	"ADC_SAR_1_Stop\000"
- 595      5341525F 
- 595      315F5374 
- 595      6F7000
- 596              	.LASF15:
- 597 0201 4144435F 		.ascii	"ADC_SAR_1_SaveConfig\000"
- 597      5341525F 
- 597      315F5361 
- 597      7665436F 
- 597      6E666967 
- 598              	.LASF21:
- 599 0216 4144435F 		.ascii	"ADC_SAR_1_StartConvert\000"
- 599      5341525F 
- 599      315F5374 
- 599      61727443 
- 599      6F6E7665 
- 600              	.LASF2:
- 601 022d 73686F72 		.ascii	"short int\000"
- 601      7420696E 
- 601      7400
- 602              	.LASF12:
- 603 0237 75696E74 		.ascii	"uint8\000"
- 603      3800
- 604              	.LASF4:
- 605 023d 6C6F6E67 		.ascii	"long int\000"
- 605      20696E74 
- 605      00
- 606              	.LASF25:
- 607 0246 656E6162 		.ascii	"enableState\000"
- 607      6C655374 
- 607      61746500 
- 608              	.LASF0:
- 609 0252 7369676E 		.ascii	"signed char\000"
- 609      65642063 
- 609      68617200 
- 610              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 591              	.LASF19:
+ 592 01a3 4144435F 		.ascii	"ADC_SAR_1_Stop\000"
+ 592      5341525F 
+ 592      315F5374 
+ 592      6F7000
+ 593              	.LASF15:
+ 594 01b2 4144435F 		.ascii	"ADC_SAR_1_SaveConfig\000"
+ 594      5341525F 
+ 594      315F5361 
+ 594      7665436F 
+ 594      6E666967 
+ 595              	.LASF21:
+ 596 01c7 4144435F 		.ascii	"ADC_SAR_1_StartConvert\000"
+ 596      5341525F 
+ 596      315F5374 
+ 596      61727443 
+ 596      6F6E7665 
+ 597              	.LASF24:
+ 598 01de 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 598      73657273 
+ 598      5C467261 
+ 598      6E6B6C69 
+ 598      6E4C6162 
+ 599 020d 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
+ 599      434E545F 
+ 599      49565C50 
+ 599      536F435C 
+ 599      4C61796F 
+ 600 023a 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 600      65722031 
+ 600      5C446573 
+ 600      69676E30 
+ 600      312E6379 
+ 601              	.LASF2:
+ 602 0252 73686F72 		.ascii	"short int\000"
+ 602      7420696E 
+ 602      7400
+ 603              	.LASF12:
+ 604 025c 75696E74 		.ascii	"uint8\000"
+ 604      3800
+ 605              	.LASF4:
+ 606 0262 6C6F6E67 		.ascii	"long int\000"
+ 606      20696E74 
+ 606      00
+ 607              	.LASF25:
+ 608 026b 656E6162 		.ascii	"enableState\000"
+ 608      6C655374 
+ 608      61746500 
+ 609              	.LASF0:
+ 610 0277 7369676E 		.ascii	"signed char\000"
+ 610      65642063 
+ 610      68617200 
+ 611              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

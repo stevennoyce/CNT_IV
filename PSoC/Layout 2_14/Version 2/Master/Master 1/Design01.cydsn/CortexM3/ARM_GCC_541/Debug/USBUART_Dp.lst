@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
   28:Generated_Source\PSoC5/USBUART_Dp.c **** *
   29:Generated_Source\PSoC5/USBUART_Dp.c **** * \brief Writes the value to the physical port (data output register), masking
   30:Generated_Source\PSoC5/USBUART_Dp.c **** *  and shifting the bits appropriately. 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 2
 
 
   31:Generated_Source\PSoC5/USBUART_Dp.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
   52              		.size	USBUART_Dp_Write, .-USBUART_Dp_Write
   53              		.section	.text.USBUART_Dp_SetDriveMode,"ax",%progbits
   54              		.align	2
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 3
 
 
   55              		.global	USBUART_Dp_SetDriveMode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
   77 0012 00BF     		.align	2
   78              	.L5:
   79 0014 7E500040 		.word	1073762430
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 4
 
 
   80              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  110              		.align	2
  111              		.global	USBUART_Dp_ReadDataReg
  112              		.thumb
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 5
 
 
  113              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  139              		.thumb_func
  140              		.type	USBUART_Dp_SetInterruptMode, %function
  141              	USBUART_Dp_SetInterruptMode:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 6
 
 
  142              	.LFB4:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  151              	.LVL6:
  152 0004 80B2     		uxth	r0, r0
  153 0006 10B1     		cbz	r0, .L13
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 7
 
 
  190:Generated_Source\PSoC5/USBUART_Dp.c **** 		{ 
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  180              		@ link register save eliminated.
  218:Generated_Source\PSoC5/USBUART_Dp.c ****         return (USBUART_Dp_INTSTAT & USBUART_Dp_MASK) >> USBUART_Dp_SHIFT;
  181              		.loc 1 218 0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 8
 
 
  182 0000 024B     		ldr	r3, .L18
@@ -446,15 +446,15 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  203 000b 01       		.uleb128 0x1
  204 000c 4E000000 		.4byte	.LASF24
  205 0010 0C       		.byte	0xc
- 206 0011 2A020000 		.4byte	.LASF25
- 207 0015 DC000000 		.4byte	.LASF26
+ 206 0011 4F020000 		.4byte	.LASF25
+ 207 0015 9A010000 		.4byte	.LASF26
  208 0019 00000000 		.4byte	.Ldebug_ranges0+0
  209 001d 00000000 		.4byte	0
  210 0021 00000000 		.4byte	.Ldebug_line0
  211 0025 02       		.uleb128 0x2
  212 0026 01       		.byte	0x1
  213 0027 06       		.byte	0x6
- 214 0028 1E020000 		.4byte	.LASF0
+ 214 0028 43020000 		.4byte	.LASF0
  215 002c 02       		.uleb128 0x2
  216 002d 01       		.byte	0x1
  217 002e 08       		.byte	0x8
@@ -462,30 +462,30 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  219 0033 02       		.uleb128 0x2
  220 0034 02       		.byte	0x2
  221 0035 05       		.byte	0x5
- 222 0036 E9010000 		.4byte	.LASF2
+ 222 0036 0E020000 		.4byte	.LASF2
  223 003a 02       		.uleb128 0x2
  224 003b 02       		.byte	0x2
  225 003c 07       		.byte	0x7
- 226 003d 3D010000 		.4byte	.LASF3
+ 226 003d F3000000 		.4byte	.LASF3
  227 0041 02       		.uleb128 0x2
  228 0042 04       		.byte	0x4
  229 0043 05       		.byte	0x5
- 230 0044 F9010000 		.4byte	.LASF4
+ 230 0044 1E020000 		.4byte	.LASF4
  231 0048 02       		.uleb128 0x2
  232 0049 04       		.byte	0x4
  233 004a 07       		.byte	0x7
- 234 004b 2B010000 		.4byte	.LASF5
+ 234 004b E1000000 		.4byte	.LASF5
  235 004f 02       		.uleb128 0x2
  236 0050 08       		.byte	0x8
  237 0051 05       		.byte	0x5
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 9
 
 
- 238 0052 C6010000 		.4byte	.LASF6
+ 238 0052 77010000 		.4byte	.LASF6
  239 0056 02       		.uleb128 0x2
  240 0057 08       		.byte	0x8
  241 0058 07       		.byte	0x7
- 242 0059 8B010000 		.4byte	.LASF7
+ 242 0059 41010000 		.4byte	.LASF7
  243 005d 03       		.uleb128 0x3
  244 005e 04       		.byte	0x4
  245 005f 05       		.byte	0x5
@@ -493,14 +493,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  247 0064 02       		.uleb128 0x2
  248 0065 04       		.byte	0x4
  249 0066 07       		.byte	0x7
- 250 0067 7E010000 		.4byte	.LASF8
+ 250 0067 34010000 		.4byte	.LASF8
  251 006b 04       		.uleb128 0x4
- 252 006c F3010000 		.4byte	.LASF9
+ 252 006c 18020000 		.4byte	.LASF9
  253 0070 02       		.byte	0x2
  254 0071 9201     		.2byte	0x192
  255 0073 2C000000 		.4byte	0x2c
  256 0077 04       		.uleb128 0x4
- 257 0078 6E010000 		.4byte	.LASF10
+ 257 0078 24010000 		.4byte	.LASF10
  258 007c 02       		.byte	0x2
  259 007d 9301     		.2byte	0x193
  260 007f 3A000000 		.4byte	0x3a
@@ -511,13 +511,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  265 008a 02       		.uleb128 0x2
  266 008b 08       		.byte	0x8
  267 008c 04       		.byte	0x4
- 268 008d 67010000 		.4byte	.LASF12
+ 268 008d 1D010000 		.4byte	.LASF12
  269 0091 02       		.uleb128 0x2
  270 0092 01       		.byte	0x1
  271 0093 08       		.byte	0x8
- 272 0094 D4010000 		.4byte	.LASF13
+ 272 0094 85010000 		.4byte	.LASF13
  273 0098 04       		.uleb128 0x4
- 274 0099 A7010000 		.4byte	.LASF14
+ 274 0099 DC000000 		.4byte	.LASF14
  275 009d 02       		.byte	0x2
  276 009e 3C02     		.2byte	0x23c
  277 00a0 A4000000 		.4byte	0xa4
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  292 00c4 39       		.byte	0x39
  293 00c5 6B000000 		.4byte	0x6b
  294 00c9 00000000 		.4byte	.LLST0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 10
 
 
  295 00cd 08       		.uleb128 0x8
@@ -559,14 +559,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  310 00eb 9C       		.byte	0x9c
  311 00ec 00010000 		.4byte	0x100
  312 00f0 07       		.uleb128 0x7
- 313 00f1 A2010000 		.4byte	.LASF18
+ 313 00f1 58010000 		.4byte	.LASF18
  314 00f5 01       		.byte	0x1
  315 00f6 5A       		.byte	0x5a
  316 00f7 6B000000 		.4byte	0x6b
  317 00fb 21000000 		.4byte	.LLST1
  318 00ff 00       		.byte	0
  319 0100 09       		.uleb128 0x9
- 320 0101 D9010000 		.4byte	.LASF19
+ 320 0101 8A010000 		.4byte	.LASF19
  321 0105 01       		.byte	0x1
  322 0106 71       		.byte	0x71
  323 0107 6B000000 		.4byte	0x6b
@@ -575,7 +575,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  326 0113 01       		.uleb128 0x1
  327 0114 9C       		.byte	0x9c
  328 0115 09       		.uleb128 0x9
- 329 0116 50010000 		.4byte	.LASF20
+ 329 0116 06010000 		.4byte	.LASF20
  330 011a 01       		.byte	0x1
  331 011b 8D       		.byte	0x8d
  332 011c 6B000000 		.4byte	0x6b
@@ -584,7 +584,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  335 0128 01       		.uleb128 0x1
  336 0129 9C       		.byte	0x9c
  337 012a 06       		.uleb128 0x6
- 338 012b 02020000 		.4byte	.LASF21
+ 338 012b 27020000 		.4byte	.LASF21
  339 012f 01       		.byte	0x1
  340 0130 BB       		.byte	0xbb
  341 0131 00000000 		.4byte	.LFB4
@@ -593,23 +593,23 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  344 013a 9C       		.byte	0x9c
  345 013b 5E010000 		.4byte	0x15e
  346 013f 07       		.uleb128 0x7
- 347 0140 75010000 		.4byte	.LASF22
+ 347 0140 2B010000 		.4byte	.LASF22
  348 0144 01       		.byte	0x1
  349 0145 BB       		.byte	0xbb
  350 0146 77000000 		.4byte	0x77
  351 014a 42000000 		.4byte	.LLST2
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 11
 
 
  352 014e 07       		.uleb128 0x7
- 353 014f A2010000 		.4byte	.LASF18
+ 353 014f 58010000 		.4byte	.LASF18
  354 0153 01       		.byte	0x1
  355 0154 BB       		.byte	0xbb
  356 0155 77000000 		.4byte	0x77
  357 0159 63000000 		.4byte	.LLST3
  358 015d 00       		.byte	0
  359 015e 09       		.uleb128 0x9
- 360 015f AC010000 		.4byte	.LASF23
+ 360 015f 5D010000 		.4byte	.LASF23
  361 0163 01       		.byte	0x1
  362 0164 D8       		.byte	0xd8
  363 0165 6B000000 		.4byte	0x6b
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  406 0023 3E       		.uleb128 0x3e
  407 0024 0B       		.uleb128 0xb
  408 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 12
 
 
  409 0026 08       		.uleb128 0x8
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  463 005d 0B       		.uleb128 0xb
  464 005e 3B       		.uleb128 0x3b
  465 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 13
 
 
  466 0060 49       		.uleb128 0x49
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  520 000b 0A000000 		.4byte	.LVL2
  521 000f 18000000 		.4byte	.LFE0
  522 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 14
 
 
  523 0015 F3       		.byte	0xf3
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  577 000c 0000     		.2byte	0
  578 000e 0000     		.2byte	0
  579 0010 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 15
 
 
  580 0014 18000000 		.4byte	.LFE0-.LFB0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  619      00
  620              	.LASF11:
  621 003a 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 16
 
 
  621      7400
@@ -923,112 +923,117 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 1
  627      74696F6E 
  627      2D736563 
  627      74696F6E 
- 628              	.LASF26:
- 629 00dc 453A5C52 		.ascii	"E:\\Research\\illumina\\PSoC\\Layout 2_14\\Version "
- 629      65736561 
- 629      7263685C 
- 629      696C6C75 
- 629      6D696E61 
- 630 010a 325C4D61 		.ascii	"2\\Master\\Master 1\\Design01.cydsn\000"
- 630      73746572 
- 630      5C4D6173 
- 630      74657220 
- 630      315C4465 
- 631              	.LASF5:
- 632 012b 6C6F6E67 		.ascii	"long unsigned int\000"
- 632      20756E73 
- 632      69676E65 
- 632      6420696E 
- 632      7400
- 633              	.LASF3:
- 634 013d 73686F72 		.ascii	"short unsigned int\000"
- 634      7420756E 
- 634      7369676E 
- 634      65642069 
- 634      6E7400
- 635              	.LASF20:
- 636 0150 55534255 		.ascii	"USBUART_Dp_ReadDataReg\000"
- 636      4152545F 
- 636      44705F52 
- 636      65616444 
- 636      61746152 
- 637              	.LASF12:
- 638 0167 646F7562 		.ascii	"double\000"
- 638      6C6500
- 639              	.LASF10:
- 640 016e 75696E74 		.ascii	"uint16\000"
- 640      313600
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 17
+ 628              	.LASF14:
+ 629 00dc 72656738 		.ascii	"reg8\000"
+ 629      00
+ 630              	.LASF5:
+ 631 00e1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 631      20756E73 
+ 631      69676E65 
+ 631      6420696E 
+ 631      7400
+ 632              	.LASF3:
+ 633 00f3 73686F72 		.ascii	"short unsigned int\000"
+ 633      7420756E 
+ 633      7369676E 
+ 633      65642069 
+ 633      6E7400
+ 634              	.LASF20:
+ 635 0106 55534255 		.ascii	"USBUART_Dp_ReadDataReg\000"
+ 635      4152545F 
+ 635      44705F52 
+ 635      65616444 
+ 635      61746152 
+ 636              	.LASF12:
+ 637 011d 646F7562 		.ascii	"double\000"
+ 637      6C6500
+ 638              	.LASF10:
+ 639 0124 75696E74 		.ascii	"uint16\000"
+ 639      313600
+ 640              	.LASF22:
+ 641 012b 706F7369 		.ascii	"position\000"
+ 641      74696F6E 
+ 641      00
+ 642              	.LASF8:
+ 643 0134 756E7369 		.ascii	"unsigned int\000"
+ 643      676E6564 
+ 643      20696E74 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 17
 
 
- 641              	.LASF22:
- 642 0175 706F7369 		.ascii	"position\000"
- 642      74696F6E 
- 642      00
- 643              	.LASF8:
- 644 017e 756E7369 		.ascii	"unsigned int\000"
- 644      676E6564 
- 644      20696E74 
- 644      00
- 645              	.LASF7:
- 646 018b 6C6F6E67 		.ascii	"long long unsigned int\000"
- 646      206C6F6E 
- 646      6720756E 
- 646      7369676E 
- 646      65642069 
- 647              	.LASF18:
- 648 01a2 6D6F6465 		.ascii	"mode\000"
- 648      00
- 649              	.LASF14:
- 650 01a7 72656738 		.ascii	"reg8\000"
- 650      00
- 651              	.LASF23:
- 652 01ac 55534255 		.ascii	"USBUART_Dp_ClearInterrupt\000"
- 652      4152545F 
- 652      44705F43 
- 652      6C656172 
- 652      496E7465 
- 653              	.LASF6:
- 654 01c6 6C6F6E67 		.ascii	"long long int\000"
- 654      206C6F6E 
- 654      6720696E 
- 654      7400
- 655              	.LASF13:
- 656 01d4 63686172 		.ascii	"char\000"
- 656      00
- 657              	.LASF19:
- 658 01d9 55534255 		.ascii	"USBUART_Dp_Read\000"
- 658      4152545F 
- 658      44705F52 
- 658      65616400 
- 659              	.LASF2:
- 660 01e9 73686F72 		.ascii	"short int\000"
- 660      7420696E 
- 660      7400
- 661              	.LASF9:
- 662 01f3 75696E74 		.ascii	"uint8\000"
- 662      3800
- 663              	.LASF4:
- 664 01f9 6C6F6E67 		.ascii	"long int\000"
- 664      20696E74 
- 664      00
- 665              	.LASF21:
- 666 0202 55534255 		.ascii	"USBUART_Dp_SetInterruptMode\000"
- 666      4152545F 
- 666      44705F53 
- 666      6574496E 
- 666      74657272 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccXCf8D4.s 			page 18
+ 643      00
+ 644              	.LASF7:
+ 645 0141 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 645      206C6F6E 
+ 645      6720756E 
+ 645      7369676E 
+ 645      65642069 
+ 646              	.LASF18:
+ 647 0158 6D6F6465 		.ascii	"mode\000"
+ 647      00
+ 648              	.LASF23:
+ 649 015d 55534255 		.ascii	"USBUART_Dp_ClearInterrupt\000"
+ 649      4152545F 
+ 649      44705F43 
+ 649      6C656172 
+ 649      496E7465 
+ 650              	.LASF6:
+ 651 0177 6C6F6E67 		.ascii	"long long int\000"
+ 651      206C6F6E 
+ 651      6720696E 
+ 651      7400
+ 652              	.LASF13:
+ 653 0185 63686172 		.ascii	"char\000"
+ 653      00
+ 654              	.LASF19:
+ 655 018a 55534255 		.ascii	"USBUART_Dp_Read\000"
+ 655      4152545F 
+ 655      44705F52 
+ 655      65616400 
+ 656              	.LASF26:
+ 657 019a 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 657      73657273 
+ 657      5C467261 
+ 657      6E6B6C69 
+ 657      6E4C6162 
+ 658 01c9 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
+ 658      434E545F 
+ 658      49565C50 
+ 658      536F435C 
+ 658      4C61796F 
+ 659 01f6 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 659      65722031 
+ 659      5C446573 
+ 659      69676E30 
+ 659      312E6379 
+ 660              	.LASF2:
+ 661 020e 73686F72 		.ascii	"short int\000"
+ 661      7420696E 
+ 661      7400
+ 662              	.LASF9:
+ 663 0218 75696E74 		.ascii	"uint8\000"
+ 663      3800
+ 664              	.LASF4:
+ 665 021e 6C6F6E67 		.ascii	"long int\000"
+ 665      20696E74 
+ 665      00
+ 666              	.LASF21:
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2VnwXc.s 			page 18
 
 
- 667              	.LASF0:
- 668 021e 7369676E 		.ascii	"signed char\000"
- 668      65642063 
- 668      68617200 
- 669              	.LASF25:
- 670 022a 47656E65 		.ascii	"Generated_Source\\PSoC5\\USBUART_Dp.c\000"
- 670      72617465 
- 670      645F536F 
- 670      75726365 
- 670      5C50536F 
- 671              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 667 0227 55534255 		.ascii	"USBUART_Dp_SetInterruptMode\000"
+ 667      4152545F 
+ 667      44705F53 
+ 667      6574496E 
+ 667      74657272 
+ 668              	.LASF0:
+ 669 0243 7369676E 		.ascii	"signed char\000"
+ 669      65642063 
+ 669      68617200 
+ 670              	.LASF25:
+ 671 024f 47656E65 		.ascii	"Generated_Source\\PSoC5\\USBUART_Dp.c\000"
+ 671      72617465 
+ 671      645F536F 
+ 671      75726365 
+ 671      5C50536F 
+ 672              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

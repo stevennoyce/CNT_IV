@@ -1,6 +1,6 @@
 // ======================================================================
 // Design01.v generated from TopDesign.cysch
-// 11/03/2017 at 09:53
+// 02/15/2018 at 13:43
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -508,8 +508,8 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v"
 `endif
 
-// ADC_DelSig_v3_20(ADC_Alignment=0, ADC_Alignment_Config2=0, ADC_Alignment_Config3=0, ADC_Alignment_Config4=0, ADC_Charge_Pump_Clock=true, ADC_Clock=1, ADC_CLOCK_FREQUENCY=128000, ADC_Input_Mode=0, ADC_Input_Range=4, ADC_Input_Range_Config2=4, ADC_Input_Range_Config3=4, ADC_Input_Range_Config4=4, ADC_Power=1, ADC_Reference=0, ADC_Reference_Config2=0, ADC_Reference_Config3=0, ADC_Reference_Config4=0, ADC_Resolution=16, ADC_Resolution_Config2=16, ADC_Resolution_Config3=16, ADC_Resolution_Config4=16, Clock_Frequency=64000, Comment_Config1=Default Config, Comment_Config2=Second Config, Comment_Config3=Third Config, Comment_Config4=Fourth Config, Config1_Name=CFG1, Config2_Name=CFG2, Config3_Name=CFG3, Config4_Name=CFG4, Configs=4, Conversion_Mode=2, Conversion_Mode_Config2=2, Conversion_Mode_Config3=2, Conversion_Mode_Config4=2, Enable_Vref_Vss=false, EnableModulatorInput=false, Input_Buffer_Gain=1, Input_Buffer_Gain_Config2=1, Input_Buffer_Gain_Config3=1, Input_Buffer_Gain_Config4=1, Input_Buffer_Mode=1, Input_Buffer_Mode_Config2=1, Input_Buffer_Mode_Config3=1, Input_Buffer_Mode_Config4=1, Ref_Voltage=1.024, Ref_Voltage_Config2=1.024, Ref_Voltage_Config3=1.024, Ref_Voltage_Config4=1.024, rm_int=false, Sample_Rate=2000, Sample_Rate_Config2=10000, Sample_Rate_Config3=10000, Sample_Rate_Config4=10000, Start_of_Conversion=0, Vdda_Value=5, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=ADC_DelSig_v3_20, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC_DelSig_1, CY_INSTANCE_SHORT_NAME=ADC_DelSig_1, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=20, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.1 Update 1, INSTANCE_NAME=ADC_DelSig_1, )
-module ADC_DelSig_v3_20_1 (
+// ADC_DelSig_v3_30(ADC_Alignment=0, ADC_Alignment_Config2=0, ADC_Alignment_Config3=0, ADC_Alignment_Config4=0, ADC_Charge_Pump_Clock=true, ADC_Clock=1, ADC_CLOCK_FREQUENCY=128000, ADC_Input_Mode=0, ADC_Input_Range=4, ADC_Input_Range_Config2=4, ADC_Input_Range_Config3=4, ADC_Input_Range_Config4=4, ADC_Power=1, ADC_Reference=0, ADC_Reference_Config2=0, ADC_Reference_Config3=0, ADC_Reference_Config4=0, ADC_Resolution=16, ADC_Resolution_Config2=16, ADC_Resolution_Config3=16, ADC_Resolution_Config4=16, Clock_Frequency=64000, Comment_Config1=Default Config, Comment_Config2=Second Config, Comment_Config3=Third Config, Comment_Config4=Fourth Config, Config1_Name=CFG1, Config2_Name=CFG2, Config3_Name=CFG3, Config4_Name=CFG4, Configs=4, Conversion_Mode=2, Conversion_Mode_Config2=2, Conversion_Mode_Config3=2, Conversion_Mode_Config4=2, Enable_Vref_Vss=false, EnableModulatorInput=false, Input_Buffer_Gain=1, Input_Buffer_Gain_Config2=1, Input_Buffer_Gain_Config3=1, Input_Buffer_Gain_Config4=1, Input_Buffer_Mode=1, Input_Buffer_Mode_Config2=1, Input_Buffer_Mode_Config3=1, Input_Buffer_Mode_Config4=1, Ref_Voltage=1.024, Ref_Voltage_Config2=1.024, Ref_Voltage_Config3=1.024, Ref_Voltage_Config4=1.024, rm_int=false, Sample_Rate=2000, Sample_Rate_Config2=10000, Sample_Rate_Config3=10000, Sample_Rate_Config4=10000, Start_of_Conversion=0, Vdda_Value=5, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=ADC_DelSig_v3_30, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC_DelSig_1, CY_INSTANCE_SHORT_NAME=ADC_DelSig_1, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=30, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.1 Update 1, INSTANCE_NAME=ADC_DelSig_1, )
+module ADC_DelSig_v3_30_1 (
     vplus,
     vminus,
     soc,
@@ -1548,21 +1548,6 @@ endmodule
 // top
 module top ;
 
-          wire  Net_138;
-    electrical  Net_137;
-          wire  Net_136;
-          wire  Net_135;
-          wire  Net_134;
-          wire  Net_133;
-    electrical  Net_132;
-          wire  Net_131;
-          wire  Net_130;
-          wire  Net_129;
-          wire  Net_128;
-          wire  Net_127;
-          wire  Net_126;
-          wire  Net_125;
-          wire  Net_124;
           wire  Net_102;
           wire  Net_78;
           wire  Net_77;
@@ -1594,11 +1579,11 @@ module top ;
           wire  Net_32;
           wire [7:0] Net_29;
           wire  Net_28;
-          wire  Net_24;
-    electrical  Net_23;
-          wire  Net_22;
-          wire  Net_21;
-          wire  Net_20;
+          wire  Net_143;
+    electrical  Net_142;
+          wire  Net_141;
+          wire  Net_140;
+          wire  Net_139;
           wire  Net_123;
           wire  Net_122;
     electrical  Net_104;
@@ -1612,19 +1597,34 @@ module top ;
     electrical  Net_121;
     electrical  Net_26;
     electrical  Net_27;
+          wire  Net_144;
+          wire  Net_145;
+          wire  Net_146;
+          wire  Net_147;
+          wire  Net_148;
+          wire  Net_149;
+          wire  Net_150;
+          wire  Net_151;
+    electrical  Net_152;
+          wire  Net_153;
+          wire  Net_154;
+          wire  Net_155;
+          wire  Net_156;
+    electrical  Net_157;
+          wire  Net_158;
 
     USBFS_v3_20_0 USBUART (
         .sof(Net_122),
         .vbusdet(1'b0));
     defparam USBUART.epDMAautoOptimization = 0;
 
-    ADC_DelSig_v3_20_1 ADC_DelSig_1 (
+    ADC_DelSig_v3_30_1 ADC_DelSig_1 (
         .vplus(Net_27),
         .vminus(Net_26),
         .soc(1'b1),
-        .eoc(Net_21),
+        .eoc(Net_140),
         .aclk(1'b0),
-        .nVref(Net_23),
+        .nVref(Net_142),
         .mi(1'b0));
 
     TIA_v2_0_2 TIA_1 (
@@ -2242,8 +2242,8 @@ module top ;
         .enable(1'b1),
         .trigger(1'b1),
         .capture(1'b0),
-        .capture_out(Net_127),
-        .tc(Net_128),
+        .capture_out(Net_147),
+        .tc(Net_148),
         .clock(Net_10));
     defparam CommunicationTimer.CaptureCount = 2;
     defparam CommunicationTimer.CaptureCounterEnabled = 0;
@@ -2264,10 +2264,10 @@ module top ;
         .vplus(Net_103),
         .vminus(Net_104),
         .soc(1'b0),
-        .eoc(Net_130),
+        .eoc(Net_150),
         .aclk(1'b0),
-        .vdac_ref(Net_132),
-        .eos(Net_133));
+        .vdac_ref(Net_152),
+        .eos(Net_153));
 
 	wire [0:0] tmpOE__Pin_I12_net;
 	wire [0:0] tmpFB_0__Pin_I12_net;
@@ -2425,10 +2425,10 @@ module top ;
         .vplus(Net_112),
         .vminus(Net_104),
         .soc(1'b0),
-        .eoc(Net_135),
+        .eoc(Net_155),
         .aclk(1'b0),
-        .vdac_ref(Net_137),
-        .eos(Net_138));
+        .vdac_ref(Net_157),
+        .eos(Net_158));
 
 	wire [0:0] tmpOE__Pin_I1_GND_net;
 	wire [0:0] tmpFB_0__Pin_I1_GND_net;

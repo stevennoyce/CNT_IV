@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
   28:Generated_Source\PSoC5/TIA_1.c **** #if (CY_PSOC5A)
   29:Generated_Source\PSoC5/TIA_1.c ****     static TIA_1_BACKUP_STRUCT  TIA_1_P5backup;
   30:Generated_Source\PSoC5/TIA_1.c **** #endif /* (CY_PSOC5A) */
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 2
 
 
   31:Generated_Source\PSoC5/TIA_1.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
   85:Generated_Source\PSoC5/TIA_1.c **** 
   86:Generated_Source\PSoC5/TIA_1.c **** 
   87:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************   
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 3
 
 
   88:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_Enable
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
   50              	.L3:
   51              		.align	2
   52              	.L2:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 4
 
 
   53 0024 A9430040 		.word	1073759145
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  162:Generated_Source\PSoC5/TIA_1.c **** *  has been completed.
  163:Generated_Source\PSoC5/TIA_1.c **** *
  164:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 5
 
 
  165:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_Start(void) 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
   86              	.LFE3:
   87              		.size	TIA_1_Stop, .-TIA_1_Stop
   88              		.section	.text.TIA_1_SetPower,"ax",%progbits
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 6
 
 
   89              		.align	2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  239:Generated_Source\PSoC5/TIA_1.c ****     uint8 tmpCR;
  240:Generated_Source\PSoC5/TIA_1.c **** 
  241:Generated_Source\PSoC5/TIA_1.c ****     /* Sets drive bits in SC Block Control Register 1:  SCxx_CR[1:0] */
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 7
 
 
  242:Generated_Source\PSoC5/TIA_1.c ****     tmpCR = TIA_1_CR1_REG & (uint8)(~TIA_1_DRIVE_MASK);
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  133              		@ frame_needed = 0, uses_anonymous_args = 0
  134              		@ link register save eliminated.
  135              	.LVL4:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 8
 
 
  265:Generated_Source\PSoC5/TIA_1.c ****     /* Only set new gain if it is a valid gain */
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  287:Generated_Source\PSoC5/TIA_1.c **** *
  288:Generated_Source\PSoC5/TIA_1.c **** * Return:
  289:Generated_Source\PSoC5/TIA_1.c **** *  void
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 9
 
 
  290:Generated_Source\PSoC5/TIA_1.c **** *
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  209              		@ frame_needed = 0, uses_anonymous_args = 0
  210 0000 10B5     		push	{r4, lr}
  211              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 10
 
 
  212              		.cfi_offset 4, -8
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  259              		.cfi_def_cfa_offset 8
  260              		.cfi_offset 3, -8
  261              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 11
 
 
  167:Generated_Source\PSoC5/TIA_1.c ****     {
@@ -647,18 +647,18 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  301 000b 01       		.uleb128 0x1
  302 000c 4D000000 		.4byte	.LASF26
  303 0010 0C       		.byte	0xc
- 304 0011 23020000 		.4byte	.LASF27
- 305 0015 27010000 		.4byte	.LASF28
+ 304 0011 27010000 		.4byte	.LASF27
+ 305 0015 88010000 		.4byte	.LASF28
  306 0019 00000000 		.4byte	.Ldebug_ranges0+0
  307 001d 00000000 		.4byte	0
  308 0021 00000000 		.4byte	.Ldebug_line0
  309 0025 02       		.uleb128 0x2
  310 0026 01       		.byte	0x1
  311 0027 06       		.byte	0x6
- 312 0028 17020000 		.4byte	.LASF0
+ 312 0028 5B020000 		.4byte	.LASF0
  313 002c 02       		.uleb128 0x2
  314 002d 01       		.byte	0x1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 12
 
 
  315 002e 08       		.byte	0x8
@@ -666,7 +666,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  317 0033 02       		.uleb128 0x2
  318 0034 02       		.byte	0x2
  319 0035 05       		.byte	0x5
- 320 0036 B8010000 		.4byte	.LASF2
+ 320 0036 FC010000 		.4byte	.LASF2
  321 003a 02       		.uleb128 0x2
  322 003b 02       		.byte	0x2
  323 003c 07       		.byte	0x7
@@ -674,7 +674,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  325 0041 02       		.uleb128 0x2
  326 0042 04       		.byte	0x4
  327 0043 05       		.byte	0x5
- 328 0044 02020000 		.4byte	.LASF4
+ 328 0044 46020000 		.4byte	.LASF4
  329 0048 02       		.uleb128 0x2
  330 0049 04       		.byte	0x4
  331 004a 07       		.byte	0x7
@@ -682,11 +682,11 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  333 004f 02       		.uleb128 0x2
  334 0050 08       		.byte	0x8
  335 0051 05       		.byte	0x5
- 336 0052 A5010000 		.4byte	.LASF6
+ 336 0052 75010000 		.4byte	.LASF6
  337 0056 02       		.uleb128 0x2
  338 0057 08       		.byte	0x8
  339 0058 07       		.byte	0x7
- 340 0059 76010000 		.4byte	.LASF7
+ 340 0059 46010000 		.4byte	.LASF7
  341 005d 03       		.uleb128 0x3
  342 005e 04       		.byte	0x4
  343 005f 05       		.byte	0x5
@@ -711,27 +711,27 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  362 0085 02       		.uleb128 0x2
  363 0086 01       		.byte	0x1
  364 0087 08       		.byte	0x8
- 365 0088 B3010000 		.4byte	.LASF11
+ 365 0088 83010000 		.4byte	.LASF11
  366 008c 04       		.uleb128 0x4
  367 008d DB000000 		.4byte	.LASF13
  368 0091 02       		.byte	0x2
  369 0092 3C02     		.2byte	0x23c
  370 0094 98000000 		.4byte	0x98
  371 0098 05       		.uleb128 0x5
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 13
 
 
  372 0099 6B000000 		.4byte	0x6b
  373 009d 02       		.uleb128 0x2
  374 009e 08       		.byte	0x8
  375 009f 04       		.byte	0x4
- 376 00a0 0B020000 		.4byte	.LASF14
+ 376 00a0 4F020000 		.4byte	.LASF14
  377 00a4 02       		.uleb128 0x2
  378 00a5 04       		.byte	0x4
  379 00a6 07       		.byte	0x7
- 380 00a7 9C010000 		.4byte	.LASF15
+ 380 00a7 6C010000 		.4byte	.LASF15
  381 00ab 06       		.uleb128 0x6
- 382 00ac DC010000 		.4byte	.LASF16
+ 382 00ac 20020000 		.4byte	.LASF16
  383 00b0 01       		.byte	0x1
  384 00b1 65       		.byte	0x65
  385 00b2 00000000 		.4byte	.LFB1
@@ -769,7 +769,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  417 00fc 21000000 		.4byte	.LLST1
  418 0100 00       		.byte	0
  419 0101 0A       		.uleb128 0xa
- 420 0102 8D010000 		.4byte	.LASF19
+ 420 0102 5D010000 		.4byte	.LASF19
  421 0106 01       		.byte	0x1
  422 0107 0701     		.2byte	0x107
  423 0109 00000000 		.4byte	.LFB5
@@ -778,10 +778,10 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  426 0112 9C       		.byte	0x9c
  427 0113 28010000 		.4byte	0x128
  428 0117 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 14
 
 
- 429 0118 C2010000 		.4byte	.LASF21
+ 429 0118 06020000 		.4byte	.LASF21
  430 011c 01       		.byte	0x1
  431 011d 0701     		.2byte	0x107
  432 011f 6B000000 		.4byte	0x6b
@@ -797,14 +797,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  442 0139 9C       		.byte	0x9c
  443 013a 4F010000 		.4byte	0x14f
  444 013e 0B       		.uleb128 0xb
- 445 013f CF010000 		.4byte	.LASF23
+ 445 013f 13020000 		.4byte	.LASF23
  446 0143 01       		.byte	0x1
  447 0144 2401     		.2byte	0x124
  448 0146 6B000000 		.4byte	0x6b
  449 014a 60000000 		.4byte	.LLST3
  450 014e 00       		.byte	0
  451 014f 07       		.uleb128 0x7
- 452 0150 E9010000 		.4byte	.LASF24
+ 452 0150 2D020000 		.4byte	.LASF24
  453 0154 01       		.byte	0x1
  454 0155 31       		.byte	0x31
  455 0156 00000000 		.4byte	.LFB0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  483 0193 0D       		.uleb128 0xd
  484 0194 01       		.uleb128 0x1
  485 0195 50       		.byte	0x50
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 15
 
 
  486 0196 02       		.uleb128 0x2
@@ -863,7 +863,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  505 01be AB000000 		.4byte	0xab
  506 01c2 00       		.byte	0
  507 01c3 10       		.uleb128 0x10
- 508 01c4 F4010000 		.4byte	.LASF30
+ 508 01c4 38020000 		.4byte	.LASF30
  509 01c8 01       		.byte	0x1
  510 01c9 1A       		.byte	0x1a
  511 01ca 6B000000 		.4byte	0x6b
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  540 0016 0B       		.uleb128 0xb
  541 0017 0B       		.uleb128 0xb
  542 0018 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 16
 
 
  543 0019 0B       		.uleb128 0xb
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  597 004f 18       		.uleb128 0x18
  598 0050 9742     		.uleb128 0x2117
  599 0052 19       		.uleb128 0x19
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 17
 
 
  600 0053 00       		.byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  654 008a 17       		.uleb128 0x17
  655 008b 00       		.byte	0
  656 008c 00       		.byte	0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 18
 
 
  657 008d 0A       		.uleb128 0xa
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  711 00c8 02       		.uleb128 0x2
  712 00c9 18       		.uleb128 0x18
  713 00ca 9142     		.uleb128 0x2111
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 19
 
 
  714 00cc 18       		.uleb128 0x18
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  768 001d 00000000 		.4byte	0
  769              	.LLST1:
  770 0021 08000000 		.4byte	.LVL1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 20
 
 
  771 0025 0E000000 		.4byte	.LVL3
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  825 0034 20000000 		.4byte	.LFE6-.LFB6
  826 0038 00000000 		.4byte	.LFB0
  827 003c 2C000000 		.4byte	.LFE0-.LFB0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 21
 
 
  828 0040 00000000 		.4byte	.LFB2
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  866 003f 756E7369 		.ascii	"unsigned char\000"
  866      676E6564 
  866      20636861 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 22
 
 
  866      7200
@@ -1307,90 +1307,95 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 1
  884      676E6564 
  884      20696E74 
  884      00
- 885              	.LASF28:
- 886 0127 453A5C52 		.ascii	"E:\\Research\\illumina\\PSoC\\Layout 2_14\\Version "
- 886      65736561 
- 886      7263685C 
- 886      696C6C75 
- 886      6D696E61 
- 887 0155 325C4D61 		.ascii	"2\\Master\\Master 1\\Design01.cydsn\000"
- 887      73746572 
- 887      5C4D6173 
- 887      74657220 
- 887      315C4465 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 23
+ 885              	.LASF27:
+ 886 0127 47656E65 		.ascii	"Generated_Source\\PSoC5\\TIA_1.c\000"
+ 886      72617465 
+ 886      645F536F 
+ 886      75726365 
+ 886      5C50536F 
+ 887              	.LASF7:
+ 888 0146 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 888      206C6F6E 
+ 888      6720756E 
+ 888      7369676E 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 23
 
 
- 888              	.LASF7:
- 889 0176 6C6F6E67 		.ascii	"long long unsigned int\000"
- 889      206C6F6E 
- 889      6720756E 
- 889      7369676E 
- 889      65642069 
- 890              	.LASF19:
- 891 018d 5449415F 		.ascii	"TIA_1_SetResFB\000"
- 891      315F5365 
- 891      74526573 
- 891      464200
- 892              	.LASF15:
- 893 019c 73697A65 		.ascii	"sizetype\000"
- 893      74797065 
- 893      00
- 894              	.LASF6:
- 895 01a5 6C6F6E67 		.ascii	"long long int\000"
- 895      206C6F6E 
- 895      6720696E 
- 895      7400
- 896              	.LASF11:
- 897 01b3 63686172 		.ascii	"char\000"
- 897      00
- 898              	.LASF2:
- 899 01b8 73686F72 		.ascii	"short int\000"
- 899      7420696E 
- 899      7400
- 900              	.LASF21:
- 901 01c2 7265735F 		.ascii	"res_feedback\000"
- 901      66656564 
- 901      6261636B 
- 901      00
- 902              	.LASF23:
- 903 01cf 6361705F 		.ascii	"cap_feedback\000"
- 903      66656564 
- 903      6261636B 
- 903      00
- 904              	.LASF16:
- 905 01dc 5449415F 		.ascii	"TIA_1_Enable\000"
- 905      315F456E 
- 905      61626C65 
- 905      00
- 906              	.LASF24:
- 907 01e9 5449415F 		.ascii	"TIA_1_Init\000"
- 907      315F496E 
- 907      697400
- 908              	.LASF30:
- 909 01f4 5449415F 		.ascii	"TIA_1_initVar\000"
- 909      315F696E 
- 909      69745661 
- 909      7200
- 910              	.LASF4:
- 911 0202 6C6F6E67 		.ascii	"long int\000"
- 911      20696E74 
- 911      00
- 912              	.LASF14:
- 913 020b 6C6F6E67 		.ascii	"long double\000"
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccjV7EO0.s 			page 24
+ 888      65642069 
+ 889              	.LASF19:
+ 890 015d 5449415F 		.ascii	"TIA_1_SetResFB\000"
+ 890      315F5365 
+ 890      74526573 
+ 890      464200
+ 891              	.LASF15:
+ 892 016c 73697A65 		.ascii	"sizetype\000"
+ 892      74797065 
+ 892      00
+ 893              	.LASF6:
+ 894 0175 6C6F6E67 		.ascii	"long long int\000"
+ 894      206C6F6E 
+ 894      6720696E 
+ 894      7400
+ 895              	.LASF11:
+ 896 0183 63686172 		.ascii	"char\000"
+ 896      00
+ 897              	.LASF28:
+ 898 0188 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 898      73657273 
+ 898      5C467261 
+ 898      6E6B6C69 
+ 898      6E4C6162 
+ 899 01b7 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
+ 899      434E545F 
+ 899      49565C50 
+ 899      536F435C 
+ 899      4C61796F 
+ 900 01e4 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 900      65722031 
+ 900      5C446573 
+ 900      69676E30 
+ 900      312E6379 
+ 901              	.LASF2:
+ 902 01fc 73686F72 		.ascii	"short int\000"
+ 902      7420696E 
+ 902      7400
+ 903              	.LASF21:
+ 904 0206 7265735F 		.ascii	"res_feedback\000"
+ 904      66656564 
+ 904      6261636B 
+ 904      00
+ 905              	.LASF23:
+ 906 0213 6361705F 		.ascii	"cap_feedback\000"
+ 906      66656564 
+ 906      6261636B 
+ 906      00
+ 907              	.LASF16:
+ 908 0220 5449415F 		.ascii	"TIA_1_Enable\000"
+ 908      315F456E 
+ 908      61626C65 
+ 908      00
+ 909              	.LASF24:
+ 910 022d 5449415F 		.ascii	"TIA_1_Init\000"
+ 910      315F496E 
+ 910      697400
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 24
 
 
- 913      20646F75 
- 913      626C6500 
- 914              	.LASF0:
- 915 0217 7369676E 		.ascii	"signed char\000"
- 915      65642063 
- 915      68617200 
- 916              	.LASF27:
- 917 0223 47656E65 		.ascii	"Generated_Source\\PSoC5\\TIA_1.c\000"
- 917      72617465 
- 917      645F536F 
- 917      75726365 
- 917      5C50536F 
- 918              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 911              	.LASF30:
+ 912 0238 5449415F 		.ascii	"TIA_1_initVar\000"
+ 912      315F696E 
+ 912      69745661 
+ 912      7200
+ 913              	.LASF4:
+ 914 0246 6C6F6E67 		.ascii	"long int\000"
+ 914      20696E74 
+ 914      00
+ 915              	.LASF14:
+ 916 024f 6C6F6E67 		.ascii	"long double\000"
+ 916      20646F75 
+ 916      626C6500 
+ 917              	.LASF0:
+ 918 025b 7369676E 		.ascii	"signed char\000"
+ 918      65642063 
+ 918      68617200 
+ 919              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

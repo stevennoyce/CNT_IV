@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
   29:Generated_Source\PSoC5/ADC_SAR_1.c **** static void ADC_SAR_1_CalcGain(uint8 resolution);
   30:Generated_Source\PSoC5/ADC_SAR_1.c **** 
   31:Generated_Source\PSoC5/ADC_SAR_1.c **** 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 2
 
 
   32:Generated_Source\PSoC5/ADC_SAR_1.c **** /***************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
   86:Generated_Source\PSoC5/ADC_SAR_1.c **** 
   87:Generated_Source\PSoC5/ADC_SAR_1.c **** /*******************************************************************************
   88:Generated_Source\PSoC5/ADC_SAR_1.c **** * Function Name: ADC_SAR_1_Init
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 3
 
 
   89:Generated_Source\PSoC5/ADC_SAR_1.c **** ********************************************************************************
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  143:Generated_Source\PSoC5/ADC_SAR_1.c **** void ADC_SAR_1_Enable(void)
  144:Generated_Source\PSoC5/ADC_SAR_1.c **** {
  145:Generated_Source\PSoC5/ADC_SAR_1.c ****     uint8 tmpReg;
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 4
 
 
  146:Generated_Source\PSoC5/ADC_SAR_1.c ****     uint8 enableInterrupts;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  200:Generated_Source\PSoC5/ADC_SAR_1.c ****         ADC_SAR_1_SAR_CSR5_REG |= ADC_SAR_1_SAR_SEL_CSEL_DFT_CHAR;
  201:Generated_Source\PSoC5/ADC_SAR_1.c ****     #else /* for <500ksps */
  202:Generated_Source\PSoC5/ADC_SAR_1.c ****         ADC_SAR_1_SAR_CSR5_REG &= (uint8)~ADC_SAR_1_SAR_SEL_CSEL_DFT_CHAR;
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 5
 
 
  203:Generated_Source\PSoC5/ADC_SAR_1.c ****     #endif /* ADC_SAR_1_HIGH_POWER_PULSE == 0u */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  257:Generated_Source\PSoC5/ADC_SAR_1.c ****     /* Disable the SAR ADC in Standby Power Mode */
  258:Generated_Source\PSoC5/ADC_SAR_1.c ****     ADC_SAR_1_STBY_PWRMGR_SAR_REG &= (uint8)~ADC_SAR_1_STBY_PWR_SAR_EN;
  259:Generated_Source\PSoC5/ADC_SAR_1.c **** 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 6
 
 
  260:Generated_Source\PSoC5/ADC_SAR_1.c ****     /* This is only valid if there is an internal clock */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  314:Generated_Source\PSoC5/ADC_SAR_1.c **** *  10 ->    RES10
  315:Generated_Source\PSoC5/ADC_SAR_1.c **** *  8  ->    RES8
  316:Generated_Source\PSoC5/ADC_SAR_1.c **** *
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 7
 
 
  317:Generated_Source\PSoC5/ADC_SAR_1.c **** * Return:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  371:Generated_Source\PSoC5/ADC_SAR_1.c **** 
  372:Generated_Source\PSoC5/ADC_SAR_1.c ****     /*******************************************************************************
  373:Generated_Source\PSoC5/ADC_SAR_1.c ****     * Function Name: ADC_SAR_1_StartConvert
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 8
 
 
  374:Generated_Source\PSoC5/ADC_SAR_1.c ****     ********************************************************************************
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  428:Generated_Source\PSoC5/ADC_SAR_1.c ****     *  Stops ADC conversion in Free Running mode.
  429:Generated_Source\PSoC5/ADC_SAR_1.c ****     *
  430:Generated_Source\PSoC5/ADC_SAR_1.c ****     * Side Effects:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 9
 
 
  431:Generated_Source\PSoC5/ADC_SAR_1.c ****     *  In Software Trigger sample mode, this function sets a software version of the
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  485:Generated_Source\PSoC5/ADC_SAR_1.c ****     {
  486:Generated_Source\PSoC5/ADC_SAR_1.c ****         /* wait one ADC clock to let the EOC status bit release */
  487:Generated_Source\PSoC5/ADC_SAR_1.c ****         CyDelayUs(1u);
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 10
 
 
  488:Generated_Source\PSoC5/ADC_SAR_1.c ****         /* Do the unconditional read operation of the CSR1 register to make sure the EOC bit has be
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  542:Generated_Source\PSoC5/ADC_SAR_1.c **** * Global Variables:
  543:Generated_Source\PSoC5/ADC_SAR_1.c **** *  ADC_SAR_1_shift - used to convert the ADC counts to the 2s
  544:Generated_Source\PSoC5/ADC_SAR_1.c **** *  compliment form.
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 11
 
 
  545:Generated_Source\PSoC5/ADC_SAR_1.c **** *
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  599:Generated_Source\PSoC5/ADC_SAR_1.c **** *  uint8: resolution
  600:Generated_Source\PSoC5/ADC_SAR_1.c **** *
  601:Generated_Source\PSoC5/ADC_SAR_1.c **** * Return:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 12
 
 
  602:Generated_Source\PSoC5/ADC_SAR_1.c **** *  None.
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  630:Generated_Source\PSoC5/ADC_SAR_1.c ****         case (uint8)ADC_SAR_1__BITS_10:
  631:Generated_Source\PSoC5/ADC_SAR_1.c ****             counts = (int32)ADC_SAR_1_SAR_WRK_MAX_10BIT;
  632:Generated_Source\PSoC5/ADC_SAR_1.c ****             #if(!((ADC_SAR_1_DEFAULT_RANGE == ADC_SAR_1__VSS_TO_VREF) || \
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 13
 
 
  633:Generated_Source\PSoC5/ADC_SAR_1.c ****                  (ADC_SAR_1_DEFAULT_RANGE == ADC_SAR_1__VSSA_TO_VDDA) || \
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  656:Generated_Source\PSoC5/ADC_SAR_1.c ****     ADC_SAR_1_countsPerVolt = 0; /* Clear obsolete variable */
   78              		.loc 1 656 0
   79 0036 0020     		movs	r0, #0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 14
 
 
   80 0038 094B     		ldr	r3, .L9
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  122 0000 10B5     		push	{r4, lr}
  123              		.cfi_def_cfa_offset 8
  124              		.cfi_offset 4, -8
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 15
 
 
  125              		.cfi_offset 14, -4
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  169              		.loc 1 192 0
  170 0048 013B     		subs	r3, r3, #1
  171 004a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 16
 
 
  172 004c 42F04002 		orr	r2, r2, #64
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  219              		.thumb
  220              		.thumb_func
  221              		.type	ADC_SAR_1_Stop, %function
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 17
 
 
  222              	ADC_SAR_1_Stop:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  268 0044 08590040 		.word	1073764616
  269              		.cfi_endproc
  270              	.LFE3:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 18
 
 
  271              		.size	ADC_SAR_1_Stop, .-ADC_SAR_1_Stop
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  320              		.cfi_def_cfa_offset 8
  321              		.cfi_offset 4, -8
  322              		.cfi_offset 14, -4
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 19
 
 
  323 0002 0446     		mov	r4, r0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  368              	.L30:
  369 0034 0A590040 		.word	1073764618
  370              		.cfi_endproc
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 20
 
 
  371              	.LFE5:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  418              		.align	2
  419              	.L34:
  420 0030 00000000 		.word	ADC_SAR_1_ISR
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 21
 
 
  421 0034 09590040 		.word	1073764617
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  470              		.type	ADC_SAR_1_StartConvert, %function
  471              	ADC_SAR_1_StartConvert:
  472              	.LFB6:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 22
 
 
  402:Generated_Source\PSoC5/ADC_SAR_1.c ****         #if(ADC_SAR_1_DEFAULT_CONV_MODE != ADC_SAR_1__FREE_RUNNING)  /* If software triggered mode 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  523              	ADC_SAR_1_IsEndConversion:
  524              	.LFB8:
  476:Generated_Source\PSoC5/ADC_SAR_1.c ****     uint8 status;
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 23
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 23
 
 
  525              		.loc 1 476 0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  572              		.type	ADC_SAR_1_GetResult8, %function
  573              	ADC_SAR_1_GetResult8:
  574              	.LFB9:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 24
 
 
  521:Generated_Source\PSoC5/ADC_SAR_1.c ****     return( (int8)ADC_SAR_1_SAR_WRK0_REG - (int8)ADC_SAR_1_shift);
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  622 000c 00B2     		sxth	r0, r0
  623 000e 7047     		bx	lr
  624              	.L59:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 25
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 25
 
 
  625              		.align	2
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  679:Generated_Source\PSoC5/ADC_SAR_1.c **** *  input or if the ADC is using an external reference.
  680:Generated_Source\PSoC5/ADC_SAR_1.c **** *
  681:Generated_Source\PSoC5/ADC_SAR_1.c **** * Parameters:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 26
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 26
 
 
  682:Generated_Source\PSoC5/ADC_SAR_1.c **** *  int16 adcGain counts per volt
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  708:Generated_Source\PSoC5/ADC_SAR_1.c **** * Parameters:
  709:Generated_Source\PSoC5/ADC_SAR_1.c **** *  int32 adcGain  counts per 10 volt
  710:Generated_Source\PSoC5/ADC_SAR_1.c **** *
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 27
 
 
  711:Generated_Source\PSoC5/ADC_SAR_1.c **** * Return:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  740:Generated_Source\PSoC5/ADC_SAR_1.c **** *  ADC_SAR_1_countsPer10Volt variable used.
  741:Generated_Source\PSoC5/ADC_SAR_1.c **** *
  742:Generated_Source\PSoC5/ADC_SAR_1.c **** *******************************************************************************/
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 28
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 28
 
 
  743:Generated_Source\PSoC5/ADC_SAR_1.c **** int16 ADC_SAR_1_CountsTo_mVolts(int16 adcCounts)
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  754 0024 42F21073 		movw	r3, #10000
  755 0028 03FB01F2 		mul	r2, r3, r1
  761:Generated_Source\PSoC5/ADC_SAR_1.c ****                        (countsPer10Volt / 2) : (-(countsPer10Volt / 2)) )) / countsPer10Volt);
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 29
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 29
 
 
  756              		.loc 1 761 0
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  772:Generated_Source\PSoC5/ADC_SAR_1.c **** *  Converts the ADC output to microvolts as a 32-bit integer.
  773:Generated_Source\PSoC5/ADC_SAR_1.c **** *
  774:Generated_Source\PSoC5/ADC_SAR_1.c **** * Parameters:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 30
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 30
 
 
  775:Generated_Source\PSoC5/ADC_SAR_1.c **** *  int16 adcCounts: Result from the ADC conversion
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  798:Generated_Source\PSoC5/ADC_SAR_1.c ****     }
  799:Generated_Source\PSoC5/ADC_SAR_1.c **** 
  800:Generated_Source\PSoC5/ADC_SAR_1.c ****     /* Subtract ADC offset */
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 31
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 31
 
 
  801:Generated_Source\PSoC5/ADC_SAR_1.c ****     adcCounts -= ADC_SAR_1_offset;
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  817:Generated_Source\PSoC5/ADC_SAR_1.c **** *
  818:Generated_Source\PSoC5/ADC_SAR_1.c **** * Parameters:
  819:Generated_Source\PSoC5/ADC_SAR_1.c **** *  int16 adcCounts: Result from the ADC conversion
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 32
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 32
 
 
  820:Generated_Source\PSoC5/ADC_SAR_1.c **** *
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  843:Generated_Source\PSoC5/ADC_SAR_1.c ****     /* Subtract ADC offset */
  844:Generated_Source\PSoC5/ADC_SAR_1.c ****     adcCounts -= ADC_SAR_1_offset;
  899              		.loc 1 844 0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 33
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 33
 
 
  900 001c 0A4B     		ldr	r3, .L87+8
@@ -1978,16 +1978,16 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  949              	.Ldebug_info0:
  950 0000 CC050000 		.4byte	0x5cc
  951 0004 0400     		.2byte	0x4
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 34
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 34
 
 
  952 0006 00000000 		.4byte	.Ldebug_abbrev0
  953 000a 04       		.byte	0x4
  954 000b 01       		.uleb128 0x1
- 955 000c 09030000 		.4byte	.LASF67
+ 955 000c 2E030000 		.4byte	.LASF67
  956 0010 0C       		.byte	0xc
- 957 0011 B8030000 		.4byte	.LASF68
- 958 0015 89020000 		.4byte	.LASF69
+ 957 0011 DD030000 		.4byte	.LASF68
+ 958 0015 52010000 		.4byte	.LASF69
  959 0019 00000000 		.4byte	.Ldebug_ranges0+0
  960 001d 00000000 		.4byte	0
  961 0021 00000000 		.4byte	.Ldebug_line0
@@ -2006,7 +2006,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  974 003a 03       		.uleb128 0x3
  975 003b 08       		.byte	0x8
  976 003c 04       		.byte	0x4
- 977 003d 88010000 		.4byte	.LASF2
+ 977 003d FC010000 		.4byte	.LASF2
  978 0041 03       		.uleb128 0x3
  979 0042 01       		.byte	0x1
  980 0043 06       		.byte	0x6
@@ -2014,11 +2014,11 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  982 0048 03       		.uleb128 0x3
  983 0049 01       		.byte	0x1
  984 004a 08       		.byte	0x8
- 985 004b 4D020000 		.4byte	.LASF4
+ 985 004b C1020000 		.4byte	.LASF4
  986 004f 03       		.uleb128 0x3
  987 0050 02       		.byte	0x2
  988 0051 05       		.byte	0x5
- 989 0052 7F020000 		.4byte	.LASF5
+ 989 0052 F3020000 		.4byte	.LASF5
  990 0056 03       		.uleb128 0x3
  991 0057 02       		.byte	0x2
  992 0058 07       		.byte	0x7
@@ -2038,14 +2038,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1006 0072 03       		.uleb128 0x3
  1007 0073 04       		.byte	0x4
  1008 0074 07       		.byte	0x7
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 35
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 35
 
 
- 1009 0075 7F010000 		.4byte	.LASF10
+ 1009 0075 F3010000 		.4byte	.LASF10
  1010 0079 03       		.uleb128 0x3
  1011 007a 01       		.byte	0x1
  1012 007b 08       		.byte	0x8
- 1013 007c DB030000 		.4byte	.LASF11
+ 1013 007c 00040000 		.4byte	.LASF11
  1014 0080 04       		.uleb128 0x4
  1015 0081 A3000000 		.4byte	.LASF12
  1016 0085 02       		.byte	0x2
@@ -2067,7 +2067,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1032 00aa 9501     		.2byte	0x195
  1033 00ac 41000000 		.4byte	0x41
  1034 00b0 04       		.uleb128 0x4
- 1035 00b1 77040000 		.4byte	.LASF16
+ 1035 00b1 9C040000 		.4byte	.LASF16
  1036 00b5 02       		.byte	0x2
  1037 00b6 9601     		.2byte	0x196
  1038 00b8 4F000000 		.4byte	0x4f
@@ -2077,28 +2077,28 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1042 00c2 9701     		.2byte	0x197
  1043 00c4 5D000000 		.4byte	0x5d
  1044 00c8 04       		.uleb128 0x4
- 1045 00c9 77010000 		.4byte	.LASF18
+ 1045 00c9 EB010000 		.4byte	.LASF18
  1046 00cd 02       		.byte	0x2
  1047 00ce 9801     		.2byte	0x198
  1048 00d0 D4000000 		.4byte	0xd4
  1049 00d4 03       		.uleb128 0x3
  1050 00d5 04       		.byte	0x4
  1051 00d6 04       		.byte	0x4
- 1052 00d7 23020000 		.4byte	.LASF19
+ 1052 00d7 97020000 		.4byte	.LASF19
  1053 00db 03       		.uleb128 0x3
  1054 00dc 08       		.byte	0x8
  1055 00dd 04       		.byte	0x4
  1056 00de B3000000 		.4byte	.LASF20
  1057 00e2 04       		.uleb128 0x4
- 1058 00e3 F8010000 		.4byte	.LASF21
+ 1058 00e3 6C020000 		.4byte	.LASF21
  1059 00e7 02       		.byte	0x2
  1060 00e8 9D01     		.2byte	0x19d
  1061 00ea 33000000 		.4byte	0x33
  1062 00ee 04       		.uleb128 0x4
- 1063 00ef 41020000 		.4byte	.LASF22
+ 1063 00ef B5020000 		.4byte	.LASF22
  1064 00f3 02       		.byte	0x2
  1065 00f4 3C02     		.2byte	0x23c
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 36
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 36
 
 
  1066 00f6 FA000000 		.4byte	0xfa
@@ -2112,7 +2112,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1074 010b 05       		.uleb128 0x5
  1075 010c 8C000000 		.4byte	0x8c
  1076 0110 04       		.uleb128 0x4
- 1077 0111 59010000 		.4byte	.LASF24
+ 1077 0111 CD010000 		.4byte	.LASF24
  1078 0115 02       		.byte	0x2
  1079 0116 3E02     		.2byte	0x23e
  1080 0118 1C010000 		.4byte	0x11c
@@ -2128,7 +2128,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1090 0132 9C       		.byte	0x9c
  1091 0133 77010000 		.4byte	0x177
  1092 0137 07       		.uleb128 0x7
- 1093 0138 AD030000 		.4byte	.LASF32
+ 1093 0138 D2030000 		.4byte	.LASF32
  1094 013c 01       		.byte	0x1
  1095 013d 6302     		.2byte	0x263
  1096 013f 80000000 		.4byte	0x80
@@ -2140,7 +2140,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1102 014f BC000000 		.4byte	0xbc
  1103 0153 3A000000 		.4byte	.LLST1
  1104 0157 08       		.uleb128 0x8
- 1105 0158 5B020000 		.4byte	.LASF26
+ 1105 0158 CF020000 		.4byte	.LASF26
  1106 015c 01       		.byte	0x1
  1107 015d 6902     		.2byte	0x269
  1108 015f 8C000000 		.4byte	0x8c
@@ -2156,9 +2156,9 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1118 0175 00       		.byte	0
  1119 0176 00       		.byte	0
  1120 0177 0B       		.uleb128 0xb
- 1121 0178 E0020000 		.4byte	.LASF29
+ 1121 0178 05030000 		.4byte	.LASF29
  1122 017c 01       		.byte	0x1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 37
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 37
 
 
  1123 017d 8F       		.byte	0x8f
@@ -2168,13 +2168,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1127 0187 9C       		.byte	0x9c
  1128 0188 D7010000 		.4byte	0x1d7
  1129 018c 0C       		.uleb128 0xc
- 1130 018d AE040000 		.4byte	.LASF27
+ 1130 018d D3040000 		.4byte	.LASF27
  1131 0191 01       		.byte	0x1
  1132 0192 91       		.byte	0x91
  1133 0193 80000000 		.4byte	0x80
  1134 0197 93000000 		.4byte	.LLST3
  1135 019b 0C       		.uleb128 0xc
- 1136 019c 20040000 		.4byte	.LASF28
+ 1136 019c 45040000 		.4byte	.LASF28
  1137 01a0 01       		.byte	0x1
  1138 01a1 92       		.byte	0x92
  1139 01a2 80000000 		.4byte	0x80
@@ -2204,7 +2204,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1163 01d5 00       		.byte	0
  1164 01d6 00       		.byte	0
  1165 01d7 0B       		.uleb128 0xb
- 1166 01d8 C5040000 		.4byte	.LASF30
+ 1166 01d8 EA040000 		.4byte	.LASF30
  1167 01dc 01       		.byte	0x1
  1168 01dd F8       		.byte	0xf8
  1169 01de 00000000 		.4byte	.LFB3
@@ -2213,12 +2213,12 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1172 01e7 9C       		.byte	0x9c
  1173 01e8 0E020000 		.4byte	0x20e
  1174 01ec 0C       		.uleb128 0xc
- 1175 01ed 20040000 		.4byte	.LASF28
+ 1175 01ed 45040000 		.4byte	.LASF28
  1176 01f1 01       		.byte	0x1
  1177 01f2 FA       		.byte	0xfa
  1178 01f3 80000000 		.4byte	0x80
  1179 01f7 D7000000 		.4byte	.LLST5
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 38
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 38
 
 
  1180 01fb 0D       		.uleb128 0xd
@@ -2229,7 +2229,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1185 0209 A3050000 		.4byte	0x5a3
  1186 020d 00       		.byte	0
  1187 020e 0F       		.uleb128 0xf
- 1188 020f 52040000 		.4byte	.LASF31
+ 1188 020f 77040000 		.4byte	.LASF31
  1189 0213 01       		.byte	0x1
  1190 0214 2201     		.2byte	0x122
  1191 0216 00000000 		.4byte	.LFB4
@@ -2238,20 +2238,20 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1194 021f 9C       		.byte	0x9c
  1195 0220 45020000 		.4byte	0x245
  1196 0224 07       		.uleb128 0x7
- 1197 0225 3B020000 		.4byte	.LASF33
+ 1197 0225 AF020000 		.4byte	.LASF33
  1198 0229 01       		.byte	0x1
  1199 022a 2201     		.2byte	0x122
  1200 022c 80000000 		.4byte	0x80
  1201 0230 EA000000 		.4byte	.LLST6
  1202 0234 08       		.uleb128 0x8
- 1203 0235 AE040000 		.4byte	.LASF27
+ 1203 0235 D3040000 		.4byte	.LASF27
  1204 0239 01       		.byte	0x1
  1205 023a 2401     		.2byte	0x124
  1206 023c 80000000 		.4byte	0x80
  1207 0240 1C010000 		.4byte	.LLST7
  1208 0244 00       		.byte	0
  1209 0245 0F       		.uleb128 0xf
- 1210 0246 94010000 		.4byte	.LASF34
+ 1210 0246 08020000 		.4byte	.LASF34
  1211 024a 01       		.byte	0x1
  1212 024b 5401     		.2byte	0x154
  1213 024d 00000000 		.4byte	.LFB5
@@ -2260,13 +2260,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1216 0256 9C       		.byte	0x9c
  1217 0257 9F020000 		.4byte	0x29f
  1218 025b 07       		.uleb128 0x7
- 1219 025c AD030000 		.4byte	.LASF32
+ 1219 025c D2030000 		.4byte	.LASF32
  1220 0260 01       		.byte	0x1
  1221 0261 5401     		.2byte	0x154
  1222 0263 80000000 		.4byte	0x80
  1223 0267 3A010000 		.4byte	.LLST8
  1224 026b 08       		.uleb128 0x8
- 1225 026c AE040000 		.4byte	.LASF27
+ 1225 026c D3040000 		.4byte	.LASF27
  1226 0270 01       		.byte	0x1
  1227 0271 5601     		.2byte	0x156
  1228 0273 80000000 		.4byte	0x80
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1234 0288 0A       		.uleb128 0xa
  1235 0289 01       		.uleb128 0x1
  1236 028a 50       		.byte	0x50
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 39
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 39
 
 
  1237 028b 01       		.uleb128 0x1
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1291 02ee 50       		.byte	0x50
  1292 02ef 01       		.uleb128 0x1
  1293 02f0 30       		.byte	0x30
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 40
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 40
 
 
  1294 02f1 00       		.byte	0
@@ -2353,7 +2353,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1303 0300 00       		.byte	0
  1304 0301 00       		.byte	0
  1305 0302 0B       		.uleb128 0xb
- 1306 0303 E8010000 		.4byte	.LASF36
+ 1306 0303 5C020000 		.4byte	.LASF36
  1307 0307 01       		.byte	0x1
  1308 0308 4A       		.byte	0x4a
  1309 0309 00000000 		.4byte	.LFB0
@@ -2369,7 +2369,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1319 0325 77010000 		.4byte	0x177
  1320 0329 00       		.byte	0
  1321 032a 10       		.uleb128 0x10
- 1322 032b 97040000 		.4byte	.LASF37
+ 1322 032b BC040000 		.4byte	.LASF37
  1323 032f 01       		.byte	0x1
  1324 0330 9101     		.2byte	0x191
  1325 0332 00000000 		.4byte	.LFB6
@@ -2377,7 +2377,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1327 033a 01       		.uleb128 0x1
  1328 033b 9C       		.byte	0x9c
  1329 033c 10       		.uleb128 0x10
- 1330 033d 00040000 		.4byte	.LASF38
+ 1330 033d 25040000 		.4byte	.LASF38
  1331 0341 01       		.byte	0x1
  1332 0342 B301     		.2byte	0x1b3
  1333 0344 00000000 		.4byte	.LFB7
@@ -2385,7 +2385,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1335 034c 01       		.uleb128 0x1
  1336 034d 9C       		.byte	0x9c
  1337 034e 11       		.uleb128 0x11
- 1338 034f 38040000 		.4byte	.LASF41
+ 1338 034f 5D040000 		.4byte	.LASF41
  1339 0353 01       		.byte	0x1
  1340 0354 DB01     		.2byte	0x1db
  1341 0356 80000000 		.4byte	0x80
@@ -2398,13 +2398,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1348 0369 E0000000 		.4byte	.LASF39
  1349 036d 01       		.byte	0x1
  1350 036e DB01     		.2byte	0x1db
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 41
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 41
 
 
  1351 0370 80000000 		.4byte	0x80
  1352 0374 A1010000 		.4byte	.LLST10
  1353 0378 08       		.uleb128 0x8
- 1354 0379 31040000 		.4byte	.LASF40
+ 1354 0379 56040000 		.4byte	.LASF40
  1355 037d 01       		.byte	0x1
  1356 037e DD01     		.2byte	0x1dd
  1357 0380 80000000 		.4byte	0x80
@@ -2429,7 +2429,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1376 03ac 01       		.uleb128 0x1
  1377 03ad 9C       		.byte	0x9c
  1378 03ae 11       		.uleb128 0x11
- 1379 03af 97030000 		.4byte	.LASF42
+ 1379 03af BC030000 		.4byte	.LASF42
  1380 03b3 01       		.byte	0x1
  1381 03b4 2602     		.2byte	0x226
  1382 03b6 B0000000 		.4byte	0xb0
@@ -2446,7 +2446,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1393 03d4 D9010000 		.4byte	.LLST12
  1394 03d8 00       		.byte	0
  1395 03d9 0F       		.uleb128 0xf
- 1396 03da FE010000 		.4byte	.LASF43
+ 1396 03da 72020000 		.4byte	.LASF43
  1397 03de 01       		.byte	0x1
  1398 03df 4902     		.2byte	0x249
  1399 03e1 00000000 		.4byte	.LFB11
@@ -2455,10 +2455,10 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1402 03ea 9C       		.byte	0x9c
  1403 03eb FE030000 		.4byte	0x3fe
  1404 03ef 14       		.uleb128 0x14
- 1405 03f0 F9030000 		.4byte	.LASF44
+ 1405 03f0 1E040000 		.4byte	.LASF44
  1406 03f4 01       		.byte	0x1
  1407 03f5 4902     		.2byte	0x249
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 42
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 42
 
 
  1408 03f7 B0000000 		.4byte	0xb0
@@ -2466,7 +2466,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1410 03fc 50       		.byte	0x50
  1411 03fd 00       		.byte	0
  1412 03fe 0F       		.uleb128 0xf
- 1413 03ff 65040000 		.4byte	.LASF45
+ 1413 03ff 8A040000 		.4byte	.LASF45
  1414 0403 01       		.byte	0x1
  1415 0404 B402     		.2byte	0x2b4
  1416 0406 00000000 		.4byte	.LFB13
@@ -2475,14 +2475,14 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1419 040f 9C       		.byte	0x9c
  1420 0410 25040000 		.4byte	0x425
  1421 0414 07       		.uleb128 0x7
- 1422 0415 D8020000 		.4byte	.LASF46
+ 1422 0415 FD020000 		.4byte	.LASF46
  1423 0419 01       		.byte	0x1
  1424 041a B402     		.2byte	0x2b4
  1425 041c B0000000 		.4byte	0xb0
  1426 0420 EC010000 		.4byte	.LLST13
  1427 0424 00       		.byte	0
  1428 0425 0F       		.uleb128 0xf
- 1429 0426 F1020000 		.4byte	.LASF47
+ 1429 0426 16030000 		.4byte	.LASF47
  1430 042a 01       		.byte	0x1
  1431 042b CF02     		.2byte	0x2cf
  1432 042d 00000000 		.4byte	.LFB14
@@ -2491,7 +2491,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1435 0436 9C       		.byte	0x9c
  1436 0437 4A040000 		.4byte	0x44a
  1437 043b 14       		.uleb128 0x14
- 1438 043c D8020000 		.4byte	.LASF46
+ 1438 043c FD020000 		.4byte	.LASF46
  1439 0440 01       		.byte	0x1
  1440 0441 CF02     		.2byte	0x2cf
  1441 0443 BC000000 		.4byte	0xbc
@@ -2499,7 +2499,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1443 0448 50       		.byte	0x50
  1444 0449 00       		.byte	0
  1445 044a 11       		.uleb128 0x11
- 1446 044b 65020000 		.4byte	.LASF48
+ 1446 044b D9020000 		.4byte	.LASF48
  1447 044f 01       		.byte	0x1
  1448 0450 E702     		.2byte	0x2e7
  1449 0452 B0000000 		.4byte	0xb0
@@ -2509,16 +2509,16 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1453 045f 9C       		.byte	0x9c
  1454 0460 93040000 		.4byte	0x493
  1455 0464 07       		.uleb128 0x7
- 1456 0465 16040000 		.4byte	.LASF49
+ 1456 0465 3B040000 		.4byte	.LASF49
  1457 0469 01       		.byte	0x1
  1458 046a E702     		.2byte	0x2e7
  1459 046c B0000000 		.4byte	0xb0
  1460 0470 0D020000 		.4byte	.LLST14
  1461 0474 15       		.uleb128 0x15
- 1462 0475 52010000 		.4byte	.LASF50
+ 1462 0475 C6010000 		.4byte	.LASF50
  1463 0479 01       		.byte	0x1
  1464 047a E902     		.2byte	0x2e9
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 43
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 43
 
 
  1465 047c B0000000 		.4byte	0xb0
@@ -2532,7 +2532,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1473 048e 2B020000 		.4byte	.LLST15
  1474 0492 00       		.byte	0
  1475 0493 16       		.uleb128 0x16
- 1476 0494 AC010000 		.4byte	.LASF52
+ 1476 0494 20020000 		.4byte	.LASF52
  1477 0498 01       		.byte	0x1
  1478 0499 1103     		.2byte	0x311
  1479 049b BC000000 		.4byte	0xbc
@@ -2542,7 +2542,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1483 04a8 9C       		.byte	0x9c
  1484 04a9 DA040000 		.4byte	0x4da
  1485 04ad 07       		.uleb128 0x7
- 1486 04ae 16040000 		.4byte	.LASF49
+ 1486 04ae 3B040000 		.4byte	.LASF49
  1487 04b2 01       		.byte	0x1
  1488 04b3 1103     		.2byte	0x311
  1489 04b5 B0000000 		.4byte	0xb0
@@ -2560,7 +2560,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1501 04d5 67020000 		.4byte	.LLST17
  1502 04d9 00       		.byte	0
  1503 04da 16       		.uleb128 0x16
- 1504 04db E0030000 		.4byte	.LASF53
+ 1504 04db 05040000 		.4byte	.LASF53
  1505 04df 01       		.byte	0x1
  1506 04e0 3D03     		.2byte	0x33d
  1507 04e2 C8000000 		.4byte	0xc8
@@ -2570,7 +2570,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1511 04ef 9C       		.byte	0x9c
  1512 04f0 23050000 		.4byte	0x523
  1513 04f4 07       		.uleb128 0x7
- 1514 04f5 16040000 		.4byte	.LASF49
+ 1514 04f5 3B040000 		.4byte	.LASF49
  1515 04f9 01       		.byte	0x1
  1516 04fa 3D03     		.2byte	0x33d
  1517 04fc B0000000 		.4byte	0xb0
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1519 0504 15       		.uleb128 0x15
  1520 0505 0E010000 		.4byte	.LASF54
  1521 0509 01       		.byte	0x1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 44
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 44
 
 
  1522 050a 3F03     		.2byte	0x33f
@@ -2593,7 +2593,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1531 051e A3020000 		.4byte	.LLST19
  1532 0522 00       		.byte	0
  1533 0523 18       		.uleb128 0x18
- 1534 0524 29020000 		.4byte	.LASF55
+ 1534 0524 9D020000 		.4byte	.LASF55
  1535 0528 01       		.byte	0x1
  1536 0529 23       		.byte	0x23
  1537 052a 80000000 		.4byte	0x80
@@ -2611,7 +2611,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1549 0545 05       		.uleb128 0x5
  1550 0546 B0000000 		.4byte	0xb0
  1551 054a 18       		.uleb128 0x18
- 1552 054b 5F010000 		.4byte	.LASF57
+ 1552 054b D3010000 		.4byte	.LASF57
  1553 054f 01       		.byte	0x1
  1554 0550 25       		.byte	0x25
  1555 0551 45050000 		.4byte	0x545
@@ -2619,7 +2619,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1557 0556 03       		.byte	0x3
  1558 0557 00000000 		.4byte	ADC_SAR_1_countsPerVolt
  1559 055b 18       		.uleb128 0x18
- 1560 055c 7D040000 		.4byte	.LASF58
+ 1560 055c A2040000 		.4byte	.LASF58
  1561 0560 01       		.byte	0x1
  1562 0561 26       		.byte	0x26
  1563 0562 6C050000 		.4byte	0x56c
@@ -2629,7 +2629,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1567 056c 05       		.uleb128 0x5
  1568 056d BC000000 		.4byte	0xbc
  1569 0571 18       		.uleb128 0x18
- 1570 0572 B5040000 		.4byte	.LASF59
+ 1570 0572 DA040000 		.4byte	.LASF59
  1571 0576 01       		.byte	0x1
  1572 0577 27       		.byte	0x27
  1573 0578 45050000 		.4byte	0x545
@@ -2637,11 +2637,11 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1575 057d 03       		.byte	0x3
  1576 057e 00000000 		.4byte	ADC_SAR_1_shift
  1577 0582 19       		.uleb128 0x19
- 1578 0583 46020000 		.4byte	.LASF60
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 45
+ 1578 0583 BA020000 		.4byte	.LASF60
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 45
 
 
- 1579 0587 46020000 		.4byte	.LASF60
+ 1579 0587 BA020000 		.4byte	.LASF60
  1580 058b 03       		.byte	0x3
  1581 058c 7F       		.byte	0x7f
  1582 058d 19       		.uleb128 0x19
@@ -2660,13 +2660,13 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1595 05ac 03       		.byte	0x3
  1596 05ad 7E       		.byte	0x7e
  1597 05ae 19       		.uleb128 0x19
- 1598 05af C6010000 		.4byte	.LASF64
- 1599 05b3 C6010000 		.4byte	.LASF64
+ 1598 05af 3A020000 		.4byte	.LASF64
+ 1599 05b3 3A020000 		.4byte	.LASF64
  1600 05b7 04       		.byte	0x4
  1601 05b8 32       		.byte	0x32
  1602 05b9 19       		.uleb128 0x19
- 1603 05ba 12020000 		.4byte	.LASF65
- 1604 05be 12020000 		.4byte	.LASF65
+ 1603 05ba 86020000 		.4byte	.LASF65
+ 1604 05be 86020000 		.4byte	.LASF65
  1605 05c2 03       		.byte	0x3
  1606 05c3 8B       		.byte	0x8b
  1607 05c4 19       		.uleb128 0x19
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1633 0012 00       		.byte	0
  1634 0013 02       		.uleb128 0x2
  1635 0014 24       		.uleb128 0x24
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 46
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 46
 
 
  1636 0015 00       		.byte	0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1690 004b 06       		.uleb128 0x6
  1691 004c 40       		.uleb128 0x40
  1692 004d 18       		.uleb128 0x18
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 47
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 47
 
 
  1693 004e 9742     		.uleb128 0x2117
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1747 008a 0B       		.uleb128 0xb
  1748 008b 2E       		.uleb128 0x2e
  1749 008c 01       		.byte	0x1
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 48
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 48
 
 
  1750 008d 3F       		.uleb128 0x3f
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1804 00c8 13       		.uleb128 0x13
  1805 00c9 00       		.byte	0
  1806 00ca 00       		.byte	0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 49
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 49
 
 
  1807 00cb 0F       		.uleb128 0xf
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1861 0103 0E       		.uleb128 0xe
  1862 0104 3A       		.uleb128 0x3a
  1863 0105 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 50
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 50
 
 
  1864 0106 3B       		.uleb128 0x3b
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1918 013e 02       		.uleb128 0x2
  1919 013f 17       		.uleb128 0x17
  1920 0140 00       		.byte	0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 51
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 51
 
 
  1921 0141 00       		.byte	0
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  1975 0178 01       		.uleb128 0x1
  1976 0179 13       		.uleb128 0x13
  1977 017a 00       		.byte	0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 52
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 52
 
 
  1978 017b 00       		.byte	0
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2032 0008 0100     		.2byte	0x1
  2033 000a 50       		.byte	0x50
  2034 000b 24000000 		.4byte	.LVL3
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 53
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 53
 
 
  2035 000f 2E000000 		.4byte	.LVL5
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2089 008f 00000000 		.4byte	0
  2090              	.LLST3:
  2091 0093 38000000 		.4byte	.LVL10
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 54
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 54
 
 
  2092 0097 3C000000 		.4byte	.LVL11
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2146 0114 00000000 		.4byte	0
  2147 0118 00000000 		.4byte	0
  2148              	.LLST7:
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 55
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 55
 
 
  2149 011c 08000000 		.4byte	.LVL21
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2203              	.LLST10:
  2204 01a1 00000000 		.4byte	.LVL38
  2205 01a5 14000000 		.4byte	.LVL40
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 56
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 56
 
 
  2206 01a9 0100     		.2byte	0x1
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2260              	.LLST15:
  2261 022b 16000000 		.4byte	.LVL49
  2262 022f 18000000 		.4byte	.LVL50
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 57
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 57
 
 
  2263 0233 0100     		.2byte	0x1
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2317 0004 0200     		.2byte	0x2
  2318 0006 00000000 		.4byte	.Ldebug_info0
  2319 000a 04       		.byte	0x4
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 58
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 58
 
 
  2320 000b 00       		.byte	0
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2374 002c 3C000000 		.4byte	.LFE1
  2375 0030 00000000 		.4byte	.LFB0
  2376 0034 1C000000 		.4byte	.LFE0
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 59
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 59
 
 
  2377 0038 00000000 		.4byte	.LFB6
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2413      696E00
  2414              	.LASF9:
  2415 004c 6C6F6E67 		.ascii	"long long unsigned int\000"
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 60
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 60
 
 
  2415      206C6F6E 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2441      6F646500 
  2442              	.LASF0:
  2443 00e8 756E7369 		.ascii	"unsigned int\000"
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 61
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 61
 
 
  2443      676E6564 
@@ -3636,249 +3636,254 @@ ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 1
  2456              	.LASF15:
  2457 014d 696E7438 		.ascii	"int8\000"
  2457      00
- 2458              	.LASF50:
- 2459 0152 6D566F6C 		.ascii	"mVolts\000"
- 2459      747300
- 2460              	.LASF24:
- 2461 0159 72656733 		.ascii	"reg32\000"
- 2461      3200
- 2462              	.LASF57:
- 2463 015f 4144435F 		.ascii	"ADC_SAR_1_countsPerVolt\000"
- 2463      5341525F 
- 2463      315F636F 
- 2463      756E7473 
- 2463      50657256 
- 2464              	.LASF18:
- 2465 0177 666C6F61 		.ascii	"float32\000"
- 2465      74333200 
- 2466              	.LASF10:
- 2467 017f 73697A65 		.ascii	"sizetype\000"
- 2467      74797065 
- 2467      00
- 2468              	.LASF2:
- 2469 0188 6C6F6E67 		.ascii	"long double\000"
- 2469      20646F75 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 62
+ 2458              	.LASF69:
+ 2459 0152 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 2459      73657273 
+ 2459      5C467261 
+ 2459      6E6B6C69 
+ 2459      6E4C6162 
+ 2460 0181 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
+ 2460      434E545F 
+ 2460      49565C50 
+ 2460      536F435C 
+ 2460      4C61796F 
+ 2461 01ae 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 2461      65722031 
+ 2461      5C446573 
+ 2461      69676E30 
+ 2461      312E6379 
+ 2462              	.LASF50:
+ 2463 01c6 6D566F6C 		.ascii	"mVolts\000"
+ 2463      747300
+ 2464              	.LASF24:
+ 2465 01cd 72656733 		.ascii	"reg32\000"
+ 2465      3200
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 62
 
 
- 2469      626C6500 
- 2470              	.LASF34:
- 2471 0194 4144435F 		.ascii	"ADC_SAR_1_SetResolution\000"
- 2471      5341525F 
- 2471      315F5365 
- 2471      74526573 
- 2471      6F6C7574 
- 2472              	.LASF52:
- 2473 01ac 4144435F 		.ascii	"ADC_SAR_1_CountsTo_uVolts\000"
- 2473      5341525F 
- 2473      315F436F 
- 2473      756E7473 
- 2473      546F5F75 
- 2474              	.LASF64:
- 2475 01c6 4144435F 		.ascii	"ADC_SAR_1_theACLK_SetModeRegister\000"
+ 2466              	.LASF57:
+ 2467 01d3 4144435F 		.ascii	"ADC_SAR_1_countsPerVolt\000"
+ 2467      5341525F 
+ 2467      315F636F 
+ 2467      756E7473 
+ 2467      50657256 
+ 2468              	.LASF18:
+ 2469 01eb 666C6F61 		.ascii	"float32\000"
+ 2469      74333200 
+ 2470              	.LASF10:
+ 2471 01f3 73697A65 		.ascii	"sizetype\000"
+ 2471      74797065 
+ 2471      00
+ 2472              	.LASF2:
+ 2473 01fc 6C6F6E67 		.ascii	"long double\000"
+ 2473      20646F75 
+ 2473      626C6500 
+ 2474              	.LASF34:
+ 2475 0208 4144435F 		.ascii	"ADC_SAR_1_SetResolution\000"
  2475      5341525F 
- 2475      315F7468 
- 2475      6541434C 
- 2475      4B5F5365 
- 2476              	.LASF36:
- 2477 01e8 4144435F 		.ascii	"ADC_SAR_1_Start\000"
+ 2475      315F5365 
+ 2475      74526573 
+ 2475      6F6C7574 
+ 2476              	.LASF52:
+ 2477 0220 4144435F 		.ascii	"ADC_SAR_1_CountsTo_uVolts\000"
  2477      5341525F 
- 2477      315F5374 
- 2477      61727400 
- 2478              	.LASF21:
- 2479 01f8 696E7436 		.ascii	"int64\000"
- 2479      3400
- 2480              	.LASF43:
- 2481 01fe 4144435F 		.ascii	"ADC_SAR_1_SetOffset\000"
+ 2477      315F436F 
+ 2477      756E7473 
+ 2477      546F5F75 
+ 2478              	.LASF64:
+ 2479 023a 4144435F 		.ascii	"ADC_SAR_1_theACLK_SetModeRegister\000"
+ 2479      5341525F 
+ 2479      315F7468 
+ 2479      6541434C 
+ 2479      4B5F5365 
+ 2480              	.LASF36:
+ 2481 025c 4144435F 		.ascii	"ADC_SAR_1_Start\000"
  2481      5341525F 
- 2481      315F5365 
- 2481      744F6666 
- 2481      73657400 
- 2482              	.LASF65:
- 2483 0212 4379496E 		.ascii	"CyIntSetPriority\000"
- 2483      74536574 
- 2483      5072696F 
- 2483      72697479 
- 2483      00
- 2484              	.LASF19:
- 2485 0223 666C6F61 		.ascii	"float\000"
- 2485      7400
- 2486              	.LASF55:
- 2487 0229 4144435F 		.ascii	"ADC_SAR_1_initVar\000"
- 2487      5341525F 
- 2487      315F696E 
- 2487      69745661 
- 2487      7200
- 2488              	.LASF33:
- 2489 023b 706F7765 		.ascii	"power\000"
- 2489      7200
- 2490              	.LASF22:
- 2491 0241 72656738 		.ascii	"reg8\000"
- 2491      00
- 2492              	.LASF60:
- 2493 0246 43794861 		.ascii	"CyHalt\000"
- 2493      6C7400
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 63
+ 2481      315F5374 
+ 2481      61727400 
+ 2482              	.LASF21:
+ 2483 026c 696E7436 		.ascii	"int64\000"
+ 2483      3400
+ 2484              	.LASF43:
+ 2485 0272 4144435F 		.ascii	"ADC_SAR_1_SetOffset\000"
+ 2485      5341525F 
+ 2485      315F5365 
+ 2485      744F6666 
+ 2485      73657400 
+ 2486              	.LASF65:
+ 2487 0286 4379496E 		.ascii	"CyIntSetPriority\000"
+ 2487      74536574 
+ 2487      5072696F 
+ 2487      72697479 
+ 2487      00
+ 2488              	.LASF19:
+ 2489 0297 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 63
 
 
- 2494              	.LASF4:
- 2495 024d 756E7369 		.ascii	"unsigned char\000"
- 2495      676E6564 
- 2495      20636861 
- 2495      7200
- 2496              	.LASF26:
- 2497 025b 64696666 		.ascii	"diff_zero\000"
- 2497      5F7A6572 
- 2497      6F00
- 2498              	.LASF48:
- 2499 0265 4144435F 		.ascii	"ADC_SAR_1_CountsTo_mVolts\000"
- 2499      5341525F 
- 2499      315F436F 
- 2499      756E7473 
- 2499      546F5F6D 
- 2500              	.LASF5:
- 2501 027f 73686F72 		.ascii	"short int\000"
- 2501      7420696E 
- 2501      7400
- 2502              	.LASF69:
- 2503 0289 453A5C52 		.ascii	"E:\\Research\\illumina\\PSoC\\Layout 2_14\\Version "
- 2503      65736561 
- 2503      7263685C 
- 2503      696C6C75 
- 2503      6D696E61 
- 2504 02b7 325C4D61 		.ascii	"2\\Master\\Master 1\\Design01.cydsn\000"
- 2504      73746572 
- 2504      5C4D6173 
- 2504      74657220 
- 2504      315C4465 
- 2505              	.LASF46:
- 2506 02d8 61646347 		.ascii	"adcGain\000"
- 2506      61696E00 
- 2507              	.LASF29:
- 2508 02e0 4144435F 		.ascii	"ADC_SAR_1_Enable\000"
- 2508      5341525F 
- 2508      315F456E 
- 2508      61626C65 
- 2508      00
- 2509              	.LASF47:
- 2510 02f1 4144435F 		.ascii	"ADC_SAR_1_SetScaledGain\000"
- 2510      5341525F 
- 2510      315F5365 
- 2510      74536361 
- 2510      6C656447 
- 2511              	.LASF67:
- 2512 0309 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 2512      43313120 
- 2512      352E342E 
- 2512      31203230 
- 2512      31363036 
- 2513 033c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 2513      20726576 
- 2513      6973696F 
- 2513      6E203233 
- 2513      37373135 
- 2514 036f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 64
+ 2489      7400
+ 2490              	.LASF55:
+ 2491 029d 4144435F 		.ascii	"ADC_SAR_1_initVar\000"
+ 2491      5341525F 
+ 2491      315F696E 
+ 2491      69745661 
+ 2491      7200
+ 2492              	.LASF33:
+ 2493 02af 706F7765 		.ascii	"power\000"
+ 2493      7200
+ 2494              	.LASF22:
+ 2495 02b5 72656738 		.ascii	"reg8\000"
+ 2495      00
+ 2496              	.LASF60:
+ 2497 02ba 43794861 		.ascii	"CyHalt\000"
+ 2497      6C7400
+ 2498              	.LASF4:
+ 2499 02c1 756E7369 		.ascii	"unsigned char\000"
+ 2499      676E6564 
+ 2499      20636861 
+ 2499      7200
+ 2500              	.LASF26:
+ 2501 02cf 64696666 		.ascii	"diff_zero\000"
+ 2501      5F7A6572 
+ 2501      6F00
+ 2502              	.LASF48:
+ 2503 02d9 4144435F 		.ascii	"ADC_SAR_1_CountsTo_mVolts\000"
+ 2503      5341525F 
+ 2503      315F436F 
+ 2503      756E7473 
+ 2503      546F5F6D 
+ 2504              	.LASF5:
+ 2505 02f3 73686F72 		.ascii	"short int\000"
+ 2505      7420696E 
+ 2505      7400
+ 2506              	.LASF46:
+ 2507 02fd 61646347 		.ascii	"adcGain\000"
+ 2507      61696E00 
+ 2508              	.LASF29:
+ 2509 0305 4144435F 		.ascii	"ADC_SAR_1_Enable\000"
+ 2509      5341525F 
+ 2509      315F456E 
+ 2509      61626C65 
+ 2509      00
+ 2510              	.LASF47:
+ 2511 0316 4144435F 		.ascii	"ADC_SAR_1_SetScaledGain\000"
+ 2511      5341525F 
+ 2511      315F5365 
+ 2511      74536361 
+ 2511      6C656447 
+ 2512              	.LASF67:
+ 2513 032e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2513      43313120 
+ 2513      352E342E 
+ 2513      31203230 
+ 2513      31363036 
+ 2514 0361 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 64
 
 
- 2514      66756E63 
- 2514      74696F6E 
- 2514      2D736563 
- 2514      74696F6E 
- 2515              	.LASF42:
- 2516 0397 4144435F 		.ascii	"ADC_SAR_1_GetResult16\000"
- 2516      5341525F 
- 2516      315F4765 
- 2516      74526573 
- 2516      756C7431 
- 2517              	.LASF32:
- 2518 03ad 7265736F 		.ascii	"resolution\000"
- 2518      6C757469 
- 2518      6F6E00
- 2519              	.LASF68:
- 2520 03b8 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_SAR_1.c\000"
- 2520      72617465 
- 2520      645F536F 
- 2520      75726365 
- 2520      5C50536F 
- 2521              	.LASF11:
- 2522 03db 63686172 		.ascii	"char\000"
- 2522      00
- 2523              	.LASF53:
- 2524 03e0 4144435F 		.ascii	"ADC_SAR_1_CountsTo_Volts\000"
- 2524      5341525F 
- 2524      315F436F 
- 2524      756E7473 
- 2524      546F5F56 
- 2525              	.LASF44:
- 2526 03f9 6F666673 		.ascii	"offset\000"
- 2526      657400
- 2527              	.LASF38:
- 2528 0400 4144435F 		.ascii	"ADC_SAR_1_StopConvert\000"
- 2528      5341525F 
- 2528      315F5374 
- 2528      6F70436F 
- 2528      6E766572 
- 2529              	.LASF49:
- 2530 0416 61646343 		.ascii	"adcCounts\000"
- 2530      6F756E74 
- 2530      7300
- 2531              	.LASF28:
- 2532 0420 656E6162 		.ascii	"enableInterrupts\000"
- 2532      6C65496E 
- 2532      74657272 
- 2532      75707473 
- 2532      00
- 2533              	.LASF40:
- 2534 0431 73746174 		.ascii	"status\000"
- 2534      757300
- 2535              	.LASF41:
- 2536 0438 4144435F 		.ascii	"ADC_SAR_1_IsEndConversion\000"
- 2536      5341525F 
- 2536      315F4973 
- 2536      456E6443 
- 2536      6F6E7665 
-ARM GAS  C:\Users\Noyce\AppData\Local\Temp\ccX8ms2b.s 			page 65
+ 2514      20726576 
+ 2514      6973696F 
+ 2514      6E203233 
+ 2514      37373135 
+ 2515 0394 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2515      66756E63 
+ 2515      74696F6E 
+ 2515      2D736563 
+ 2515      74696F6E 
+ 2516              	.LASF42:
+ 2517 03bc 4144435F 		.ascii	"ADC_SAR_1_GetResult16\000"
+ 2517      5341525F 
+ 2517      315F4765 
+ 2517      74526573 
+ 2517      756C7431 
+ 2518              	.LASF32:
+ 2519 03d2 7265736F 		.ascii	"resolution\000"
+ 2519      6C757469 
+ 2519      6F6E00
+ 2520              	.LASF68:
+ 2521 03dd 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_SAR_1.c\000"
+ 2521      72617465 
+ 2521      645F536F 
+ 2521      75726365 
+ 2521      5C50536F 
+ 2522              	.LASF11:
+ 2523 0400 63686172 		.ascii	"char\000"
+ 2523      00
+ 2524              	.LASF53:
+ 2525 0405 4144435F 		.ascii	"ADC_SAR_1_CountsTo_Volts\000"
+ 2525      5341525F 
+ 2525      315F436F 
+ 2525      756E7473 
+ 2525      546F5F56 
+ 2526              	.LASF44:
+ 2527 041e 6F666673 		.ascii	"offset\000"
+ 2527      657400
+ 2528              	.LASF38:
+ 2529 0425 4144435F 		.ascii	"ADC_SAR_1_StopConvert\000"
+ 2529      5341525F 
+ 2529      315F5374 
+ 2529      6F70436F 
+ 2529      6E766572 
+ 2530              	.LASF49:
+ 2531 043b 61646343 		.ascii	"adcCounts\000"
+ 2531      6F756E74 
+ 2531      7300
+ 2532              	.LASF28:
+ 2533 0445 656E6162 		.ascii	"enableInterrupts\000"
+ 2533      6C65496E 
+ 2533      74657272 
+ 2533      75707473 
+ 2533      00
+ 2534              	.LASF40:
+ 2535 0456 73746174 		.ascii	"status\000"
+ 2535      757300
+ 2536              	.LASF41:
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTVHMdC.s 			page 65
 
 
- 2537              	.LASF31:
- 2538 0452 4144435F 		.ascii	"ADC_SAR_1_SetPower\000"
- 2538      5341525F 
- 2538      315F5365 
- 2538      74506F77 
- 2538      657200
- 2539              	.LASF45:
- 2540 0465 4144435F 		.ascii	"ADC_SAR_1_SetGain\000"
- 2540      5341525F 
- 2540      315F5365 
- 2540      74476169 
- 2540      6E00
- 2541              	.LASF16:
- 2542 0477 696E7431 		.ascii	"int16\000"
- 2542      3600
- 2543              	.LASF58:
- 2544 047d 4144435F 		.ascii	"ADC_SAR_1_countsPer10Volt\000"
- 2544      5341525F 
- 2544      315F636F 
- 2544      756E7473 
- 2544      50657231 
- 2545              	.LASF37:
- 2546 0497 4144435F 		.ascii	"ADC_SAR_1_StartConvert\000"
- 2546      5341525F 
- 2546      315F5374 
- 2546      61727443 
- 2546      6F6E7665 
- 2547              	.LASF27:
- 2548 04ae 746D7052 		.ascii	"tmpReg\000"
- 2548      656700
- 2549              	.LASF59:
- 2550 04b5 4144435F 		.ascii	"ADC_SAR_1_shift\000"
- 2550      5341525F 
- 2550      315F7368 
- 2550      69667400 
- 2551              	.LASF30:
- 2552 04c5 4144435F 		.ascii	"ADC_SAR_1_Stop\000"
- 2552      5341525F 
- 2552      315F5374 
- 2552      6F7000
- 2553              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 2537 045d 4144435F 		.ascii	"ADC_SAR_1_IsEndConversion\000"
+ 2537      5341525F 
+ 2537      315F4973 
+ 2537      456E6443 
+ 2537      6F6E7665 
+ 2538              	.LASF31:
+ 2539 0477 4144435F 		.ascii	"ADC_SAR_1_SetPower\000"
+ 2539      5341525F 
+ 2539      315F5365 
+ 2539      74506F77 
+ 2539      657200
+ 2540              	.LASF45:
+ 2541 048a 4144435F 		.ascii	"ADC_SAR_1_SetGain\000"
+ 2541      5341525F 
+ 2541      315F5365 
+ 2541      74476169 
+ 2541      6E00
+ 2542              	.LASF16:
+ 2543 049c 696E7431 		.ascii	"int16\000"
+ 2543      3600
+ 2544              	.LASF58:
+ 2545 04a2 4144435F 		.ascii	"ADC_SAR_1_countsPer10Volt\000"
+ 2545      5341525F 
+ 2545      315F636F 
+ 2545      756E7473 
+ 2545      50657231 
+ 2546              	.LASF37:
+ 2547 04bc 4144435F 		.ascii	"ADC_SAR_1_StartConvert\000"
+ 2547      5341525F 
+ 2547      315F5374 
+ 2547      61727443 
+ 2547      6F6E7665 
+ 2548              	.LASF27:
+ 2549 04d3 746D7052 		.ascii	"tmpReg\000"
+ 2549      656700
+ 2550              	.LASF59:
+ 2551 04da 4144435F 		.ascii	"ADC_SAR_1_shift\000"
+ 2551      5341525F 
+ 2551      315F7368 
+ 2551      69667400 
+ 2552              	.LASF30:
+ 2553 04ea 4144435F 		.ascii	"ADC_SAR_1_Stop\000"
+ 2553      5341525F 
+ 2553      315F5374 
+ 2553      6F7000
+ 2554              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

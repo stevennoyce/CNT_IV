@@ -1,5 +1,5 @@
 -- Project:   Design01
--- Generated: 11/03/2017 09:54:10
+-- Generated: 02/15/2018 13:43:56
 -- PSoC Creator  4.1 Update 1
 
 ENTITY Design01 IS
@@ -32,11 +32,11 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
     SIGNAL Net_122 : bit;
-    SIGNAL Net_130 : bit;
-    SIGNAL Net_133 : bit;
-    SIGNAL Net_135 : bit;
-    SIGNAL Net_138 : bit;
-    SIGNAL Net_21 : bit;
+    SIGNAL Net_140 : bit;
+    SIGNAL Net_150 : bit;
+    SIGNAL Net_153 : bit;
+    SIGNAL Net_155 : bit;
+    SIGNAL Net_158 : bit;
     SIGNAL Net_56 : bit;
     ATTRIBUTE placement_force OF Net_56 : SIGNAL IS "U(0,1,A)1";
     SIGNAL Net_61 : bit;
@@ -2543,7 +2543,7 @@ BEGIN
             int_type => "10",
             is_nmi => 0)
         PORT MAP(
-            interrupt => Net_21,
+            interrupt => Net_140,
             clock => ClockBlock_BUS_CLK);
 
     \ADC_DelSig_1:DEC\:decimatorcell
@@ -2557,7 +2557,7 @@ BEGIN
             mod_dat_0 => \ADC_DelSig_1:mod_dat_0\,
             ext_start => __ONE__,
             modrst => \ADC_DelSig_1:mod_reset\,
-            interrupt => Net_21);
+            interrupt => Net_140);
 
     __ONE__:macrocell
         GENERIC MAP(
@@ -2919,7 +2919,7 @@ BEGIN
             int_type => "10",
             is_nmi => 0)
         PORT MAP(
-            interrupt => Net_130,
+            interrupt => Net_150,
             clock => ClockBlock_BUS_CLK);
 
     \ADC_SAR_1:ADC_SAR\:sarcell
@@ -2938,7 +2938,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC_SAR_1:Net_252\,
-            next => Net_133,
+            next => Net_153,
             data_out_udb_11 => \ADC_SAR_1:Net_207_11\,
             data_out_udb_10 => \ADC_SAR_1:Net_207_10\,
             data_out_udb_9 => \ADC_SAR_1:Net_207_9\,
@@ -2951,14 +2951,14 @@ BEGIN
             data_out_udb_2 => \ADC_SAR_1:Net_207_2\,
             data_out_udb_1 => \ADC_SAR_1:Net_207_1\,
             data_out_udb_0 => \ADC_SAR_1:Net_207_0\,
-            eof_udb => Net_130);
+            eof_udb => Net_150);
 
     \ADC_SAR_2:IRQ\:interrupt
         GENERIC MAP(
             int_type => "10",
             is_nmi => 0)
         PORT MAP(
-            interrupt => Net_135,
+            interrupt => Net_155,
             clock => ClockBlock_BUS_CLK);
 
     \ADC_SAR_2:ADC_SAR\:sarcell
@@ -2977,7 +2977,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC_SAR_2:Net_252\,
-            next => Net_138,
+            next => Net_158,
             data_out_udb_11 => \ADC_SAR_2:Net_207_11\,
             data_out_udb_10 => \ADC_SAR_2:Net_207_10\,
             data_out_udb_9 => \ADC_SAR_2:Net_207_9\,
@@ -2990,7 +2990,7 @@ BEGIN
             data_out_udb_2 => \ADC_SAR_2:Net_207_2\,
             data_out_udb_1 => \ADC_SAR_2:Net_207_1\,
             data_out_udb_0 => \ADC_SAR_2:Net_207_0\,
-            eof_udb => Net_135);
+            eof_udb => Net_155);
 
     \I2C_1:bI2C_UDB:sda_in_reg\:macrocell
         GENERIC MAP(

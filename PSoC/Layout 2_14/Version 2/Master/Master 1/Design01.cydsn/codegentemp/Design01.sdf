@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2017-11-03T13:54:18Z")
+ (DATE "2018-02-15T18:44:01Z")
  (DESIGN "Design01")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")
@@ -36,9 +36,9 @@
     (INTERCONNECT ClockBlock.clk_bus_glb \\ADC_SAR_1\:IRQ\\.clock (0.000:0.000:0.000))
     (INTERCONNECT ClockBlock.clk_bus_glb \\ADC_SAR_2\:IRQ\\.clock (0.000:0.000:0.000))
     (INTERCONNECT \\USBUART\:USB\\.sof_int \\USBUART\:sof_int\\.interrupt (1.000:1.000:1.000))
+    (INTERCONNECT \\ADC_DelSig_1\:DEC\\.interrupt \\ADC_DelSig_1\:IRQ\\.interrupt (1.000:1.000:1.000))
     (INTERCONNECT \\ADC_SAR_1\:ADC_SAR\\.eof_udb \\ADC_SAR_1\:IRQ\\.interrupt (9.844:9.844:9.844))
     (INTERCONNECT \\ADC_SAR_2\:ADC_SAR\\.eof_udb \\ADC_SAR_2\:IRQ\\.interrupt (8.341:8.341:8.341))
-    (INTERCONNECT \\ADC_DelSig_1\:DEC\\.interrupt \\ADC_DelSig_1\:IRQ\\.interrupt (1.000:1.000:1.000))
     (INTERCONNECT Net_56.q Tx_UART\(0\).pin_input (5.830:5.830:5.830))
     (INTERCONNECT Rx_UART\(0\).fb \\UART_1\:BUART\:pollcount_0\\.main_2 (6.623:6.623:6.623))
     (INTERCONNECT Rx_UART\(0\).fb \\UART_1\:BUART\:pollcount_1\\.main_3 (6.623:6.623:6.623))

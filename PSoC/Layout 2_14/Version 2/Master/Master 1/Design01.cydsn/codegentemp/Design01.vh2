@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Nov 03 09:53:49 2017
+--	Thu Feb 15 13:43:48 2018
 --
 
 USE cypress.cypress.all;
@@ -95,7 +95,7 @@ TERMINAL \ADC_DelSig_1:Net_352\ : bit;
 TERMINAL \ADC_DelSig_1:Net_257\ : bit;
 TERMINAL \ADC_DelSig_1:Net_249\ : bit;
 TERMINAL Net_26 : bit;
-SIGNAL Net_21 : bit;
+SIGNAL Net_140 : bit;
 SIGNAL \ADC_DelSig_1:Net_250\ : bit;
 SIGNAL \ADC_DelSig_1:Net_252\ : bit;
 SIGNAL \ADC_DelSig_1:soc\ : bit;
@@ -797,11 +797,11 @@ SIGNAL \CommunicationTimer:Net_51\ : bit;
 SIGNAL \CommunicationTimer:Net_261\ : bit;
 SIGNAL \CommunicationTimer:Net_57\ : bit;
 SIGNAL Net_89 : bit;
-SIGNAL Net_128 : bit;
+SIGNAL Net_148 : bit;
 SIGNAL \CommunicationTimer:Net_102\ : bit;
 TERMINAL \ADC_SAR_1:Net_248\ : bit;
 TERMINAL \ADC_SAR_1:Net_216\ : bit;
-SIGNAL Net_130 : bit;
+SIGNAL Net_150 : bit;
 SIGNAL \ADC_SAR_1:vp_ctl_0\ : bit;
 SIGNAL \ADC_SAR_1:vp_ctl_2\ : bit;
 SIGNAL \ADC_SAR_1:vn_ctl_1\ : bit;
@@ -820,7 +820,7 @@ TERMINAL \ADC_SAR_1:Net_215\ : bit;
 TERMINAL \ADC_SAR_1:Net_257\ : bit;
 SIGNAL \ADC_SAR_1:soc\ : bit;
 SIGNAL \ADC_SAR_1:Net_252\ : bit;
-SIGNAL Net_133 : bit;
+SIGNAL Net_153 : bit;
 SIGNAL \ADC_SAR_1:Net_207_11\ : bit;
 SIGNAL \ADC_SAR_1:Net_207_10\ : bit;
 SIGNAL \ADC_SAR_1:Net_207_9\ : bit;
@@ -851,7 +851,7 @@ TERMINAL tmpSIOVREF__Pin_I11_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_I11_net_0 : bit;
 TERMINAL \ADC_SAR_2:Net_248\ : bit;
 TERMINAL \ADC_SAR_2:Net_216\ : bit;
-SIGNAL Net_135 : bit;
+SIGNAL Net_155 : bit;
 SIGNAL \ADC_SAR_2:vp_ctl_0\ : bit;
 SIGNAL \ADC_SAR_2:vp_ctl_2\ : bit;
 SIGNAL \ADC_SAR_2:vn_ctl_1\ : bit;
@@ -869,7 +869,7 @@ TERMINAL \ADC_SAR_2:Net_215\ : bit;
 TERMINAL \ADC_SAR_2:Net_257\ : bit;
 SIGNAL \ADC_SAR_2:soc\ : bit;
 SIGNAL \ADC_SAR_2:Net_252\ : bit;
-SIGNAL Net_138 : bit;
+SIGNAL Net_158 : bit;
 SIGNAL \ADC_SAR_2:Net_207_11\ : bit;
 SIGNAL \ADC_SAR_2:Net_207_10\ : bit;
 SIGNAL \ADC_SAR_2:Net_207_9\ : bit;
@@ -1489,7 +1489,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 \ADC_DelSig_1:IRQ\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_21);
+	PORT MAP(int_signal=>Net_140);
 \ADC_DelSig_1:theACLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"8bda02ab-ec76-474b-8a67-a1480733cde5/edd15f43-b66b-457b-be3a-5342345270c8",
@@ -1506,7 +1506,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 		mod_dat=>(\ADC_DelSig_1:mod_dat_3\, \ADC_DelSig_1:mod_dat_2\, \ADC_DelSig_1:mod_dat_1\, \ADC_DelSig_1:mod_dat_0\),
 		ext_start=>one,
 		mod_reset=>\ADC_DelSig_1:mod_reset\,
-		interrupt=>Net_21);
+		interrupt=>Net_140);
 \TIA_1:SC\:cy_psoc3_scblock_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vref=>Net_26,
@@ -2609,7 +2609,7 @@ CommunicationInterrupt:cy_isr_v1_0
 \ADC_SAR_1:IRQ\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_130);
+	PORT MAP(int_signal=>Net_150);
 \ADC_SAR_1:theACLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"6f6588a9-653e-4ec4-87e7-736e72c6f53a/696a0979-21fc-4185-bf38-6c79febcde7a",
@@ -2634,11 +2634,11 @@ CommunicationInterrupt:cy_isr_v1_0
 		vp_ctl_udb=>(zero, zero, zero, zero),
 		vn_ctl_udb=>(zero, zero, zero, zero),
 		irq=>\ADC_SAR_1:Net_252\,
-		next_out=>Net_133,
+		next_out=>Net_153,
 		data_out=>(\ADC_SAR_1:Net_207_11\, \ADC_SAR_1:Net_207_10\, \ADC_SAR_1:Net_207_9\, \ADC_SAR_1:Net_207_8\,
 			\ADC_SAR_1:Net_207_7\, \ADC_SAR_1:Net_207_6\, \ADC_SAR_1:Net_207_5\, \ADC_SAR_1:Net_207_4\,
 			\ADC_SAR_1:Net_207_3\, \ADC_SAR_1:Net_207_2\, \ADC_SAR_1:Net_207_1\, \ADC_SAR_1:Net_207_0\),
-		eof_udb=>Net_130);
+		eof_udb=>Net_150);
 \ADC_SAR_1:cy_analog_virtualmux_2_connect\:cy_connect_v1_0
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
@@ -2814,7 +2814,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 \ADC_SAR_2:IRQ\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_135);
+	PORT MAP(int_signal=>Net_155);
 \ADC_SAR_2:theACLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"aea7725a-ea8a-41a6-a37e-458b96871364/696a0979-21fc-4185-bf38-6c79febcde7a",
@@ -2839,11 +2839,11 @@ Pin_I11:cy_psoc3_pins_v1_10
 		vp_ctl_udb=>(zero, zero, zero, zero),
 		vn_ctl_udb=>(zero, zero, zero, zero),
 		irq=>\ADC_SAR_2:Net_252\,
-		next_out=>Net_138,
+		next_out=>Net_158,
 		data_out=>(\ADC_SAR_2:Net_207_11\, \ADC_SAR_2:Net_207_10\, \ADC_SAR_2:Net_207_9\, \ADC_SAR_2:Net_207_8\,
 			\ADC_SAR_2:Net_207_7\, \ADC_SAR_2:Net_207_6\, \ADC_SAR_2:Net_207_5\, \ADC_SAR_2:Net_207_4\,
 			\ADC_SAR_2:Net_207_3\, \ADC_SAR_2:Net_207_2\, \ADC_SAR_2:Net_207_1\, \ADC_SAR_2:Net_207_0\),
-		eof_udb=>Net_135);
+		eof_udb=>Net_155);
 \ADC_SAR_2:cy_analog_virtualmux_2_connect\:cy_connect_v1_0
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
