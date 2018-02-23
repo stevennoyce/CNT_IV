@@ -43,6 +43,7 @@ voltage2 = np.linspace(-2,2,len(current6))
 linearfit9 = np.polyfit(voltage2, current9, 1)
 
 plt.plot(voltage2, current9-np.mean(current9))
+# plt.plot(voltage2, current9)
 plt.plot([],[], label='RMS Noise = {:.2g} A'.format(np.sqrt(np.mean((current9 - linearfit9[1] - linearfit9[0]*voltage2)**2))), alpha=0)
 # plt.plot(voltage2, current9)
 # plt.plot(voltage2, current10)

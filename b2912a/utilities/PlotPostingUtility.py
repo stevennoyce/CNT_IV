@@ -28,8 +28,9 @@ def postPlots(parameters):
 			print(response)
 			print(response.text)
 	
-	except:
+	except e:
 		print('Failed to post plots')
+		print(e)
 
 
 

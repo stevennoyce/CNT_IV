@@ -27,11 +27,11 @@ def devicesInRange(startContact, endContact, skip=True):
 os.chdir(sys.path[0])
 
 if platform.node() == 'noyce-dell':
+	chipID = 'C131D'
+	deviceID = '2'
+else:
 	chipID = 'C127P'
 	deviceID = '15-16'
-else:
-	chipID = 'C127E'
-	deviceID = '27-28'
 
 runTypes = {
 	0:'Quit',
@@ -46,23 +46,15 @@ runTypes = {
 }
 
 default_parameters = {
-	'MeasurementSystem':['B2912A','PCB2v14'][1],
-	'chipID':chipID,
-	'deviceID':deviceID,
-	'deviceRange':[],#devicesInRange(1,32,skip=True),
-	'dataFolder':'data/',
-	'plotsFolder':'CurrentPlots/',
-	'postFigures':	True,
-	'NPLC':1,
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
-		'runDataPoints': 200,
-		'pointsPerVGS': 1,
+		'runDataPoints': 600,
+		'pointsPerVGS': 3,
 		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-3.5,
-		'gateVoltageMaximum':	3.5
+		'drainVoltageSetPoint':	0.0,
+		'gateVoltageMinimum':	-15,
+		'gateVoltageMaximum':	15
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -124,7 +116,15 @@ default_parameters = {
 	},
 	'ChipHistory':{
 
-	}
+	},
+	'MeasurementSystem':['B2912A','PCB2v14'][0],
+	'chipID':chipID,
+	'deviceID':deviceID,
+	'deviceRange':[],#devicesInRange(1,32,skip=True),
+	'dataFolder':'data/',
+	'plotsFolder':'CurrentPlots/',
+	'postFigures':	True,
+	'NPLC':1
 }
 
 def main(parameters):
@@ -155,6 +155,8 @@ def main(parameters):
 				runAction(parameters, smu_instance)
 		else:
 			runAction(parameters, smu_instance)
+		
+		break
 
 # Run generic user action
 def runAction(parameters, smu_instance):
@@ -203,11 +205,11 @@ def runSMU(parameters, smu_instance):
 # Run a "Device History" action.
 def runDeviceHistory(parameters):
 	parameters['startIndexes'] = {
-		'index': parameters['DeviceHistory']['excludeDataBeforeJSONIndex']
+		'index': parameters['DeviceHistory']['excludeDataBeforeJSONIndex'],
 		'experimentNumber': parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber']
 	}
 	parameters['endIndexes'] = {
-		'index': min(parameters['DeviceHistory']['excludeDataBeforeJSONIndex'], dlu.loadJSONIndex(parameters['deviceDirectory'])['index'])
+		'index': min(parameters['DeviceHistory']['excludeDataBeforeJSONIndex'], dlu.loadJSONIndex(parameters['deviceDirectory'])['index']),
 		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
 	} 
 
