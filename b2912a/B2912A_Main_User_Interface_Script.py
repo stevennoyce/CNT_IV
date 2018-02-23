@@ -165,9 +165,9 @@ def runAction(parameters, smu_instance):
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
 
-	if(parameters['runType'] == ['DeviceHistory']):
+	if(parameters['runType'] == 'DeviceHistory'):
 		runDeviceHistory(parameters)
-	elif(parameters['runType'] == ['ChipHistory']):
+	elif(parameters['runType'] == 'ChipHistory'):
 		chipHistoryScript.run(parameters)
 	else:
 		runSMU(parameters, smu_instance)
