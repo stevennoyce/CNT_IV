@@ -45,12 +45,14 @@ runTypes = {
 	8:'ChipHistory'
 }
 
+multiple = 3
+
 default_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
-		'runDataPoints': 600,
-		'pointsPerVGS': 3,
+		'runDataPoints': 200*multiple,
+		'pointsPerVGS': multiple,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.0,
 		'gateVoltageMinimum':	-15,
