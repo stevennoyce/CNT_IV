@@ -19,7 +19,7 @@ from framework import SourceMeasureUnit as smu
 # }
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
-	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totaltotalBiasTime'])+' seconds...')
+	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totalBiasTime'])+' seconds...')
 
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
 

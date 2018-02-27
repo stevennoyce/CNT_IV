@@ -249,23 +249,23 @@ class PCB2v14(SourceMeasureUnit):
 		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
 		while (self.ser.in_waiting):
-			print(self.getResponse())
+			print(self.getResponse(), end='')
 			time.sleep(0.1)
 
 	def setVds(self, voltage):
 		self.setParameter("set-vds-mv {:.0f}!".format(voltage*1000))
 		response = self.getResponse(startsWith='#')
-		print('VDS: ' + str(response))
+		print('VDS: ' + str(response), end='')
 
 	def setVgs(self, voltage):
 		self.setParameter("set-vgs-mv {:.0f}!".format(voltage*1000))
 		response = self.getResponse(startsWith='#')
-		print('VGS: ' + str(response))
+		print('VGS: ' + str(response), end='')
 
 	def takeMeasurement(self):
 		self.setParameter('measure !')
 		response = self.getResponse(startsWith='[')
-		print('MEAS: ' + str(response))
+		print('MEAS: ' + str(response), end='')
 		return self.formatMeasurement(response)
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
