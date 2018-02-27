@@ -1,4 +1,3 @@
-import time
 import random
 
 import B2912A_Gate_Sweep as gateSweepScript

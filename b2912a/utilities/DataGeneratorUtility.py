@@ -10,15 +10,15 @@ def sweepValues(start, end, points):
 	data = rampValues(start, end, points/2)
 	return [data, list(reversed(data))]
 
-def stepValues(start, end, increments, points):
+def stepValues(start, end, increments, pointsPerRamp, pointsPerHold):
 	if(increments == 0):
-		return rampValues(start, end, points)
+		return rampValues(start, end, pointsPerRamp)
 		
-	data = rampValues(start, end/increments, points/(2*increments))
-	data += constValues(end/increments, points/(2*increments))
+	data = rampValues(start, end/increments, pointsPerRamp)
+	data += constValues(end/increments, pointsPerHold)
 	for i in range(1, increments):
-		data += rampValues(i*end/increments, (i+1)*end/increments, points/(2*increments))
-		data += constValues((i+1)*end/increments, points/(2*increments))
+		data += rampValues(i*end/increments, (i+1)*end/increments, pointsPerRamp)
+		data += constValues((i+1)*end/increments, pointsPerHold)
 	return data
 
 def rampValuesWithDuplicates(start, end, points, duplicates):

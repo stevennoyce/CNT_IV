@@ -19,7 +19,7 @@ from framework import SourceMeasureUnit as smu
 # }
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
-	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['biasTime'])+' seconds...')
+	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totaltotalBiasTime'])+' seconds...')
 
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
 
@@ -35,8 +35,8 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	results = runStaticBias(smu_instance, 
 							parameters['StaticBias']['drainVoltageSetPoint'],
 							parameters['StaticBias']['gateVoltageSetPoint'],
-							parameters['StaticBias']['biasTime'], 
-							parameters['StaticBias']['runDataPoints'])
+							parameters['StaticBias']['totalBiasTime'], 
+							parameters['StaticBias']['measurementTime'])
 
 	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'], steps=30)
 	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'], steps=30)
@@ -52,15 +52,15 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runStaticBias(smu_instance, drainVoltageSetPoint, gateVoltageSetPoint, biasTime, steps):
+def runStaticBias(smu_instance, drainVoltageSetPoint, gateVoltageSetPoint, totalBiasTime, measurementTime):
 	vds_data = []
 	id_data = []
 	vgs_data = []
 	ig_data = []
 	timestamps = []
 
-	measurementAveragingTime = float(biasTime)/steps
-	pointsToAverageOver = (measurementAveragingTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)
+	steps = int(totalBiasTime/measurementTime)
+	pointsToAverageOver = (measurementTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)
 
 	for i in range(steps):
 		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, pointsToAverageOver/1.5)

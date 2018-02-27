@@ -52,7 +52,8 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 								0, 
 								parameters['BurnOut']['drainVoltageMaxPoint'], 
 								parameters['BurnOut']['drainVoltagePlateaus'], 
-								parameters['BurnOut']['runDataPoints'])
+								parameters['BurnOut']['pointsPerRamp'],
+								parameters['BurnOut']['pointsPerHold'])
 	smu_instance.rampDownVoltages()
 
 	jsonData = {**parameters, **results}
@@ -66,7 +67,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, points):
+def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, pointsPerRamp, pointsPerHold):
 	current1_threshold = -1
 	burned = False
 	vds_data = []
@@ -75,7 +76,7 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 	ig_data = []
 	timestamps = []
 
-	drainVoltages = dgu.stepValues(voltageStart, voltageSetPoint, voltagePlateaus, points)
+	drainVoltages = dgu.stepValues(voltageStart, voltageSetPoint, voltagePlateaus, pointsPerRamp, pointsPerHold)
 
 	for i, drainVoltage in enumerate(drainVoltages):
 		smu_instance.setVds(drainVoltage)
