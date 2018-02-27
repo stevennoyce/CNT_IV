@@ -31,7 +31,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '2'
 else:
 	chipID = 'C127E'
-	deviceID = '31-32'
+	deviceID = '27-28'
 
 runTypes = {
 	0:'Quit',
@@ -51,12 +51,12 @@ default_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
-		'runDataPoints': 200*multiple,
+		'runDataPoints': 40*multiple,
 		'pointsPerVGS': multiple,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-15.0,
-		'gateVoltageMaximum':	15.0
+		'gateVoltageMinimum':	-3.5,
+		'gateVoltageMaximum':	3.5
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -75,15 +75,15 @@ default_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'runDataPoints': 60*6,
+		'runDataPoints': 60,
 		'complianceCurrent': 100e-6,
-		'delayBeforeApplyingVoltage': 30,
+		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'biasTime': 60*60,
-		'gateVoltageSetPoint': 	-15.0,
+		'biasTime': 60,
+		'gateVoltageSetPoint': 	-3.0,
 		'drainVoltageSetPoint':	  1.0,
-		'gateVoltageWhenDone':  -15.0,
-		'drainVoltageWhenDone':  1.0
+		'gateVoltageWhenDone':  0,
+		'drainVoltageWhenDone': 0
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 1,
@@ -119,7 +119,7 @@ default_parameters = {
 	'ChipHistory':{
 
 	},
-	'MeasurementSystem':['B2912A','PCB2v14'][0],
+	'MeasurementSystem':['B2912A','PCB2v14'][1],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'deviceRange':[],#devicesInRange(1,32,skip=True),

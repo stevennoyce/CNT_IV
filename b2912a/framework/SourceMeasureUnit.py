@@ -17,7 +17,9 @@ def getConnectionFromVisa(NPLC, defaultComplianceCurrent, smuTimeout=60000):
 	return B2912A(instance, NPLC, defaultComplianceCurrent)
 
 def getConnectionToPCB():
-	ser = pySerial.Serial('COM7', 115200, timeout=0.5)
+	#port = 'COM7'
+	port = '/dev/tty.HC-05-DevB'
+	ser = pySerial.Serial(port, 115200, timeout=0.5)
 	return PCB2v14(ser)
 
 # class SimulationSMU(SourceMeasureUnit):
@@ -172,6 +174,8 @@ class B2912A(SourceMeasureUnit):
 		}
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
+		points = int(points)
+
 		self.smu.write(":source1:voltage:mode sweep")
 		self.smu.write(":source2:voltage:mode sweep")
 
@@ -264,11 +268,12 @@ class PCB2v14(SourceMeasureUnit):
 		print('MEAS: ' + str(response))
 		return self.formatMeasurement(response)
 
-	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
+	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
 		vds_data = []
 		id_data = []
 		vgs_data = []
 		ig_data = []
+		points = int(points)
 
 		if(src1start == src1stop and src2start == src2stop):
 			self.setParameter('measure-multiple {:d}!'.format(points))
