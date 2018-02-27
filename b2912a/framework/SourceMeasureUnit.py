@@ -70,7 +70,7 @@ class SourceMeasureUnit:
 	def takeMeasurement(self):
 		raise NotImplementedError("Please implement SourceMeasureUnit.takeMeasurement()")
 
-	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
+	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
 		raise NotImplementedError("Please implement SourceMeasureUnit.takeSweep()")
 
 	def getVds(self):
@@ -113,6 +113,8 @@ class SourceMeasureUnit:
 
 class B2912A(SourceMeasureUnit):
 	smu = None
+	measurementsPerSecond = 60
+	nplc = 0
 
 	def __init__(self, instance, NPLC, defaultComplianceCurrent):
 		self.smu = instance
@@ -123,8 +125,11 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write("*RST") # Reset
 		self.smu.write(':system:lfrequency 60')
 		
-		self.smu.write(':SENS:CURR:RANGE:AUTO ON')
-		self.smu.write(':SENS:CURR:RANGE:AUTO:LLIM 1e-8')
+		self.smu.write(':sense1:curr:range:auto ON')
+		self.smu.write(':sense1:curr:range:auto:llim 1e-8')
+
+		self.smu.write(':sense2:curr:range:auto ON')
+		self.smu.write(':sense2:curr:range:auto:llim 1e-8')
 		
 		self.smu.write(":source1:function:mode voltage")
 		self.smu.write(":source2:function:mode voltage")
@@ -134,6 +139,7 @@ class B2912A(SourceMeasureUnit):
 		
 		self.smu.write(":sense1:curr:nplc {}".format(NPLC))
 		self.smu.write(":sense2:curr:nplc {}".format(NPLC))
+		self.nplc = NPLC
 		
 		self.smu.write(":outp1 ON")
 		self.smu.write(":outp2 ON")
@@ -165,7 +171,7 @@ class B2912A(SourceMeasureUnit):
 			'I_g': data[7]
 		}
 
-	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, NPLC):
+	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
 		self.smu.write(":source1:voltage:mode sweep")
 		self.smu.write(":source2:voltage:mode sweep")
 
@@ -182,7 +188,8 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":trig2:count {}".format(points))
 		self.smu.write(":init (@1:2)")
 
-		time.sleep(1.5 * points*NPLC/60)
+		timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
+		time.sleep(1.5 * timeToTakeMeasurements)
 
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
@@ -198,6 +205,8 @@ class B2912A(SourceMeasureUnit):
 
 class PCB2v14(SourceMeasureUnit):
 	ser = None
+	measurementsPerSecond = 10
+	nplc = 1
 
 	def __init__(self, pySerial):
 		self.ser = pySerial
@@ -263,6 +272,10 @@ class PCB2v14(SourceMeasureUnit):
 
 		if(src1start == src1stop and src2start == src2stop):
 			self.setParameter('measure-multiple {:d}!'.format(points))
+
+			timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
+			time.sleep(1.5 * timeToTakeMeasurements)
+
 			while(self.ser.in_waiting):
 				response = self.getResponse()
 				data = self.formatMeasurement(response)

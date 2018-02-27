@@ -33,7 +33,6 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 		time.sleep(parameters['StaticBias']['delayBeforeMeasurementsBegin'])
 
 	results = runStaticBias(smu_instance, 
-							parameters['NPLC'],
 							parameters['StaticBias']['drainVoltageSetPoint'],
 							parameters['StaticBias']['gateVoltageSetPoint'],
 							parameters['StaticBias']['biasTime'], 
@@ -53,16 +52,18 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 	return jsonData
 
-def runStaticBias(smu_instance, NPLC, drainVoltageSetPoint, gateVoltageSetPoint, biasTime, steps):
+def runStaticBias(smu_instance, drainVoltageSetPoint, gateVoltageSetPoint, biasTime, steps):
 	vds_data = []
 	id_data = []
 	vgs_data = []
 	ig_data = []
 	timestamps = []
 
+	measurementAveragingTime = float(biasTime)/steps
+	pointsToAverageOver = (measurementAveragingTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)
+
 	for i in range(steps):
-		timeBetweenMeasurements = float(biasTime)/steps
-		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, timeBetweenMeasurements*60/1.5, NPLC)
+		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, pointsToAverageOver/1.5)
 		timestamp = time.time()
 		
 		vds_data.append(np.mean(measurements['Vds_data']))

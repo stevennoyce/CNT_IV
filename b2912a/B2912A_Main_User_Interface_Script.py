@@ -30,8 +30,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C131D'
 	deviceID = '2'
 else:
-	chipID = 'C127P'
-	deviceID = '15-16'
+	chipID = 'C127E'
+	deviceID = '31-32'
 
 runTypes = {
 	0:'Quit',
@@ -54,9 +54,9 @@ default_parameters = {
 		'runDataPoints': 200*multiple,
 		'pointsPerVGS': multiple,
 		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	0.0,
-		'gateVoltageMinimum':	-15,
-		'gateVoltageMaximum':	15
+		'drainVoltageSetPoint':	0.5,
+		'gateVoltageMinimum':	-15.0,
+		'gateVoltageMaximum':	15.0
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
