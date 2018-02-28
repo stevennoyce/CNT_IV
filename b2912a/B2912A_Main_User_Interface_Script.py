@@ -31,7 +31,7 @@ if platform.node() == 'noyce-dell':
 	deviceID = '2'
 else:
 	chipID = 'C127E'
-	deviceID = '27-28'
+	deviceID = '33-34'
 
 runTypes = {
 	0:'Quit',
@@ -54,8 +54,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
-		'gateVoltageMinimum':	-3.5,
-		'gateVoltageMaximum':	3.5
+		'gateVoltageMinimum':	-15.0,
+		'gateVoltageMaximum':	15.0
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -75,13 +75,13 @@ default_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'totalBiasTime': 30,
-		'measurementTime': 1,
+		'totalBiasTime': 60*60,
+		'measurementTime': 10,
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	-3.0,
-		'drainVoltageSetPoint':	 0.5,
+		'gateVoltageSetPoint': 	-15.0,
+		'drainVoltageSetPoint':	 1.0,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
 	},
@@ -90,13 +90,13 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 12,
+		'numberOfStaticBiases': 24,
 		'applyGateSweepBetweenBiases': False,
-		'firstDelayBeforeMeasurementsBegin': 60*60*6,
-		'numberOfBiasesBetweenIncrements': 1,
+		'firstDelayBeforeMeasurementsBegin': 0,
+		'numberOfBiasesBetweenIncrements': 4,
 		'incrementStaticGateVoltage':  0,
-		'incrementStaticDrainVoltage': 0,
-		'incrementGateVoltageWhenDone': 2,
+		'incrementStaticDrainVoltage': 0.2,
+		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
 		'incrementDelayBeforeReapplyingVoltage': 0,
 		'shuffleDelaysBeforeReapplyingVoltage': False
@@ -119,7 +119,7 @@ default_parameters = {
 	'ChipHistory':{
 
 	},
-	'MeasurementSystem':['B2912A','PCB2v14'][1],
+	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'deviceRange':[],#devicesInRange(1,32,skip=True),
