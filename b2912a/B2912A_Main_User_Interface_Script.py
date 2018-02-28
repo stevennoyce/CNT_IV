@@ -51,7 +51,7 @@ default_parameters = {
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
 		'stepsInVGSPerDirection': 100,
-		'pointsPerVGS': 1,
+		'pointsPerVGS': 3,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	0.5,
 		'gateVoltageMinimum':	-15.0,
@@ -86,7 +86,7 @@ default_parameters = {
 		'drainVoltageWhenDone': 0
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 1,
+		'numberOfSweeps': 30,
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
@@ -197,7 +197,9 @@ def runSMU(parameters, smu_instance):
 			raise NotImplementedError("Invalid action for the Source Measure Unit")
 	except:
 		smu_instance.rampDownVoltages()
-		raise
+		choice = str(input('An error occurred. Quit and display error? (y/n):'))
+		if(choice == 'y'):
+			raise
 
 	smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
