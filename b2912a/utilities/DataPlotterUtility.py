@@ -9,7 +9,7 @@ plt.rcParams['mathtext.fontset'] = 'custom'
 plt.rcParams['mathtext.rm'] = 'Arial'
 plt.rcParams['mathtext.it'] = 'Arial'
 plt.rcParams['mathtext.bf'] = 'Arial:bold'
-# plt.rcParams['figure.figsize'] = [4.2,4.9] # Thin size for subthreshold curves
+plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['axes.labelsize'] = 18
 plt.rcParams['legend.fontsize'] = 9.5
 plt.rcParams['legend.fontsize'] = 8
@@ -33,6 +33,7 @@ titles = {
 	'GateSweep':'',
 	'BurnOut':'Metallic CNT Burnout for ',
 	'StaticBias':'Static Bias for ',
+	'TransferCurve':'',
 	'OnCurrent':'On/Off Current History for ',
 	'ChipHistory':'Chip History for '
 }
@@ -40,40 +41,23 @@ titles = {
 color_maps = {
 	'GateSweep':'hot',
 	'BurnOut':'Blues',
-	'StaticBias':'plasma'
+	'StaticBias':'plasma',
+	'TransferCurve':'hot'
 }
 
 
 
 # ********** API **********
 
-def getTitleTestNumbersLabel(deviceHistory):
-	titleNumbers = ''
-	if len(deviceHistory) > 0:
-		test1Num = deviceHistory[0]['experimentNumber']
-		test2Num = deviceHistory[-1]['experimentNumber']
-		if test1Num == test2Num:
-			titleNumbers = ', Test {:}'.format(test1Num)
-		else:
-			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
-	return titleNumbers
-
 def plotJSON(jsonData, parameters, lineColor):
-	titleNumbers = ', Test {:}'.format(jsonData['experimentNumber'])
 	if(jsonData['runType'] == 'GateSweep'):
-		fig, ax = initFigure(1, 1, 'GateSweep', jsonData['chipID'], jsonData['deviceID'], titleNumbers)
-		plotGateSweep(ax, jsonData, lineColor)
+		plotFullGateSweepHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'BurnOut'):
-		fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', jsonData['chipID'], jsonData['deviceID'], titleNumbers)
-		ax2 = plt.subplot(2,2,2)
-		ax3 = plt.subplot(2,2,4)
-		plotBurnOut(ax1, ax2, ax3, jsonData, lineColor)
+		plotFullBurnOutHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'StaticBias'):
-		fig, ax = initFigure(1, 1, 'StaticBias', jsonData['chipID'], jsonData['deviceID'], titleNumbers)
-		plotStaticBias(ax, jsonData, lineColor, 0)
+		plotFullStaticBiasHistory([jsonData], parameters, timescale='seconds', plotInRealTime=True, saveFigure=True, showFigure=True)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
-	adjustFigure(fig, jsonData['runType'], parameters, saveFigure=True, showFigure=True)
 
 def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
@@ -85,7 +69,7 @@ def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', s
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
-		plotGateSweep(ax, deviceHistory[i], colors[i], includeLegend, sweepDirection)	
+		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=includeLegend)	
 	ax.annotate('Oldest to newest', xy=(0.51, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
 	ax.annotate('', xy=(0.5, 0.02), xytext=(0.5,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
 	ax.annotate('$V_{ds} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
@@ -101,6 +85,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
 	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
+	plt.subplots_adjust(wspace=0.5, hspace=0.5)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
@@ -143,6 +128,18 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 	# 	ax.annotate(' Grounded Gate: {:}'.format(parameter_labels['groundGateWhenDone'][i]['groundGateWhenDone']), xy=(parameter_labels['groundGateWhenDone'][i]['x'], ax.get_ylim()[1]*(0.92 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
 
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
+
+def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	fig, (ax1, ax2) = initFigure(1, 2, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	colors = colorsFromMap(color_maps['TransferCurve'], 0.7, 0, len(deviceHistory))
+	if(len(deviceHistory) == 1):
+		colors = ['b']
+	for i in range(len(deviceHistory)):
+		plotTransferCurve(ax1, deviceHistory[i], colors[i], sweepDirection)
+		plotGateCurrent(ax2, deviceHistory[i], colors[i], sweepDirection)
+	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure, showFigure)
+
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
@@ -199,42 +196,63 @@ def show():
 
 
 # ***** Device Plots *****
+def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1):
+	if(currentSource == 'gate'):
+		currentData = 'current2s'
+	elif(currentSource == 'drain'):
+		currentData = 'current1s'
 
-def plotGateSweep(axis, jsonData, lineColor, includeLabel=True, direction='both'):
 	if(direction == 'forward'):
 		if(isinstance(jsonData['gateVoltages'][0], list)):	
 			x = jsonData['gateVoltages'][0]
-			y = jsonData['current1s'][0]
+			y = jsonData[currentData][0]
 		else:
 			x = jsonData['gateVoltages'][0:int(len(jsonData['gateVoltages'])/2)]
-			y = jsonData['current1s'][0:int(len(jsonData['gateVoltages'])/2)]
+			y = jsonData[currentData][0:int(len(jsonData['gateVoltages'])/2)]
 	elif(direction == 'reverse'):
 		if(isinstance(jsonData['gateVoltages'][0], list)):	
 			x = jsonData['gateVoltages'][1]
-			y = jsonData['current1s'][1]
+			y = jsonData[currentData][1]
 		else:
 			x = jsonData['gateVoltages'][int(len(jsonData['gateVoltages'])/2):]
-			y = jsonData['current1s'][int(len(jsonData['gateVoltages'])/2):]
+			y = jsonData[currentData][int(len(jsonData['gateVoltages'])/2):]
 	else:
 		x = flatten(jsonData['gateVoltages'])
-		y = flatten(jsonData['current1s'])
+		y = flatten(jsonData[currentData])
+
+	if(logScale):
+		y = abs(np.array(y))
+		semiLogScale(axis)
+
+	y = np.array(y)*scaleCurrentBy
 
 	# data contains multiple y-values per x-value
 	if(x[0] == x[1]):
-		line = plotWithErrorBars(axis, x, abs(np.array(y)), lineColor)
+		line = plotWithErrorBars(axis, x, y, lineColor)
 	else:
-		line = scatter(axis, x, abs(np.array(y)), lineColor, markerSize=2, lineWidth=1)
+		line = scatter(axis, x, y, lineColor, markerSize=2, lineWidth=1)
 
-	semiLogScale(axis)
-	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_D$ [A]')
+	return line
+
+def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=True,):
+	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1)
+	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_d$ [A]')
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
-		axis.legend(loc='lower left', fontsize=8) #bbox_to_anchor=(1.25,0.5)
+		axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
+
+def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=10**6)
+	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_d$ [$\mu$A]')
+
+def plotGateCurrent(axis, jsonData, lineColor, direction='both'):
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=10**9)
+	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Gate Current, $I_g$ [nA]')
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)
-	axisLabels(axis1, x_label='Drain-to-Source Voltage, $V_{ds}$ [V]', y_label='Drain Current, $I_D$ [$\mu$A]')
+	axisLabels(axis1, x_label='Drain Voltage, $V_{ds}$ [V]', y_label='Drain Current, $I_D$ [$\mu$A]')
 
 	currentThreshold = np.percentile(np.array(jsonData['current1s']), 90) * jsonData['BurnOut']['thresholdProportion'] * 10**6
 	axis1.plot([0, jsonData['voltage1s'][-1]], [currentThreshold, currentThreshold], color=lineColor, linestyle='--', linewidth=1)
@@ -244,7 +262,7 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	axisLabels(axis2, x_label='Time, $t$ [sec]', y_label='Drain Current, $I_D$ [$\mu$A]')
 
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
-	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain-to-Source Voltage, $V_{ds}$ [V]')
+	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain Voltage, $V_{ds}$ [V]')
 
 def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 	currents = (np.array(jsonData['current1s'])*(10**6))
@@ -255,6 +273,9 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 	#decay_threshold = np.exp(-1)*(currents[0] - currents[-1]) + currents[-1]
 	#axis.plot([0, timestamps[-1] - timestamps[0]], [decay_threshold, decay_threshold], color=lineColor, linestyle='--', linewidth=1)
 	#axis.plot([15, 15], [8, decay_threshold], color='r', linestyle='--', linewidth=1)
+
+
+
 
 
 # ***** Figures *****
@@ -321,7 +342,7 @@ def tickLabels(axis, labelList, rotation=0):
 
 
 
-# ***** Math *****
+# ***** Helper Functions *****
 
 def avgAndStdAtEveryPoint(x, y):
 	x_uniques = []
@@ -363,7 +384,16 @@ def flatten(dataList):
 		data = [(item) for sublist in data for item in sublist]
 	return data
 
-
+def getTitleTestNumbersLabel(deviceHistory):
+	titleNumbers = ''
+	if len(deviceHistory) > 0:
+		test1Num = deviceHistory[0]['experimentNumber']
+		test2Num = deviceHistory[-1]['experimentNumber']
+		if test1Num == test2Num:
+			titleNumbers = ', Test {:}'.format(test1Num)
+		else:
+			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
+	return titleNumbers
 
 
 

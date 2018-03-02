@@ -41,6 +41,7 @@ def run(parameters, showFigures=True):
 
 			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
 			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, p['saveFiguresGenerated'], showFigures)
+			dpu.plotTransferCurveHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 
