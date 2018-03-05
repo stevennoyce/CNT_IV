@@ -27,11 +27,11 @@ def devicesInRange(startContact, endContact, skip=True):
 os.chdir(sys.path[0])
 
 if platform.node() == 'noyce-dell':
-	chipID = 'C131D'
-	deviceID = '2'
+	chipID = 'C127X'
+	deviceID = '15-16'
 else:
-	chipID = 'C127C'
-	deviceID = '10'
+	chipID = 'C127X'
+	deviceID = '15-16'
 
 runTypes = {
 	0:'Quit',
@@ -51,9 +51,9 @@ default_parameters = {
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
 		'stepsInVGSPerDirection': 100,
-		'pointsPerVGS': 3,
+		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	0.5,
+		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageMinimum':	-15.0,
 		'gateVoltageMaximum':	15.0
 	},
@@ -81,21 +81,21 @@ default_parameters = {
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
 		'gateVoltageSetPoint': 	-15.0,
-		'drainVoltageSetPoint':	 1.0,
-		'gateVoltageWhenDone':  0,
-		'drainVoltageWhenDone': 0
+		'drainVoltageSetPoint':	 -0.1,
+		'gateVoltageWhenDone':  -15.0,
+		'drainVoltageWhenDone': -0.1
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 30,
+		'numberOfSweeps': 3,
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 24,
+		'numberOfStaticBiases': 24*7,
 		'applyGateSweepBetweenBiases': False,
 		'firstDelayBeforeMeasurementsBegin': 0,
-		'numberOfBiasesBetweenIncrements': 4,
+		'numberOfBiasesBetweenIncrements': (24*7)+1,
 		'incrementStaticGateVoltage':  0,
-		'incrementStaticDrainVoltage': 0.2,
+		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
 		'incrementDelayBeforeReapplyingVoltage': 0,
