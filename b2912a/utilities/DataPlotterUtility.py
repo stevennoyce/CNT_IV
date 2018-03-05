@@ -247,8 +247,8 @@ def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
 	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_d$ [$\mu$A]')
 
 def plotGateCurrent(axis, jsonData, lineColor, direction='both'):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=10**9)
-	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Gate Current, $I_g$ [nA]')
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=10**6)
+	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Gate Current, $I_g$ [$\mu$A]')
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)

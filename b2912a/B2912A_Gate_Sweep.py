@@ -74,7 +74,10 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, drai
 	ig_data = [[],[]]
 	timestamps = [[],[]]
 
-	smu_instance.rampGateVoltage(0, gateVoltageMinimum, 20)
+	# Ramp gate and wait a few seconds for everything to settle down
+	smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
+	time.sleep(2)
+
 	gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
 	
 	if(isFastSweep):

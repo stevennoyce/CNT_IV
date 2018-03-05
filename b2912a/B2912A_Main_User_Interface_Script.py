@@ -30,8 +30,8 @@ if platform.node() == 'noyce-dell':
 	chipID = 'C131D'
 	deviceID = '2'
 else:
-	chipID = 'C127E'
-	deviceID = '33-34'
+	chipID = 'C127C'
+	deviceID = '10'
 
 runTypes = {
 	0:'Quit',
