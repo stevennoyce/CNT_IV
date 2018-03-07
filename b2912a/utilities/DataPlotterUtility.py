@@ -63,16 +63,26 @@ def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', s
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	fig.set_size_inches(4.2,4.9)
-	colors = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
+	colorMap = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
+	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = ['b']
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
-		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=includeLegend)	
-	ax.annotate('Oldest to newest', xy=(0.51, 0.04), xycoords='axes fraction', fontsize=8, horizontalalignment='left', verticalalignment='bottom', rotation=270)
-	ax.annotate('', xy=(0.5, 0.02), xytext=(0.5,0.3), xycoords='axes fraction', arrowprops=dict(arrowstyle='->'))
-	ax.annotate('$V_{ds} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
+		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)	
+
+	colorMap['smap']._A = []
+	cbar = fig.colorbar(colorMap['smap'], pad=0.02, aspect=50)
+	cbar.set_ticks([0, 1])
+	cbar.ax.set_yticklabels(['End', 'Start'], rotation=270)
+	cbar.ax.yaxis.get_majorticklabels()[0].set_verticalalignment('bottom')
+	cbar.ax.yaxis.get_majorticklabels()[1].set_verticalalignment('top')
+	cbar.set_label('Time $\\rightarrow$', rotation=270)
+
+	ax.legend([],[], loc='lower left', title='$V_{ds} = 0.5V$', labelspacing=0)
+
+	#ax.annotate('$V_{ds} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
@@ -80,7 +90,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
-	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))
+	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))['colors']
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
 	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
@@ -90,7 +100,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))
+	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))['colors']
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
 	dotted_lines = []
 	parameter_labels = {}
@@ -132,7 +142,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, (ax1, ax2) = initFigure(1, 2, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	colors = colorsFromMap(color_maps['TransferCurve'], 0.7, 0, len(deviceHistory))
+	colors = colorsFromMap(color_maps['TransferCurve'], 0.7, 0, len(deviceHistory))['colors']
 	if(len(deviceHistory) == 1):
 		colors = ['b']
 	for i in range(len(deviceHistory)):
@@ -295,7 +305,7 @@ def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 
 def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=mapName)
-	return [scalarColorMap.to_rgba(i) for i in np.linspace(colorStartPoint, colorEndPoint, numberOfColors)]
+	return {'colors':[scalarColorMap.to_rgba(i) for i in np.linspace(colorStartPoint, colorEndPoint, numberOfColors)], 'smap':scalarColorMap}
 
 def scaledData(deviceHistory, dataToScale, scalefactor):
 	data = list(deviceHistory)
