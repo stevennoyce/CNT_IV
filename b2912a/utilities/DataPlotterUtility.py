@@ -11,7 +11,6 @@ plt.rcParams['mathtext.it'] = 'Arial'
 plt.rcParams['mathtext.bf'] = 'Arial:bold'
 plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['axes.labelsize'] = 18
-plt.rcParams['legend.fontsize'] = 9.5
 plt.rcParams['legend.fontsize'] = 8
 plt.rcParams['xtick.top'] = True
 plt.rcParams['ytick.right'] = True
@@ -29,20 +28,40 @@ plt.rcParams['ytick.major.width'] = 1
 
 # ********** Constants **********
 
-titles = {
-	'GateSweep':'',
-	'BurnOut':'Metallic CNT Burnout for ',
-	'StaticBias':'Static Bias for ',
-	'TransferCurve':'',
-	'OnCurrent':'On/Off Current History for ',
-	'ChipHistory':'Chip History for '
-}
-
-color_maps = {
-	'GateSweep':'hot',
-	'BurnOut':'Blues',
-	'StaticBias':'plasma',
-	'TransferCurve':'hot'
+plot_parameters = {
+	'GateSweep': {
+		'title':'',
+		'figsize':(4.2,4.9),
+		'colorMap':'hot',
+		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
+		'ylabel':'Drain Current, $I_d$ [A]'
+	},
+	'BurnOut':{
+		'title':'Metallic CNT Burnout for ',
+		'figsize':(8,6),
+		'colorMap':'Blues'
+	},
+	'StaticBias':{
+		'title':'Static Bias for ',
+		'figsize':(5,4),
+		'colorMap':'plasma'
+	},
+	'TransferCurve':{
+		'title':'',
+		'figsize':(8,5),
+		'colorMap':'hot',
+		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
+		'drain_label':'Drain Current, $I_d$ [A]',
+		'gate_label':'Gate Current, $I_g$ [A]'
+	},
+	'OnCurrent':{
+		'title':'On/Off Current History for ',
+		'figsize':(5,4),
+	},
+	'ChipHistory':{
+		'title':'Chip History for ',
+		'figsize':(5,4),
+	}
 }
 
 
@@ -62,8 +81,7 @@ def plotJSON(jsonData, parameters, lineColor):
 def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	fig.set_size_inches(4.2,4.9)
-	colorMap = colorsFromMap(color_maps['GateSweep'], 0.7, 0, len(deviceHistory))
+	colorMap = colorsFromMap(plot_parameters['GateSweep']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = ['b']
@@ -90,7 +108,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
-	colors = colorsFromMap(color_maps['BurnOut'], 0.6, 1.0, len(deviceHistory))['colors']
+	colors = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.6, 1.0, len(deviceHistory))['colors']
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
 	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
@@ -100,8 +118,12 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	colors = colorsFromMap(color_maps['StaticBias'], 0, 0.9, len(deviceHistory))['colors']
+	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.9, len(deviceHistory))['colors']
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
+
+	if(np.mean(deviceHistory[0]['current1s']) < 0):
+		pass
+
 	dotted_lines = []
 	parameter_labels = {}
 	for i in range(len(deviceHistory)):
@@ -142,7 +164,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, (ax1, ax2) = initFigure(1, 2, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	colors = colorsFromMap(color_maps['TransferCurve'], 0.7, 0, len(deviceHistory))['colors']
+	colors = colorsFromMap(plot_parameters['TransferCurve']['colorMap'], 0.7, 0, len(deviceHistory))['colors']
 	if(len(deviceHistory) == 1):
 		colors = ['b']
 	for i in range(len(deviceHistory)):
@@ -246,7 +268,7 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 
 def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=True,):
 	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1)
-	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_d$ [A]')
+	axisLabels(axis, x_label=plot_parameters['GateSweep']['xlabel'], y_label=plot_parameters['GateSweep']['ylabel'])
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
@@ -254,11 +276,11 @@ def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLa
 
 def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
 	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=10**6)
-	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Drain Current, $I_d$ [$\mu$A]')
+	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['drain_label'])
 
 def plotGateCurrent(axis, jsonData, lineColor, direction='both'):
 	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=10**6)
-	axisLabels(axis, x_label='Gate Voltage, $V_{gs}$ [V]', y_label='Gate Current, $I_g$ [$\mu$A]')
+	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['gate_label'])
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)
@@ -291,8 +313,8 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 # ***** Figures *****
 
 def initFigure(rows, columns, type, chipID, deviceID, testLabel):
-	fig, axes = plt.subplots(rows, columns)
-	title = titles[type] + chipID + ':' + deviceID + testLabel
+	fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
+	title = plot_parameters[type]['title'] + chipID + ':' + deviceID + testLabel
 	fig.suptitle(title)
 	return fig, axes
 

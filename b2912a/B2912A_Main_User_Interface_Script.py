@@ -25,6 +25,8 @@ def devicesInRange(startContact, endContact, skip=True):
 ## ********** Parameters **********
 
 os.chdir(sys.path[0])
+#sys.path.append('framework/')
+#sys.path.append('utilities/')
 
 if platform.node() == 'noyce-dell':
 	chipID = 'C127X'
