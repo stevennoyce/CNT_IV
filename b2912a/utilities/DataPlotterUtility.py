@@ -25,6 +25,7 @@ plt.rcParams['axes.axisbelow'] = False
 plt.rcParams['axes.linewidth'] = 1
 plt.rcParams['xtick.major.width'] = 1
 plt.rcParams['ytick.major.width'] = 1
+plt.rcParams['axes.formatter.limits'] = [-2, 3]
 
 # ********** Constants **********
 

@@ -45,11 +45,11 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	
 	if(isSavingResults):
 		dlu.saveJSON(parameters['deviceDirectory'], parameters['StaticBias']['saveFileName'], jsonData)
-
+	
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')
 		dpu.show()
-
+	
 	return jsonData
 
 def runStaticBias(smu_instance, drainVoltageSetPoint, gateVoltageSetPoint, totalBiasTime, measurementTime):
