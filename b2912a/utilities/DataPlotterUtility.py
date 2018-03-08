@@ -11,6 +11,8 @@ plt.rcParams['mathtext.it'] = 'Arial'
 plt.rcParams['mathtext.bf'] = 'Arial:bold'
 plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['axes.labelsize'] = 18
+plt.rcParams['axes.titlesize'] = 18
+plt.rcParams['axes.formatter.use_mathtext'] = True
 plt.rcParams['legend.fontsize'] = 8
 plt.rcParams['xtick.top'] = True
 plt.rcParams['ytick.right'] = True
@@ -31,36 +33,42 @@ plt.rcParams['axes.formatter.limits'] = [-2, 3]
 
 plot_parameters = {
 	'GateSweep': {
-		'title':'',
+		'titles':['Subthreshold Curve'],
 		'figsize':(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'ylabel':'Drain Current, $I_d$ [A]'
+		'ylabel':'Drain Current, $I_d$ [A]',
+		'legend_title':'$V_{ds} = 0.5V$'
 	},
 	'BurnOut':{
-		'title':'Metallic CNT Burnout for ',
+		'titles':['Metallic CNT Burnout', 'Current Measured', 'Applied Voltage'],
 		'figsize':(8,6),
-		'colorMap':'Blues'
+		'colorMap':'Blues',
+		'vds_label':'Drain Voltage, $V_{ds}$ [V]',
+		'id_micro_label':'Drain Current, $I_d$ [$\mu$A]',
+		'time_label':'Time, $t$ [sec]'
 	},
 	'StaticBias':{
-		'title':'Static Bias for ',
+		'titles':['Static Bias'],
 		'figsize':(5,4),
-		'colorMap':'plasma'
+		'colorMap':'plasma',
+		'xlabel':'Time, $t$ [{:}]',
+		'ylabel':'Drain Current, $I_d$ [$\mu$A]'
 	},
 	'TransferCurve':{
-		'title':'',
+		'titles':['Transfer Curve', 'Gate Leakage'],
 		'figsize':(8,5),
 		'colorMap':'hot',
 		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'drain_label':'Drain Current, $I_d$ [A]',
-		'gate_label':'Gate Current, $I_g$ [A]'
+		'id_label':'Drain Current, $I_d$ [A]',
+		'ig_label':'Gate Current, $I_g$ [A]'
 	},
 	'OnCurrent':{
-		'title':'On/Off Current History for ',
+		'titles':['On/Off Current'],
 		'figsize':(5,4),
 	},
 	'ChipHistory':{
-		'title':'Chip History for ',
+		'titles':['Chip History'],
 		'figsize':(5,4),
 	}
 }
@@ -82,26 +90,21 @@ def plotJSON(jsonData, parameters, lineColor):
 def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax.set_title(plot_parameters['GateSweep']['titles'][0])
+
 	colorMap = colorsFromMap(plot_parameters['GateSweep']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = ['b']
+
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
 		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)	
 
-	colorMap['smap']._A = []
-	cbar = fig.colorbar(colorMap['smap'], pad=0.02, aspect=50)
-	cbar.set_ticks([0, 1])
-	cbar.ax.set_yticklabels(['End', 'Start'], rotation=270)
-	cbar.ax.yaxis.get_majorticklabels()[0].set_verticalalignment('bottom')
-	cbar.ax.yaxis.get_majorticklabels()[1].set_verticalalignment('top')
-	cbar.set_label('Time $\\rightarrow$', rotation=270)
+	colorBar(fig, colorMap['smap'])
+	ax.legend([],[], loc='lower left', title=plot_parameters['GateSweep']['legend_title'], labelspacing=0)
 
-	ax.legend([],[], loc='lower left', title='$V_{ds} = 0.5V$', labelspacing=0)
-
-	#ax.annotate('$V_{ds} = 0.5V$', xy=(0.05, 0.45), xycoords='axes fraction', horizontalalignment='left', verticalalignment='bottom')
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
@@ -109,6 +112,10 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = plt.subplot(2,2,2)
 	ax3 = plt.subplot(2,2,4)
+	ax1.set_title(plot_parameters['BurnOut']['titles'][0])
+	ax2.set_title(plot_parameters['BurnOut']['titles'][1])
+	ax3.set_title(plot_parameters['BurnOut']['titles'][2])
+
 	colors = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.6, 1.0, len(deviceHistory))['colors']
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
@@ -119,11 +126,15 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax.set_title(plot_parameters['StaticBias']['titles'][0])
+
 	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.9, len(deviceHistory))['colors']
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
 
+	# If first segment of device history is all negative current, flip data
 	if(np.mean(deviceHistory[0]['current1s']) < 0):
-		pass
+		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
+		plot_parameters['StaticBias']['ylabel'] = 'Drain Current, $-I_d$ [$\mu$A]'
 
 	dotted_lines = []
 	parameter_labels = {}
@@ -149,10 +160,10 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 	
 	# Add V_ds annotation
 	for i in range(len(parameter_labels['drainVoltageSetPoint'])):
-		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.96 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
+		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', ha='left', va='bottom')
 	# Add V_gs annotation
 	for i in range(len(parameter_labels['gateVoltageSetPoint'])):
-		ax.annotate(' $V_{gs} = $'+'{:.1f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
+		ax.annotate(' $V_{gs} = $'+'{:.1f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.90 - 0.03*i)), xycoords='data', ha='left', va='bottom')
 
 	# Add Grounding annotation
 	# for i in range(len(parameter_labels['groundDrainWhenDone'])):
@@ -165,6 +176,9 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, (ax1, ax2) = initFigure(1, 2, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax1.set_title(plot_parameters['TransferCurve']['titles'][0])
+	ax2.set_title(plot_parameters['TransferCurve']['titles'][1])
+
 	colors = colorsFromMap(plot_parameters['TransferCurve']['colorMap'], 0.7, 0, len(deviceHistory))['colors']
 	if(len(deviceHistory) == 1):
 		colors = ['b']
@@ -178,6 +192,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, show
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
+	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
+
 	onCurrents = []
 	offCurrents = []
 	for deviceRun in deviceHistory:
@@ -202,6 +218,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, show
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	fig, ax = initFigure(1, 1, 'ChipHistory', parameters['chipID'], parameters['deviceID'], '')
+	ax.set_title(plot_parameters['ChipHistory']['titles'][0])
+
 	devices = []
 	firstOnOffRatios = []
 	for deviceRun in firstRunChipHistory:
@@ -276,31 +294,31 @@ def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLa
 		axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
 
 def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=10**6)
-	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['drain_label'])
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1)
+	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['id_label'])
 
 def plotGateCurrent(axis, jsonData, lineColor, direction='both'):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=10**6)
-	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['gate_label'])
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=1)
+	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ig_label'])
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)
-	axisLabels(axis1, x_label='Drain Voltage, $V_{ds}$ [V]', y_label='Drain Current, $I_D$ [$\mu$A]')
+	axisLabels(axis1, x_label=plot_parameters['BurnOut']['vds_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
 	currentThreshold = np.percentile(np.array(jsonData['current1s']), 90) * jsonData['BurnOut']['thresholdProportion'] * 10**6
 	axis1.plot([0, jsonData['voltage1s'][-1]], [currentThreshold, currentThreshold], color=lineColor, linestyle='--', linewidth=1)
 	axis1.annotate('burn current', xy=(0, currentThreshold), xycoords='data', fontsize=8, horizontalalignment='left', verticalalignment='bottom', color=lineColor)
 	
 	plotOverTime(axis2, jsonData['timestamps'], (np.array(jsonData['current1s'])*10**6), lineColor)	
-	axisLabels(axis2, x_label='Time, $t$ [sec]', y_label='Drain Current, $I_D$ [$\mu$A]')
+	axisLabels(axis2, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
-	axisLabels(axis3, x_label='Time, $t$ [sec]', y_label='Drain Voltage, $V_{ds}$ [V]')
+	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
 
 def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 	currents = (np.array(jsonData['current1s'])*(10**6))
 	plotOverTime(axis, jsonData['timestamps'], currents, lineColor, timeOffset)	
-	axisLabels(axis, x_label='Time, $t$ [{:}]'.format(timescale), y_label='Drain Current, $I_D$ [$\mu$A]')
+	axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
 
 	## Measuring how quickly the current decays from its start to final value
 	#decay_threshold = np.exp(-1)*(currents[0] - currents[-1]) + currents[-1]
@@ -315,7 +333,7 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 
 def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 	fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
-	title = plot_parameters[type]['title'] + chipID + ':' + deviceID + testLabel
+	title = chipID + ':' + deviceID + testLabel
 	fig.suptitle(title)
 	return fig, axes
 
@@ -353,6 +371,15 @@ def plotWithErrorBars(axis, x, y, lineColor):
 def plotOverTime(axis, timestamps, y, lineColor, offset=0):
 	zeroed_timestamps = list( np.array(timestamps) - timestamps[0] + offset )
 	return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize = 1, linewidth=1)[0]
+
+def colorBar(fig, scalarMappableColorMap, ticks=[0,1], tick_labels=['End','Start'], axisLabel='Time $\\rightarrow$'):
+	scalarMappableColorMap._A = []
+	cbar = fig.colorbar(scalarMappableColorMap, pad=0.02, aspect=50)
+	cbar.set_ticks(ticks)
+	cbar.ax.set_yticklabels(tick_labels, rotation=270)
+	cbar.ax.yaxis.get_majorticklabels()[0].set_verticalalignment('bottom')
+	cbar.ax.yaxis.get_majorticklabels()[1].set_verticalalignment('top')
+	cbar.set_label(axisLabel, rotation=270)
 
 
 
