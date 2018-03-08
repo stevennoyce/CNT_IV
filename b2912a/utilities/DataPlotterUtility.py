@@ -46,7 +46,8 @@ plot_parameters = {
 		'colorMap':'Blues',
 		'vds_label':'Drain Voltage, $V_{ds}$ [V]',
 		'id_micro_label':'Drain Current, $I_d$ [$\mu$A]',
-		'time_label':'Time, $t$ [sec]'
+		'time_label':'Time, $t$ [sec]',
+		'legend_title':'$V_{gs} = +15V$'
 	},
 	'StaticBias':{
 		'titles':['Static Bias'],
@@ -119,7 +120,8 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	colors = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.6, 1.0, len(deviceHistory))['colors']
 	for i in range(len(deviceHistory)):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
-	ax1.annotate('$V_{gs} = $', xy=(0.96, 0.05), xycoords='axes fraction', horizontalalignment='right', verticalalignment='bottom')
+
+	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 	plt.subplots_adjust(wspace=0.5, hspace=0.5)
 

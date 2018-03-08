@@ -113,7 +113,7 @@ default_parameters = {
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
-		'gateSweepDirection': ['both','forward','reverse'][0],
+		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
 		'plotInRealTime': True
