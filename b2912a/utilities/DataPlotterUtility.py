@@ -5,6 +5,8 @@ import numpy as np
 
 # ********** Matplotlib Parameters **********
 
+plt.style.use('seaborn-paper')
+
 plt.rcParams['mathtext.fontset'] = 'custom'
 plt.rcParams['mathtext.rm'] = 'Arial'
 plt.rcParams['mathtext.it'] = 'Arial'
@@ -28,6 +30,7 @@ plt.rcParams['axes.linewidth'] = 1
 plt.rcParams['xtick.major.width'] = 1
 plt.rcParams['ytick.major.width'] = 1
 plt.rcParams['axes.formatter.limits'] = [-2, 3]
+plt.rcParams['font.size'] = 8
 
 # ********** Constants **********
 
@@ -64,6 +67,14 @@ plot_parameters = {
 		'id_label':'Drain Current, $I_d$ [A]',
 		'ig_label':'Gate Current, $I_g$ [A]'
 	},
+	'TransferCurvesReal':{
+		'titles':['Transfer Curve'],
+		'figsize':(4.2,4.9),
+		'colorMap':'hot',
+		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
+		'ylabel':'Drain Current, $I_d$ [$\mu$A]',
+		'legend_title':'$V_{ds} = 0.5V$'
+	},
 	'OnCurrent':{
 		'titles':['On/Off Current'],
 		'figsize':(5,4),
@@ -92,21 +103,45 @@ def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', s
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax.set_title(plot_parameters['GateSweep']['titles'][0])
-
+	
 	colorMap = colorsFromMap(plot_parameters['GateSweep']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
-		colors = ['b']
-
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+	
 	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
 		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
 		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)	
-
-	colorBar(fig, colorMap['smap'])
+		
+	if len(deviceHistory) > 1:
+		colorBar(fig, colorMap['smap'])
+	
 	ax.legend([],[], loc='lower left', title=plot_parameters['GateSweep']['legend_title'], labelspacing=0)
 
 	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
+
+def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	fig, ax = initFigure(1, 1, 'TransferCurvesReal', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax.set_title(plot_parameters['TransferCurvesReal']['titles'][0])
+	
+	colorMap = colorsFromMap(plot_parameters['TransferCurvesReal']['colorMap'], 0.7, 0, len(deviceHistory))
+	colors = colorMap['colors']
+	if(len(deviceHistory) == 1):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+	
+	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
+	for i in range(len(deviceHistory)):
+		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
+		plotTransferCurveReal(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)	
+	
+	if len(deviceHistory) > 1:
+		colorBar(fig, colorMap['smap'])
+	
+	ax.legend([],[], loc='best', title=plot_parameters['TransferCurvesReal']['legend_title'], labelspacing=0)
+	
+	adjustFigure(fig, 'FullTransferCurve', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
@@ -130,49 +165,74 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax.set_title(plot_parameters['StaticBias']['titles'][0])
 
-	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.9, len(deviceHistory))['colors']
+	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
-
+	
 	# If first segment of device history is all negative current, flip data
 	if(np.mean(deviceHistory[0]['current1s']) < 0):
 		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
 		plot_parameters['StaticBias']['ylabel'] = 'Drain Current, $-I_d$ [$\mu$A]'
-
+	
 	dotted_lines = []
 	parameter_labels = {}
 	for i in range(len(deviceHistory)):
+		time_offset = 0
 		if(plotInRealTime):
 			time_offset = (deviceHistory[i]['timestamps'][0] - deviceHistory[0]['timestamps'][0])
 		else:
 			time_offset = (0) if(i == 0) else (time_offset + (deviceHistory[i-1]['timestamps'][-1] - deviceHistory[i-1]['timestamps'][0]))
-		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
-
-		# Compare current plot's parameters to the next ones, and save any differences
-		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias'])):
-			dotted_lines.append({'x':time_offset})
-			for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
-				if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
-					if(key not in parameter_labels):
-						parameter_labels[key] = []
-					parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
 		
-	# Draw dotted lines between ANY plots that have different parameters
-	for i in range(len(dotted_lines)):
-		ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
+		
+		# Compare current plot's parameters to the next ones, and save any differences
+		try:
+			#print(deviceHistory[i]['StaticBias'])
+			if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias'])):
+				dotted_lines.append({'x':time_offset})
+				for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
+					if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
+						if(key not in parameter_labels):
+							parameter_labels[key] = []
+						parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
+			
+			if i > 0 and deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint']:
+				dotted_lines.append({'x':time_offset, 'vds':deviceHistory[i]['drainVoltageSetPoint']})
+				parameter_labels['drainVoltageSetPoint'].append({'x':time_offset, 'drainVoltageSetPoint':deviceHistory[i]['drainVoltageSetPoint']})
+			
+		except Exception as e:
+			print('Failed to compare current plots parameters to the next ones and save differences')
+			print('Exception is:')
+			print(e)
+		
+	try:
+		if len(dotted_lines) > 0:
+			x0, x1, y0, y1 = ax.axis()
+			ax.axis((x0,x1,y0,1.2*y1))
+		
+		# Draw dotted lines between ANY plots that have different parameters
+		for i in range(len(dotted_lines)):
+			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+		
+		# Add V_ds annotation
+		for i in range(len(parameter_labels['drainVoltageSetPoint'])):
+			ax.annotate(' $V_{ds} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
+			
+		# Add V_gs annotation
+		for i in range(len(parameter_labels['gateVoltageSetPoint'])):
+			ax.annotate(' $V_{gs} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.01*0.90 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
+
+		# Add Grounding annotation
+		# for i in range(len(parameter_labels['groundDrainWhenDone'])):
+		# 	ax.annotate(' Grounded Drain: {:}'.format(parameter_labels['groundDrainWhenDone'][i]['groundDrainWhenDone']), xy=(parameter_labels['groundDrainWhenDone'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
+		# for i in range(len(parameter_labels['groundGateWhenDone'])):
+		# 	ax.annotate(' Grounded Gate: {:}'.format(parameter_labels['groundGateWhenDone'][i]['groundGateWhenDone']), xy=(parameter_labels['groundGateWhenDone'][i]['x'], ax.get_ylim()[1]*(0.92 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
 	
-	# Add V_ds annotation
-	for i in range(len(parameter_labels['drainVoltageSetPoint'])):
-		ax.annotate(' $V_{ds} = $'+'{:.2f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', ha='left', va='bottom')
-	# Add V_gs annotation
-	for i in range(len(parameter_labels['gateVoltageSetPoint'])):
-		ax.annotate(' $V_{gs} = $'+'{:.1f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.90 - 0.03*i)), xycoords='data', ha='left', va='bottom')
-
-	# Add Grounding annotation
-	# for i in range(len(parameter_labels['groundDrainWhenDone'])):
-	# 	ax.annotate(' Grounded Drain: {:}'.format(parameter_labels['groundDrainWhenDone'][i]['groundDrainWhenDone']), xy=(parameter_labels['groundDrainWhenDone'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
-	# for i in range(len(parameter_labels['groundGateWhenDone'])):
-	# 	ax.annotate(' Grounded Gate: {:}'.format(parameter_labels['groundGateWhenDone'][i]['groundGateWhenDone']), xy=(parameter_labels['groundGateWhenDone'][i]['x'], ax.get_ylim()[1]*(0.92 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
-
+	except Exception as e:
+		print('Failed to add annotations')
+		print('Exception is:')
+		print(e)
+	
+		
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
 def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
@@ -183,7 +243,7 @@ def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', s
 
 	colors = colorsFromMap(plot_parameters['TransferCurve']['colorMap'], 0.7, 0, len(deviceHistory))['colors']
 	if(len(deviceHistory) == 1):
-		colors = ['b']
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	for i in range(len(deviceHistory)):
 		plotTransferCurve(ax1, deviceHistory[i], colors[i], sweepDirection)
 		plotGateCurrent(ax2, deviceHistory[i], colors[i], sweepDirection)
@@ -202,12 +262,13 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, show
 		onCurrents.append(deviceRun['onCurrent'])
 		offCurrents.append(deviceRun['offCurrent'])
 
-	line = scatter(ax1, range(len(onCurrents)), onCurrents, 'r', 6)
+	line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], 6)
 	setLabel(line, 'On Currents')
 	axisLabels(ax1, 'Time Index of Gate Sweep [#]', 'On Current, $(I_{on})$ [A]')
 	ax1.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+	ax1.set_ylim(bottom=0)
 
-	line = scatter(ax2, range(len(offCurrents)), offCurrents, 'b', 2)
+	line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 2)
 	setLabel(line, 'Off Currents')
 	ax2.set_ylabel('Off Current, $(I_{off})$ [A]')
 	ax2.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
@@ -233,7 +294,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 
 	lastOnOffRatios, devices, firstOnOffRatios = zip(*(reversed(sorted(zip(lastOnOffRatios, devices, firstOnOffRatios)))))
 
-	line = scatter(ax, range(len(devices)), firstOnOffRatios, 'b', 6)
+	line = scatter(ax, range(len(devices)), firstOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 6)
 	setLabel(line, 'First Run')
 	line = scatter(ax, range(len(devices)), lastOnOffRatios, 'r', 4)
 	setLabel(line, 'Most Recent Run')
@@ -254,7 +315,7 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 		currentData = 'current2s'
 	elif(currentSource == 'drain'):
 		currentData = 'current1s'
-
+	
 	if(direction == 'forward'):
 		if(isinstance(jsonData['gateVoltages'][0], list)):	
 			x = jsonData['gateVoltages'][0]
@@ -287,9 +348,17 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 
 	return line
 
-def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=True,):
+def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=True):
 	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1)
 	axisLabels(axis, x_label=plot_parameters['GateSweep']['xlabel'], y_label=plot_parameters['GateSweep']['ylabel'])
+	if(includeLabel): 
+		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
+		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
+		axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
+
+def plotTransferCurveReal(axis, jsonData, lineColor, direction='both', includeLabel=True):
+	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1e6)
+	axisLabels(axis, x_label=plot_parameters['TransferCurvesReal']['xlabel'], y_label=plot_parameters['TransferCurvesReal']['ylabel'])
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))

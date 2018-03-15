@@ -40,6 +40,7 @@ def run(parameters, showFigures=True):
 				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 
 			dpu.plotFullGateSweepHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
+			dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
 			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, p['saveFiguresGenerated'], showFigures)
 			dpu.plotTransferCurveHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:

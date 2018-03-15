@@ -31,6 +31,26 @@ os.chdir(sys.path[0])
 if platform.node() == 'noyce-dell':
 	chipID = 'C127X'
 	deviceID = '15-16'
+elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
+	chipID = 'C127E'
+	deviceID = '14-15'
+	
+	chipID = 'C127X'
+	deviceID = '15-16'
+	# Experiments 3 to inf
+	
+	chipID = 'C127E'
+	deviceID = '15-16'
+	# Experiment 6 to 6, many decay curves
+	# Separate plot, index 11 to 12, one decay curve
+	# Separate plot, index 13 to 21, four decay curves
+	# Separate plot, index 17 to 18, decent subthreshold curve with error bars
+	# Separate plot, experiments 2 to 18, decaying subthreshold curves
+	# Separate plot, experiments 2 to 13, stable/slowly decreasing subthreshold and transfer and on/off curves
+	
+	# chipID = 'C127P'
+	# deviceID = '1-2'
+	# # Experiment 8 to 8
 else:
 	chipID = 'C127X'
 	deviceID = '15-16'
@@ -107,19 +127,19 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
+		'plotBurnOuts':   False,
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 2,
+		'excludeDataAfterJSONExperimentNumber':  18,
 		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
 		'plotInRealTime': True
 	},
 	'ChipHistory':{
-
+		
 	},
 	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
@@ -218,9 +238,9 @@ def runDeviceHistory(parameters):
 		'index': min(parameters['DeviceHistory']['excludeDataBeforeJSONIndex'], dlu.loadJSONIndex(parameters['deviceDirectory'])['index']),
 		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
 	} 
-
+	
 	deviceHistoryScript.run(parameters)
-
+	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):
 		plotPoster.postPlots(parameters)
 
