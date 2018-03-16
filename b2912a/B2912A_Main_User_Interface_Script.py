@@ -103,9 +103,9 @@ default_parameters = {
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
 		'gateVoltageSetPoint': 	-15.0,
-		'drainVoltageSetPoint':	 -0.1,
+		'drainVoltageSetPoint':	 -0.5,
 		'gateVoltageWhenDone':  -15.0,
-		'drainVoltageWhenDone': -0.1
+		'drainVoltageWhenDone': -0.5
 	},
 	'AutoGateSweep':{
 		'numberOfSweeps': 3,
