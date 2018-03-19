@@ -140,6 +140,11 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	else:
 		colorBar(fig, colorMap['smap'])
+
+	# If first segment of device history is all negative current, flip data
+	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['current1s']) < 0)):
+		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
+		plot_parameters['TransferCurve']['ylabel'] = 'Drain Current, $-I_d$ [$\mu$A]'
 	
 	# Plot
 	for i in range(len(deviceHistory)):
