@@ -52,7 +52,7 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127X'
+	chipID = 'C127E'
 	deviceID = '15-16'
 
 runTypes = {
@@ -131,7 +131,7 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 2,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  18,
 		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,

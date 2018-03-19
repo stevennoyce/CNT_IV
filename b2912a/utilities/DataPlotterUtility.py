@@ -174,7 +174,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 		plot_parameters['StaticBias']['ylabel'] = 'Drain Current, $-I_d$ [$\mu$A]'
 	
 	dotted_lines = []
-	parameter_labels = {}
+	parameter_labels = {'drainVoltageSetPoint':[],'gateVoltageSetPoint':[]}
 	for i in range(len(deviceHistory)):
 		time_offset = 0
 		if(plotInRealTime):
@@ -186,23 +186,26 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 		
 		# Compare current plot's parameters to the next ones, and save any differences
 		try:
-			#print(deviceHistory[i]['StaticBias'])
-			if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias'])):
-				dotted_lines.append({'x':time_offset})
-				for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
-					if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
-						if(key not in parameter_labels):
-							parameter_labels[key] = []
-						parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
-			
-			if i > 0 and deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint']:
-				dotted_lines.append({'x':time_offset, 'vds':deviceHistory[i]['drainVoltageSetPoint']})
-				parameter_labels['drainVoltageSetPoint'].append({'x':time_offset, 'drainVoltageSetPoint':deviceHistory[i]['drainVoltageSetPoint']})
-			
+			if('drainVoltageSetPoint' in deviceHistory[i] and 'drainVoltageSetPoint' in deviceHistory[i-1]):
+				# backwards compatibility for old parameters format
+				if (i == 0) or deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint']:
+					dotted_lines.append({'x':time_offset})
+					parameter_labels['drainVoltageSetPoint'].append({'x':time_offset, 'drainVoltageSetPoint':deviceHistory[i]['drainVoltageSetPoint']})
+			else:
+				if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias'])):
+					dotted_lines.append({'x':time_offset})
+					for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
+						if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
+							if(key not in parameter_labels):
+								parameter_labels[key] = []
+							parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
+				
+
 		except Exception as e:
 			print('Failed to compare current plots parameters to the next ones and save differences')
 			print('Exception is:')
-			print(e)
+			print(deviceHistory[i])
+			raise
 		
 	try:
 		if len(dotted_lines) > 0:
@@ -216,10 +219,10 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 		# Add V_ds annotation
 		for i in range(len(parameter_labels['drainVoltageSetPoint'])):
 			ax.annotate(' $V_{ds} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
-			
+
 		# Add V_gs annotation
 		for i in range(len(parameter_labels['gateVoltageSetPoint'])):
-			ax.annotate(' $V_{gs} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.01*0.90 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
+			ax.annotate(' $V_{gs} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.90 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 
 		# Add Grounding annotation
 		# for i in range(len(parameter_labels['groundDrainWhenDone'])):
