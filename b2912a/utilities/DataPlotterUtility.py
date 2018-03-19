@@ -222,7 +222,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 
 		# Add V_gs annotation
 		for i in range(len(parameter_labels['gateVoltageSetPoint'])):
-			ax.annotate(' $V_{gs} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.90 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
+			ax.annotate(' $V_{gs} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 
 		# Add Grounding annotation
 		# for i in range(len(parameter_labels['groundDrainWhenDone'])):
