@@ -35,12 +35,28 @@ plt.rcParams['font.size'] = 8
 # ********** Constants **********
 
 plot_parameters = {
-	'GateSweep': {
+	'SubthresholdCurve': {
 		'titles':['Subthreshold Curve'],
 		'figsize':(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
 		'ylabel':'Drain Current, $I_d$ [A]',
+		'legend_title':'$V_{ds} = 0.5V$'
+	},
+	'TransferCurve':{
+		'titles':['Transfer Curve'],
+		'figsize':(4.2,4.9),
+		'colorMap':'hot',
+		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
+		'ylabel':'Drain Current, $I_d$ [$\mu$A]',
+		'legend_title':'$V_{ds} = 0.5V$'
+	},
+	'GateCurrent':{
+		'titles':['Gate Leakage'],
+		'figsize':(4.2,4.9),
+		'colorMap':'hot',
+		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
+		'ylabel':'Gate Current, $I_g$ [A]',
 		'legend_title':'$V_{ds} = 0.5V$'
 	},
 	'BurnOut':{
@@ -59,22 +75,6 @@ plot_parameters = {
 		'xlabel':'Time, $t$ [{:}]',
 		'ylabel':'Drain Current, $I_d$ [$\mu$A]'
 	},
-	'TransferCurve':{
-		'titles':['Transfer Curve', 'Gate Leakage'],
-		'figsize':(8,5),
-		'colorMap':'hot',
-		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'id_label':'Drain Current, $I_d$ [A]',
-		'ig_label':'Gate Current, $I_g$ [A]'
-	},
-	'TransferCurvesReal':{
-		'titles':['Transfer Curve'],
-		'figsize':(4.2,4.9),
-		'colorMap':'hot',
-		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'ylabel':'Drain Current, $I_d$ [$\mu$A]',
-		'legend_title':'$V_{ds} = 0.5V$'
-	},
 	'OnCurrent':{
 		'titles':['On/Off Current'],
 		'figsize':(5,4),
@@ -91,7 +91,7 @@ plot_parameters = {
 
 def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
-		plotFullGateSweepHistory([jsonData], parameters, saveFigure=True, showFigure=True)
+		plotFullSubthresholdCurveHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'BurnOut'):
 		plotFullBurnOutHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'StaticBias'):
@@ -99,49 +99,62 @@ def plotJSON(jsonData, parameters, lineColor):
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
 
-def plotFullGateSweepHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
-	fig, ax = initFigure(1, 1, 'GateSweep', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	ax.set_title(plot_parameters['GateSweep']['titles'][0])
+	fig, ax = initFigure(1, 1, 'SubthresholdCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax.set_title(plot_parameters['SubthresholdCurve']['titles'][0])
 	
-	colorMap = colorsFromMap(plot_parameters['GateSweep']['colorMap'], 0.7, 0, len(deviceHistory))
+	colorMap = colorsFromMap(plot_parameters['SubthresholdCurve']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	
-	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
-		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
 		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)	
 		
-	if len(deviceHistory) > 1:
+	if(len(deviceHistory) > 1):
 		colorBar(fig, colorMap['smap'])
 	
-	ax.legend([],[], loc='lower left', title=plot_parameters['GateSweep']['legend_title'], labelspacing=0)
-
-	adjustFigure(fig, 'FullGateSweep', parameters, saveFigure, showFigure)
+	ax.legend([],[], loc='lower left', title=plot_parameters['SubthresholdCurve']['legend_title'], labelspacing=0)
+	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure, showFigure)
 
 def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
-	fig, ax = initFigure(1, 1, 'TransferCurvesReal', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	ax.set_title(plot_parameters['TransferCurvesReal']['titles'][0])
+	fig, ax = initFigure(1, 1, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax.set_title(plot_parameters['TransferCurve']['titles'][0])
 	
-	colorMap = colorsFromMap(plot_parameters['TransferCurvesReal']['colorMap'], 0.7, 0, len(deviceHistory))
+	colorMap = colorsFromMap(plot_parameters['TransferCurve']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	
-	indicesToLabel = np.linspace(0, len(deviceHistory)-1, 8).astype(int)
 	for i in range(len(deviceHistory)):
-		includeLegend = True if(len(deviceHistory) <= 8 or (i in indicesToLabel)) else False
-		plotTransferCurveReal(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)	
+		plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection)	
 	
-	if len(deviceHistory) > 1:
+	if(len(deviceHistory) > 1):
 		colorBar(fig, colorMap['smap'])
 	
-	ax.legend([],[], loc='best', title=plot_parameters['TransferCurvesReal']['legend_title'], labelspacing=0)
+	ax.legend([],[], loc='best', title=plot_parameters['TransferCurve']['legend_title'], labelspacing=0)
+	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure, showFigure)
+
+def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	fig, ax = initFigure(1, 1, 'GateCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	ax.set_title(plot_parameters['GateCurrent']['titles'][0])
+
+	colorMap = colorsFromMap(plot_parameters['GateCurrent']['colorMap'], 0.7, 0, len(deviceHistory))
+	colors = colorMap['colors']
+	if(len(deviceHistory) == 1):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+
+	for i in range(len(deviceHistory)):
+		plotGateCurrent(ax, deviceHistory[i], colors[i], sweepDirection)
+
+	if(len(deviceHistory) > 1):
+		colorBar(fig, colorMap['smap'])
 	
-	adjustFigure(fig, 'FullTransferCurve', parameters, saveFigure, showFigure)
+	ax.legend([],[], loc='best', title=plot_parameters['GateCurrent']['legend_title'], labelspacing=0)
+	adjustFigure(fig, 'FullGateCurrents', parameters, saveFigure, showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
@@ -238,21 +251,6 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 		
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
-def plotTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
-	fig, (ax1, ax2) = initFigure(1, 2, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	ax1.set_title(plot_parameters['TransferCurve']['titles'][0])
-	ax2.set_title(plot_parameters['TransferCurve']['titles'][1])
-
-	colors = colorsFromMap(plot_parameters['TransferCurve']['colorMap'], 0.7, 0, len(deviceHistory))['colors']
-	if(len(deviceHistory) == 1):
-		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
-	for i in range(len(deviceHistory)):
-		plotTransferCurve(ax1, deviceHistory[i], colors[i], sweepDirection)
-		plotGateCurrent(ax2, deviceHistory[i], colors[i], sweepDirection)
-	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure, showFigure)
-
-
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
@@ -319,6 +317,7 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 	elif(currentSource == 'drain'):
 		currentData = 'current1s'
 	
+	# Plot only forward or reverse sweeps of the data (also backwards compatible to old format)
 	if(direction == 'forward'):
 		if(isinstance(jsonData['gateVoltages'][0], list)):	
 			x = jsonData['gateVoltages'][0]
@@ -353,27 +352,19 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 
 def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=True):
 	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1)
-	axisLabels(axis, x_label=plot_parameters['GateSweep']['xlabel'], y_label=plot_parameters['GateSweep']['ylabel'])
-	if(includeLabel): 
-		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
-		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
-		axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
-
-def plotTransferCurveReal(axis, jsonData, lineColor, direction='both', includeLabel=True):
-	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1e6)
-	axisLabels(axis, x_label=plot_parameters['TransferCurvesReal']['xlabel'], y_label=plot_parameters['TransferCurvesReal']['ylabel'])
+	axisLabels(axis, x_label=plot_parameters['SubthresholdCurve']['xlabel'], y_label=plot_parameters['SubthresholdCurve']['ylabel'])
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
 		axis.legend(loc='lower left') #bbox_to_anchor=(1.25,0.5)
 
 def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1)
-	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['id_label'])
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1e6)
+	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
 def plotGateCurrent(axis, jsonData, lineColor, direction='both'):
 	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=1)
-	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ig_label'])
+	axisLabels(axis, x_label=plot_parameters['GateCurrent']['xlabel'], y_label=plot_parameters['GateCurrent']['ylabel'])
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)
