@@ -127,7 +127,7 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   False,
+		'plotBurnOuts':   True,
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
