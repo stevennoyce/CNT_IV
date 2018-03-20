@@ -54,6 +54,8 @@ def getConnectionToPCB():
 # 		return measurement * (1.0 + self.modelError*(2.0*rand.random() - 1.0))
 
 class SourceMeasureUnit:
+	measurementsPerSecond = None
+
 	def setComplianceCurrent(self, complianceCurrent):
 		raise NotImplementedError("Please implement SourceMeasureUnit.setComplianceCurrent()")
 
@@ -110,8 +112,8 @@ class SourceMeasureUnit:
 	def rampDownVoltages(self):
 		source1_voltage = self.getVds()
 		source2_voltage = self.getVgs()
-		self.rampDrainVoltage(source1_voltage, 0, 40)
-		self.rampGateVoltage(source2_voltage, 0, 40)
+		self.rampDrainVoltage(source1_voltage, 0, self.measurementsPerSecond/2)
+		self.rampGateVoltage(source2_voltage, 0, self.measurementsPerSecond/2)
 
 class B2912A(SourceMeasureUnit):
 	smu = None
