@@ -113,7 +113,7 @@ class SourceMeasureUnit:
 		source1_voltage = self.getVds()
 		source2_voltage = self.getVgs()
 		self.rampDrainVoltage(source1_voltage, 0, self.measurementsPerSecond/2)
-		self.rampGateVoltage(source2_voltage, 0, self.measurementsPerSecond/2)
+		self.rampGateVoltage(source2_voltage, 0, 20)
 
 class B2912A(SourceMeasureUnit):
 	smu = None

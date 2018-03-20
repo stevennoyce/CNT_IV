@@ -52,8 +52,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127X'
-	deviceID = '15-16'
+	chipID = 'C127P'
+	deviceID = '30-31'
 
 runTypes = {
 	0:'Quit',
@@ -72,6 +72,8 @@ default_parameters = {
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'runFastSweep': False,
+		'pulsedMeasurementOnTime': 0.05,
+		'pulsedMeasurementOffTime': 0.0001,
 		'stepsInVGSPerDirection': 100,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
@@ -127,13 +129,13 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
-		'plotStaticBias': True,
+		'plotBurnOuts':   False,
+		'plotStaticBias': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  18,
-		'gateSweepDirection': ['both','forward','reverse'][2],
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
 		'plotInRealTime': True

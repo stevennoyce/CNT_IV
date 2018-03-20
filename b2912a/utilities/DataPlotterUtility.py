@@ -443,7 +443,11 @@ def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 def scaledData(deviceHistory, dataToScale, scalefactor):
 	data = list(deviceHistory)
 	for i in range(len(data)):
-		data[i][dataToScale] = list(np.array(data[i][dataToScale])*scalefactor)
+		if(isinstance(data[i][dataToScale], list)):
+			for j in range(len(data[i][dataToScale])):
+				data[i][dataToScale][j] = list(np.array(data[i][dataToScale][j])*scalefactor)
+		else:
+			data[i][dataToScale] = list(np.array(data[i][dataToScale])*scalefactor)
 	return data
 
 

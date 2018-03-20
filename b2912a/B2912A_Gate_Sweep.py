@@ -39,11 +39,13 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	dlu.initCSV(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'])
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
-	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'], 20)
+	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'], smu_instance.measurementsPerSecond/2)
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
 							parameters['GateSweep']['saveFileName'], 
 							isFastSweep=parameters['GateSweep']['runFastSweep'],
+							pulsedMeasurementOnTime=parameters['GateSweep']['pulsedMeasurementOnTime'],
+							pulsedMeasurementOffTime=parameters['GateSweep']['pulsedMeasurementOffTime'],
 							drainVoltageSetPoint=parameters['GateSweep']['drainVoltageSetPoint'],
 							gateVoltageMinimum=parameters['GateSweep']['gateVoltageMinimum'], 
 							gateVoltageMaximum=parameters['GateSweep']['gateVoltageMaximum'], 
@@ -67,7 +69,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 
-def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
+def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, pulsedMeasurementOnTime, pulsedMeasurementOffTime, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
 	vds_data = [[],[]]
 	id_data = [[],[]]
 	vgs_data = [[],[]]
@@ -78,31 +80,46 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, drai
 	smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
 	time.sleep(2)
 
-	gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
-	
 	if(isFastSweep):
+		# Use SMU built-in sweep to sweep the gate forwards and backwards
 		forward_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection)
 		timestamps[0].append(time.time())
 		reverse_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMaximum, gateVoltageMinimum, stepsInVGSPerDirection)
 		timestamps[1].append(time.time())
 
+		# Save forward measurements
 		vds_data[0] = forward_measurements['Vds_data']
 		id_data[0]  = forward_measurements['Id_data']
 		vgs_data[0] = forward_measurements['Vgs_data']
 		ig_data[0]  = forward_measurements['Ig_data']
 
+		# Save reverse measurements
 		vds_data[1] = reverse_measurements['Vds_data']
 		id_data[1]  = reverse_measurements['Id_data']
 		vgs_data[1] = reverse_measurements['Vgs_data']
 		ig_data[1]  = reverse_measurements['Ig_data']
 
+		# Save true measured Vgs as the applied voltages
 		gateVoltages = vgs_data
 	else:
-		for i in [0,1]:
-			for gateVoltage in gateVoltages[i]:
+		# Generate vector of gate voltages to apply
+		gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
+	
+		for direction in [0,1]:
+			for gateVoltage in gateVoltages[direction]:
+				# Apply Vgs
 				smu_instance.setVgs(gateVoltage)
+
+				# If pulsedMeasurementOnTime is non-zero, hold the gate at Vgs for specified amount of time
+				if(pulsedMeasurementOnTime > 0):
+					time.sleep(pulsedMeasurementOnTime*0.9)
+
+				# Take Measurement and save it
 				measurement = smu_instance.takeMeasurement()
-				
+
+				if(pulsedMeasurementOnTime > 0):
+					time.sleep(pulsedMeasurementOnTime*0.1)
+
 				v_ds = measurement['V_ds']
 				i_d  = measurement['I_d']
 				v_gs = measurement['V_gs']
@@ -112,11 +129,16 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, drai
 				csvData = [timestamp, v_ds, i_d, v_gs, i_g]
 				dlu.saveCSV(workingDirectory, saveFileName, csvData)
 				
-				vds_data[i].append(v_ds)
-				id_data[i].append(i_d)
-				vgs_data[i].append(v_gs)
-				ig_data[i].append(i_g)
-				timestamps[i].append(timestamp)
+				vds_data[direction].append(v_ds)
+				id_data[direction].append(i_d)
+				vgs_data[direction].append(v_gs)
+				ig_data[direction].append(i_g)
+				timestamps[direction].append(timestamp)
+
+				# If pulsedMeasurementOffTime is non-zero, ground the gate for specified amount of time, then bring it back
+				if(pulsedMeasurementOffTime > 0):
+					smu_instance.setVgs(0)
+					time.sleep(pulsedMeasurementOffTime)
 
 	return {
 		'voltage1s':vds_data,
