@@ -42,7 +42,7 @@ def run(parameters, showFigures=True):
 			dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
 			dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
 			dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, p['gateSweepDirection'], p['saveFiguresGenerated'], showFigures)
-			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, p['saveFiguresGenerated'], showFigures)
+			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, p['timescale'], p['plotInRealTime'], p['saveFiguresGenerated'], showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 

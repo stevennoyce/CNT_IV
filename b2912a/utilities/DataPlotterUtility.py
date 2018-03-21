@@ -84,7 +84,8 @@ plot_parameters = {
 	'OnCurrent':{
 		'titles':[''],#['On/Off Current'],
 		'figsize':(1.9,1.5),#(5,4),
-		'xlabel':'Time Index of Gate Sweep [#]',
+		'time_label':'Time, $t$ [{:}]',
+		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On Current, $(I_{on})$ [A]',
 		'ylabel_dual_axis':'Off Current, $(I_{off})$ [A]'
 	},
@@ -278,28 +279,40 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
-def plotOnAndOffCurrentHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
+def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
 	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
 
+	# Rescale timestamp data by factor related to the time scale
+	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
+
 	# Build On/Off Current lists
 	onCurrents = []
 	offCurrents = []
+	timestamps = []
 	for deviceRun in deviceHistory:
 		onCurrents.append(deviceRun['onCurrent'])
 		offCurrents.append(deviceRun['offCurrent'])
+		timestamps.append(deviceRun['timestamps'][0])
 
 	# Plot On Current
-	line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], 6)
+	if(plotInRealTime):
+		line = plotOverTime(ax1, timestamps, onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=0, makerSize=6, lineWidth=0)
+		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['time_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
+	else:
+		line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], 6)
+		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['index_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
 	setLabel(line, 'On Currents')
-	axisLabels(ax1, x_label=plot_parameters['OnCurrent']['xlabel'], y_label=plot_parameters['OnCurrent']['ylabel'])
 	ax1.set_ylim(bottom=0)
 
 	# Plot Off Current
-	line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 2)
+	if(plotInRealTime):
+		line = plotOverTime(ax2, timestamps, offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=0, makerSize=2, lineWidth=0)
+	else:
+		line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 2)
 	setLabel(line, 'Off Currents')
 	ax2.set_ylabel(plot_parameters['OnCurrent']['ylabel_dual_axis'])
 	
@@ -471,9 +484,9 @@ def plotWithErrorBars(axis, x, y, lineColor):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
 	return axis.errorbar(x_unique, avg, yerr=std, color=lineColor, capsize=4, capthick=0.5, elinewidth=0.5)[0]
 
-def plotOverTime(axis, timestamps, y, lineColor, offset=0):
+def plotOverTime(axis, timestamps, y, lineColor, offset=0, makerSize=1, lineWidth=1):
 	zeroed_timestamps = list( np.array(timestamps) - timestamps[0] + offset )
-	return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize = 1, linewidth=1)[0]
+	return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize=makerSize, linewidth=lineWidth)[0]
 
 def colorBar(fig, scalarMappableColorMap, ticks=[0,1], tick_labels=['End','Start'], axisLabel='Time $\\rightarrow$'):
 	scalarMappableColorMap._A = []

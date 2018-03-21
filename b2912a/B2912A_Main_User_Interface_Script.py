@@ -126,6 +126,7 @@ default_parameters = {
 		'shuffleDelaysBeforeReapplyingVoltage': False
 	},
 	'DeviceHistory':{
+		'showFiguresGenerated': True,
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
@@ -241,7 +242,7 @@ def runDeviceHistory(parameters):
 		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
 	} 
 	
-	deviceHistoryScript.run(parameters)
+	deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
 	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):
 		plotPoster.postPlots(parameters)
