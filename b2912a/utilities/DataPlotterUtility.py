@@ -11,6 +11,11 @@ plt.rcParams['mathtext.fontset'] = 'custom'
 plt.rcParams['mathtext.rm'] = 'Arial'
 plt.rcParams['mathtext.it'] = 'Arial'
 plt.rcParams['mathtext.bf'] = 'Arial:bold'
+
+plt.rcParams['mathtext.rm'] = 'Times New Roman'
+plt.rcParams['mathtext.it'] = 'Times New Roman'
+plt.rcParams['mathtext.bf'] = 'Times New Roman:bold'
+
 plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['axes.labelsize'] = 18
 plt.rcParams['axes.titlesize'] = 18
@@ -36,24 +41,24 @@ plt.rcParams['font.size'] = 8
 
 plot_parameters = {
 	'SubthresholdCurve': {
-		'titles':['Subthreshold Curve'],
-		'figsize':(4.2,4.9),
+		'titles':[''],#['Subthreshold Curve'],
+		'figsize':(1.29,1.5),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
 		'ylabel':'Drain Current, $I_d$ [A]',
 		'legend_title':'$V_{ds} = 0.5V$'
 	},
 	'TransferCurve':{
-		'titles':['Transfer Curve'],
-		'figsize':(4.2,4.9),
+		'titles':[''],#['Transfer Curve'],
+		'figsize':(1.29,1.5),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
 		'ylabel':'Drain Current, $I_d$ [$\mu$A]',
 		'legend_title':'$V_{ds} = 0.5V$'
 	},
 	'GateCurrent':{
-		'titles':['Gate Leakage'],
-		'figsize':(4.2,4.9),
+		'titles':[''],#['Gate Leakage'],
+		'figsize':(1.29,1.5),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
 		'ylabel':'Gate Current, $I_g$ [A]',
@@ -70,15 +75,15 @@ plot_parameters = {
 		'legend_title':'$V_{gs} = +15V$'
 	},
 	'StaticBias':{
-		'titles':['Static Bias'],
-		'figsize':(5,4),
+		'titles':[''],#['Static Bias'],
+		'figsize':(1.9,1.5),#(5,4),
 		'colorMap':'plasma',
 		'xlabel':'Time, $t$ [{:}]',
 		'ylabel':'Drain Current, $I_d$ [$\mu$A]'
 	},
 	'OnCurrent':{
-		'titles':['On/Off Current'],
-		'figsize':(5,4),
+		'titles':[''],#['On/Off Current'],
+		'figsize':(1.9,1.5),#(5,4),
 		'xlabel':'Time Index of Gate Sweep [#]',
 		'ylabel':'On Current, $(I_{on})$ [A]',
 		'ylabel_dual_axis':'Off Current, $(I_{off})$ [A]'
@@ -249,7 +254,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 						parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
 	
 	# Increase height of the plot to give more room for labels
-	if len(dotted_lines) > 0:
+	if len(dotted_lines) > 1:
 		x0, x1, y0, y1 = ax.axis()
 		ax.axis((x0,x1,y0,1.2*y1))
 	
@@ -426,13 +431,15 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 	fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
 	title = chipID + ':' + deviceID + testLabel
+	# title = ''
 	fig.suptitle(title)
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
-	figure.tight_layout(rect=[0,0,0.95,0.95])
+	# figure.tight_layout(rect=[0,0,0.95,0.95])
 	if(saveFigure):
-		plt.savefig(parameters['plotsFolder'] + saveName + '.png')
+		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True)
+		plt.savefig(parameters['plotsFolder'] + saveName + '.pdf', transparent=True)
 	if(not showFigure):
 		plt.close(figure)
 
@@ -443,7 +450,7 @@ def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 def scaledData(deviceHistory, dataToScale, scalefactor):
 	data = list(deviceHistory)
 	for i in range(len(data)):
-		if(isinstance(data[i][dataToScale], list)):
+		if(isinstance(data[i][dataToScale][0], list)):
 			for j in range(len(data[i][dataToScale])):
 				data[i][dataToScale][j] = list(np.array(data[i][dataToScale][j])*scalefactor)
 		else:
