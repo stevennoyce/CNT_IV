@@ -311,7 +311,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale, plotInRealT
 	for deviceRun in deviceHistory:
 		onCurrents.append(deviceRun['onCurrent'])
 		offCurrents.append(deviceRun['offCurrent'])
-		timestamps.append(deviceRun['timestamps'][0])
+		timestamps.append(flatten(deviceRun['timestamps'])[0])
 
 	# Plot On Current
 	if(plotInRealTime):
@@ -383,24 +383,37 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 	elif(currentSource == 'drain'):
 		currentData = 'current1s'
 	
+	x = jsonData['gateVoltages']
+	y = jsonData[currentData]
+
+	# Sort data if it was collected in an unordered fashion
+	try:
+		if(jsonData['GateSweep']['isAlternatingSweep']):
+			forward_x, forward_y = zip(*sorted(zip(x[0], y[0])))
+			reverse_x, reverse_y = zip(*reversed(sorted(zip(x[1], y[1]))))
+			x = [list(forward_x), list(reverse_x)]
+			y = [list(forward_y), list(reverse_y)]
+	except:
+		pass
+
 	# Plot only forward or reverse sweeps of the data (also backwards compatible to old format)
 	if(direction == 'forward'):
-		if(isinstance(jsonData['gateVoltages'][0], list)):	
-			x = jsonData['gateVoltages'][0]
-			y = jsonData[currentData][0]
+		if(isinstance(x[0], list)):	
+			x = x[0]
+			y = y[0]
 		else:
-			x = jsonData['gateVoltages'][0:int(len(jsonData['gateVoltages'])/2)]
-			y = jsonData[currentData][0:int(len(jsonData['gateVoltages'])/2)]
+			x = x[0:int(len(x)/2)]
+			y = y[0:int(len(x)/2)]
 	elif(direction == 'reverse'):
-		if(isinstance(jsonData['gateVoltages'][0], list)):	
-			x = jsonData['gateVoltages'][1]
-			y = jsonData[currentData][1]
+		if(isinstance(x[0], list)):	
+			x = x[1]
+			y = y[1]
 		else:
-			x = jsonData['gateVoltages'][int(len(jsonData['gateVoltages'])/2):]
-			y = jsonData[currentData][int(len(jsonData['gateVoltages'])/2):]
+			x = x[int(len(x)/2):]
+			y = y[int(len(y)/2):]
 	else:
-		x = flatten(jsonData['gateVoltages'])
-		y = flatten(jsonData[currentData])
+		x = flatten(x)
+		y = flatten(y)
 
 	# Make y-axis a logarithmic scale
 	if(logScale):

@@ -43,7 +43,8 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
 							parameters['GateSweep']['saveFileName'], 
-							isFastSweep=parameters['GateSweep']['runFastSweep'],
+							isFastSweep=parameters['GateSweep']['isFastSweep'],
+							isAlternatingSweep=parameters['GateSweep']['isAlternatingSweep'],
 							pulsedMeasurementOnTime=parameters['GateSweep']['pulsedMeasurementOnTime'],
 							pulsedMeasurementOffTime=parameters['GateSweep']['pulsedMeasurementOffTime'],
 							drainVoltageSetPoint=parameters['GateSweep']['drainVoltageSetPoint'],
@@ -69,16 +70,22 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 
-def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, pulsedMeasurementOnTime, pulsedMeasurementOffTime, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
+def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, isAlternatingSweep, pulsedMeasurementOnTime, pulsedMeasurementOffTime, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
 	vds_data = [[],[]]
 	id_data = [[],[]]
 	vgs_data = [[],[]]
 	ig_data = [[],[]]
 	timestamps = [[],[]]
 
-	# Ramp gate and wait a few seconds for everything to settle down
-	smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
-	time.sleep(2)
+	# Generate list of gate voltages to apply
+	if(isAlternatingSweep):
+		gateVoltages = dgu.alternatingSweepValuesWithDuplicates(gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
+	else:
+		gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
+		
+		# Ramp gate and wait a few seconds for everything to settle down
+		smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
+		time.sleep(2)
 
 	if(isFastSweep):
 		# Use SMU built-in sweep to sweep the gate forwards and backwards
@@ -102,9 +109,6 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, puls
 		# Save true measured Vgs as the applied voltages
 		gateVoltages = vgs_data
 	else:
-		# Generate vector of gate voltages to apply
-		gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
-	
 		for direction in [0,1]:
 			for gateVoltage in gateVoltages[direction]:
 				# Apply Vgs
