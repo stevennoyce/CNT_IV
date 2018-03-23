@@ -981,9 +981,9 @@ for Lg in Lgs:
     plt.plot(Vgss, np.real(Idss), label='Lg = {}'.format(Lg))
 
 
-p = np.polyfit(Vgss, Idss, 2, w=np.real(Idss)**4)
+# p = np.polyfit(Vgss, Idss, 2, w=np.real(Idss)**4)
 # plt.plot(Vgss, 0.045*(1-((Vgss/23-1))**2))
-plt.plot(Vgss, np.polyval(p, Vgss))
+# plt.plot(Vgss, np.polyval(p, Vgss))
 
 
 

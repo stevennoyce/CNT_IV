@@ -12,28 +12,27 @@ plt.rcParams['mathtext.rm'] = 'Arial'
 plt.rcParams['mathtext.it'] = 'Arial'
 plt.rcParams['mathtext.bf'] = 'Arial:bold'
 
+plt.rcParams["font.family"] = 'Times New Roman'
 plt.rcParams['mathtext.rm'] = 'Times New Roman'
 plt.rcParams['mathtext.it'] = 'Times New Roman'
-plt.rcParams['mathtext.bf'] = 'Times New Roman:bold'
+plt.rcParams['mathtext.bf'] = 'Times New Roman'
 
 plt.rcParams['axes.labelsize'] = 18
 plt.rcParams['axes.titlesize'] = 18
 plt.rcParams['legend.fontsize'] = 8
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
-plt.rcParams['xtick.major.size'] = 6
-plt.rcParams['ytick.major.size'] = 6
 plt.rcParams['font.size'] = 8
 
-plt.rcParams['axes.labelsize'] = 10
-plt.rcParams['axes.titlesize'] = 10
-plt.rcParams['legend.fontsize'] = 6
-plt.rcParams['xtick.labelsize'] = 8
-plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['axes.labelsize'] = 10*2
+plt.rcParams['axes.titlesize'] = 10*2
+plt.rcParams['legend.fontsize'] = 6*2
+plt.rcParams['xtick.labelsize'] = 6*2
+plt.rcParams['ytick.labelsize'] = 6*2
+plt.rcParams['font.size'] = 6*2
+
 plt.rcParams['xtick.major.size'] = 6
 plt.rcParams['ytick.major.size'] = 6
-plt.rcParams['font.size'] = 6
-
 plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['axes.formatter.use_mathtext'] = True
 plt.rcParams['xtick.top'] = True
@@ -54,32 +53,32 @@ plot_parameters = {
 		'titles':[''],#['Subthreshold Curve'],
 		'figsize':(1.29,1.5),#(4.2,4.9),
 		'colorMap':'hot',
-		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'ylabel':'Drain Current, $I_d$ [A]',
-		'legend_title':'$V_{ds} = 0.5V$'
+		'xlabel':'$V_{GS}$ [V]',
+		'ylabel':'$I_d$ [A]',
+		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'TransferCurve':{
 		'titles':[''],#['Transfer Curve'],
 		'figsize':(1.29,1.5),#(4.2,4.9),
 		'colorMap':'hot',
-		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'ylabel':'Drain Current, $I_d$ [$\mu$A]',
-		'legend_title':'$V_{ds} = 0.5V$'
+		'xlabel':'$V_{GS}$ [V]',
+		'ylabel':'$I_d$ [$\mu$A]',
+		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'GateCurrent':{
 		'titles':[''],#['Gate Leakage'],
 		'figsize':(1.29,1.5),#(4.2,4.9),
 		'colorMap':'hot',
-		'xlabel':'Gate Voltage, $V_{gs}$ [V]',
-		'ylabel':'Gate Current, $I_g$ [A]',
-		'legend_title':'$V_{ds} = 0.5V$'
+		'xlabel':'$V_{GS}$ [V]',
+		'ylabel':'$I_g$ [A]',
+		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'BurnOut':{
 		'titles':['Metallic CNT Burnout', 'Current Measured', 'Applied Voltage'],
 		'figsize':(8,6),
 		'colorMap':'Blues',
-		'vds_label':'Drain Voltage, $V_{ds}$ [V]',
-		'id_micro_label':'Drain Current, $I_d$ [$\mu$A]',
+		'vds_label':'Drain Voltage, $V_{DS}$ [V]',
+		'id_micro_label':'$I_d$ [$\mu$A]',
 		'time_label':'Time, $t$ [sec]',
 		'id_annotation':'burn current',
 		'legend_title':'$V_{gs} = +15V$'
@@ -89,15 +88,15 @@ plot_parameters = {
 		'figsize':(1.9,1.5),#(5,4),
 		'colorMap':'plasma',
 		'xlabel':'Time, $t$ [{:}]',
-		'ylabel':'Drain Current, $I_d$ [$\mu$A]'
+		'ylabel':'$I_d$ [$\mu$A]'
 	},
 	'OnCurrent':{
-		'titles':[''],#['On/Off Current'],
+		'titles':[''],#['On/Off-Current'],
 		'figsize':(1.9,1.5),#(5,4),
 		'time_label':'Time, $t$ [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
-		'ylabel':'On Current, $(I_{on})$ [A]',
-		'ylabel_dual_axis':'Off Current, $(I_{off})$ [A]'
+		'ylabel':'On-Current [A]',
+		'ylabel_dual_axis':'Off-Current [A]'
 	},
 	'ChipHistory':{
 		'titles':['Chip History'],
@@ -162,7 +161,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	# If first segment of device history is all negative current, flip data
 	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['current1s']) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
-		plot_parameters['TransferCurve']['ylabel'] = 'Drain Current, $-I_d$ [$\mu$A]'
+		plot_parameters['TransferCurve']['ylabel'] = '$-I_d$ [$\mu$A]'
 	
 	# Plot
 	for i in range(len(deviceHistory)):
@@ -239,7 +238,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 	# If first segment of device history is all negative current, flip data
 	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['current1s']) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
-		plot_parameters['StaticBias']['ylabel'] = 'Drain Current, $-I_d$ [$\mu$A]'
+		plot_parameters['StaticBias']['ylabel'] = '$-I_d$ [$\mu$A]'
 	
 	time_offset = 0
 	dotted_lines = []
@@ -259,6 +258,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 			if (i == 0) or deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint']:
 				dotted_lines.append({'x':time_offset})
 				parameter_labels['drainVoltageSetPoint'].append({'x':time_offset, 'drainVoltageSetPoint':deviceHistory[i]['drainVoltageSetPoint']})
+				parameter_labels['gateVoltageSetPoint'].append({'x':time_offset, 'gateVoltageSetPoint':deviceHistory[i]['gateVoltageSetPoint']})
 		else:
 			if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias'])):
 				dotted_lines.append({'x':time_offset})
@@ -273,18 +273,25 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 		x0, x1, y0, y1 = ax.axis()
 		ax.axis((x0,x1,y0,1.2*y1))
 	
-	# Draw dotted lines between ANY plots that have different parameters
-	for i in range(len(dotted_lines)):
-		ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+		# Draw dotted lines between ANY plots that have different parameters
+		for i in range(len(dotted_lines)):
+			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+		
+		# Add V_ds annotation
+		for i in range(len(parameter_labels['drainVoltageSetPoint'])):
+			ax.annotate(' $V_{DS} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
+
+		# Add V_gs annotation
+		for i in range(len(parameter_labels['gateVoltageSetPoint'])):
+			# ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
+			pass
+			
+	else:
+		legend_title = ''
+		legend_title += '$V_{DS}$ = ' + '{:.2f}V\n'.format(parameter_labels['drainVoltageSetPoint'][0]['drainVoltageSetPoint'])
+		legend_title += '$V_{GS}$ = ' + '{:.1f}V'.format(parameter_labels['gateVoltageSetPoint'][0]['gateVoltageSetPoint'])
+		ax.legend([],[], loc='best', title=legend_title, labelspacing=0)
 	
-	# Add V_ds annotation
-	for i in range(len(parameter_labels['drainVoltageSetPoint'])):
-		ax.annotate(' $V_{ds} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
-
-	# Add V_gs annotation
-	for i in range(len(parameter_labels['gateVoltageSetPoint'])):
-		ax.annotate(' $V_{gs} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
-
 	# Add Grounding annotation
 	# for i in range(len(parameter_labels['groundDrainWhenDone'])):
 	# 	ax.annotate(' Grounded Drain: {:}'.format(parameter_labels['groundDrainWhenDone'][i]['groundDrainWhenDone']), xy=(parameter_labels['groundDrainWhenDone'][i]['x'], ax.get_ylim()[1]*(0.94 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
@@ -320,7 +327,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale, plotInRealT
 	else:
 		line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], 6)
 		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['index_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
-	setLabel(line, 'On Currents')
+	setLabel(line, 'On-Currents')
 	ax1.set_ylim(bottom=0)
 
 	# Plot Off Current
@@ -328,13 +335,13 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale, plotInRealT
 		line = plotOverTime(ax2, timestamps, offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=0, makerSize=2, lineWidth=0)
 	else:
 		line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 2)
-	setLabel(line, 'Off Currents')
+	setLabel(line, 'Off-Currents')
 	ax2.set_ylabel(plot_parameters['OnCurrent']['ylabel_dual_axis'])
 	
 	# Add Legend and save figure
 	lines1, labels1 = ax1.get_legend_handles_labels()
 	lines2, labels2 = ax2.get_legend_handles_labels()
-	ax1.legend(lines1 + lines2, labels1 + labels2, loc='best')
+	ax2.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
 	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure, showFigure)
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
@@ -479,7 +486,10 @@ def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 	# figure.tight_layout(rect=[0,0,0.95,0.95])
-	figure.set_size_inches(4,4)
+	# figure.set_size_inches(2*2.2,2*1.6)
+	# figure.set_size_inches(2*3,2*1.6)
+	# figure.set_size_inches(2*1.4,2*1.6)
+	figure.set_size_inches(2*2.2,2*1.7)
 	figure.tight_layout()
 	if(saveFigure):
 		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True)

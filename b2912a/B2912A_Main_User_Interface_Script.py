@@ -37,16 +37,16 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	
 	chipID = 'C127X'
 	deviceID = '15-16'
-	# Experiments 3 to inf
+	# Experiments 3 to 4
 	
 	chipID = 'C127E'
 	deviceID = '15-16'
-	# Experiment 6 to 6, many decay curves
+	# Experiment 6 to 6, many decay curves and subthreshold curves
 	# Separate plot, index 11 to 12, one decay curve
 	# Separate plot, index 13 to 21, four decay curves
 	# Separate plot, index 17 to 18, decent subthreshold curve with error bars
-	# Separate plot, experiments 2 to 18, decaying subthreshold curves
-	# Separate plot, experiments 2 to 13, stable/slowly decreasing subthreshold and transfer and on/off curves
+	# Separate plot, experiments 3 to 18, decaying subthreshold curves
+	# Separate plot, experiments 3 to 13, stable/slowly decreasing subthreshold and transfer and on/off curves
 	
 	# chipID = 'C127P'
 	# deviceID = '1-2'
@@ -127,17 +127,17 @@ default_parameters = {
 		'shuffleDelaysBeforeReapplyingVoltage': False
 	},
 	'DeviceHistory':{
-		'showFiguresGenerated': True,
+		'showFiguresGenerated': False,
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
 		'plotBurnOuts':   False,
-		'plotStaticBias': False,
+		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 23,
-		'excludeDataAfterJSONExperimentNumber':  24,
-		'gateSweepDirection': ['both','forward','reverse'][0],
+		'excludeDataBeforeJSONExperimentNumber': 3,
+		'excludeDataAfterJSONExperimentNumber':  13,
+		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
 		'plotInRealTime': True
