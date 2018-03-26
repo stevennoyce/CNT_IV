@@ -404,7 +404,6 @@ def vscnfet_1_0_1_woi(vd0, vg0, vs0, Lg, Lc, Lsd, W, tox, kox, geo, Hg, kspa, dc
         theta[z == 0] = -np.pi / 2
         theta[z > 0] = theta[z > 0] - np.pi
         y = np.sqrt(zeta ** 2 - 1 + 0j) * theta + zeta * np.arcsin(x) + np.sqrt(1 - x ** 2 + 0j)
-        print(y[0])
         return y
     
     # source-to-drain tunneling function
@@ -978,18 +977,55 @@ for Lg in Lgs:
         Id1,Id2,Ivs1,Ivs2,Idsdt,Ibtbt,Qs,Qd,Qg = result
         Idss.append(result[0][1])
     
-    plt.plot(Vgss, np.real(Idss), label='Lg = {}'.format(Lg))
+    # plt.plot(Vgss, np.real(Idss), label='Lg = {}'.format(Lg))
 
 
-# p = np.polyfit(Vgss, Idss, 2, w=np.real(Idss)**4)
-# plt.plot(Vgss, 0.045*(1-((Vgss/23-1))**2))
+Idss = np.real(Idss)
+
+# p = np.polyfit(Vgss, Idss, 5, w=np.real(Idss)**2)
+# print(p)
 # plt.plot(Vgss, np.polyval(p, Vgss))
+# plt.plot(Vgss, np.polyval([0,0,0,0,p[4],p[5]], Vgss), label='Linear')
+# plt.plot(Vgss, np.polyval([0,0,0,p[3],p[4],p[5]], Vgss), label='Quadratic')
+# plt.plot(Vgss, np.polyval([0,0,p[2],p[3],p[4],p[5]], Vgss), label='Cubic')
+# plt.plot(Vgss, np.polyval([0,p[1],p[2],p[3],p[4],p[5]], Vgss), label='Quartic')
 
 
+# p = np.polyfit(Vgss, Idss**3, 1, w=Idss**3)
+# plt.plot(Vgss, Idss)
+# plt.plot(Vgss, np.cbrt(np.polyval(p, Vgss)))
+
+# plt.plot(Vgss, Idss**2/max(Idss**2))
+# plt.plot(Vgss, Idss**3/max(Idss**3))
+# plt.plot(Vgss, Idss**4/max(Idss**4))
+# plt.plot(Vgss, (np.exp(Idss)-1)/max(np.exp(Idss)-1))
+
+
+# p = np.polyfit(Vgss, np.real(Idss), 5, w=np.real(Idss)**2)
+# residuesLinear = np.polyval([0,0,0,0,p[4],p[5]], Vgss) - Idss
+# plt.plot(Vgss, residuesLinear)
+
+# plt.plot(Vgss, Idss)
+# power = 0.9 - Vgss/100
+# model = np.real(np.power(Vgss + 0j, power))
+# plt.plot(Vgss, model*max(Idss)/max(model))
+
+p = np.polyfit(Idss, Vgss, 3)
+print(p)
+# plt.plot(Idss, Vgss)
+# plt.plot(Idss, np.polyval(p, Idss))
+# plt.plot(Vgss, Idss)
+# plt.plot(np.polyval(p, Idss), Idss)
+
+# plt.plot(np.cbrt(Vgss), Idss)
+
+plt.plot(Vgss, Idss)
+model = np.maximum(0,np.log(np.abs(Vgss+5)))
+model -= min(model)+0.3
+plt.plot(Vgss, model*max(Idss)/max(model))
 
 
 print('Simulation complete')
-print(Idss)
 plt.legend(loc='best')
 plt.xlabel('Gate Voltage, $V_{GS}$ [V]')
 plt.ylabel('Drain Current, $I_D$, [A]')
