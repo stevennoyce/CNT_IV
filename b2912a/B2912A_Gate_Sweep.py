@@ -85,7 +85,7 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, isAl
 		
 		# Ramp gate and wait a few seconds for everything to settle down
 		smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
-		time.sleep(2)
+		time.sleep(1)
 
 	if(isFastSweep):
 		# Use SMU built-in sweep to sweep the gate forwards and backwards

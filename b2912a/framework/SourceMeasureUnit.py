@@ -217,6 +217,7 @@ class PCB2v14(SourceMeasureUnit):
 	def __init__(self, pySerial):
 		self.ser = pySerial
 		self.setParameter('connect-intermediates !')
+		time.sleep(0.5)
 
 	def setComplianceCurrent(self, complianceCurrent):
 		pass
@@ -244,12 +245,15 @@ class PCB2v14(SourceMeasureUnit):
 
 	def setDevice(self, deviceID):
 		self.setParameter('disconnect-all-from-all !')
+		time.sleep(0.5)
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
 		intermediate2 = (2) if(contactPad2 <= 32) else (4)
 		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
+		time.sleep(0.5)
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
+		time.sleep(0.5)
 		while (self.ser.in_waiting):
 			print(self.getResponse(), end='')
 			time.sleep(0.1)

@@ -51,7 +51,7 @@ plt.rcParams['axes.formatter.limits'] = [-2, 3]
 plot_parameters = {
 	'SubthresholdCurve': {
 		'titles':[''],#['Subthreshold Curve'],
-		'figsize':(1.29,1.5),#(4.2,4.9),
+		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
 		'ylabel':'$I_d$ [A]',
@@ -59,7 +59,7 @@ plot_parameters = {
 	},
 	'TransferCurve':{
 		'titles':[''],#['Transfer Curve'],
-		'figsize':(1.29,1.5),#(4.2,4.9),
+		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
 		'ylabel':'$I_d$ [$\mu$A]',
@@ -67,7 +67,7 @@ plot_parameters = {
 	},
 	'GateCurrent':{
 		'titles':[''],#['Gate Leakage'],
-		'figsize':(1.29,1.5),#(4.2,4.9),
+		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
 		'ylabel':'$I_g$ [A]',
@@ -85,14 +85,14 @@ plot_parameters = {
 	},
 	'StaticBias':{
 		'titles':[''],#['Static Bias'],
-		'figsize':(1.9,1.5),#(5,4),
+		'figsize':(2*2.2,2*1.6),#(5,4),
 		'colorMap':'plasma',
 		'xlabel':'Time, $t$ [{:}]',
 		'ylabel':'$I_d$ [$\mu$A]'
 	},
 	'OnCurrent':{
 		'titles':[''],#['On/Off-Current'],
-		'figsize':(1.9,1.5),#(5,4),
+		'figsize':(2*2.2,2*1.7),#(5,4),
 		'time_label':'Time, $t$ [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On-Current [A]',
@@ -486,10 +486,9 @@ def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
 	# figure.tight_layout(rect=[0,0,0.95,0.95])
-	# figure.set_size_inches(2*2.2,2*1.6)
-	# figure.set_size_inches(2*3,2*1.6)
-	# figure.set_size_inches(2*1.4,2*1.6)
-	figure.set_size_inches(2*2.2,2*1.7)
+	# figure.set_size_inches(2.2,1.6) # Static Bias
+	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
+	# figure.set_size_inches(2.2,1.7) # On/Off-Current
 	figure.tight_layout()
 	if(saveFigure):
 		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True)

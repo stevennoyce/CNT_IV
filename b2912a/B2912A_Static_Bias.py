@@ -20,14 +20,13 @@ from framework import SourceMeasureUnit as smu
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totalBiasTime'])+' seconds...')
-
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
 
 	if(parameters['StaticBias']['delayBeforeApplyingVoltage'] > 0):
 		time.sleep(parameters['StaticBias']['delayBeforeApplyingVoltage'])
 
+	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'], steps=20)
 	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageSetPoint'], steps=30)
-	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'], steps=30)
 
 	if(parameters['StaticBias']['delayBeforeMeasurementsBegin'] > 0):
 		time.sleep(parameters['StaticBias']['delayBeforeMeasurementsBegin'])
@@ -39,7 +38,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 							parameters['StaticBias']['measurementTime'])
 
 	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'], steps=30)
-	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'], steps=30)
+	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'], steps=20)
 
 	jsonData = {**parameters, **results}
 	

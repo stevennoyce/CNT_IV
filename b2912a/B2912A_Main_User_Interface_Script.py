@@ -52,8 +52,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127P'
-	deviceID = '30-31'
+	chipID = 'C127X'
+	deviceID = '15-16'
 
 runTypes = {
 	0:'Quit',
@@ -76,11 +76,11 @@ default_parameters = {
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
 		'stepsInVGSPerDirection': 100,
-		'pointsPerVGS': 3,
+		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-15.0,
-		'gateVoltageMaximum':	15.0
+		'gateVoltageMinimum':	-15,
+		'gateVoltageMaximum': 	15
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -105,20 +105,20 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	-15.0,
+		'gateVoltageSetPoint': 	-3.5,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageWhenDone':  -15.0,
-		'drainVoltageWhenDone': -0.5
+		'gateVoltageWhenDone':  0,
+		'drainVoltageWhenDone': 0
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 3,
+		'numberOfSweeps': 5,
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 24*7,
-		'applyGateSweepBetweenBiases': False,
+		'numberOfStaticBiases': 10,
+		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
-		'numberOfBiasesBetweenIncrements': (24*7)+1,
+		'numberOfBiasesBetweenIncrements': 100,
 		'incrementStaticGateVoltage':  0,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
@@ -127,16 +127,16 @@ default_parameters = {
 		'shuffleDelaysBeforeReapplyingVoltage': False
 	},
 	'DeviceHistory':{
-		'showFiguresGenerated': False,
+		'showFiguresGenerated': True,
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
 		'plotBurnOuts':   False,
-		'plotStaticBias': True,
+		'plotStaticBias': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 24,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 14,
+		'excludeDataAfterJSONExperimentNumber':  14,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
@@ -145,7 +145,7 @@ default_parameters = {
 	'ChipHistory':{
 		
 	},
-	'MeasurementSystem':['B2912A','PCB2v14'][0],
+	'MeasurementSystem':['B2912A','PCB2v14'][1],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'deviceRange':[],#devicesInRange(1,32,skip=True),
