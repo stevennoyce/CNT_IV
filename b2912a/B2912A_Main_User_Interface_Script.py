@@ -115,7 +115,7 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 10,
+		'numberOfStaticBiases': 6,
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 100,
@@ -145,7 +145,7 @@ default_parameters = {
 	'ChipHistory':{
 		
 	},
-	'MeasurementSystem':['B2912A','PCB2v14'][1],
+	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'deviceRange':[],#devicesInRange(1,32,skip=True),
