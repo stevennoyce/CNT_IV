@@ -105,7 +105,7 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	-3.5,
+		'gateVoltageSetPoint': 	0,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
@@ -115,11 +115,11 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 6,
+		'numberOfStaticBiases': 16,
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
-		'numberOfBiasesBetweenIncrements': 100,
-		'incrementStaticGateVoltage':  0,
+		'numberOfBiasesBetweenIncrements': 1,
+		'incrementStaticGateVoltage':  -1,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
