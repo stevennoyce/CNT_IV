@@ -1,4 +1,4 @@
-C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch
+C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch
 C:\Users\FranklinLab_PC_1\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\USBFS_v3_20\USBFS_v3_20.cysym
 C:\Users\FranklinLab_PC_1\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\USBFS_v3_20\USBFS_v3_20.pdf
 C:\Users\FranklinLab_PC_1\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\USBFS_v3_20\USBFS_v3_20.cycdx
@@ -391,7 +391,7 @@ C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComp
 C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DieTemp_v2_0\DieTemp_v2_0.pdf
 C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DieTemp_v2_0\API\DieTemp.c
 C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\DieTemp_v2_0\API\DieTemp.h
-C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cydwr
+C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cydwr
 C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\cy_boot_v5_60\PSoC5\API\cm3gcc.ld
 C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\cy_boot_v5_60\PSoC5\API\Cm3RealView.scat
 C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\cy_boot_v5_60\PSoC5\API\Cm3Start.c

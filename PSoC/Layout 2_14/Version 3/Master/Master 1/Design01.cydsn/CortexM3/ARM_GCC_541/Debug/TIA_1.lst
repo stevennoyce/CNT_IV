@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   28:Generated_Source\PSoC5/TIA_1.c **** #if (CY_PSOC5A)
   29:Generated_Source\PSoC5/TIA_1.c ****     static TIA_1_BACKUP_STRUCT  TIA_1_P5backup;
   30:Generated_Source\PSoC5/TIA_1.c **** #endif /* (CY_PSOC5A) */
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 2
 
 
   31:Generated_Source\PSoC5/TIA_1.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   85:Generated_Source\PSoC5/TIA_1.c **** 
   86:Generated_Source\PSoC5/TIA_1.c **** 
   87:Generated_Source\PSoC5/TIA_1.c **** /*******************************************************************************   
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 3
 
 
   88:Generated_Source\PSoC5/TIA_1.c **** * Function Name: TIA_1_Enable
@@ -156,7 +156,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   33              		.loc 1 114 0
   34 0000 084A     		ldr	r2, .L2
   35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  36 0004 43F00103 		orr	r3, r3, #1
+  36 0004 43F00403 		orr	r3, r3, #4
   37 0008 1370     		strb	r3, [r2]
  115:Generated_Source\PSoC5/TIA_1.c **** 
  116:Generated_Source\PSoC5/TIA_1.c ****     /* Enable the power to Amp in Alternative active mode*/
@@ -164,7 +164,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   38              		.loc 1 117 0
   39 000a 1032     		adds	r2, r2, #16
   40 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  41 000e 43F00103 		orr	r3, r3, #1
+  41 000e 43F00403 		orr	r3, r3, #4
   42 0012 1370     		strb	r3, [r2]
  118:Generated_Source\PSoC5/TIA_1.c ****     
  119:Generated_Source\PSoC5/TIA_1.c ****     TIA_1_PUMP_CR1_REG |= TIA_1_PUMP_CR1_SC_CLKSEL;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   50              	.L3:
   51              		.align	2
   52              	.L2:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 4
 
 
   53 0024 A9430040 		.word	1073759145
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  162:Generated_Source\PSoC5/TIA_1.c **** *  has been completed.
  163:Generated_Source\PSoC5/TIA_1.c **** *
  164:Generated_Source\PSoC5/TIA_1.c **** *******************************************************************************/
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 5
 
 
  165:Generated_Source\PSoC5/TIA_1.c **** void TIA_1_Start(void) 
@@ -279,7 +279,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   70              		.loc 1 194 0
   71 0000 054A     		ldr	r2, .L5
   72 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  73 0004 03F0FE03 		and	r3, r3, #254
+  73 0004 03F0FB03 		and	r3, r3, #251
   74 0008 1370     		strb	r3, [r2]
  195:Generated_Source\PSoC5/TIA_1.c **** 
  196:Generated_Source\PSoC5/TIA_1.c ****     /* Disble power to the Amp in Alternative active mode template*/
@@ -287,7 +287,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   75              		.loc 1 197 0
   76 000a 1032     		adds	r2, r2, #16
   77 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  78 000e 03F0FE03 		and	r3, r3, #254
+  78 000e 03F0FB03 		and	r3, r3, #251
   79 0012 1370     		strb	r3, [r2]
   80 0014 7047     		bx	lr
   81              	.L6:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
   86              	.LFE3:
   87              		.size	TIA_1_Stop, .-TIA_1_Stop
   88              		.section	.text.TIA_1_SetPower,"ax",%progbits
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 6
 
 
   89              		.align	2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  239:Generated_Source\PSoC5/TIA_1.c ****     uint8 tmpCR;
  240:Generated_Source\PSoC5/TIA_1.c **** 
  241:Generated_Source\PSoC5/TIA_1.c ****     /* Sets drive bits in SC Block Control Register 1:  SCxx_CR[1:0] */
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 7
 
 
  242:Generated_Source\PSoC5/TIA_1.c ****     tmpCR = TIA_1_CR1_REG & (uint8)(~TIA_1_DRIVE_MASK);
@@ -380,7 +380,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  115              	.L9:
  116 0012 00BF     		.align	2
  117              	.L8:
- 118 0014 01580040 		.word	1073764353
+ 118 0014 09580040 		.word	1073764361
  119              		.cfi_endproc
  120              	.LFE4:
  121              		.size	TIA_1_SetPower, .-TIA_1_SetPower
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  133              		@ frame_needed = 0, uses_anonymous_args = 0
  134              		@ link register save eliminated.
  135              	.LVL4:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 8
 
 
  265:Generated_Source\PSoC5/TIA_1.c ****     /* Only set new gain if it is a valid gain */
@@ -449,7 +449,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  153              	.L13:
  154 001a 00BF     		.align	2
  155              	.L12:
- 156 001c 02580040 		.word	1073764354
+ 156 001c 0A580040 		.word	1073764362
  157              		.cfi_endproc
  158              	.LFE5:
  159              		.size	TIA_1_SetResFB, .-TIA_1_SetResFB
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  287:Generated_Source\PSoC5/TIA_1.c **** *
  288:Generated_Source\PSoC5/TIA_1.c **** * Return:
  289:Generated_Source\PSoC5/TIA_1.c **** *  void
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 9
 
 
  290:Generated_Source\PSoC5/TIA_1.c **** *
@@ -519,7 +519,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  191              	.L17:
  192 001a 00BF     		.align	2
  193              	.L16:
- 194 001c 02580040 		.word	1073764354
+ 194 001c 0A580040 		.word	1073764362
  195              		.cfi_endproc
  196              	.LFE6:
  197              		.size	TIA_1_SetCapFB, .-TIA_1_SetCapFB
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  209              		@ frame_needed = 0, uses_anonymous_args = 0
  210 0000 10B5     		push	{r4, lr}
  211              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 10
 
 
  212              		.cfi_offset 4, -8
@@ -577,7 +577,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  239              	.L21:
  240              		.align	2
  241              	.L20:
- 242 0028 00580040 		.word	1073764352
+ 242 0028 08580040 		.word	1073764360
  243              		.cfi_endproc
  244              	.LFE0:
  245              		.size	TIA_1_Init, .-TIA_1_Init
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  259              		.cfi_def_cfa_offset 8
  260              		.cfi_offset 3, -8
  261              		.cfi_offset 14, -4
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 11
 
 
  167:Generated_Source\PSoC5/TIA_1.c ****     {
@@ -647,8 +647,8 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  301 000b 01       		.uleb128 0x1
  302 000c 4D000000 		.4byte	.LASF26
  303 0010 0C       		.byte	0xc
- 304 0011 27010000 		.4byte	.LASF27
- 305 0015 88010000 		.4byte	.LASF28
+ 304 0011 9B010000 		.4byte	.LASF27
+ 305 0015 07010000 		.4byte	.LASF28
  306 0019 00000000 		.4byte	.Ldebug_ranges0+0
  307 001d 00000000 		.4byte	0
  308 0021 00000000 		.4byte	.Ldebug_line0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  312 0028 5B020000 		.4byte	.LASF0
  313 002c 02       		.uleb128 0x2
  314 002d 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 12
 
 
  315 002e 08       		.byte	0x8
@@ -682,11 +682,11 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  333 004f 02       		.uleb128 0x2
  334 0050 08       		.byte	0x8
  335 0051 05       		.byte	0x5
- 336 0052 75010000 		.4byte	.LASF6
+ 336 0052 E9010000 		.4byte	.LASF6
  337 0056 02       		.uleb128 0x2
  338 0057 08       		.byte	0x8
  339 0058 07       		.byte	0x7
- 340 0059 46010000 		.4byte	.LASF7
+ 340 0059 BA010000 		.4byte	.LASF7
  341 005d 03       		.uleb128 0x3
  342 005e 04       		.byte	0x4
  343 005f 05       		.byte	0x5
@@ -694,7 +694,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  345 0064 02       		.uleb128 0x2
  346 0065 04       		.byte	0x4
  347 0066 07       		.byte	0x7
- 348 0067 1A010000 		.4byte	.LASF8
+ 348 0067 8E010000 		.4byte	.LASF8
  349 006b 04       		.uleb128 0x4
  350 006c F2000000 		.4byte	.LASF12
  351 0070 02       		.byte	0x2
@@ -707,18 +707,18 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  358 007e 02       		.uleb128 0x2
  359 007f 08       		.byte	0x8
  360 0080 04       		.byte	0x4
- 361 0081 07010000 		.4byte	.LASF10
+ 361 0081 7B010000 		.4byte	.LASF10
  362 0085 02       		.uleb128 0x2
  363 0086 01       		.byte	0x1
  364 0087 08       		.byte	0x8
- 365 0088 83010000 		.4byte	.LASF11
+ 365 0088 F7010000 		.4byte	.LASF11
  366 008c 04       		.uleb128 0x4
  367 008d DB000000 		.4byte	.LASF13
  368 0091 02       		.byte	0x2
  369 0092 3C02     		.2byte	0x23c
  370 0094 98000000 		.4byte	0x98
  371 0098 05       		.uleb128 0x5
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 13
 
 
  372 0099 6B000000 		.4byte	0x6b
@@ -729,7 +729,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  377 00a4 02       		.uleb128 0x2
  378 00a5 04       		.byte	0x4
  379 00a6 07       		.byte	0x7
- 380 00a7 6C010000 		.4byte	.LASF15
+ 380 00a7 E0010000 		.4byte	.LASF15
  381 00ab 06       		.uleb128 0x6
  382 00ac 20020000 		.4byte	.LASF16
  383 00b0 01       		.byte	0x1
@@ -769,7 +769,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  417 00fc 21000000 		.4byte	.LLST1
  418 0100 00       		.byte	0
  419 0101 0A       		.uleb128 0xa
- 420 0102 5D010000 		.4byte	.LASF19
+ 420 0102 D1010000 		.4byte	.LASF19
  421 0106 01       		.byte	0x1
  422 0107 0701     		.2byte	0x107
  423 0109 00000000 		.4byte	.LFB5
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  426 0112 9C       		.byte	0x9c
  427 0113 28010000 		.4byte	0x128
  428 0117 0B       		.uleb128 0xb
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 14
 
 
  429 0118 06020000 		.4byte	.LASF21
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  483 0193 0D       		.uleb128 0xd
  484 0194 01       		.uleb128 0x1
  485 0195 50       		.byte	0x50
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 15
 
 
  486 0196 02       		.uleb128 0x2
@@ -847,7 +847,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  489 0199 00       		.byte	0
  490 019a 00       		.byte	0
  491 019b 07       		.uleb128 0x7
- 492 019c 0E010000 		.4byte	.LASF25
+ 492 019c 82010000 		.4byte	.LASF25
  493 01a0 01       		.byte	0x1
  494 01a1 A5       		.byte	0xa5
  495 01a2 00000000 		.4byte	.LFB2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  540 0016 0B       		.uleb128 0xb
  541 0017 0B       		.uleb128 0xb
  542 0018 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 16
 
 
  543 0019 0B       		.uleb128 0xb
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  597 004f 18       		.uleb128 0x18
  598 0050 9742     		.uleb128 0x2117
  599 0052 19       		.uleb128 0x19
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 17
 
 
  600 0053 00       		.byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  654 008a 17       		.uleb128 0x17
  655 008b 00       		.byte	0
  656 008c 00       		.byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 18
 
 
  657 008d 0A       		.uleb128 0xa
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  711 00c8 02       		.uleb128 0x2
  712 00c9 18       		.uleb128 0x18
  713 00ca 9142     		.uleb128 0x2111
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 19
 
 
  714 00cc 18       		.uleb128 0x18
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  768 001d 00000000 		.4byte	0
  769              	.LLST1:
  770 0021 08000000 		.4byte	.LVL1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 20
 
 
  771 0025 0E000000 		.4byte	.LVL3
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  825 0034 20000000 		.4byte	.LFE6-.LFB6
  826 0038 00000000 		.4byte	.LFB0
  827 003c 2C000000 		.4byte	.LFE0-.LFB0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 21
 
 
  828 0040 00000000 		.4byte	.LFB2
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  866 003f 756E7369 		.ascii	"unsigned char\000"
  866      676E6564 
  866      20636861 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 22
 
 
  866      7200
@@ -1295,66 +1295,66 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  878      315F5365 
  878      74506F77 
  878      657200
- 879              	.LASF10:
- 880 0107 646F7562 		.ascii	"double\000"
- 880      6C6500
- 881              	.LASF25:
- 882 010e 5449415F 		.ascii	"TIA_1_Start\000"
- 882      315F5374 
- 882      61727400 
- 883              	.LASF8:
- 884 011a 756E7369 		.ascii	"unsigned int\000"
- 884      676E6564 
- 884      20696E74 
- 884      00
- 885              	.LASF27:
- 886 0127 47656E65 		.ascii	"Generated_Source\\PSoC5\\TIA_1.c\000"
- 886      72617465 
- 886      645F536F 
- 886      75726365 
- 886      5C50536F 
- 887              	.LASF7:
- 888 0146 6C6F6E67 		.ascii	"long long unsigned int\000"
- 888      206C6F6E 
- 888      6720756E 
- 888      7369676E 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 23
+ 879              	.LASF28:
+ 880 0107 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 880      73657273 
+ 880      5C467261 
+ 880      6E6B6C69 
+ 880      6E4C6162 
+ 881 0136 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 3\\Master\\"
+ 881      434E545F 
+ 881      49565C50 
+ 881      536F435C 
+ 881      4C61796F 
+ 882 0163 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 882      65722031 
+ 882      5C446573 
+ 882      69676E30 
+ 882      312E6379 
+ 883              	.LASF10:
+ 884 017b 646F7562 		.ascii	"double\000"
+ 884      6C6500
+ 885              	.LASF25:
+ 886 0182 5449415F 		.ascii	"TIA_1_Start\000"
+ 886      315F5374 
+ 886      61727400 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 23
 
 
- 888      65642069 
- 889              	.LASF19:
- 890 015d 5449415F 		.ascii	"TIA_1_SetResFB\000"
- 890      315F5365 
- 890      74526573 
- 890      464200
- 891              	.LASF15:
- 892 016c 73697A65 		.ascii	"sizetype\000"
- 892      74797065 
- 892      00
- 893              	.LASF6:
- 894 0175 6C6F6E67 		.ascii	"long long int\000"
- 894      206C6F6E 
- 894      6720696E 
- 894      7400
- 895              	.LASF11:
- 896 0183 63686172 		.ascii	"char\000"
+ 887              	.LASF8:
+ 888 018e 756E7369 		.ascii	"unsigned int\000"
+ 888      676E6564 
+ 888      20696E74 
+ 888      00
+ 889              	.LASF27:
+ 890 019b 47656E65 		.ascii	"Generated_Source\\PSoC5\\TIA_1.c\000"
+ 890      72617465 
+ 890      645F536F 
+ 890      75726365 
+ 890      5C50536F 
+ 891              	.LASF7:
+ 892 01ba 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 892      206C6F6E 
+ 892      6720756E 
+ 892      7369676E 
+ 892      65642069 
+ 893              	.LASF19:
+ 894 01d1 5449415F 		.ascii	"TIA_1_SetResFB\000"
+ 894      315F5365 
+ 894      74526573 
+ 894      464200
+ 895              	.LASF15:
+ 896 01e0 73697A65 		.ascii	"sizetype\000"
+ 896      74797065 
  896      00
- 897              	.LASF28:
- 898 0188 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
- 898      73657273 
- 898      5C467261 
- 898      6E6B6C69 
- 898      6E4C6162 
- 899 01b7 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
- 899      434E545F 
- 899      49565C50 
- 899      536F435C 
- 899      4C61796F 
- 900 01e4 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
- 900      65722031 
- 900      5C446573 
- 900      69676E30 
- 900      312E6379 
+ 897              	.LASF6:
+ 898 01e9 6C6F6E67 		.ascii	"long long int\000"
+ 898      206C6F6E 
+ 898      6720696E 
+ 898      7400
+ 899              	.LASF11:
+ 900 01f7 63686172 		.ascii	"char\000"
+ 900      00
  901              	.LASF2:
  902 01fc 73686F72 		.ascii	"short int\000"
  902      7420696E 
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 1
  910 022d 5449415F 		.ascii	"TIA_1_Init\000"
  910      315F496E 
  910      697400
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccKfy4Tv.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5dqbdB.s 			page 24
 
 
  911              	.LASF30:

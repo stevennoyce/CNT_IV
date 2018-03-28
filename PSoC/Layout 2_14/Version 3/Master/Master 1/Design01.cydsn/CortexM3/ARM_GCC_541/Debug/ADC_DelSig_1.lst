@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
   29:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
   30:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
   31:Generated_Source\PSoC5/ADC_DelSig_1.c **** /***************************************
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 2
 
 
   32:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Global data allocation
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
   86:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
   87:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Return:
   88:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  None
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 3
 
 
   89:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  143:Generated_Source\PSoC5/ADC_DelSig_1.c ****                                           ADC_DelSig_1_CFG2);
  144:Generated_Source\PSoC5/ADC_DelSig_1.c ****     #endif /* ADC_DelSig_1_DEFAULT_NUM_CONFIGS > 1 */
  145:Generated_Source\PSoC5/ADC_DelSig_1.c ****     #if(ADC_DelSig_1_DEFAULT_NUM_CONFIGS > 2)
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 4
 
 
  146:Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_GainCompensation(ADC_DelSig_1_CFG3_INPUT_RANGE,
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  200:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_STBY_PWRMGR_DEC_REG |= ADC_DelSig_1_STBY_PWR_DEC_EN;
  201:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_STBY_PWRMGR_DSM_REG |= ADC_DelSig_1_STBY_PWR_DSM_EN;
  202:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 5
 
 
  203:Generated_Source\PSoC5/ADC_DelSig_1.c ****     /* Disable PRES, Enable power to VCMBUF0, REFBUF0 and REFBUF1, enable PRES */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  257:Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG3_REFERENCE != ADC_DelSig_1_EXT_REF_ON_P32))) ||
  258:Generated_Source\PSoC5/ADC_DelSig_1.c ****              ((config == 4u) &&
  259:Generated_Source\PSoC5/ADC_DelSig_1.c ****               (ADC_DelSig_1_CFG4_INPUT_RANGE == ADC_DelSig_1_IR_VSSA_TO_2VREF) &&
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 6
 
 
  260:Generated_Source\PSoC5/ADC_DelSig_1.c ****              ((ADC_DelSig_1_CFG4_REFERENCE != ADC_DelSig_1_EXT_REF_ON_P03) &&
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  314:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  Subsequent calls of the Start function only enable the ADC and turn
  315:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  on the power. If multiple configurations are selected, it will
  316:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  configure the ADC for configuration 1 by default, unless the
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 7
 
 
  317:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  ADC_DelSig_1_SelectConfiguration( ) function has been called to change
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  371:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  372:Generated_Source\PSoC5/ADC_DelSig_1.c ****     /* Stop conversions */
  373:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_DEC_CR_REG &= (uint8)~ADC_DelSig_1_DEC_START_CONV;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 8
 
 
  374:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_DEC_SR_REG |=  ADC_DelSig_1_DEC_INTR_CLEAR;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  428:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  gain:  Two bit value to select a gain of 1, 2, 4, or 8.
  429:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
  430:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Return:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 9
 
 
  431:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  None
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  485:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  Calculates a new GCOR value and writes it into the GCOR register. 
  486:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  The GCOR value is a 16-bit value that represents a gain of 0 to 2. 
  487:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  The ADC result is multiplied by this value before it is placed in the ADC 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 10
 
 
  488:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  output registers. The numerical format for the GCOR value is:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  542:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
  543:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Summary:
  544:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  This API returns the current GCOR register value, normalized based on the
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 11
 
 
  545:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  GVAL register settings.
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  599:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Function Name: ADC_DelSig_1_StopConvert
  600:Generated_Source\PSoC5/ADC_DelSig_1.c **** ********************************************************************************
  601:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 12
 
 
  602:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Summary:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  656:Generated_Source\PSoC5/ADC_DelSig_1.c ****         *   resolution above 16 bit
  657:Generated_Source\PSoC5/ADC_DelSig_1.c ****         */
  658:Generated_Source\PSoC5/ADC_DelSig_1.c ****         if(ADC_DelSig_1_stopConversion != 0u)
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 13
 
 
  659:Generated_Source\PSoC5/ADC_DelSig_1.c ****         {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  713:Generated_Source\PSoC5/ADC_DelSig_1.c ****     }
  714:Generated_Source\PSoC5/ADC_DelSig_1.c ****     else /*No action required for other coherency */
  715:Generated_Source\PSoC5/ADC_DelSig_1.c ****     {
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 14
 
 
  716:Generated_Source\PSoC5/ADC_DelSig_1.c ****     }
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  770:Generated_Source\PSoC5/ADC_DelSig_1.c ****             result = (CY_GET_REG16(ADC_DelSig_1_DEC_SAMP_16B_PTR));
  771:Generated_Source\PSoC5/ADC_DelSig_1.c ****         #else
  772:Generated_Source\PSoC5/ADC_DelSig_1.c ****             result = ADC_DelSig_1_DEC_SAMP_REG;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 15
 
 
  773:Generated_Source\PSoC5/ADC_DelSig_1.c ****             result |=  (uint16)((uint16)ADC_DelSig_1_DEC_SAMPM_REG << 8u);
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  827:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 result |= 0xFF00u;
  828:Generated_Source\PSoC5/ADC_DelSig_1.c ****             }
  829:Generated_Source\PSoC5/ADC_DelSig_1.c ****             result = (result << 8u) | ADC_DelSig_1_DEC_SAMPM_REG;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 16
 
 
  830:Generated_Source\PSoC5/ADC_DelSig_1.c ****             result = (result << 8u) | ADC_DelSig_1_DEC_SAMP_REG;
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  884:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  given reading before calculating the voltage conversion.
  885:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
  886:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Parameters:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 17
 
 
  887:Generated_Source\PSoC5/ADC_DelSig_1.c **** *  int32:  This value is a measured value when the inputs are shorted or 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  941:Generated_Source\PSoC5/ADC_DelSig_1.c **** }
  942:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  943:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 18
 
 
  944:Generated_Source\PSoC5/ADC_DelSig_1.c **** /*******************************************************************************
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  998:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  999:Generated_Source\PSoC5/ADC_DelSig_1.c ****     mVolts = (int16)(( adcCounts * ADC_DelSig_1_1MV_COUNTS ) / ADC_DelSig_1_CountsPerVolt) ;
 1000:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 19
 
 
 1001:Generated_Source\PSoC5/ADC_DelSig_1.c ****     return(mVolts);
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1055:Generated_Source\PSoC5/ADC_DelSig_1.c ****     #endif /* ADC_DelSig_1_CFG2_DEC_DIV */
 1056:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1057:Generated_Source\PSoC5/ADC_DelSig_1.c ****     /* Subtract ADC offset */
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 20
 
 
 1058:Generated_Source\PSoC5/ADC_DelSig_1.c ****     adcCounts -= ADC_DelSig_1_Offset;
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1112:Generated_Source\PSoC5/ADC_DelSig_1.c ****         #if(ADC_DelSig_1_CFG2_DEC_DIV != 0)
 1113:Generated_Source\PSoC5/ADC_DelSig_1.c ****             adcCounts /= ADC_DelSig_1_CFG2_DEC_DIV;
 1114:Generated_Source\PSoC5/ADC_DelSig_1.c ****         #endif /* ADC_DelSig_1_CFG2_DEC_DIV */
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 21
 
 
 1115:Generated_Source\PSoC5/ADC_DelSig_1.c ****     }
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1169:Generated_Source\PSoC5/ADC_DelSig_1.c ****         #if( (ADC_DelSig_1_CFG1_RESOLUTION == ADC_DelSig_1__BITS_16) || \
 1170:Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG2_RESOLUTION == ADC_DelSig_1__BITS_16) || \
 1171:Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG3_RESOLUTION == ADC_DelSig_1__BITS_16) || \
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 22
 
 
 1172:Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG4_RESOLUTION == ADC_DelSig_1__BITS_16) )
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1226:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1227:Generated_Source\PSoC5/ADC_DelSig_1.c **** /*******************************************************************************
 1228:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Function Name: ADC_DelSig_1_InitConfig(uint8 config)
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 23
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 23
 
 
 1229:Generated_Source\PSoC5/ADC_DelSig_1.c **** ********************************************************************************
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1283:Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_DSM_BUF2_REG    = ADC_DelSig_1_CFG1_DSM_BUF2;
 1284:Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_DSM_BUF3_REG    = ADC_DelSig_1_CFG1_DSM_BUF3;
 1285:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 24
 
 
 1286:Generated_Source\PSoC5/ADC_DelSig_1.c ****         /* To select either Vssa or Vref to -ve input of DSM depending on
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1340:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR11_REG    = ADC_DelSig_1_CFG2_DSM_CR11;
 1341:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR12_REG    = ADC_DelSig_1_CFG2_DSM_CR12;
 1342:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR14_REG    = ADC_DelSig_1_CFG2_DSM_CR14;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 25
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 25
 
 
 1343:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR15_REG    = ADC_DelSig_1_CFG2_DSM_CR15;
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1397:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_SHIFT1_REG  = ADC_DelSig_1_CFG3_DEC_SHIFT1;
 1398:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_SHIFT2_REG  = ADC_DelSig_1_CFG3_DEC_SHIFT2;
 1399:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_DR2_REG     = ADC_DelSig_1_CFG3_DEC_DR2;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 26
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 26
 
 
 1400:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_DR2H_REG    = ADC_DelSig_1_CFG3_DEC_DR2H;
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1454:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1455:Generated_Source\PSoC5/ADC_DelSig_1.c ****             #if(ADC_DelSig_1_IRQ_REMOVE == 0u)
 1456:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 /* Set interrupt vector */
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 27
 
 
 1457:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 (void)CyIntSetVector(ADC_DelSig_1_INTC_NUMBER, &ADC_DelSig_1_ISR3);
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1511:Generated_Source\PSoC5/ADC_DelSig_1.c ****             #if(ADC_DelSig_1_CFG4_RESOLUTION > 16 && \
 1512:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 ADC_DelSig_1_CFG4_CONV_MODE == ADC_DelSig_1_MODE_SINGLE_SAMPLE)
 1513:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 ADC_DelSig_1_stopConversion = 1u;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 28
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 28
 
 
 1514:Generated_Source\PSoC5/ADC_DelSig_1.c ****             #endif /* Single sample with resolution above 16 bits */
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1568:Generated_Source\PSoC5/ADC_DelSig_1.c **** 		*/
 1569:Generated_Source\PSoC5/ADC_DelSig_1.c ****         if(ADC_DelSig_1_initVar == 0u)
 1570:Generated_Source\PSoC5/ADC_DelSig_1.c ****         {
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 29
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 29
 
 
 1571:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_started = 1u;
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1625:Generated_Source\PSoC5/ADC_DelSig_1.c **** static void ADC_DelSig_1_GainCompensation(uint8 inputRange, uint16 idealDecGain, uint16 idealOddDec
 1626:Generated_Source\PSoC5/ADC_DelSig_1.c ****                               uint8 resolution, uint8 config) 
 1627:Generated_Source\PSoC5/ADC_DelSig_1.c **** {
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 30
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 30
 
 
   27              		.loc 1 1627 0
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
   66              		.loc 1 1642 0
   67 0026 2548     		ldr	r0, .L18
   68 0028 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 31
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 31
 
 
   69 002a 40B2     		sxtb	r0, r0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  101              		.loc 1 1664 0
  102 004a 0F2B     		cmp	r3, #15
  103 004c 03D9     		bls	.L11
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 32
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 32
 
 
 1665:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 {
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1684:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 break;
 1685:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1686:Generated_Source\PSoC5/ADC_DelSig_1.c ****             default:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 33
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 33
 
 
 1687:Generated_Source\PSoC5/ADC_DelSig_1.c ****                 flash = 0;
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1704:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_gcor[config - 1u].gval = ADC_DelSig_1_MAX_GVAL;
  176              		.loc 1 1704 0
  177 009c 631E     		subs	r3, r4, #1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 34
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 34
 
 
  178              	.LVL29:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1716:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1717:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1718:Generated_Source\PSoC5/ADC_DelSig_1.c **** /******************************************************************************
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 35
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 35
 
 
 1719:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Function Name: ADC_DelSig_1_SetDSMRef0Reg(uint8)
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1741:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1742:Generated_Source\PSoC5/ADC_DelSig_1.c ****     /* Wait for 3 microseconds */
 1743:Generated_Source\PSoC5/ADC_DelSig_1.c ****     CyDelayUs(ADC_DelSig_1_PRES_DELAY_TIME);
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 36
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 36
 
 
  253              		.loc 1 1743 0
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1249:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  301              		.loc 1 1249 0
  302 0006 0022     		movs	r2, #0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 37
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 37
 
 
  303 0008 BC4B     		ldr	r3, .L30
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  345 0044 5022     		movs	r2, #80
  346 0046 03F52763 		add	r3, r3, #2672
  347 004a 1A70     		strb	r2, [r3]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 38
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 38
 
 
 1266:Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_DSM_CR6_REG     = ADC_DelSig_1_CFG1_DSM_CR6;
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  390              		.loc 1 1278 0
  391 008c 5822     		movs	r2, #88
  392 008e 9D4B     		ldr	r3, .L30+8
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 39
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 39
 
 
  393 0090 1A70     		strb	r2, [r3]
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1325:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_SHIFT2_REG  = ADC_DelSig_1_CFG2_DEC_SHIFT2;
  436              		.loc 1 1325 0
  437 00d2 0422     		movs	r2, #4
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 40
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 40
 
 
  438 00d4 0233     		adds	r3, r3, #2
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  480              		.loc 1 1338 0
  481 0114 0133     		adds	r3, r3, #1
  482 0116 1D70     		strb	r5, [r3]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 41
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 41
 
 
 1339:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR11_REG    = ADC_DelSig_1_CFG2_DSM_CR11;
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  525 0154 0133     		adds	r3, r3, #1
  526 0156 1E70     		strb	r6, [r3]
 1353:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_BUF3_REG    = ADC_DelSig_1_CFG2_DSM_BUF3;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 42
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 42
 
 
  527              		.loc 1 1353 0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  571 019a 0133     		adds	r3, r3, #1
  572 019c 1D70     		strb	r5, [r3]
 1400:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_DR1_REG     = ADC_DelSig_1_CFG3_DEC_DR1;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 43
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 43
 
 
  573              		.loc 1 1400 0
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1413:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR14_REG    = ADC_DelSig_1_CFG3_DSM_CR14;
  616              		.loc 1 1413 0
  617 01de 0527     		movs	r7, #5
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 44
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 44
 
 
  618 01e0 0133     		adds	r3, r3, #1
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  660 021c 4FF4FA42 		mov	r2, #32000
  661 0220 394B     		ldr	r3, .L30+12
  662 0222 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 45
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 45
 
 
 1448:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  706 0262 0233     		adds	r3, r3, #2
  707 0264 1C70     		strb	r4, [r3]
 1473:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_OCORH_REG   = ADC_DelSig_1_CFG4_DEC_OCORH;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 46
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 46
 
 
  708              		.loc 1 1473 0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  751 02a6 1A70     		strb	r2, [r3]
 1486:Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR17_REG    = ADC_DelSig_1_CFG4_DSM_CR17;
  752              		.loc 1 1486 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 47
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 47
 
 
  753 02a8 1922     		movs	r2, #25
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  796 02ea FFF7FEFF 		bl	ADC_DelSig_1_theACLK_SetDividerRegister
  797              	.LVL57:
 1527:Generated_Source\PSoC5/ADC_DelSig_1.c ****             #endif   /* End ADC_DelSig_1_IRQ_REMOVE */
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 48
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 48
 
 
  798              		.loc 1 1527 0
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
   97:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  849              		.loc 1 97 0
  850 0016 1020     		movs	r0, #16
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 49
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 49
 
 
  851 0018 FFF7FEFF 		bl	ADC_DelSig_1_Ext_CP_Clk_SetModeRegister
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  893              		.loc 1 124 0
  894 005c 0233     		adds	r3, r3, #2
  895 005e 1C70     		strb	r4, [r3]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 50
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 50
 
 
  126:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_DSM_CR9_REG     = ADC_DelSig_1_CFG1_DSM_CR9;
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  942 00c0 2846     		mov	r0, r5
  943 00c2 FFF7FEFF 		bl	ADC_DelSig_1_GainCompensation
  944              	.LVL65:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 51
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 51
 
 
  161:Generated_Source\PSoC5/ADC_DelSig_1.c ****     CY_SET_REG16(ADC_DelSig_1_DEC_GCOR_16B_PTR, ADC_DelSig_1_gcor[ADC_DelSig_1_Config - 1u].gcor);
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  994              		.cfi_offset 4, -16
  995              		.cfi_offset 5, -12
  996              		.cfi_offset 6, -8
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 52
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 52
 
 
  997              		.cfi_offset 14, -4
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1041 004e 0320     		movs	r0, #3
  1042 0050 FFF7FEFF 		bl	CyDelayUs
  1043              	.LVL70:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 53
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 53
 
 
  276:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_RESET_CR5_REG &= (uint8)~ADC_DelSig_1_IGNORE_PRESA2;
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  302:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  1088              		.loc 1 302 0
  1089 00aa 3046     		mov	r0, r6
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 54
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 54
 
 
  1090 00ac FFF7FEFF 		bl	CyExitCriticalSection
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1139 0016 0122     		movs	r2, #1
  1140 0018 024B     		ldr	r3, .L44
  1141 001a 9A74     		strb	r2, [r3, #18]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 55
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 55
 
 
  1142              	.L41:
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1190 0020 43F00203 		orr	r3, r3, #2
  1191 0024 2B70     		strb	r3, [r5]
  379:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 56
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 56
 
 
  1192              		.loc 1 379 0
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  402:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  1237              		.loc 1 402 0
  1238 0080 174A     		ldr	r2, .L48+16
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 57
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 57
 
 
  1239 0082 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1287              		.align	2
  1288              		.global	ADC_DelSig_1_SetBufferGain
  1289              		.thumb
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 58
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 58
 
 
  1290              		.thumb_func
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1338 0004 03F0FC03 		and	r3, r3, #252
  1339              	.LVL85:
  475:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_DEC_COHER_REG = tmpReg;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 59
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 59
 
 
  1340              		.loc 1 475 0
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1390 0018 FFF7FEFF 		bl	__aeabi_fmul
  1391              	.LVL92:
  518:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 60
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 60
 
 
  1392              		.loc 1 518 0
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1438              	.L61:
  1439 005c AFF30080 		.align	3
  1440              	.L60:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 61
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 61
 
 
  1441 0060 8F537424 		.word	611603343
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1489 0020 0C4E0040 		.word	1073761804
  1490              		.cfi_endproc
  1491              	.LFE7:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 62
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 62
 
 
  1492              		.size	ADC_DelSig_1_ReadGCOR, .-ADC_DelSig_1_ReadGCOR
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1542              		.cfi_endproc
  1543              	.LFE9:
  1544              		.size	ADC_DelSig_1_StopConvert, .-ADC_DelSig_1_StopConvert
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 63
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 63
 
 
  1545              		.section	.text.ADC_DelSig_1_IsEndConversion,"ax",%progbits
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1592              	.L77:
  1593 0028 00000000 		.word	.LANCHOR0
  1594 002c 014E0040 		.word	1073761793
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 64
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 64
 
 
  1595              		.cfi_endproc
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1641 0022 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
  1642 0024 13F0FF0F 		tst	r3, #255
  1643 0028 02D0     		beq	.L82
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 65
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 65
 
 
  720:Generated_Source\PSoC5/ADC_DelSig_1.c ****     }
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  772:Generated_Source\PSoC5/ADC_DelSig_1.c ****             result |=  (uint16)((uint16)ADC_DelSig_1_DEC_SAMPM_REG << 8u);
  1692              		.loc 1 772 0
  1693 0014 0A4A     		ldr	r2, .L89+4
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 66
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 66
 
 
  1694 0016 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1741              		.loc 1 811 0
  1742              		.cfi_startproc
  1743              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 67
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 67
 
 
  1744              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1789              		.loc 1 863 0
  1790 0036 0B4B     		ldr	r3, .L96+12
  1791              	.LVL137:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 68
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 68
 
 
  1792 0038 1888     		ldrh	r0, [r3]
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1840 0002 5861     		str	r0, [r3, #20]
  1841 0004 7047     		bx	lr
  1842              	.L100:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 69
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 69
 
 
  1843 0006 00BF     		.align	2
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  999:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  1893              		.loc 1 999 0
  1894 0006 4FF47A73 		mov	r3, #1000
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 70
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 70
 
 
  1895 000a 03FB00F0 		mul	r0, r3, r0
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1945 0016 0146     		mov	r1, r0
  1946 0018 2046     		mov	r0, r4
  1947 001a FFF7FEFF 		bl	__aeabi_fdiv
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 71
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 71
 
 
  1948              	.LVL151:
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  1996              	.L113:
  1997 0022 5A11     		asrs	r2, r3, #5
  1998              	.LVL154:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 72
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 72
 
 
 1221:Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2048              		.loc 1 1569 0
  2049 000e 114B     		ldr	r3, .L121
  2050 0010 9B7C     		ldrb	r3, [r3, #18]	@ zero_extendqisi2
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 73
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 73
 
 
  2051 0012 13B9     		cbnz	r3, .L118
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2095              	.L116:
  2096 0052 38BD     		pop	{r3, r4, r5, pc}
  2097              	.L122:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 74
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 74
 
 
  2098              		.align	2
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2125 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  2126 0006 43F00403 		orr	r3, r3, #4
  2127 000a 1370     		strb	r3, [r2]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 75
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 75
 
 
 1776:Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_StartConvert();
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
 1796:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Parameters:
 1797:Generated_Source\PSoC5/ADC_DelSig_1.c **** *   void
 1798:Generated_Source\PSoC5/ADC_DelSig_1.c **** *
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 76
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 76
 
 
 1799:Generated_Source\PSoC5/ADC_DelSig_1.c **** * Return:
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2199              	.LFE24:
  2200              		.size	ADC_DelSig_1_Read16, .-ADC_DelSig_1_Read16
  2201              		.section	.text.ADC_DelSig_1_Read32,"ax",%progbits
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 77
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 77
 
 
  2202              		.align	2
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2228              	.LVL179:
 1844:Generated_Source\PSoC5/ADC_DelSig_1.c ****      result = ADC_DelSig_1_GetResult32();
  2229              		.loc 1 1844 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 78
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 78
 
 
  2230 0016 FFF7FEFF 		bl	ADC_DelSig_1_GetResult32
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2277              		.size	ADC_DelSig_1_initVar, 1
  2278              	ADC_DelSig_1_initVar:
  2279 0012 00       		.space	1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 79
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 79
 
 
  2280              		.type	ADC_DelSig_1_started, %object
@@ -4703,17 +4703,17 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2299 0006 00000000 		.4byte	.Ldebug_abbrev0
  2300 000a 04       		.byte	0x4
  2301 000b 01       		.uleb128 0x1
- 2302 000c 3B040000 		.4byte	.LASF100
+ 2302 000c CE030000 		.4byte	.LASF100
  2303 0010 0C       		.byte	0xc
- 2304 0011 23060000 		.4byte	.LASF101
- 2305 0015 E8010000 		.4byte	.LASF102
+ 2304 0011 B6050000 		.4byte	.LASF101
+ 2305 0015 DC050000 		.4byte	.LASF102
  2306 0019 00000000 		.4byte	.Ldebug_ranges0+0
  2307 001d 00000000 		.4byte	0
  2308 0021 00000000 		.4byte	.Ldebug_line0
  2309 0025 02       		.uleb128 0x2
  2310 0026 04       		.byte	0x4
  2311 0027 04       		.byte	0x4
- 2312 0028 B0030000 		.4byte	.LASF0
+ 2312 0028 43030000 		.4byte	.LASF0
  2313 002c 02       		.uleb128 0x2
  2314 002d 01       		.byte	0x1
  2315 002e 06       		.byte	0x6
@@ -4721,24 +4721,24 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2317 0033 02       		.uleb128 0x2
  2318 0034 01       		.byte	0x1
  2319 0035 08       		.byte	0x8
- 2320 0036 04040000 		.4byte	.LASF2
+ 2320 0036 97030000 		.4byte	.LASF2
  2321 003a 02       		.uleb128 0x2
  2322 003b 02       		.byte	0x2
  2323 003c 05       		.byte	0x5
- 2324 003d 29040000 		.4byte	.LASF3
+ 2324 003d BC030000 		.4byte	.LASF3
  2325 0041 02       		.uleb128 0x2
  2326 0042 02       		.byte	0x2
  2327 0043 07       		.byte	0x7
- 2328 0044 D0010000 		.4byte	.LASF4
+ 2328 0044 D7010000 		.4byte	.LASF4
  2329 0048 02       		.uleb128 0x2
  2330 0049 04       		.byte	0x4
  2331 004a 05       		.byte	0x5
- 2332 004b 19010000 		.4byte	.LASF5
+ 2332 004b 20010000 		.4byte	.LASF5
  2333 004f 02       		.uleb128 0x2
  2334 0050 04       		.byte	0x4
  2335 0051 07       		.byte	0x7
- 2336 0052 92010000 		.4byte	.LASF6
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 80
+ 2336 0052 99010000 		.4byte	.LASF6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 80
 
 
  2337 0056 02       		.uleb128 0x2
@@ -4756,9 +4756,9 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2349 006b 02       		.uleb128 0x2
  2350 006c 04       		.byte	0x4
  2351 006d 07       		.byte	0x7
- 2352 006e 69010000 		.4byte	.LASF9
+ 2352 006e 70010000 		.4byte	.LASF9
  2353 0072 04       		.uleb128 0x4
- 2354 0073 28010000 		.4byte	.LASF10
+ 2354 0073 2F010000 		.4byte	.LASF10
  2355 0077 02       		.byte	0x2
  2356 0078 9201     		.2byte	0x192
  2357 007a 33000000 		.4byte	0x33
@@ -4768,12 +4768,12 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2361 0084 9301     		.2byte	0x193
  2362 0086 41000000 		.4byte	0x41
  2363 008a 04       		.uleb128 0x4
- 2364 008b 45010000 		.4byte	.LASF12
+ 2364 008b 4C010000 		.4byte	.LASF12
  2365 008f 02       		.byte	0x2
  2366 0090 9401     		.2byte	0x194
  2367 0092 4F000000 		.4byte	0x4f
  2368 0096 04       		.uleb128 0x4
- 2369 0097 E3010000 		.4byte	.LASF13
+ 2369 0097 EA010000 		.4byte	.LASF13
  2370 009b 02       		.byte	0x2
  2371 009c 9501     		.2byte	0x195
  2372 009e 2C000000 		.4byte	0x2c
@@ -4783,42 +4783,42 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2376 00a8 9601     		.2byte	0x196
  2377 00aa 3A000000 		.4byte	0x3a
  2378 00ae 04       		.uleb128 0x4
- 2379 00af FF000000 		.4byte	.LASF15
+ 2379 00af 06010000 		.4byte	.LASF15
  2380 00b3 02       		.byte	0x2
  2381 00b4 9701     		.2byte	0x197
  2382 00b6 48000000 		.4byte	0x48
  2383 00ba 04       		.uleb128 0x4
- 2384 00bb C0020000 		.4byte	.LASF16
+ 2384 00bb 53020000 		.4byte	.LASF16
  2385 00bf 02       		.byte	0x2
  2386 00c0 9801     		.2byte	0x198
  2387 00c2 25000000 		.4byte	0x25
  2388 00c6 02       		.uleb128 0x2
  2389 00c7 08       		.byte	0x8
  2390 00c8 04       		.byte	0x4
- 2391 00c9 38010000 		.4byte	.LASF17
+ 2391 00c9 3F010000 		.4byte	.LASF17
  2392 00cd 02       		.uleb128 0x2
  2393 00ce 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 81
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 81
 
 
  2394 00cf 08       		.byte	0x8
- 2395 00d0 13050000 		.4byte	.LASF18
+ 2395 00d0 A6040000 		.4byte	.LASF18
  2396 00d4 04       		.uleb128 0x4
- 2397 00d5 E0030000 		.4byte	.LASF19
+ 2397 00d5 73030000 		.4byte	.LASF19
  2398 00d9 02       		.byte	0x2
  2399 00da 3C02     		.2byte	0x23c
  2400 00dc E0000000 		.4byte	0xe0
  2401 00e0 05       		.uleb128 0x5
  2402 00e1 72000000 		.4byte	0x72
  2403 00e5 04       		.uleb128 0x4
- 2404 00e6 22010000 		.4byte	.LASF20
+ 2404 00e6 29010000 		.4byte	.LASF20
  2405 00ea 02       		.byte	0x2
  2406 00eb 3D02     		.2byte	0x23d
  2407 00ed F1000000 		.4byte	0xf1
  2408 00f1 05       		.uleb128 0x5
  2409 00f2 7E000000 		.4byte	0x7e
  2410 00f6 04       		.uleb128 0x4
- 2411 00f7 9E020000 		.4byte	.LASF21
+ 2411 00f7 31020000 		.4byte	.LASF21
  2412 00fb 02       		.byte	0x2
  2413 00fc 3E02     		.2byte	0x23e
  2414 00fe 02010000 		.4byte	0x102
@@ -4827,11 +4827,11 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2417 0107 02       		.uleb128 0x2
  2418 0108 08       		.byte	0x8
  2419 0109 04       		.byte	0x4
- 2420 010a 00030000 		.4byte	.LASF22
+ 2420 010a 93020000 		.4byte	.LASF22
  2421 010e 02       		.uleb128 0x2
  2422 010f 04       		.byte	0x4
  2423 0110 07       		.byte	0x7
- 2424 0111 E1020000 		.4byte	.LASF23
+ 2424 0111 74020000 		.4byte	.LASF23
  2425 0115 06       		.uleb128 0x6
  2426 0116 04       		.byte	0x4
  2427 0117 03       		.byte	0x3
@@ -4844,21 +4844,21 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2434 0124 7E000000 		.4byte	0x7e
  2435 0128 00       		.byte	0
  2436 0129 07       		.uleb128 0x7
- 2437 012a 54050000 		.4byte	.LASF25
+ 2437 012a E7040000 		.4byte	.LASF25
  2438 012e 03       		.byte	0x3
  2439 012f 32       		.byte	0x32
  2440 0130 72000000 		.4byte	0x72
  2441 0134 02       		.byte	0x2
  2442 0135 00       		.byte	0
  2443 0136 08       		.uleb128 0x8
- 2444 0137 97030000 		.4byte	.LASF26
+ 2444 0137 2A030000 		.4byte	.LASF26
  2445 013b 03       		.byte	0x3
  2446 013c 33       		.byte	0x33
  2447 013d 15010000 		.4byte	0x115
  2448 0141 09       		.uleb128 0x9
- 2449 0142 BB050000 		.4byte	.LASF36
+ 2449 0142 4E050000 		.4byte	.LASF36
  2450 0146 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 82
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 82
 
 
  2451 0147 5906     		.2byte	0x659
@@ -4874,7 +4874,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2461 015f 72000000 		.4byte	0x72
  2462 0163 00000000 		.4byte	.LLST0
  2463 0167 0A       		.uleb128 0xa
- 2464 0168 E5030000 		.4byte	.LASF28
+ 2464 0168 78030000 		.4byte	.LASF28
  2465 016c 01       		.byte	0x1
  2466 016d 5906     		.2byte	0x659
  2467 016f 7E000000 		.4byte	0x7e
@@ -4886,39 +4886,39 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2473 017f 7E000000 		.4byte	0x7e
  2474 0183 74000000 		.4byte	.LLST2
  2475 0187 0A       		.uleb128 0xa
- 2476 0188 E3040000 		.4byte	.LASF30
+ 2476 0188 76040000 		.4byte	.LASF30
  2477 018c 01       		.byte	0x1
  2478 018d 5A06     		.2byte	0x65a
  2479 018f 72000000 		.4byte	0x72
  2480 0193 AE000000 		.4byte	.LLST3
  2481 0197 0A       		.uleb128 0xa
- 2482 0198 4D050000 		.4byte	.LASF31
+ 2482 0198 E0040000 		.4byte	.LASF31
  2483 019c 01       		.byte	0x1
  2484 019d 5A06     		.2byte	0x65a
  2485 019f 72000000 		.4byte	0x72
  2486 01a3 01010000 		.4byte	.LLST4
  2487 01a7 0B       		.uleb128 0xb
- 2488 01a8 98020000 		.4byte	.LASF32
+ 2488 01a8 2B020000 		.4byte	.LASF32
  2489 01ac 01       		.byte	0x1
  2490 01ad 5C06     		.2byte	0x65c
  2491 01af 96000000 		.4byte	0x96
  2492 01b3 2D010000 		.4byte	.LLST5
  2493 01b7 0B       		.uleb128 0xb
- 2494 01b8 F2030000 		.4byte	.LASF33
+ 2494 01b8 85030000 		.4byte	.LASF33
  2495 01bc 01       		.byte	0x1
  2496 01bd 5D06     		.2byte	0x65d
  2497 01bf AE000000 		.4byte	0xae
  2498 01c3 A3010000 		.4byte	.LLST6
  2499 01c7 0B       		.uleb128 0xb
- 2500 01c8 5C020000 		.4byte	.LASF34
+ 2500 01c8 EF010000 		.4byte	.LASF34
  2501 01cc 01       		.byte	0x1
  2502 01cd 5E06     		.2byte	0x65e
  2503 01cf 7E000000 		.4byte	0x7e
  2504 01d3 B6010000 		.4byte	.LLST7
  2505 01d7 0B       		.uleb128 0xb
- 2506 01d8 33040000 		.4byte	.LASF35
+ 2506 01d8 C6030000 		.4byte	.LASF35
  2507 01dc 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 83
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 83
 
 
  2508 01dd 5F06     		.2byte	0x65f
@@ -4935,7 +4935,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2519 01f5 00       		.byte	0
  2520 01f6 00       		.byte	0
  2521 01f7 09       		.uleb128 0x9
- 2522 01f8 6A050000 		.4byte	.LASF37
+ 2522 01f8 FD040000 		.4byte	.LASF37
  2523 01fc 01       		.byte	0x1
  2524 01fd C406     		.2byte	0x6c4
  2525 01ff 00000000 		.4byte	.LFB22
@@ -4944,13 +4944,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2528 0208 9C       		.byte	0x9c
  2529 0209 5A020000 		.4byte	0x25a
  2530 020d 0A       		.uleb128 0xa
- 2531 020e 5B010000 		.4byte	.LASF38
+ 2531 020e 62010000 		.4byte	.LASF38
  2532 0212 01       		.byte	0x1
  2533 0213 C406     		.2byte	0x6c4
  2534 0215 72000000 		.4byte	0x72
  2535 0219 F2010000 		.4byte	.LLST9
  2536 021d 0B       		.uleb128 0xb
- 2537 021e D9050000 		.4byte	.LASF39
+ 2537 021e 6C050000 		.4byte	.LASF39
  2538 0222 01       		.byte	0x1
  2539 0223 C606     		.2byte	0x6c6
  2540 0225 72000000 		.4byte	0x72
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2562 0256 76       		.byte	0x76
  2563 0257 00       		.sleb128 0
  2564 0258 00       		.byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 84
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 84
 
 
  2565 0259 00       		.byte	0
@@ -4992,7 +4992,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2573 026b 9C       		.byte	0x9c
  2574 026c E9030000 		.4byte	0x3e9
  2575 0270 0A       		.uleb128 0xa
- 2576 0271 4D050000 		.4byte	.LASF31
+ 2576 0271 E0040000 		.4byte	.LASF31
  2577 0275 01       		.byte	0x1
  2578 0276 DF04     		.2byte	0x4df
  2579 0278 72000000 		.4byte	0x72
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2619 02c1 0D       		.uleb128 0xd
  2620 02c2 01       		.uleb128 0x1
  2621 02c3 51       		.byte	0x51
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 85
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 85
 
 
  2622 02c4 02       		.uleb128 0x2
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2676 031e 51       		.byte	0x51
  2677 031f 02       		.uleb128 0x2
  2678 0320 76       		.byte	0x76
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 86
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 86
 
 
  2679 0321 00       		.sleb128 0
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2733 037b 76       		.byte	0x76
  2734 037c 00       		.sleb128 0
  2735 037d 00       		.byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 87
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 87
 
 
  2736 037e 0F       		.uleb128 0xf
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2790 03d8 00       		.byte	0
  2791 03d9 0C       		.uleb128 0xc
  2792 03da F6020000 		.4byte	.LVL58
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 88
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 88
 
 
  2793 03de 670B0000 		.4byte	0xb67
@@ -5230,7 +5230,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2799 03e7 00       		.byte	0
  2800 03e8 00       		.byte	0
  2801 03e9 10       		.uleb128 0x10
- 2802 03ea 0C030000 		.4byte	.LASF41
+ 2802 03ea 9F020000 		.4byte	.LASF41
  2803 03ee 01       		.byte	0x1
  2804 03ef 5B       		.byte	0x5b
  2805 03f0 00000000 		.4byte	.LFB0
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2847 0441 41010000 		.4byte	0x141
  2848 0445 6A040000 		.4byte	0x46a
  2849 0449 0D       		.uleb128 0xd
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 89
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 89
 
 
  2850 044a 01       		.uleb128 0x1
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2904 048d 53       		.byte	0x53
  2905 048e 01       		.uleb128 0x1
  2906 048f 40       		.byte	0x40
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 90
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 90
 
 
  2907 0490 0D       		.uleb128 0xd
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2961 04da 03       		.uleb128 0x3
  2962 04db 0B       		.byte	0xb
  2963 04dc DA90     		.2byte	0x90da
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 91
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 91
 
 
  2964 04de 0D       		.uleb128 0xd
@@ -5434,12 +5434,12 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  2994 050c 9C       		.byte	0x9c
  2995 050d 58050000 		.4byte	0x558
  2996 0511 11       		.uleb128 0x11
- 2997 0512 4D050000 		.4byte	.LASF31
+ 2997 0512 E0040000 		.4byte	.LASF31
  2998 0516 01       		.byte	0x1
  2999 0517 BC       		.byte	0xbc
  3000 0518 72000000 		.4byte	0x72
  3001 051c 12       		.uleb128 0x12
- 3002 051d D9050000 		.4byte	.LASF39
+ 3002 051d 6C050000 		.4byte	.LASF39
  3003 0521 01       		.byte	0x1
  3004 0522 BD       		.byte	0xbd
  3005 0523 72000000 		.4byte	0x72
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3018 0545 33       		.byte	0x33
  3019 0546 00       		.byte	0
  3020 0547 0C       		.uleb128 0xc
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 92
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 92
 
 
  3021 0548 B0000000 		.4byte	.LVL71
@@ -5497,7 +5497,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3054 0592 9C       		.byte	0x9c
  3055 0593 D4050000 		.4byte	0x5d4
  3056 0597 0B       		.uleb128 0xb
- 3057 0598 D9050000 		.4byte	.LASF39
+ 3057 0598 6C050000 		.4byte	.LASF39
  3058 059c 01       		.byte	0x1
  3059 059d 7101     		.2byte	0x171
  3060 059f 72000000 		.4byte	0x72
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3075 05c3 0C       		.uleb128 0xc
  3076 05c4 CC000000 		.4byte	.LVL78
  3077 05c8 460B0000 		.4byte	0xb46
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 93
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 93
 
 
  3078 05cc 0D       		.uleb128 0xd
@@ -5539,7 +5539,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3093 05e5 9C       		.byte	0x9c
  3094 05e6 0B060000 		.4byte	0x60b
  3095 05ea 0A       		.uleb128 0xa
- 3096 05eb 3B030000 		.4byte	.LASF46
+ 3096 05eb CE020000 		.4byte	.LASF46
  3097 05ef 01       		.byte	0x1
  3098 05f0 B201     		.2byte	0x1b2
  3099 05f2 72000000 		.4byte	0x72
@@ -5552,7 +5552,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3106 0606 8E020000 		.4byte	.LLST15
  3107 060a 00       		.byte	0
  3108 060b 13       		.uleb128 0x13
- 3109 060c 18050000 		.4byte	.LASF48
+ 3109 060c AB040000 		.4byte	.LASF48
  3110 0610 01       		.byte	0x1
  3111 0611 D601     		.2byte	0x1d6
  3112 0613 00000000 		.4byte	.LFB5
@@ -5561,7 +5561,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3115 061c 9C       		.byte	0x9c
  3116 061d 42060000 		.4byte	0x642
  3117 0621 0A       		.uleb128 0xa
- 3118 0622 54030000 		.4byte	.LASF49
+ 3118 0622 E7020000 		.4byte	.LASF49
  3119 0626 01       		.byte	0x1
  3120 0627 D601     		.2byte	0x1d6
  3121 0629 72000000 		.4byte	0x72
@@ -5574,11 +5574,11 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3128 063d CD020000 		.4byte	.LLST17
  3129 0641 00       		.byte	0
  3130 0642 14       		.uleb128 0x14
- 3131 0643 07060000 		.4byte	.LASF53
+ 3131 0643 9A050000 		.4byte	.LASF53
  3132 0647 01       		.byte	0x1
  3133 0648 FE01     		.2byte	0x1fe
  3134 064a 72000000 		.4byte	0x72
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 94
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 94
 
 
  3135 064e 00000000 		.4byte	.LFB6
@@ -5599,13 +5599,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3150 0674 7E000000 		.4byte	0x7e
  3151 0678 19030000 		.4byte	.LLST19
  3152 067c 0B       		.uleb128 0xb
- 3153 067d 49060000 		.4byte	.LASF51
+ 3153 067d FF000000 		.4byte	.LASF51
  3154 0681 01       		.byte	0x1
  3155 0682 0102     		.2byte	0x201
  3156 0684 72000000 		.4byte	0x72
  3157 0688 51030000 		.4byte	.LLST20
  3158 068c 0B       		.uleb128 0xb
- 3159 068d 61050000 		.4byte	.LASF52
+ 3159 068d F4040000 		.4byte	.LASF52
  3160 0691 01       		.byte	0x1
  3161 0692 0202     		.2byte	0x202
  3162 0694 BA000000 		.4byte	0xba
@@ -5622,23 +5622,23 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3173 06b2 9C       		.byte	0x9c
  3174 06b3 D8060000 		.4byte	0x6d8
  3175 06b7 0B       		.uleb128 0xb
- 3176 06b8 1C060000 		.4byte	.LASF55
+ 3176 06b8 AF050000 		.4byte	.LASF55
  3177 06bc 01       		.byte	0x1
  3178 06bd 2F02     		.2byte	0x22f
  3179 06bf 72000000 		.4byte	0x72
  3180 06c3 AF030000 		.4byte	.LLST22
  3181 06c7 0B       		.uleb128 0xb
- 3182 06c8 5C020000 		.4byte	.LASF34
+ 3182 06c8 EF010000 		.4byte	.LASF34
  3183 06cc 01       		.byte	0x1
  3184 06cd 3002     		.2byte	0x230
  3185 06cf 7E000000 		.4byte	0x7e
  3186 06d3 C2030000 		.4byte	.LLST23
  3187 06d7 00       		.byte	0
  3188 06d8 16       		.uleb128 0x16
- 3189 06d9 C9040000 		.4byte	.LASF56
+ 3189 06d9 5C040000 		.4byte	.LASF56
  3190 06dd 01       		.byte	0x1
  3191 06de 4F02     		.2byte	0x24f
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 95
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 95
 
 
  3192 06e0 00000000 		.4byte	.LFB8
@@ -5654,7 +5654,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3202 06fa 01       		.uleb128 0x1
  3203 06fb 9C       		.byte	0x9c
  3204 06fc 15       		.uleb128 0x15
- 3205 06fd EA050000 		.4byte	.LASF58
+ 3205 06fd 7D050000 		.4byte	.LASF58
  3206 0701 01       		.byte	0x1
  3207 0702 8902     		.2byte	0x289
  3208 0704 72000000 		.4byte	0x72
@@ -5664,13 +5664,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3212 0711 9C       		.byte	0x9c
  3213 0712 37070000 		.4byte	0x737
  3214 0716 0A       		.uleb128 0xa
- 3215 0717 61010000 		.4byte	.LASF59
+ 3215 0717 68010000 		.4byte	.LASF59
  3216 071b 01       		.byte	0x1
  3217 071c 8902     		.2byte	0x289
  3218 071e 72000000 		.4byte	0x72
  3219 0722 E0030000 		.4byte	.LLST24
  3220 0726 0B       		.uleb128 0xb
- 3221 0727 49060000 		.4byte	.LASF51
+ 3221 0727 FF000000 		.4byte	.LASF51
  3222 072b 01       		.byte	0x1
  3223 072c 8B02     		.2byte	0x28b
  3224 072e 72000000 		.4byte	0x72
@@ -5694,17 +5694,17 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3242 075d 01       		.uleb128 0x1
  3243 075e 50       		.byte	0x50
  3244 075f 0B       		.uleb128 0xb
- 3245 0760 54030000 		.4byte	.LASF49
+ 3245 0760 E7020000 		.4byte	.LASF49
  3246 0764 01       		.byte	0x1
  3247 0765 BB02     		.2byte	0x2bb
  3248 0767 72000000 		.4byte	0x72
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 96
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 96
 
 
  3249 076b 1F040000 		.4byte	.LLST26
  3250 076f 00       		.byte	0
  3251 0770 15       		.uleb128 0x15
- 3252 0771 C8020000 		.4byte	.LASF62
+ 3252 0771 5B020000 		.4byte	.LASF62
  3253 0775 01       		.byte	0x1
  3254 0776 EE02     		.2byte	0x2ee
  3255 0778 A2000000 		.4byte	0xa2
@@ -5720,14 +5720,14 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3265 0792 7E000000 		.4byte	0x7e
  3266 0796 3D040000 		.4byte	.LLST27
  3267 079a 0B       		.uleb128 0xb
- 3268 079b 54030000 		.4byte	.LASF49
+ 3268 079b E7020000 		.4byte	.LASF49
  3269 079f 01       		.byte	0x1
  3270 07a0 F102     		.2byte	0x2f1
  3271 07a2 72000000 		.4byte	0x72
  3272 07a6 66040000 		.4byte	.LLST28
  3273 07aa 00       		.byte	0
  3274 07ab 15       		.uleb128 0x15
- 3275 07ac FA040000 		.4byte	.LASF63
+ 3275 07ac 8D040000 		.4byte	.LASF63
  3276 07b0 01       		.byte	0x1
  3277 07b1 2A03     		.2byte	0x32a
  3278 07b3 AE000000 		.4byte	0xae
@@ -5743,14 +5743,14 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3288 07cd 8A000000 		.4byte	0x8a
  3289 07d1 84040000 		.4byte	.LLST29
  3290 07d5 0B       		.uleb128 0xb
- 3291 07d6 54030000 		.4byte	.LASF49
+ 3291 07d6 E7020000 		.4byte	.LASF49
  3292 07da 01       		.byte	0x1
  3293 07db 2D03     		.2byte	0x32d
  3294 07dd 72000000 		.4byte	0x72
  3295 07e1 E5040000 		.4byte	.LLST30
  3296 07e5 00       		.byte	0
  3297 07e6 13       		.uleb128 0x13
- 3298 07e7 12040000 		.4byte	.LASF64
+ 3298 07e7 A5030000 		.4byte	.LASF64
  3299 07eb 01       		.byte	0x1
  3300 07ec 8703     		.2byte	0x387
  3301 07ee 00000000 		.4byte	.LFB14
@@ -5758,11 +5758,11 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3303 07f6 01       		.uleb128 0x1
  3304 07f7 9C       		.byte	0x9c
  3305 07f8 0B080000 		.4byte	0x80b
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 97
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 97
 
 
  3306 07fc 18       		.uleb128 0x18
- 3307 07fd 85050000 		.4byte	.LASF65
+ 3307 07fd 18050000 		.4byte	.LASF65
  3308 0801 01       		.byte	0x1
  3309 0802 8703     		.2byte	0x387
  3310 0804 AE000000 		.4byte	0xae
@@ -5797,13 +5797,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3339 0845 9C       		.byte	0x9c
  3340 0846 69080000 		.4byte	0x869
  3341 084a 0A       		.uleb128 0xa
- 3342 084b B1050000 		.4byte	.LASF69
+ 3342 084b 44050000 		.4byte	.LASF69
  3343 084f 01       		.byte	0x1
  3344 0850 C503     		.2byte	0x3c5
  3345 0852 AE000000 		.4byte	0xae
  3346 0856 0E050000 		.4byte	.LLST31
  3347 085a 17       		.uleb128 0x17
- 3348 085b 91020000 		.4byte	.LASF70
+ 3348 085b 24020000 		.4byte	.LASF70
  3349 085f 01       		.byte	0x1
  3350 0860 C803     		.2byte	0x3c8
  3351 0862 A2000000 		.4byte	0xa2
@@ -5811,26 +5811,26 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3353 0867 50       		.byte	0x50
  3354 0868 00       		.byte	0
  3355 0869 14       		.uleb128 0x14
- 3356 086a A4020000 		.4byte	.LASF71
+ 3356 086a 37020000 		.4byte	.LASF71
  3357 086e 01       		.byte	0x1
  3358 086f 0204     		.2byte	0x402
  3359 0871 BA000000 		.4byte	0xba
  3360 0875 00000000 		.4byte	.LFB17
  3361 0879 28000000 		.4byte	.LFE17-.LFB17
  3362 087d 01       		.uleb128 0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 98
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 98
 
 
  3363 087e 9C       		.byte	0x9c
  3364 087f A2080000 		.4byte	0x8a2
  3365 0883 0A       		.uleb128 0xa
- 3366 0884 B1050000 		.4byte	.LASF69
+ 3366 0884 44050000 		.4byte	.LASF69
  3367 0888 01       		.byte	0x1
  3368 0889 0204     		.2byte	0x402
  3369 088b AE000000 		.4byte	0xae
  3370 088f 2C050000 		.4byte	.LLST32
  3371 0893 17       		.uleb128 0x17
- 3372 0894 3F010000 		.4byte	.LASF72
+ 3372 0894 46010000 		.4byte	.LASF72
  3373 0898 01       		.byte	0x1
  3374 0899 0504     		.2byte	0x405
  3375 089b BA000000 		.4byte	0xba
@@ -5838,7 +5838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3377 08a0 50       		.byte	0x50
  3378 08a1 00       		.byte	0
  3379 08a2 15       		.uleb128 0x15
- 3380 08a3 1E030000 		.4byte	.LASF73
+ 3380 08a3 B1020000 		.4byte	.LASF73
  3381 08a7 01       		.byte	0x1
  3382 08a8 4404     		.2byte	0x444
  3383 08aa AE000000 		.4byte	0xae
@@ -5848,37 +5848,37 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3387 08b7 9C       		.byte	0x9c
  3388 08b8 08090000 		.4byte	0x908
  3389 08bc 0A       		.uleb128 0xa
- 3390 08bd B1050000 		.4byte	.LASF69
+ 3390 08bd 44050000 		.4byte	.LASF69
  3391 08c1 01       		.byte	0x1
  3392 08c2 4404     		.2byte	0x444
  3393 08c4 AE000000 		.4byte	0xae
  3394 08c8 5A050000 		.4byte	.LLST33
  3395 08cc 0B       		.uleb128 0xb
- 3396 08cd 76010000 		.4byte	.LASF74
+ 3396 08cd 7D010000 		.4byte	.LASF74
  3397 08d1 01       		.byte	0x1
  3398 08d2 4704     		.2byte	0x447
  3399 08d4 AE000000 		.4byte	0xae
  3400 08d8 7B050000 		.4byte	.LLST34
  3401 08dc 19       		.uleb128 0x19
- 3402 08dd EE040000 		.4byte	.LASF75
+ 3402 08dd 81040000 		.4byte	.LASF75
  3403 08e1 01       		.byte	0x1
  3404 08e2 4804     		.2byte	0x448
  3405 08e4 AE000000 		.4byte	0xae
  3406 08e8 127A     		.2byte	0x7a12
  3407 08ea 0B       		.uleb128 0xb
- 3408 08eb F4040000 		.4byte	.LASF76
+ 3408 08eb 87040000 		.4byte	.LASF76
  3409 08ef 01       		.byte	0x1
  3410 08f0 4904     		.2byte	0x449
  3411 08f2 AE000000 		.4byte	0xae
  3412 08f6 9E050000 		.4byte	.LLST35
  3413 08fa 1A       		.uleb128 0x1a
- 3414 08fb E3040000 		.4byte	.LASF30
+ 3414 08fb 76040000 		.4byte	.LASF30
  3415 08ff 01       		.byte	0x1
  3416 0900 4A04     		.2byte	0x44a
  3417 0902 72000000 		.4byte	0x72
  3418 0906 10       		.byte	0x10
  3419 0907 00       		.byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 99
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 99
 
 
  3420 0908 13       		.uleb128 0x13
@@ -5891,13 +5891,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3427 0919 9C       		.byte	0x9c
  3428 091a 7D090000 		.4byte	0x97d
  3429 091e 0A       		.uleb128 0xa
- 3430 091f 4D050000 		.4byte	.LASF31
+ 3430 091f E0040000 		.4byte	.LASF31
  3431 0923 01       		.byte	0x1
  3432 0924 1806     		.2byte	0x618
  3433 0926 72000000 		.4byte	0x72
  3434 092a BE050000 		.4byte	.LLST36
  3435 092e 0A       		.uleb128 0xa
- 3436 092f 59050000 		.4byte	.LASF78
+ 3436 092f EC040000 		.4byte	.LASF78
  3437 0933 01       		.byte	0x1
  3438 0934 1806     		.2byte	0x618
  3439 0936 72000000 		.4byte	0x72
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3474 0983 EA06     		.2byte	0x6ea
  3475 0985 96000000 		.4byte	0x96
  3476 0989 00000000 		.4byte	.LFB23
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 100
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 100
 
 
  3477 098d 28000000 		.4byte	.LFE23-.LFB23
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3531 0a17 01       		.uleb128 0x1
  3532 0a18 50       		.byte	0x50
  3533 0a19 01       		.uleb128 0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 101
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 101
 
 
  3534 0a1a 30       		.byte	0x30
@@ -6011,7 +6011,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3541 0a2a EA060000 		.4byte	0x6ea
  3542 0a2e 00       		.byte	0
  3543 0a2f 15       		.uleb128 0x15
- 3544 0a30 05010000 		.4byte	.LASF81
+ 3544 0a30 0C010000 		.4byte	.LASF81
  3545 0a34 01       		.byte	0x1
  3546 0a35 2C07     		.2byte	0x72c
  3547 0a37 AE000000 		.4byte	0xae
@@ -6058,14 +6058,14 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3588 0a9d 01       		.byte	0x1
  3589 0a9e 3D       		.byte	0x3d
  3590 0a9f 880A0000 		.4byte	0xa88
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 102
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 102
 
 
  3591 0aa3 05       		.uleb128 0x5
  3592 0aa4 03       		.byte	0x3
  3593 0aa5 00000000 		.4byte	ADC_DelSig_1_gcor
  3594 0aa9 1E       		.uleb128 0x1e
- 3595 0aaa 7D010000 		.4byte	.LASF83
+ 3595 0aaa 84010000 		.4byte	.LASF83
  3596 0aae 01       		.byte	0x1
  3597 0aaf 2C       		.byte	0x2c
  3598 0ab0 72000000 		.4byte	0x72
@@ -6073,7 +6073,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3600 0ab5 03       		.byte	0x3
  3601 0ab6 00000000 		.4byte	ADC_DelSig_1_initVar
  3602 0aba 1E       		.uleb128 0x1e
- 3603 0abb EA020000 		.4byte	.LASF84
+ 3603 0abb 7D020000 		.4byte	.LASF84
  3604 0abf 01       		.byte	0x1
  3605 0ac0 24       		.byte	0x24
  3606 0ac1 E0000000 		.4byte	0xe0
@@ -6089,7 +6089,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3616 0ad7 03       		.byte	0x3
  3617 0ad8 00000000 		.4byte	ADC_DelSig_1_stopConversion
  3618 0adc 1E       		.uleb128 0x1e
- 3619 0add BB010000 		.4byte	.LASF86
+ 3619 0add C2010000 		.4byte	.LASF86
  3620 0ae1 01       		.byte	0x1
  3621 0ae2 2F       		.byte	0x2f
  3622 0ae3 E0000000 		.4byte	0xe0
@@ -6097,7 +6097,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3624 0ae8 03       		.byte	0x3
  3625 0ae9 00000000 		.4byte	ADC_DelSig_1_started
  3626 0aed 1E       		.uleb128 0x1e
- 3627 0aee 40030000 		.4byte	.LASF87
+ 3627 0aee D3020000 		.4byte	.LASF87
  3628 0af2 01       		.byte	0x1
  3629 0af3 32       		.byte	0x32
  3630 0af4 E0000000 		.4byte	0xe0
@@ -6105,7 +6105,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3632 0af9 03       		.byte	0x3
  3633 0afa 00000000 		.4byte	ADC_DelSig_1_Config
  3634 0afe 1E       		.uleb128 0x1e
- 3635 0aff CC030000 		.4byte	.LASF88
+ 3635 0aff 5F030000 		.4byte	.LASF88
  3636 0b03 01       		.byte	0x1
  3637 0b04 34       		.byte	0x34
  3638 0b05 0F0B0000 		.4byte	0xb0f
@@ -6115,10 +6115,10 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3642 0b0f 05       		.uleb128 0x5
  3643 0b10 AE000000 		.4byte	0xae
  3644 0b14 1E       		.uleb128 0x1e
- 3645 0b15 32050000 		.4byte	.LASF89
+ 3645 0b15 C5040000 		.4byte	.LASF89
  3646 0b19 01       		.byte	0x1
  3647 0b1a 35       		.byte	0x35
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 103
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 103
 
 
  3648 0b1b 0F0B0000 		.4byte	0xb0f
@@ -6126,28 +6126,28 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3650 0b20 03       		.byte	0x3
  3651 0b21 00000000 		.4byte	ADC_DelSig_1_CountsPerVolt
  3652 0b25 1F       		.uleb128 0x1f
- 3653 0b26 FD030000 		.4byte	.LASF90
- 3654 0b2a FD030000 		.4byte	.LASF90
+ 3653 0b26 90030000 		.4byte	.LASF90
+ 3654 0b2a 90030000 		.4byte	.LASF90
  3655 0b2e 04       		.byte	0x4
  3656 0b2f 7F       		.byte	0x7f
  3657 0b30 1F       		.uleb128 0x1f
- 3658 0b31 A4010000 		.4byte	.LASF91
- 3659 0b35 A4010000 		.4byte	.LASF91
+ 3658 0b31 AB010000 		.4byte	.LASF91
+ 3659 0b35 AB010000 		.4byte	.LASF91
  3660 0b39 04       		.byte	0x4
  3661 0b3a 7D       		.byte	0x7d
  3662 0b3b 1F       		.uleb128 0x1f
- 3663 0b3c 2E010000 		.4byte	.LASF92
- 3664 0b40 2E010000 		.4byte	.LASF92
+ 3663 0b3c 35010000 		.4byte	.LASF92
+ 3664 0b40 35010000 		.4byte	.LASF92
  3665 0b44 04       		.byte	0x4
  3666 0b45 77       		.byte	0x77
  3667 0b46 1F       		.uleb128 0x1f
- 3668 0b47 B6030000 		.4byte	.LASF93
- 3669 0b4b B6030000 		.4byte	.LASF93
+ 3668 0b47 49030000 		.4byte	.LASF93
+ 3669 0b4b 49030000 		.4byte	.LASF93
  3670 0b4f 04       		.byte	0x4
  3671 0b50 7E       		.byte	0x7e
  3672 0b51 1F       		.uleb128 0x1f
- 3673 0b52 66020000 		.4byte	.LASF94
- 3674 0b56 66020000 		.4byte	.LASF94
+ 3673 0b52 F9010000 		.4byte	.LASF94
+ 3674 0b56 F9010000 		.4byte	.LASF94
  3675 0b5a 05       		.byte	0x5
  3676 0b5b 2F       		.byte	0x2f
  3677 0b5c 1F       		.uleb128 0x1f
@@ -6156,29 +6156,29 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3680 0b65 06       		.byte	0x6
  3681 0b66 2F       		.byte	0x2f
  3682 0b67 1F       		.uleb128 0x1f
- 3683 0b68 4C010000 		.4byte	.LASF96
- 3684 0b6c 4C010000 		.4byte	.LASF96
+ 3683 0b68 53010000 		.4byte	.LASF96
+ 3684 0b6c 53010000 		.4byte	.LASF96
  3685 0b70 04       		.byte	0x4
  3686 0b71 88       		.byte	0x88
  3687 0b72 1F       		.uleb128 0x1f
- 3688 0b73 6F030000 		.4byte	.LASF97
- 3689 0b77 6F030000 		.4byte	.LASF97
+ 3688 0b73 02030000 		.4byte	.LASF97
+ 3689 0b77 02030000 		.4byte	.LASF97
  3690 0b7b 05       		.byte	0x5
  3691 0b7c 32       		.byte	0x32
  3692 0b7d 1F       		.uleb128 0x1f
- 3693 0b7e 8C050000 		.4byte	.LASF98
- 3694 0b82 8C050000 		.4byte	.LASF98
+ 3693 0b7e 1F050000 		.4byte	.LASF98
+ 3694 0b82 1F050000 		.4byte	.LASF98
  3695 0b86 06       		.byte	0x6
  3696 0b87 32       		.byte	0x32
  3697 0b88 1F       		.uleb128 0x1f
- 3698 0b89 5E030000 		.4byte	.LASF99
- 3699 0b8d 5E030000 		.4byte	.LASF99
+ 3698 0b89 F1020000 		.4byte	.LASF99
+ 3699 0b8d F1020000 		.4byte	.LASF99
  3700 0b91 04       		.byte	0x4
  3701 0b92 8B       		.byte	0x8b
  3702 0b93 00       		.byte	0
  3703              		.section	.debug_abbrev,"",%progbits
  3704              	.Ldebug_abbrev0:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 104
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 104
 
 
  3705 0000 01       		.uleb128 0x1
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3759 0036 05       		.uleb128 0x5
  3760 0037 35       		.uleb128 0x35
  3761 0038 00       		.byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 105
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 105
 
 
  3762 0039 49       		.uleb128 0x49
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3816 006f 27       		.uleb128 0x27
  3817 0070 19       		.uleb128 0x19
  3818 0071 11       		.uleb128 0x11
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 106
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 106
 
 
  3819 0072 01       		.uleb128 0x1
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3873 00ad 18       		.uleb128 0x18
  3874 00ae 9142     		.uleb128 0x2111
  3875 00b0 18       		.uleb128 0x18
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 107
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 107
 
 
  3876 00b1 00       		.byte	0
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3930 00ec 3B       		.uleb128 0x3b
  3931 00ed 0B       		.uleb128 0xb
  3932 00ee 49       		.uleb128 0x49
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 108
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 108
 
 
  3933 00ef 13       		.uleb128 0x13
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  3987 0126 27       		.uleb128 0x27
  3988 0127 19       		.uleb128 0x19
  3989 0128 49       		.uleb128 0x49
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 109
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 109
 
 
  3990 0129 13       		.uleb128 0x13
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4044 0161 01       		.uleb128 0x1
  4045 0162 12       		.uleb128 0x12
  4046 0163 06       		.uleb128 0x6
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 110
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 110
 
 
  4047 0164 40       		.uleb128 0x40
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4101 019b 03       		.uleb128 0x3
  4102 019c 0E       		.uleb128 0xe
  4103 019d 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 111
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 111
 
 
  4104 019e 0B       		.uleb128 0xb
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4158 01d4 19       		.uleb128 0x19
  4159 01d5 02       		.uleb128 0x2
  4160 01d6 18       		.uleb128 0x18
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 112
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 112
 
 
  4161 01d7 00       		.byte	0
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4215 004d 0400     		.2byte	0x4
  4216 004f F3       		.byte	0xf3
  4217 0050 01       		.uleb128 0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 113
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 113
 
 
  4218 0051 51       		.byte	0x51
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4272 00cf 0100     		.2byte	0x1
  4273 00d1 53       		.byte	0x53
  4274 00d2 9E000000 		.4byte	.LVL29
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 114
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 114
 
 
  4275 00d6 B2000000 		.4byte	.LVL31
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4329 0159 54000000 		.4byte	.LVL10
  4330 015d 56000000 		.4byte	.LVL11
  4331 0161 0100     		.2byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 115
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 115
 
 
  4332 0163 50       		.byte	0x50
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4386 01f6 07000000 		.4byte	.LVL36-1
  4387 01fa 0100     		.2byte	0x1
  4388 01fc 50       		.byte	0x50
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 116
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 116
 
 
  4389 01fd 07000000 		.4byte	.LVL36-1
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4443 0284 50       		.byte	0x50
  4444 0285 9F       		.byte	0x9f
  4445 0286 00000000 		.4byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 117
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 117
 
 
  4446 028a 00000000 		.4byte	0
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4500 0310 9F       		.byte	0x9f
  4501 0311 00000000 		.4byte	0
  4502 0315 00000000 		.4byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 118
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 118
 
 
  4503              	.LLST19:
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4557 0399 0100     		.2byte	0x1
  4558 039b 50       		.byte	0x50
  4559 039c 58000000 		.4byte	.LVL102
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 119
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 119
 
 
  4560 03a0 5C000000 		.4byte	.LVL104
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4614 042e 1E000000 		.4byte	.LVL119
  4615 0432 0100     		.2byte	0x1
  4616 0434 53       		.byte	0x53
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 120
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 120
 
 
  4617 0435 00000000 		.4byte	0
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4671 04bb 53       		.byte	0x53
  4672 04bc 34000000 		.4byte	.LVL135
  4673 04c0 36000000 		.4byte	.LVL136
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 121
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 121
 
 
  4674 04c4 0100     		.2byte	0x1
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4728 054f 0100     		.2byte	0x1
  4729 0551 50       		.byte	0x50
  4730 0552 00000000 		.4byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 122
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 122
 
 
  4731 0556 00000000 		.4byte	0
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4785 05d5 50       		.byte	0x50
  4786 05d6 9F       		.byte	0x9f
  4787 05d7 4C000000 		.4byte	.LVL163
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 123
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 123
 
 
  4788 05db 4E000000 		.4byte	.LVL164
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4842 0660 0100     		.2byte	0x1
  4843 0662 50       		.byte	0x50
  4844 0663 1F000000 		.4byte	.LVL182-1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 124
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 124
 
 
  4845 0667 24000000 		.4byte	.LVL183
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4899 00a4 0C000000 		.4byte	.LFE15-.LFB15
  4900 00a8 00000000 		.4byte	.LFB16
  4901 00ac 24000000 		.4byte	.LFE16-.LFB16
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 125
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 125
 
 
  4902 00b0 00000000 		.4byte	.LFB17
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4956 0098 00000000 		.4byte	.LFB16
  4957 009c 24000000 		.4byte	.LFE16
  4958 00a0 00000000 		.4byte	.LFB17
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 126
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 126
 
 
  4959 00a4 28000000 		.4byte	.LFE17
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  4990      6720756E 
  4990      7369676E 
  4990      65642069 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 127
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 127
 
 
  4991              	.LASF44:
@@ -7593,384 +7593,384 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  5002 00f3 7369676E 		.ascii	"signed char\000"
  5002      65642063 
  5002      68617200 
- 5003              	.LASF15:
- 5004 00ff 696E7433 		.ascii	"int32\000"
- 5004      3200
- 5005              	.LASF81:
- 5006 0105 4144435F 		.ascii	"ADC_DelSig_1_Read32\000"
- 5006      44656C53 
- 5006      69675F31 
- 5006      5F526561 
- 5006      64333200 
- 5007              	.LASF5:
- 5008 0119 6C6F6E67 		.ascii	"long int\000"
- 5008      20696E74 
- 5008      00
- 5009              	.LASF20:
- 5010 0122 72656731 		.ascii	"reg16\000"
- 5010      3600
- 5011              	.LASF10:
- 5012 0128 75696E74 		.ascii	"uint8\000"
- 5012      3800
- 5013              	.LASF92:
- 5014 012e 43794465 		.ascii	"CyDelayUs\000"
- 5014      6C617955 
- 5014      7300
- 5015              	.LASF17:
- 5016 0138 646F7562 		.ascii	"double\000"
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 128
+ 5003              	.LASF51:
+ 5004 00ff 73746174 		.ascii	"status\000"
+ 5004      757300
+ 5005              	.LASF15:
+ 5006 0106 696E7433 		.ascii	"int32\000"
+ 5006      3200
+ 5007              	.LASF81:
+ 5008 010c 4144435F 		.ascii	"ADC_DelSig_1_Read32\000"
+ 5008      44656C53 
+ 5008      69675F31 
+ 5008      5F526561 
+ 5008      64333200 
+ 5009              	.LASF5:
+ 5010 0120 6C6F6E67 		.ascii	"long int\000"
+ 5010      20696E74 
+ 5010      00
+ 5011              	.LASF20:
+ 5012 0129 72656731 		.ascii	"reg16\000"
+ 5012      3600
+ 5013              	.LASF10:
+ 5014 012f 75696E74 		.ascii	"uint8\000"
+ 5014      3800
+ 5015              	.LASF92:
+ 5016 0135 43794465 		.ascii	"CyDelayUs\000"
+ 5016      6C617955 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 128
 
 
- 5016      6C6500
- 5017              	.LASF72:
- 5018 013f 566F6C74 		.ascii	"Volts\000"
- 5018      7300
- 5019              	.LASF12:
- 5020 0145 75696E74 		.ascii	"uint32\000"
- 5020      333200
- 5021              	.LASF96:
- 5022 014c 4379496E 		.ascii	"CyIntSetVector\000"
- 5022      74536574 
- 5022      56656374 
- 5022      6F7200
- 5023              	.LASF38:
- 5024 015b 76616C75 		.ascii	"value\000"
- 5024      6500
- 5025              	.LASF59:
- 5026 0161 7265744D 		.ascii	"retMode\000"
- 5026      6F646500 
- 5027              	.LASF9:
- 5028 0169 756E7369 		.ascii	"unsigned int\000"
- 5028      676E6564 
- 5028      20696E74 
- 5028      00
- 5029              	.LASF74:
- 5030 0176 75566F6C 		.ascii	"uVolts\000"
- 5030      747300
- 5031              	.LASF83:
- 5032 017d 4144435F 		.ascii	"ADC_DelSig_1_initVar\000"
- 5032      44656C53 
- 5032      69675F31 
- 5032      5F696E69 
- 5032      74566172 
- 5033              	.LASF6:
- 5034 0192 6C6F6E67 		.ascii	"long unsigned int\000"
- 5034      20756E73 
- 5034      69676E65 
- 5034      6420696E 
- 5034      7400
- 5035              	.LASF91:
- 5036 01a4 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 5036      74657243 
- 5036      72697469 
- 5036      63616C53 
- 5036      65637469 
- 5037              	.LASF86:
- 5038 01bb 4144435F 		.ascii	"ADC_DelSig_1_started\000"
- 5038      44656C53 
- 5038      69675F31 
- 5038      5F737461 
- 5038      72746564 
- 5039              	.LASF4:
- 5040 01d0 73686F72 		.ascii	"short unsigned int\000"
- 5040      7420756E 
- 5040      7369676E 
- 5040      65642069 
- 5040      6E7400
- 5041              	.LASF13:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 129
+ 5016      7300
+ 5017              	.LASF17:
+ 5018 013f 646F7562 		.ascii	"double\000"
+ 5018      6C6500
+ 5019              	.LASF72:
+ 5020 0146 566F6C74 		.ascii	"Volts\000"
+ 5020      7300
+ 5021              	.LASF12:
+ 5022 014c 75696E74 		.ascii	"uint32\000"
+ 5022      333200
+ 5023              	.LASF96:
+ 5024 0153 4379496E 		.ascii	"CyIntSetVector\000"
+ 5024      74536574 
+ 5024      56656374 
+ 5024      6F7200
+ 5025              	.LASF38:
+ 5026 0162 76616C75 		.ascii	"value\000"
+ 5026      6500
+ 5027              	.LASF59:
+ 5028 0168 7265744D 		.ascii	"retMode\000"
+ 5028      6F646500 
+ 5029              	.LASF9:
+ 5030 0170 756E7369 		.ascii	"unsigned int\000"
+ 5030      676E6564 
+ 5030      20696E74 
+ 5030      00
+ 5031              	.LASF74:
+ 5032 017d 75566F6C 		.ascii	"uVolts\000"
+ 5032      747300
+ 5033              	.LASF83:
+ 5034 0184 4144435F 		.ascii	"ADC_DelSig_1_initVar\000"
+ 5034      44656C53 
+ 5034      69675F31 
+ 5034      5F696E69 
+ 5034      74566172 
+ 5035              	.LASF6:
+ 5036 0199 6C6F6E67 		.ascii	"long unsigned int\000"
+ 5036      20756E73 
+ 5036      69676E65 
+ 5036      6420696E 
+ 5036      7400
+ 5037              	.LASF91:
+ 5038 01ab 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 5038      74657243 
+ 5038      72697469 
+ 5038      63616C53 
+ 5038      65637469 
+ 5039              	.LASF86:
+ 5040 01c2 4144435F 		.ascii	"ADC_DelSig_1_started\000"
+ 5040      44656C53 
+ 5040      69675F31 
+ 5040      5F737461 
+ 5040      72746564 
+ 5041              	.LASF4:
+ 5042 01d7 73686F72 		.ascii	"short unsigned int\000"
+ 5042      7420756E 
+ 5042      7369676E 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 129
 
 
- 5042 01e3 696E7438 		.ascii	"int8\000"
- 5042      00
- 5043              	.LASF102:
- 5044 01e8 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
- 5044      73657273 
- 5044      5C467261 
- 5044      6E6B6C69 
- 5044      6E4C6162 
- 5045 0217 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 2\\Master\\"
- 5045      434E545F 
- 5045      49565C50 
- 5045      536F435C 
- 5045      4C61796F 
- 5046 0244 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
- 5046      65722031 
- 5046      5C446573 
- 5046      69676E30 
- 5046      312E6379 
- 5047              	.LASF34:
- 5048 025c 67636F72 		.ascii	"gcorValue\000"
- 5048      56616C75 
- 5048      6500
- 5049              	.LASF94:
- 5050 0266 4144435F 		.ascii	"ADC_DelSig_1_Ext_CP_Clk_SetDividerRegister\000"
- 5050      44656C53 
- 5050      69675F31 
- 5050      5F457874 
- 5050      5F43505F 
- 5051              	.LASF70:
- 5052 0291 6D566F6C 		.ascii	"mVolts\000"
- 5052      747300
- 5053              	.LASF32:
- 5054 0298 666C6173 		.ascii	"flash\000"
- 5054      6800
- 5055              	.LASF21:
- 5056 029e 72656733 		.ascii	"reg32\000"
- 5056      3200
- 5057              	.LASF71:
- 5058 02a4 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_Volts\000"
- 5058      44656C53 
- 5058      69675F31 
- 5058      5F436F75 
- 5058      6E747354 
- 5059              	.LASF16:
- 5060 02c0 666C6F61 		.ascii	"float32\000"
- 5060      74333200 
- 5061              	.LASF62:
- 5062 02c8 4144435F 		.ascii	"ADC_DelSig_1_GetResult16\000"
- 5062      44656C53 
- 5062      69675F31 
- 5062      5F476574 
- 5062      52657375 
- 5063              	.LASF23:
- 5064 02e1 73697A65 		.ascii	"sizetype\000"
- 5064      74797065 
- 5064      00
- 5065              	.LASF84:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 130
+ 5042      65642069 
+ 5042      6E7400
+ 5043              	.LASF13:
+ 5044 01ea 696E7438 		.ascii	"int8\000"
+ 5044      00
+ 5045              	.LASF34:
+ 5046 01ef 67636F72 		.ascii	"gcorValue\000"
+ 5046      56616C75 
+ 5046      6500
+ 5047              	.LASF94:
+ 5048 01f9 4144435F 		.ascii	"ADC_DelSig_1_Ext_CP_Clk_SetDividerRegister\000"
+ 5048      44656C53 
+ 5048      69675F31 
+ 5048      5F457874 
+ 5048      5F43505F 
+ 5049              	.LASF70:
+ 5050 0224 6D566F6C 		.ascii	"mVolts\000"
+ 5050      747300
+ 5051              	.LASF32:
+ 5052 022b 666C6173 		.ascii	"flash\000"
+ 5052      6800
+ 5053              	.LASF21:
+ 5054 0231 72656733 		.ascii	"reg32\000"
+ 5054      3200
+ 5055              	.LASF71:
+ 5056 0237 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_Volts\000"
+ 5056      44656C53 
+ 5056      69675F31 
+ 5056      5F436F75 
+ 5056      6E747354 
+ 5057              	.LASF16:
+ 5058 0253 666C6F61 		.ascii	"float32\000"
+ 5058      74333200 
+ 5059              	.LASF62:
+ 5060 025b 4144435F 		.ascii	"ADC_DelSig_1_GetResult16\000"
+ 5060      44656C53 
+ 5060      69675F31 
+ 5060      5F476574 
+ 5060      52657375 
+ 5061              	.LASF23:
+ 5062 0274 73697A65 		.ascii	"sizetype\000"
+ 5062      74797065 
+ 5062      00
+ 5063              	.LASF84:
+ 5064 027d 4144435F 		.ascii	"ADC_DelSig_1_convDone\000"
+ 5064      44656C53 
+ 5064      69675F31 
+ 5064      5F636F6E 
+ 5064      76446F6E 
+ 5065              	.LASF22:
+ 5066 0293 6C6F6E67 		.ascii	"long double\000"
+ 5066      20646F75 
+ 5066      626C6500 
+ 5067              	.LASF41:
+ 5068 029f 4144435F 		.ascii	"ADC_DelSig_1_Init\000"
+ 5068      44656C53 
+ 5068      69675F31 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 130
 
 
- 5066 02ea 4144435F 		.ascii	"ADC_DelSig_1_convDone\000"
- 5066      44656C53 
- 5066      69675F31 
- 5066      5F636F6E 
- 5066      76446F6E 
- 5067              	.LASF22:
- 5068 0300 6C6F6E67 		.ascii	"long double\000"
- 5068      20646F75 
- 5068      626C6500 
- 5069              	.LASF41:
- 5070 030c 4144435F 		.ascii	"ADC_DelSig_1_Init\000"
+ 5068      5F496E69 
+ 5068      7400
+ 5069              	.LASF73:
+ 5070 02b1 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_uVolts\000"
  5070      44656C53 
  5070      69675F31 
- 5070      5F496E69 
- 5070      7400
- 5071              	.LASF73:
- 5072 031e 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_uVolts\000"
- 5072      44656C53 
- 5072      69675F31 
- 5072      5F436F75 
- 5072      6E747354 
- 5073              	.LASF46:
- 5074 033b 6761696E 		.ascii	"gain\000"
- 5074      00
- 5075              	.LASF87:
- 5076 0340 4144435F 		.ascii	"ADC_DelSig_1_Config\000"
- 5076      44656C53 
- 5076      69675F31 
- 5076      5F436F6E 
- 5076      66696700 
- 5077              	.LASF49:
- 5078 0354 636F6865 		.ascii	"coherency\000"
- 5078      72656E63 
- 5078      7900
- 5079              	.LASF99:
- 5080 035e 4379496E 		.ascii	"CyIntSetPriority\000"
- 5080      74536574 
- 5080      5072696F 
- 5080      72697479 
- 5080      00
- 5081              	.LASF97:
- 5082 036f 4144435F 		.ascii	"ADC_DelSig_1_Ext_CP_Clk_SetModeRegister\000"
+ 5070      5F436F75 
+ 5070      6E747354 
+ 5071              	.LASF46:
+ 5072 02ce 6761696E 		.ascii	"gain\000"
+ 5072      00
+ 5073              	.LASF87:
+ 5074 02d3 4144435F 		.ascii	"ADC_DelSig_1_Config\000"
+ 5074      44656C53 
+ 5074      69675F31 
+ 5074      5F436F6E 
+ 5074      66696700 
+ 5075              	.LASF49:
+ 5076 02e7 636F6865 		.ascii	"coherency\000"
+ 5076      72656E63 
+ 5076      7900
+ 5077              	.LASF99:
+ 5078 02f1 4379496E 		.ascii	"CyIntSetPriority\000"
+ 5078      74536574 
+ 5078      5072696F 
+ 5078      72697479 
+ 5078      00
+ 5079              	.LASF97:
+ 5080 0302 4144435F 		.ascii	"ADC_DelSig_1_Ext_CP_Clk_SetModeRegister\000"
+ 5080      44656C53 
+ 5080      69675F31 
+ 5080      5F457874 
+ 5080      5F43505F 
+ 5081              	.LASF26:
+ 5082 032a 4144435F 		.ascii	"ADC_DelSig_1_GCOR_STRUCT\000"
  5082      44656C53 
  5082      69675F31 
- 5082      5F457874 
- 5082      5F43505F 
- 5083              	.LASF26:
- 5084 0397 4144435F 		.ascii	"ADC_DelSig_1_GCOR_STRUCT\000"
- 5084      44656C53 
- 5084      69675F31 
- 5084      5F47434F 
- 5084      525F5354 
- 5085              	.LASF0:
- 5086 03b0 666C6F61 		.ascii	"float\000"
- 5086      7400
- 5087              	.LASF93:
- 5088 03b6 43794578 		.ascii	"CyExitCriticalSection\000"
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 131
+ 5082      5F47434F 
+ 5082      525F5354 
+ 5083              	.LASF0:
+ 5084 0343 666C6F61 		.ascii	"float\000"
+ 5084      7400
+ 5085              	.LASF93:
+ 5086 0349 43794578 		.ascii	"CyExitCriticalSection\000"
+ 5086      69744372 
+ 5086      69746963 
+ 5086      616C5365 
+ 5086      6374696F 
+ 5087              	.LASF88:
+ 5088 035f 4144435F 		.ascii	"ADC_DelSig_1_Offset\000"
+ 5088      44656C53 
+ 5088      69675F31 
+ 5088      5F4F6666 
+ 5088      73657400 
+ 5089              	.LASF19:
+ 5090 0373 72656738 		.ascii	"reg8\000"
+ 5090      00
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 131
 
 
- 5088      69744372 
- 5088      69746963 
- 5088      616C5365 
- 5088      6374696F 
- 5089              	.LASF88:
- 5090 03cc 4144435F 		.ascii	"ADC_DelSig_1_Offset\000"
- 5090      44656C53 
- 5090      69675F31 
- 5090      5F4F6666 
- 5090      73657400 
- 5091              	.LASF19:
- 5092 03e0 72656738 		.ascii	"reg8\000"
+ 5091              	.LASF28:
+ 5092 0378 69646561 		.ascii	"idealDecGain\000"
+ 5092      6C446563 
+ 5092      4761696E 
  5092      00
- 5093              	.LASF28:
- 5094 03e5 69646561 		.ascii	"idealDecGain\000"
- 5094      6C446563 
- 5094      4761696E 
- 5094      00
- 5095              	.LASF33:
- 5096 03f2 6E6F726D 		.ascii	"normalised\000"
- 5096      616C6973 
- 5096      656400
- 5097              	.LASF90:
- 5098 03fd 43794861 		.ascii	"CyHalt\000"
- 5098      6C7400
- 5099              	.LASF2:
- 5100 0404 756E7369 		.ascii	"unsigned char\000"
- 5100      676E6564 
- 5100      20636861 
- 5100      7200
- 5101              	.LASF64:
- 5102 0412 4144435F 		.ascii	"ADC_DelSig_1_SetOffset\000"
- 5102      44656C53 
- 5102      69675F31 
- 5102      5F536574 
- 5102      4F666673 
- 5103              	.LASF3:
- 5104 0429 73686F72 		.ascii	"short int\000"
- 5104      7420696E 
- 5104      7400
- 5105              	.LASF35:
- 5106 0433 67636F72 		.ascii	"gcorTmp\000"
- 5106      546D7000 
- 5107              	.LASF100:
- 5108 043b 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 5108      43313120 
- 5108      352E342E 
- 5108      31203230 
- 5108      31363036 
- 5109 046e 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 5109      20726576 
- 5109      6973696F 
- 5109      6E203233 
- 5109      37373135 
- 5110 04a1 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 5110      66756E63 
- 5110      74696F6E 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 132
+ 5093              	.LASF33:
+ 5094 0385 6E6F726D 		.ascii	"normalised\000"
+ 5094      616C6973 
+ 5094      656400
+ 5095              	.LASF90:
+ 5096 0390 43794861 		.ascii	"CyHalt\000"
+ 5096      6C7400
+ 5097              	.LASF2:
+ 5098 0397 756E7369 		.ascii	"unsigned char\000"
+ 5098      676E6564 
+ 5098      20636861 
+ 5098      7200
+ 5099              	.LASF64:
+ 5100 03a5 4144435F 		.ascii	"ADC_DelSig_1_SetOffset\000"
+ 5100      44656C53 
+ 5100      69675F31 
+ 5100      5F536574 
+ 5100      4F666673 
+ 5101              	.LASF3:
+ 5102 03bc 73686F72 		.ascii	"short int\000"
+ 5102      7420696E 
+ 5102      7400
+ 5103              	.LASF35:
+ 5104 03c6 67636F72 		.ascii	"gcorTmp\000"
+ 5104      546D7000 
+ 5105              	.LASF100:
+ 5106 03ce 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 5106      43313120 
+ 5106      352E342E 
+ 5106      31203230 
+ 5106      31363036 
+ 5107 0401 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 5107      20726576 
+ 5107      6973696F 
+ 5107      6E203233 
+ 5107      37373135 
+ 5108 0434 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 5108      66756E63 
+ 5108      74696F6E 
+ 5108      2D736563 
+ 5108      74696F6E 
+ 5109              	.LASF56:
+ 5110 045c 4144435F 		.ascii	"ADC_DelSig_1_StartConvert\000"
+ 5110      44656C53 
+ 5110      69675F31 
+ 5110      5F537461 
+ 5110      7274436F 
+ 5111              	.LASF30:
+ 5112 0476 7265736F 		.ascii	"resolution\000"
+ 5112      6C757469 
+ 5112      6F6E00
+ 5113              	.LASF75:
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 132
 
 
- 5110      2D736563 
- 5110      74696F6E 
- 5111              	.LASF56:
- 5112 04c9 4144435F 		.ascii	"ADC_DelSig_1_StartConvert\000"
- 5112      44656C53 
- 5112      69675F31 
- 5112      5F537461 
- 5112      7274436F 
- 5113              	.LASF30:
- 5114 04e3 7265736F 		.ascii	"resolution\000"
- 5114      6C757469 
- 5114      6F6E00
- 5115              	.LASF75:
- 5116 04ee 636F6566 		.ascii	"coefA\000"
- 5116      4100
- 5117              	.LASF76:
- 5118 04f4 636F6566 		.ascii	"coefB\000"
- 5118      4200
- 5119              	.LASF63:
- 5120 04fa 4144435F 		.ascii	"ADC_DelSig_1_GetResult32\000"
- 5120      44656C53 
- 5120      69675F31 
- 5120      5F476574 
- 5120      52657375 
- 5121              	.LASF18:
- 5122 0513 63686172 		.ascii	"char\000"
- 5122      00
- 5123              	.LASF48:
- 5124 0518 4144435F 		.ascii	"ADC_DelSig_1_SetCoherency\000"
+ 5114 0481 636F6566 		.ascii	"coefA\000"
+ 5114      4100
+ 5115              	.LASF76:
+ 5116 0487 636F6566 		.ascii	"coefB\000"
+ 5116      4200
+ 5117              	.LASF63:
+ 5118 048d 4144435F 		.ascii	"ADC_DelSig_1_GetResult32\000"
+ 5118      44656C53 
+ 5118      69675F31 
+ 5118      5F476574 
+ 5118      52657375 
+ 5119              	.LASF18:
+ 5120 04a6 63686172 		.ascii	"char\000"
+ 5120      00
+ 5121              	.LASF48:
+ 5122 04ab 4144435F 		.ascii	"ADC_DelSig_1_SetCoherency\000"
+ 5122      44656C53 
+ 5122      69675F31 
+ 5122      5F536574 
+ 5122      436F6865 
+ 5123              	.LASF89:
+ 5124 04c5 4144435F 		.ascii	"ADC_DelSig_1_CountsPerVolt\000"
  5124      44656C53 
  5124      69675F31 
- 5124      5F536574 
- 5124      436F6865 
- 5125              	.LASF89:
- 5126 0532 4144435F 		.ascii	"ADC_DelSig_1_CountsPerVolt\000"
- 5126      44656C53 
- 5126      69675F31 
- 5126      5F436F75 
- 5126      6E747350 
- 5127              	.LASF31:
- 5128 054d 636F6E66 		.ascii	"config\000"
- 5128      696700
- 5129              	.LASF25:
- 5130 0554 6776616C 		.ascii	"gval\000"
- 5130      00
- 5131              	.LASF78:
- 5132 0559 72657374 		.ascii	"restart\000"
- 5132      61727400 
- 5133              	.LASF52:
- 5134 0561 746D7056 		.ascii	"tmpValue\000"
- 5134      616C7565 
- 5134      00
- 5135              	.LASF37:
- 5136 056a 4144435F 		.ascii	"ADC_DelSig_1_SetDSMRef0Reg\000"
- 5136      44656C53 
- 5136      69675F31 
- 5136      5F536574 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 133
+ 5124      5F436F75 
+ 5124      6E747350 
+ 5125              	.LASF31:
+ 5126 04e0 636F6E66 		.ascii	"config\000"
+ 5126      696700
+ 5127              	.LASF25:
+ 5128 04e7 6776616C 		.ascii	"gval\000"
+ 5128      00
+ 5129              	.LASF78:
+ 5130 04ec 72657374 		.ascii	"restart\000"
+ 5130      61727400 
+ 5131              	.LASF52:
+ 5132 04f4 746D7056 		.ascii	"tmpValue\000"
+ 5132      616C7565 
+ 5132      00
+ 5133              	.LASF37:
+ 5134 04fd 4144435F 		.ascii	"ADC_DelSig_1_SetDSMRef0Reg\000"
+ 5134      44656C53 
+ 5134      69675F31 
+ 5134      5F536574 
+ 5134      44534D52 
+ 5135              	.LASF65:
+ 5136 0518 6F666673 		.ascii	"offset\000"
+ 5136      657400
+ 5137              	.LASF98:
+ 5138 051f 4144435F 		.ascii	"ADC_DelSig_1_theACLK_SetModeRegister\000"
+ 5138      44656C53 
+ 5138      69675F31 
+ 5138      5F746865 
+ 5138      41434C4B 
+ 5139              	.LASF69:
+ 5140 0544 61646343 		.ascii	"adcCounts\000"
+ 5140      6F756E74 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 133
 
 
- 5136      44534D52 
- 5137              	.LASF65:
- 5138 0585 6F666673 		.ascii	"offset\000"
- 5138      657400
- 5139              	.LASF98:
- 5140 058c 4144435F 		.ascii	"ADC_DelSig_1_theACLK_SetModeRegister\000"
- 5140      44656C53 
- 5140      69675F31 
- 5140      5F746865 
- 5140      41434C4B 
- 5141              	.LASF69:
- 5142 05b1 61646343 		.ascii	"adcCounts\000"
- 5142      6F756E74 
- 5142      7300
- 5143              	.LASF36:
- 5144 05bb 4144435F 		.ascii	"ADC_DelSig_1_GainCompensation\000"
- 5144      44656C53 
- 5144      69675F31 
- 5144      5F476169 
- 5144      6E436F6D 
- 5145              	.LASF39:
- 5146 05d9 656E6162 		.ascii	"enableInterrupts\000"
- 5146      6C65496E 
- 5146      74657272 
- 5146      75707473 
- 5146      00
- 5147              	.LASF58:
- 5148 05ea 4144435F 		.ascii	"ADC_DelSig_1_IsEndConversion\000"
+ 5140      7300
+ 5141              	.LASF36:
+ 5142 054e 4144435F 		.ascii	"ADC_DelSig_1_GainCompensation\000"
+ 5142      44656C53 
+ 5142      69675F31 
+ 5142      5F476169 
+ 5142      6E436F6D 
+ 5143              	.LASF39:
+ 5144 056c 656E6162 		.ascii	"enableInterrupts\000"
+ 5144      6C65496E 
+ 5144      74657272 
+ 5144      75707473 
+ 5144      00
+ 5145              	.LASF58:
+ 5146 057d 4144435F 		.ascii	"ADC_DelSig_1_IsEndConversion\000"
+ 5146      44656C53 
+ 5146      69675F31 
+ 5146      5F497345 
+ 5146      6E64436F 
+ 5147              	.LASF53:
+ 5148 059a 4144435F 		.ascii	"ADC_DelSig_1_SetGCOR\000"
  5148      44656C53 
  5148      69675F31 
- 5148      5F497345 
- 5148      6E64436F 
- 5149              	.LASF53:
- 5150 0607 4144435F 		.ascii	"ADC_DelSig_1_SetGCOR\000"
- 5150      44656C53 
- 5150      69675F31 
- 5150      5F536574 
- 5150      47434F52 
- 5151              	.LASF55:
- 5152 061c 6756616C 		.ascii	"gValue\000"
- 5152      756500
- 5153              	.LASF101:
- 5154 0623 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_DelSig_1.c\000"
- 5154      72617465 
- 5154      645F536F 
- 5154      75726365 
- 5154      5C50536F 
- 5155              	.LASF51:
- 5156 0649 73746174 		.ascii	"status\000"
- 5156      757300
+ 5148      5F536574 
+ 5148      47434F52 
+ 5149              	.LASF55:
+ 5150 05af 6756616C 		.ascii	"gValue\000"
+ 5150      756500
+ 5151              	.LASF101:
+ 5152 05b6 47656E65 		.ascii	"Generated_Source\\PSoC5\\ADC_DelSig_1.c\000"
+ 5152      72617465 
+ 5152      645F536F 
+ 5152      75726365 
+ 5152      5C50536F 
+ 5153              	.LASF102:
+ 5154 05dc 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 5154      73657273 
+ 5154      5C467261 
+ 5154      6E6B6C69 
+ 5154      6E4C6162 
+ 5155 060b 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 3\\Master\\"
+ 5155      434E545F 
+ 5155      49565C50 
+ 5155      536F435C 
+ 5155      4C61796F 
+ 5156 0638 4D617374 		.ascii	"Master 1\\Design01.cydsn\000"
+ 5156      65722031 
+ 5156      5C446573 
+ 5156      69676E30 
+ 5156      312E6379 
  5157              	.LASF50:
  5158 0650 6761696E 		.ascii	"gainAdjust\000"
  5158      41646A75 
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  5159              	.LASF43:
  5160 065b 4144435F 		.ascii	"ADC_DelSig_1_Start\000"
  5160      44656C53 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 134
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 134
 
 
  5160      69675F31 
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 1
  5181              	.LASF54:
  5182 072b 4144435F 		.ascii	"ADC_DelSig_1_ReadGCOR\000"
  5182      44656C53 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc5A2R8b.s 			page 135
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccImd0cM.s 			page 135
 
 
  5182      69675F31 

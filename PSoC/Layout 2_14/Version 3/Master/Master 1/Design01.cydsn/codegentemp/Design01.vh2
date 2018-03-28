@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Feb 15 13:43:48 2018
+--	Wed Mar 28 17:39:57 2018
 --
 
 USE cypress.cypress.all;
@@ -845,7 +845,7 @@ TERMINAL tmpSIOVREF__Pin_I12_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_I12_net_0 : bit;
 SIGNAL tmpOE__Pin_I11_net_0 : bit;
 SIGNAL tmpFB_0__Pin_I11_net_0 : bit;
-TERMINAL Net_112 : bit;
+TERMINAL Net_160 : bit;
 SIGNAL tmpIO_0__Pin_I11_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_I11_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_I11_net_0 : bit;
@@ -2795,7 +2795,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_I11_net_0),
-		analog=>Net_112,
+		analog=>Net_160,
 		io=>(tmpIO_0__Pin_I11_net_0),
 		siovref=>(tmpSIOVREF__Pin_I11_net_0),
 		annotation=>(open),
@@ -2827,7 +2827,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 		dig_domain_out=>\ADC_SAR_2:Net_381\);
 \ADC_SAR_2:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
-	PORT MAP(vplus=>Net_112,
+	PORT MAP(vplus=>Net_27,
 		vminus=>\ADC_SAR_2:Net_126\,
 		ext_pin=>\ADC_SAR_2:Net_215\,
 		vrefhi_out=>\ADC_SAR_2:Net_257\,
@@ -2853,7 +2853,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
 	PORT MAP(signal1=>\ADC_SAR_2:Net_126\,
-		signal2=>Net_104);
+		signal2=>Net_26);
 \ADC_SAR_2:noconnect\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\ADC_SAR_2:Net_209\);
 \ADC_SAR_2:vRef_Vdda\:cy_vref_v1_0

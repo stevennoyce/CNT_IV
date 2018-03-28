@@ -1,6 +1,6 @@
 // ======================================================================
 // Design01.v generated from TopDesign.cysch
-// 02/15/2018 at 13:43
+// 03/28/2018 at 17:39
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1548,6 +1548,22 @@ endmodule
 // top
 module top ;
 
+          wire  Net_158;
+    electrical  Net_157;
+          wire  Net_156;
+          wire  Net_155;
+          wire  Net_154;
+    electrical  Net_160;
+          wire  Net_153;
+    electrical  Net_152;
+          wire  Net_151;
+          wire  Net_150;
+          wire  Net_149;
+          wire  Net_148;
+          wire  Net_147;
+          wire  Net_146;
+          wire  Net_145;
+          wire  Net_144;
           wire  Net_102;
           wire  Net_78;
           wire  Net_77;
@@ -1586,8 +1602,8 @@ module top ;
           wire  Net_139;
           wire  Net_123;
           wire  Net_122;
+    electrical  Net_27;
     electrical  Net_104;
-    electrical  Net_112;
     electrical  Net_103;
           wire  Net_89;
           wire  Net_12;
@@ -1596,22 +1612,6 @@ module top ;
     electrical  Net_80;
     electrical  Net_121;
     electrical  Net_26;
-    electrical  Net_27;
-          wire  Net_144;
-          wire  Net_145;
-          wire  Net_146;
-          wire  Net_147;
-          wire  Net_148;
-          wire  Net_149;
-          wire  Net_150;
-          wire  Net_151;
-    electrical  Net_152;
-          wire  Net_153;
-          wire  Net_154;
-          wire  Net_155;
-          wire  Net_156;
-    electrical  Net_157;
-          wire  Net_158;
 
     USBFS_v3_20_0 USBUART (
         .sof(Net_122),
@@ -2408,7 +2408,7 @@ module top ;
 		 (.oe(tmpOE__Pin_I11_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_I11_net[0:0]}),
-		  .analog({Net_112}),
+		  .analog({Net_160}),
 		  .io({tmpIO_0__Pin_I11_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_I11_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_I11_net[0:0]}),
@@ -2422,8 +2422,8 @@ module top ;
 	assign tmpOE__Pin_I11_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
     ADC_SAR_v3_10_10 ADC_SAR_2 (
-        .vplus(Net_112),
-        .vminus(Net_104),
+        .vplus(Net_27),
+        .vminus(Net_26),
         .soc(1'b0),
         .eoc(Net_155),
         .aclk(1'b0),

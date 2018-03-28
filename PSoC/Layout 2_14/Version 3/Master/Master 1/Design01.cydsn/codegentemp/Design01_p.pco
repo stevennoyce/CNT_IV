@@ -76,11 +76,13 @@ set_io "Rx_UART(0)" iocell 12 7
 # Note: port 12 is the logical name for port 7
 set_io "SCL_1(0)" iocell 12 4
 set_location "\VDAC_Vgs:viDAC8\" vidaccell -1 -1 3
-set_location "\VDAC_Vds:viDAC8\" vidaccell -1 -1 0
-set_location "\VDAC_Ref:viDAC8\" vidaccell -1 -1 1
+set_location "\VDAC_Vds:viDAC8\" vidaccell -1 -1 2
+set_location "\VDAC_Ref:viDAC8\" vidaccell -1 -1 0
 set_location "\ADC_SAR_2:IRQ\" interrupt -1 -1 1
 set_location "\ADC_SAR_1:IRQ\" interrupt -1 -1 0
 set_location "\CommunicationTimer:TimerHW\" timercell -1 -1 0
+# Note: port 15 is the logical name for port 8
+set_io "Pin_I11(0)" iocell 15 3
 set_location "\USBUART:arb_int\" interrupt -1 -1 22
 set_location "\I2C_1:bI2C_UDB:SyncCtl:CtrlReg\" controlcell 1 5 6 
 set_location "\ADC_DelSig_1:DSM\" dsmodcell -1 -1 0
@@ -99,7 +101,7 @@ set_location "\USBUART:ep_3\" interrupt -1 -1 5
 set_location "\ADC_DelSig_1:IRQ\" interrupt -1 -1 29
 set_location "\USBUART:dp_int\" interrupt -1 -1 12
 set_location "\I2C_1:I2C_IRQ\" interrupt -1 -1 2
-set_location "\TIA_1:SC\" sccell -1 -1 0
+set_location "\TIA_1:SC\" sccell -1 -1 2
 set_location "CommunicationInterrupt" interrupt -1 -1 17
 # Note: port 15 is the logical name for port 8
 set_io "\USBUART:Dm(0)\" iocell 15 7
@@ -107,8 +109,6 @@ set_io "Pin_SolutionGate(0)" iocell 5 4
 set_io "Pin_Vds(0)" iocell 2 1
 set_io "Pin_Vss(0)" iocell 6 3
 set_io "Pin_I1_GND(0)" iocell 1 3
-# Note: port 15 is the logical name for port 8
-set_io "Pin_I11(0)" iocell 15 3
 set_io "Pin_I12(0)" iocell 4 0
 set_io "Pin_BackGate(0)" iocell 1 5
 set_io "Pin_LocalGates(0)" iocell 1 7

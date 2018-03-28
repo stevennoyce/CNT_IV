@@ -1,5 +1,5 @@
 -- Project:   Design01
--- Generated: 02/15/2018 13:43:56
+-- Generated: 03/28/2018 17:40:05
 -- PSoC Creator  4.1 Update 1
 
 ENTITY Design01 IS
@@ -7,7 +7,8 @@ ENTITY Design01 IS
         SDA_1(0)_PAD : INOUT std_ulogic;
         SCL_1(0)_PAD : INOUT std_ulogic;
         Rx_UART(0)_PAD : IN std_ulogic;
-        Tx_UART(0)_PAD : OUT std_ulogic);
+        Tx_UART(0)_PAD : OUT std_ulogic;
+        Pin_I11(0)_PAD : INOUT std_ulogic);
     ATTRIBUTE voltage_VDDABUF OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VDDA OF __DEFAULT__ : ENTITY IS 5e0;
     ATTRIBUTE voltage_VUSB OF __DEFAULT__ : ENTITY IS 5e0;
@@ -379,10 +380,10 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE Location OF \ADC_DelSig_1:DEC\ : LABEL IS "F(Decimator,0)";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell17";
     ATTRIBUTE Location OF __ONE__ : LABEL IS "U(2,3)";
-    ATTRIBUTE Location OF \TIA_1:SC\ : LABEL IS "F(SC,0)";
+    ATTRIBUTE Location OF \TIA_1:SC\ : LABEL IS "F(SC,2)";
     ATTRIBUTE Location OF \VDAC_Vgs:viDAC8\ : LABEL IS "F(VIDAC,3)";
-    ATTRIBUTE Location OF \VDAC_Vds:viDAC8\ : LABEL IS "F(VIDAC,0)";
-    ATTRIBUTE Location OF \VDAC_Ref:viDAC8\ : LABEL IS "F(VIDAC,1)";
+    ATTRIBUTE Location OF \VDAC_Vds:viDAC8\ : LABEL IS "F(VIDAC,2)";
+    ATTRIBUTE Location OF \VDAC_Ref:viDAC8\ : LABEL IS "F(VIDAC,0)";
     ATTRIBUTE Location OF \I2C_1:I2C_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(2)]";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "controlcell1";
     ATTRIBUTE Location OF \I2C_1:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "U(1,5)";
@@ -1966,6 +1967,7 @@ BEGIN
         PORT MAP(
             pa_out => Pin_I11(0)__PA,
             oe => open,
+            pad_in => Pin_I11(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',

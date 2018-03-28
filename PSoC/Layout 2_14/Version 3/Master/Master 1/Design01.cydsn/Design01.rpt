@@ -1,13 +1,17 @@
-Loading plugins phase: Elapsed time ==> 0s.170ms
+Loading plugins phase: Elapsed time ==> 0s.168ms
 <CYPRESSTAG name="CyDsfit arguments...">
-cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 -s C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 -s C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 </CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
+ADD: sdb.M0065: information: Analog terminal "Pin_I11.analog_0" on TopDesign is unconnected.
+ * C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch (Signal: Net_160)
+ * C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch (Shape_68.1)
+
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 2s.868ms
+Elaboration phase: Elapsed time ==> 5s.570ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.159ms
+HDL generation phase: Elapsed time ==> 0s.302ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -25,23 +29,23 @@ HDL generation phase: Elapsed time ==> 0s.159ms
 ======================================================================
 Compiling:  Design01.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  Design01.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 Design01.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  Design01.v
 Program  :   vlogfe
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Thu Feb 15 13:43:45 2018
+Wed Mar 28 17:39:55 2018
 
 
 ======================================================================
@@ -51,7 +55,7 @@ Options  :    -yv2 -q10 Design01.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Thu Feb 15 13:43:45 2018
+Wed Mar 28 17:39:55 2018
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'
@@ -100,11 +104,11 @@ vlogfe:  No errors.
 ======================================================================
 Compiling:  Design01.v
 Program  :   tovif
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Thu Feb 15 13:43:46 2018
+Wed Mar 28 17:39:56 2018
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -115,9 +119,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
-Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_analog_virtualmux_v1_0\cy_analog_virtualmux_v1_0.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
@@ -139,11 +143,11 @@ tovif:  No errors.
 ======================================================================
 Compiling:  Design01.v
 Program  :   topld
-Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
+Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -dcpsoc3 -verilog Design01.v
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Thu Feb 15 13:43:47 2018
+Wed Mar 28 17:39:56 2018
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -154,9 +158,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\codegentemp\Design01.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'.
-Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
+Linking 'C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\codegentemp\Design01.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_analog_virtualmux_v1_0\cy_analog_virtualmux_v1_0.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'.
@@ -856,16 +860,16 @@ topld:  No errors.
 
 CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\warp\bin\warp.exe
-Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya "-.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj" -dcpsoc3 Design01.v -verilog
+Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya "-.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj" -dcpsoc3 Design01.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 3s.196ms
+Warp synthesis phase: Elapsed time ==> 2s.375ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.1.0.3210, Family: PSoC3, Started at: Thursday, 15 February 2018 13:43:48
-Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 Design01.v -verilog
+cyp3fit: V4.1.0.3210, Family: PSoC3, Started at: Wednesday, 28 March 2018 17:39:57
+Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 3\Master\Master 1\Design01.cydsn\Design01.cyprj -d CY8C5868AXI-LP032 Design01.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.085ms
+Design parsing phase: Elapsed time ==> 0s.069ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -1446,7 +1450,6 @@ Design Equations
             IO Voltage: 0
         PORT MAP (
             pa_out => Pin_I11(0)__PA ,
-            analog_term => Net_112 ,
             pad => Pin_I11(0)_PAD );
         Properties:
         {
@@ -3037,8 +3040,8 @@ Analog (SC/CT) Blocks         :    1 :    3 :    4 : 25.00 %
 DAC                           :      :      :      :        
   VIDAC                       :    3 :    1 :    4 : 75.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.353ms
-Tech Mapping phase: Elapsed time ==> 0s.524ms
+Technology Mapping: Elapsed time ==> 0s.212ms
+Tech Mapping phase: Elapsed time ==> 0s.349ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Initial Analog Placement Results:
@@ -3065,8 +3068,8 @@ USB[0]@[FFB(USB,0)] : \USBUART:USB\
 VIDAC[2]@[FFB(VIDAC,2)] : \VDAC_Ref:viDAC8\
 VIDAC[3]@[FFB(VIDAC,3)] : \VDAC_Vds:viDAC8\
 VIDAC[1]@[FFB(VIDAC,1)] : \VDAC_Vgs:viDAC8\
-Log: apr.M0058: The analog placement iterative improvement is 35% done. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 67% done. (App=cydsfit)
+Log: apr.M0058: The analog placement iterative improvement is 28% done. (App=cydsfit)
+Log: apr.M0058: The analog placement iterative improvement is 57% done. (App=cydsfit)
 Analog Placement Results:
 IO_5@[IOP=(1)][IoId=(5)] : Pin_BackGate(0) (fixed)
 IO_3@[IOP=(15)][IoId=(3)] : Pin_I11(0) (fixed)
@@ -3086,32 +3089,32 @@ DSM[0]@[FFB(DSM,0)] : \ADC_DelSig_1:DSM\
 SAR[1]@[FFB(SAR,1)] : \ADC_SAR_1:ADC_SAR\
 Vref[12]@[FFB(Vref,12)] : \ADC_SAR_1:vRef_Vdda\
 SAR[0]@[FFB(SAR,0)] : \ADC_SAR_2:ADC_SAR\
-SC[0]@[FFB(SC,0)] : \TIA_1:SC\
+SC[2]@[FFB(SC,2)] : \TIA_1:SC\
 USB[0]@[FFB(USB,0)] : \USBUART:USB\
-VIDAC[1]@[FFB(VIDAC,1)] : \VDAC_Ref:viDAC8\
-VIDAC[0]@[FFB(VIDAC,0)] : \VDAC_Vds:viDAC8\
+VIDAC[0]@[FFB(VIDAC,0)] : \VDAC_Ref:viDAC8\
+VIDAC[2]@[FFB(VIDAC,2)] : \VDAC_Vds:viDAC8\
 VIDAC[3]@[FFB(VIDAC,3)] : \VDAC_Vgs:viDAC8\
 
-Analog Placement phase: Elapsed time ==> 2s.642ms
+Analog Placement phase: Elapsed time ==> 3s.253ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
-Net "Net_112" overuses wire "AGL[7]"
+Net "Net_121" overuses wire "SAR vplus wire R"
+Net "Net_121" overuses wire "SAR vplus wire R"
+Net "Net_121" overuses wire "SAR vplus wire R"
 Net "Net_103" overuses wire "SAR vplus wire R"
-Net "Net_104" overuses wire "SAR vplus wire R"
-Net "Net_80" overuses wire "AGL[1]"
-Net "Net_27" overuses wire "AGL[7]"
-Net "Net_26" overuses wire "AGL[1]"
-Net "Net_112" overuses wire "SAR vplus wire L"
+Net "Net_121" overuses wire "amuxbusR"
+Net "Net_121" overuses wire "amuxbusR"
+Net "Net_121" overuses wire "amuxbusR"
+Net "Net_104" overuses wire "amuxbusR"
+Net "Net_121" overuses wire "SAR vplus wire R"
+Net "Net_121" overuses wire "SAR vplus wire R"
+Net "Net_121" overuses wire "SIO Ref[3] Sw__0b"
+Net "Net_121" overuses wire "SIO Ref[3] Sw__1b"
 Net "Net_103" overuses wire "SAR vplus wire R"
-Net "Net_104" overuses wire "SAR vplus wire R"
-Net "Net_27" overuses wire "AGL[5]"
-Net "Net_26" overuses wire "SAR vplus wire L"
-Net "Net_26" overuses wire "AGL[5]"
-Net "Net_104" overuses wire "dsm0+ Wire"
-Net "Net_104" overuses wire "AGL[3]"
-Net "Net_25" overuses wire "AGL[3]"
-Net "Net_27" overuses wire "dsm0+ Wire"
-Analog Routing phase: Elapsed time ==> 0s.084ms
+Net "Net_121" overuses wire "amuxbusR"
+Net "Net_121" overuses wire "amuxbusR"
+Net "Net_104" overuses wire "amuxbusR"
+Analog Routing phase: Elapsed time ==> 0s.065ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Code Generation">
 ============ Analog Final Answer Routes ============
@@ -3119,23 +3122,22 @@ Dump of CyAnalogRoutingResultsDB
 Map of net to items {
   Net: Net_121 {
     vidac_3_vout
-    amuxbusr_x_vidac_3_vout
-    amuxbusr
-    amuxbusr_x_p1_5
-    p1_5
-    amuxbusr_x_p1_7
+    agr5_x_vidac_3_vout
+    agr5
+    agr5_x_sc_3_vin
+    sc_3_vin
+    agr3_x_sc_3_vin
+    agr3
+    agr3_x_p1_7
     p1_7
-    amuxbusr_x_p5_4
+    agr0_x_sc_3_vin
+    agr0
+    agr0_x_p5_4
     p5_4
-  }
-  Net: Net_112 {
-    sar_0_vplus
-    agl7_x_sar_0_vplus
-    agl7
-    agl7_x_agr7
-    agr7
-    agr7_x_p15_3
-    p15_3
+    agr1_x_sc_3_vin
+    agr1
+    agr1_x_p1_5
+    p1_5
   }
   Net: Net_103 {
     sar_1_vplus
@@ -3147,55 +3149,47 @@ Map of net to items {
     p4_0
   }
   Net: Net_104 {
-    sar_0_vminus
-    agl6_x_sar_0_vminus
-    agl6
-    agl6_x_agr6
-    agr6
-    agr6_x_comp_1_vplus
-    comp_1_vplus
-    agr3_x_comp_1_vplus
-    agr3
-    agr3_x_p1_3
-    p1_3
-    agr6_x_sar_1_vminus
     sar_1_vminus
+    amuxbusr_x_sar_1_vminus
+    amuxbusr
+    amuxbusr_x_p1_3
+    p1_3
   }
   Net: Net_80 {
-    vidac_0_vout
-    amuxbusl_x_vidac_0_vout
+    vidac_2_vout
+    amuxbusl_x_vidac_2_vout
     amuxbusl
     amuxbusl_x_p2_1
     p2_1
   }
   Net: Net_25 {
-    sc_0_vin
-    agl3_x_sc_0_vin
+    sc_2_vin
+    agl3_x_sc_2_vin
     agl3
     agl3_x_p6_3
     p6_3
   }
   Net: Net_27 {
-    sc_0_vout
-    agl5_x_sc_0_vout
-    agl5
-    agl5_x_dsm_0_vplus
+    sc_2_vout
+    agl6_x_sc_2_vout
+    agl6
+    agl6_x_dsm_0_vplus
     dsm_0_vplus
+    agl6_x_sar_0_vplus
+    sar_0_vplus
   }
   Net: Net_26 {
-    vidac_1_vout
-    abusr3_x_vidac_1_vout
-    abusr3
-    abusl3_x_abusr3
-    abusl3
-    abusl3_x_dsm_0_vminus
-    dsm_0_vminus
-    agr0_x_vidac_1_vout
-    agr0
-    agl0_x_agr0
+    vidac_0_vout
+    agl1_x_vidac_0_vout
+    agl1
+    agl1_x_sc_2_vref
+    sc_2_vref
+    agl0_x_vidac_0_vout
     agl0
-    agl0_x_sc_0_vref
-    sc_0_vref
+    agl0_x_sar_0_vminus
+    sar_0_vminus
+    agl1_x_dsm_0_vminus
+    dsm_0_vminus
   }
   Net: \ADC_DelSig_1:Net_249\ {
   }
@@ -3233,21 +3227,22 @@ Map of net to items {
 }
 Map of item to net {
   vidac_3_vout                                     -> Net_121
-  amuxbusr_x_vidac_3_vout                          -> Net_121
-  amuxbusr                                         -> Net_121
-  amuxbusr_x_p1_5                                  -> Net_121
-  p1_5                                             -> Net_121
-  amuxbusr_x_p1_7                                  -> Net_121
+  agr5_x_vidac_3_vout                              -> Net_121
+  agr5                                             -> Net_121
+  agr5_x_sc_3_vin                                  -> Net_121
+  sc_3_vin                                         -> Net_121
+  agr3_x_sc_3_vin                                  -> Net_121
+  agr3                                             -> Net_121
+  agr3_x_p1_7                                      -> Net_121
   p1_7                                             -> Net_121
-  amuxbusr_x_p5_4                                  -> Net_121
+  agr0_x_sc_3_vin                                  -> Net_121
+  agr0                                             -> Net_121
+  agr0_x_p5_4                                      -> Net_121
   p5_4                                             -> Net_121
-  sar_0_vplus                                      -> Net_112
-  agl7_x_sar_0_vplus                               -> Net_112
-  agl7                                             -> Net_112
-  agl7_x_agr7                                      -> Net_112
-  agr7                                             -> Net_112
-  agr7_x_p15_3                                     -> Net_112
-  p15_3                                            -> Net_112
+  agr1_x_sc_3_vin                                  -> Net_121
+  agr1                                             -> Net_121
+  agr1_x_p1_5                                      -> Net_121
+  p1_5                                             -> Net_121
   sar_1_vplus                                      -> Net_103
   agr4_x_sar_1_vplus                               -> Net_103
   agr4                                             -> Net_103
@@ -3255,47 +3250,39 @@ Map of item to net {
   agl4                                             -> Net_103
   agl4_x_p4_0                                      -> Net_103
   p4_0                                             -> Net_103
-  sar_0_vminus                                     -> Net_104
-  agl6_x_sar_0_vminus                              -> Net_104
-  agl6                                             -> Net_104
-  agl6_x_agr6                                      -> Net_104
-  agr6                                             -> Net_104
-  agr6_x_comp_1_vplus                              -> Net_104
-  comp_1_vplus                                     -> Net_104
-  agr3_x_comp_1_vplus                              -> Net_104
-  agr3                                             -> Net_104
-  agr3_x_p1_3                                      -> Net_104
-  p1_3                                             -> Net_104
-  agr6_x_sar_1_vminus                              -> Net_104
   sar_1_vminus                                     -> Net_104
-  vidac_0_vout                                     -> Net_80
-  amuxbusl_x_vidac_0_vout                          -> Net_80
+  amuxbusr_x_sar_1_vminus                          -> Net_104
+  amuxbusr                                         -> Net_104
+  amuxbusr_x_p1_3                                  -> Net_104
+  p1_3                                             -> Net_104
+  vidac_2_vout                                     -> Net_80
+  amuxbusl_x_vidac_2_vout                          -> Net_80
   amuxbusl                                         -> Net_80
   amuxbusl_x_p2_1                                  -> Net_80
   p2_1                                             -> Net_80
-  sc_0_vin                                         -> Net_25
-  agl3_x_sc_0_vin                                  -> Net_25
+  sc_2_vin                                         -> Net_25
+  agl3_x_sc_2_vin                                  -> Net_25
   agl3                                             -> Net_25
   agl3_x_p6_3                                      -> Net_25
   p6_3                                             -> Net_25
-  sc_0_vout                                        -> Net_27
-  agl5_x_sc_0_vout                                 -> Net_27
-  agl5                                             -> Net_27
-  agl5_x_dsm_0_vplus                               -> Net_27
+  sc_2_vout                                        -> Net_27
+  agl6_x_sc_2_vout                                 -> Net_27
+  agl6                                             -> Net_27
+  agl6_x_dsm_0_vplus                               -> Net_27
   dsm_0_vplus                                      -> Net_27
-  vidac_1_vout                                     -> Net_26
-  abusr3_x_vidac_1_vout                            -> Net_26
-  abusr3                                           -> Net_26
-  abusl3_x_abusr3                                  -> Net_26
-  abusl3                                           -> Net_26
-  abusl3_x_dsm_0_vminus                            -> Net_26
-  dsm_0_vminus                                     -> Net_26
-  agr0_x_vidac_1_vout                              -> Net_26
-  agr0                                             -> Net_26
-  agl0_x_agr0                                      -> Net_26
+  agl6_x_sar_0_vplus                               -> Net_27
+  sar_0_vplus                                      -> Net_27
+  vidac_0_vout                                     -> Net_26
+  agl1_x_vidac_0_vout                              -> Net_26
+  agl1                                             -> Net_26
+  agl1_x_sc_2_vref                                 -> Net_26
+  sc_2_vref                                        -> Net_26
+  agl0_x_vidac_0_vout                              -> Net_26
   agl0                                             -> Net_26
-  agl0_x_sc_0_vref                                 -> Net_26
-  sc_0_vref                                        -> Net_26
+  agl0_x_sar_0_vminus                              -> Net_26
+  sar_0_vminus                                     -> Net_26
+  agl1_x_dsm_0_vminus                              -> Net_26
+  dsm_0_vminus                                     -> Net_26
   sar_0_vref                                       -> \ADC_SAR_1:Net_216\
   sar_0_vref_x_sar_0_vref_vdda_vdda_2              -> \ADC_SAR_1:Net_216\
   sar_0_vref_vdda_vdda_2                           -> \ADC_SAR_1:Net_216\
@@ -3312,11 +3299,11 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = False
 IsVddaHalfUsedForSar1 = False
-Analog Code Generation phase: Elapsed time ==> 0s.346ms
+Analog Code Generation phase: Elapsed time ==> 0s.330ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
-I2076: Total run-time: 2.8 sec.
+I2076: Total run-time: 2.4 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -3340,14 +3327,14 @@ PLD Packing Summary
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
 </CYPRESSTAG>
-PLD Packing: Elapsed time ==> 0s.025ms
+PLD Packing: Elapsed time ==> 0s.046ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Partitioning">
 <CYPRESSTAG name="Initial Partitioning Summary">
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.214ms
+Partitioning: Elapsed time ==> 0s.191ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -5640,7 +5627,6 @@ Pin : Name = Pin_I11(0)
         IO Voltage: 0
     PORT MAP (
         pa_out => Pin_I11(0)__PA ,
-        analog_term => Net_112 ,
         pad => Pin_I11(0)_PAD );
     Properties:
     {
@@ -5823,7 +5809,7 @@ LVD group 0: empty
 PICU group 0: empty
 PM group 0: empty
 SC group 0: 
-    SC Block @ F(SC,0): 
+    SC Block @ F(SC,2): 
     sccell: Name =\TIA_1:SC\
         PORT MAP (
             vref => Net_26 ,
@@ -5882,21 +5868,21 @@ USB group 0:
         }
 VIDAC group 0: 
     VIDAC Block @ F(VIDAC,0): 
-    vidaccell: Name =\VDAC_Vds:viDAC8\
+    vidaccell: Name =\VDAC_Ref:viDAC8\
         PORT MAP (
-            vout => Net_80 ,
-            iout => \VDAC_Vds:Net_77\ );
+            vout => Net_26 ,
+            iout => \VDAC_Ref:Net_77\ );
         Properties:
         {
             cy_registers = ""
             is_all_if_any = 0
             reg_data = 0
         }
-    VIDAC Block @ F(VIDAC,1): 
-    vidaccell: Name =\VDAC_Ref:viDAC8\
+    VIDAC Block @ F(VIDAC,2): 
+    vidaccell: Name =\VDAC_Vds:viDAC8\
         PORT MAP (
-            vout => Net_26 ,
-            iout => \VDAC_Ref:Net_77\ );
+            vout => Net_80 ,
+            iout => \VDAC_Vds:Net_77\ );
         Properties:
         {
             cy_registers = ""
@@ -5933,8 +5919,8 @@ SAR group 0:
     SAR Block @ F(SAR,0): 
     sarcell: Name =\ADC_SAR_2:ADC_SAR\
         PORT MAP (
-            vplus => Net_112 ,
-            vminus => Net_104 ,
+            vplus => Net_27 ,
+            vminus => Net_26 ,
             ext_pin => \ADC_SAR_2:Net_209\ ,
             vrefhi_out => \ADC_SAR_2:Net_255\ ,
             vref => \ADC_SAR_1:Net_216\ ,
@@ -6016,40 +6002,40 @@ Port | Pin | Fixed |      Type |       Drive Mode |                Name | Connec
      |   6 |     * |      NONE |         CMOS_OUT |          Tx_UART(0) | In(Net_56)
      |   7 |     * |      NONE |     HI_Z_DIGITAL |          Rx_UART(0) | FB(Net_61)
 -----+-----+-------+-----------+------------------+---------------------+-----------------------------------------------
-  15 |   3 |     * |      NONE |      HI_Z_ANALOG |          Pin_I11(0) | Analog(Net_112)
+  15 |   3 |     * |      NONE |      HI_Z_ANALOG |          Pin_I11(0) | 
      |   6 |     * |   FALLING |      HI_Z_ANALOG |     \USBUART:Dp(0)\ | Analog(\USBUART:Net_1000\)
      |   7 |     * |      NONE |      HI_Z_ANALOG |     \USBUART:Dm(0)\ | Analog(\USBUART:Net_597\)
 ------------------------------------------------------------------------------------------------------------------------
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.153ms
-Digital Placement phase: Elapsed time ==> 4s.320ms
+Digital component placer commit/Report: Elapsed time ==> 0s.109ms
+Digital Placement phase: Elapsed time ==> 3s.593ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "Design01_r.vh2" --pcf-path "Design01.pco" --des-name "Design01" --dsf-path "Design01.dsf" --sdc-path "Design01.sdc" --lib-path "Design01_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 4s.430ms
+Digital Routing phase: Elapsed time ==> 3s.875ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.396ms
+Bitstream Generation phase: Elapsed time ==> 0s.306ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
-Bitstream Verification phase: Elapsed time ==> 0s.092ms
+Bitstream Verification phase: Elapsed time ==> 0s.059ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in Design01_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.883ms
+Static timing analysis phase: Elapsed time ==> 0s.656ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.507ms
+Design database save phase: Elapsed time ==> 0s.335ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 14s.375ms
+cydsfit: Elapsed time ==> 12s.919ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 14s.396ms
-API generation phase: Elapsed time ==> 6s.947ms
-Dependency generation phase: Elapsed time ==> 0s.149ms
-Cleanup phase: Elapsed time ==> 0s.054ms
+Fitter phase: Elapsed time ==> 12s.937ms
+API generation phase: Elapsed time ==> 7s.191ms
+Dependency generation phase: Elapsed time ==> 0s.042ms
+Cleanup phase: Elapsed time ==> 0s.019ms
