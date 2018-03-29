@@ -52,7 +52,7 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127X-red'
+	chipID = 'C127X'
 	deviceID = '15-16'
 
 runTypes = {
@@ -75,12 +75,12 @@ default_parameters = {
 		'isAlternatingSweep': False,
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
-		'stepsInVGSPerDirection': 50,
+		'stepsInVGSPerDirection': 100,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-3.5,
-		'gateVoltageMaximum': 	3.5
+		'gateVoltageMinimum':	-15,
+		'gateVoltageMaximum': 	15
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -136,7 +136,7 @@ default_parameters = {
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  14,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['seconds','minutes','hours','days','weeks'][3],
@@ -145,13 +145,13 @@ default_parameters = {
 	'ChipHistory':{
 		
 	},
-	'MeasurementSystem':['B2912A','PCB2v14'][1],
+	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'deviceRange':[],#devicesInRange(1,32,skip=True),
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
-	'postFigures':	False,
+	'postFigures':	True,
 	'NPLC':1
 }
 

@@ -224,7 +224,7 @@ class PCB2v14(SourceMeasureUnit):
 
 	def setParameter(self, parameter):
 		self.ser.write( str(parameter).encode('UTF-8') )
-		time.sleep(0.1)
+		time.sleep(0.15)
 
 	def getResponse(self, startsWith=''):
 		response = self.ser.readline().decode(encoding='UTF-8')
