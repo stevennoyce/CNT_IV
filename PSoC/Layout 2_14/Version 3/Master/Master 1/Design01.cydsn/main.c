@@ -556,10 +556,10 @@ void Measure() {
 	float SAR1_Average = 0;
 	float SAR1_SD = 0;
 	float SAR2_Average = 0;
-	float SAR2_SD = 0
+	float SAR2_SD = 0;
 
-	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, 1)
-	SAR2_Measure_V(&SAR1_Average, &SAR1_SD, 10)
+	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, 1);
+	SAR2_Measure_V(&SAR1_Average, &SAR1_SD, 10);
 
 	float SAR1 = SAR1_Average;
 	float SAR2 = SAR2_Average;
