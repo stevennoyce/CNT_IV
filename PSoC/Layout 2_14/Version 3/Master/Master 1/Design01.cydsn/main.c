@@ -280,166 +280,6 @@ void SAR2_Measure_V(float* average, float* standardDeviation, uint32 sampleCount
 	*standardDeviation = SAR_SD;
 }
 
-// Take a measurement of the system (Id - from delta-sigma ADC, Vgs, Vds, SAR1 ADC, SAR2 ADC)
-void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_SampleCount) {
-	int32 IdsAverage = 0;
-	int32 IdsStandardDeviation = 0;
-	
-	ADC_Measure_uV(&IdsAverage, &IdsStandardDeviation, deltaSigmaSampleCount);
-	
-	float IdsAverageAmps = -1e-6/20e3*IdsAverage;
-	
-	//ADC_SAR_1_StartConvert();
-	//ADC_SAR_2_StartConvert();
-	//while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
-	//while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
-	//float SAR1 = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
-	//float SAR2 = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
-	
-	float SAR1_Average = 0;
-	float SAR1_SD = 0;
-	float SAR2_Average = 0;
-	float SAR2_SD = 0;
-
-	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
-	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
-
-	float SAR1 = SAR1_Average;
-	float SAR2 = SAR2_Average;
-
-	sprintf(TransmitBuffer, "[%e,%f,%f,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1, SAR2);
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
-}
-
-// Repeatedly take measurements of the system
-void Measure_Multiple(uint32 n) {
-	for (uint32 i = 0; i < n; i++) {
-		Measure(100, 1, 10);
-	}
-}
-
-// Take a basic gate sweep (hardcoded voltages, hardcoded number of data points)
-void Measure_Sweep() {
-	VDAC_Vds_SetValue(90);
-	VDAC_Vgs_SetValue(254);
-	
-	for (uint16 Vgsi = 0; Vgsi < 256; Vgsi++) {
-		VDAC_Vgs_SetValue(Vgsi);
-		Measure(100, 1, 1);
-	}
-}
-
-void Measure_Gate_Sweep(uint8 loop) {
-	
-	if (Vds_Index_Goal_Relative > 0) {
-		Set_Ref_Raw(254 - Vds_Index_Goal_Relative);
-	} else {
-		Set_Ref_Raw(254);
-	}
-	
-	int8 speed = 16;
-	
-	for (uint8 l = 0; l <= loop; l++) {
-		int8 direction = 1*speed;
-		uint8 istart = 0;
-		if (Vds_Index_Goal_Relative < 0) {
-			uint8 istart = -Vds_Index_Goal_Relative;
-		}
-		
-		uint8 istop = 256-speed;
-		
-		if (l%2 == 1) {
-			direction = -1*speed;
-			istart = 256-speed;
-			istop = 0;
-		}
-		
-		for (uint8 i = istart; i != istop; i += direction) {
-			for (uint8 j = 0; j <= 1; j++) {
-				if (j == 1) Set_Ref_Raw(254 - i + 1);
-				Set_Vgs_Raw(i);
-				
-				Measure(33, 1, 1);
-				
-				if (G_Stop) break;
-				while (G_Pause);
-			}
-		}
-	}
-}
-
-void Measure_Wide_Gate_Sweep(uint8 loop) {
-	Set_Ref_Raw(254);
-	
-	int8 speed = 16;
-	
-	for (uint8 l = 0; l <= loop; l++) {
-		int8 direction = 1*speed;
-		uint8 istart = 0;
-		uint8 istop = 256-speed;
-		
-		if (l%2 == 1) {
-			direction = -1*speed;
-			istart = 256-speed;
-			istop = 0;
-		}
-		
-		for (uint8 i = istart; i != istop; i += direction) {
-			for (uint8 j = 0; j <= 1; j++) {
-				
-				if (j == 1) Set_Ref_Raw(254 - i + 1);
-				Set_Vgs_Raw(i);
-				
-				Measure(33, 1, 1);
-				
-				if (G_Stop) break;
-				while (G_Pause);
-			}
-		}
-	}
-}
-
-void Measure_Gate_Sweep_New() {
-	uint8 refTurn = 1;
-	int8 refIncrement = 1;
-	uint8 startRefIndex = 0;
-	uint8 endRefIndex = 0;
-	uint8 refIndex = startRefIndex;
-	uint8 refArrived = 0;
-	
-	int8 gateIncrement = 1;
-	uint8 startGateIndex = 0;
-	uint8 endGateIndex = 0;
-	uint8 gateIndex = startGateIndex;
-	uint8 gateArrived = 0;
-	
-	
-	while (!gateArrived || !refArrived) {
-		gateArrived = abs(gateIndex-endGateIndex) < abs(gateIncrement);
-		refArrived = abs(refIndex-endRefIndex) < abs(refIncrement);
-		
-		refTurn = !refTurn;
-		
-		if (refTurn && refArrived) continue;
-		if (!refTurn && gateArrived) continue;
-		
-		Set_Ref_Raw(refIndex);
-		Set_Vgs_Raw(gateIndex);
-		
-		Measure(100, 1, 1);
-		
-		if (refTurn) {
-			refIndex += refIncrement;
-		} else {
-			gateIndex += gateIncrement;
-		}
-		
-		if (G_Stop) break;
-		while (G_Pause);
-	}
-}
-
 // Measure current and compare it to some compliance value
 void Measure_Current_Vss(float* currentAverageIn, float* currentStdDevIn, uint32 sampleCount) {
 	Compliance_Reached = 0;
@@ -522,6 +362,34 @@ void Handle_Compliance_Breach() {
 	
 	// To do: Should disconnect something or take some other action at this point since still at compliance
 }
+
+// Get the reference voltage in volts
+float Get_Ref() {
+	float result = 4.080/255.0*VDAC_Ref_Data;
+	if (VDAC_Ref_CR0 & (VDAC_Ref_RANGE_1V & VDAC_Ref_RANGE_MASK)) {
+		result = 1.020/255.0*VDAC_Ref_Data;
+	}
+	return result;
+}
+
+// Get Vgs in volts
+float Get_Vgs() {
+	float result = 4.080/255.0*VDAC_Vgs_Data - Get_Ref();
+	if (VDAC_Vgs_CR0 & (VDAC_Vgs_RANGE_1V & VDAC_Vgs_RANGE_MASK)) {
+		result = 1.020/255.0*VDAC_Vgs_Data - Get_Ref();
+	}
+	return result;
+}
+
+// Get Vds in volts
+float Get_Vds() {
+	float result = 4.080/255.0*VDAC_Vds_Data - Get_Ref();
+	if (VDAC_Vds_CR0 & (VDAC_Vds_RANGE_1V & VDAC_Vds_RANGE_MASK)) {
+		result = 1.020/255.0*VDAC_Vds_Data - Get_Ref();
+	}
+	return result;
+}
+
 
 // ****************************
 // Set the raw value of Vds
@@ -662,33 +530,6 @@ void Set_Vds_mV(float mV) {
 }
 // ****************************
 
-// Get the reference voltage in volts
-float Get_Ref() {
-	float result = 4.080/255.0*VDAC_Ref_Data;
-	if (VDAC_Ref_CR0 & (VDAC_Ref_RANGE_1V & VDAC_Ref_RANGE_MASK)) {
-		result = 1.020/255.0*VDAC_Ref_Data;
-	}
-	return result;
-}
-
-// Get Vgs in volts
-float Get_Vgs() {
-	float result = 4.080/255.0*VDAC_Vgs_Data - Get_Ref();
-	if (VDAC_Vgs_CR0 & (VDAC_Vgs_RANGE_1V & VDAC_Vgs_RANGE_MASK)) {
-		result = 1.020/255.0*VDAC_Vgs_Data - Get_Ref();
-	}
-	return result;
-}
-
-// Get Vds in volts
-float Get_Vds() {
-	float result = 4.080/255.0*VDAC_Vds_Data - Get_Ref();
-	if (VDAC_Vds_CR0 & (VDAC_Vds_RANGE_1V & VDAC_Vds_RANGE_MASK)) {
-		result = 1.020/255.0*VDAC_Vds_Data - Get_Ref();
-	}
-	return result;
-}
-
 // Set Vgs and Vds to 0
 void Zero_All_DACs() {
 	Set_Vds_Raw(0);
@@ -696,6 +537,166 @@ void Zero_All_DACs() {
 	
 	VDAC_Vds_SetValue(0);
 	VDAC_Vgs_SetValue(0);
+}
+
+// Take a measurement of the system (Id - from delta-sigma ADC, Vgs, Vds, SAR1 ADC, SAR2 ADC)
+void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_SampleCount) {
+	int32 IdsAverage = 0;
+	int32 IdsStandardDeviation = 0;
+	
+	ADC_Measure_uV(&IdsAverage, &IdsStandardDeviation, deltaSigmaSampleCount);
+	
+	float IdsAverageAmps = -1e-6/20e3*IdsAverage;
+	
+	//ADC_SAR_1_StartConvert();
+	//ADC_SAR_2_StartConvert();
+	//while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
+	//while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
+	//float SAR1 = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
+	//float SAR2 = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
+	
+	float SAR1_Average = 0;
+	float SAR1_SD = 0;
+	float SAR2_Average = 0;
+	float SAR2_SD = 0;
+
+	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
+	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
+
+	float SAR1 = SAR1_Average;
+	float SAR2 = SAR2_Average;
+
+	sprintf(TransmitBuffer, "[%e,%f,%f,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1, SAR2);
+	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	UART_1_PutString(TransmitBuffer);
+}
+
+// Repeatedly take measurements of the system
+void Measure_Multiple(uint32 n) {
+	for (uint32 i = 0; i < n; i++) {
+		Measure(100, 1, 10);
+	}
+}
+
+// Take a basic gate sweep (hardcoded voltages, hardcoded number of data points)
+void Measure_Sweep() {
+	VDAC_Vds_SetValue(90);
+	VDAC_Vgs_SetValue(254);
+	
+	for (uint16 Vgsi = 0; Vgsi < 256; Vgsi++) {
+		VDAC_Vgs_SetValue(Vgsi);
+		Measure(100, 1, 1);
+	}
+}
+
+void Measure_Gate_Sweep(uint8 loop) {
+	
+	if (Vds_Index_Goal_Relative > 0) {
+		Set_Ref_Raw(254 - Vds_Index_Goal_Relative);
+	} else {
+		Set_Ref_Raw(254);
+	}
+	
+	int8 speed = 16;
+	
+	for (uint8 l = 0; l <= loop; l++) {
+		int8 direction = 1*speed;
+		uint8 istart = 0;
+		if (Vds_Index_Goal_Relative < 0) {
+			istart = -Vds_Index_Goal_Relative;
+		}
+		
+		uint8 istop = 256-speed;
+		
+		if (l%2 == 1) {
+			direction = -1*speed;
+			istart = 256-speed;
+			istop = 0;
+		}
+		
+		for (uint8 i = istart; i != istop; i += direction) {
+			for (uint8 j = 0; j <= 1; j++) {
+				if (j == 1) Set_Ref_Raw(254 - i + 1);
+				Set_Vgs_Raw(i);
+				
+				Measure(33, 1, 1);
+				
+				if (G_Stop) break;
+				while (G_Pause);
+			}
+		}
+	}
+}
+
+void Measure_Wide_Gate_Sweep(uint8 loop) {
+	Set_Ref_Raw(254);
+	
+	int8 speed = 16;
+	
+	for (uint8 l = 0; l <= loop; l++) {
+		int8 direction = 1*speed;
+		uint8 istart = 0;
+		uint8 istop = 256-speed;
+		
+		if (l%2 == 1) {
+			direction = -1*speed;
+			istart = 256-speed;
+			istop = 0;
+		}
+		
+		for (uint8 i = istart; i != istop; i += direction) {
+			for (uint8 j = 0; j <= 1; j++) {
+				
+				if (j == 1) Set_Ref_Raw(254 - i + 1);
+				Set_Vgs_Raw(i);
+				
+				Measure(33, 1, 1);
+				
+				if (G_Stop) break;
+				while (G_Pause);
+			}
+		}
+	}
+}
+
+void Measure_Gate_Sweep_New() {
+	uint8 refTurn = 1;
+	int8 refIncrement = 1;
+	uint8 startRefIndex = 0;
+	uint8 endRefIndex = 0;
+	uint8 refIndex = startRefIndex;
+	uint8 refArrived = 0;
+	
+	int8 gateIncrement = 1;
+	uint8 startGateIndex = 0;
+	uint8 endGateIndex = 0;
+	uint8 gateIndex = startGateIndex;
+	uint8 gateArrived = 0;
+	
+	
+	while (!gateArrived || !refArrived) {
+		gateArrived = abs(gateIndex-endGateIndex) < abs(gateIncrement);
+		refArrived = abs(refIndex-endRefIndex) < abs(refIncrement);
+		
+		refTurn = !refTurn;
+		
+		if (refTurn && refArrived) continue;
+		if (!refTurn && gateArrived) continue;
+		
+		Set_Ref_Raw(refIndex);
+		Set_Vgs_Raw(gateIndex);
+		
+		Measure(100, 1, 1);
+		
+		if (refTurn) {
+			refIndex += refIncrement;
+		} else {
+			gateIndex += gateIncrement;
+		}
+		
+		if (G_Stop) break;
+		while (G_Pause);
+	}
 }
 
 void Scan(uint8 wide, uint8 loop) {
