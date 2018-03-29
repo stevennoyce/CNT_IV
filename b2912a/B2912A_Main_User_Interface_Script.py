@@ -105,7 +105,7 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	0,
+		'gateVoltageSetPoint': 	+15,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
@@ -115,7 +115,7 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 16,
+		'numberOfStaticBiases': 31,
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
@@ -135,7 +135,7 @@ default_parameters = {
 		'plotStaticBias': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 14,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  14,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
@@ -151,7 +151,7 @@ default_parameters = {
 	'deviceRange':[],#devicesInRange(1,32,skip=True),
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
-	'postFigures':	True,
+	'postFigures':	False,
 	'NPLC':1
 }
 

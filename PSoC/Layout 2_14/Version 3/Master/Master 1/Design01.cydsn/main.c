@@ -129,6 +129,42 @@ void ADC_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount
 	*standardDeviation = ADC_SD;
 }
 
+void SAR1_Measure_V(float* average, float* standardDeviation, uint32 sampleCount) {
+	float SAR_Result = 0;
+	float SAR_SD = 0;
+	
+	for (uint32 i = 1; i < sampleCount; i++) {
+		ADC_SAR_1_StartConvert();
+		while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
+		
+		float SAR1_Result_Current = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
+		
+		SAR_SD += (float)(i-1)/(float)(i)*(SAR1_Result_Current - SAR_Result)*(SAR1_Result_Current - SAR_Result);
+		SAR_Result += ((float)SAR1_Result_Current - (float)SAR_Result)/(float)i;
+	}
+	
+	*average = SAR_Result;
+	*standardDeviation = SAR_SD;
+}
+
+void SAR2_Measure_V(float* average, float* standardDeviation, uint32 sampleCount) {
+	float SAR_Result = 0;
+	float SAR_SD = 0;
+	
+	for (uint32 i = 1; i < sampleCount; i++) {
+		ADC_SAR_2_StartConvert();
+		while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
+		
+		float SAR2_Result_Current = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
+		
+		SAR_SD += (float)(i-1)/(float)(i)*(SAR2_Result_Current - SAR_Result)*(SAR2_Result_Current - SAR_Result);
+		SAR_Result += ((float)SAR2_Result_Current - (float)SAR_Result)/(float)i;
+	}
+	
+	*average = SAR_Result;
+	*standardDeviation = SAR_SD;
+}
+
 void Measure_Sweep() {
 	VDAC_Vds_SetValue(90);
 	VDAC_Vgs_SetValue(254);
@@ -509,14 +545,25 @@ void Measure() {
 	
 	float IdsAverageAmps = -1e-6/20e3*IdsAverage;
 	
-	ADC_SAR_1_StartConvert();
-	ADC_SAR_2_StartConvert();
-	while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
-	while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
+	//ADC_SAR_1_StartConvert();
+	//ADC_SAR_2_StartConvert();
+	//while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
+	//while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
 	
-	float SAR1 = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
-	float SAR2 = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
+	//float SAR1 = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
+	//float SAR2 = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
 	
+	float SAR1_Average = 0;
+	float SAR1_SD = 0;
+	float SAR2_Average = 0;
+	float SAR2_SD = 0
+
+	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, 10)
+	SAR2_Measure_V(&SAR1_Average, &SAR1_SD, 1)
+
+	float SAR1 = SAR1_Average;
+	float SAR2 = SAR2_Average;
+
 	sprintf(TransmitBuffer, "[%e,%f,%f,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1, SAR2);
 	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 	UART_1_PutString(TransmitBuffer);
