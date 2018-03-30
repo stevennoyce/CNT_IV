@@ -6,7 +6,7 @@
 
 #Build Date:         Jul 19 2017 14:31:00
 
-#File Generated:     Mar 28 2018 17:40:02
+#File Generated:     Mar 30 2018 14:46:36
 
 #Purpose:            
 
@@ -84,10 +84,10 @@ Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.1 MHz
 Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
-Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.8 MHz
+Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: CyBUS_CLK            | Frequency:  57.3 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.1 MHz
@@ -113,10 +113,10 @@ Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.1 MHz
 Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
-Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.8 MHz
+Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: CyBUS_CLK            | Frequency:   1.4 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.1 MHz
@@ -165,10 +165,10 @@ Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.1 MHz
 Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
-Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.8 MHz
-Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.8 MHz
+Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
+Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: CyBUS_CLK            | Frequency:   1.5 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.1 MHz
@@ -188,5 +188,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 2.4 sec.
+I2076: Total run-time: 1.9 sec.
 

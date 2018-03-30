@@ -641,7 +641,7 @@
         <register>
           <name>VDAC8_TR</name>
           <description>VDAC8_TR</description>
-          <addressOffset>0x4000460A</addressOffset>
+          <addressOffset>0x40004608</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -659,7 +659,7 @@
         <register>
           <name>VDAC8_CR0</name>
           <description>DAC Block Control Register 0</description>
-          <addressOffset>0x40005828</addressOffset>
+          <addressOffset>0x40005820</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -737,7 +737,7 @@
         <register>
           <name>VDAC8_CR1</name>
           <description>DAC Block Control Register 1</description>
-          <addressOffset>0x40005829</addressOffset>
+          <addressOffset>0x40005821</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -824,7 +824,7 @@
         <register>
           <name>VDAC8_SW0</name>
           <description>DAC Analog Routing Register 0</description>
-          <addressOffset>0x40005A90</addressOffset>
+          <addressOffset>0x40005A80</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -873,7 +873,7 @@
         <register>
           <name>VDAC8_SW2</name>
           <description>DAC Analog Routing Register 2</description>
-          <addressOffset>0x40005A92</addressOffset>
+          <addressOffset>0x40005A82</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -922,7 +922,7 @@
         <register>
           <name>VDAC8_SW3</name>
           <description>DAC Analog Routing Register 3</description>
-          <addressOffset>0x40005A93</addressOffset>
+          <addressOffset>0x40005A83</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -990,7 +990,7 @@
         <register>
           <name>VDAC8_SW4</name>
           <description>DAC Analog Routing Register 4</description>
-          <addressOffset>0x40005A94</addressOffset>
+          <addressOffset>0x40005A84</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -1039,7 +1039,7 @@
         <register>
           <name>VDAC8_STROBE</name>
           <description>DAC Strobe Register</description>
-          <addressOffset>0x40005A97</addressOffset>
+          <addressOffset>0x40005A87</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -1118,7 +1118,7 @@
         <register>
           <name>VDAC8_DATA</name>
           <description>DAC Data Register</description>
-          <addressOffset>0x40005B82</addressOffset>
+          <addressOffset>0x40005B80</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -7736,7 +7736,7 @@
         <register>
           <name>SC_CR0</name>
           <description>Switched Capacitor Control Register 0</description>
-          <addressOffset>0x40005808</addressOffset>
+          <addressOffset>0x40005800</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -7825,7 +7825,7 @@
         <register>
           <name>SC_CR1</name>
           <description>Switched Capacitor Control Register 1</description>
-          <addressOffset>0x40005809</addressOffset>
+          <addressOffset>0x40005801</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -7932,7 +7932,7 @@
         <register>
           <name>SC_CR2</name>
           <description>Switched Capacitor Control Register 2</description>
-          <addressOffset>0x4000580A</addressOffset>
+          <addressOffset>0x40005802</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8078,7 +8078,7 @@
         <register>
           <name>SC__BST</name>
           <description>Switched Capacitor Boost Clock Selection Register</description>
-          <addressOffset>0x40005A2C</addressOffset>
+          <addressOffset>0x40005A0C</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8618,7 +8618,7 @@
         <register>
           <name>VDAC8_TR</name>
           <description>VDAC8_TR</description>
-          <addressOffset>0x40004608</addressOffset>
+          <addressOffset>0x4000460A</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8636,7 +8636,7 @@
         <register>
           <name>VDAC8_CR0</name>
           <description>DAC Block Control Register 0</description>
-          <addressOffset>0x40005820</addressOffset>
+          <addressOffset>0x40005828</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8714,7 +8714,7 @@
         <register>
           <name>VDAC8_CR1</name>
           <description>DAC Block Control Register 1</description>
-          <addressOffset>0x40005821</addressOffset>
+          <addressOffset>0x40005829</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8801,7 +8801,7 @@
         <register>
           <name>VDAC8_SW0</name>
           <description>DAC Analog Routing Register 0</description>
-          <addressOffset>0x40005A80</addressOffset>
+          <addressOffset>0x40005A90</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8850,7 +8850,7 @@
         <register>
           <name>VDAC8_SW2</name>
           <description>DAC Analog Routing Register 2</description>
-          <addressOffset>0x40005A82</addressOffset>
+          <addressOffset>0x40005A92</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8899,7 +8899,7 @@
         <register>
           <name>VDAC8_SW3</name>
           <description>DAC Analog Routing Register 3</description>
-          <addressOffset>0x40005A83</addressOffset>
+          <addressOffset>0x40005A93</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -8967,7 +8967,7 @@
         <register>
           <name>VDAC8_SW4</name>
           <description>DAC Analog Routing Register 4</description>
-          <addressOffset>0x40005A84</addressOffset>
+          <addressOffset>0x40005A94</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -9016,7 +9016,7 @@
         <register>
           <name>VDAC8_STROBE</name>
           <description>DAC Strobe Register</description>
-          <addressOffset>0x40005A87</addressOffset>
+          <addressOffset>0x40005A97</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -9095,7 +9095,7 @@
         <register>
           <name>VDAC8_DATA</name>
           <description>DAC Data Register</description>
-          <addressOffset>0x40005B80</addressOffset>
+          <addressOffset>0x40005B82</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
