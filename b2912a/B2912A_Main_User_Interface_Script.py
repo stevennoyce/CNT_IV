@@ -38,6 +38,7 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C127X'
 	deviceID = '15-16'
 	# Experiments 3 to 4
+	# Experiment 24
 	
 	chipID = 'C127E'
 	deviceID = '15-16'
@@ -105,8 +106,8 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	+15,
-		'drainVoltageSetPoint':	0,
+		'gateVoltageSetPoint': 	-15,
+		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
 	},
@@ -119,7 +120,7 @@ default_parameters = {
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage':  -30,
+		'incrementStaticGateVoltage':  0,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
@@ -135,8 +136,8 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 20,
-		'excludeDataAfterJSONExperimentNumber':  25,
+		'excludeDataBeforeJSONExperimentNumber': 25,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
