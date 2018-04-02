@@ -136,7 +136,7 @@ default_parameters = {
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 20,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataAfterJSONExperimentNumber':  25,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],

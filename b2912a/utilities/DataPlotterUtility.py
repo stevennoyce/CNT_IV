@@ -34,6 +34,7 @@ plt.rcParams['font.size'] = 6*2
 plt.rcParams['xtick.major.size'] = 6
 plt.rcParams['ytick.major.size'] = 6
 plt.rcParams['figure.figsize'] = [8,6]
+plt.rcParams['figure.titlesize'] = 8
 plt.rcParams['axes.formatter.use_mathtext'] = True
 plt.rcParams['xtick.top'] = True
 plt.rcParams['ytick.right'] = True
@@ -47,6 +48,8 @@ plt.rcParams['ytick.major.width'] = 1
 plt.rcParams['axes.formatter.limits'] = [-2, 3]
 
 # ********** Constants **********
+
+publication_mode = False
 
 plot_parameters = {
 	'SubthresholdCurve': {
@@ -124,8 +127,9 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'SubthresholdCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	if plot_parameters['SubthresholdCurve']['titles'][0] != '':
-		ax.set_title(plot_parameters['SubthresholdCurve']['titles'][0])
+	ax.set_title(plot_parameters['SubthresholdCurve']['titles'][0])
+	if(len(deviceHistory) <= 0):
+		return
 	
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['SubthresholdCurve']['colorMap'], 0.7, 0, len(deviceHistory))
@@ -147,8 +151,9 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	if plot_parameters['TransferCurve']['titles'][0] != '':
-		ax.set_title(plot_parameters['TransferCurve']['titles'][0])
+	ax.set_title(plot_parameters['TransferCurve']['titles'][0])
+	if(len(deviceHistory) <= 0):
+		return
 	
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['TransferCurve']['colorMap'], 0.7, 0, len(deviceHistory))
@@ -175,8 +180,9 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	if plot_parameters['GateCurrent']['titles'][0] != '':
-		ax.set_title(plot_parameters['GateCurrent']['titles'][0])
+	ax.set_title(plot_parameters['GateCurrent']['titles'][0])
+	if(len(deviceHistory) <= 0):
+		return
 
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['GateCurrent']['colorMap'], 0.7, 0, len(deviceHistory))
@@ -203,6 +209,8 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	ax1.set_title(plot_parameters['BurnOut']['titles'][0])
 	ax2.set_title(plot_parameters['BurnOut']['titles'][1])
 	ax3.set_title(plot_parameters['BurnOut']['titles'][2])
+	if(len(deviceHistory) <= 0):
+		return
 
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.6, 1.0, len(deviceHistory))
@@ -228,6 +236,8 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	if(plot_parameters['StaticBias']['titles'][0] != ''):
 		ax.set_title(plot_parameters['StaticBias']['titles'][0])
+	if(len(deviceHistory) <= 0):
+		return
 
 	# Build Color Map
 	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
@@ -319,8 +329,9 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
-	if plot_parameters['OnCurrent']['titles'][0] != '':
-		ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
+	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
+	if(len(deviceHistory) <= 0):
+		return
 
 	# If timescale is unspecified, choose an appropriate one based on the data range
 	if(timescale == '' and (len(deviceHistory) > 0)):
@@ -375,8 +386,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'ChipHistory', parameters['chipID'], parameters['deviceID'], '')
-	if plot_parameters['OnCurrent']['titles'][0] != '':
-		ax.set_title(plot_parameters['OnCurrent']['titles'][0])
+	ax.set_title(plot_parameters['ChipHistory']['titles'][0])
 
 	# Build On/Off Ratio lists
 	devices = []
@@ -508,11 +518,11 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 	fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
 	title = chipID + ':' + deviceID + testLabel
-	# fig.suptitle(title)
+	if(not publication_mode):
+		fig.suptitle(title)
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
-	# figure.tight_layout(rect=[0,0,0.95,0.95])
 	# figure.set_size_inches(2.2,1.6) # Static Bias
 	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current
