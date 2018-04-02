@@ -116,7 +116,7 @@ def plotJSON(jsonData, parameters, lineColor):
 	elif(jsonData['runType'] == 'BurnOut'):
 		plotFullBurnOutHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'StaticBias'):
-		plotFullStaticBiasHistory([jsonData], parameters, timescale='seconds', plotInRealTime=True, saveFigure=True, showFigure=True)
+		plotFullStaticBiasHistory([jsonData], parameters, timescale='', plotInRealTime=True, saveFigure=True, showFigure=True)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
 
@@ -222,16 +222,30 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
 	plt.subplots_adjust(wspace=0.5, hspace=0.5)
 
-def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	if plot_parameters['StaticBias']['titles'][0] != '':
+	if(plot_parameters['StaticBias']['titles'][0] != ''):
 		ax.set_title(plot_parameters['StaticBias']['titles'][0])
 
 	# Build Color Map
 	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
-	
+
+	# If timescale is unspecified, choose an appropriate one based on the data range
+	if(timescale == '' and (len(deviceHistory) > 0)):
+		timerange = deviceHistory[-1]['timestamps'][-1] - deviceHistory[0]['timestamps'][0]
+		if(timerange < 2*60):
+			timescale = 'seconds'
+		elif(timerange < 2*60*60):
+			timescale = 'minutes'
+		elif(timerange < 2*60*60*24):
+			timescale = 'hours'
+		elif(timerange < 2*60*60*24*7):
+			timescale = 'days'
+		else:
+			timescale = 'weeks'
+
 	# Rescale timestamp data by factor related to the time scale
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
 	
@@ -300,13 +314,27 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale, plotInRealTi
 
 	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
 
-def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale, plotInRealTime=True, saveFigure=False, showFigure=True):
+def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
 	if plot_parameters['OnCurrent']['titles'][0] != '':
 		ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
+
+	# If timescale is unspecified, choose an appropriate one based on the data range
+	if(timescale == '' and (len(deviceHistory) > 0)):
+		timerange = flatten(deviceHistory[-1]['timestamps'])[-1] - flatten(deviceHistory[0]['timestamps'])[0]
+		if(timerange < 2*60):
+			timescale = 'seconds'
+		elif(timerange < 2*60*60):
+			timescale = 'minutes'
+		elif(timerange < 2*60*60*24):
+			timescale = 'hours'
+		elif(timerange < 2*60*60*24*7):
+			timescale = 'days'
+		else:
+			timescale = 'weeks'
 
 	# Rescale timestamp data by factor related to the time scale
 	deviceHistory = scaledData(deviceHistory, 'timestamps', 1/secondsPer(timescale))
@@ -480,7 +508,6 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
 def initFigure(rows, columns, type, chipID, deviceID, testLabel):
 	fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
 	title = chipID + ':' + deviceID + testLabel
-	title = ''
 	# fig.suptitle(title)
 	return fig, axes
 

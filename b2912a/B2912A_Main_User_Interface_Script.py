@@ -132,14 +132,14 @@ default_parameters = {
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
 		'plotBurnOuts':   False,
-		'plotStaticBias': False,
+		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataBeforeJSONExperimentNumber': 20,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
-		'timescale': ['seconds','minutes','hours','days','weeks'][3],
+		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
 		'plotInRealTime': True
 	},
 	'ChipHistory':{
