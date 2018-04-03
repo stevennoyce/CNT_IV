@@ -38,8 +38,15 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C127X'
 	deviceID = '15-16'
 	# Experiments 3 to 4
-	# Experiment 24
-	
+	# Experiment 24 - biasing at many different values of Vgs
+	# Experiment 25 to 30 - proof that Vds bias is unimportant in Vt shift
+	# Experiment 39 to 44 - Vgs sweeps taken at various levels of vacuum pressure [5, 10, 15, 20, 25, 27] inHg
+	# Experiment 45 to 48 - Vgs sweeps taken at various levels of positive pressure [15, 25, 35, 45] psi
+	# Experiment 49 - Vgs sweep taken after venting directly from 45 psi all the way to vacuum 
+	# Experiment 56 - At vacuum for several minutes with a beaker of water inside
+	# Experiment 57 - Venting quickly from vacuum with a beaker of water inside (may have destroyed the device?)
+	# Experiment 65 - The device is back!
+
 	chipID = 'C127E'
 	deviceID = '15-16'
 	# Experiment 6 to 6, many decay curves and subthreshold curves
@@ -107,12 +114,12 @@ default_parameters = {
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
 		'gateVoltageSetPoint': 	-15,
-		'drainVoltageSetPoint':	-0.5,
+		'drainVoltageSetPoint':	0,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 5,
+		'numberOfSweeps': 3,
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
@@ -120,7 +127,7 @@ default_parameters = {
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage':  0,
+		'incrementStaticGateVoltage':  30,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
@@ -133,11 +140,11 @@ default_parameters = {
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
 		'plotBurnOuts':   False,
-		'plotStaticBias': True,
+		'plotStaticBias': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 24,
-		'excludeDataAfterJSONExperimentNumber':  24,
+		'excludeDataBeforeJSONExperimentNumber': 45,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
