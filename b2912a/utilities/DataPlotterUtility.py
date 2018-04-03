@@ -36,6 +36,7 @@ plt.rcParams['ytick.major.size'] = 6
 plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['figure.titlesize'] = 8
 plt.rcParams['axes.formatter.use_mathtext'] = True
+plt.rcParams['axes.formatter.useoffset'] = False
 plt.rcParams['xtick.top'] = True
 plt.rcParams['ytick.right'] = True
 plt.rcParams['xtick.direction'] = 'in'
@@ -79,10 +80,12 @@ plot_parameters = {
 	'BurnOut':{
 		'titles':['Metallic CNT Burnout', 'Current Measured', 'Applied Voltage'],
 		'figsize':(8,6),
+		'subplot_height_ratio':[1],
+		'subplot_width_ratio':[1,1],
 		'colorMap':'Blues',
 		'vds_label':'Drain Voltage, $V_{DS}$ [V]',
 		'id_micro_label':'$I_d$ [$\mu$A]',
-		'time_label':'Time, $t$ [sec]',
+		'time_label':'Time, [sec]',
 		'id_annotation':'burn current',
 		'legend_title':'$V_{gs} = +15V$'
 	},
@@ -90,13 +93,18 @@ plot_parameters = {
 		'titles':[''],#['Static Bias'],
 		'figsize':(2*2.2,2*1.6),#(5,4),
 		'colorMap':'plasma',
-		'xlabel':'Time, $t$ [{:}]',
-		'ylabel':'$I_d$ [$\mu$A]'
+		'xlabel':'Time, [{:}]',
+		'ylabel':'$I_d$ [$\mu$A]',
+		'vds_label': '$V_{DS}$ [V]',
+		'vgs_label': '$V_{GS}$ [V]',
+		'subplot_height_ratio':[3,1],
+		'subplot_width_ratio': [1],
+		'subplot_spacing': 0.03
 	},
 	'OnCurrent':{
 		'titles':[''],#['On/Off-Current'],
 		'figsize':(2*2.2,2*1.7),#(5,4),
-		'time_label':'Time, $t$ [{:}]',
+		'time_label':'Time, [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On-Current [A]',
 		'ylabel_dual_axis':'Off-Current [A]'
@@ -104,6 +112,7 @@ plot_parameters = {
 	'ChipHistory':{
 		'titles':['Chip History'],
 		'figsize':(5,4),
+		'subplot_size_ratio':[1],
 		'xlabel':'Device',
 		'ylabel':'On/Off Ratio, (Order of Mag)'
 	}
@@ -145,7 +154,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='lower left', title=plot_parameters['SubthresholdCurve']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure, showFigure)
+	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
@@ -174,7 +183,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 
 	# Add Legend and save figure	
 	ax.legend([],[], loc='best', title=plot_parameters['TransferCurve']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure, showFigure)
+	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
@@ -198,14 +207,14 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='best', title=plot_parameters['GateCurrent']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullGateCurrents', parameters, saveFigure, showFigure)
+	adjustFigure(fig, 'FullGateCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	# Init Figure	
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	ax2 = plt.subplot(2,2,2)
-	ax3 = plt.subplot(2,2,4)
+	ax2 = plt.subplot(222)
+	ax3 = plt.subplot(224)
 	ax1.set_title(plot_parameters['BurnOut']['titles'][0])
 	ax2.set_title(plot_parameters['BurnOut']['titles'][1])
 	ax3.set_title(plot_parameters['BurnOut']['titles'][2])
@@ -227,13 +236,17 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 
 	# Add Legend and save figure
 	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure, showFigure)
-	plt.subplots_adjust(wspace=0.5, hspace=0.5)
+	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
-def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
-	fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	if(includeDualAxis):
+		fig, (ax1, ax2) = initFigure(2, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers, shareX=True)
+		ax = ax1
+		ax3 = ax2.twinx()
+	else:
+		fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	if(plot_parameters['StaticBias']['titles'][0] != ''):
 		ax.set_title(plot_parameters['StaticBias']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -274,8 +287,11 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		else:
 			time_offset = (0) if(i == 0) else (time_offset + (deviceHistory[i-1]['timestamps'][-1] - deviceHistory[i-1]['timestamps'][0]))
 		
-		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale)
-		
+		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale, addLabel=False)
+		if(includeDualAxis):
+			vds_line = plotOverTime(ax2, deviceHistory[i]['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], time_offset)
+			vgs_line = plotOverTime(ax3, deviceHistory[i]['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][1], time_offset)
+
 		# Compare current plot's parameters to the next ones, and save any differences
 		if('drainVoltageSetPoint' in deviceHistory[i] and 'drainVoltageSetPoint' in deviceHistory[i-1]):
 			# backwards compatibility for old parameters format
@@ -301,13 +317,14 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		for i in range(len(dotted_lines)):
 			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
 		
-		# Add V_ds annotation
-		for i in range(len(parameter_labels['drainVoltageSetPoint'])):
-			ax.annotate(' $V_{DS} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
+		if(not includeDualAxis):
+			# Add V_ds annotation
+			for i in range(len(parameter_labels['drainVoltageSetPoint'])):
+				ax.annotate(' $V_{DS} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
 
-		# Add V_gs annotation
-		for i in range(len(parameter_labels['gateVoltageSetPoint'])):
-			ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
+			# Add V_gs annotation
+			for i in range(len(parameter_labels['gateVoltageSetPoint'])):
+				ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 			
 	else:
 		legend_title = ''
@@ -321,7 +338,29 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	# for i in range(len(parameter_labels['groundGateWhenDone'])):
 	# 	ax.annotate(' Grounded Gate: {:}'.format(parameter_labels['groundGateWhenDone'][i]['groundGateWhenDone']), xy=(parameter_labels['groundGateWhenDone'][i]['x'], ax.get_ylim()[1]*(0.92 - 0.03*i)), xycoords='data', fontsize=9, ha='left', va='bottom')
 
-	adjustFigure(fig, 'FullStaticBias', parameters, saveFigure, showFigure)
+	# Add legend and axis labels and save figure
+	if(includeDualAxis):
+		# Adjust y-axis limits
+		includeOriginOnYaxis(ax2)
+		includeOriginOnYaxis(ax3)
+		# Axis labels
+		ax1.set_ylabel(plot_parameters['StaticBias']['ylabel'])
+		ax2.set_xlabel(plot_parameters['StaticBias']['xlabel'].format(timescale))
+		ax2.set_ylabel(plot_parameters['StaticBias']['vds_label'])
+		ax3.set_ylabel(plot_parameters['StaticBias']['vgs_label'])
+		# Legend
+		setLabel(vds_line, '$V_{DS}$')
+		setLabel(vgs_line, '$V_{GS}$')
+		lines1, labels1 = ax2.get_legend_handles_labels()
+		lines2, labels2 = ax3.get_legend_handles_labels()
+		ax2.legend(lines1 + lines2, labels1 + labels2, loc='best', ncol=2, borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1, columnspacing=0.1)
+		# Adjust tick alignment
+		ax1.yaxis.get_majorticklabels()[0].set_verticalalignment('bottom')
+		ax2.yaxis.get_majorticklabels()[-1].set_verticalalignment('top')
+		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
+	else:
+		axisLabels(ax, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
+		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
@@ -380,7 +419,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	lines1, labels1 = ax1.get_legend_handles_labels()
 	lines2, labels2 = ax2.get_legend_handles_labels()
 	ax2.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
-	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure, showFigure)
+	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Init Figure
@@ -505,27 +544,32 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
 	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
 
-def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds'):
+def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', addLabel=True):
 	plotOverTime(axis, jsonData['timestamps'], (np.array(jsonData['current1s'])*(10**6)), lineColor, timeOffset)	
-	axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
+	if(addLabel):
+		axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
 
 
 
 
 # ***** Figures *****
 
-def initFigure(rows, columns, type, chipID, deviceID, testLabel):
-	fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
+def initFigure(rows, columns, type, chipID, deviceID, testLabel, shareX=False):
+	if(rows > 1 or columns > 1):
+		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[type]['subplot_width_ratio'], 'height_ratios':plot_parameters[type]['subplot_height_ratio']})
+	else:
+		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
 	title = chipID + ':' + deviceID + testLabel
 	if(not publication_mode):
 		fig.suptitle(title)
 	return fig, axes
 
-def adjustFigure(figure, saveName, parameters, saveFigure, showFigure):
+def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWidthPad=0.5, subplotHeightPad=0.5):
 	# figure.set_size_inches(2.2,1.6) # Static Bias
 	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current
 	figure.tight_layout()
+	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
 	if(saveFigure):
 		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True)
 		plt.savefig(parameters['plotsFolder'] + saveName + '.pdf', transparent=True)
@@ -592,6 +636,11 @@ def tickLabels(axis, labelList, rotation=0):
 	axis.set_xticks(range(len(labelList)))
 	axis.xaxis.set_tick_params(rotation=rotation)
 
+def includeOriginOnYaxis(axis):
+	if(axis.get_ylim()[1] < 0):
+		axis.set_ylim(top=0)
+	elif(axis.get_ylim()[0] > 0):
+		axis.set_ylim(bottom=0)
 
 
 # ***** Helper Functions *****

@@ -136,12 +136,13 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 25,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 24,
+		'excludeDataAfterJSONExperimentNumber':  24,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
-		'plotInRealTime': True
+		'plotInRealTime': True,
+		'includeBiasVoltageSubplot': True
 	},
 	'ChipHistory':{
 		
