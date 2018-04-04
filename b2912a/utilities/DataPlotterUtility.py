@@ -355,8 +355,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		lines2, labels2 = ax3.get_legend_handles_labels()
 		ax2.legend(lines1 + lines2, labels1 + labels2, loc='best', ncol=2, borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1, columnspacing=0.1)
 		# Adjust tick alignment
-		ax1.yaxis.get_majorticklabels()[0].set_verticalalignment('bottom')
-		ax2.yaxis.get_majorticklabels()[-1].set_verticalalignment('top')
+		[tick.set_verticalalignment('top') for tick in ax2.yaxis.get_majorticklabels()]
 		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
 	else:
 		axisLabels(ax, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])

@@ -140,7 +140,7 @@ default_parameters = {
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
 		'plotBurnOuts':   False,
-		'plotStaticBias': False,
+		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 45,
