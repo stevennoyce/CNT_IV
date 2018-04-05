@@ -39,13 +39,13 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	deviceID = '15-16'
 	# Experiments 3 to 4
 	# Experiment 24 - biasing at many different values of Vgs
-	# Experiment 25 to 30 - proof that Vds bias is unimportant in Vt shift
+	# Experiment 25 to 28 - proof that Vds bias is unimportant in Vt shift
 	# Experiment 39 to 44 - Vgs sweeps taken at various levels of vacuum pressure [5, 10, 15, 20, 25, 27] inHg
 	# Experiment 45 to 48 - Vgs sweeps taken at various levels of positive pressure [15, 25, 35, 45] psi
 	# Experiment 49 - Vgs sweep taken after venting directly from 45 psi all the way to vacuum 
 	# Experiment 56 - At vacuum for several minutes with a beaker of water inside
 	# Experiment 57 - Venting quickly from vacuum with a beaker of water inside (may have destroyed the device?)
-	# Experiment 65 - The device is back!
+	# Experiment 65 - The device is back! (with larger hysteresis?)
 
 	chipID = 'C127E'
 	deviceID = '15-16'
@@ -113,8 +113,8 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	-15,
-		'drainVoltageSetPoint':	0,
+		'gateVoltageSetPoint': 	15,
+		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
 	},
@@ -127,7 +127,7 @@ default_parameters = {
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage':  30,
+		'incrementStaticGateVoltage':  -30,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
@@ -143,7 +143,7 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 45,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
