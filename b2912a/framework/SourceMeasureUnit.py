@@ -1,5 +1,4 @@
 import ast
-import os
 import serial as pySerial
 import visa
 

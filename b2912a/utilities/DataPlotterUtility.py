@@ -513,12 +513,19 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 
 	return line
 
-def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=False):
+def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=False, fitSubthresholdSwing=False):
 	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1)
 	axisLabels(axis, x_label=plot_parameters['SubthresholdCurve']['xlabel'], y_label=plot_parameters['SubthresholdCurve']['ylabel'])
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
 		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['current2s']))))))
+	if(fitSubthresholdSwing):
+		startIndex, endIndex = steepestRegion(np.log10(np.abs(jsonData['current1s'][0])), 10)
+		vgs_region = jsonData['voltage2s'][0][startIndex:endIndex]
+		id_region = jsonData['current1s'][0][startIndex:endIndex]
+		fitted_region = semilogFit(vgs_region, id_region)['fitted_data']
+		print(avgSubthresholdSwing(vgs_region, fitted_region))
+		plot(axis, vgs_region, fitted_region, lineColor='b', lineStyle='--')
 
 def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
 	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1e6)
@@ -593,8 +600,8 @@ def scaledData(deviceHistory, dataToScale, scalefactor):
 
 # ***** Plots ***** 
 
-def plot(axis, x, y, lineColor):
-	return axis.plot(x, y, color=lineColor)[0]
+def plot(axis, x, y, lineColor, lineStyle=None):
+	return axis.plot(x, y, color=lineColor, linestyle=lineStyle)[0]
 
 def scatter(axis, x, y, lineColor, markerSize, lineWidth=0):
 	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=lineWidth)[0]
@@ -642,7 +649,44 @@ def includeOriginOnYaxis(axis):
 		axis.set_ylim(bottom=0)
 
 
-# ***** Helper Functions *****
+
+# ***** Curve Fitting *****
+
+def linearFit(x, y):
+	slope, intercept = np.polyfit(x, y, 1)
+	fitted_data = [slope*x[i] + intercept for i in range(len(x))]
+	return {'fitted_data': fitted_data,'slope':slope, 'intercept':intercept}
+
+def quadraticFit(x, y):
+	a, b, c = np.polyfit(x, y, 2)
+	fitted_data = [(a*(x[i]**2) + b*x[i] + c) for i in range(len(x))]
+	return {'fitted_data': fitted_data, 'a':a, 'b':b, 'c':c}
+
+def semilogFit(x, y):
+	fit_results = linearFit(x, np.log10(np.abs(y)))
+	fitted_data = [10**(fit_results['fitted_data'][i]) for i in range(len(fit_results['fitted_data']))]
+	return {'fitted_data': fitted_data}
+
+def steepestRegion(data, numberOfPoints):
+	maxSlope = 0
+	index = 0
+	for i in range(len(data) - 1):
+		diff = abs(data[i] - data[i+1])
+		if(diff > maxSlope):
+			maxSlope = diff
+			index = i
+	regionStart = max(0, index - numberOfPoints/2)
+	regionEnd = min(len(data)-1, index + numberOfPoints/2)
+	return (int(regionStart), int(regionEnd))
+
+
+
+# ***** Metrics *****
+def avgSubthresholdSwing(vgs_data, id_data):
+	return abs( vgs_data[0] - vgs_data[-1] / (np.log10(np.abs(id_data[0])) - np.log10(np.abs(id_data[-1]))) ) 
+
+
+# ***** Statistics *****
 
 def avgAndStdAtEveryPoint(x, y):
 	x_uniques = []
@@ -678,6 +722,8 @@ def secondsPer(amountOfTime):
 	else: 
 		return 0
 
+# ***** Array Manipulation *****
+
 def flatten(dataList):
 	data = list([dataList])
 	while(isinstance(data[0], list)):
@@ -694,8 +740,4 @@ def getTitleTestNumbersLabel(deviceHistory):
 		else:
 			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
 	return titleNumbers
-
-
-
-
 

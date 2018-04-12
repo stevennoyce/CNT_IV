@@ -1,6 +1,7 @@
 import os
 import sys
 import platform
+import serial as pySerial
 
 import B2912A_Burn_Out as burnOutScript
 import B2912A_Gate_Sweep as gateSweepScript
@@ -14,6 +15,7 @@ import Chip_History as chipHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import PlotPostingUtility as plotPoster
 from framework import SourceMeasureUnit as smu
+from framework import ArduinoNano as arduinoNano
 
 def devicesInRange(startContact, endContact, skip=True):
 	contactList = set(range(startContact,endContact))
@@ -143,7 +145,7 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataBeforeJSONExperimentNumber': 72,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
@@ -181,7 +183,11 @@ def main(parameters):
 			break
 
 		# Initialize measurement system
-		smu_instance = initSMU(parameters)
+		smu_instance = initSMU(parameters)		
+
+		# Initialize Arduino connection
+		arduino_instance = initArduino()
+		arduino_instance.close() # close connection
 		
 		# Run specified action:
 		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
@@ -273,9 +279,22 @@ def initSMU(parameters):
 			smu_instance = smu.getConnectionToPCB()
 		else:
 			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
+	print("Connected to SMU: " + str(parameters['MeasurementSystem']))
 	return smu_instance
 
 
+
+# *** Arduino Connection ***
+def initArduino():
+	try:
+		port = '/dev/cu.wchusbserial1410'
+		baud = 9600
+		arduino_instance = arduinoNano.getConnection(port, baud)
+		print("Connected to Arduino on port: " + str(port))
+	except: 
+		print("No Arduino connected.")
+	return arduino_instance
+	
 
 
 # *** User Interface ***
