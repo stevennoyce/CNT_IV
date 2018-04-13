@@ -1,4 +1,5 @@
 import os
+import time
 import sys
 import platform
 import serial as pySerial
@@ -40,14 +41,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C127X'
 	deviceID = '15-16'
 	# Experiments 3 to 4
-	# Experiment 24 - biasing at many different values of Vgs
-	# Experiment 25 to 28 - proof that Vds bias is unimportant in Vt shift
-	# Experiment 39 to 44 - Vgs sweeps taken at various levels of vacuum pressure [5, 10, 15, 20, 25, 27] inHg
-	# Experiment 45 to 48 - Vgs sweeps taken at various levels of positive pressure [15, 25, 35, 45] psi
-	# Experiment 49 - Vgs sweep taken after venting directly from 45 psi all the way to vacuum 
-	# Experiment 56 - At vacuum for several minutes with a beaker of water inside
-	# Experiment 57 - Venting quickly from vacuum with a beaker of water inside (may have destroyed the device?)
-	# Experiment 65 - The device is back! (with larger hysteresis?)
+	# Experiment 57 - 
+	# Experiment 65 - 
 
 	chipID = 'C127E'
 	deviceID = '15-16'
@@ -62,8 +57,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127X'
-	deviceID = '15-16'
+	chipID = 'C131M'
+	deviceID = '4'
 
 runTypes = {
 	0:'Quit',
@@ -85,10 +80,10 @@ default_parameters = {
 		'isAlternatingSweep': False,
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
-		'stepsInVGSPerDirection': 100,
+		'stepsInVGSPerDirection': 50,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	-0.5,
+		'drainVoltageSetPoint':	-0.1,
 		'gateVoltageMinimum':	-15,
 		'gateVoltageMaximum': 	15
 	},
@@ -145,8 +140,8 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 72,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 19,
+		'excludeDataAfterJSONExperimentNumber':  22,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
@@ -155,6 +150,12 @@ default_parameters = {
 	},
 	'ChipHistory':{
 		
+	},
+	'Results':{
+
+	},
+	'SensorData':{
+
 	},
 	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
@@ -182,12 +183,15 @@ def main(parameters):
 		if(confirmation != 'y'):
 			break
 
+		time.sleep(7)
+
 		# Initialize measurement system
 		smu_instance = initSMU(parameters)		
 
 		# Initialize Arduino connection
 		arduino_instance = initArduino()
-		arduino_instance.close() # close connection
+		if(arduino_instance != None):
+			arduino_instance.close() # close connection
 		
 		# Run specified action:
 		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
@@ -286,6 +290,7 @@ def initSMU(parameters):
 
 # *** Arduino Connection ***
 def initArduino():
+	arduino_instance = None
 	try:
 		port = '/dev/cu.wchusbserial1410'
 		baud = 9600

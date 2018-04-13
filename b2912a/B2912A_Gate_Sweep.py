@@ -36,7 +36,6 @@ from framework import SourceMeasureUnit as smu
 ## ********** Main **********
 
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
-	dlu.initCSV(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'])
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
 	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'], smu_instance.measurementsPerSecond/2)
@@ -124,19 +123,12 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, isAl
 				if(pulsedMeasurementOnTime > 0):
 					time.sleep(pulsedMeasurementOnTime*0.1)
 
-				v_ds = measurement['V_ds']
-				i_d  = measurement['I_d']
-				v_gs = measurement['V_gs']
-				i_g  = measurement['I_g']
 				timestamp = time.time()
-
-				csvData = [timestamp, v_ds, i_d, v_gs, i_g]
-				dlu.saveCSV(workingDirectory, saveFileName, csvData)
 				
-				vds_data[direction].append(v_ds)
-				id_data[direction].append(i_d)
-				vgs_data[direction].append(v_gs)
-				ig_data[direction].append(i_g)
+				vds_data[direction].append(measurement['V_ds'])
+				id_data[direction].append(measurement['I_d'])
+				vgs_data[direction].append(measurement['V_gs'])
+				ig_data[direction].append(measurement['I_g'])
 				timestamps[direction].append(timestamp)
 
 				# If pulsedMeasurementOffTime is non-zero, ground the gate for specified amount of time, then bring it back

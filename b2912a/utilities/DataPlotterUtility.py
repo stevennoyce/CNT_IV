@@ -125,6 +125,8 @@ plot_parameters = {
 def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
 		plotFullSubthresholdCurveHistory([jsonData], parameters, saveFigure=True, showFigure=True)
+		#plotFullTransferCurveHistory([jsonData], parameters, saveFigure=True, showFigure=True)
+		#plotFullGateCurrentHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'BurnOut'):
 		plotFullBurnOutHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'StaticBias'):

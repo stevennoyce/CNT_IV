@@ -40,7 +40,6 @@ from framework import SourceMeasureUnit as smu
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['BurnOut']['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['BurnOut']['drainVoltageMaxPoint'])+'V')
 	
-	dlu.initCSV(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'])
 	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
 
 	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'], 20)
@@ -82,23 +81,16 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 		smu_instance.setVds(drainVoltage)
 		measurement = smu_instance.takeMeasurement()
 
-		v_ds = measurement['V_ds']
-		i_d = measurement['I_d']
-		v_gs = measurement['V_gs']
-		i_g = measurement['I_g']
 		timestamp = time.time()
 
-		csvData = [timestamp, v_ds, i_d, v_gs, i_g]
-		dlu.saveCSV(workingDirectory, saveFileName, csvData)
-
-		vds_data.append(v_ds)
-		id_data.append(i_d)
-		vgs_data.append(v_gs)
-		ig_data.append(i_g)
+		vds_data.append(measurement['V_ds'])
+		id_data.append(measurement['I_d'])
+		vgs_data.append(measurement['V_gs'])
+		ig_data.append(measurement['I_g'])
 		timestamps.append(timestamp)
 		
 		id_threshold = np.percentile(np.array(id_data), 90) * thresholdProportion
-		id_recent_measurements = [i_d]
+		id_recent_measurements = [measurement['I_d']]
 
 		if(drainVoltages[i] == drainVoltages[i-1]):
 			id_recent_measurements = id_data[-3:]
