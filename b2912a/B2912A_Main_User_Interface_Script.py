@@ -15,7 +15,7 @@ import Chip_History as chipHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import PlotPostingUtility as plotPoster
 from framework import SourceMeasureUnit as smu
-from framework import ArduinoNano as arduinoNano
+from framework import ArduinoBoard as arduinoBoard
 
 def devicesInRange(startContact, endContact, skip=True):
 	contactList = set(range(startContact,endContact))
@@ -289,7 +289,7 @@ def initArduino():
 	try:
 		port = '/dev/cu.wchusbserial1410'
 		baud = 9600
-		arduino_instance = arduinoNano.getConnection(port, baud)
+		arduino_instance = arduinoBoard.getConnection(port, baud)
 		print("Connected to Arduino on port: " + str(port))
 	except: 
 		print("No Arduino connected.")
