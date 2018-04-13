@@ -183,8 +183,6 @@ def main(parameters):
 		if(confirmation != 'y'):
 			break
 
-		time.sleep(7)
-
 		# Initialize measurement system
 		smu_instance = initSMU(parameters)		
 
@@ -297,7 +295,13 @@ def initArduino():
 		arduino_instance = arduinoBoard.getConnection(port, baud)
 		print("Connected to Arduino on port: " + str(port))
 	except: 
-		print("No Arduino connected.")
+		try:
+			port = '/dev/cu.wchusbserial1420'
+			baud = 9600
+			arduino_instance = arduinoBoard.getConnection(port, baud)
+			print("Connected to Arduino on port: " + str(port))
+		except: 
+			print("No Arduino connected.")
 	return arduino_instance
 	
 

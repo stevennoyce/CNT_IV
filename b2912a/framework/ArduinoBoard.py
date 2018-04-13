@@ -12,7 +12,8 @@ class ArduinoSerial:
 
 	def __init__(self, pySerial):
 		self.ser = pySerial
-		time.sleep(0.5)
+		time.sleep(1)
+		print(self.getResponse(), end='')
 
 	def close(self):
 		self.ser.close()
