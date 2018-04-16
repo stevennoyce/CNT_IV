@@ -304,7 +304,7 @@ def initArduino(parameters):
 			print("Connected to Arduino on port: " + str(port))
 		except: 
 			print("No Arduino connected.")
-			return None
+			return arduinoBoard.getNullInstance()
 	sensor_data = arduino_instance.takeMeasurement()
 	for (measurement, value) in sensor_data.items():
 		parameters['SensorData'][measurement] = [value]

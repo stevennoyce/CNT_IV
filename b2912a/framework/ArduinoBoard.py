@@ -7,6 +7,9 @@ def getConnection(port, baud):
 	ser = pySerial.Serial(port, baud, timeout=0.5)
 	return ArduinoSerial(ser)
 
+def getNullInstance():
+	return NullArduinoSerial()
+
 class ArduinoSerial:
 	ser = None
 	measurementsPerSecond = 0.25
@@ -15,9 +18,6 @@ class ArduinoSerial:
 		self.ser = pySerial
 		time.sleep(2)
 		print(self.getResponse(), end='')
-
-	def close(self):
-		self.ser.close()
 
 	def writeSerial(self, message):
 		self.ser.write( str(message).encode('UTF-8') )
@@ -35,3 +35,11 @@ class ArduinoSerial:
 		self.writeSerial("MEAS!")
 		sensor_data = json.loads(self.getResponse(startsWith='{'))
 		return sensor_data
+
+class NullArduinoSerial(ArduinoSerial):
+	def takeMeasurement(self):
+		return {}
+
+
+
+
