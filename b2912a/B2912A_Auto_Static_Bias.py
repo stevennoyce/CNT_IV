@@ -7,7 +7,7 @@ from utilities import DataLoggerUtility as dlu
 
 
 
-def run(parameters, smu_instance):
+def run(parameters, smu_instance, arduino_instance):
 	# Create distinct parameters for all scripts that could be run
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
@@ -26,9 +26,9 @@ def run(parameters, smu_instance):
 	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
-	runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
+	runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
 
-def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
+def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfStaticBiases = parameters['AutoStaticBias']['numberOfStaticBiases']
 	
 	# Build arrays of all parameters that could change over the course of any given experiement
@@ -66,7 +66,7 @@ def runAutoStaticBias(parameters, smu_instance, gateSweepParameters, staticBiasP
 		staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin'] = delayBeforeMeasurementsList[i]
 
 		# Run StaticBias, GateSweep (if necessary), and save plots with DeviceHistory
-		staticBiasScript.run(staticBiasParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
+		staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['AutoStaticBias']['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)

@@ -36,7 +36,7 @@ from utilities import DataLoggerUtility as dlu
 # }
 
 
-def run(parameters, smu_instance):
+def run(parameters, smu_instance, arduino_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
 
@@ -54,16 +54,16 @@ def run(parameters, smu_instance):
 	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
-	runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
+	runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
 
-def runAutoGateSweep(parameters, smu_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
+def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfSweeps = parameters['AutoGateSweep']['numberOfSweeps']
 	sweepCount = 0
 
 	while(sweepCount < numberOfSweeps):
 		gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['AutoGateSweep']['applyStaticBiasBetweenSweeps']):
-			staticBiasScript.run(staticBiasParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
+			staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 		sweepCount += 1
 		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))

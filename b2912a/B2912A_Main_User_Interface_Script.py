@@ -234,11 +234,11 @@ def runSMU(parameters, smu_instance):
 		elif(parameters['runType'] == 'AutoBurnOut'):
 			autoBurnScript.run(parameters, smu_instance)
 		elif(parameters['runType'] == 'StaticBias'):
-			staticBiasScript.run(parameters, smu_instance)
+			staticBiasScript.run(parameters, smu_instance, arduino_instance)
 		elif(parameters['runType'] == 'AutoGateSweep'):
-			autoGateScript.run(parameters, smu_instance)
+			autoGateScript.run(parameters, smu_instance, arduino_instance)
 		elif(parameters['runType'] == 'AutoStaticBias'):
-			autoBiasScript.run(parameters, smu_instance)
+			autoBiasScript.run(parameters, smu_instance, arduino_instance)
 		else:
 			raise NotImplementedError("Invalid action for the Source Measure Unit")
 	except:
