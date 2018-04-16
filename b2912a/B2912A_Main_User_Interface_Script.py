@@ -57,8 +57,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127X'
-	deviceID = '15-16'
+	chipID = 'C127P'
+	deviceID = '1-2'
 
 runTypes = {
 	0:'Quit',
@@ -140,13 +140,13 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 19,
-		'excludeDataAfterJSONExperimentNumber':  22,
-		'gateSweepDirection': ['both','forward','reverse'][0],
+		'excludeDataBeforeJSONExperimentNumber': 8,
+		'excludeDataAfterJSONExperimentNumber':  8,
+		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
 		'plotInRealTime': True,
-		'includeBiasVoltageSubplot': True
+		'includeBiasVoltageSubplot': False
 	},
 	'ChipHistory':{
 		
