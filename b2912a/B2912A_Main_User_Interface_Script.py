@@ -57,8 +57,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 else:
-	chipID = 'C127P'
-	deviceID = '1-2'
+	chipID = 'C127X'
+	deviceID = '15-16'
 
 runTypes = {
 	0:'Quit',
@@ -135,13 +135,13 @@ default_parameters = {
 		'showFiguresGenerated': True,
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
-		'plotGateSweeps': True,
-		'plotBurnOuts':   False,
-		'plotStaticBias': True,
+		'plotGateSweeps': False,
+		'plotBurnOuts':   True,
+		'plotStaticBias': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 8,
-		'excludeDataAfterJSONExperimentNumber':  8,
+		'excludeDataBeforeJSONExperimentNumber': 1,
+		'excludeDataAfterJSONExperimentNumber':  2,
 		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
@@ -187,9 +187,9 @@ def main(parameters):
 		smu_instance = initSMU(parameters)		
 
 		# Initialize Arduino connection
-		arduino_instance = initArduino()
+		arduino_instance = initArduino(parameters)
 		if(arduino_instance != None):
-			arduino_instance.close() # close connection
+			print("Sensor data: " + str(parameters['SensorData']))
 		
 		# Run specified action:
 		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
@@ -287,21 +287,24 @@ def initSMU(parameters):
 
 
 # *** Arduino Connection ***
-def initArduino():
+def initArduino(parameters):
 	arduino_instance = None
+	baud = 9600
 	try:
 		port = '/dev/cu.wchusbserial1410'
-		baud = 9600
 		arduino_instance = arduinoBoard.getConnection(port, baud)
 		print("Connected to Arduino on port: " + str(port))
 	except: 
 		try:
 			port = '/dev/cu.wchusbserial1420'
-			baud = 9600
 			arduino_instance = arduinoBoard.getConnection(port, baud)
 			print("Connected to Arduino on port: " + str(port))
 		except: 
 			print("No Arduino connected.")
+			return None
+	sensor_data = arduino_instance.takeMeasurement()
+	for (measurement, value) in sensor_data.items():
+		parameters['SensorData'][measurement] = [value]
 	return arduino_instance
 	
 

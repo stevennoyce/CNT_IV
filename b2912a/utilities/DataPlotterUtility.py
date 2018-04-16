@@ -79,13 +79,13 @@ plot_parameters = {
 	},
 	'BurnOut':{
 		'titles':['Metallic CNT Burnout', 'Current Measured', 'Applied Voltage'],
-		'figsize':(8,6),
+		'figsize':(8,4.5),
 		'subplot_height_ratio':[1],
 		'subplot_width_ratio':[1,1],
 		'colorMap':'Blues',
-		'vds_label':'Drain Voltage, $V_{DS}$ [V]',
+		'vds_label':'$V_{DS}$ [V]',
 		'id_micro_label':'$I_d$ [$\mu$A]',
-		'time_label':'Time, [sec]',
+		'time_label':'Time [sec]',
 		'id_annotation':'burn current',
 		'legend_title':'$V_{gs} = +15V$'
 	},
@@ -93,7 +93,7 @@ plot_parameters = {
 		'titles':[''],#['Static Bias'],
 		'figsize':(2*2.2,2*1.6),#(5,4),
 		'colorMap':'plasma',
-		'xlabel':'Time, [{:}]',
+		'xlabel':'Time [{:}]',
 		'ylabel':'$I_d$ [$\mu$A]',
 		'vds_label': '$V_{DS}$ [V]',
 		'vgs_label': '$V_{GS}$ [V]',
@@ -104,7 +104,7 @@ plot_parameters = {
 	'OnCurrent':{
 		'titles':[''],#['On/Off-Current'],
 		'figsize':(2*2.2,2*1.7),#(5,4),
-		'time_label':'Time, [{:}]',
+		'time_label':'Time [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On-Current [A]',
 		'ylabel_dual_axis':'Off-Current [A]'
@@ -238,7 +238,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 
 	# Add Legend and save figure
 	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure=saveFigure, showFigure=showFigure)
+	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
 	# Init Figure
@@ -326,9 +326,9 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 				ax.annotate(' $V_{DS} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
 
 			# Add V_gs annotation
-			for i in range(len(parameter_labels['gateVoltageSetPoint'])):
+			for i in range(0, len(parameter_labels['gateVoltageSetPoint']), 5):
 				ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
-				
+
 	else:
 		legend_title = ''
 		legend_title += '$V_{DS}$ = ' + '{:.2f}V\n'.format(parameter_labels['drainVoltageSetPoint'][0]['drainVoltageSetPoint'])
@@ -573,7 +573,7 @@ def initFigure(rows, columns, type, chipID, deviceID, testLabel, shareX=False):
 		fig.suptitle(title)
 	return fig, axes
 
-def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWidthPad=0.5, subplotHeightPad=0.5):
+def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWidthPad=0, subplotHeightPad=0):
 	# figure.set_size_inches(2.2,1.6) # Static Bias
 	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current
