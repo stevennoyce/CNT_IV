@@ -56,6 +56,9 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# chipID = 'C127P'
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
+	
+	chipID = 'C134K'
+	deviceID = '15-16'
 else:
 	chipID = 'C127X'
 	deviceID = '15-16'
@@ -84,8 +87,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.1,
-		'gateVoltageMinimum':	-15,
-		'gateVoltageMaximum': 	15
+		'gateVoltageMinimum':	-3,
+		'gateVoltageMaximum': 	3
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -160,7 +163,7 @@ default_parameters = {
 	'MeasurementSystem':['B2912A','PCB2v14'][0],
 	'chipID':chipID,
 	'deviceID':deviceID,
-	'deviceRange':[],#devicesInRange(1,32,skip=True),
+	'deviceRange':[],#devicesInRange(2,32,skip=False),
 	'dataFolder':'data/',
 	'plotsFolder':'CurrentPlots/',
 	'postFigures':	True,
