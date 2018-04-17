@@ -37,6 +37,9 @@ class ArduinoSerial:
 		return sensor_data
 
 class NullArduinoSerial(ArduinoSerial):
+	def __init__(self):
+		pass
+
 	def takeMeasurement(self):
 		return {}
 

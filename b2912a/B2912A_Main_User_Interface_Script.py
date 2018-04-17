@@ -191,8 +191,9 @@ def main(parameters):
 
 		# Initialize Arduino connection
 		arduino_instance = initArduino(parameters)
-		if(arduino_instance != None):
-			print("Sensor data: " + str(parameters['SensorData']))
+		print("Sensor data: " + str(parameters['SensorData']))
+
+
 		
 		# Run specified action:
 		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
