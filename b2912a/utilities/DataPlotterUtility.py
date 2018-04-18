@@ -178,7 +178,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	# If first segment of device history is all negative current, flip data
 	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['current1s']) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
-		plot_parameters['TransferCurve']['ylabel'] = '$-I_d$ [$\mu$A]'
+		plot_parameters['TransferCurve']['ylabel'] = '$-I_{D}$ [$\mu$A]'
 	
 	# Plot
 	for i in range(len(deviceHistory)):
@@ -278,7 +278,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	# If first segment of device history is all negative current, flip data
 	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['current1s']) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
-		plot_parameters['StaticBias']['ylabel'] = '$-I_d$ [$\mu$A]'
+		plot_parameters['StaticBias']['ylabel'] = '$-I_{D}$ [$\mu$A]'
 	
 	time_offset = 0
 	dotted_lines = []
