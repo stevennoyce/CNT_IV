@@ -60,8 +60,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C134K'
 	deviceID = '15-16'
 else:
-	chipID = 'C127X'
-	deviceID = '15-16'
+	chipID = 'C134K'
+	deviceID = '59-60'
 
 runTypes = {
 	0:'Quit',
@@ -86,9 +86,9 @@ default_parameters = {
 		'stepsInVGSPerDirection': 50,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	-0.1,
-		'gateVoltageMinimum':	-3,
-		'gateVoltageMaximum': 	3
+		'drainVoltageSetPoint':	-0.001,
+		'gateVoltageMinimum':	-14,
+		'gateVoltageMaximum': 	0
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -139,13 +139,13 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   False,
-		'plotStaticBias': False,
+		'plotBurnOuts':   True,
+		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 55,
-		'excludeDataAfterJSONExperimentNumber':  55,
-		'gateSweepDirection': ['both','forward','reverse'][2],
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  10,
+		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
 		'plotInRealTime': True,

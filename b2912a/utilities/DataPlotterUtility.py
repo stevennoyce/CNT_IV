@@ -68,6 +68,9 @@ plot_parameters = {
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
 		'ylabel':'$I_{D}$ [$\mu$A]',
+		'neg_label':'$-I_{D}$ [$\mu$A]',
+		'ii_label':'$I_{D}$, $I_{G}$ [$\mu$A]',
+		'neg_ii_label':'$-I_{D}$, $I_{G}$ [$\mu$A]',
 		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'GateCurrent':{
@@ -126,8 +129,8 @@ plot_parameters = {
 def plotJSON(jsonData, parameters, lineColor):
 	if(jsonData['runType'] == 'GateSweep'):
 		plotFullSubthresholdCurveHistory([jsonData], parameters, saveFigure=True, showFigure=True)
-		#plotFullTransferCurveHistory([jsonData], parameters, saveFigure=True, showFigure=True)
-		#plotFullGateCurrentHistory([jsonData], parameters, saveFigure=True, showFigure=True)
+		plotFullTransferCurveHistory([jsonData], parameters, includeGateCurrent=True, saveFigure=True, showFigure=True)
+		plotFullGateCurrentHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'BurnOut'):
 		plotFullBurnOutHistory([jsonData], parameters, saveFigure=True, showFigure=True)
 	elif(jsonData['runType'] == 'StaticBias'):
@@ -153,13 +156,13 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, includeLabel=False)			
+		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None)			
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='lower left', title=plot_parameters['SubthresholdCurve']['legend_title'], labelspacing=0)
 	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
-def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, saveFigure=False, showFigure=True):
 	# Init Figure
 	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
@@ -178,11 +181,27 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	# If first segment of device history is all negative current, flip data
 	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['current1s']) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'current1s', -1)
-		plot_parameters['TransferCurve']['ylabel'] = '$-I_{D}$ [$\mu$A]'
+		plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_label']
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection)	
+		plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None)
+
+	# Add gate current to axis
+	if(includeGateCurrent):
+		if(len(deviceHistory) == 1):
+			gate_colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][2]]
+			gate_linestyle = None
+		else:	
+			gate_colors = colors
+			gate_linestyle = '--'
+		for i in range(len(deviceHistory)):
+			plotGateCurrent(ax, deviceHistory[i], gate_colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=gate_linestyle)
+		if(plot_parameters['TransferCurve']['ylabel'] == plot_parameters['TransferCurve']['neg_label']):
+			plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_ii_label']
+		else:
+			plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['ii_label']
+		axisLabels(ax, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
 	# Add Legend and save figure	
 	ax.legend([],[], loc='best', title=plot_parameters['TransferCurve']['legend_title'], labelspacing=0)
@@ -206,7 +225,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotGateCurrent(ax, deviceHistory[i], colors[i], sweepDirection)
+		plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None)
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='best', title=plot_parameters['GateCurrent']['legend_title'], labelspacing=0)
@@ -235,7 +254,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i])
+		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i], lineStyle=None)
 
 	# Add Legend and save figure
 	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
@@ -290,10 +309,10 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		else:
 			time_offset = (0) if(i == 0) else (time_offset + (deviceHistory[i-1]['timestamps'][-1] - deviceHistory[i-1]['timestamps'][0]))
 		
-		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale, addLabel=False)
+		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None)
 		if(includeDualAxis):
-			vds_line = plotOverTime(ax2, deviceHistory[i]['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], time_offset)
-			vgs_line = plotOverTime(ax3, deviceHistory[i]['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][1], time_offset)
+			vds_line = plotOverTime(ax2, deviceHistory[i]['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
+			vgs_line = plotOverTime(ax3, deviceHistory[i]['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=time_offset)
 
 		# Compare current plot's parameters to the next ones, and save any differences
 		if('drainVoltageSetPoint' in deviceHistory[i] and 'drainVoltageSetPoint' in deviceHistory[i-1]):
@@ -402,19 +421,19 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 
 	# Plot On Current
 	if(plotInRealTime):
-		line = plotOverTime(ax1, timestamps, onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=0, makerSize=6, lineWidth=0)
+		line = plotOverTime(ax1, timestamps, onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=0, markerSize=6, lineWidth=0)
 		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['time_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
 	else:
-		line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], 6)
+		line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], markerSize=6, lineWidth=0, lineStyle=None)
 		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['index_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
 	setLabel(line, 'On-Currents')
 	ax1.set_ylim(bottom=0)
 
 	# Plot Off Current
 	if(plotInRealTime):
-		line = plotOverTime(ax2, timestamps, offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=0, makerSize=2, lineWidth=0)
+		line = plotOverTime(ax2, timestamps, offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=0, markerSize=2, lineWidth=0)
 	else:
-		line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 2)
+		line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=2, lineWidth=0, lineStyle=None)
 	setLabel(line, 'Off-Currents')
 	ax2.set_ylabel(plot_parameters['OnCurrent']['ylabel_dual_axis'])
 	
@@ -442,11 +461,11 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	lastOnOffRatios, devices, firstOnOffRatios = zip(*(reversed(sorted(zip(lastOnOffRatios, devices, firstOnOffRatios)))))
 
 	# Plot First Run
-	line = scatter(ax, range(len(devices)), firstOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], 6)
+	line = scatter(ax, range(len(devices)), firstOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=6, lineWidth=0, lineStyle=None)
 	setLabel(line, 'First Run')
 	
 	# Plot Most Recent Run
-	line = scatter(ax, range(len(devices)), lastOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], 4)
+	line = scatter(ax, range(len(devices)), lastOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=4, lineWidth=0, lineStyle=None)
 	setLabel(line, 'Most Recent Run')
 
 	# Label axes
@@ -463,7 +482,7 @@ def show():
 
 
 # ***** Device Plots *****
-def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1):
+def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=None):
 	if(currentSource == 'gate'):
 		currentData = 'current2s'
 	elif(currentSource == 'drain'):
@@ -513,12 +532,12 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 	if(x[0] == x[1]):
 		line = plotWithErrorBars(axis, x, y, lineColor)
 	else:
-		line = scatter(axis, x, y, lineColor, markerSize=2, lineWidth=1)
+		line = scatter(axis, x, y, lineColor, markerSize=2, lineWidth=1, lineStyle=lineStyle)
 
 	return line
 
-def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLabel=False, fitSubthresholdSwing=False):
-	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1)
+def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', fitSubthresholdSwing=False, includeLabel=False, lineStyle=None):
+	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=lineStyle)
 	axisLabels(axis, x_label=plot_parameters['SubthresholdCurve']['xlabel'], y_label=plot_parameters['SubthresholdCurve']['ylabel'])
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['onOffRatio'])))
@@ -531,16 +550,16 @@ def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', includeLa
 		print(avgSubthresholdSwing(vgs_region, fitted_region))
 		plot(axis, vgs_region, fitted_region, lineColor='b', lineStyle='--')
 
-def plotTransferCurve(axis, jsonData, lineColor, direction='both'):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=1e6)
+def plotTransferCurve(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None):
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle)
 	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
-def plotGateCurrent(axis, jsonData, lineColor, direction='both'):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=1)
+def plotGateCurrent(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None):
+	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle)
 	axisLabels(axis, x_label=plot_parameters['GateCurrent']['xlabel'], y_label=plot_parameters['GateCurrent']['ylabel'])
 
-def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
-	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor)
+def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None):
+	plot(axis1, jsonData['voltage1s'], (np.array(jsonData['current1s'])*10**6), lineColor=lineColor, lineStyle=lineStyle)
 	axisLabels(axis1, x_label=plot_parameters['BurnOut']['vds_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
 	# Add burn threshold annotation
@@ -554,9 +573,9 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor):
 	plotOverTime(axis3, jsonData['timestamps'], jsonData['voltage1s'], lineColor)
 	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
 
-def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', addLabel=True):
-	plotOverTime(axis, jsonData['timestamps'], (np.array(jsonData['current1s'])*(10**6)), lineColor, timeOffset)	
-	if(addLabel):
+def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', includeLabel=True, lineStyle=None):
+	plotOverTime(axis, jsonData['timestamps'], (np.array(jsonData['current1s'])*(10**6)), lineColor, offset=timeOffset)	
+	if(includeLabel):
 		axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
 
 
@@ -608,16 +627,16 @@ def scaledData(deviceHistory, dataToScale, scalefactor):
 def plot(axis, x, y, lineColor, lineStyle=None):
 	return axis.plot(x, y, color=lineColor, linestyle=lineStyle)[0]
 
-def scatter(axis, x, y, lineColor, markerSize, lineWidth=0):
-	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=lineWidth)[0]
+def scatter(axis, x, y, lineColor, markerSize=3, lineWidth=0, lineStyle=None):
+	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=lineWidth, linestyle=lineStyle)[0]
 
 def plotWithErrorBars(axis, x, y, lineColor):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
 	return axis.errorbar(x_unique, avg, yerr=std, color=lineColor, capsize=4, capthick=0.5, elinewidth=0.5)[0]
 
-def plotOverTime(axis, timestamps, y, lineColor, offset=0, makerSize=1, lineWidth=1):
+def plotOverTime(axis, timestamps, y, lineColor, offset=0, markerSize=1, lineWidth=1, lineStyle=None):
 	zeroed_timestamps = list( np.array(timestamps) - timestamps[0] + offset )
-	return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize=makerSize, linewidth=lineWidth)[0]
+	return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize=markerSize, linewidth=lineWidth, linestyle=lineStyle)[0]
 
 def colorBar(fig, scalarMappableColorMap, ticks=[0,1], tick_labels=['End','Start'], axisLabel='Time $\\rightarrow$'):
 	scalarMappableColorMap._A = []
