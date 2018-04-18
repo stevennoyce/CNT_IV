@@ -51,6 +51,7 @@ plt.rcParams['axes.formatter.limits'] = [-2, 3]
 # ********** Constants **********
 
 publication_mode = False
+default_png_dpi = 120
 
 plot_parameters = {
 	'SubthresholdCurve': {
@@ -58,7 +59,7 @@ plot_parameters = {
 		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
-		'ylabel':'$I_d$ [A]',
+		'ylabel':'$I_{D}$ [A]',
 		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'TransferCurve':{
@@ -66,7 +67,7 @@ plot_parameters = {
 		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
-		'ylabel':'$I_d$ [$\mu$A]',
+		'ylabel':'$I_{D}$ [$\mu$A]',
 		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'GateCurrent':{
@@ -74,7 +75,7 @@ plot_parameters = {
 		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
-		'ylabel':'$I_g$ [A]',
+		'ylabel':'$I_{G}$ [A]',
 		'legend_title':'$V_{DS} = 0.5V$'
 	},
 	'BurnOut':{
@@ -84,17 +85,17 @@ plot_parameters = {
 		'subplot_width_ratio':[1,1],
 		'colorMap':'Blues',
 		'vds_label':'$V_{DS}$ [V]',
-		'id_micro_label':'$I_d$ [$\mu$A]',
+		'id_micro_label':'$I_{D}$ [$\mu$A]',
 		'time_label':'Time [sec]',
 		'id_annotation':'burn current',
-		'legend_title':'$V_{gs} = +15V$'
+		'legend_title':'$V_{GS} = +15V$'
 	},
 	'StaticBias':{
 		'titles':[''],#['Static Bias'],
 		'figsize':(2*2.2,2*1.6),#(5,4),
 		'colorMap':'plasma',
 		'xlabel':'Time [{:}]',
-		'ylabel':'$I_d$ [$\mu$A]',
+		'ylabel':'$I_{D}$ [$\mu$A]',
 		'vds_label': '$V_{DS}$ [V]',
 		'vgs_label': '$V_{GS}$ [V]',
 		'subplot_height_ratio':[3,1],
@@ -321,12 +322,12 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
 		
 		if(not includeDualAxis):
-			# Add V_ds annotation
+			# Add V_DS annotation
 			for i in range(len(parameter_labels['drainVoltageSetPoint'])):
 				ax.annotate(' $V_{DS} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
 
-			# Add V_gs annotation
-			for i in range(0, len(parameter_labels['gateVoltageSetPoint']), 5):
+			# Add V_GS annotation
+			for i in range(len(parameter_labels['gateVoltageSetPoint'])):
 				ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 
 	else:
@@ -579,8 +580,9 @@ def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWi
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current
 	figure.tight_layout()
 	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
+	pngDPI = (300) if(publication_mode) else (default_png_dpi)
 	if(saveFigure):
-		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True)
+		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True, dpi=pngDPI)
 		plt.savefig(parameters['plotsFolder'] + saveName + '.pdf', transparent=True)
 	if(not showFigure):
 		plt.close(figure)
