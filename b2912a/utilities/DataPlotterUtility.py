@@ -60,7 +60,8 @@ plot_parameters = {
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
 		'ylabel':'$I_{D}$ [A]',
-		'legend_title':'$V_{DS} = 0.5V$'
+		'leg_vds_label':'$V_{{DS}} = ${:}V',
+		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'TransferCurve':{
 		'titles':[''],#['Transfer Curve'],
@@ -71,7 +72,8 @@ plot_parameters = {
 		'neg_label':'$-I_{D}$ [$\mu$A]',
 		'ii_label':'$I_{D}$, $I_{G}$ [$\mu$A]',
 		'neg_ii_label':'$-I_{D}$, $I_{G}$ [$\mu$A]',
-		'legend_title':'$V_{DS} = 0.5V$'
+		'leg_vds_label':'$V_{{DS}} = ${:}V',
+		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'GateCurrent':{
 		'titles':[''],#['Gate Leakage'],
@@ -79,7 +81,8 @@ plot_parameters = {
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}$ [V]',
 		'ylabel':'$I_{G}$ [A]',
-		'legend_title':'$V_{DS} = 0.5V$'
+		'leg_vds_label':'$V_{{DS}} = ${:}V',
+		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'BurnOut':{
 		'titles':['Metallic CNT Burnout', 'Current Measured', 'Applied Voltage'],
@@ -140,7 +143,7 @@ def plotJSON(jsonData, parameters, lineColor):
 
 def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	titleNumbers = getTestLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'SubthresholdCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax.set_title(plot_parameters['SubthresholdCurve']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -159,12 +162,12 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None)			
 	
 	# Add Legend and save figure
-	ax.legend([],[], loc='lower left', title=plot_parameters['SubthresholdCurve']['legend_title'], labelspacing=0)
+	ax.legend([],[], loc='lower left', title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
 	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	titleNumbers = getTestLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax.set_title(plot_parameters['TransferCurve']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -204,12 +207,12 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 		axisLabels(ax, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
 	# Add Legend and save figure	
-	ax.legend([],[], loc='best', title=plot_parameters['TransferCurve']['legend_title'], labelspacing=0)
+	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
 	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	titleNumbers = getTestLabel(deviceHistory)
 	fig, ax = initFigure(1, 1, 'GateCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax.set_title(plot_parameters['GateCurrent']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -228,12 +231,12 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 		plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None)
 	
 	# Add Legend and save figure
-	ax.legend([],[], loc='best', title=plot_parameters['GateCurrent']['legend_title'], labelspacing=0)
+	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
 	adjustFigure(fig, 'FullGateCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	# Init Figure	
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	titleNumbers = getTestLabel(deviceHistory)
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = plt.subplot(222)
 	ax3 = plt.subplot(224)
@@ -262,15 +265,14 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	titleNumbers = getTestLabel(deviceHistory)
 	if(includeDualAxis):
 		fig, (ax1, ax2) = initFigure(2, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers, shareX=True)
 		ax = ax1
 		ax3 = ax2.twinx()
 	else:
 		fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
-	if(plot_parameters['StaticBias']['titles'][0] != ''):
-		ax.set_title(plot_parameters['StaticBias']['titles'][0])
+	ax.set_title(plot_parameters['StaticBias']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
 
@@ -386,7 +388,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTitleTestNumbersLabel(deviceHistory)
+	titleNumbers = getTestLabel(deviceHistory)
 	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
 	ax2 = ax1.twinx()
 	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
@@ -610,15 +612,16 @@ def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=mapName)
 	return {'colors':[scalarColorMap.to_rgba(i) for i in np.linspace(colorStartPoint, colorEndPoint, numberOfColors)], 'smap':scalarColorMap}
 
-def scaledData(deviceHistory, dataToScale, scalefactor):
-	data = list(deviceHistory)
-	for i in range(len(data)):
-		if(isinstance(data[i][dataToScale][0], list)):
-			for j in range(len(data[i][dataToScale])):
-				data[i][dataToScale][j] = list(np.array(data[i][dataToScale][j])*scalefactor)
+def getTestLabel(deviceHistory):
+	titleNumbers = ''
+	if len(deviceHistory) > 0:
+		test1Num = deviceHistory[0]['experimentNumber']
+		test2Num = deviceHistory[-1]['experimentNumber']
+		if test1Num == test2Num:
+			titleNumbers = ', Test {:}'.format(test1Num)
 		else:
-			data[i][dataToScale] = list(np.array(data[i][dataToScale])*scalefactor)
-	return data
+			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
+	return titleNumbers
 
 
 
@@ -674,6 +677,35 @@ def includeOriginOnYaxis(axis):
 
 
 
+# ***** Legend *****
+
+def getLegendTitle(deviceHistory, plotType, parameterType, includeVdsRange, includeSubthresholdSwing=False):
+	legend_title = ''
+	legend_entries = []
+	if(includeVdsRange):
+		vds_list = getParameterArray(deviceHistory, parameterType, 'drainVoltageSetPoint')
+		vds_min = min(vds_list)
+		vds_max = max(vds_list)
+		legend_entries.append(plot_parameters[plotType]['leg_vds_label'].format(vds_min) if(vds_min == vds_max) else (plot_parameters[plotType]['leg_vds_range_label'].format(vds_min, vds_max)))
+	if(includeSubthresholdSwing):
+		SS_list = []
+		for deviceRun in deviceHistory:
+			startIndex, endIndex = steepestRegion(np.log10(np.abs(deviceRun['current1s'][0])), 10)
+			vgs_region = deviceRun['voltage2s'][0][startIndex:endIndex]
+			id_region = deviceRun['current1s'][0][startIndex:endIndex]
+			fitted_region = semilogFit(vgs_region, id_region)['fitted_data']
+			SS_list.append(avgSubthresholdSwing(vgs_region, fitted_region))
+			#plot(axis, vgs_region, fitted_region, lineColor='b', lineStyle='--')
+		SS_avg = np.mean(SS_list)
+		legend_entries.append('$SS_{{avg}} = $ {:.0f}mV/dec'.format(SS_avg))
+
+	for i in range(len(legend_entries)):
+		if(i != 0):
+			legend_title += '\n'
+		legend_title += legend_entries[i]
+
+	return legend_title
+
 # ***** Curve Fitting *****
 
 def linearFit(x, y):
@@ -707,7 +739,8 @@ def steepestRegion(data, numberOfPoints):
 
 # ***** Metrics *****
 def avgSubthresholdSwing(vgs_data, id_data):
-	return abs( vgs_data[0] - vgs_data[-1] / (np.log10(np.abs(id_data[0])) - np.log10(np.abs(id_data[-1]))) ) 
+	return (abs( vgs_data[0] - vgs_data[-1] / (np.log10(np.abs(id_data[0])) - np.log10(np.abs(id_data[-1]))) ) * 1000)
+
 
 
 # ***** Statistics *****
@@ -746,7 +779,9 @@ def secondsPer(amountOfTime):
 	else: 
 		return 0
 
-# ***** Array Manipulation *****
+
+
+# ***** Data Manipulation *****
 
 def flatten(dataList):
 	data = list([dataList])
@@ -754,14 +789,24 @@ def flatten(dataList):
 		data = [(item) for sublist in data for item in sublist]
 	return data
 
-def getTitleTestNumbersLabel(deviceHistory):
-	titleNumbers = ''
-	if len(deviceHistory) > 0:
-		test1Num = deviceHistory[0]['experimentNumber']
-		test2Num = deviceHistory[-1]['experimentNumber']
-		if test1Num == test2Num:
-			titleNumbers = ', Test {:}'.format(test1Num)
+def scaledData(deviceHistory, dataToScale, scalefactor):
+	data = list(deviceHistory)
+	for i in range(len(data)):
+		if(isinstance(data[i][dataToScale][0], list)):
+			for j in range(len(data[i][dataToScale])):
+				data[i][dataToScale][j] = list(np.array(data[i][dataToScale][j])*scalefactor)
 		else:
-			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
-	return titleNumbers
+			data[i][dataToScale] = list(np.array(data[i][dataToScale])*scalefactor)
+	return data
+
+def getParameterArray(deviceHistory, parameterType, parameterName):
+	result = []
+	for i in range(len(deviceHistory)):
+		if(parameterType != ''):
+			result.append(deviceHistory[i][parameterType][parameterName])
+		else:
+			result.append(deviceHistory[i][parameterName])
+	return result
+
+
 

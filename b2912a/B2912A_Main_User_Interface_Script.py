@@ -87,8 +87,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.001,
-		'gateVoltageMinimum':	-14,
-		'gateVoltageMaximum': 	0
+		'gateVoltageMinimum':	-3,
+		'gateVoltageMaximum': 	3
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -113,7 +113,7 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	15,
+		'gateVoltageSetPoint': 	-15,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
@@ -127,7 +127,7 @@ default_parameters = {
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage':  -30,
+		'incrementStaticGateVoltage': 0,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
@@ -144,7 +144,7 @@ default_parameters = {
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  10,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
