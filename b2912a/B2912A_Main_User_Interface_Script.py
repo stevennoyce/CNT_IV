@@ -61,7 +61,7 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	deviceID = '15-16'
 else:
 	chipID = 'C134X'
-	deviceID = '18-19'
+	deviceID = '7-8'
 
 runTypes = {
 	0:'Quit',
