@@ -60,8 +60,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C134K'
 	deviceID = '15-16'
 else:
-	chipID = 'C134X'
-	deviceID = '7-8'
+	chipID = 'C127P'
+	deviceID = '1-2'
 
 runTypes = {
 	0:'Quit',
@@ -87,8 +87,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-5,
-		'gateVoltageMaximum': 	5
+		'gateVoltageMinimum':	-3.5,
+		'gateVoltageMaximum': 	3.5
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',

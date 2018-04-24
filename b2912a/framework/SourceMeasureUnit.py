@@ -223,14 +223,17 @@ class PCB2v14(SourceMeasureUnit):
 
 	def setParameter(self, parameter):
 		self.ser.write( str(parameter).encode('UTF-8') )
-		time.sleep(0.15)
+		time.sleep(0.2)
 
 	def getResponse(self, startsWith=''):
 		response = self.ser.readline().decode(encoding='UTF-8')
 		if(startsWith != ''):
 			while(response[0] != startsWith):
-				response = self.ser.readline().decode(encoding='UTF-8')
 				print('SKIP')
+				if(not self.ser.in_waiting):
+					time.sleep(0.5)
+				response = self.ser.readline().decode(encoding='UTF-8')
+
 		return response
 
 	def formatMeasurement(self, measurement):
