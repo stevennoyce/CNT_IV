@@ -3,7 +3,7 @@ import os
 
 import DataLoggerUtility as dlu
 
-directory = '../data/C127D/'
+directory = #'../data/C127D/'
 
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
