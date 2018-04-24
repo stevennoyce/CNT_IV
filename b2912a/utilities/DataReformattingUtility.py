@@ -3,7 +3,7 @@ import os
 
 import DataLoggerUtility as dlu
 
-directory = '../data/C127P/'
+directory = '../data/C127M/'
 
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
@@ -119,7 +119,7 @@ def main():
 		except:
 			print('Device: ' + deviceSubdirectory + ' no static bias')
 			staticed = False
-		index_json = dlu.loadJSON(deviceDirectory, 'index.json')[0]
+		index_json = dlu.loadJSONIndex(deviceDirectory)
 
 		if('ParametersFormatVersion' in gateSweepHistory[0]):
 			continue
@@ -132,6 +132,12 @@ def main():
 		for deviceRun in gateSweepHistory:
 			if('ParametersFormatVersion' in deviceRun):
 				continue
+
+			if('index' not in deviceRun):
+				deviceRun['index'] = 0
+
+			if('experimentNumber' not in deviceRun):
+				deviceRun['experimentNumber'] = 0
 
 			if(not isinstance(deviceRun['voltage1s'][0], list)):
 				length = len(deviceRun['voltage1s'])
@@ -210,6 +216,12 @@ def main():
 				if('ParametersFormatVersion' in deviceRun):
 					continue
 
+				if('index' not in deviceRun):
+					deviceRun['index'] = 0
+
+				if('experimentNumber' not in deviceRun):
+					deviceRun['experimentNumber'] = 0
+
 				if('figuresSaved' in deviceRun):
 					del deviceRun['figuresSaved']
 
@@ -240,27 +252,44 @@ def main():
 					del deviceRun['limitBurnOutsAllowed']
 					del deviceRun['limitOnOffRatioDegradation']
 
-				if('runDataPoints' in deviceRun):
+				if('BurnOut' not in deviceRun):
 					deviceRun['BurnOut'] = dict(default_parameters['BurnOut'])
-					deviceRun['BurnOut']['thresholdProportion'] = deviceRun['thresholdProportion']
-					deviceRun['BurnOut']['minimumAppliedDrainVoltage'] = deviceRun['minimumAppliedDrainVoltage']
-					deviceRun['BurnOut']['complianceCurrent'] = deviceRun['complianceCurrent']
-					deviceRun['BurnOut']['gateVoltageSetPoint'] = deviceRun['gateVoltageSetPoint']
-					deviceRun['BurnOut']['drainVoltageMaxPoint'] = deviceRun['drainVoltageMaxPoint']
-					deviceRun['BurnOut']['drainVoltagePlateaus'] = deviceRun['drainVoltagePlateaus']
-					del deviceRun['thresholdProportion']
-					del deviceRun['saveFileName']
+					if('thresholdProportion' in deviceRun):
+						deviceRun['BurnOut']['thresholdProportion'] = deviceRun['thresholdProportion']
+						del deviceRun['thresholdProportion']
+					if('minimumAppliedDrainVoltage' in deviceRun):
+						deviceRun['BurnOut']['minimumAppliedDrainVoltage'] = deviceRun['minimumAppliedDrainVoltage']
+						del deviceRun['minimumAppliedDrainVoltage']
+					if('complianceCurrent' in deviceRun):
+						deviceRun['BurnOut']['complianceCurrent'] = deviceRun['complianceCurrent']
+						del deviceRun['complianceCurrent']
+					if('gateVoltageSetPoint' in deviceRun):
+						deviceRun['BurnOut']['gateVoltageSetPoint'] = deviceRun['gateVoltageSetPoint']
+						del deviceRun['gateVoltageSetPoint']
+					if('drainVoltageMaxPoint' in deviceRun):
+						deviceRun['BurnOut']['drainVoltageMaxPoint'] = deviceRun['drainVoltageMaxPoint']
+						del deviceRun['drainVoltageMaxPoint']
+					if('drainVoltagePlateaus' in deviceRun):
+						deviceRun['BurnOut']['drainVoltagePlateaus'] = deviceRun['drainVoltagePlateaus']					
+						del deviceRun['drainVoltagePlateaus']
+
+				if('runDataPoints' in deviceRun):
 					del deviceRun['runDataPoints']
-					del deviceRun['complianceCurrent']
-					del deviceRun['minimumAppliedDrainVoltage']
-					del deviceRun['gateVoltageSetPoint']
-					del deviceRun['drainVoltageMaxPoint']
-					del deviceRun['drainVoltagePlateaus']
+
+				if('saveFileName' in deviceRun):
+					del deviceRun['saveFileName']
+
 				
 		if(staticed):			
 			for deviceRun in staticBiasHistory:
 				if('ParametersFormatVersion' in deviceRun):
 					continue
+
+				if('index' not in deviceRun):
+					deviceRun['index'] = 0
+
+				if('experimentNumber' not in deviceRun):
+					deviceRun['experimentNumber'] = 0
 
 				if('figuresSaved' in deviceRun):
 					del deviceRun['figuresSaved']
