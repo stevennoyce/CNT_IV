@@ -3,7 +3,7 @@ import os
 
 import DataLoggerUtility as dlu
 
-directory = #'../data/C127D/'
+directory = '../data/C127E/'
 
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
@@ -324,6 +324,32 @@ def main():
 					del deviceRun['numberOfBiasesBetweenIncrements']
 					del deviceRun['incrementStaticDrainVoltage']
 					del deviceRun['incrementStaticGateVoltage']
+
+				if('saveFileName' in deviceRun):
+					del deviceRun['saveFileName']
+
+				if('StaticBias' not in deviceRun):
+					deviceRun['StaticBias'] = dict(default_parameters['StaticBias'])
+					if('gateVoltageSetPoint' in deviceRun):
+						deviceRun['StaticBias']['gateVoltageSetPoint'] = deviceRun['gateVoltageSetPoint']
+						del deviceRun['gateVoltageSetPoint']
+					if('drainVoltageSetPoint' in deviceRun):
+						deviceRun['StaticBias']['drainVoltageSetPoint'] = deviceRun['drainVoltageSetPoint']
+						del deviceRun['drainVoltageSetPoint']
+					if('startUpSettlingDelay' in deviceRun):
+						deviceRun['StaticBias']['delayBeforeMeasurementsBegin'] = deviceRun['startUpSettlingDelay']
+						del deviceRun['startUpSettlingDelay']
+					if('complianceCurrent' in deviceRun):
+						deviceRun['StaticBias']['complianceCurrent'] = deviceRun['complianceCurrent']
+						del deviceRun['complianceCurrent']
+					if('biasTime' in deviceRun):
+						deviceRun['StaticBias']['totalBiasTime'] = deviceRun['biasTime']
+						del deviceRun['biasTime']
+					if('runDataPoints' in deviceRun):
+						deviceRun['StaticBias']['measurementTime'] = int(deviceRun['StaticBias']['totalBiasTime']/deviceRun['runDataPoints'])
+						del deviceRun['runDataPoints']
+
+					
 
 		for deviceRun in gateSweepHistory:
 			dlu.saveJSON(deviceDirectory, 'GateSweep', deviceRun, incrementIndex=False)
