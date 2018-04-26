@@ -60,8 +60,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C134K'
 	deviceID = '15-16'
 else:
-	chipID = 'C127E'
-	deviceID = '15-16'
+	chipID = 'C139A'
+	deviceID = '7-8'
 
 runTypes = {
 	0:'Quit',
@@ -87,8 +87,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-3.5,
-		'gateVoltageMaximum': 	3.5
+		'gateVoltageMinimum':	-5,
+		'gateVoltageMaximum': 	5
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -186,14 +186,15 @@ def main(parameters):
 		if(confirmation != 'y'):
 			break
 
+		time.sleep(5)
+
+
 		# Initialize measurement system
 		smu_instance = initSMU(parameters)		
 
 		# Initialize Arduino connection
 		arduino_instance = initArduino(parameters)
 		print("Sensor data: " + str(parameters['SensorData']))
-
-
 		
 		# Run specified action:
 		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
