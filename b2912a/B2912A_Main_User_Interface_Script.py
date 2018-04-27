@@ -60,8 +60,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C134K'
 	deviceID = '15-16'
 else:
-	chipID = 'C127P'
-	deviceID = '1-2'
+	chipID = 'C127X'
+	deviceID = '15-16'
 
 runTypes = {
 	0:'Quit',
@@ -87,8 +87,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-1,
-		'gateVoltageMaximum': 	1
+		'gateVoltageMinimum':	-5,
+		'gateVoltageMaximum': 	5
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -143,8 +143,8 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 8,
-		'excludeDataAfterJSONExperimentNumber':  8,
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
