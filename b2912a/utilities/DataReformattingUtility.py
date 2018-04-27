@@ -4,7 +4,7 @@ import numpy as np
 
 import DataLoggerUtility as dlu
 
-directory = '../data/C131D/'
+directory = '../data/C127P/'
 
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
