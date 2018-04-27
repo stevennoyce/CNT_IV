@@ -72,13 +72,13 @@ def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParamet
 	burnOutCount = 0
 
 	sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
-	previousOnOffRatio = sweepResults['onOffRatio']
+	previousOnOffRatio = sweepResults['Results']['onOffRatio']
 
 	while((previousOnOffRatio < targetOnOffRatio) and (burnOutCount < burnOutLimit)):
 		burnOutScript.run(burnOutParameters, smu_instance, True, False)
 		sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
 
-		currentOnOffRatio = sweepResults['onOffRatio']
+		currentOnOffRatio = sweepResults['Results']['onOffRatio']
 		if(currentOnOffRatio < allowedDegradationFactor*previousOnOffRatio):
 			break
 		previousOnOffRatio = currentOnOffRatio

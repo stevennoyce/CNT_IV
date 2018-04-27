@@ -38,6 +38,7 @@ from framework import SourceMeasureUnit as smu
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
+	# RUN TEST
 	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'], smu_instance.measurementsPerSecond/2)
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
@@ -53,15 +54,20 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 							pointsPerVGS=parameters['GateSweep']['pointsPerVGS'])
 	smu_instance.rampDownVoltages()
 
-	jsonData = {**parameters, **results}
+	# Copy parameters and add in the test results
+	jsonData = dict(parameters)
+	jsonData['Results'] = results
 	
+	# Display key metrics to the user
 	print('On/Off ratio: {:.4f}'.format(results['onOffRatio']))
 	print('On current: {:.4e}'.format(results['onCurrent']))
 	print('Off current: {:.4e}'.format(results['offCurrent']))
 
+	# Save results as a JSON object
 	if(isSavingResults):
 		dlu.saveJSON(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'], jsonData)
 
+	# Show plots to the user
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')
 		dpu.show()
@@ -110,7 +116,7 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, isAl
 	else:
 		for direction in [0,1]:
 			for gateVoltage in gateVoltages[direction]:
-				# Apply Vgs
+				# Apply V_GS
 				smu_instance.setVgs(gateVoltage)
 
 				# If pulsedMeasurementOnTime is non-zero, hold the gate at Vgs for specified amount of time
@@ -137,10 +143,10 @@ def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, isAl
 					time.sleep(pulsedMeasurementOffTime)
 
 	return {
-		'voltage1s':vds_data,
-		'current1s':id_data,
-		'voltage2s':vgs_data,
-		'current2s':ig_data,
+		'vds_data':vds_data,
+		'id_data':id_data,
+		'vgs_data':vgs_data,
+		'ig_data':ig_data,
 		'timestamps':timestamps,
 		'gateVoltages':gateVoltages,
 		'onOffRatio':onOffRatio(id_data),

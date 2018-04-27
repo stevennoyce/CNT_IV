@@ -1,111 +1,20 @@
 import glob
 import os
+import numpy as np
 
 import DataLoggerUtility as dlu
 
-directory = '../data/C127E/'
+directory = '../data/C127P/'
 
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
 staticBiasFileName = 'StaticBias.json'
 
-default_parameters = {
-	'ParametersFormatVersion': 2,
-	'GateSweep':{
-		'saveFileName': 'GateSweep',
-		'isFastSweep': False,
-		'isAlternatingSweep': False,
-		'pulsedMeasurementOnTime': 0,
-		'pulsedMeasurementOffTime': 0,
-		'stepsInVGSPerDirection': 100,
-		'pointsPerVGS': 1,
-		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-3.5,
-		'gateVoltageMaximum': 	3.5
-	},
-	'BurnOut':{
-		'saveFileName': 'BurnOut',
-		'pointsPerRamp': 50,
-		'pointsPerHold': 50,
-		'complianceCurrent':	2e-3,
-		'thresholdProportion':	0.8,
-		'minimumAppliedDrainVoltage': 0,
-		'gateVoltageSetPoint':	15.0,
-		'drainVoltageMaxPoint':	10,
-		'drainVoltagePlateaus': 10
-	},
-	'AutoBurnOut':{
-		'targetOnOffRatio': 300,
-		'limitBurnOutsAllowed': 8,
-		'limitOnOffRatioDegradation': 0.7
-	},
-	'StaticBias':{
-		'saveFileName': 'StaticBias',
-		'totalBiasTime': 60*60,
-		'measurementTime': 10,
-		'complianceCurrent': 100e-6,
-		'delayBeforeApplyingVoltage': 0,
-		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	-15,
-		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageWhenDone':  0,
-		'drainVoltageWhenDone': 0
-	},
-	'AutoGateSweep':{
-		'numberOfSweeps': 3,
-		'applyStaticBiasBetweenSweeps': False,
-	},
-	'AutoStaticBias':{
-		'numberOfStaticBiases': 2,
-		'applyGateSweepBetweenBiases': True,
-		'firstDelayBeforeMeasurementsBegin': 0,
-		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage': 0,
-		'incrementStaticDrainVoltage': 0,
-		'incrementGateVoltageWhenDone': 0,
-		'incrementDrainVoltageWhenDone': 0,
-		'incrementDelayBeforeReapplyingVoltage': 0,
-		'shuffleDelaysBeforeReapplyingVoltage': False
-	},
-	'DeviceHistory':{
-		'showFiguresGenerated': True,
-		'saveFiguresGenerated': True,
-		'postFiguresGenerated': False,
-		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
-		'plotStaticBias': True,
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
-		'gateSweepDirection': ['both','forward','reverse'][0],
-		'showOnlySuccessfulBurns': False,
-		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
-		'plotInRealTime': True,
-		'includeBiasVoltageSubplot': False
-	},
-	'ChipHistory':{
-		
-	},
-	'Results':{
-
-	},
-	'SensorData':{
-
-	},
-	'MeasurementSystem':['B2912A','PCB2v14'][0],
-	'deviceRange':[],#devicesInRange(2,32,skip=False),
-	'dataFolder':'data/',
-	'plotsFolder':'CurrentPlots/',
-	'postFigures':	True,
-	'NPLC':1
-}
-
 def main():
 	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
 		deviceDirectory = directory + deviceSubdirectory + '/'
 
+		# Load device history for GateSweep, BurnOut, and StaticBias
 		gateSweepHistory = dlu.loadJSON(deviceDirectory, gateSweepFileName)
 		try:
 			burnOutHistory = dlu.loadJSON(deviceDirectory, burnOutFileName)
@@ -119,238 +28,113 @@ def main():
 		except:
 			print('Device: ' + deviceSubdirectory + ' no static bias')
 			staticed = False
-		index_json = dlu.loadJSONIndex(deviceDirectory)
+		# *************************************************************
 
-		if('ParametersFormatVersion' in gateSweepHistory[0]):
-			continue
 
+		# Delete GateSweep.json, BurnOut.json, and StaticBias.json from device directory
 		if os.path.exists(deviceDirectory):
 			fileNames = glob.glob(deviceDirectory + '*')
 			for fileName in fileNames:
-				os.remove(fileName)
+				if((gateSweepFileName in fileName) or (burnOutFileName in fileName) or (staticBiasFileName in fileName)):
+					os.remove(fileName)
+		# *************************************************************
 
+
+		# *************************************************************
+		# ****************** BEGIN DATA MODIFICATION ******************
+		# *************************************************************
+
+		# GATE SWEEP
 		for deviceRun in gateSweepHistory:
-			if('ParametersFormatVersion' in deviceRun):
+			if(deviceRun['ParametersFormatVersion'] >= 3):
 				continue
+			else:
+				deviceRun['ParametersFormatVersion'] = 3
 
-			if('index' not in deviceRun):
-				deviceRun['index'] = 0
+			if('current1s' in deviceRun):
+				deviceRun['Results'] = {}
+				deviceRun['Results']['id_data'] = deviceRun['current1s']
+				deviceRun['Results']['ig_data'] = deviceRun['current2s']
+				deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
+				deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
+				deviceRun['Results']['timestamps'] = deviceRun['timestamps']
+				deviceRun['Results']['gateVoltages'] = deviceRun['gateVoltages']
+				deviceRun['Results']['onOffRatio'] = onOffRatio(deviceRun['Results']['id_data'])
+				deviceRun['Results']['onCurrent'] = onCurrent(deviceRun['Results']['id_data'])
+				deviceRun['Results']['offCurrent'] = offCurrent(deviceRun['Results']['id_data'])
+				del deviceRun['current1s']
+				del deviceRun['current2s']
+				del deviceRun['voltage1s']
+				del deviceRun['voltage2s']
+				del deviceRun['timestamps']
+				del deviceRun['gateVoltages']
+				if('onOffRatio' in deviceRun):
+					del deviceRun['onOffRatio']
+				if('onCurrent' in deviceRun):
+					del deviceRun['onCurrent']
+				if('offCurrent' in deviceRun):
+					del deviceRun['offCurrent']
 
-			if('experimentNumber' not in deviceRun):
-				deviceRun['experimentNumber'] = 0
-
-			if(not isinstance(deviceRun['voltage1s'][0], list)):
-				length = len(deviceRun['voltage1s'])
-				deviceRun['current1s'] = [deviceRun['current1s'][0:int(length/2)], deviceRun['current1s'][int(length/2):]]
-				deviceRun['current2s'] = [deviceRun['current2s'][0:int(length/2)], deviceRun['current2s'][int(length/2):]]
-				deviceRun['voltage1s'] = [deviceRun['voltage1s'][0:int(length/2)], deviceRun['voltage1s'][int(length/2):]]
-				deviceRun['voltage2s'] = [deviceRun['voltage2s'][0:int(length/2)], deviceRun['voltage2s'][int(length/2):]]	
-				deviceRun['timestamps'] = [deviceRun['timestamps'][0:int(length/2)], deviceRun['timestamps'][int(length/2):]]	
-				deviceRun['gateVoltages'] = [deviceRun['gateVoltages'][0:int(length/2)], deviceRun['gateVoltages'][int(length/2):]]	
-
-			if('figuresSaved' in deviceRun):
-				del deviceRun['figuresSaved']
-
-			if('MeasurementSystem' not in deviceRun):
-				deviceRun['MeasurementSystem'] = 'B2912A'
-
-			if('deviceRange' not in deviceRun):
-				deviceRun['deviceRange'] = []
-
-			if('plotsFolder' not in deviceRun):
-				deviceRun['plotsFolder'] = 'CurrentPlots/'
-
-			if('deviceDirectory' not in deviceRun):
-				deviceRun['deviceDirectory'] = deviceDirectory[3:]
-
-			if('ParametersFormatVersion' not in deviceRun):
-				deviceRun['ParametersFormatVersion'] = 1.1
-
-			if('startIndexes' not in deviceRun):
-				deviceRun['startIndexes'] = {'index':deviceRun['index'], 'experimentNumber':deviceRun['experimentNumber']}
-
-			if('gateVoltageMinimum' in deviceRun):
-				deviceRun['GateSweep'] = dict(default_parameters['GateSweep'])
-				deviceRun['GateSweep']['complianceCurrent'] = deviceRun['complianceCurrent']
-				deviceRun['GateSweep']['drainVoltageSetPoint'] = deviceRun['drainVoltageSetPoint']
-				deviceRun['GateSweep']['gateVoltageMinimum'] = deviceRun['gateVoltageMinimum']
-				deviceRun['GateSweep']['gateVoltageMaximum'] = deviceRun['gateVoltageMaximum']
-				deviceRun['GateSweep']['pointsPerVGS'] = count(deviceRun['gateVoltages'][0])
-				deviceRun['GateSweep']['stepsInVGSPerDirection'] = int(deviceRun['runDataPoints']/(2*deviceRun['GateSweep']['pointsPerVGS']))
-				del deviceRun['drainVoltageSetPoint']
-				del deviceRun['gateVoltageMinimum']
-				del deviceRun['gateVoltageMaximum']
-				del deviceRun['runDataPoints']
-				del deviceRun['complianceCurrent']
-				del deviceRun['saveFileName']
-
-			if('BurnOut' in deviceRun and ('runDataPoints' in deviceRun['BurnOut'])):
-				deviceRun['BurnOut']['pointsPerRamp'] = 50
-				deviceRun['BurnOut']['pointsPerHold'] = 50
-				del deviceRun['BurnOut']['runDataPoints']
-
-			if('targetOnOffRatio' in deviceRun):
-				deviceRun['AutoBurnOut'] = dict(default_parameters['AutoBurnOut'])
-				deviceRun['AutoBurnOut']['targetOnOffRatio'] = deviceRun['targetOnOffRatio']
-				deviceRun['AutoBurnOut']['limitBurnOutsAllowed'] = deviceRun['limitBurnOutsAllowed']
-				deviceRun['AutoBurnOut']['limitOnOffRatioDegradation'] = deviceRun['limitOnOffRatioDegradation']
-				del deviceRun['targetOnOffRatio']
-				del deviceRun['limitBurnOutsAllowed']
-				del deviceRun['limitOnOffRatioDegradation']
-
-			if('numberOfStaticBiases' in deviceRun):
-				deviceRun['AutoStaticBias'] = dict(default_parameters['AutoStaticBias'])
-				deviceRun['AutoStaticBias']['numberOfStaticBiases'] = deviceRun['numberOfStaticBiases']
-				deviceRun['AutoStaticBias']['applyGateSweepBetweenBiases'] = deviceRun['applyGateSweepBetweenBiases']
-				deviceRun['AutoStaticBias']['numberOfBiasesBetweenIncrements'] = deviceRun['numberOfBiasesBetweenIncrements']
-				deviceRun['AutoStaticBias']['incrementStaticDrainVoltage'] = deviceRun['incrementStaticDrainVoltage']
-				deviceRun['AutoStaticBias']['incrementStaticGateVoltage'] = deviceRun['incrementStaticGateVoltage']
-				del deviceRun['numberOfStaticBiases']
-				del deviceRun['applyGateSweepBetweenBiases']
-				del deviceRun['numberOfBiasesBetweenIncrements']
-				del deviceRun['incrementStaticDrainVoltage']
-				del deviceRun['incrementStaticGateVoltage']
-
+		# BURN OUT
 		if(burnedout):
 			for deviceRun in burnOutHistory:
-				if('ParametersFormatVersion' in deviceRun):
+				if(deviceRun['ParametersFormatVersion'] >= 3):
 					continue
+				else:
+					deviceRun['ParametersFormatVersion'] = 3
 
-				if('index' not in deviceRun):
-					deviceRun['index'] = 0
+				if('current1s' in deviceRun):
+					deviceRun['Results'] = {}
+					deviceRun['Results']['id_data'] = deviceRun['current1s']
+					deviceRun['Results']['ig_data'] = deviceRun['current2s']
+					deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
+					deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
+					deviceRun['Results']['timestamps'] = deviceRun['timestamps']
+					deviceRun['Results']['drainVoltages'] = deviceRun['drainVoltages']
+					del deviceRun['current1s']
+					del deviceRun['current2s']
+					del deviceRun['voltage1s']
+					del deviceRun['voltage2s']
+					del deviceRun['timestamps']
+					del deviceRun['drainVoltages']
+					if('didBurnOut' in deviceRun):
+						deviceRun['Results']['didBurnOut'] = deviceRun['didBurnOut']
+						del deviceRun['didBurnOut']
+					else:
+						deviceRun['Results']['didBurnOut'] = True
+					if('thresholdCurrent' in deviceRun):
+						deviceRun['Results']['thresholdCurrent'] = deviceRun['thresholdCurrent']
+						del deviceRun['thresholdCurrent']
+					else:
+						deviceRun['Results']['thresholdCurrent'] = 0
 
-				if('experimentNumber' not in deviceRun):
-					deviceRun['experimentNumber'] = 0
-
-				if('figuresSaved' in deviceRun):
-					del deviceRun['figuresSaved']
-
-				if('MeasurementSystem' not in deviceRun):
-					deviceRun['MeasurementSystem'] = 'B2912A'
-
-				if('deviceRange' not in deviceRun):
-					deviceRun['deviceRange'] = []
-
-				if('plotsFolder' not in deviceRun):
-					deviceRun['plotsFolder'] = 'CurrentPlots/'
-
-				if('deviceDirectory' not in deviceRun):
-					deviceRun['deviceDirectory'] = deviceDirectory[3:]
-
-				if('ParametersFormatVersion' not in deviceRun):
-					deviceRun['ParametersFormatVersion'] = 1.1
-
-				if('startIndexes' not in deviceRun):
-					deviceRun['startIndexes'] = {'index':deviceRun['index'], 'experimentNumber':deviceRun['experimentNumber']}
-
-				if('targetOnOffRatio' in deviceRun):
-					deviceRun['AutoBurnOut'] = dict(default_parameters['AutoBurnOut'])
-					deviceRun['AutoBurnOut']['targetOnOffRatio'] = deviceRun['targetOnOffRatio']
-					deviceRun['AutoBurnOut']['limitBurnOutsAllowed'] = deviceRun['limitBurnOutsAllowed']
-					deviceRun['AutoBurnOut']['limitOnOffRatioDegradation'] = deviceRun['limitOnOffRatioDegradation']
-					del deviceRun['targetOnOffRatio']
-					del deviceRun['limitBurnOutsAllowed']
-					del deviceRun['limitOnOffRatioDegradation']
-
-				if('BurnOut' not in deviceRun):
-					deviceRun['BurnOut'] = dict(default_parameters['BurnOut'])
-					if('thresholdProportion' in deviceRun):
-						deviceRun['BurnOut']['thresholdProportion'] = deviceRun['thresholdProportion']
-						del deviceRun['thresholdProportion']
-					if('minimumAppliedDrainVoltage' in deviceRun):
-						deviceRun['BurnOut']['minimumAppliedDrainVoltage'] = deviceRun['minimumAppliedDrainVoltage']
-						del deviceRun['minimumAppliedDrainVoltage']
-					if('complianceCurrent' in deviceRun):
-						deviceRun['BurnOut']['complianceCurrent'] = deviceRun['complianceCurrent']
-						del deviceRun['complianceCurrent']
-					if('gateVoltageSetPoint' in deviceRun):
-						deviceRun['BurnOut']['gateVoltageSetPoint'] = deviceRun['gateVoltageSetPoint']
-						del deviceRun['gateVoltageSetPoint']
-					if('drainVoltageMaxPoint' in deviceRun):
-						deviceRun['BurnOut']['drainVoltageMaxPoint'] = deviceRun['drainVoltageMaxPoint']
-						del deviceRun['drainVoltageMaxPoint']
-					if('drainVoltagePlateaus' in deviceRun):
-						deviceRun['BurnOut']['drainVoltagePlateaus'] = deviceRun['drainVoltagePlateaus']					
-						del deviceRun['drainVoltagePlateaus']
-
-				if('runDataPoints' in deviceRun):
-					del deviceRun['runDataPoints']
-
-				if('saveFileName' in deviceRun):
-					del deviceRun['saveFileName']
-
-				
+		# STATIC BIAS
 		if(staticed):			
 			for deviceRun in staticBiasHistory:
-				if('ParametersFormatVersion' in deviceRun):
+				if(deviceRun['ParametersFormatVersion'] >= 3):
 					continue
+				else:
+					deviceRun['ParametersFormatVersion'] = 3
 
-				if('index' not in deviceRun):
-					deviceRun['index'] = 0
+				if('current1s' in deviceRun):
+					deviceRun['Results'] = {}
+					deviceRun['Results']['id_data'] = deviceRun['current1s']
+					deviceRun['Results']['ig_data'] = deviceRun['current2s']
+					deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
+					deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
+					deviceRun['Results']['timestamps'] = deviceRun['timestamps']
+					del deviceRun['current1s']
+					del deviceRun['current2s']
+					del deviceRun['voltage1s']
+					del deviceRun['voltage2s']
+					del deviceRun['timestamps']
 
-				if('experimentNumber' not in deviceRun):
-					deviceRun['experimentNumber'] = 0
+		# *************************************************************
+		# ******************  END DATA MODIFICATION  ******************
+		# *************************************************************
 
-				if('figuresSaved' in deviceRun):
-					del deviceRun['figuresSaved']
-
-				if('MeasurementSystem' not in deviceRun):
-					deviceRun['MeasurementSystem'] = 'B2912A'
-
-				if('deviceRange' not in deviceRun):
-					deviceRun['deviceRange'] = []
-
-				if('plotsFolder' not in deviceRun):
-					deviceRun['plotsFolder'] = 'CurrentPlots/'
-
-				if('deviceDirectory' not in deviceRun):
-					deviceRun['deviceDirectory'] = deviceDirectory[3:]
-
-				if('ParametersFormatVersion' not in deviceRun):
-					deviceRun['ParametersFormatVersion'] = 1.1
-
-				if('startIndexes' not in deviceRun):
-					deviceRun['startIndexes'] = {'index':deviceRun['index'], 'experimentNumber':deviceRun['experimentNumber']}
-
-				if('numberOfStaticBiases' in deviceRun):
-					deviceRun['AutoStaticBias'] = dict(default_parameters['AutoStaticBias'])
-					deviceRun['AutoStaticBias']['numberOfStaticBiases'] = deviceRun['numberOfStaticBiases']
-					deviceRun['AutoStaticBias']['applyGateSweepBetweenBiases'] = deviceRun['applyGateSweepBetweenBiases']
-					deviceRun['AutoStaticBias']['numberOfBiasesBetweenIncrements'] = deviceRun['numberOfBiasesBetweenIncrements']
-					deviceRun['AutoStaticBias']['incrementStaticDrainVoltage'] = deviceRun['incrementStaticDrainVoltage']
-					deviceRun['AutoStaticBias']['incrementStaticGateVoltage'] = deviceRun['incrementStaticGateVoltage']
-					del deviceRun['numberOfStaticBiases']
-					del deviceRun['applyGateSweepBetweenBiases']
-					del deviceRun['numberOfBiasesBetweenIncrements']
-					del deviceRun['incrementStaticDrainVoltage']
-					del deviceRun['incrementStaticGateVoltage']
-
-				if('saveFileName' in deviceRun):
-					del deviceRun['saveFileName']
-
-				if('StaticBias' not in deviceRun):
-					deviceRun['StaticBias'] = dict(default_parameters['StaticBias'])
-					if('gateVoltageSetPoint' in deviceRun):
-						deviceRun['StaticBias']['gateVoltageSetPoint'] = deviceRun['gateVoltageSetPoint']
-						del deviceRun['gateVoltageSetPoint']
-					if('drainVoltageSetPoint' in deviceRun):
-						deviceRun['StaticBias']['drainVoltageSetPoint'] = deviceRun['drainVoltageSetPoint']
-						del deviceRun['drainVoltageSetPoint']
-					if('startUpSettlingDelay' in deviceRun):
-						deviceRun['StaticBias']['delayBeforeMeasurementsBegin'] = deviceRun['startUpSettlingDelay']
-						del deviceRun['startUpSettlingDelay']
-					if('complianceCurrent' in deviceRun):
-						deviceRun['StaticBias']['complianceCurrent'] = deviceRun['complianceCurrent']
-						del deviceRun['complianceCurrent']
-					if('biasTime' in deviceRun):
-						deviceRun['StaticBias']['totalBiasTime'] = deviceRun['biasTime']
-						del deviceRun['biasTime']
-					if('runDataPoints' in deviceRun):
-						deviceRun['StaticBias']['measurementTime'] = int(deviceRun['StaticBias']['totalBiasTime']/deviceRun['runDataPoints'])
-						del deviceRun['runDataPoints']
-
-					
-
+				
+		# Save device history for GateSweep, BurnOut, and StaticBias
 		for deviceRun in gateSweepHistory:
 			dlu.saveJSON(deviceDirectory, 'GateSweep', deviceRun, incrementIndex=False)
 		if(burnedout):
@@ -359,15 +143,18 @@ def main():
 		if(staticed):
 			for deviceRun in staticBiasHistory:
 				dlu.saveJSON(deviceDirectory, 'StaticBias', deviceRun, incrementIndex=False)
-		dlu.saveJSON(deviceDirectory, 'index', index_json, incrementIndex=False)
+		# *************************************************************
 
-def count(array):
-	count = 1
-	index = 1
-	while(array[0] == array[index]):
-		count += 1
-		index += 1
-	return count
+def onOffRatio(drainCurrent):
+	return onCurrent(drainCurrent)/offCurrent(drainCurrent)
+
+def onCurrent(drainCurrent):
+	absDrainCurrent = abs(np.array(drainCurrent))
+	return np.percentile(absDrainCurrent, 99)
+
+def offCurrent(drainCurrent):
+	absDrainCurrent = abs(np.array(drainCurrent))
+	return (np.percentile(absDrainCurrent, 5))
 
 main()
 

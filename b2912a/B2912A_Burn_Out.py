@@ -42,6 +42,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	
 	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
 
+	# RUN TEST
 	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'], 20)
 	results = runBurnOutSweep(	smu_instance, 
 								parameters['deviceDirectory'], 
@@ -55,11 +56,15 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 								parameters['BurnOut']['pointsPerHold'])
 	smu_instance.rampDownVoltages()
 
-	jsonData = {**parameters, **results}
+	# Copy parameters and add in the test results
+	jsonData = dict(parameters)
+	jsonData['Results'] = results
 
+	# Save results as a JSON object
 	if(isSavingResults):
 		dlu.saveJSON(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'], jsonData)
 
+	# Show plots to the user
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')
 		dpu.show()
@@ -67,7 +72,6 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	return jsonData
 
 def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, pointsPerRamp, pointsPerHold):
-	current1_threshold = -1
 	burned = False
 	vds_data = []
 	id_data = []
@@ -78,9 +82,11 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 	drainVoltages = dgu.stepValues(voltageStart, voltageSetPoint, voltagePlateaus, pointsPerRamp, pointsPerHold)
 
 	for i, drainVoltage in enumerate(drainVoltages):
+		# Apply V_DS
 		smu_instance.setVds(drainVoltage)
-		measurement = smu_instance.takeMeasurement()
 
+		# Take measurement and save it
+		measurement = smu_instance.takeMeasurement()
 		timestamp = time.time()
 
 		vds_data.append(measurement['V_ds'])
@@ -89,24 +95,28 @@ def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdPropo
 		ig_data.append(measurement['I_g'])
 		timestamps.append(timestamp)
 		
+		# Re-compute threshold as a function of all measurements so far
 		id_threshold = np.percentile(np.array(id_data), 90) * thresholdProportion
-		id_recent_measurements = [measurement['I_d']]
-
+		
+		# If we are in a plateau, consider last 3 points, if we are in a rise just look at a single point
 		if(drainVoltages[i] == drainVoltages[i-1]):
 			id_recent_measurements = id_data[-3:]
+		else:
+			id_recent_measurements = [measurement['I_d']]
 
+		# Check if threshold has been crossed
 		if(thresholdCrossed(id_threshold, id_recent_measurements, drainVoltages[i], minimumAppliedDrainVoltage)):
 			burned = True
 			break
 			
-
+	# Rapidly ramp down V_DS
 	smu_instance.rampDrainVoltage(drainVoltage, 0, 20)
 
 	return {
-		'voltage1s':vds_data,
-		'current1s':id_data,
-		'voltage2s':vgs_data,
-		'current2s':ig_data,
+		'vds_data':vds_data,
+		'id_data':id_data,
+		'vgs_data':vgs_data,
+		'ig_data':ig_data,
 		'timestamps':timestamps,
 		'drainVoltages':drainVoltages,
 		'didBurnOut':burned,

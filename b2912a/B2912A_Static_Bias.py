@@ -38,6 +38,7 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	if(parameters['StaticBias']['delayBeforeMeasurementsBegin'] > 0):
 		time.sleep(parameters['StaticBias']['delayBeforeMeasurementsBegin'])
 
+	# RUN TEST
 	results = runStaticBias(smu_instance, 
 							arduino_instance,
 							parameters['StaticBias']['drainVoltageSetPoint'],
@@ -48,11 +49,15 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'], steps=30)
 	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'], steps=20)
 
-	jsonData = {**parameters, **results}
+	# Copy parameters and add in the test results
+	jsonData = dict(parameters)
+	jsonData['Results'] = results
 	
+	# Save results as a JSON object
 	if(isSavingResults):
 		dlu.saveJSON(parameters['deviceDirectory'], parameters['StaticBias']['saveFileName'], jsonData)
 	
+	# Show plots to the user
 	if(isPlottingResults):
 		dpu.plotJSON(jsonData, parameters, 'b')
 		dpu.show()
@@ -69,18 +74,19 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	steps = int(totalBiasTime/measurementTime)
 	pointsToAverageOver = (measurementTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)
 	
-	
-
 	for i in range(steps):
+		# Take a 'sweep' at static voltage to get many measurements. Sweep takes 'measurementTime' number of seconds to complete.
 		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, pointsToAverageOver/1.5)
 		timestamp = time.time()
 		
+		# Save the median of the sweep as this measurement
 		vds_data.append(np.median(measurements['Vds_data']))
 		id_data.append(np.median(measurements['Id_data']))
 		vgs_data.append(np.median(measurements['Vgs_data']))
 		ig_data.append(np.median(measurements['Ig_data']))
 		timestamps.append(timestamp)
 
+		# Take a measurement with the Arduino
 		sensor_data = arduino_instance.takeMeasurement()
 		for (measurement, value) in sensor_data.items():
 			parameters['SensorData'][measurement].append(value)
@@ -89,10 +95,10 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	print('')
 
 	return {
-		'voltage1s':vds_data,
-		'current1s':id_data,
-		'voltage2s':vgs_data,
-		'current2s':ig_data,
+		'vds_data':vds_data,
+		'id_data':id_data,
+		'vgs_data':vgs_data,
+		'ig_data':ig_data,
 		'timestamps':timestamps
 	}
 

@@ -60,8 +60,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C134K'
 	deviceID = '15-16'
 else:
-	chipID = 'C137H'
-	deviceID = '4'
+	chipID = 'C127E'
+	deviceID = '15-16'
 
 runTypes = {
 	0:'Quit',
@@ -76,7 +76,7 @@ runTypes = {
 }
 
 default_parameters = {
-	'ParametersFormatVersion': 2,
+	'ParametersFormatVersion': 3,
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'isFastSweep': False,
@@ -139,13 +139,13 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   False,
-		'plotStaticBias': False,
+		'plotBurnOuts':   True,
+		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
-		'gateSweepDirection': ['both','forward','reverse'][0],
+		'excludeDataAfterJSONExperimentNumber':  50,
+		'gateSweepDirection': ['both','forward','reverse'][2],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
 		'plotInRealTime': True,
@@ -185,8 +185,6 @@ def main(parameters):
 		confirmation = str(selectFromDictionary('Parameters: ', parameters, 'Are parameters correct? (y/n): '))
 		if(confirmation != 'y'):
 			break
-
-		time.sleep(5)
 
 		# Initialize measurement system
 		smu_instance = initSMU(parameters)		
