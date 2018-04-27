@@ -142,12 +142,12 @@
       getImageData: function(imageName) {
         imageName = imageName.toString();
         if (!app.$data.imagesData[imageName]) {
-          google.script.run.withSuccessHandler(
-            function(imageData) {
-              //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
-              Vue.set(app.$data.imagesData, imageName, imageData);
-            }
-          ).getImageData(imageName);
+          // google.script.run.withSuccessHandler(
+          //   function(imageData) {
+          //     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+          //     Vue.set(app.$data.imagesData, imageName, imageData);
+          //   }
+          // ).getImageData(imageName);
         }
         return 'A great image';
       },
@@ -176,12 +176,12 @@
     // console.log("Requesting plot " + imageName);
     
     if (!app.$data.imagesData[imageName]) {
-      google.script.run.withSuccessHandler(
-        function(imageData) {
-          //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
-          Vue.set(app.$data.imagesData, imageName, imageData);
-        }
-      ).getImageData(imageName);
+      // google.script.run.withSuccessHandler(
+      //   function(imageData) {
+      //     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+      //     Vue.set(app.$data.imagesData, imageName, imageData);
+      //   }
+      // ).getImageData(imageName);
     }
     return 'A great image';
   }
