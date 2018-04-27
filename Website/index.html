@@ -124,6 +124,8 @@
   <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
   <script type="text/javascript">
 
+  var gasURL = "https://script.google.com/macros/s/AKfycbzflDpYVTV3NGAEEaC-hfyQTN94JhZbr75dEh_czd7XXN5mDA/exec";
+
   var app = new Vue({
     el: '#app',
     data: {
@@ -142,12 +144,12 @@
       getImageData: function(imageName) {
         imageName = imageName.toString();
         if (!app.$data.imagesData[imageName]) {
-          google.script.run.withSuccessHandler(
-            function(imageData) {
-              //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
-              Vue.set(app.$data.imagesData, imageName, imageData);
-            }
-          ).getImageData(imageName);
+          // google.script.run.withSuccessHandler(
+          //   function(imageData) {
+          //     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+          //     Vue.set(app.$data.imagesData, imageName, imageData);
+          //   }
+          // ).getImageData(imageName);
         }
         return 'A great image';
       },
@@ -176,37 +178,73 @@
     // console.log("Requesting plot " + imageName);
     
     if (!app.$data.imagesData[imageName]) {
-      google.script.run.withSuccessHandler(
+      $.getJSON(gasURL + "?func=getImageData&params=" + encodeURIComponent(JSON.stringify(imageName)) + "&callback=?",
         function(imageData) {
-          //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+          // app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
           Vue.set(app.$data.imagesData, imageName, imageData);
         }
-      ).getImageData(imageName);
+      ).fail(
+        function() {
+          console.log('Server Function getImageData() failed to run');
+        }
+      );
+      // google.script.run.withSuccessHandler(
+      //   function(imageData) {
+      //     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+      //     Vue.set(app.$data.imagesData, imageName, imageData);
+      //   }
+      // ).getImageData(imageName);
     }
     return 'A great image';
   }
 
   $(document).ready(function(){
-  //   google.script.run.withSuccessHandler(
-  //     function(data) {
-  //       app.$data.deviceList = JSON.parse(data);
-  //       app.$data.chips = groupBy(app.$data.deviceList, "chipID");
+    $.getJSON(gasURL + "?func=getDeviceListSerialized&callback=?",
+      function(data) {
+        app.$data.deviceList = JSON.parse(data);
+        app.$data.chips = groupBy(app.$data.deviceList, "chipID");
         
-  //       for (var chipName in app.$data.chips) {
-  //         if (app.$data.chips.hasOwnProperty(chipName)) {
-  //           app.$data.chipVisible[chipName] = false;
-  //         }
-  //       }
-  //     }
-  //   ).getDeviceListSerialized();
+        for (var chipName in app.$data.chips) {
+          if (app.$data.chips.hasOwnProperty(chipName)) {
+            app.$data.chipVisible[chipName] = false;
+          }
+        }
+      }
+    ).fail(
+      function() {
+        console.log("There was a problem with server function getDeviceListSerialized");
+      }
+    );
+    // google.script.run.withSuccessHandler(
+    //   function(data) {
+    //     app.$data.deviceList = JSON.parse(data);
+    //     app.$data.chips = groupBy(app.$data.deviceList, "chipID");
+        
+    //     for (var chipName in app.$data.chips) {
+    //       if (app.$data.chips.hasOwnProperty(chipName)) {
+    //         app.$data.chipVisible[chipName] = false;
+    //       }
+    //     }
+    //   }
+    // ).getDeviceListSerialized();
     
+    $.getJSON(gasURL + "?func=getPlotListSerialized&callback=?",
+      function(data) {
+        app.$data.plotList = JSON.parse(data);
+        app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
+      }
+    ).fail(
+      function() {
+        console.log("There was a problem retreiving the appointment days data");
+      }
+    );
   //   google.script.run.withSuccessHandler(
-  //     function(data) {
-  //       app.$data.plotList = JSON.parse(data);
-  //       app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
-  //     }
+      // function(data) {
+        // app.$data.plotList = JSON.parse(data);
+        // app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
+      // }
   //   ).getPlotListSerialized();
-  // });
+  });
 
   function groupBy(elements, groupKey) {
     return elements.reduce(function(rv, x) {
