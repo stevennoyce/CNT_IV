@@ -60,8 +60,8 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'C134K'
 	deviceID = '15-16'
 else:
-	chipID = 'C139A'
-	deviceID = '7-8'
+	chipID = 'C137H'
+	deviceID = '4'
 
 runTypes = {
 	0:'Quit',
@@ -87,8 +87,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-5,
-		'gateVoltageMaximum': 	5
+		'gateVoltageMinimum':	-1,
+		'gateVoltageMaximum': 	1
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -139,8 +139,8 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
-		'plotStaticBias': True,
+		'plotBurnOuts':   False,
+		'plotStaticBias': False,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
@@ -187,7 +187,6 @@ def main(parameters):
 			break
 
 		time.sleep(5)
-
 
 		# Initialize measurement system
 		smu_instance = initSMU(parameters)		
