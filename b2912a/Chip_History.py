@@ -19,7 +19,7 @@ from utilities import DataLoggerUtility as dlu
 def run(parameters):
 	burnOutFileName = 'BurnOut.json'
 	gateSweepFileName = 'GateSweep.json'
-	chipDirectory = parameters['dataFolder'] + parameters['chipID'] + '/'
+	chipDirectory = parameters['dataFolder'] + parameters['waferID'] + '/' + parameters['chipID'] + '/'
 
 	firstRunChipHistory = dlu.loadFirstRunChipHistory(chipDirectory, gateSweepFileName, parameters['chipID'])
 	recentRunChipHistory = dlu.loadMostRecentRunChipHistory(chipDirectory, gateSweepFileName, parameters['chipID'])

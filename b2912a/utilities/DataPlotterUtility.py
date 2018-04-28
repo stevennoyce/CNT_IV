@@ -143,8 +143,8 @@ def plotJSON(jsonData, parameters, lineColor):
 
 def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTestLabel(deviceHistory)
-	fig, ax = initFigure(1, 1, 'SubthresholdCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
+	fig, ax = initFigure(1, 1, 'SubthresholdCurve', testLabel)
 	ax.set_title(plot_parameters['SubthresholdCurve']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -167,8 +167,8 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 
 def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTestLabel(deviceHistory)
-	fig, ax = initFigure(1, 1, 'TransferCurve', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
+	fig, ax = initFigure(1, 1, 'TransferCurve', testLabel)
 	ax.set_title(plot_parameters['TransferCurve']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -212,8 +212,8 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 
 def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTestLabel(deviceHistory)
-	fig, ax = initFigure(1, 1, 'GateCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
+	fig, ax = initFigure(1, 1, 'GateCurrent', testLabel)
 	ax.set_title(plot_parameters['GateCurrent']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -236,8 +236,8 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	# Init Figure	
-	titleNumbers = getTestLabel(deviceHistory)
-	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
+	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', testLabel)
 	ax2 = plt.subplot(222)
 	ax3 = plt.subplot(224)
 	ax1.set_title(plot_parameters['BurnOut']['titles'][0])
@@ -265,13 +265,13 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTestLabel(deviceHistory)
+	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
 	if(includeDualAxis):
-		fig, (ax1, ax2) = initFigure(2, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers, shareX=True)
+		fig, (ax1, ax2) = initFigure(2, 1, 'StaticBias', testLabel, shareX=True)
 		ax = ax1
 		ax3 = ax2.twinx()
 	else:
-		fig, ax = initFigure(1, 1, 'StaticBias', parameters['chipID'], parameters['deviceID'], titleNumbers)
+		fig, ax = initFigure(1, 1, 'StaticBias', testLabel)
 	ax.set_title(plot_parameters['StaticBias']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -388,8 +388,8 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
-	titleNumbers = getTestLabel(deviceHistory)
-	fig, ax1 = initFigure(1, 1, 'OnCurrent', parameters['chipID'], parameters['deviceID'], titleNumbers)
+	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
+	fig, ax1 = initFigure(1, 1, 'OnCurrent', testLabel)
 	ax2 = ax1.twinx()
 	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -447,7 +447,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Init Figure
-	fig, ax = initFigure(1, 1, 'ChipHistory', parameters['chipID'], parameters['deviceID'], '')
+	fig, ax = initFigure(1, 1, 'ChipHistory', '')
 	ax.set_title(plot_parameters['ChipHistory']['titles'][0])
 
 	# Build On/Off Ratio lists
@@ -577,14 +577,13 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', i
 
 # ***** Figures *****
 
-def initFigure(rows, columns, type, chipID, deviceID, testLabel, shareX=False):
+def initFigure(rows, columns, type, testLabel, shareX=False):
 	if(rows > 1 or columns > 1):
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[type]['subplot_width_ratio'], 'height_ratios':plot_parameters[type]['subplot_height_ratio']})
 	else:
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
-	title = chipID + ':' + deviceID + testLabel
 	if(not publication_mode):
-		fig.suptitle(title)
+		fig.suptitle(testLabel)
 	return fig, axes
 
 def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWidthPad=0, subplotHeightPad=0):
@@ -604,16 +603,16 @@ def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=mapName)
 	return {'colors':[scalarColorMap.to_rgba(i) for i in np.linspace(colorStartPoint, colorEndPoint, numberOfColors)], 'smap':scalarColorMap}
 
-def getTestLabel(deviceHistory):
-	titleNumbers = ''
+def getTestLabel(deviceHistory, waferID, chipID, deviceID):
+	label = str(waferID) + str(chipID) + ':' + deviceID
 	if len(deviceHistory) > 0:
 		test1Num = deviceHistory[0]['experimentNumber']
 		test2Num = deviceHistory[-1]['experimentNumber']
 		if test1Num == test2Num:
-			titleNumbers = ', Test {:}'.format(test1Num)
+			label += ', Test {:}'.format(test1Num)
 		else:
-			titleNumbers = ', Tests {:}-{:}'.format(test1Num, test2Num)
-	return titleNumbers
+			label += ', Tests {:}-{:}'.format(test1Num, test2Num)
+	return label
 
 
 
@@ -697,6 +696,8 @@ def getLegendTitle(deviceHistory, plotType, parameterType, includeVdsRange, incl
 		legend_title += legend_entries[i]
 
 	return legend_title
+
+
 
 # ***** Curve Fitting *****
 
