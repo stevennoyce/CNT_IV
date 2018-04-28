@@ -4,7 +4,7 @@ import numpy as np
 
 import DataLoggerUtility as dlu
 
-directory = #'../data/C127M/'
+directory = '../data/C139/D/'
 
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
@@ -46,88 +46,144 @@ def main():
 
 		# GATE SWEEP
 		for deviceRun in gateSweepHistory:
-			if(deviceRun['ParametersFormatVersion'] >= 3):
-				continue
-			else:
-				deviceRun['ParametersFormatVersion'] = 3
+			#if(deviceRun['ParametersFormatVersion'] >= 3):
+			#	continue
+			#else:
+			#	deviceRun['ParametersFormatVersion'] = 3
 
-			if('current1s' in deviceRun):
-				deviceRun['Results'] = {}
-				deviceRun['Results']['id_data'] = deviceRun['current1s']
-				deviceRun['Results']['ig_data'] = deviceRun['current2s']
-				deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
-				deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
-				deviceRun['Results']['timestamps'] = deviceRun['timestamps']
-				deviceRun['Results']['gateVoltages'] = deviceRun['gateVoltages']
-				deviceRun['Results']['onOffRatio'] = onOffRatio(deviceRun['Results']['id_data'])
-				deviceRun['Results']['onCurrent'] = onCurrent(deviceRun['Results']['id_data'])
-				deviceRun['Results']['offCurrent'] = offCurrent(deviceRun['Results']['id_data'])
-				del deviceRun['current1s']
-				del deviceRun['current2s']
-				del deviceRun['voltage1s']
-				del deviceRun['voltage2s']
-				del deviceRun['timestamps']
-				del deviceRun['gateVoltages']
-				if('onOffRatio' in deviceRun):
-					del deviceRun['onOffRatio']
-				if('onCurrent' in deviceRun):
-					del deviceRun['onCurrent']
-				if('offCurrent' in deviceRun):
-					del deviceRun['offCurrent']
+			# if('current1s' in deviceRun):
+			# 	deviceRun['Results'] = {}
+			# 	deviceRun['Results']['id_data'] = deviceRun['current1s']
+			# 	deviceRun['Results']['ig_data'] = deviceRun['current2s']
+			# 	deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
+			# 	deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
+			# 	deviceRun['Results']['timestamps'] = deviceRun['timestamps']
+			# 	deviceRun['Results']['gateVoltages'] = deviceRun['gateVoltages']
+			# 	deviceRun['Results']['onOffRatio'] = onOffRatio(deviceRun['Results']['id_data'])
+			# 	deviceRun['Results']['onCurrent'] = onCurrent(deviceRun['Results']['id_data'])
+			# 	deviceRun['Results']['offCurrent'] = offCurrent(deviceRun['Results']['id_data'])
+			# 	del deviceRun['current1s']
+			# 	del deviceRun['current2s']
+			# 	del deviceRun['voltage1s']
+			# 	del deviceRun['voltage2s']
+			# 	del deviceRun['timestamps']
+			# 	del deviceRun['gateVoltages']
+			# 	if('onOffRatio' in deviceRun):
+			# 		del deviceRun['onOffRatio']
+			# 	if('onCurrent' in deviceRun):
+			# 		del deviceRun['onCurrent']
+			# 	if('offCurrent' in deviceRun):
+			# 		del deviceRun['offCurrent']
+
+			if('dataFolder' not in deviceRun):
+				deviceRun['dataFolder'] = 'data/'
+
+			if('saveFolder' in deviceRun):
+				del deviceRun['saveFolder']
+
+			if('saveFileName' in deviceRun):
+				del deviceRun['saveFileName']
+
+			if('sweepSteps' in deviceRun):
+				del deviceRun['sweepSteps']
+
+			if('complianceCurrent' in deviceRun):
+				del deviceRun['complianceCurrent']
+
+			if(len(deviceRun['chipID']) > 1):
+				deviceRun['waferID'] = deviceRun['chipID'][:4]
+				deviceRun['chipID'] = deviceRun['chipID'][4]
+				deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
 
 		# BURN OUT
 		if(burnedout):
 			for deviceRun in burnOutHistory:
-				if(deviceRun['ParametersFormatVersion'] >= 3):
-					continue
-				else:
-					deviceRun['ParametersFormatVersion'] = 3
+				#if(deviceRun['ParametersFormatVersion'] >= 3):
+				#	continue
+				#else:
+				#	deviceRun['ParametersFormatVersion'] = 3
 
-				if('current1s' in deviceRun):
-					deviceRun['Results'] = {}
-					deviceRun['Results']['id_data'] = deviceRun['current1s']
-					deviceRun['Results']['ig_data'] = deviceRun['current2s']
-					deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
-					deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
-					deviceRun['Results']['timestamps'] = deviceRun['timestamps']
-					deviceRun['Results']['drainVoltages'] = deviceRun['drainVoltages']
-					del deviceRun['current1s']
-					del deviceRun['current2s']
-					del deviceRun['voltage1s']
-					del deviceRun['voltage2s']
-					del deviceRun['timestamps']
-					del deviceRun['drainVoltages']
-					if('didBurnOut' in deviceRun):
-						deviceRun['Results']['didBurnOut'] = deviceRun['didBurnOut']
-						del deviceRun['didBurnOut']
-					else:
-						deviceRun['Results']['didBurnOut'] = True
-					if('thresholdCurrent' in deviceRun):
-						deviceRun['Results']['thresholdCurrent'] = deviceRun['thresholdCurrent']
-						del deviceRun['thresholdCurrent']
-					else:
-						deviceRun['Results']['thresholdCurrent'] = 0
+				# if('current1s' in deviceRun):
+				# 	deviceRun['Results'] = {}
+				# 	deviceRun['Results']['id_data'] = deviceRun['current1s']
+				# 	deviceRun['Results']['ig_data'] = deviceRun['current2s']
+				# 	deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
+				# 	deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
+				# 	deviceRun['Results']['timestamps'] = deviceRun['timestamps']
+				# 	deviceRun['Results']['drainVoltages'] = deviceRun['drainVoltages']
+				# 	del deviceRun['current1s']
+				# 	del deviceRun['current2s']
+				# 	del deviceRun['voltage1s']
+				# 	del deviceRun['voltage2s']
+				# 	del deviceRun['timestamps']
+				# 	del deviceRun['drainVoltages']
+				# 	if('didBurnOut' in deviceRun):
+				# 		deviceRun['Results']['didBurnOut'] = deviceRun['didBurnOut']
+				# 		del deviceRun['didBurnOut']
+				# 	else:
+				# 		deviceRun['Results']['didBurnOut'] = True
+				# 	if('thresholdCurrent' in deviceRun):
+				# 		deviceRun['Results']['thresholdCurrent'] = deviceRun['thresholdCurrent']
+				# 		del deviceRun['thresholdCurrent']
+				# 	else:
+				# 		deviceRun['Results']['thresholdCurrent'] = 0
+
+				if('dataFolder' not in deviceRun):
+					deviceRun['dataFolder'] = 'data/'
+
+				if('saveFolder' in deviceRun):
+					del deviceRun['saveFolder']
+
+				if('saveFileName' in deviceRun):
+					del deviceRun['saveFileName']
+
+				if('complianceCurrent' in deviceRun):
+					del deviceRun['complianceCurrent']
+
+				if(len(deviceRun['chipID']) > 1):
+					deviceRun['waferID'] = deviceRun['chipID'][:4]
+					deviceRun['chipID'] = deviceRun['chipID'][4]
+					deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
+
 
 		# STATIC BIAS
 		if(staticed):			
 			for deviceRun in staticBiasHistory:
-				if(deviceRun['ParametersFormatVersion'] >= 3):
-					continue
-				else:
-					deviceRun['ParametersFormatVersion'] = 3
+				#if(deviceRun['ParametersFormatVersion'] >= 3):
+				#	continue
+				#else:
+				#	deviceRun['ParametersFormatVersion'] = 3
 
-				if('current1s' in deviceRun):
-					deviceRun['Results'] = {}
-					deviceRun['Results']['id_data'] = deviceRun['current1s']
-					deviceRun['Results']['ig_data'] = deviceRun['current2s']
-					deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
-					deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
-					deviceRun['Results']['timestamps'] = deviceRun['timestamps']
-					del deviceRun['current1s']
-					del deviceRun['current2s']
-					del deviceRun['voltage1s']
-					del deviceRun['voltage2s']
-					del deviceRun['timestamps']
+				# if('current1s' in deviceRun):
+				# 	deviceRun['Results'] = {}
+				# 	deviceRun['Results']['id_data'] = deviceRun['current1s']
+				# 	deviceRun['Results']['ig_data'] = deviceRun['current2s']
+				# 	deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
+				# 	deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
+				# 	deviceRun['Results']['timestamps'] = deviceRun['timestamps']
+				# 	del deviceRun['current1s']
+				# 	del deviceRun['current2s']
+				# 	del deviceRun['voltage1s']
+				# 	del deviceRun['voltage2s']
+				# 	del deviceRun['timestamps']
+
+				if('dataFolder' not in deviceRun):
+					deviceRun['dataFolder'] = 'data/'
+
+				if('saveFolder' in deviceRun):
+					del deviceRun['saveFolder']
+
+				if('saveFileName' in deviceRun):
+					del deviceRun['saveFileName']
+
+				if('complianceCurrent' in deviceRun):
+					del deviceRun['complianceCurrent']
+
+				if(len(deviceRun['chipID']) > 1):
+					deviceRun['waferID'] = deviceRun['chipID'][:4]
+					deviceRun['chipID'] = deviceRun['chipID'][4]
+					deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
+
 
 		# *************************************************************
 		# ******************  END DATA MODIFICATION  ******************

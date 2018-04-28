@@ -32,19 +32,23 @@ os.chdir(sys.path[0])
 #sys.path.append('utilities/')
 
 if platform.node() == 'noyce-dell':
-	chipID = 'C127X'
+	waferID = 'C127'
+	chipID = 'X'
 	deviceID = '15-16'
 elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
-	chipID = 'C127E'
+	waferID = 'C127'
+	chipID = 'E'
 	deviceID = '14-15'
 	
-	chipID = 'C127X'
+	waferID = 'C127'
+	chipID = 'X'
 	deviceID = '15-16'
 	# Experiments 3 to 4
 	# Experiment 57 - 
 	# Experiment 65 - 
 
-	chipID = 'C127E'
+	waferID = 'C127'
+	chipID = 'E'
 	deviceID = '15-16'
 	# Experiment 6 to 6, many decay curves and subthreshold curves
 	# Separate plot, index 11 to 12, one decay curve
@@ -53,14 +57,17 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	# Separate plot, experiments 3 to 18, decaying subthreshold curves
 	# Separate plot, experiments 3 to 13, stable/slowly decreasing subthreshold and transfer and on/off curves
 	
-	# chipID = 'C127P'
+	# waferID = 'C127'
+	# chipID = 'P'
 	# deviceID = '1-2'
 	# # Experiment 8 to 8
 	
-	chipID = 'C134K'
+	waferID = 'C134'
+	chipID = 'K'
 	deviceID = '15-16'
 else:
-	chipID = 'C139D'
+	waferID = 'C127'
+	chipID = 'X'
 	deviceID = '15-16'
 
 runTypes = {
@@ -144,7 +151,7 @@ default_parameters = {
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
 		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataAfterJSONExperimentNumber':  20,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
@@ -161,6 +168,7 @@ default_parameters = {
 
 	},
 	'MeasurementSystem':['B2912A','PCB2v14'][0],
+	'waferID':waferID,
 	'chipID':chipID,
 	'deviceID':deviceID,
 	'deviceRange':[],#devicesInRange(2,32,skip=False),
@@ -207,7 +215,7 @@ def main(parameters):
 
 # Run generic user action
 def runAction(parameters, smu_instance):
-	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
+	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['waferID'] + '/' + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
