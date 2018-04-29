@@ -1,259 +1,259 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="<?= ScriptApp.getService().getUrl() ?>" target="_top">
-  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+	<base href="<?= ScriptApp.getService().getUrl() ?>" target="_top">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+	<link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
 
-  <style media="screen" type="text/css">
-  [v-cloak] {
-    opacity: 0;
-  }
+	<style media="screen" type="text/css">
+	[v-cloak] {
+		opacity: 0;
+	}
 
-  .fade-leave-active, .fade-enter-active {
-    transition: 0.7s ease;
-  }
-  .fade-leave-to {
-    opacity: 1;
-  }
-  .fade-enter, .fade-leave {
-    opacity: 0;
-  }
-  </style>
+	.fade-leave-active, .fade-enter-active {
+		transition: 0.7s ease;
+	}
+	.fade-leave-to {
+		opacity: 1;
+	}
+	.fade-enter, .fade-leave {
+		opacity: 0;
+	}
+	</style>
 </head>
 <body>
-  <div id="app" v-cloak>
-  <transition name="fade" mode="out-in" appear><div>
-    <v-app>
-      <v-navigation-drawer clipped fixed v-model="drawer" class="blue-grey lighten-1" dark app>
-        <v-list dense>
-          <v-list-tile @click="">
-            <v-list-tile-action>
-              <v-icon>dashboard</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Dashboard</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile @click="">
-            <v-list-tile-action>
-              <v-icon>settings</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Settings</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-navigation-drawer>
-      <v-toolbar app fixed clipped-left dark color="blue-grey darken-1">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <v-toolbar-title>Research Data Viewer</v-toolbar-title>
-      </v-toolbar>
-      <v-content>
-        <v-container fluid>
-          <v-layout>
-            
-            
-            <v-expansion-panel expand>
-              <v-expansion-panel-content lazy ripple v-for="(devices, chipName) in chips" v-model="chipVisible[chipName]">
-                <div slot="header">{{ chipName }}</div>
-                <v-expansion-panel class="pl-3" expand>
-                  <v-expansion-panel-content lazy ripple v-for="device in devices" v-model="device.isVisible">
-                    <div slot="header" @click="fetchImagesForDevice(device)">{{ device.deviceID }}</div>
-                    <v-container fluid grid-list-sm>
-                    <v-layout row wrap>
-                    <v-flex v-for="(plot, plotIndex) in devicePlots[device.chipID + '_' + device.deviceID]" xs12 sm6 md4 lg3 xl2>
-                    <v-card class="ma-1 elevation-3">
-                      <v-toolbar color="blue-grey lighten-1" dark>
-                        <v-toolbar-title>Test #{{ plotIndex + 1 }}</v-toolbar-title>
-                      </v-toolbar>
-                      <img v-if="imagesData[plot.imageName]" :src="'data:image/png;base64,' + imagesData[plot.imageName]" style="max-width:100%;max-height:60vh" @click="plotInspectModal = true; plotBeingInspected = plot;" />
-                      <v-layout v-if="!imagesData[plot.imageName]" style="height: 18vmax" justify-center align-center>
-                      <v-progress-circular indeterminate></v-progress-circular>
-                      </v-layout>
-                      <!--<img v-if="imagesData[plot.imageName]" :src="'data:image/png;base64,' + imagesData[plot.imageName]" width="200px" height="200px">-->
-                      
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn icon @click.native="if(plot['showParameters']) {plot['showParameters'] = false;} else {VueSet(plot, 'showParameters', true);}">
-                          <v-icon>{{ plot.showParameters ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-                        </v-btn>
-                      </v-card-actions>
-                      <v-slide-y-transition>
-                        <v-card-text v-show="plot.showParameters">
-                          <pre>{{ JSON.stringify(JSON.parse(plot.otherParameters), undefined, 2) }}</pre>
-                        </v-card-text>
-                      </v-slide-y-transition>
-                    </v-card>
-                    </v-flex>
-                    </v-layout>
-                    </v-container>
-                  </v-expansion-panel-content>
-                </v-expansion-panel>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
+	<div id="app" v-cloak>
+	<transition name="fade" mode="out-in" appear><div>
+		<v-app>
+			<v-navigation-drawer clipped fixed v-model="drawer" class="blue-grey lighten-1" dark app>
+				<v-list dense>
+					<v-list-tile @click="">
+						<v-list-tile-action>
+							<v-icon>dashboard</v-icon>
+						</v-list-tile-action>
+						<v-list-tile-content>
+							<v-list-tile-title>Dashboard</v-list-tile-title>
+						</v-list-tile-content>
+					</v-list-tile>
+					<v-list-tile @click="">
+						<v-list-tile-action>
+							<v-icon>settings</v-icon>
+						</v-list-tile-action>
+						<v-list-tile-content>
+							<v-list-tile-title>Settings</v-list-tile-title>
+						</v-list-tile-content>
+					</v-list-tile>
+				</v-list>
+			</v-navigation-drawer>
+			<v-toolbar app fixed clipped-left dark color="blue-grey darken-1">
+				<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+				<v-toolbar-title>Research Data Viewer</v-toolbar-title>
+			</v-toolbar>
+			<v-content>
+				<v-container fluid>
+					<v-layout>
+						
+						
+						<v-expansion-panel expand>
+							<v-expansion-panel-content lazy ripple v-for="(devices, chipName) in chips" v-model="chipVisible[chipName]">
+								<div slot="header">{{ chipName }}</div>
+								<v-expansion-panel class="pl-3" expand>
+									<v-expansion-panel-content lazy ripple v-for="device in devices" v-model="device.isVisible">
+										<div slot="header" @click="fetchImagesForDevice(device)">{{ device.deviceID }}</div>
+										<v-container fluid grid-list-sm>
+										<v-layout row wrap>
+										<v-flex v-for="(plot, plotIndex) in devicePlots[device.chipID + '_' + device.deviceID]" xs12 sm6 md4 lg3 xl2>
+										<v-card class="ma-1 elevation-3">
+											<v-toolbar color="blue-grey lighten-1" dark>
+												<v-toolbar-title>Test #{{ plotIndex + 1 }}</v-toolbar-title>
+											</v-toolbar>
+											<img v-if="imagesData[plot.imageName]" :src="'data:image/png;base64,' + imagesData[plot.imageName]" style="max-width:100%;max-height:60vh" @click="plotInspectModal = true; plotBeingInspected = plot;" />
+											<v-layout v-if="!imagesData[plot.imageName]" style="height: 18vmax" justify-center align-center>
+											<v-progress-circular indeterminate></v-progress-circular>
+											</v-layout>
+											<!--<img v-if="imagesData[plot.imageName]" :src="'data:image/png;base64,' + imagesData[plot.imageName]" width="200px" height="200px">-->
+											
+											<v-card-actions>
+												<v-spacer></v-spacer>
+												<v-btn icon @click.native="if(plot['showParameters']) {plot['showParameters'] = false;} else {VueSet(plot, 'showParameters', true);}">
+													<v-icon>{{ plot.showParameters ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+												</v-btn>
+											</v-card-actions>
+											<v-slide-y-transition>
+												<v-card-text v-show="plot.showParameters">
+													<pre>{{ JSON.stringify(JSON.parse(plot.otherParameters), undefined, 2) }}</pre>
+												</v-card-text>
+											</v-slide-y-transition>
+										</v-card>
+										</v-flex>
+										</v-layout>
+										</v-container>
+									</v-expansion-panel-content>
+								</v-expansion-panel>
+							</v-expansion-panel-content>
+						</v-expansion-panel>
 
 
 
 
-            <v-dialog v-model="plotInspectModal">
-              <v-card v-if="imagesData[plotBeingInspected.imageName]">
-                <v-toolbar color="blue-grey lighten-1" dark>
-                  <v-toolbar-title>{{ plotBeingInspected.deviceID }}</v-toolbar-title>
-                </v-toolbar>
-                <img :src="'data:image/png;base64,' + imagesData[plotBeingInspected.imageName]" style="max-width:100%;max-height:60vh" />
-                <v-card-text>
-                  <pre>{{ JSON.stringify(JSON.parse(plotBeingInspected.otherParameters), undefined, 2) }}</pre>
-                </v-card-text>
-              </v-card>
-            </v-dialog>
+						<v-dialog v-model="plotInspectModal">
+							<v-card v-if="imagesData[plotBeingInspected.imageName]">
+								<v-toolbar color="blue-grey lighten-1" dark>
+									<v-toolbar-title>{{ plotBeingInspected.deviceID }}</v-toolbar-title>
+								</v-toolbar>
+								<img :src="'data:image/png;base64,' + imagesData[plotBeingInspected.imageName]" style="max-width:100%;max-height:60vh" />
+								<v-card-text>
+									<pre>{{ JSON.stringify(JSON.parse(plotBeingInspected.otherParameters), undefined, 2) }}</pre>
+								</v-card-text>
+							</v-card>
+						</v-dialog>
 
-            
-          </v-layout>
-        </v-container>
-      </v-content>
-      <v-footer app fixed>
-        <span>&copy; 2017</span>
-      </v-footer>
-    </v-app>
-  </div></transition>
-  </div>
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
-  <script type="text/javascript">
+						
+					</v-layout>
+				</v-container>
+			</v-content>
+			<v-footer app fixed>
+				<span>&copy; 2017</span>
+			</v-footer>
+		</v-app>
+	</div></transition>
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+	<script type="text/javascript">
 
-  var gasURL = "https://script.google.com/macros/s/AKfycbzflDpYVTV3NGAEEaC-hfyQTN94JhZbr75dEh_czd7XXN5mDA/exec";
+	var gasURL = "https://script.google.com/macros/s/AKfycbzflDpYVTV3NGAEEaC-hfyQTN94JhZbr75dEh_czd7XXN5mDA/exec";
 
-  var app = new Vue({
-    el: '#app',
-    data: {
-      drawer: null,
-      plotInspectModal: false,
-      plotBeingInspected: {},
-      deviceList: [],
-      chips: {},
-      plotList: [],
-      devicePlots: {},
-      imagesData: {},
-      chipVisible: {},
-      deviceVisible: {}
-    },
-    methods: {
-      getImageData: function(imageName) {
-        imageName = imageName.toString();
-        if (!app.$data.imagesData[imageName]) {
-          // google.script.run.withSuccessHandler(
-          //   function(imageData) {
-          //     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
-          //     Vue.set(app.$data.imagesData, imageName, imageData);
-          //   }
-          // ).getImageData(imageName);
-        }
-        return 'A great image';
-      },
-      
-      fetchImagesForDevice: function(device) {
-        var deviceID = device.chipID + "_" + device.deviceID;
-        var plots = app.$data.devicePlots[deviceID] || [];
-        var plotNames = [];
-        
-        for (var i = 0; i < plots.length; i++) {
-          plotNames.push(plots[i].imageName);
-          getImageData(plots[i].imageName);
-        }
-        
-        // console.log("Fetching plots " + JSON.stringify(plotNames));
-      },
-      
-      VueSet: function(object, key, value) {
-        Vue.set(object, key, value);
-      }
-    }
-  });
+	var app = new Vue({
+		el: '#app',
+		data: {
+			drawer: null,
+			plotInspectModal: false,
+			plotBeingInspected: {},
+			deviceList: [],
+			chips: {},
+			plotList: [],
+			devicePlots: {},
+			imagesData: {},
+			chipVisible: {},
+			deviceVisible: {}
+		},
+		methods: {
+			getImageData: function(imageName) {
+				imageName = imageName.toString();
+				if (!app.$data.imagesData[imageName]) {
+					// google.script.run.withSuccessHandler(
+					//   function(imageData) {
+					//     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+					//     Vue.set(app.$data.imagesData, imageName, imageData);
+					//   }
+					// ).getImageData(imageName);
+				}
+				return 'A great image';
+			},
+			
+			fetchImagesForDevice: function(device) {
+				var deviceID = device.chipID + "_" + device.deviceID;
+				var plots = app.$data.devicePlots[deviceID] || [];
+				var plotNames = [];
+				
+				for (var i = 0; i < plots.length; i++) {
+					plotNames.push(plots[i].imageName);
+					getImageData(plots[i].imageName);
+				}
+				
+				// console.log("Fetching plots " + JSON.stringify(plotNames));
+			},
+			
+			VueSet: function(object, key, value) {
+				Vue.set(object, key, value);
+			}
+		}
+	});
 
-  function getImageData(imageName) {
-    imageName = imageName.toString();
-    // console.log("Requesting plot " + imageName);
-    
-    if (!app.$data.imagesData[imageName]) {
-      $.getJSON(gasURL + "?func=getImageData&params=" + encodeURIComponent(JSON.stringify(imageName)) + "&callback=?",
-        function(imageData) {
-          // app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
-          Vue.set(app.$data.imagesData, imageName, imageData);
-        }
-      ).fail(
-        function() {
-          console.log('Server Function getImageData() failed to run');
-        }
-      );
-      // google.script.run.withSuccessHandler(
-      //   function(imageData) {
-      //     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
-      //     Vue.set(app.$data.imagesData, imageName, imageData);
-      //   }
-      // ).getImageData(imageName);
-    }
-    return 'A great image';
-  }
+	function getImageData(imageName) {
+		imageName = imageName.toString();
+		// console.log("Requesting plot " + imageName);
+		
+		if (!app.$data.imagesData[imageName]) {
+			$.getJSON(gasURL + "?func=getImageData&params=" + encodeURIComponent(JSON.stringify(imageName)) + "&callback=?",
+				function(imageData) {
+					// app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+					Vue.set(app.$data.imagesData, imageName, imageData);
+				}
+			).fail(
+				function() {
+					console.log('Server Function getImageData() failed to run');
+				}
+			);
+			// google.script.run.withSuccessHandler(
+			//   function(imageData) {
+			//     //app.$data.imagesData[imageName] = 'data:image/png;base64,' + imageData;
+			//     Vue.set(app.$data.imagesData, imageName, imageData);
+			//   }
+			// ).getImageData(imageName);
+		}
+		return 'A great image';
+	}
 
-  $(document).ready(function(){
-    $.getJSON(gasURL + "?func=getDeviceListSerialized&callback=?",
-      function(data) {
-        app.$data.deviceList = JSON.parse(data);
-        app.$data.chips = groupBy(app.$data.deviceList, "chipID");
-        
-        for (var chipName in app.$data.chips) {
-          if (app.$data.chips.hasOwnProperty(chipName)) {
-            app.$data.chipVisible[chipName] = false;
-          }
-        }
-      }
-    ).fail(
-      function() {
-        console.log("There was a problem with server function getDeviceListSerialized");
-      }
-    );
-    // google.script.run.withSuccessHandler(
-    //   function(data) {
-    //     app.$data.deviceList = JSON.parse(data);
-    //     app.$data.chips = groupBy(app.$data.deviceList, "chipID");
-        
-    //     for (var chipName in app.$data.chips) {
-    //       if (app.$data.chips.hasOwnProperty(chipName)) {
-    //         app.$data.chipVisible[chipName] = false;
-    //       }
-    //     }
-    //   }
-    // ).getDeviceListSerialized();
-    
-    $.getJSON(gasURL + "?func=getPlotListSerialized&callback=?",
-      function(data) {
-        app.$data.plotList = JSON.parse(data);
-        app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
-      }
-    ).fail(
-      function() {
-        console.log("There was a problem retreiving the appointment days data");
-      }
-    );
-  //   google.script.run.withSuccessHandler(
-      // function(data) {
-        // app.$data.plotList = JSON.parse(data);
-        // app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
-      // }
-  //   ).getPlotListSerialized();
-  });
+	$(document).ready(function(){
+		$.getJSON(gasURL + "?func=getDeviceListSerialized&callback=?",
+			function(data) {
+				app.$data.deviceList = JSON.parse(data);
+				app.$data.chips = groupBy(app.$data.deviceList, "chipID");
+				
+				for (var chipName in app.$data.chips) {
+					if (app.$data.chips.hasOwnProperty(chipName)) {
+						app.$data.chipVisible[chipName] = false;
+					}
+				}
+			}
+		).fail(
+			function() {
+				console.log("There was a problem with server function getDeviceListSerialized");
+			}
+		);
+		// google.script.run.withSuccessHandler(
+		//   function(data) {
+		//     app.$data.deviceList = JSON.parse(data);
+		//     app.$data.chips = groupBy(app.$data.deviceList, "chipID");
+				
+		//     for (var chipName in app.$data.chips) {
+		//       if (app.$data.chips.hasOwnProperty(chipName)) {
+		//         app.$data.chipVisible[chipName] = false;
+		//       }
+		//     }
+		//   }
+		// ).getDeviceListSerialized();
+		
+		$.getJSON(gasURL + "?func=getPlotListSerialized&callback=?",
+			function(data) {
+				app.$data.plotList = JSON.parse(data);
+				app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
+			}
+		).fail(
+			function() {
+				console.log("There was a problem retreiving the appointment days data");
+			}
+		);
+	//   google.script.run.withSuccessHandler(
+			// function(data) {
+				// app.$data.plotList = JSON.parse(data);
+				// app.$data.devicePlots = groupBy(app.$data.plotList, "deviceID");
+			// }
+	//   ).getPlotListSerialized();
+	});
 
-  function groupBy(elements, groupKey) {
-    return elements.reduce(function(rv, x) {
-      (rv[x[groupKey]] = rv[x[groupKey]] || []).push(x);
-      return rv;
-    }, {});
-  }
+	function groupBy(elements, groupKey) {
+		return elements.reduce(function(rv, x) {
+			(rv[x[groupKey]] = rv[x[groupKey]] || []).push(x);
+			return rv;
+		}, {});
+	}
 
-  </script>
+	</script>
 </body>
 </html>
 
