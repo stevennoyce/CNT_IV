@@ -22,9 +22,11 @@ def postPlots(parameters):
 			postData['encodedImage'] = encodedImage
 			postData['imageName'] = plotFileName.split('.')[0]
 			
-			response = requests.post(postURL, data = postData)
-			
 			print('Posting plot to web service...')
+			response = requests.post(postURL, data = postData)
+			# response = requests.post(postURL, json = postData)
+			
+			print('Server response is: ')
 			print(response)
 			print(response.text)
 	
