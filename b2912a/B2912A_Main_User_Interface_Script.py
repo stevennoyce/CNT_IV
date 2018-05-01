@@ -90,12 +90,12 @@ default_parameters = {
 		'isAlternatingSweep': False,
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
-		'stepsInVGSPerDirection': 50,
+		'stepsInVGSPerDirection': 100,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-5,
-		'gateVoltageMaximum': 	5
+		'gateVoltageMinimum':	-15,
+		'gateVoltageMaximum': 	15
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
