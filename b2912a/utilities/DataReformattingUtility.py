@@ -78,7 +78,7 @@ def main():
 			#if(len(deviceRun['chipID']) > 1):
 			#	deviceRun['waferID'] = deviceRun['chipID'][:4]
 			#	deviceRun['chipID'] = deviceRun['chipID'][4]
-			#s	deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
+			#	deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
 
 		# BURN OUT
 		if(burnedout):
