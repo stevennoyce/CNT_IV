@@ -207,14 +207,14 @@ def main(parameters):
 				parameters = dict(default_parameters)
 				parameters['runType'] = runTypes[choice]
 				parameters['deviceID'] = device
-				runAction(parameters, smu_instance)
+				runAction(parameters, smu_instance, arduino_instance)
 		else:
-			runAction(parameters, smu_instance)
+			runAction(parameters, smu_instance, arduino_instance)
 		
 		break
 
 # Run generic user action
-def runAction(parameters, smu_instance):
+def runAction(parameters, smu_instance, arduino_instance):
 	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['waferID'] + '/' + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
@@ -225,10 +225,10 @@ def runAction(parameters, smu_instance):
 	elif(parameters['runType'] == 'ChipHistory'):
 		chipHistoryScript.run(parameters)
 	else:
-		runSMU(parameters, smu_instance)
+		runSMU(parameters, smu_instance, arduino_instance)
 
 # Run an action that interfaces with the SMU.
-def runSMU(parameters, smu_instance):
+def runSMU(parameters, smu_instance, arduino_instance):
 	dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 	smu_instance.setDevice(parameters['deviceID'])
