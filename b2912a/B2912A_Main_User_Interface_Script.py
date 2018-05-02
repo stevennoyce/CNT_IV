@@ -66,9 +66,9 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'K'
 	deviceID = '15-16'
 else:
-	waferID = 'C127'
+	waferID = 'C134'
 	chipID = 'X'
-	deviceID = '15-16'
+	deviceID = '7-8'
 
 runTypes = {
 	0:'Quit',
@@ -90,12 +90,12 @@ default_parameters = {
 		'isAlternatingSweep': False,
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
-		'stepsInVGSPerDirection': 100,
+		'stepsInVGSPerDirection': 50,
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-15,
-		'gateVoltageMaximum': 	15
+		'gateVoltageMinimum':	-10,
+		'gateVoltageMaximum': 	10
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -103,7 +103,7 @@ default_parameters = {
 		'pointsPerHold': 50,
 		'complianceCurrent':	2e-3,
 		'thresholdProportion':	0.8,
-		'minimumAppliedDrainVoltage': 0.9,
+		'minimumAppliedDrainVoltage': 1.2,
 		'gateVoltageSetPoint':	15.0,
 		'drainVoltageMaxPoint':	10,
 		'drainVoltagePlateaus': 10
@@ -126,7 +126,7 @@ default_parameters = {
 		'drainVoltageWhenDone': 0
 	},
 	'AutoGateSweep':{
-		'numberOfSweeps': 3,
+		'numberOfSweeps': 5,
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
@@ -150,7 +150,7 @@ default_parameters = {
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 73,
+		'excludeDataBeforeJSONExperimentNumber': 0,
 		'excludeDataAfterJSONExperimentNumber':  float('inf'),
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
