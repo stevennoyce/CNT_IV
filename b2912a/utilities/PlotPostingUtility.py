@@ -17,31 +17,35 @@ def postPlots(parameters):
 				encodedImage = base64.b64encode(plotFile.read())
 			
 			postURL = 'https://script.google.com/macros/s/AKfycbzflDpYVTV3NGAEEaC-hfyQTN94JhZbr75dEh_czd7XXN5mDA/exec'
+			# postURL = 'http://ptsv2.com/t/ly9tz-1525197812/post'
 			
-			postData = parameters
-			postData['encodedImage'] = encodedImage
+			postData = {}
+			postData['parameters'] = parameters
+			postData['encodedImage'] = encodedImage.decode()
 			postData['imageName'] = plotFileName.split('.')[0]
 			
 			print('Posting plot to web service...')
-			response = requests.post(postURL, data = postData)
-			# response = requests.post(postURL, json = postData)
+			# response = requests.post(postURL, data = postData)
+			response = requests.post(postURL, json = postData)
 			
 			print('Server response is: ')
 			print(response)
 			print(response.text)
 	
-	except e:
+	except Exception as e:
 		print('Failed to post plots')
-		print(e)
+		print(repr(e))
 
 
 
 if __name__ == '__main__':
 	parameters = {
-		'chipID': 'C127Fake',
+		'waferID': 'C127',
+		'chipID': 'Fake',
 		'deviceID': '8-9',
-		'experimentNumber': 4,
+		'startIndexes': {'index': 1, 'ExperimentNumber': 5},
 		'runType': 'AutoGateSweep',
+		'plotsFolder': '../CurrentPlots/',
 		'figuresSaved': ['../fig1.png'],
 		'postFigures': True
 	}

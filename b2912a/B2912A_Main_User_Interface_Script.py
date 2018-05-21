@@ -65,10 +65,18 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	waferID = 'C134'
 	chipID = 'K'
 	deviceID = '15-16'
-else:
+	
 	waferID = 'C134'
 	chipID = 'X'
 	deviceID = '7-8'
+	
+	waferID = 'C127'
+	chipID = 'X'
+	deviceID = '15-16'
+else:
+	waferID = 'C134'
+	chipID = 'X'
+	deviceID = '1-2'
 
 runTypes = {
 	0:'Quit',
@@ -115,7 +123,7 @@ default_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'totalBiasTime': 60*60,
+		'totalBiasTime': 6*60*60,
 		'measurementTime': 10,
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
@@ -146,17 +154,17 @@ default_parameters = {
 		'saveFiguresGenerated': True,
 		'postFiguresGenerated': False,
 		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
+		'plotBurnOuts':   False,
 		'plotStaticBias': True,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 86,
+		'excludeDataAfterJSONExperimentNumber':  86,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
 		'plotInRealTime': True,
-		'includeBiasVoltageSubplot': False
+		'includeBiasVoltageSubplot': True
 	},
 	'ChipHistory':{
 		
