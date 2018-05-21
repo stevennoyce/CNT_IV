@@ -76,7 +76,7 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 else:
 	waferID = 'C134'
 	chipID = 'X'
-	deviceID = '1-2'
+	deviceID = '7-8'
 
 runTypes = {
 	0:'Quit',

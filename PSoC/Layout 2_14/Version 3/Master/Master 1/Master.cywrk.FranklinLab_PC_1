@@ -258,23 +258,6 @@
 <v>Master\Design01\PSoC 5LP Architecture TRM</v>
 <v>Master\Design01\CY8C58LP Family Datasheet</v>
 <v>Master\Design01\System Reference Guides</v>
-<v>Master\Design01\System Reference Guides\cy_boot_v5_60</v>
-<v>Master\Design01\ADC_DelSig_v3_30.pdf</v>
-<v>Master\Design01\ADC_SAR_v3_10</v>
-<v>Master\Design01\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
-<v>Master\Design01\cy_clock_v2_20.pdf</v>
-<v>Master\Design01\cy_isr_v1_70.pdf</v>
-<v>Master\Design01\cy_pins_v2_20</v>
-<v>Master\Design01\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>Master\Design01\DieTemp_v2_0.pdf</v>
-<v>Master\Design01\I2C_v3_50.pdf</v>
-<v>Master\Design01\TIA_v2_0.pdf</v>
-<v>Master\Design01\Timer_v2_80.pdf</v>
-<v>Master\Design01\UART_v2_50.pdf</v>
-<v>Master\Design01\USBFS_v3_20.pdf</v>
-<v>Master\Design01\VDAC8_v1_90</v>
-<v>Master\Design01\VDAC8_v1_90\VDAC8_v1_90.pdf</v>
-<v>Master\Design01\ZeroTerminal.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Master</v>
@@ -282,23 +265,6 @@
 <v>Master\Design01\PSoC 5LP Architecture TRM</v>
 <v>Master\Design01\CY8C58LP Family Datasheet</v>
 <v>Master\Design01\System Reference Guides</v>
-<v>Master\Design01\System Reference Guides\cy_boot_v5_60</v>
-<v>Master\Design01\ADC_DelSig_v3_30.pdf</v>
-<v>Master\Design01\ADC_SAR_v3_10</v>
-<v>Master\Design01\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
-<v>Master\Design01\cy_clock_v2_20.pdf</v>
-<v>Master\Design01\cy_isr_v1_70.pdf</v>
-<v>Master\Design01\cy_pins_v2_20</v>
-<v>Master\Design01\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
-<v>Master\Design01\DieTemp_v2_0.pdf</v>
-<v>Master\Design01\I2C_v3_50.pdf</v>
-<v>Master\Design01\TIA_v2_0.pdf</v>
-<v>Master\Design01\Timer_v2_80.pdf</v>
-<v>Master\Design01\UART_v2_50.pdf</v>
-<v>Master\Design01\USBFS_v3_20.pdf</v>
-<v>Master\Design01\VDAC8_v1_90</v>
-<v>Master\Design01\VDAC8_v1_90\VDAC8_v1_90.pdf</v>
-<v>Master\Design01\ZeroTerminal.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
