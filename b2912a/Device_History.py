@@ -39,10 +39,14 @@ def run(parameters, showFigures=True):
 			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
 				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 
-			dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
-			dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
-			dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
-			dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
+				dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
+				dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
+				dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
+				dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 
@@ -62,7 +66,9 @@ def run(parameters, showFigures=True):
 
 			if(p['showOnlySuccessfulBurns']):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
-			dpu.plotFullBurnOutHistory(burnOutHistory, parameters, saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+			
+			if p['specificPlotToCreate'] in ['FullBurnOutHistory','']:
+				dpu.plotFullBurnOutHistory(burnOutHistory, parameters, saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout History")
 
@@ -80,7 +86,8 @@ def run(parameters, showFigures=True):
 			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):	
 				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 			
-			dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
+				dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias History")
 

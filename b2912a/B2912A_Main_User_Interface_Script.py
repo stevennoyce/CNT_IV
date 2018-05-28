@@ -27,7 +27,9 @@ def devicesInRange(startContact, endContact, skip=True):
 
 ## ********** Parameters **********
 
-os.chdir(sys.path[0])
+if __name__ == '__main__':
+	os.chdir(sys.path[0])
+
 #sys.path.append('framework/')
 #sys.path.append('utilities/')
 
@@ -35,6 +37,10 @@ if platform.node() == 'noyce-dell':
 	waferID = 'C127'
 	chipID = 'X'
 	deviceID = '15-16'
+	
+	waferID = 'Nick_18051551_TC'
+	chipID = 'W'
+	deviceID = '57-58'
 elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	waferID = 'C127'
 	chipID = 'E'
@@ -73,6 +79,10 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	waferID = 'C127'
 	chipID = 'X'
 	deviceID = '15-16'
+	
+	waferID = 'C134'
+	chipID = 'X'
+	deviceID = '7-8'
 else:
 	waferID = 'C134'
 	chipID = 'X'
@@ -102,8 +112,8 @@ default_parameters = {
 		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-10,
-		'gateVoltageMaximum': 	10
+		'gateVoltageMinimum':	-20,
+		'gateVoltageMaximum': 	20
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -156,10 +166,12 @@ default_parameters = {
 		'plotGateSweeps': True,
 		'plotBurnOuts':   False,
 		'plotStaticBias': True,
+		'specificPlotToCreate': '',
+		'figureSizeOverride': None,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 86,
-		'excludeDataAfterJSONExperimentNumber':  86,
+		'excludeDataBeforeJSONExperimentNumber': 26,
+		'excludeDataAfterJSONExperimentNumber':  28,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],

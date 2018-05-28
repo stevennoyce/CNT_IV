@@ -7,32 +7,53 @@ import numpy as np
 
 plt.style.use('seaborn-paper')
 
-plt.rcParams['mathtext.fontset'] = 'custom'
-plt.rcParams['mathtext.rm'] = 'Arial'
-plt.rcParams['mathtext.it'] = 'Arial'
-plt.rcParams['mathtext.bf'] = 'Arial:bold'
+# plt.rcParams['mathtext.fontset'] = 'custom'
+# plt.rcParams['mathtext.rm'] = 'Arial'
+# plt.rcParams['mathtext.it'] = 'Arial'
+# plt.rcParams['mathtext.bf'] = 'Arial:bold'
 
-plt.rcParams["font.family"] = 'Times New Roman'
-plt.rcParams['mathtext.rm'] = 'Times New Roman'
-plt.rcParams['mathtext.it'] = 'Times New Roman'
-plt.rcParams['mathtext.bf'] = 'Times New Roman'
+# plt.rcParams["font.family"] = 'Times New Roman'
+# plt.rcParams['mathtext.rm'] = 'Times New Roman'
+# plt.rcParams['mathtext.it'] = 'Times New Roman'
+# plt.rcParams['mathtext.bf'] = 'Times New Roman'
 
-plt.rcParams['axes.labelsize'] = 18
-plt.rcParams['axes.titlesize'] = 18
+# Used for the DRC Abstract
+plt.rcParams['axes.labelsize'] = 12
+plt.rcParams['axes.titlesize'] = 12
 plt.rcParams['legend.fontsize'] = 8
-plt.rcParams['xtick.labelsize'] = 12
-plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
 plt.rcParams['font.size'] = 8
 
-plt.rcParams['axes.labelsize'] = 10*2
-plt.rcParams['axes.titlesize'] = 10*2
-plt.rcParams['legend.fontsize'] = 6*2
-plt.rcParams['xtick.labelsize'] = 6*2
-plt.rcParams['ytick.labelsize'] = 6*2
-plt.rcParams['font.size'] = 6*2
+# Minimum Sizes based on Dr. Franklin's Publications (Body text is 10 pt)
+plt.rcParams['axes.labelsize'] = 6
+plt.rcParams['axes.titlesize'] = 6
+plt.rcParams['legend.fontsize'] = 4.5
+plt.rcParams['xtick.labelsize'] = 4.5
+plt.rcParams['ytick.labelsize'] = 4.5
+plt.rcParams['font.size'] = 4.5
 
-plt.rcParams['xtick.major.size'] = 6
-plt.rcParams['ytick.major.size'] = 6
+# Sizes based on Nature Nanotechnology (Body text is 9 pt)
+plt.rcParams['axes.labelsize'] = 7
+plt.rcParams['axes.titlesize'] = 7
+plt.rcParams['legend.fontsize'] = 7
+plt.rcParams['xtick.labelsize'] = 7
+plt.rcParams['ytick.labelsize'] = 7
+plt.rcParams['font.size'] = 7
+
+# Steven's preferences loosely based on Nature Nanotechnology (Body text is 9 pt)
+plt.rcParams['axes.labelsize'] = 7
+plt.rcParams['axes.titlesize'] = 7
+plt.rcParams['legend.fontsize'] = 6
+plt.rcParams['xtick.labelsize'] = 6
+plt.rcParams['ytick.labelsize'] = 6
+plt.rcParams['font.size'] = 6
+
+plt.rcParams['axes.labelpad'] = 0
+plt.rcParams['axes.titlepad'] = 6
+plt.rcParams['ytick.major.pad'] = 2
+plt.rcParams['xtick.major.pad'] = 2
+
 plt.rcParams['figure.figsize'] = [8,6]
 plt.rcParams['figure.titlesize'] = 8
 plt.rcParams['axes.formatter.use_mathtext'] = True
@@ -43,10 +64,23 @@ plt.rcParams['xtick.direction'] = 'in'
 plt.rcParams['ytick.direction'] = 'in'
 plt.rcParams['axes.axisbelow'] = False
 # plt.rcParams['figure.autolayout'] = True
-plt.rcParams['axes.linewidth'] = 1
-plt.rcParams['xtick.major.width'] = 1
-plt.rcParams['ytick.major.width'] = 1
+
+plt.rcParams['axes.linewidth'] = 0.5
+plt.rcParams['xtick.major.width'] = 0.5
+plt.rcParams['ytick.major.width'] = 0.5
+plt.rcParams['xtick.major.size'] = 3
+plt.rcParams['ytick.major.size'] = 3
+
+plt.rcParams['xtick.minor.width'] = 0.5
+plt.rcParams['ytick.minor.width'] = 0.5
+plt.rcParams['xtick.minor.size'] = 1
+plt.rcParams['ytick.minor.size'] = 1
+
 plt.rcParams['axes.formatter.limits'] = [-2, 3]
+
+# Change to Type 2/TrueType fonts (editable text)
+plt.rcParams['pdf.fonttype'] = 42
+plt.rcParams['ps.fonttype'] = 42
 
 # ********** Constants **********
 
@@ -144,7 +178,7 @@ def plotJSON(jsonData, parameters, lineColor):
 def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
-	fig, ax = initFigure(1, 1, 'SubthresholdCurve', testLabel)
+	fig, ax = initFigure(parameters, 1, 1, 'SubthresholdCurve', testLabel)
 	ax.set_title(plot_parameters['SubthresholdCurve']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -168,7 +202,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, saveFigure=False, showFigure=True):
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
-	fig, ax = initFigure(1, 1, 'TransferCurve', testLabel)
+	fig, ax = initFigure(parameters, 1, 1, 'TransferCurve', testLabel)
 	ax.set_title(plot_parameters['TransferCurve']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -213,7 +247,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
-	fig, ax = initFigure(1, 1, 'GateCurrent', testLabel)
+	fig, ax = initFigure(parameters, 1, 1, 'GateCurrent', testLabel)
 	ax.set_title(plot_parameters['GateCurrent']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -237,7 +271,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	# Init Figure	
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
-	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', testLabel)
+	fig, (ax1, ax2) = initFigure(parameters, 1, 2, 'BurnOut', testLabel)
 	ax2 = plt.subplot(222)
 	ax3 = plt.subplot(224)
 	ax1.set_title(plot_parameters['BurnOut']['titles'][0])
@@ -264,14 +298,32 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
+	
+	vds_setpoint_values = [record['StaticBias']['drainVoltageSetPoint'] for record in deviceHistory]
+	vgs_setpoint_values = [record['StaticBias']['gateVoltageSetPoint'] for record in deviceHistory]
+	
+	vds_setpoint_changes = min(vds_setpoint_values) != max(vds_setpoint_values)
+	vgs_setpoint_changes = min(vgs_setpoint_values) != max(vgs_setpoint_values)
+	
+	if not (vds_setpoint_changes or vgs_setpoint_changes):
+		includeDualAxis = False
+	
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
 	if(includeDualAxis):
-		fig, (ax1, ax2) = initFigure(2, 1, 'StaticBias', testLabel, shareX=True)
+		fig, (ax1, ax2) = initFigure(parameters, 2, 1, 'StaticBias', testLabel, shareX=True)
 		ax = ax1
-		ax3 = ax2.twinx()
+		
+		if vds_setpoint_changes and vgs_setpoint_changes:
+			ax3 = ax2.twinx()
+			vds_ax = ax2
+			vgs_ax = ax3
+		elif vds_setpoint_changes:
+			vds_ax = ax2
+		else:
+			vgs_ax = ax2
 	else:
-		fig, ax = initFigure(1, 1, 'StaticBias', testLabel)
+		fig, ax = initFigure(parameters, 1, 1, 'StaticBias', testLabel)
 	ax.set_title(plot_parameters['StaticBias']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -313,9 +365,11 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None)
 		if(includeDualAxis):
-			vds_line = plotOverTime(ax2, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
-			vgs_line = plotOverTime(ax3, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=time_offset)
-
+			if vds_setpoint_changes:
+				vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
+			if vgs_setpoint_changes:
+				vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=time_offset)
+				
 		# Compare current plot's parameters to the next ones, and save any differences
 		#if('drainVoltageSetPoint' in deviceHistory[i] and 'drainVoltageSetPoint' in deviceHistory[i-1]):
 		#	# backwards compatibility for old parameters format
@@ -335,14 +389,15 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 
 	# Increase height of the plot to give more room for labels
 	if len(dotted_lines) > 1:
-		x0, x1, y0, y1 = ax.axis()
-		ax.axis((x0,x1,y0,1.2*y1))
-	
 		# Draw dotted lines between ANY plots that have different parameters
 		for i in range(len(dotted_lines)):
-			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=1))
+			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=0.5))
 		
 		if(not includeDualAxis):
+			# Make the data take up less of the vertical space to make room for the labels
+			x0, x1, y0, y1 = ax.axis()
+			ax.axis((x0,x1,y0,1.2*y1))
+			
 			# Add V_DS annotation
 			for i in range(len(parameter_labels['drainVoltageSetPoint'])):
 				ax.annotate(' $V_{DS} = $'+'{:.1f}V'.format(parameter_labels['drainVoltageSetPoint'][i]['drainVoltageSetPoint']), xy=(parameter_labels['drainVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.99 - 0*0.03*i)), xycoords='data', ha='left', va='top', rotation=-90)
@@ -350,11 +405,15 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 			# Add V_GS annotation
 			for i in range(len(parameter_labels['gateVoltageSetPoint'])):
 				ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
-
-	else:
-		legend_title = ''
-		legend_title += '$V_{DS}$ = ' + '{:.2f}V\n'.format(parameter_labels['drainVoltageSetPoint'][0]['drainVoltageSetPoint'])
-		legend_title += '$V_{GS}$ = ' + '{:.1f}V'.format(parameter_labels['gateVoltageSetPoint'][0]['gateVoltageSetPoint'])
+	
+	legend_title = ''
+	if not vds_setpoint_changes:	
+		legend_title += '$V_{DS}$ = ' + '{:.2f}V'.format(vds_setpoint_values[0])
+	if not (vds_setpoint_changes or vgs_setpoint_changes):
+		legend_title += '\n'
+	if not vgs_setpoint_changes:
+		legend_title += '$V_{GS}$ = ' + '{:.1f}V'.format(vgs_setpoint_values[0])
+	if not (vds_setpoint_changes and vgs_setpoint_changes):
 		ax.legend([],[], loc='best', title=legend_title, labelspacing=0)
 	
 	# Add Grounding annotation
@@ -365,20 +424,52 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 
 	# Add legend and axis labels and save figure
 	if(includeDualAxis):
-		# Adjust y-axis limits
-		includeOriginOnYaxis(ax2)
-		includeOriginOnYaxis(ax3)
 		# Axis labels
 		ax1.set_ylabel(plot_parameters['StaticBias']['ylabel'])
 		ax2.set_xlabel(plot_parameters['StaticBias']['xlabel'].format(timescale))
-		ax2.set_ylabel(plot_parameters['StaticBias']['vds_label'])
-		ax3.set_ylabel(plot_parameters['StaticBias']['vgs_label'])
+		if vds_setpoint_changes:
+			includeOriginOnYaxis(vds_ax)
+			vds_ax.set_ylabel(plot_parameters['StaticBias']['vds_label'])
+			setLabel(vds_line, '$V_{DS}$')
+			vds_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
+		if vgs_setpoint_changes:
+			includeOriginOnYaxis(vgs_ax)
+			vgs_ax.set_ylabel(plot_parameters['StaticBias']['vgs_label'])
+			setLabel(vgs_line, '$V_{GS}$')
+			vgs_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
+		
 		# Legend
-		setLabel(vds_line, '$V_{DS}$')
-		setLabel(vgs_line, '$V_{GS}$')
-		lines1, labels1 = ax2.get_legend_handles_labels()
-		lines2, labels2 = ax3.get_legend_handles_labels()
-		ax2.legend(lines1 + lines2, labels1 + labels2, loc='best', ncol=2, borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1, columnspacing=0.1)
+		# lines1, labels1 = ax2.get_legend_handles_labels()
+		# lines2, labels2 = ax3.get_legend_handles_labels()
+		# ax2.legend(lines1 + lines2, labels1 + labels2, loc='best', ncol=2, borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1, columnspacing=0.1)
+		
+		# # Adjust ylabel alignment
+		# ylabelxs = [a.yaxis.label.get_position() for a in [ax, ax2]]
+		# for a in [ax, ax2]:
+		# 	# t = a.yaxis.label.get_transform()
+		# 	# a.yaxis.set_label_coords(min(ylabelxs), 0.5, t)
+		# 	a.yaxis.set_label_coords(-0.08, 0.5)
+		
+		# Adjust ylabel alignment using tick_label text padding
+		# ax1.ticklabel_format(useMathText=False)
+		# ax2.ticklabel_format(useMathText=False)
+		# fig.canvas.draw()
+		# ax1yticklabels = ax1.get_yticklabels()
+		# ax2yticklabels = ax2.get_yticklabels()
+		# allYtickLabels = ax1yticklabels + ax2yticklabels
+		# print(allYtickLabels)
+		# print([len(label.get_text()) for label in allYtickLabels])
+		# longestYtickLabelLength = max([len(label.get_text()) for label in allYtickLabels])
+		# print(longestYtickLabelLength)
+		# for i in range(len(ax1yticklabels)):
+		# 	ax1yticklabels[i].set_text(' '*(longestYtickLabelLength - len(ax1yticklabels[i].get_text())) + ax1yticklabels[i].get_text())
+		# for i in range(len(ax2yticklabels)):
+		# 	ax2yticklabels[i].set_text(' '*(longestYtickLabelLength - len(ax2yticklabels[i].get_text())) + ax2yticklabels[i].get_text())
+		# ax1.set_yticklabels(ax1yticklabels)
+		# ax2.set_yticklabels(ax2yticklabels)
+		
+		fig.align_labels()
+		
 		# Adjust tick alignment
 		[tick.set_verticalalignment('top') for tick in ax2.yaxis.get_majorticklabels()]
 		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
@@ -389,7 +480,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True):
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
-	fig, ax1 = initFigure(1, 1, 'OnCurrent', testLabel)
+	fig, ax1 = initFigure(parameters, 1, 1, 'OnCurrent', testLabel)
 	ax2 = ax1.twinx()
 	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -447,7 +538,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Init Figure
-	fig, ax = initFigure(1, 1, 'ChipHistory', '')
+	fig, ax = initFigure(parameters, 1, 1, 'ChipHistory', '')
 	ax.set_title(plot_parameters['ChipHistory']['titles'][0])
 
 	# Build On/Off Ratio lists
@@ -577,7 +668,10 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', i
 
 # ***** Figures *****
 
-def initFigure(rows, columns, type, testLabel, shareX=False):
+def initFigure(parameters, rows, columns, type, testLabel, shareX=False):
+	if parameters['DeviceHistory']['figureSizeOverride'] != None:
+		plot_parameters[type]['figsize'] = parameters['DeviceHistory']['figureSizeOverride']
+	
 	if(rows > 1 or columns > 1):
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[type]['subplot_width_ratio'], 'height_ratios':plot_parameters[type]['subplot_height_ratio']})
 	else:
@@ -594,8 +688,9 @@ def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWi
 	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
 	pngDPI = (300) if(publication_mode) else (default_png_dpi)
 	if(saveFigure):
-		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True, dpi=pngDPI)
+		# plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True, dpi=pngDPI)
 		plt.savefig(parameters['plotsFolder'] + saveName + '.pdf', transparent=True)
+		# plt.savefig(parameters['plotsFolder'] + saveName + '.eps', transparent=True)
 	if(not showFigure):
 		plt.close(figure)
 
