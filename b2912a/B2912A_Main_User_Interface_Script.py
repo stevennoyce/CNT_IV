@@ -146,6 +146,8 @@ default_parameters = {
 	'AutoGateSweep':{
 		'numberOfSweeps': 5,
 		'applyStaticBiasBetweenSweeps': False,
+		'usePreciseTimeBetweenSweepStarts': False,
+		'timeBetweenSweepStarts': 5*60
 	},
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 31,

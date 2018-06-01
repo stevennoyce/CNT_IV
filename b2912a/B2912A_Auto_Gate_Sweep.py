@@ -59,10 +59,14 @@ def run(parameters, smu_instance, arduino_instance):
 def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
 	numberOfSweeps = parameters['AutoGateSweep']['numberOfSweeps']
 	sweepCount = 0
-
+	startTime = time.time()
+	
 	while(sweepCount < numberOfSweeps):
 		gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['AutoGateSweep']['applyStaticBiasBetweenSweeps']):
+			if(parameters['AutoGateSweep']['usePreciseTimeBetweenSweepStarts']):
+				staticLength = startTime + parameters['AutoGateSweep']['timeBetweenSweepStarts']*(sweepCount + 1) - time.time()
+				staticBiasParameters['StaticBias']['totalBiasTime'] = staticLength
 			staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 		sweepCount += 1
