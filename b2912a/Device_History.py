@@ -38,7 +38,7 @@ def run(parameters, showFigures=True):
 				gateSweepHistory = dlu.filterHistoryGreaterThan(gateSweepHistory, 'experimentNumber', p['excludeDataBeforeJSONExperimentNumber'])
 			if(p['excludeDataAfterJSONExperimentNumber'] < float('inf')):		
 				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
-
+			
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
 				dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
 			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
@@ -46,7 +46,7 @@ def run(parameters, showFigures=True):
 			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
 				dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
 			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
-				dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures, includeDualAxis=p['includeBiasVoltageSubplot'])
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 

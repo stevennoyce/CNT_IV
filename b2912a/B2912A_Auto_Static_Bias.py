@@ -55,9 +55,11 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 
 	print('Beginning AutoStaticBias test with the following parameter lists:')
 	print(' Gate Voltages:  {:} \n Drain Voltages:  {:} \n Delay Between Applying Voltages:  {:} \n Delay Before Measurements Begin:  {:}'.format(gateVoltageSetPointList, drainVoltageSetPointList, delayBeforeApplyingVoltageList, delayBeforeMeasurementsList))
-
+	
 	# Run all Tests in this Experiment
 	for i in range(numberOfStaticBiases):
+		print('Starting static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
+		
 		staticBiasParameters['StaticBias']['gateVoltageSetPoint'] = gateVoltageSetPointList[i]
 		staticBiasParameters['StaticBias']['drainVoltageSetPoint'] = drainVoltageSetPointList[i]
 		staticBiasParameters['StaticBias']['gateVoltageWhenDone'] = gateVoltageWhenDoneList[i]

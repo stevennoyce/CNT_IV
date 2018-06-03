@@ -38,9 +38,9 @@ if platform.node() == 'noyce-dell':
 	chipID = 'X'
 	deviceID = '15-16'
 	
-	waferID = 'Nick_18051551_TC'
-	chipID = 'W'
-	deviceID = '57-58'
+	# waferID = 'Nick_18051551_TC'
+	# chipID = 'W'
+	# deviceID = '57-58'
 elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	waferID = 'C127'
 	chipID = 'E'
@@ -83,6 +83,10 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	waferID = 'C134'
 	chipID = 'X'
 	deviceID = '7-8'
+	
+	waferID = 'C127'
+	chipID = 'X'
+	deviceID = '15-16'
 else:
 	waferID = 'C134'
 	chipID = 'X'
@@ -109,11 +113,11 @@ default_parameters = {
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
 		'stepsInVGSPerDirection': 50,
-		'pointsPerVGS': 1,
+		'pointsPerVGS': 3,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-20,
-		'gateVoltageMaximum': 	20
+		'gateVoltageMinimum':	-15,
+		'gateVoltageMaximum': 	15
 	},
 	'BurnOut':{
 		'saveFileName': 'BurnOut',
@@ -138,7 +142,7 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	15,
+		'gateVoltageSetPoint': 	-15,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
@@ -148,11 +152,11 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 31,
+		'numberOfStaticBiases': 5,
 		'applyGateSweepBetweenBiases': True,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage': -1,
+		'incrementStaticGateVoltage': 0,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
@@ -170,8 +174,8 @@ default_parameters = {
 		'figureSizeOverride': None,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 26,
-		'excludeDataAfterJSONExperimentNumber':  28,
+		'excludeDataBeforeJSONExperimentNumber': 92,
+		'excludeDataAfterJSONExperimentNumber':  95,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],

@@ -43,7 +43,7 @@ def loadJSON(directory, loadFileName):
 			try:
 				jsonData.append(json.loads(str(line)))
 			except:
-				print('Error loading JSON line')
+				print('Error loading JSON line in file {}/{}'.format(directory, loadFileName))
 	return jsonData
 
 def loadJSONIndex(directory):
@@ -142,4 +142,22 @@ def loadMostRecentRunChipHistory(directory, fileName, chipID):
 	return lastRunsOnly
 
 
+def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimentNumber):
+	indexes = []
+	for fileName in glob.glob(directory + '/*.json'):
+		if not os.path.basename(fileName) in ['BurnOut.json', 'GateSweep.json', 'StaticBias.json']:
+			continue
+		jsonData = loadJSON('', fileName)
+		for deviceRun in jsonData:
+			if (deviceRun['experimentNumber'] >= startExperimentNumber) and (deviceRun['experimentNumber'] <= endExperimentNumber):
+				indexes.append(deviceRun['index'])
+	indexes.sort()
+	return indexes
+
+
+
+
+
+
+	
 
