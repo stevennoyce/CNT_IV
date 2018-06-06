@@ -1,3 +1,4 @@
+import matplotlib
 from matplotlib import pyplot as plt
 from matplotlib import colors as pltc
 from matplotlib import cm
@@ -199,6 +200,8 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	# Plot
 	for i in range(len(deviceHistory)):
 		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None)			
+	
+	ax.yaxis.set_major_locator(matplotlib.ticker.LogLocator(numticks=10))
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='lower left', title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
@@ -756,7 +759,9 @@ def plotOverTime(axis, timestamps, y, lineColor, offset=0, markerSize=1, lineWid
 		return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize=markerSize, linewidth=lineWidth, linestyle=lineStyle)[0]
 	else:
 		colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.95, len(y))['colors']
-		N = 40
+		N = len(y)//20
+		if N < 1:
+			N = 1
 		for i in range(0, len(y)-1, N):
 			p = axis.plot(zeroed_timestamps[i:i+1+N], y[i:i+1+N], color=colors[i])
 		return p[0]
