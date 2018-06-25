@@ -1,0 +1,4 @@
+- hdrihaven.com is a good place to get free world background images
+- Blender Guru has some good youtube videos about materials (and working with Blender in general)
+- The Principled BSDF shader is very useful and Blender Guru has a good video about it
+- A tutorial about HDRI lighting that looks good is at http://www.creativeshrimp.com/hdr-lighting-in-blender.html
