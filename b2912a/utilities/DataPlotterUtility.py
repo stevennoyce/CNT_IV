@@ -100,7 +100,7 @@ plot_parameters = {
 		'colorMap':'hot',
 		'xlabel':'$V_{GS}^{Sweep}$ [V]',
 		'ylabel':'$I_{D}$ [A]',
-		'leg_vds_label':'$V_{{DS}}^{{Sweep}} = ${:}V',
+		'leg_vds_label':'$V_{{DS}}^{{Sweep}}$\n  = {:}V',
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'TransferCurve':{
@@ -112,7 +112,7 @@ plot_parameters = {
 		'neg_label':'$-I_{D}$ [$\mu$A]',
 		'ii_label':'$I_{D}$, $I_{G}$ [$\mu$A]',
 		'neg_ii_label':'$-I_{D}$, $I_{G}$ [$\mu$A]',
-		'leg_vds_label':'$V_{{DS}}^{{Sweep}} = ${:}V',
+		'leg_vds_label':'$V_{{DS}}^{{Sweep}}$\n  = {:}V',
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'GateCurrent':{
@@ -167,6 +167,30 @@ plot_parameters = {
 
 
 
+def timeToString(seconds):
+	time = seconds
+	unit = 's'
+	threshold = 2
+	
+	if seconds >= 60*60*24*7:
+		time = seconds/(60*60*24*7)
+		unit = 'wk'
+	elif seconds >= 60*60*24:
+		time = seconds/(60*60*24)
+		unit = 'day' if int(time) == 1 else 'days'
+	elif seconds >= 60*60:
+		time = seconds/(60*60)
+		unit = 'hr'
+	elif seconds >= 60:
+		time = seconds/(60)
+		unit = 'min'
+	elif seconds >= 60:
+		time = seconds/(1)
+		unit = 's'
+	
+	return '{} {}'.format(int(time), unit)
+
+
 # ********** API **********
 
 def plotJSON(jsonData, parameters, lineColor):
@@ -195,7 +219,14 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	else:
-		colorBar(fig, colorMap['smap'])
+		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
+		
+		axisLabel = 'Time'
+		if len(deviceHistory) > 1:
+			biasTimeSeconds = deviceHistory[1]['Results']['timestamps'][-1][-1] - deviceHistory[0]['Results']['timestamps'][0][0]
+			axisLabel = '[$t_{{Hold}}$ = {}]'.format(timeToString(biasTimeSeconds))
+		
+		colorBar(fig, colorMap['smap'], ticks=[0,0.6,1], tick_labels=[elapsedTime, axisLabel, '$t_0$'], axisLabel='')
 	
 	# Plot
 	for i in range(len(deviceHistory)):
@@ -221,7 +252,14 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	else:
-		colorBar(fig, colorMap['smap'])
+		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
+		
+		axisLabel = 'Time'
+		if len(deviceHistory) > 1:
+			biasTimeSeconds = deviceHistory[1]['Results']['timestamps'][-1][-1] - deviceHistory[0]['Results']['timestamps'][0][0]
+			axisLabel = '[$t_{{Hold}}$ = {}]'.format(timeToString(biasTimeSeconds))
+		
+		colorBar(fig, colorMap['smap'], ticks=[0,0.6,1], tick_labels=[elapsedTime, axisLabel, '$t_0$'], axisLabel='')
 
 	# If first segment of device history is all negative current, flip data
 	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['Results']['id_data']) < 0)):
@@ -266,7 +304,8 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
 	else:
-		colorBar(fig, colorMap['smap'])
+		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
+		colorBar(fig, colorMap['smap'], tick_labels=[elapsedTime, 'Start'])
 
 	# Plot
 	for i in range(len(deviceHistory)):
@@ -417,14 +456,26 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 				for i in range(len(parameter_labels['gateVoltageSetPoint'])):
 					ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 	
+	totalBiasTimeKey = 'totalBiasTime'
+	if deviceHistory[0]['ParametersFormatVersion'] < 2:
+		totalBiasTimeKey = 'biasTime'
+	
+	biasTimes = [history['StaticBias'][totalBiasTimeKey] for history in deviceHistory]
+	biasTimeSeconds = np.mean(biasTimes)
+	
 	legend_title = ''
 	if not vds_setpoint_changes:	
 		legend_title += '$V_{DS}^{{Hold}}$ = ' + '{:.2f}V'.format(vds_setpoint_values[0])
-	if not (vds_setpoint_changes or vgs_setpoint_changes):
-		legend_title += '\n'
 	if not vgs_setpoint_changes:
+		if len(legend_title) > 0:
+			legend_title += '\n'
 		legend_title += '$V_{GS}^{{Hold}}$ = ' + '{:.1f}V'.format(vgs_setpoint_values[0])
-	if not (vds_setpoint_changes and vgs_setpoint_changes):
+	if min(biasTimes) == max(biasTimes):
+		if len(legend_title) > 0:
+			legend_title += '\n'
+		legend_title += '$t_{{Hold}}$ = {}'.format(timeToString(biasTimeSeconds))
+	
+	if len(legend_title) > 0:
 		ax.legend([],[], loc='best', title=legend_title, labelspacing=0)
 	
 	# Add Grounding annotation
@@ -442,12 +493,14 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 			includeOriginOnYaxis(vds_ax)
 			vds_ax.set_ylabel(plot_parameters['StaticBias']['vds_label'])
 			setLabel(vds_line, '$V_{DS}^{{Hold}}$')
-			vds_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
+			if vds_setpoint_changes and vgs_setpoint_changes:
+				vds_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
 		if vgs_setpoint_changes:
 			includeOriginOnYaxis(vgs_ax)
 			vgs_ax.set_ylabel(plot_parameters['StaticBias']['vgs_label'])
 			setLabel(vgs_line, '$V_{GS}^{{Hold}}$')
-			vgs_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
+			if vds_setpoint_changes and vgs_setpoint_changes:
+				vgs_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
 		
 		# Legend
 		# lines1, labels1 = ax2.get_legend_handles_labels()
@@ -766,14 +819,17 @@ def plotOverTime(axis, timestamps, y, lineColor, offset=0, markerSize=1, lineWid
 			p = axis.plot(zeroed_timestamps[i:i+1+N], y[i:i+1+N], color=colors[i])
 		return p[0]
 
-def colorBar(fig, scalarMappableColorMap, ticks=[0,1], tick_labels=['End','Start'], axisLabel='Time $\\rightarrow$'):
+def colorBar(fig, scalarMappableColorMap, ticks=[0,1], tick_labels=['End','Start'], axisLabel='Time'):
 	scalarMappableColorMap._A = []
 	cbar = fig.colorbar(scalarMappableColorMap, pad=0.02, aspect=50)
 	cbar.set_ticks(ticks)
 	cbar.ax.set_yticklabels(tick_labels, rotation=270)
 	cbar.ax.yaxis.get_majorticklabels()[0].set_verticalalignment('bottom')
-	cbar.ax.yaxis.get_majorticklabels()[1].set_verticalalignment('top')
-	cbar.set_label(axisLabel, rotation=270)
+	cbar.ax.yaxis.get_majorticklabels()[-1].set_verticalalignment('top')
+	if len(ticks) > 2:
+		for i in range(len(ticks) - 2):
+			cbar.ax.yaxis.get_majorticklabels()[i+1].set_verticalalignment('center')
+	cbar.set_label(axisLabel, rotation=270, labelpad=0.9)
 
 
 
@@ -823,7 +879,20 @@ def getLegendTitle(deviceHistory, plotType, parameterType, includeVdsRange, incl
 			#plot(axis, vgs_region, fitted_region, lineColor='b', lineStyle='--')
 		SS_avg = np.mean(SS_list)
 		legend_entries.append('$SS_{{avg}} = $ {:.0f}mV/dec'.format(SS_avg))
-
+	
+	# if len(deviceHistory) > 1:
+	# 	if 'StaticBias' in deviceHistory[0].keys():
+	# 		totalBiasTimeKey = 'totalBiasTime'
+	# 		if 'biasTime' in deviceHistory[0]['StaticBias'].keys():
+	# 			totalBiasTimeKey = 'biasTime'
+			
+	# 		biasTimes = [history['StaticBias'][totalBiasTimeKey] for history in deviceHistory]
+	# 		biasTimeSeconds = np.mean(biasTimes)
+	# 	else:
+	# 		biasTimeSeconds = deviceHistory[1]['Results']['timestamps'][-1][-1] - deviceHistory[0]['Results']['timestamps'][0][0]
+		
+	# 	legend_entries.append('$t_{{Hold}}$ = {}'.format(timeToString(biasTimeSeconds)))
+	
 	for i in range(len(legend_entries)):
 		if(i != 0):
 			legend_title += '\n'

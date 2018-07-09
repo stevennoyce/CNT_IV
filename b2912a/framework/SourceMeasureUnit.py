@@ -54,7 +54,13 @@ def getConnectionToPCB():
 
 class SourceMeasureUnit:
 	measurementsPerSecond = None
-
+	
+	def turnChannelsOn(self):
+		raise NotImplementedError("Please implement SourceMeasureUnit.turnChannelsOn()")
+	
+	def turnChannelsOff(self):
+		raise NotImplementedError("Please implement SourceMeasureUnit.turnChannelsOff()")
+	
 	def setComplianceCurrent(self, complianceCurrent):
 		raise NotImplementedError("Please implement SourceMeasureUnit.setComplianceCurrent()")
 
@@ -118,12 +124,20 @@ class B2912A(SourceMeasureUnit):
 	smu = None
 	measurementsPerSecond = 60
 	nplc = 0
-
+	
 	def __init__(self, instance, NPLC, defaultComplianceCurrent):
 		self.smu = instance
 		self.initialize(NPLC)
 		self.setComplianceCurrent(defaultComplianceCurrent)
-
+	
+	def turnChannelsOn(self):
+		self.smu.write(":outp1 ON")
+		self.smu.write(":outp2 ON")
+	
+	def turnChannelsOff(self):
+		self.smu.write(":outp1 OFF")
+		self.smu.write(":outp2 OFF")
+	
 	def initialize(self, NPLC):
 		self.smu.write("*RST") # Reset
 		self.smu.write(':system:lfrequency 60')
@@ -168,12 +182,12 @@ class B2912A(SourceMeasureUnit):
 	def takeMeasurement(self):
 		data = self.smu.query_ascii_values(':MEAS? (@1:2)')
 		return {
-			'V_ds':data[0],
-			'I_d': data[1],
-			'V_gs':data[6],
-			'I_g': data[7]
+			'V_ds': data[0],
+			'I_d':  data[1],
+			'V_gs': data[6],
+			'I_g':  data[7]
 		}
-
+	
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
 		points = int(points)
 

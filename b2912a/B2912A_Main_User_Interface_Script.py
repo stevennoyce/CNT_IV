@@ -91,6 +91,10 @@ else:
 	waferID = 'C134'
 	chipID = 'X'
 	deviceID = '7-8'
+	
+	waferID = 'C127'
+	chipID = 'X'
+	deviceID = '15-16'
 
 runTypes = {
 	0:'Quit',
@@ -137,12 +141,12 @@ default_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'totalBiasTime': 10*60,
+		'totalBiasTime': 60*10*60,
 		'measurementTime': 10,
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	-15,
+		'gateVoltageSetPoint': 	15,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
@@ -152,11 +156,13 @@ default_parameters = {
 		'applyStaticBiasBetweenSweeps': False,
 	},
 	'AutoStaticBias':{
-		'numberOfStaticBiases': 10,
-		'applyGateSweepBetweenBiases': True,
+		'numberOfStaticBiases': 1,
+		'applyGateSweepBetweenBiases': False,
+		'turnChannelsOffBetweenBiases': False,
+		'channelsOffTime': 0,
 		'firstDelayBeforeMeasurementsBegin': 0,
 		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage': 3,
+		'incrementStaticGateVoltage': 0,
 		'incrementStaticDrainVoltage': 0,
 		'incrementGateVoltageWhenDone': 0,
 		'incrementDrainVoltageWhenDone': 0,
@@ -174,8 +180,8 @@ default_parameters = {
 		'figureSizeOverride': None,
 		'excludeDataBeforeJSONIndex': 0,
 		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 109,
-		'excludeDataAfterJSONExperimentNumber':  109,
+		'excludeDataBeforeJSONExperimentNumber': 137,
+		'excludeDataAfterJSONExperimentNumber':  137,
 		'gateSweepDirection': ['both','forward','reverse'][0],
 		'showOnlySuccessfulBurns': False,
 		'timescale': ['','seconds','minutes','hours','days','weeks'][0],

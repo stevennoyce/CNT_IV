@@ -72,12 +72,24 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	timestamps = []
 
 	steps = int(totalBiasTime/measurementTime)
-	pointsToAverageOver = (measurementTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)
+	pointsToAverageOver = (measurementTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)/1.5
+	
+	startTime = time.time()
 	
 	for i in range(steps):
 		# Take a 'sweep' at static voltage to get many measurements. Sweep takes 'measurementTime' number of seconds to complete.
-		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, pointsToAverageOver/1.5)
+		# measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, pointsToAverageOver)
+		
+		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, int(1/4*pointsToAverageOver))
+		
+		while time.time() - startTime < measurementTime*(i+3/4):
+			measurement = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, int(1/4*pointsToAverageOver))
+			for key, value in measurement.items():
+				if isinstance(value, list):
+					measurements[key].extend(value)
+		
 		timestamp = time.time()
+		
 		
 		# Save the median of the sweep as this measurement
 		vds_data.append(np.median(measurements['Vds_data']))

@@ -1,4 +1,5 @@
 import random
+import time
 
 import B2912A_Gate_Sweep as gateSweepScript
 import B2912A_Static_Bias as staticBiasScript
@@ -66,11 +67,18 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		staticBiasParameters['StaticBias']['drainVoltageWhenDone'] = drainVoltageWhenDoneList[i]
 		staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage'] = delayBeforeApplyingVoltageList[i]
 		staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin'] = delayBeforeMeasurementsList[i]
-
+		
 		# Run StaticBias, GateSweep (if necessary), and save plots with DeviceHistory
 		staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['AutoStaticBias']['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
+		
+		if(parameters['AutoStaticBias']['turnChannelsOffBetweenBiases']):
+			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
+			smu_instance.turnChannelsOff()
+			time.sleep(parameters['AutoStaticBias']['channelsOffTime'])
+			smu_instance.turnChannelsOn()
+		
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 
 		print('Completed static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
