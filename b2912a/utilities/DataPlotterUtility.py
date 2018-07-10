@@ -238,6 +238,8 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	ax.legend([],[], loc='lower left', title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
 	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
+	return (fig, ax)
+
 def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, saveFigure=False, showFigure=True):
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
@@ -290,6 +292,8 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
 	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
+	return (fig, ax)
+
 def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
@@ -314,6 +318,8 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	# Add Legend and save figure
 	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
 	adjustFigure(fig, 'FullGateCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
+
+	return (fig, ax)
 
 def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
 	# Init Figure	
@@ -343,6 +349,8 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 	# Add Legend and save figure
 	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
 	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotWidthPad=0.25, subplotHeightPad=0.8)
+
+	return (fig, (ax1, ax2, ax3))
 
 def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
 	if len(deviceHistory) < 1:
@@ -516,6 +524,8 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		axisLabels(ax, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
 		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
+	return (fig, (ax, ax2, ax3))
+
 def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True, includeDualAxis=True):
 	if len(deviceHistory) < 1:
 		return
@@ -617,6 +627,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
 	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
+	return (fig, (ax, ax2, ax3))
+
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Init Figure
 	fig, ax = initFigure(parameters, 1, 1, 'ChipHistory', '')
@@ -649,6 +661,8 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Add Legend and save figure
 	ax.legend(loc='best')
 	adjustFigure(fig, 'ChipHistory', parameters, saveFigure=False, showFigure=True)
+
+	return (fig, ax)
 
 def show():
 	plt.show()
