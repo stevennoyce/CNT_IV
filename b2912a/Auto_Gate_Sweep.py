@@ -1,7 +1,7 @@
 import time
 
-import B2912A_Gate_Sweep as gateSweepScript
-import B2912A_Static_Bias as staticBiasScript
+import Gate_Sweep as gateSweepScript
+import Static_Bias as staticBiasScript
 import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 

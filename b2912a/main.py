@@ -4,12 +4,12 @@ import sys
 import platform
 import serial as pySerial
 
-import B2912A_Burn_Out as burnOutScript
-import B2912A_Gate_Sweep as gateSweepScript
-import B2912A_Auto_Burn_Out as autoBurnScript
-import B2912A_Static_Bias as staticBiasScript
-import B2912A_Auto_Gate_Sweep as autoGateScript
-import B2912A_Auto_Static_Bias as autoBiasScript
+import Burn_Out as burnOutScript
+import Gate_Sweep as gateSweepScript
+import Auto_Burn_Out as autoBurnScript
+import Static_Bias as staticBiasScript
+import Auto_Gate_Sweep as autoGateScript
+import Auto_Static_Bias as autoBiasScript
 import Device_History as deviceHistoryScript
 import Chip_History as chipHistoryScript
 

@@ -1,5 +1,5 @@
-import B2912A_Burn_Out as burnOutScript
-import B2912A_Gate_Sweep as gateSweepScript
+import Burn_Out as burnOutScript
+import Gate_Sweep as gateSweepScript
 import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 
