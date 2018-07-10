@@ -370,6 +370,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	if(includeDualAxis):
 		fig, (ax1, ax2) = initFigure(parameters, 2, 1, 'StaticBias', testLabel, shareX=True)
 		ax = ax1
+		ax3 = None
 		
 		if vds_setpoint_changes and vgs_setpoint_changes:
 			ax3 = ax2.twinx()
@@ -381,6 +382,8 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 			vgs_ax = ax2
 	else:
 		fig, ax = initFigure(parameters, 1, 1, 'StaticBias', testLabel)
+		ax2 = None
+		ax3 = None
 	ax.set_title(plot_parameters['StaticBias']['titles'][0])
 	if(len(deviceHistory) <= 0):
 		return
@@ -546,8 +549,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	
 	if(includeDualAxis):
 		fig, (ax1, ax3) = initFigure(parameters, 2, 1, 'OnCurrent', testLabel, shareX=True)
-		ax = ax1
-		
+		ax4 = None
+
 		if vds_setpoint_changes and vgs_setpoint_changes:
 			ax4 = ax3.twinx()
 			vds_ax = ax3
@@ -558,6 +561,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 			vgs_ax = ax3
 	else:
 		fig, ax1 = initFigure(parameters, 1, 1, 'OnCurrent', testLabel)
+		ax3 = None
+		ax4 = None
 	
 	ax1.set_title(plot_parameters['OnCurrent']['titles'][0])
 	if(len(deviceHistory) <= 0):
@@ -627,7 +632,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
 	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
 
-	return (fig, (ax, ax2, ax3))
+	return (fig, (ax1, ax2, ax3, ax4))
 
 def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	# Init Figure

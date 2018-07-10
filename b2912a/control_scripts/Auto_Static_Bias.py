@@ -1,9 +1,9 @@
 import random
 import time
 
-import Gate_Sweep as gateSweepScript
-import Static_Bias as staticBiasScript
-import Device_History as deviceHistoryScript
+from control_scripts import Gate_Sweep as gateSweepScript
+from control_scripts import Static_Bias as staticBiasScript
+from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 
 

@@ -1,6 +1,6 @@
-import Burn_Out as burnOutScript
-import Gate_Sweep as gateSweepScript
-import Device_History as deviceHistoryScript
+from control_scripts import Burn_Out as burnOutScript
+from control_scripts import Gate_Sweep as gateSweepScript
+from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 
 

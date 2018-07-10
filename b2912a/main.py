@@ -4,14 +4,14 @@ import sys
 import platform
 import serial as pySerial
 
-import Burn_Out as burnOutScript
-import Gate_Sweep as gateSweepScript
-import Auto_Burn_Out as autoBurnScript
-import Static_Bias as staticBiasScript
-import Auto_Gate_Sweep as autoGateScript
-import Auto_Static_Bias as autoBiasScript
-import Device_History as deviceHistoryScript
-import Chip_History as chipHistoryScript
+from control_scripts import Burn_Out as burnOutScript
+from control_scripts import Gate_Sweep as gateSweepScript
+from control_scripts import Auto_Burn_Out as autoBurnScript
+from control_scripts import Static_Bias as staticBiasScript
+from control_scripts import Auto_Gate_Sweep as autoGateScript
+from control_scripts import Auto_Static_Bias as autoBiasScript
+from control_scripts import Device_History as deviceHistoryScript
+from control_scripts import Chip_History as chipHistoryScript
 
 from utilities import DataLoggerUtility as dlu
 from utilities import PlotPostingUtility as plotPoster
@@ -209,39 +209,37 @@ default_parameters = {
 }
 
 def main(parameters):
-	while(True):
-		os.system('cls' if os.name == 'nt' else 'clear')
+	os.system('cls' if os.name == 'nt' else 'clear')
 
-		# Get user's action selection
-		choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
-		if(choice == 0):
-			break
+	# Get user's action selection
+	choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
+	if(choice == 0):
+		return
 
-		# Allow user to confirm the parameters before continuing
-		parameters = dict(default_parameters)
-		parameters['runType'] = runTypes[choice]
-		confirmation = str(selectFromDictionary('Parameters: ', parameters, 'Are parameters correct? (y/n): '))
-		if(confirmation != 'y'):
-			break
+	# Allow user to confirm the parameters before continuing
+	parameters = dict(default_parameters)
+	parameters['runType'] = runTypes[choice]
+	confirmation = str(selectFromDictionary('Parameters: ', parameters, 'Are parameters correct? (y/n): '))
+	if(confirmation != 'y'):
+		return
 
-		# Initialize measurement system
-		smu_instance = initSMU(parameters)		
+	# Initialize measurement system
+	smu_instance = initSMU(parameters)		
 
-		# Initialize Arduino connection
-		arduino_instance = initArduino(parameters)
-		print("Sensor data: " + str(parameters['SensorData']))
-		
-		# Run specified action:
-		if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
-			for device in parameters['deviceRange']:
-				parameters = dict(default_parameters)
-				parameters['runType'] = runTypes[choice]
-				parameters['deviceID'] = device
-				runAction(parameters, smu_instance, arduino_instance)
-		else:
+	# Initialize Arduino connection
+	arduino_instance = initArduino(parameters)
+	print("Sensor data: " + str(parameters['SensorData']))
+	
+	# Run specified action:
+	if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
+		for device in parameters['deviceRange']:
+			parameters = dict(default_parameters)
+			parameters['runType'] = runTypes[choice]
+			parameters['deviceID'] = device
 			runAction(parameters, smu_instance, arduino_instance)
+	else:
+		runAction(parameters, smu_instance, arduino_instance)
 		
-		break
 
 # Run generic user action
 def runAction(parameters, smu_instance, arduino_instance):
