@@ -6,36 +6,7 @@ import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 
 
-
-# ## ********** Parameters **********
-
-# chipID = 'C127-'
-
-# default_parameters = {
-# 	'runType':		'AutoGateSweep',
-# 	'chipID':		chipID,
-# 	'deviceID':		'0-0',
-# 	'saveFolder':	'/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/',
-# 	'NPLC':1,
-# 	'numberOfSweeps':3,
-# 	'applyStaticBiasBetweenSweeps':True,
-# 	'GateSweep':{
-# 		'saveFileName': 'GateSweep',
-# 		'runDataPoints':600,
-# 		'complianceCurrent':	100e-6,
-# 		'drainVoltageSetPoint':	0.5,
-# 		'gateVoltageMinimum':	-15.0,
-# 		'gateVoltageMaximum':	15.0
-# 	},
-# 	'StaticBias':{
-# 		'time': 30,
-# 		'complianceCurrent':	100e-6,
-# 		'gateVoltageSetPoint':	-15.0,
-# 		'drainVoltageSetPoint':	0.5,
-# 	}
-# }
-
-
+# === Main ===
 def run(parameters, smu_instance, arduino_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
@@ -67,12 +38,4 @@ def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParame
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 		sweepCount += 1
 		print('Completed sweep #'+str(sweepCount)+' of '+str(numberOfSweeps))
-		
 
-
-
-
-
-
-if __name__ == '__main__':
-	run(default_parameters)

@@ -1,4 +1,3 @@
-from matplotlib import pyplot as plt
 import time
 import numpy as np
 
@@ -9,34 +8,7 @@ from framework import SourceMeasureUnit as smu
 
 
 
-# ## ********** Parameters **********
-
-# chipID = 'C127-'
-# deviceID = '0-0'
-
-# #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-# saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
-# saveFileName = 'BurnOut_' + chipID
-
-# default_parameters = {
-# 	'runType':'BurnOut',
-# 	'chipID':chipID,
-# 	'deviceID':deviceID,
-# 	'saveFolder':saveFolder,
-# 	'saveFileName':saveFileName,
-# 	'NPLC':					1,
-# 	'runDataPoints':		200,
-# 	'complianceCurrent': 	2000e-6,
-# 	'thresholdProportion':	0.8,
-# 	'gateVoltageSetPoint':	15.0,
-# 	'drainVoltageMaxPoint':	10.0,
-# 	'drainVoltagePlateaus':	10
-# }
-
-
-
-## ********** Main **********
-
+# === Main ===
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['BurnOut']['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['BurnOut']['drainVoltageMaxPoint'])+'V')
 	
@@ -136,8 +108,3 @@ def thresholdCrossed(threshold, recent_measurements, drainVoltage, minimumApplie
 
 	return True
 
-
-	
-
-if __name__ == '__main__':
-	run(default_parameters)

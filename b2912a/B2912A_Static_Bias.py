@@ -5,19 +5,9 @@ from utilities import DataLoggerUtility as dlu
 from utilities import DataPlotterUtility as dpu
 from framework import SourceMeasureUnit as smu
 
-# ## ********** Parameters **********
 
-# default_parameters = {
-# 	'runType':'StaticBias',
-# 	'chipID':'C127-',
-# 	'deviceID':'0-0',
-# 	'NPLC':1,
-# 	'time': 30,
-# 	'complianceCurrent':	100e-6,
-# 	'gateVoltageSetPoint':	-15.0,
-# 	'drainVoltageSetPoint':	0.5,
-# }
 
+# === Main ===
 def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=True):
 	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totalBiasTime'])+' seconds...')
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
@@ -115,6 +105,3 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	}
 
 
-
-if __name__ == '__main__':
-    run(default_parameters)

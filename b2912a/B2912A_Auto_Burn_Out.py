@@ -5,45 +5,7 @@ from utilities import DataLoggerUtility as dlu
 
 
 
-
-# ## ********** Parameters **********
-
-# chipID = 'C127-'
-# deviceID = '0-0'
-
-# #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-# saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
-
-# default_parameters = {
-# 	'runType':'AutoBurnOut',
-# 	'chipID':chipID,
-# 	'deviceID':deviceID,
-# 	'saveFolder':saveFolder,
-# 	'NPLC':1,
-# 	'targetOnOffRatio': 100,
-# 	'limitBurnOutsAllowed': 8,
-# 	'limitOnOffRatioDegradation': 0.7,
-# 	'GateSweep':{
-# 		'saveFileName': 'GateSweep',
-# 		'runDataPoints':600,
-# 		'complianceCurrent':	100e-6,
-# 		'drainVoltageSetPoint':	0.5,
-# 		'gateVoltageMinimum':	-15.0,
-# 		'gateVoltageMaximum':	15.0
-# 	},
-# 	'BurnOut':{
-# 		'saveFileName': 'BurnOut',
-# 		'runDataPoints':1000,
-# 		'complianceCurrent':	2000e-6,
-# 		'thresholdProportion':	0.75,
-# 		'gateVoltageSetPoint':	15.0,
-# 		'drainVoltageMaxPoint':	10,
-# 		'drainVoltagePlateaus': 10
-# 	}
-# }
-
-
-
+# === Main ===
 def run(parameters, smu_instance):
 	gateSweepParameters = dict(parameters)
 	gateSweepParameters['runType'] = 'GateSweep'
@@ -87,7 +49,3 @@ def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParamet
 		burnOutCount += 1
 		print('Completed sweep #'+str(burnOutCount))
 		
-
-
-if __name__ == '__main__':
-	run(default_parameters)

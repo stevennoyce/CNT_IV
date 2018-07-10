@@ -8,33 +8,7 @@ from framework import SourceMeasureUnit as smu
 
 
 
-# ## ********** Parameters **********
-
-# chipID = 'C127-'
-# deviceID = '0-0'
-
-# #saveFolder = '/Users/stevennoyce/Documents/home/Research/illumina/PSoC/Layout 2_14/Version 2/Host/Testing/'
-# saveFolder = '/Users/jaydoherty/Documents/myWorkspaces/Python/Research/CNT_IV/b2912a/data/'
-# saveFileName = 'GateSweep_' + chipID
-
-# default_parameters = {
-# 	'runType':'GateSweep',
-# 	'chipID':chipID,
-# 	'deviceID':deviceID,
-# 	'saveFolder':saveFolder,
-# 	'saveFileName':saveFileName,
-# 	'NPLC':1,
-# 	'runDataPoints':600,
-# 	'complianceCurrent':	50e-6,
-# 	'drainVoltageSetPoint':	0.5,
-# 	'gateVoltageMinimum':	-15.0,
-# 	'gateVoltageMaximum':	15.0
-# }
-
-
-
-## ********** Main **********
-
+# === Main ===
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
@@ -166,6 +140,3 @@ def offCurrent(drainCurrent):
 	return (np.percentile(absDrainCurrent, 5))
 
 	
-
-if __name__ == '__main__':
-    run(default_parameters)

@@ -8,6 +8,7 @@ from utilities import DataLoggerUtility as dlu
 
 
 
+# === Main ===
 def run(parameters, smu_instance, arduino_instance):
 	# Create distinct parameters for all scripts that could be run
 	gateSweepParameters = dict(parameters)
