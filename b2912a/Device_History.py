@@ -19,6 +19,8 @@ from utilities import DataLoggerUtility as dlu
 ## ********** Main **********
 
 def run(parameters, showFigures=True):
+	plotList = []
+
 	gateSweepFileName = 'GateSweep.json'
 	burnOutFileName = 'BurnOut.json'
 	staticBiasFileName = 'StaticBias.json'
@@ -40,13 +42,17 @@ def run(parameters, showFigures=True):
 				gateSweepHistory = dlu.filterHistoryLessThan(gateSweepHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 			
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
-				dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plotList.append(plot1)
 			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
-				dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plotList.append(plot2)
 			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
-				dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plotList.append(plot3)
 			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
-				dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures, includeDualAxis=p['includeBiasVoltageSubplot'])
+				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures, includeDualAxis=p['includeBiasVoltageSubplot'])
+				plotList.append(plot4)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 
@@ -68,7 +74,8 @@ def run(parameters, showFigures=True):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
 			
 			if p['specificPlotToCreate'] in ['FullBurnOutHistory','']:
-				dpu.plotFullBurnOutHistory(burnOutHistory, parameters, saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot = dpu.plotFullBurnOutHistory(burnOutHistory, parameters, saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout History")
 
@@ -87,12 +94,15 @@ def run(parameters, showFigures=True):
 				staticBiasHistory = dlu.filterHistoryLessThan(staticBiasHistory, 'experimentNumber', p['excludeDataAfterJSONExperimentNumber'])
 			
 			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
-				dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias History")
 
 	if(showFigures):
 		dpu.show()
+
+	return plotList
 
 
 if __name__ == '__main__':

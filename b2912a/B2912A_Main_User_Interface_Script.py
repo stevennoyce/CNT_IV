@@ -300,10 +300,12 @@ def runDeviceHistory(parameters):
 		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
 	} 
 	
-	deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
+	plotList = deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
 	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):
 		plotPoster.postPlots(parameters)
+
+	return plotList
 
 
 
