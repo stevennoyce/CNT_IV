@@ -3,7 +3,7 @@ import numpy as np
 
 from utilities import DataLoggerUtility as dlu
 from utilities import DataPlotterUtility as dpu
-from framework import SourceMeasureUnit as smu
+#from framework import SourceMeasureUnit as smu
 
 
 
@@ -21,8 +21,8 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	if(parameters['StaticBias']['delayBeforeApplyingVoltage'] > 0):
 		time.sleep(parameters['StaticBias']['delayBeforeApplyingVoltage'])
 
-	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'], steps=20)
-	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageSetPoint'], steps=30)
+	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'])
+	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageSetPoint'])
 
 	# Delay before measurements begin (only useful for allowing current to settle a little, not usually necessary)
 	if(parameters['StaticBias']['delayBeforeMeasurementsBegin'] > 0):
@@ -36,8 +36,8 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 							parameters['StaticBias']['totalBiasTime'], 
 							parameters['StaticBias']['measurementTime'])
 
-	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'], steps=30)
-	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'], steps=20)
+	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'])
+	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'])
 
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)

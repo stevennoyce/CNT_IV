@@ -13,7 +13,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
 	# RUN TEST
-	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'], smu_instance.measurementsPerSecond/2)
+	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'])
 	results = runGateSweep( smu_instance, 
 							parameters['deviceDirectory'], 
 							parameters['GateSweep']['saveFileName'], 

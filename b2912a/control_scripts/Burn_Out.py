@@ -15,7 +15,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
 
 	# RUN TEST
-	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'], 20)
+	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'])
 	results = runBurnOutSweep(	smu_instance, 
 								parameters['deviceDirectory'], 
 								parameters['BurnOut']['saveFileName'], 

@@ -113,11 +113,6 @@ def main():
 			schedule_index += 1
 		
 
-			
-	
-	
-
-
 
 # === User Interface ===
 runTypes = {

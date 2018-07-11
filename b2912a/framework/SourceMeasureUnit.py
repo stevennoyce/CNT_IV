@@ -54,6 +54,7 @@ def getConnectionToPCB():
 
 class SourceMeasureUnit:
 	measurementsPerSecond = None
+	stepsPerRamp = 15
 	
 	def turnChannelsOn(self):
 		raise NotImplementedError("Please implement SourceMeasureUnit.turnChannelsOn()")
@@ -88,37 +89,37 @@ class SourceMeasureUnit:
 	def getVgs(self):
 		return self.takeMeasurement()['V_gs']
 
-	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps):
+	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps=self.stepsPerRamp):
 		gateVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for gateVoltage in gateVoltages:
 			self.setVgs(gateVoltage)
 
-	def rampGateVoltageTo(self, voltageSetPoint, steps):
+	def rampGateVoltageTo(self, voltageSetPoint, steps=self.stepsPerRamp):
 		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, voltageSetPoint, steps)
 
-	def rampGateVoltageDown(self, steps):
+	def rampGateVoltageDown(self, steps=self.stepsPerRamp):
 		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, 0, steps)
 
-	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps):
+	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps=self.stepsPerRamp):
 		drainVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for drainVoltage in drainVoltages:
 			self.setVds(drainVoltage)
 
-	def rampDrainVoltageTo(self, voltageSetPoint, steps):
+	def rampDrainVoltageTo(self, voltageSetPoint, steps=self.stepsPerRamp):
 		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, voltageSetPoint, steps)
 
-	def rampDrainVoltageDown(self, steps):
+	def rampDrainVoltageDown(self, steps=self.stepsPerRamp):
 		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, 0, steps)
 
-	def rampDownVoltages(self):
+	def rampDownVoltages(self, steps=self.stepsPerRamp):
 		source1_voltage = self.getVds()
 		source2_voltage = self.getVgs()
-		self.rampDrainVoltage(source1_voltage, 0, self.measurementsPerSecond/2)
-		self.rampGateVoltage(source2_voltage, 0, 20)
+		self.rampDrainVoltage(source1_voltage, 0, steps)
+		self.rampGateVoltage(source2_voltage, 0, steps)
 
 class B2912A(SourceMeasureUnit):
 	smu = None
