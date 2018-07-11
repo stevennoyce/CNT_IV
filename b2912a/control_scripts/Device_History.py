@@ -3,9 +3,38 @@ from utilities import DataLoggerUtility as dlu
 
 
 
-## === Main ===
+# === Optional External Interface ===
+def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, saveNamePrefix = '', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}):
+	parameters = default_parameters
 
-def run(parameters, showFigures=True):
+	parameters['runType'] = 'DeviceHistory'
+	parameters['waferID'] = waferID
+	parameters['chipID'] = chipID
+	parameters['deviceID'] = deviceID
+	parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = startExperimentNumber
+	parameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
+	parameters['DeviceHistory']['specificPlotToCreate'] = specificPlot
+	parameters['DeviceHistory']['figureSizeOverride'] = figureSize
+	parameters['DeviceHistory']['saveFiguresGenerated'] = save
+	parameters['DeviceHistory']['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
+	parameters['DeviceHistory']['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
+	parameters['DeviceHistory']['postFiguresGenerated'] = False
+	parameters['DeviceHistory']['plotInRealTime'] = True
+	parameters['DeviceHistory']['gateSweepDirection'] = 'reverse'
+	
+	if(saveFolder is not None):
+        parameters['plotsFolder'] = saveFolder + '/'
+    parameters['plotsFolder'] += saveNamePrefix
+
+    if(mode_parameters is not None):
+    	dpu.
+
+    return run(parameters, showFigures=True, plot_mode_parameters=mode_parameters)
+
+
+
+# === Main ===
+def run(parameters, showFigures=True, plot_mode_parameters={}):
 	plotList = []
 
 	gateSweepFileName = 'GateSweep.json'
@@ -13,22 +42,24 @@ def run(parameters, showFigures=True):
 	staticBiasFileName = 'StaticBias.json'
 	
 	p = parameters['DeviceHistory']
+	plot_mode_parameters['saveFigures'] = p['saveFiguresGenerated']
+	plot_mode_parameters['showFigures'] = showFigures
 	
 	if(p['plotGateSweeps']):
 		try:			
 			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), gateSweepFileName, parameters['deviceID'], minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
-				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=plot_mode_parameters)
 				plotList.append(plot1)
 			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
-				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=plot_mode_parameters)
 				plotList.append(plot2)
 			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
-				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=plot_mode_parameters)
 				plotList.append(plot3)
 			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
-				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures, includeDualAxis=p['includeBiasVoltageSubplot'])
+				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=plot_mode_parameters)
 				plotList.append(plot4)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
@@ -41,7 +72,7 @@ def run(parameters, showFigures=True):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
 			
 			if p['specificPlotToCreate'] in ['FullBurnOutHistory','']:
-				plot = dpu.plotFullBurnOutHistory(burnOutHistory, parameters, saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot = dpu.plotFullBurnOutHistory(burnOutHistory, parameters, mode_params=plot_mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout history.")
@@ -51,7 +82,7 @@ def run(parameters, showFigures=True):
 			staticBiasHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), staticBiasFileName, parameters['deviceID'], minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 			
 			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
-				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], saveFigure=p['saveFiguresGenerated'], showFigure=showFigures)
+				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=plot_mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias history.")

@@ -83,15 +83,19 @@ plt.rcParams['axes.formatter.limits'] = [-2, 3]
 plt.rcParams['pdf.fonttype'] = 42
 plt.rcParams['ps.fonttype'] = 42
 
-# ********** Constants **********
 
-publication_mode = False
-default_png_dpi = 120
-plotGradient = False
-errorBarsOn = True
-autoStaticBiasSegmentDividers = False
-plotOffCurrent = True
 
+# === Plot Parameters ===
+default_mode_parameters = {
+	'saveFigures': True,
+	'showFigures': True,
+	'publication_mode': False
+	'default_png_dpi': 120
+	'plotGradient': False
+	'errorBarsOn': True
+	'autoStaticBiasSegmentDividers': False
+	'plotOffCurrent': True
+}
 
 plot_parameters = {
 	'SubthresholdCurve': {
@@ -191,21 +195,28 @@ def timeToString(seconds):
 	return '{} {}'.format(int(time), unit)
 
 
-# ********** API **********
+
+# === API ===
 
 def plotJSON(jsonData, parameters, lineColor):
+	mode_parameters = default_mode_parameters.copy()
+	
 	if(jsonData['runType'] == 'GateSweep'):
-		plotFullSubthresholdCurveHistory([jsonData], parameters, saveFigure=True, showFigure=True)
-		plotFullTransferCurveHistory([jsonData], parameters, includeGateCurrent=True, saveFigure=True, showFigure=True)
-		#plotFullGateCurrentHistory([jsonData], parameters, saveFigure=True, showFigure=True)
+		plotFullSubthresholdCurveHistory([jsonData], parameters, mode_params=mode_parameters)
+		plotFullTransferCurveHistory([jsonData], parameters, includeGateCurrent=True, mode_params=mode_parameters)
+		#plotFullGateCurrentHistory([jsonData], parameters, mode_params=mode_parameters)
 	elif(jsonData['runType'] == 'BurnOut'):
-		plotFullBurnOutHistory([jsonData], parameters, saveFigure=True, showFigure=True)
+		plotFullBurnOutHistory([jsonData], parameters, mode_params=mode_parameters)
 	elif(jsonData['runType'] == 'StaticBias'):
-		plotFullStaticBiasHistory([jsonData], parameters, timescale='', plotInRealTime=True, saveFigure=True, showFigure=True)
+		plotFullStaticBiasHistory([jsonData], parameters, timescale='', plotInRealTime=True, mode_params=mode_parameters)
 	else:
 		raise NotImplementedError("Error: Unable to determine plot type")
 
-def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', mode_params=None):
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
 	fig, ax = initFigure(parameters, 1, 1, 'SubthresholdCurve', testLabel)
@@ -236,11 +247,15 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='lower left', title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
-	adjustFigure(fig, 'FullSubthresholdCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
+	adjustFigure(fig, 'FullSubthresholdCurves', parameters, mode_parameters)
 
 	return (fig, ax)
 
-def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, saveFigure=False, showFigure=True):
+def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, mode_params=None):
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
 	fig, ax = initFigure(parameters, 1, 1, 'TransferCurve', testLabel)
@@ -290,11 +305,15 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 
 	# Add Legend and save figure	
 	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
-	adjustFigure(fig, 'FullTransferCurves', parameters, saveFigure=saveFigure, showFigure=showFigure)
+	adjustFigure(fig, 'FullTransferCurves', parameters, mode_parameters)
 
 	return (fig, ax)
 
-def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', saveFigure=False, showFigure=True):
+def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', mode_params=None):
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
 	# Init Figure
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
 	fig, ax = initFigure(parameters, 1, 1, 'GateCurrent', testLabel)
@@ -317,11 +336,15 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
-	adjustFigure(fig, 'FullGateCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
+	adjustFigure(fig, 'FullGateCurrents', parameters, mode_parameters)
 
 	return (fig, ax)
 
-def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigure=True):
+def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
 	# Init Figure	
 	testLabel = getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID'])
 	fig, (ax1, ax2) = initFigure(parameters, 1, 2, 'BurnOut', testLabel)
@@ -348,13 +371,17 @@ def plotFullBurnOutHistory(deviceHistory, parameters, saveFigure=False, showFigu
 
 	# Add Legend and save figure
 	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullBurnOut', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotWidthPad=0.25, subplotHeightPad=0.8)
+	adjustFigure(fig, 'FullBurnOut', parameters, mode_parameters, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
 	return (fig, (ax1, ax2, ax3))
 
-def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, saveFigure=False, showFigure=True):
+def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
 	if len(deviceHistory) < 1:
 		return
+
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
 	
 	vds_setpoint_values = [record['StaticBias']['drainVoltageSetPoint'] for record in deviceHistory]
 	vgs_setpoint_values = [record['StaticBias']['gateVoltageSetPoint'] for record in deviceHistory]
@@ -438,7 +465,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		#		parameter_labels['drainVoltageSetPoint'].append({'x':time_offset, 'drainVoltageSetPoint':deviceHistory[i]['drainVoltageSetPoint']})
 		#		parameter_labels['gateVoltageSetPoint'].append({'x':time_offset, 'gateVoltageSetPoint':deviceHistory[i]['gateVoltageSetPoint']})
 		#else:
-		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias']) or autoStaticBiasSegmentDividers):
+		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias']) or default_mode_parameters['autoStaticBiasSegmentDividers']):
 			dotted_lines.append({'x':time_offset})
 			for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
 				if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
@@ -448,7 +475,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	
 	
 	# Increase height of the plot to give more room for labels
-	if (len(dotted_lines) > 1) or autoStaticBiasSegmentDividers:
+	if (len(dotted_lines) > 1) or default_mode_parameters['autoStaticBiasSegmentDividers']:
 		# Draw dotted lines between ANY plots that have different parameters
 		for i in range(len(dotted_lines)):
 			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=0.5))
@@ -522,18 +549,20 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		
 		# Adjust tick alignment
 		[tick.set_verticalalignment('top') for tick in ax2.yaxis.get_majorticklabels()]
-		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
+		adjustFigure(fig, 'FullStaticBias', parameters, mode_parameters, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
 	else:
 		axisLabels(ax, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
-		adjustFigure(fig, 'FullStaticBias', parameters, saveFigure=saveFigure, showFigure=showFigure)
+		adjustFigure(fig, 'FullStaticBias', parameters, mode_parameters)
 
 	return (fig, (ax, ax2, ax3))
 
-def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, saveFigure=False, showFigure=True, includeDualAxis=True):
+def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
 	if len(deviceHistory) < 1:
 		return
-	return
-	print(deviceHistory[0])
+	
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
 	
 	vds_setpoint_values = [record['StaticBias']['drainVoltageSetPoint'] for record in deviceHistory]
 	vgs_setpoint_values = [record['StaticBias']['gateVoltageSetPoint'] for record in deviceHistory]
@@ -605,7 +634,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	ax1.set_ylim(bottom=0)
 	
 	# Plot Off Current
-	if plotOffCurrent:
+	if(default_mode_parameters['plotOffCurrent']):
 		ax2 = ax1.twinx()
 		if(plotInRealTime):
 			line = plotOverTime(ax2, timestamps, offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=0, markerSize=2, lineWidth=0)
@@ -625,16 +654,20 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	lines1, labels1 = ax1.get_legend_handles_labels()
 	lines2, labels2 = [],[]
 	legendax = ax1
-	if plotOffCurrent:
+	if(default_mode_parameters['plotOffCurrent']):
 		lines2, labels2 = ax2.get_legend_handles_labels()
 		legendax = ax2
 	
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
-	adjustFigure(fig, 'OnAndOffCurrents', parameters, saveFigure=saveFigure, showFigure=showFigure)
+	adjustFigure(fig, 'OnAndOffCurrents', parameters, mode_parameters)
 
 	return (fig, (ax1, ax2, ax3, ax4))
 
-def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
+def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters, mode_params=None):
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
 	# Init Figure
 	fig, ax = initFigure(parameters, 1, 1, 'ChipHistory', '')
 	ax.set_title(plot_parameters['ChipHistory']['titles'][0])
@@ -665,7 +698,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters):
 	
 	# Add Legend and save figure
 	ax.legend(loc='best')
-	adjustFigure(fig, 'ChipHistory', parameters, saveFigure=False, showFigure=True)
+	adjustFigure(fig, 'ChipHistory', parameters, mode_parameters)
 
 	return (fig, ax)
 
@@ -674,7 +707,7 @@ def show():
 
 
 
-# ***** Device Plots *****
+# === Device Plots ===
 def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=None):
 	if(currentSource == 'gate'):
 		currentData = 'ig_data'
@@ -759,15 +792,14 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None):
 	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
 
 def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', includeLabel=True, lineStyle=None):
-	plotOverTime(axis, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*(10**6)), lineColor, offset=timeOffset, plotInnerGradient=plotGradient)	
+	plotOverTime(axis, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*(10**6)), lineColor, offset=timeOffset, plotInnerGradient=default_mode_parameters['plotGradient'])	
 	if(includeLabel):
 		axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
 
 
 
 
-# ***** Figures *****
-
+# === Figures ===
 def initFigure(parameters, rows, columns, type, testLabel, shareX=False):
 	if parameters['DeviceHistory']['figureSizeOverride'] != None:
 		plot_parameters[type]['figsize'] = parameters['DeviceHistory']['figureSizeOverride']
@@ -776,22 +808,22 @@ def initFigure(parameters, rows, columns, type, testLabel, shareX=False):
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[type]['subplot_width_ratio'], 'height_ratios':plot_parameters[type]['subplot_height_ratio']})
 	else:
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
-	if(not publication_mode):
+	if(not default_mode_parameters['publication_mode']):
 		fig.suptitle(testLabel)
 	return fig, axes
 
-def adjustFigure(figure, saveName, parameters, saveFigure, showFigure, subplotWidthPad=0, subplotHeightPad=0):
+def adjustFigure(figure, saveName, parameters, mode_parameters=default_mode_parameters.copy(), subplotWidthPad=0, subplotHeightPad=0):
 	# figure.set_size_inches(2.2,1.6) # Static Bias
 	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current
 	figure.tight_layout()
 	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
-	pngDPI = (300) if(publication_mode) else (default_png_dpi)
-	if(saveFigure):
+	pngDPI = (300) if(default_mode_parameters['publication_mode']) else (mode_parameters['default_png_dpi'])
+	if(mode_parameters['saveFigures']):
 		plt.savefig(parameters['plotsFolder'] + saveName + '.png', transparent=True, dpi=pngDPI)
 		# plt.savefig(parameters['plotsFolder'] + saveName + '.pdf', transparent=True)
 		# plt.savefig(parameters['plotsFolder'] + saveName + '.eps', transparent=True)
-	if(not showFigure):
+	if(not mode_parameters['showFigures']):
 		plt.close(figure)
 
 def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
@@ -811,8 +843,7 @@ def getTestLabel(deviceHistory, waferID, chipID, deviceID):
 
 
 
-# ***** Plots ***** 
-
+# === Plots === 
 def plot(axis, x, y, lineColor, lineStyle=None):
 	return axis.plot(x, y, color=lineColor, linestyle=lineStyle)[0]
 
@@ -821,7 +852,7 @@ def scatter(axis, x, y, lineColor, markerSize=3, lineWidth=0, lineStyle=None):
 
 def plotWithErrorBars(axis, x, y, lineColor):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
-	if not errorBarsOn:
+	if(not default_mode_parameters['errorBarsOn']):
 		std = None
 	return axis.errorbar(x_unique, avg, yerr=std, color=lineColor, capsize=2, capthick=0.5, elinewidth=0.5)[0]
 
@@ -852,8 +883,7 @@ def colorBar(fig, scalarMappableColorMap, ticks=[0,1], tick_labels=['End','Start
 
 
 
-# ***** Labels *****
-
+# === Labels ===
 def setLabel(line, label):
 	line.set_label(label)
 
@@ -877,8 +907,7 @@ def includeOriginOnYaxis(axis):
 
 
 
-# ***** Legend *****
-
+# === Legend ===
 def getLegendTitle(deviceHistory, plotType, parameterType, includeVdsRange, includeSubthresholdSwing=False):
 	legend_title = ''
 	legend_entries = []
@@ -921,8 +950,7 @@ def getLegendTitle(deviceHistory, plotType, parameterType, includeVdsRange, incl
 
 
 
-# ***** Curve Fitting *****
-
+# === Curve Fitting ===
 def linearFit(x, y):
 	slope, intercept = np.polyfit(x, y, 1)
 	fitted_data = [slope*x[i] + intercept for i in range(len(x))]
@@ -952,14 +980,13 @@ def steepestRegion(data, numberOfPoints):
 
 
 
-# ***** Metrics *****
+# === Metrics ===
 def avgSubthresholdSwing(vgs_data, id_data):
 	return (abs( vgs_data[0] - vgs_data[-1] / (np.log10(np.abs(id_data[0])) - np.log10(np.abs(id_data[-1]))) ) * 1000)
 
 
 
-# ***** Statistics *****
-
+# === Statistics ===
 def avgAndStdAtEveryPoint(x, y):
 	x_uniques = []
 	y_averages = []
@@ -996,8 +1023,7 @@ def secondsPer(amountOfTime):
 
 
 
-# ***** Data Manipulation *****
-
+# === Data Manipulation ===
 def flatten(dataList):
 	data = list([dataList])
 	while(isinstance(data[0], list)):
