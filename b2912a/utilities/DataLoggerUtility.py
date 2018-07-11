@@ -78,6 +78,9 @@ def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimen
 
 
 # === Device History API ===
+def getDeviceDirectory(parameters):
+	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + '/'
+
 def loadFullDeviceHistory(directory, fileName, deviceID):
 	jsonData = loadJSON(directory, fileName)
 	deviceHistory = []
@@ -85,6 +88,28 @@ def loadFullDeviceHistory(directory, fileName, deviceID):
 		if(deviceRun['deviceID'] == deviceID):
 			deviceHistory.append(deviceRun)
 	return deviceHistory
+
+def loadSpecificDeviceHistory(directory, fileName, deviceID, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
+	filteredHistory = loadFullDeviceHistory(directory, fileName, deviceID)
+
+	if(minIndex > 0):
+		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', minIndex)
+	if(maxIndex < float('inf')):
+		filteredHistory = filterHistoryLessThan(filteredHistory, 'index', maxIndex)
+
+	if(minExperiment > 0):
+		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'experimentNumber', minExperiment)
+	if(maxExperiment < float('inf')):
+		filteredHistory = filterHistoryLessThan(filteredHistory, 'experimentNumber', maxExperiment)
+
+	experimentBaseIndex = min(loadIndexesOfExperiementRange(directory, minExperiment, maxExperiment))
+
+	if(minRelativeIndex > 0):
+		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', experimentBaseIndex + minRelativeIndex)
+	if(maxRelativeIndex < float('inf')):
+		filteredHistory = filterHistoryLessThan(filteredHistory, 'index', experimentBaseIndex + maxRelativeIndex)
+
+	return filteredHistory
 
 def loadFullChipHistory(directory, fileName, chipID):
 	chipHistory = []

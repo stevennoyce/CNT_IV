@@ -21,7 +21,7 @@ from framework import ArduinoBoard as arduinoBoard
 # === Main API ===
 def run(parameters):
 	# Define the working directory for saving all device data
-	parameters['deviceDirectory'] = os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + '/'
+	parameters['deviceDirectory'] = dlu.getDeviceDirectory(parameters)
 
 	# Initialize measurement system
 	smu_instance = initSMU(parameters)		
