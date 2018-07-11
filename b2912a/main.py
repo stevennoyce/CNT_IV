@@ -101,12 +101,19 @@ def main():
 		launcher.run(parameters)
 
 	else:
-		parameter_list = dlu.loadJSON(directory='experiments', loadFileName=choice)
+		schedule_index = 0
 
-		for i in range(len(parameter_list)):
-			additional_parameters = parameter_list[i]
+		while( schedule_index < len(dlu.loadJSON(directory='experiments', loadFileName=choice)) ):
+			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=choice)
+
+			additional_parameters = parameter_list[schedule_index]
 			parameters = defaults.with_added(additional_parameters)
 			launcher.run(parameters)
+
+			schedule_index += 1
+		
+
+			
 	
 	
 
