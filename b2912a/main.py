@@ -81,21 +81,19 @@ additional_parameters = {
 
 # === Main ===
 def main():
-	parameters = defaults.get()
-
 	# Get user's action selection
 	choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
 	if(choice == 0):
 		return
 
 	additional_parameters['runType'] = runTypes[choice]
-	parameters.update(additional_parameters)
-
+	
 	# Allow user to confirm the parameters before continuing
 	confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults plus these additional parameters? (y/n): '))
 	if(confirmation != 'y'):
 		return
 
+	parameters = defaults.with_added(additional_parameters)
 	launcher.run(parameters)
 
 

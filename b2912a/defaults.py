@@ -1,5 +1,4 @@
-def get():
-	default_parameters = {
+default_parameters = {
 		'ParametersFormatVersion': 3,
 		'GateSweep':{
 			'saveFileName': 'GateSweep',
@@ -96,4 +95,12 @@ def get():
 		'NPLC':1
 	}
 
-	return dict(default_parameters)
+def get():
+	return default_parameters.copy()
+
+def with_added(additional_parameters):
+	combined = get()
+	combined.update(additional_parameters)
+	return combined
+
+
