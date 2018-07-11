@@ -89,11 +89,11 @@ plt.rcParams['ps.fonttype'] = 42
 default_mode_parameters = {
 	'saveFigures': True,
 	'showFigures': True,
-	'publication_mode': False
-	'default_png_dpi': 120
-	'plotGradient': False
-	'errorBarsOn': True
-	'autoStaticBiasSegmentDividers': False
+	'publication_mode': False,
+	'default_png_dpi': 120,
+	'plotGradient': False,
+	'errorBarsOn': True,
+	'autoStaticBiasSegmentDividers': False,
 	'plotOffCurrent': True
 }
 
@@ -158,7 +158,10 @@ plot_parameters = {
 		'time_label':'Time [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On-Current [A]',
-		'ylabel_dual_axis':'Off-Current [A]'
+		'ylabel_dual_axis':'Off-Current [A]',
+		'subplot_height_ratio':[3,1],
+		'subplot_width_ratio': [1],
+		'subplot_spacing': 0.03
 	},
 	'ChipHistory':{
 		'titles':['Chip History'],
@@ -643,11 +646,11 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 		setLabel(line, 'Off-Currents')
 		ax2.set_ylabel(plot_parameters['OnCurrent']['ylabel_dual_axis'])
 	
-	if includeDualAxis:
-		if vds_setpoint_changes:
-			vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
-		if vgs_setpoint_changes:
-			vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
+	# if(includeDualAxis):
+	# 	if vds_setpoint_changes:
+	# 		vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
+	# 	if vgs_setpoint_changes:
+	# 		vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
 		
 	
 	# Add Legend and save figure
@@ -800,14 +803,14 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', i
 
 
 # === Figures ===
-def initFigure(parameters, rows, columns, type, testLabel, shareX=False):
+def initFigure(parameters, rows, columns, plotType, testLabel, shareX=False):
 	if parameters['DeviceHistory']['figureSizeOverride'] != None:
-		plot_parameters[type]['figsize'] = parameters['DeviceHistory']['figureSizeOverride']
+		plot_parameters[plotType]['figsize'] = parameters['DeviceHistory']['figureSizeOverride']
 	
 	if(rows > 1 or columns > 1):
-		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[type]['subplot_width_ratio'], 'height_ratios':plot_parameters[type]['subplot_height_ratio']})
+		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[plotType]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[plotType]['subplot_width_ratio'], 'height_ratios':plot_parameters[plotType]['subplot_height_ratio']})
 	else:
-		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[type]['figsize'])
+		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[plotType]['figsize'])
 	if(not default_mode_parameters['publication_mode']):
 		fig.suptitle(testLabel)
 	return fig, axes

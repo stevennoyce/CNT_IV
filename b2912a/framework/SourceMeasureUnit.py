@@ -89,33 +89,33 @@ class SourceMeasureUnit:
 	def getVgs(self):
 		return self.takeMeasurement()['V_gs']
 
-	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps=self.stepsPerRamp):
+	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps=stepsPerRamp):
 		gateVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for gateVoltage in gateVoltages:
 			self.setVgs(gateVoltage)
 
-	def rampGateVoltageTo(self, voltageSetPoint, steps=self.stepsPerRamp):
+	def rampGateVoltageTo(self, voltageSetPoint, steps=stepsPerRamp):
 		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, voltageSetPoint, steps)
 
-	def rampGateVoltageDown(self, steps=self.stepsPerRamp):
+	def rampGateVoltageDown(self, steps=stepsPerRamp):
 		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, 0, steps)
 
-	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps=self.stepsPerRamp):
+	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps=stepsPerRamp):
 		drainVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for drainVoltage in drainVoltages:
 			self.setVds(drainVoltage)
 
-	def rampDrainVoltageTo(self, voltageSetPoint, steps=self.stepsPerRamp):
+	def rampDrainVoltageTo(self, voltageSetPoint, steps=stepsPerRamp):
 		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, voltageSetPoint, steps)
 
-	def rampDrainVoltageDown(self, steps=self.stepsPerRamp):
+	def rampDrainVoltageDown(self, steps=stepsPerRamp):
 		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, 0, steps)
 
-	def rampDownVoltages(self, steps=self.stepsPerRamp):
+	def rampDownVoltages(self, steps=stepsPerRamp):
 		source1_voltage = self.getVds()
 		source2_voltage = self.getVgs()
 		self.rampDrainVoltage(source1_voltage, 0, steps)

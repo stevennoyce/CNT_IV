@@ -23,13 +23,10 @@ def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumb
 	parameters['DeviceHistory']['gateSweepDirection'] = 'reverse'
 	
 	if(saveFolder is not None):
-        parameters['plotsFolder'] = saveFolder + '/'
-    parameters['plotsFolder'] += saveNamePrefix
+		parameters['plotsFolder'] = saveFolder + '/'
+	parameters['plotsFolder'] += saveNamePrefix
 
-    if(mode_parameters is not None):
-    	dpu.
-
-    return run(parameters, showFigures=True, plot_mode_parameters=mode_parameters)
+	return run(parameters, showFigures=True, plot_mode_parameters=mode_parameters)
 
 
 
