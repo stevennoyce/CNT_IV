@@ -1,8 +1,6 @@
 import os
-import time
 import sys
 import platform
-import serial as pySerial
 
 from control_scripts import Burn_Out as burnOutScript
 from control_scripts import Gate_Sweep as gateSweepScript
@@ -20,29 +18,10 @@ from framework import ArduinoBoard as arduinoBoard
 
 
 
-runTypes = {
-	0:'Quit',
-	1:'GateSweep',
-	2:'BurnOut',
-	3:'AutoBurnOut',
-	4:'StaticBias',
-	5:'AutoGateSweep',
-	6:'AutoStaticBias',
-	7:'DeviceHistory',
-	8:'ChipHistory'
-}
-
+# === Main API ===
 def run(parameters):
-	# Get user's action selection
-	choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
-	if(choice == 0):
-		return
-
-	# Allow user to confirm the parameters before continuing
-	parameters['runType'] = runTypes[choice]
-	confirmation = str(selectFromDictionary('Parameters: ', parameters, 'Are parameters correct? (y/n): '))
-	if(confirmation != 'y'):
-		return
+	# Define the working directory for saving all device data
+	parameters['deviceDirectory'] = os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + '/'
 
 	# Initialize measurement system
 	smu_instance = initSMU(parameters)		
@@ -60,9 +39,11 @@ def run(parameters):
 	else:
 		runAction(parameters, smu_instance, arduino_instance)
 
+
+
+# === Internal API ===
 # Run generic user action
 def runAction(parameters, smu_instance, arduino_instance):
-	parameters['deviceDirectory'] = parameters['dataFolder'] + parameters['waferID'] + '/' + parameters['chipID'] + '/' + parameters['deviceID'] + '/'	
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
@@ -126,22 +107,22 @@ def runDeviceHistory(parameters):
 
 
 
-# *** SMU Connection ***
+# === SMU Connection ===
 def initSMU(parameters):
 	smu_instance = None
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
 		if(parameters['MeasurementSystem'] == 'B2912A'):
-			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60000)
+			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
 		elif(parameters['MeasurementSystem'] == 'PCB2v14'):
 			smu_instance = smu.getConnectionToPCB()
 		else:
 			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
-	print("Connected to SMU: " + str(parameters['MeasurementSystem']))
+		print("Connected to SMU: " + str(parameters['MeasurementSystem']))
 	return smu_instance
 
 
 
-# *** Arduino Connection ***
+# === Arduino Connection ===
 def initArduino(parameters):
 	arduino_instance = None
 	baud = 9600
@@ -163,29 +144,4 @@ def initArduino(parameters):
 	return arduino_instance
 	
 
-
-# *** User Interface ***
-
-# Present a dictionary of options to the user and get their choice.
-def selectFromDictionary(titleString, dictionary, promptString):
-	print(titleString)
-	print_dict(dictionary, 0)
-	return input(promptString)
-
-# Print a nicely formatted dictionary.
-def print_dict(dictionary, numtabs):
-	keys = list(dictionary.keys())
-	for i in range(len(keys)):
-		if(isinstance(dictionary[keys[i]], dict)):
-			print(" '" + str(keys[i])+ "': {")
-			print_dict(dictionary[keys[i]], numtabs+1)
-		else:
-			print(numtabs*'\t'+'  ' + str(keys[i]) + ': ' + str(dictionary[keys[i]]))
-
-def devicesInRange(startContact, endContact, skip=True):
-	contactList = set(range(startContact,endContact))
-	if(skip):
-		omitList = set(range(4,64+1,4))
-		contactList = list(contactList-omitList)
-	return ['{0:}-{1:}'.format(c, c+1) for c in contactList]
 

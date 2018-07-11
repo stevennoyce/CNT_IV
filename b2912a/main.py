@@ -71,20 +71,73 @@ else:
 	chipID = 'X'
 	deviceID = '15-16'
 
-id_parameters = {
+additional_parameters = {
 	'waferID':waferID,
 	'chipID':chipID,
 	'deviceID':deviceID
 }
 
+
+
+# === Main ===
 def main():
 	parameters = defaults.get()
 
-	parameters['waferID'] = id_parameters['waferID']
-	parameters['chipID'] = id_parameters['chipID']
-	parameters['deviceID'] = id_parameters['deviceID']
+	# Get user's action selection
+	choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
+	if(choice == 0):
+		return
+
+	additional_parameters['runType'] = runTypes[choice]
+	parameters.update(additional_parameters)
+
+	# Allow user to confirm the parameters before continuing
+	confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults plus these additional parameters? (y/n): '))
+	if(confirmation != 'y'):
+		return
 
 	launcher.run(parameters)
+
+
+
+# === User Interface ===
+runTypes = {
+	0:'Quit',
+	1:'GateSweep',
+	2:'BurnOut',
+	3:'AutoBurnOut',
+	4:'StaticBias',
+	5:'AutoGateSweep',
+	6:'AutoStaticBias',
+	7:'DeviceHistory',
+	8:'ChipHistory'
+}
+
+# Present a dictionary of options to the user and get their choice.
+def selectFromDictionary(titleString, dictionary, promptString):
+	print(titleString)
+	print_dict(dictionary, 0)
+	return input(promptString)
+
+# Print a nicely formatted dictionary.
+def print_dict(dictionary, numtabs):
+	keys = list(dictionary.keys())
+	for i in range(len(keys)):
+		if(isinstance(dictionary[keys[i]], dict)):
+			print(" '" + str(keys[i])+ "': {")
+			print_dict(dictionary[keys[i]], numtabs+1)
+		else:
+			print(numtabs*'\t'+'  ' + str(keys[i]) + ': ' + str(dictionary[keys[i]]))
+
+def devicesInRange(startContact, endContact, skip=True):
+	contactList = set(range(startContact,endContact))
+	if(skip):
+		omitList = set(range(4,64+1,4))
+		contactList = list(contactList-omitList)
+	return ['{0:}-{1:}'.format(c, c+1) for c in contactList]
+
+
+
 
 
 if(__name__ == '__main__'):
