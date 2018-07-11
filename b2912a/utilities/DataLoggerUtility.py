@@ -2,6 +2,9 @@ import os
 import json
 import glob
 
+
+
+# === File System ===
 def makeFolder(folderPath):
 	if (not os.path.exists(folderPath)):
 		os.makedirs(folderPath)
@@ -12,21 +15,11 @@ def emptyFolder(folderPath):
 		for fileName in fileNames:
 			os.remove(fileName)
 
-# ***** CSV *****
 
-def initCSV(directory, saveFileName):
-	with open(directory + saveFileName + '.csv', 'a') as file:
-		file.write(' ')
 
-def saveCSV(directory, saveFileName, csvData):
-	with open(directory + saveFileName + '.csv', 'a') as file:
-		line = str(csvData)[1:-1] + "\n"
-		file.write(line)
-
-# ***** JSON *****
-
+# === JSON ===
 def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
-	with open(directory + saveFileName + '.json', 'a') as file:
+	with open(os.path.join(directory, saveFileName + '.json'), 'a') as file:
 		if incrementIndex:
 			indexData = loadJSONIndex(directory)
 			jsonData['index'] = indexData['index']
@@ -38,18 +31,18 @@ def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
 
 def loadJSON(directory, loadFileName):
 	jsonData = []
-	with open(directory + loadFileName) as file:
+	with open(os.path.join(directory, loadFileName)) as file:
 		for line in file:
 			try:
 				jsonData.append(json.loads(str(line)))
 			except:
-				print('Error loading JSON line in file {}/{}'.format(directory, loadFileName))
+				print('Error loading JSON line in file {:}/{:}'.format(directory, loadFileName))
 	return jsonData
 
 def loadJSONIndex(directory):
 	indexData = {}
 	try:
-		with open(directory + 'index.json', 'r') as file:
+		with open(os.path.join(directory, 'index.json'), 'r') as file:
 			indexData = json.loads(file.readline())
 	except FileNotFoundError:	
 		indexData = {'index':0, 'experimentNumber':0}
@@ -58,20 +51,33 @@ def loadJSONIndex(directory):
 
 def incrementJSONIndex(directory):
 	indexData = loadJSONIndex(directory)
-	with open(directory + 'index.json', 'w') as file:
+	with open(os.path.join(directory, 'index.json'), 'w') as file:
 		indexData['index'] += 1
 		json.dump(indexData, file)
 		file.write('\n')
 
 def incrementJSONExperiementNumber(directory):
 	indexData = loadJSONIndex(directory)
-	with open(directory + 'index.json', 'w') as file:
+	with open(os.path.join(directory, 'index.json'), 'w') as file:
 		indexData['experimentNumber'] += 1
 		json.dump(indexData, file)
 		file.write('\n')
 
+def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimentNumber):
+	indexes = []
+	for fileName in glob.glob(directory + '/*.json'):
+		if not os.path.basename(fileName) in ['BurnOut.json', 'GateSweep.json', 'StaticBias.json']:
+			continue
+		jsonData = loadJSON('', fileName)
+		for deviceRun in jsonData:
+			if (deviceRun['experimentNumber'] >= startExperimentNumber) and (deviceRun['experimentNumber'] <= endExperimentNumber):
+				indexes.append(deviceRun['index'])
+	indexes.sort()
+	return indexes
 
 
+
+# === Device History API ===
 def loadFullDeviceHistory(directory, fileName, deviceID):
 	jsonData = loadJSON(directory, fileName)
 	deviceHistory = []
@@ -89,6 +95,34 @@ def loadFullChipHistory(directory, fileName, chipID):
 				chipHistory.append(deviceRun)
 	return chipHistory
 
+
+
+# === Chip History API ===
+def loadFirstRunChipHistory(directory, fileName, chipID):
+	fullChipHistory = loadFullChipHistory(directory, fileName, chipID)
+	firstRunsOnly = []
+	devicesLogged = []
+	for i in range(len(fullChipHistory)):
+		deviceRun = fullChipHistory[i]
+		if(deviceRun['deviceID'] not in devicesLogged):
+			firstRunsOnly.append(deviceRun)
+			devicesLogged.append(deviceRun['deviceID'])
+	return firstRunsOnly
+
+def loadMostRecentRunChipHistory(directory, fileName, chipID):
+	fullChipHistory = list(reversed(loadFullChipHistory(directory, fileName, chipID)))
+	lastRunsOnly = []
+	devicesLogged = []
+	for i in range(len(fullChipHistory)):
+		deviceRun = fullChipHistory[i]
+		if(deviceRun['deviceID'] not in devicesLogged):
+			lastRunsOnly.append(deviceRun)
+			devicesLogged.append(deviceRun['deviceID'])
+	return lastRunsOnly
+
+
+
+# === Filter ===
 def filterHistory(deviceHistory, property, value):
 	filteredHistory = []
 	for deviceRun in deviceHistory:
@@ -119,40 +153,9 @@ def filterHistoryLessThan(deviceHistory, property, threshold):
 			print("Unable to apply filter on '"+str(property)+"' <= '"+str(value)+"'")
 	return filteredHistory
 
-def loadFirstRunChipHistory(directory, fileName, chipID):
-	fullChipHistory = loadFullChipHistory(directory, fileName, chipID)
-	firstRunsOnly = []
-	devicesLogged = []
-	for i in range(len(fullChipHistory)):
-		deviceRun = fullChipHistory[i]
-		if(deviceRun['deviceID'] not in devicesLogged):
-			firstRunsOnly.append(deviceRun)
-			devicesLogged.append(deviceRun['deviceID'])
-	return firstRunsOnly
-
-def loadMostRecentRunChipHistory(directory, fileName, chipID):
-	fullChipHistory = list(reversed(loadFullChipHistory(directory, fileName, chipID)))
-	lastRunsOnly = []
-	devicesLogged = []
-	for i in range(len(fullChipHistory)):
-		deviceRun = fullChipHistory[i]
-		if(deviceRun['deviceID'] not in devicesLogged):
-			lastRunsOnly.append(deviceRun)
-			devicesLogged.append(deviceRun['deviceID'])
-	return lastRunsOnly
 
 
-def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimentNumber):
-	indexes = []
-	for fileName in glob.glob(directory + '/*.json'):
-		if not os.path.basename(fileName) in ['BurnOut.json', 'GateSweep.json', 'StaticBias.json']:
-			continue
-		jsonData = loadJSON('', fileName)
-		for deviceRun in jsonData:
-			if (deviceRun['experimentNumber'] >= startExperimentNumber) and (deviceRun['experimentNumber'] <= endExperimentNumber):
-				indexes.append(deviceRun['index'])
-	indexes.sort()
-	return indexes
+
 
 
 

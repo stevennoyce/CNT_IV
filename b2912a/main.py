@@ -2,6 +2,8 @@ import os
 import sys
 import platform
 
+from utilities import DataLoggerUtility as dlu
+
 import launcher
 import defaults
 
@@ -82,24 +84,37 @@ additional_parameters = {
 # === Main ===
 def main():
 	# Get user's action selection
-	choice = int(selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): '))
-	if(choice == 0):
-		return
+	choice = selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): ')
 
-	additional_parameters['runType'] = runTypes[choice]
+	if(choice.isdigit()):
+		if(choice == 0):
+			return
+		else:
+			additional_parameters['runType'] = runTypes[choice]
+
+		# Allow user to confirm the parameters before continuing
+		confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults plus these additional parameters? (y/n): '))
+		if(confirmation != 'y'):
+			return
+
+		parameters = defaults.with_added(additional_parameters)
+		launcher.run(parameters)
+
+	else:
+		parameter_list = dlu.loadJSON(directory='experiments', loadFileName=choice)
+
+		for i in range(len(parameter_list)):
+			additional_parameters = parameter_list[i]
+			parameters = defaults.with_added(additional_parameters)
+			launcher.run(parameters)
 	
-	# Allow user to confirm the parameters before continuing
-	confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults plus these additional parameters? (y/n): '))
-	if(confirmation != 'y'):
-		return
-
-	parameters = defaults.with_added(additional_parameters)
-	launcher.run(parameters)
+	
 
 
 
 # === User Interface ===
 runTypes = {
+	'text':'schedule file',
 	0:'Quit',
 	1:'GateSweep',
 	2:'BurnOut',

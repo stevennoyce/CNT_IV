@@ -99,8 +99,16 @@ def get():
 	return default_parameters.copy()
 
 def with_added(additional_parameters):
-	combined = get()
-	combined.update(additional_parameters)
+	defaults = get()
+	combined = merge(defaults, additional_parameters)
 	return combined
+
+def merge(a, b):
+	for key in b:
+		if( (key in a) and (isinstance(a[key], dict)) and (isinstance(b[key], dict)) ):
+			merge(a[key], b[key])
+		else:
+			a[key] = b[key]
+	return a
 
 
