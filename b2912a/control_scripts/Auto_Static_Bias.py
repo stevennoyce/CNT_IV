@@ -85,7 +85,7 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		
 		# Float the channels if desired
 		if(parameters['AutoStaticBias']['turnChannelsOffBetweenBiases']):
-			print('Turning channels off for: ' + str(parameters['AutoStaticBias']['channelsOffTime'] + ' seconds...'))
+			print('Turning channels off for: ' + str(parameters['AutoStaticBias']['channelsOffTime']) + ' seconds...')
 			smu_instance.turnChannelsOff()
 			time.sleep(parameters['AutoStaticBias']['channelsOffTime'])
 			smu_instance.turnChannelsOn()

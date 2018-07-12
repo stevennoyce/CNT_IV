@@ -46,6 +46,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 	# Save results as a JSON object
 	if(isSavingResults):
+		print('Saving JSON.')
 		dlu.saveJSON(dlu.getDeviceDirectory(parameters), parameters['BurnOut']['saveFileName'], jsonData)
 
 	# Show plots to the user
