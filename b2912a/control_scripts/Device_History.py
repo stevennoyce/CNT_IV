@@ -5,9 +5,9 @@ from utilities import DataLoggerUtility as dlu
 
 
 # === Optional External Interface ===
-def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, fileName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}):
+def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, fileName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
 	parameters = default_parameters
-
+	
 	parameters['runType'] = 'DeviceHistory'
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
@@ -25,10 +25,10 @@ def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumb
 	
 	if(saveFolder is not None):
 		parameters['plotsFolder'] = saveFolder + '/'
-		
+	
 	mode_parameters['fileName'] = fileName
-
-	return run(parameters, showFigures=True, plot_mode_parameters=mode_parameters)
+	
+	return run(parameters, showFigures=showFigures, plot_mode_parameters=mode_parameters)
 
 
 
