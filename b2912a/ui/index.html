@@ -1,14 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hello World!</title>
+	<title>User Interface</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+	<link href="/ui/vuetify.css" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	
+	<style media="screen" type="text/css">
+		[v-cloak] > * {
+			
+			display: none;
+		}
+		
+		.fade-leave-active, .fade-enter-active {
+			transition: 0.7s ease;
+		}
+		.fade-leave-to {
+			opacity: 1;
+		}
+		.fade-enter, .fade-leave {
+			opacity: 0;
+		}
+		
+		
+		[v-cloak]::before { 
+			content: " ";
+			display: block;
+			width: 16em;
+			height: 16em;
+			background-image: url('data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==');
+		}
+	</style>
 </head>
 <body>
-	<div>
-		 <p>
-			This is a test.
-		 </p>
-		 <img src="/plots/plotname" alt="Cant display the image">
+	<div id="app" v-cloak>
+		<transition name="fade" mode="out-in" appear><div>
+			<v-app>
+				<v-navigation-drawer clipped fixed v-model="drawer" class="blue-grey lighten-1" dark app>
+					<v-list dense>
+						<v-list-tile @click="">
+							<v-list-tile-action>
+								<v-icon>dashboard</v-icon>
+							</v-list-tile-action>
+							<v-list-tile-content>
+								<v-list-tile-title>Dashboard</v-list-tile-title>
+							</v-list-tile-content>
+						</v-list-tile>
+						<v-list-tile @click="">
+							<v-list-tile-action>
+								<v-icon>settings</v-icon>
+							</v-list-tile-action>
+							<v-list-tile-content>
+								<v-list-tile-title>Settings</v-list-tile-title>
+							</v-list-tile-content>
+						</v-list-tile>
+					</v-list>
+				</v-navigation-drawer>
+				<v-toolbar app fixed clipped-left dark color="blue-grey darken-1">
+					<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+					<v-toolbar-title>User Interface</v-toolbar-title>
+				</v-toolbar>
+				<v-content>
+					
+					<div>
+						 <p>
+							This is a test.
+						 </p>
+						 <img src="/plots/C127/X/15-16/3/FullSubthresholdCurveHistory" alt="Can't display the image">
+					</div>
+					
+				</v-content>
+				<v-footer app inset>
+					<v-spacer></v-spacer><span class="pr-3">Created by Steven Noyce. Updated July 2018.</span>
+				</v-footer>
+			</v-app>
+		</div></transition>
 	</div>
+	
+	
+	<script src="/ui/jquery.js"></script>
+	<script src="/ui/vue.js"></script>
+	<script src="/ui/vuetify.js"></script>
+	<script type="text/javascript">
+		
+		function groupBy(elements, groupKey) {
+			return elements.reduce(function(rv, x) {
+				(rv[x[groupKey]] = rv[x[groupKey]] || []).push(x);
+				return rv;
+			}, {});
+		}
+		
+		var app = new Vue({
+			el: '#app',
+			data: {
+				currentPage: window.location.hash.substr(1) || "",
+				drawer: true
+			}
+		});
+		
+		$( document ).ready(function(){
+			app.$vuetify.theme.primary = '#938E94';
+			app.$vuetify.theme.secondary = '#557A95';
+			app.$vuetify.theme.accent = '#7395AE';
+			app.$vuetify.theme.error = '#BF360C';
+			app.$vuetify.theme.success = '#00897B';
+			app.$vuetify.theme.info = '#B1A296';
+			app.$vuetify.theme.warning = '#FFB300';
+		});
+		
+		function updateConnectionStatus() {
+			app.$set(app, 'online', navigator.onLine);
+		}
+		
+		window.addEventListener('online', updateConnectionStatus);
+		window.addEventListener('offline', updateConnectionStatus);
+		window.onhashchange = function() { app.$data.currentPage = location.hash; };
+		
+		if (typeof(Storage) !== 'undefined') {
+			localStorage.exists = 'True';
+		}
+		
+	</script>
 </body>
 </html>
