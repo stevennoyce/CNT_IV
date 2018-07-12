@@ -1,49 +1,62 @@
+# === Imports ===
 import time
 import numpy as np
 
+from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import DataGeneratorUtility as dgu
 from utilities import DataPlotterUtility as dpu
-from framework import SourceMeasureUnit as smu
+#from framework import SourceMeasureUnit as smu
 
 
 
 # === Main ===
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
+	# Create distinct parameters for plotting the results
+	deviceHistoryParameters = dict(parameters)
+	deviceHistoryParameters['runType'] = 'DeviceHistory'
+	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = False
+	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = True
+	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = False
+	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+
 	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['BurnOut']['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['BurnOut']['drainVoltageMaxPoint'])+'V')
-	
 	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
 
-	# RUN TEST
+	# === START ===
 	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'])
 	results = runBurnOutSweep(	smu_instance, 
-								parameters['deviceDirectory'], 
-								parameters['BurnOut']['saveFileName'], 
-								parameters['BurnOut']['thresholdProportion'], 
-								parameters['BurnOut']['minimumAppliedDrainVoltage'],
-								0, 
-								parameters['BurnOut']['drainVoltageMaxPoint'], 
-								parameters['BurnOut']['drainVoltagePlateaus'], 
-								parameters['BurnOut']['pointsPerRamp'],
-								parameters['BurnOut']['pointsPerHold'])
+								thresholdProportion=parameters['BurnOut']['thresholdProportion'], 
+								minimumAppliedDrainVoltage=parameters['BurnOut']['minimumAppliedDrainVoltage'],
+								voltageStart=0, 
+								voltageSetPoint=parameters['BurnOut']['drainVoltageMaxPoint'], 
+								voltagePlateaus=parameters['BurnOut']['drainVoltagePlateaus'], 
+								pointsPerRamp=parameters['BurnOut']['pointsPerRamp'],
+								pointsPerHold=parameters['BurnOut']['pointsPerHold'])
 	smu_instance.rampDownVoltages()
 
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)
 	jsonData['Results'] = results
 
+	print('Did it burn?: '+str('Yes' if(results['didBurnOut']) else 'No'))
+
 	# Save results as a JSON object
 	if(isSavingResults):
-		dlu.saveJSON(parameters['deviceDirectory'], parameters['BurnOut']['saveFileName'], jsonData)
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), parameters['BurnOut']['saveFileName'], jsonData)
 
 	# Show plots to the user
 	if(isPlottingResults):
-		dpu.plotJSON(jsonData, parameters, 'b')
-		dpu.show()
+		deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
 
 	return jsonData
 
-def runBurnOutSweep(smu_instance, workingDirectory, saveFileName, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, pointsPerRamp, pointsPerHold):
+# === Data Collection ===
+def runBurnOutSweep(smu_instance, thresholdProportion, minimumAppliedDrainVoltage, voltageStart, voltageSetPoint, voltagePlateaus, pointsPerRamp, pointsPerHold):
 	burned = False
 	vds_data = []
 	id_data = []

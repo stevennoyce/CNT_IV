@@ -1,3 +1,4 @@
+# === Imports ===
 import os
 import sys
 import platform
@@ -78,7 +79,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 			raise NotImplementedError("Invalid action for the Source Measure Unit")
 	except:
 		smu_instance.rampDownVoltages()
-		choice = str(input('An error occurred. Quit and display error? (y/n):'))
+		choice = str(input('An error occurred. Quit before posting plots? (y/n):'))
 		if(choice == 'y'):
 			raise
 
@@ -98,12 +99,10 @@ def runDeviceHistory(parameters):
 		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
 	} 
 	
-	plotList = deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
+	deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
 	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):
 		plotPoster.postPlots(parameters)
-
-	return plotList
 
 
 

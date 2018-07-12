@@ -1,22 +1,35 @@
+# === Imports ===
 import time
 import numpy as np
 
+from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import DataGeneratorUtility as dgu
 from utilities import DataPlotterUtility as dpu
-from framework import SourceMeasureUnit as smu
+#from framework import SourceMeasureUnit as smu
 
 
 
 # === Main ===
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
+	# Create distinct parameters for plotting the results
+	deviceHistoryParameters = dict(parameters)
+	deviceHistoryParameters['runType'] = 'DeviceHistory'
+	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = True
+	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = False
+	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = False
+	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
+	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+
+	print('Sweeping the gate: V_DS='+str(parameters['GateSweep']['drainVoltageSetPoint'])+'V, min V_GS='+str(parameters['GateSweep']['gateVoltageMinimum'])+'V, max V_GS='+str(parameters['GateSweep']['gateVoltageMaximum'])+'V')
 	smu_instance.setComplianceCurrent(parameters['GateSweep']['complianceCurrent'])	
 
-	# RUN TEST
+	# === START ===
 	smu_instance.rampDrainVoltageTo(parameters['GateSweep']['drainVoltageSetPoint'])
 	results = runGateSweep( smu_instance, 
-							parameters['deviceDirectory'], 
-							parameters['GateSweep']['saveFileName'], 
 							isFastSweep=parameters['GateSweep']['isFastSweep'],
 							isAlternatingSweep=parameters['GateSweep']['isAlternatingSweep'],
 							pulsedMeasurementOnTime=parameters['GateSweep']['pulsedMeasurementOnTime'],
@@ -32,24 +45,22 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	jsonData = dict(parameters)
 	jsonData['Results'] = results
 	
-	# Display key metrics to the user
 	print('On/Off ratio: {:.4f}'.format(results['onOffRatio']))
 	print('On current: {:.4e}'.format(results['onCurrent']))
 	print('Off current: {:.4e}'.format(results['offCurrent']))
 
 	# Save results as a JSON object
 	if(isSavingResults):
-		dlu.saveJSON(parameters['deviceDirectory'], parameters['GateSweep']['saveFileName'], jsonData)
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), parameters['GateSweep']['saveFileName'], jsonData)
 
 	# Show plots to the user
 	if(isPlottingResults):
-		dpu.plotJSON(jsonData, parameters, 'b')
-		dpu.show()
+		deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
 		
 	return jsonData
 
-
-def runGateSweep(smu_instance, workingDirectory, saveFileName, isFastSweep, isAlternatingSweep, pulsedMeasurementOnTime, pulsedMeasurementOffTime, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
+# === Data Collection ===
+def runGateSweep(smu_instance, isFastSweep, isAlternatingSweep, pulsedMeasurementOnTime, pulsedMeasurementOffTime, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
 	vds_data = [[],[]]
 	id_data = [[],[]]
 	vgs_data = [[],[]]

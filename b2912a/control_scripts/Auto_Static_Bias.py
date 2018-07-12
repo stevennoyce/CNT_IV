@@ -1,3 +1,4 @@
+# === Imports ===
 import random
 import time
 
@@ -41,6 +42,7 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 	delayBeforeApplyingVoltageList = [staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage']]*numberOfStaticBiases
 	delayBeforeMeasurementsList = [staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin']]*numberOfStaticBiases
 
+	# Modify parameter arrays so that they increment there values as desired
 	currentIncrementNumber = 1
 	for i in range(numberOfStaticBiases):
 		if(i >= parameters['AutoStaticBias']['numberOfBiasesBetweenIncrements']*currentIncrementNumber):
@@ -52,19 +54,24 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		delayBeforeApplyingVoltageList[i] += parameters['AutoStaticBias']['incrementDelayBeforeReapplyingVoltage']*(currentIncrementNumber-1)	
 	delayBeforeMeasurementsList[0] = parameters['AutoStaticBias']['firstDelayBeforeMeasurementsBegin']
 
+	# Randomize the time spent grounding the terminals if desired
 	if(parameters['AutoStaticBias']['shuffleDelaysBeforeReapplyingVoltage']):
 		random.shuffle(delayBeforeApplyingVoltageList)
 
+
+
+	## === START ===
 	print('Beginning AutoStaticBias test with the following parameter lists:')
-	print(' Gate Voltages:  {:} \n Drain Voltages:  {:} \n Delay Between Applying Voltages:  {:} \n Delay Before Measurements Begin:  {:}'.format(gateVoltageSetPointList, drainVoltageSetPointList, delayBeforeApplyingVoltageList, delayBeforeMeasurementsList))
+	print(' Gate Voltages:  {:} \n Drain Voltages:  {:} \n Gate Voltages between biases:  {:} \n Drain Voltages between biases:  {:} \n Delay Between Applying Voltages:  {:} \n Delay Before Measurements Begin:  {:}'.format(gateVoltageSetPointList, drainVoltageSetPointList, gateVoltageWhenDoneList, drainVoltageWhenDoneList, delayBeforeApplyingVoltageList, delayBeforeMeasurementsList))
 	
 	# Run a pre-test gate sweep just to make sure everything looks good
 	gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 
-	# Run all Tests in this Experiment
+	# Run all Static Biases in this Experiment
 	for i in range(numberOfStaticBiases):
 		print('Starting static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
 		
+		# Get the parameters for this StaticBias from the pre-built arrays
 		staticBiasParameters['StaticBias']['gateVoltageSetPoint'] = gateVoltageSetPointList[i]
 		staticBiasParameters['StaticBias']['drainVoltageSetPoint'] = drainVoltageSetPointList[i]
 		staticBiasParameters['StaticBias']['gateVoltageWhenDone'] = gateVoltageWhenDoneList[i]
@@ -72,17 +79,18 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		staticBiasParameters['StaticBias']['delayBeforeApplyingVoltage'] = delayBeforeApplyingVoltageList[i]
 		staticBiasParameters['StaticBias']['delayBeforeMeasurementsBegin'] = delayBeforeMeasurementsList[i]
 		
-		# Run StaticBias, GateSweep (if necessary), and save plots with DeviceHistory
+		# Run StaticBias, GateSweep (if desired)
 		staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		if(parameters['AutoStaticBias']['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 		
+		# Float the channels if desired
 		if(parameters['AutoStaticBias']['turnChannelsOffBetweenBiases']):
-			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 			smu_instance.turnChannelsOff()
 			time.sleep(parameters['AutoStaticBias']['channelsOffTime'])
 			smu_instance.turnChannelsOn()
 		
+		# Save plots with DeviceHistory
 		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
 
 		print('Completed static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
