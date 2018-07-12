@@ -53,10 +53,6 @@ elif platform.node() == 'Steven-Noyce-MacBook-Pro.local':
 	chipID = 'X'
 	deviceID = '7-8'
 	
-	waferID = 'C127'
-	chipID = 'X'
-	deviceID = '15-16'
-	
 	waferID = 'C134'
 	chipID = 'X'
 	deviceID = '7-8'
