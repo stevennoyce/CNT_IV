@@ -84,12 +84,13 @@ def getDeviceDirectory(parameters):
 	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + '/'
 
 def loadFullDeviceHistory(directory, fileName, deviceID):
-	jsonData = loadJSON(directory, fileName)
-	deviceHistory = []
-	for deviceRun in jsonData:
-		if(deviceRun['deviceID'] == deviceID):
-			deviceHistory.append(deviceRun)
-	return deviceHistory
+	return loadJSON(directory, fileName)
+	#jsonData = loadJSON(directory, fileName)
+	#deviceHistory = []
+	#for deviceRun in jsonData:
+	#	if(deviceRun['deviceID'] == deviceID):
+	#		deviceHistory.append(deviceRun)
+	#return deviceHistory
 
 def loadSpecificDeviceHistory(directory, fileName, deviceID, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
 	filteredHistory = loadFullDeviceHistory(directory, fileName, deviceID)
