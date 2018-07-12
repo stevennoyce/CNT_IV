@@ -573,7 +573,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 		ax3 = None
 		ax4 = None
 	if(not mode_parameters['publication_mode']):
-		ax.set_title(getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID']))
+		ax1.set_title(getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID']))
 	if(len(deviceHistory) <= 0):
 		return
 	
