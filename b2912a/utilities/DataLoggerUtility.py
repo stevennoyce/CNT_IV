@@ -92,8 +92,8 @@ def loadFullDeviceHistory(directory, fileName, deviceID):
 	#		deviceHistory.append(deviceRun)
 	#return deviceHistory
 
-def loadSpecificDeviceHistory(directory, fileName, deviceID, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
-	filteredHistory = loadFullDeviceHistory(directory, fileName, deviceID)
+def loadSpecificDeviceHistory(directory, fileName, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
+	filteredHistory = loadJSON(directory, fileName)
 
 	if(minIndex > 0):
 		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', minIndex)
