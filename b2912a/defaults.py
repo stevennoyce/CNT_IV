@@ -7,7 +7,7 @@ default_parameters = {
 		'pulsedMeasurementOnTime': 0,
 		'pulsedMeasurementOffTime': 0,
 		'stepsInVGSPerDirection': 100,
-		'pointsPerVGS': 3,
+		'pointsPerVGS': 1,
 		'complianceCurrent':	100e-6,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageMinimum': 	-15,
@@ -36,7 +36,7 @@ default_parameters = {
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
 		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	15,
+		'gateVoltageSetPoint': 	-15,
 		'drainVoltageSetPoint':	-0.5,
 		'gateVoltageWhenDone':  0,
 		'drainVoltageWhenDone': 0
@@ -89,11 +89,11 @@ default_parameters = {
 	'SensorData':{
 
 	},
-	'MeasurementSystem':['B2912A','PCB2v14'][0],
-	'deviceRange':[],
+	'MeasurementSystem': ['B2912A','PCB2v14'][0],
+	'deviceRange': [],
 	'dataFolder': 'data/',
 	'plotsFolder': 'CurrentPlots/',
-	'postFigures':	True,
+	'postFigures':	False,
 	'NPLC':1
 }
 
