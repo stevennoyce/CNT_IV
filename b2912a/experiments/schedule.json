@@ -1,1 +1,1 @@
-{"runType": "DeviceHistory", "waferID": "C127", "chipID": "X", "deviceID": "15-16", "DeviceHistory": {"excludeDataBeforeJSONExperimentNumber": 24, "excludeDataAfterJSONExperimentNumber": 24, "excludeDataAfterJSONRelativeIndex":5}}
+{"runType": "AutoStaticBias", "waferID": "C127", "chipID": "X", "deviceID": "15-16", "AutoStaticBias": {"numberOfStaticBiases": 5, "turnChannelsOffBetweenBiases": true, "channelsOffTime": 30}, "StaticBias": {"totalBiasTime": 300}}
