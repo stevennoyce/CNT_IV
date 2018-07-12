@@ -31,7 +31,7 @@ default_parameters = {
 	},
 	'StaticBias':{
 		'saveFileName': 'StaticBias',
-		'totalBiasTime': 60*60,
+		'totalBiasTime': 60,
 		'measurementTime': 10,
 		'complianceCurrent': 100e-6,
 		'delayBeforeApplyingVoltage': 0,
