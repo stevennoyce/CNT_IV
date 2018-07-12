@@ -4,7 +4,6 @@ import time
 
 from control_scripts import Gate_Sweep as gateSweepScript
 from control_scripts import Static_Bias as staticBiasScript
-from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 
 
@@ -18,20 +17,20 @@ def run(parameters, smu_instance, arduino_instance):
 	staticBiasParameters = dict(parameters)
 	staticBiasParameters['runType'] = 'StaticBias'
 	
-	deviceHistoryParameters = dict(parameters)
-	deviceHistoryParameters['runType'] = 'DeviceHistory'
-	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = parameters['AutoStaticBias']['applyGateSweepBetweenBiases']
-	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = False
-	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = True
-	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
-	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
-	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
-	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
-	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	# deviceHistoryParameters = dict(parameters)
+	# deviceHistoryParameters['runType'] = 'DeviceHistory'
+	# deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = parameters['AutoStaticBias']['applyGateSweepBetweenBiases']
+	# deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = False
+	# deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = True
+	# deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
+	# deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
+	# deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
+	# deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	# deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
-	runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters)	
+	runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters)	
 
-def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters, deviceHistoryParameters):
+def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters):
 	numberOfStaticBiases = parameters['AutoStaticBias']['numberOfStaticBiases']
 	
 	# Build arrays of all parameters that could change over the course of any given experiement
@@ -86,12 +85,11 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		
 		# Float the channels if desired
 		if(parameters['AutoStaticBias']['turnChannelsOffBetweenBiases']):
+			print('Turning channels off for: ' + str(parameters['AutoStaticBias']['channelsOffTime'] + ' seconds...'))
 			smu_instance.turnChannelsOff()
 			time.sleep(parameters['AutoStaticBias']['channelsOffTime'])
 			smu_instance.turnChannelsOn()
-		
-		# Save plots with DeviceHistory
-		deviceHistoryScript.run(deviceHistoryParameters, showFigures=False)
+			print('Channels are back on.')
 
 		print('Completed static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
 		
