@@ -55,6 +55,7 @@ def incrementJSONIndex(directory):
 		indexData['index'] += 1
 		json.dump(indexData, file)
 		file.write('\n')
+	return indexData['index']
 
 def incrementJSONExperiementNumber(directory):
 	indexData = loadJSONIndex(directory)
@@ -62,6 +63,7 @@ def incrementJSONExperiementNumber(directory):
 		indexData['experimentNumber'] += 1
 		json.dump(indexData, file)
 		file.write('\n')
+	return indexData['experimentNumber']
 
 def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimentNumber):
 	indexes = []

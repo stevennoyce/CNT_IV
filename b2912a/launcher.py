@@ -58,7 +58,8 @@ def runAction(parameters, smu_instance, arduino_instance):
 
 # Run an action that interfaces with the SMU.
 def runSMU(parameters, smu_instance, arduino_instance):
-	dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
+	experiment = dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
+	print('About to begin experiment #' + str(experiment))
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 	smu_instance.setDevice(parameters['deviceID'])
 
@@ -86,6 +87,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 	smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+	print('Posting plots online...')
 	plotPoster.postPlots(parameters)
 
 # Run a "Device History" action.
