@@ -1,10 +1,11 @@
+# === Imports ===
 from utilities import DataPlotterUtility as dpu
 from utilities import DataLoggerUtility as dlu
 
 
 
 # === Optional External Interface ===
-def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, saveNamePrefix = '', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}):
+def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, fileName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}):
 	parameters = default_parameters
 
 	parameters['runType'] = 'DeviceHistory'
@@ -24,7 +25,8 @@ def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumb
 	
 	if(saveFolder is not None):
 		parameters['plotsFolder'] = saveFolder + '/'
-	parameters['plotsFolder'] += saveNamePrefix
+		
+	mode_parameters['fileName'] = fileName
 
 	return run(parameters, showFigures=True, plot_mode_parameters=mode_parameters)
 
