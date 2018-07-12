@@ -28,6 +28,14 @@ def sendPlot(wafer, chip, device, experiment, plotType):
 	try:
 		DH.makePlots(defaults.get(), wafer, chip, device, fileName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, save=True, showFigures=False)
 		# plt.savefig(filebuf, format='png')
+		
+		import shutil
+
+		filebuf.seek(0)
+		with open('myfile.png', 'wb') as f:
+			shutil.copyfileobj(filebuf, f, length=131072)
+		
+		
 		filebuf.seek(0)
 		return flask.send_file(filebuf, attachment_filename='plot.png')
 	finally:
