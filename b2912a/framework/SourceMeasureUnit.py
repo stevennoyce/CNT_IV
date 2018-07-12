@@ -116,6 +116,7 @@ class SourceMeasureUnit:
 		self.rampDrainVoltage(voltageStart, 0, steps)
 
 	def rampDownVoltages(self, steps=stepsPerRamp):
+		print('Ramping down SMU channels.')
 		source1_voltage = self.getVds()
 		source2_voltage = self.getVgs()
 		self.rampDrainVoltage(source1_voltage, 0, steps)
