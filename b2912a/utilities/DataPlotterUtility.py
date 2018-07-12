@@ -4,6 +4,7 @@ from matplotlib import colors as pltc
 from matplotlib import cm
 import numpy as np
 
+import io
 import os
 
 # ********** Matplotlib Parameters **********
@@ -796,9 +797,12 @@ def adjustFigure(figure, plotType, parameters, mode_parameters=default_mode_para
 	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
 	pngDPI = (300) if(mode_parameters['publication_mode']) else (mode_parameters['default_png_dpi'])
 	if(mode_parameters['saveFigures']):
-		plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.png'), transparent=True, dpi=pngDPI)
-		# plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.pdf'), transparent=True, dpi=pngDPI)
-		# plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.eps'), transparent=True, dpi=pngDPI)
+		if isinstance(mode_parameters['fileName'], io.BytesIO):
+			plt.savefig(mode_parameters['fileName'], transparent=True, dpi=pngDPI, format='png')
+		else:
+			plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.png'), transparent=True, dpi=pngDPI)
+			# plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.pdf'), transparent=True, dpi=pngDPI)
+			# plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.eps'), transparent=True, dpi=pngDPI)
 	if(not mode_parameters['showFigures']):
 		plt.close(figure)
 
