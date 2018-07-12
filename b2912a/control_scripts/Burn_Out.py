@@ -5,7 +5,6 @@ import numpy as np
 from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import DataGeneratorUtility as dgu
-from utilities import DataPlotterUtility as dpu
 #from framework import SourceMeasureUnit as smu
 
 
