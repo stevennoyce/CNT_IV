@@ -1,6 +1,7 @@
 import io
 import os
 import sys
+import glob
 import flask
 import webbrowser
 from matplotlib import pyplot as plt
@@ -22,29 +23,58 @@ def sendStatic(path):
 
 @app.route('/plots/<wafer>/<chip>/<device>/<experiment>/<plotType>')
 def sendPlot(wafer, chip, device, experiment, plotType):
-	# plt.plot([1,2,3,4,5],[2,1,3,4,6])
 	experiment = int(experiment)
 	filebuf = io.BytesIO()
-	try:
-		DH.makePlots(defaults.get(), wafer, chip, device, fileName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, save=True, showFigures=False)
-		# plt.savefig(filebuf, format='png')
-		
-		import shutil
+	DH.makePlots(defaults.get(), wafer, chip, device, fileName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, save=True, showFigures=False)
+	
+	filebuf.seek(0)
+	return flask.send_file(filebuf, attachment_filename='plot.png')
 
-		filebuf.seek(0)
-		with open('myfile.png', 'wb') as f:
-			shutil.copyfileobj(filebuf, f, length=131072)
-		
-		
-		filebuf.seek(0)
-		return flask.send_file(filebuf, attachment_filename='plot.png')
-	finally:
-		filebuf.close()
+@app.route('/wafers.json')
+def wafers():
+	paths = glob.glob('data/*/')
+	names = [os.path.basename(os.path.dirname(p)) for p in paths]
+	modificationTimes = [os.path.getmtime(p) for p in paths]
+	sizes = [os.path.getsize(p) for p in paths]
+	
+	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	
+	return flask.jsonify(wafers)
+
+@app.route('/<wafer>/chips.json')
+def chips(wafer):
+	paths = glob.glob('data/' + wafer + '/*/')
+	names = [os.path.basename(os.path.dirname(p)) for p in paths]
+	modificationTimes = [os.path.getmtime(p) for p in paths]
+	sizes = [os.path.getsize(p) for p in paths]
+	
+	chips = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	
+	return flask.jsonify(chips)
+
+@app.route('/<wafer>/<chip>/devices.json')
+def devices(wafer, chip):
+	paths = glob.glob('data/' + wafer + '/' + chip + '/*/')
+	names = [os.path.basename(os.path.dirname(p)) for p in paths]
+	modificationTimes = [os.path.getmtime(p) for p in paths]
+	sizes = [os.path.getsize(p) for p in paths]
+	
+	devices = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	
+	return flask.jsonify(devices)
+
+@app.route('/<wafer>/<chip>/<device>/experiments.json')
+def experiments(wafer, chip, device):
+	paths = glob.glob('data/' + wafer + '/' + chip + '/' + device + '/*/')
+	names = [os.path.basename(os.path.dirname(p)) for p in paths]
+	modificationTimes = [os.path.getmtime(p) for p in paths]
+	sizes = [os.path.getsize(p) for p in paths]
+	
+	experiments = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	
+	return flask.jsonify(experiments)
 
 if __name__ == '__main__':
-	# DH.makePlots(defaults.get(), 'C127', 'X', '15-16',  startExperimentNumber=1, endExperimentNumber=5, specificPlot='FullSubthresholdCurveHistory', save=False)
-	# DH.makePlots(defaults.get(), 'C127', 'X', '15-16', 3, 3, 'FullSubthresholdCurveHistory', (2.2,2.2), '', 'Figure 2a - ', False, mode_parameters={'publication_mode':True})
-	
 	url = 'http://127.0.0.1:5000/ui/index.html'
 	webbrowser.open_new(url)
 	app.run(debug=True)

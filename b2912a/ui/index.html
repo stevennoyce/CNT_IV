@@ -61,12 +61,88 @@
 					<v-toolbar-title>User Interface</v-toolbar-title>
 				</v-toolbar>
 				<v-content>
+					<v-card v-if="page == 'wafers'">
+						<v-card-title>
+							Wafers
+							<v-spacer></v-spacer>
+							<v-text-field v-model="waferTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+						</v-card-title>
+						<v-data-table :items="wafers" :headers="waferTableHeaders" :search="waferTableSearch" must-sort
+							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+							no-results-text="Your search did not return any results.">
+							<template slot="items" slot-scope="props">
+								<tr @click="goToWafer(props.item.name)">
+									<td>{{ props.item.name }}</td>
+									<td>{{ props.item.path }}</td>
+									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+									<td>{{ props.item.size }}</td>
+								</tr>
+							</template>
+						</v-data-table>
+					</v-card>
+					
+					<v-card v-if="page == 'chips'">
+						<v-card-title>
+							{{ wafer }} Chips
+							<v-spacer></v-spacer>
+							<v-text-field v-model="chipTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+						</v-card-title>
+						<v-data-table :items="chips" :headers="chipTableHeaders" :search="chipTableSearch" must-sort
+							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+							no-results-text="Your search did not return any results.">
+							<template slot="items" slot-scope="props">
+								<tr @click="goToChip(props.item.name)">
+									<td>{{ props.item.name }}</td>
+									<td>{{ props.item.path }}</td>
+									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+									<td>{{ props.item.size }}</td>
+								</tr>
+							</template>
+						</v-data-table>
+					</v-card>
+					
+					<v-card v-if="page == 'devices'">
+						<v-card-title>
+							{{ wafer }}{{ chip }} Devices
+							<v-spacer></v-spacer>
+							<v-text-field v-model="deviceTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+						</v-card-title>
+						<v-data-table :items="devices" :headers="deviceTableHeaders" :search="deviceTableSearch" must-sort
+							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+							no-results-text="Your search did not return any results.">
+							<template slot="items" slot-scope="props">
+								<tr @click="goToDevice(props.item.name)">
+									<td>{{ props.item.name }}</td>
+									<td>{{ props.item.path }}</td>
+									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+									<td>{{ props.item.size }}</td>
+								</tr>
+							</template>
+						</v-data-table>
+					</v-card>
+					
+					<v-card v-if="page == 'experiments'">
+						<v-card-title>
+							{{ wafer }}{{ chip }}{{ device }} Experiments
+							<v-spacer></v-spacer>
+							<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+						</v-card-title>
+						<v-data-table :items="experiments" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
+							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+							no-results-text="Your search did not return any results.">
+							<template slot="items" slot-scope="props">
+								<tr @click="goToExperiment(props.item.name)">
+									<td>{{ props.item.name }}</td>
+									<td>{{ props.item.path }}</td>
+									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+									<td>{{ props.item.size }}</td>
+								</tr>
+							</template>
+						</v-data-table>
+					</v-card>
 					
 					<div>
-						 <p>
-							This is a test.
-						 </p>
-						 <img src="/plots/C127/X/15-16/3/FullSubthresholdCurveHistory" alt="Can't display the image">
+						 <!-- <img src="/plots/C127/X/15-16/3/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
 					</div>
 					
 				</v-content>
@@ -94,7 +170,66 @@
 			el: '#app',
 			data: {
 				currentPage: window.location.hash.substr(1) || "",
-				drawer: true
+				drawer: false,
+				page: 'wafers',
+				
+				wafers: [],
+				wafer: '',
+				waferTableHeaders: [
+					{'text':'Name', 'value':'name'},
+					{'text':'Path', 'value':'path'},
+					{'text':'Modification Time', 'value':'modificationTime'},
+					{'text':'Size', 'value':'size'}],
+				waferTableSearch: '',
+				
+				chips: [],
+				chip: '',
+				chipTableHeaders: [
+					{'text':'Name', 'value':'name'},
+					{'text':'Path', 'value':'path'},
+					{'text':'Modification Time', 'value':'modificationTime'},
+					{'text':'Size', 'value':'size'}],
+				chipTableSearch: '',
+				
+				devices: [],
+				device: '',
+				deviceTableHeaders: [
+					{'text':'Name', 'value':'name'},
+					{'text':'Path', 'value':'path'},
+					{'text':'Modification Time', 'value':'modificationTime'},
+					{'text':'Size', 'value':'size'}],
+				deviceTableSearch: '',
+				
+				experiments: [],
+				experiment: '',
+				experimentTableHeaders: [
+					{'text':'Name', 'value':'name'},
+					{'text':'Path', 'value':'path'},
+					{'text':'Modification Time', 'value':'modificationTime'},
+					{'text':'Size', 'value':'size'}],
+				experimentTableSearch: ''
+			},
+			methods: {
+				goToWafer: function(waferName) {
+					this.wafer = waferName;
+					$.getJSON('/' + this.wafer + '/chips.json', response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
+					this.page = 'chips';
+				},
+				goToChip: function(chipName) {
+					this.chip = chipName;
+					$.getJSON('/' + this.wafer + '/' + this.chip + '/devices.json', response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
+					this.page = 'devices';
+				},
+				goToDevice: function(deviceName) {
+					this.device = deviceName;
+					$.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+					this.page = 'experiments';
+				},
+				goToExperiment: function(experimentName) {
+					this.experiment = experimentName;
+					$.getJSON('/' + this.experiment + '/experiments.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+					this.page = 'experiments';
+				}
 			}
 		});
 		
@@ -119,6 +254,8 @@
 		if (typeof(Storage) !== 'undefined') {
 			localStorage.exists = 'True';
 		}
+		
+		$.getJSON("/wafers.json", response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
 		
 	</script>
 </body>
