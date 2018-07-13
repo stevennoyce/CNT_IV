@@ -76,7 +76,7 @@ def run(additional_parameters, plot_mode_parameters={}):
 	'' if((p['excludeDataBeforeJSONRelativeIndex'] == 0) and (p['excludeDataAfterJSONRelativeIndex'] == float('inf'))) else (print('  Rel. Index #{:}'.format(p['excludeDataAfterJSONRelativeIndex'])) if(p['excludeDataBeforeJSONRelativeIndex'] == p['excludeDataAfterJSONRelativeIndex']) else (print('  Rel. Indices #{:} to #{:}'.format(p['excludeDataBeforeJSONRelativeIndex'],p['excludeDataAfterJSONRelativeIndex']))))
 	'' if((p['excludeDataBeforeJSONIndex'] == 0) and (p['excludeDataAfterJSONIndex'] == float('inf'))) else (print('  Abs. Index #{:}'.format(p['excludeDataAfterJSONIndex'])) if(p['excludeDataBeforeJSONIndex'] == p['excludeDataAfterJSONIndex']) else (print('  Abs. Indices #{:} to #{:}'.format(p['excludeDataBeforeJSONIndex'],p['excludeDataAfterJSONIndex']))))
 
-	if(p['plotGateSweeps']):
+	if(p['plotGateSweeps'] and (p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','FullTransferCurveHistory','FullGateCurrentHistory','OnAndOffCurrentHistory',''])):
 		try:			
 			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'GateSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
@@ -95,7 +95,7 @@ def run(additional_parameters, plot_mode_parameters={}):
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
 
-	if(p['plotBurnOuts']):
+	if(p['plotBurnOuts'] and (p['specificPlotToCreate'] in ['FullBurnOutHistory',''])):
 		try:
 			burnOutHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'BurnOut.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
@@ -108,7 +108,7 @@ def run(additional_parameters, plot_mode_parameters={}):
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout history.")
 
-	if(p['plotStaticBias']):
+	if(p['plotStaticBias'] and (p['specificPlotToCreate'] in ['FullStaticBiasHistory',''])):
 		try:
 			staticBiasHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'StaticBias.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 			

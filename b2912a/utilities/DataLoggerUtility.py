@@ -105,12 +105,12 @@ def loadSpecificDeviceHistory(directory, fileName, minIndex=0, maxIndex=float('i
 	if(maxExperiment < float('inf')):
 		filteredHistory = filterHistoryLessThan(filteredHistory, 'experimentNumber', maxExperiment)
 
-	experimentBaseIndex = min(loadIndexesOfExperiementRange(directory, minExperiment, maxExperiment))
-
-	if(minRelativeIndex > 0):
-		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', experimentBaseIndex + minRelativeIndex)
-	if(maxRelativeIndex < float('inf')):
-		filteredHistory = filterHistoryLessThan(filteredHistory, 'index', experimentBaseIndex + maxRelativeIndex)
+	if(minRelativeIndex > 0 or maxRelativeIndex < float('inf')):
+		experimentBaseIndex = min(loadIndexesOfExperiementRange(directory, minExperiment, maxExperiment))
+		if(minRelativeIndex > 0):
+			filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', experimentBaseIndex + minRelativeIndex)
+		if(maxRelativeIndex < float('inf')):
+			filteredHistory = filterHistoryLessThan(filteredHistory, 'index', experimentBaseIndex + maxRelativeIndex)
 
 	return filteredHistory
 
@@ -180,6 +180,8 @@ def filterHistoryLessThan(deviceHistory, property, threshold):
 		except:
 			print("Unable to apply filter on '"+str(property)+"' <= '"+str(value)+"'")
 	return filteredHistory
+
+def filterHistoryBetween(deviceHistory, property, lower, upper):
 
 
 
