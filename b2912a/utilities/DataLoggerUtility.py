@@ -1,7 +1,9 @@
 import os
 import json
 import glob
+import re
 
+import time
 
 
 # === File System ===
@@ -30,13 +32,24 @@ def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
 		file.write('\n')
 
 def loadJSON(directory, loadFileName):
+	return loadJSON_slow(directory, loadFileName)
+
+def loadJSON_slow(directory, loadFileName):
 	jsonData = []
+
 	with open(os.path.join(directory, loadFileName)) as file:
 		for line in file:
 			try:
 				jsonData.append(json.loads(str(line)))
 			except:
 				print('Error loading JSON line in file {:}/{:}'.format(directory, loadFileName))
+
+	return jsonData
+
+def loadJSON_fast(directory, loadFileName, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
+	fileLines = loadJSONtoStringArray(directory, loadFileName)
+	filteredFileLines = filterStringArrayByIndexAndExperiment(fileLines, minIndex, maxIndex, minExperiment, maxExperiment, minRelativeIndex, maxRelativeIndex)
+	jsonData = parseJSON(filteredFileLines)
 	return jsonData
 
 def loadJSONIndex(directory):
@@ -83,35 +96,17 @@ def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimen
 def getDeviceDirectory(parameters):
 	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + '/'
 
-def loadFullDeviceHistory(directory, fileName, deviceID):
-	return loadJSON(directory, fileName)
-	#jsonData = loadJSON(directory, fileName)
-	#deviceHistory = []
-	#for deviceRun in jsonData:
-	#	if(deviceRun['deviceID'] == deviceID):
-	#		deviceHistory.append(deviceRun)
-	#return deviceHistory
+# def loadFullDeviceHistory(directory, fileName, deviceID):
+# 	return loadJSON(directory, fileName)
+# 	#jsonData = loadJSON(directory, fileName)
+# 	#deviceHistory = []
+# 	#for deviceRun in jsonData:
+# 	#	if(deviceRun['deviceID'] == deviceID):
+# 	#		deviceHistory.append(deviceRun)
+# 	#return deviceHistory
 
 def loadSpecificDeviceHistory(directory, fileName, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
-	filteredHistory = loadJSON(directory, fileName)
-
-	if(minIndex > 0):
-		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', minIndex)
-	if(maxIndex < float('inf')):
-		filteredHistory = filterHistoryLessThan(filteredHistory, 'index', maxIndex)
-
-	if(minExperiment > 0):
-		filteredHistory = filterHistoryGreaterThan(filteredHistory, 'experimentNumber', minExperiment)
-	if(maxExperiment < float('inf')):
-		filteredHistory = filterHistoryLessThan(filteredHistory, 'experimentNumber', maxExperiment)
-
-	if(minRelativeIndex > 0 or maxRelativeIndex < float('inf')):
-		experimentBaseIndex = min(loadIndexesOfExperiementRange(directory, minExperiment, maxExperiment))
-		if(minRelativeIndex > 0):
-			filteredHistory = filterHistoryGreaterThan(filteredHistory, 'index', experimentBaseIndex + minRelativeIndex)
-		if(maxRelativeIndex < float('inf')):
-			filteredHistory = filterHistoryLessThan(filteredHistory, 'index', experimentBaseIndex + maxRelativeIndex)
-
+	filteredHistory = loadJSON_fast(directory, fileName, minIndex, maxIndex, minExperiment, maxExperiment, minRelativeIndex, maxRelativeIndex)
 	return filteredHistory
 
 def loadFullChipHistory(directory, fileName, chipID):
@@ -149,6 +144,55 @@ def loadMostRecentRunChipHistory(directory, fileName, chipID):
 	return lastRunsOnly
 
 
+# === Faster JSON Loading ===
+def loadJSONtoStringArray(directory, loadFileName):
+	fileLines = []
+
+	with open(os.path.join(directory, loadFileName)) as file:
+		for line in file:
+			fileLines.append(line)
+
+	return fileLines
+
+def filterStringArrayByIndexAndExperiment(fileLines, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
+	filteredFileLines = fileLines
+
+	if(minExperiment == maxExperiment):
+		filteredFileLines = filterFileLines(filteredFileLines, 'experimentNumber', minExperiment)
+	else:
+		if(minExperiment > 0):
+			filteredFileLines = filterFileLinesGreaterThan(filteredFileLines, 'experimentNumber', minExperiment)
+		if(maxExperiment < float('inf')):
+			filteredFileLines = filterFileLinesLessThan(filteredFileLines, 'experimentNumber', maxExperiment)
+
+	if(minIndex == maxIndex):
+		filteredFileLines = filterFileLines(filteredFileLines, 'index', minIndex)
+	else:
+		if(minIndex > 0):
+			filteredFileLines = filterFileLinesGreaterThan(filteredFileLines, 'index', minIndex)
+		if(maxIndex < float('inf')):
+			filteredFileLines = filterFileLinesLessThan(filteredFileLines, 'index', maxIndex)
+
+	if(minRelativeIndex > 0 or maxRelativeIndex < float('inf')):
+		experimentBaseIndex = min(loadIndexesOfExperiementRange(directory, minExperiment, maxExperiment))
+		if(minRelativeIndex > 0):
+			filteredFileLines = filterFileLinesGreaterThan(filteredFileLines, 'index', experimentBaseIndex + minRelativeIndex)
+		if(maxRelativeIndex < float('inf')):
+			filteredFileLines = filterFileLinesLessThan(filteredFileLines, 'index', experimentBaseIndex + maxRelativeIndex)
+
+	return filteredFileLines
+
+def parseJSON(fileLines):
+	jsonData = []
+
+	for line in fileLines:
+		try:
+			jsonData.append(json.loads(str(line)))
+		except:
+			print('Error loading JSON line in file {:}/{:}'.format(directory, loadFileName))
+	
+	return jsonData
+
 
 # === Filter ===
 def filterHistory(deviceHistory, property, value):
@@ -181,8 +225,29 @@ def filterHistoryLessThan(deviceHistory, property, threshold):
 			print("Unable to apply filter on '"+str(property)+"' <= '"+str(value)+"'")
 	return filteredHistory
 
-def filterHistoryBetween(deviceHistory, property, lower, upper):
+def filterFileLines(fileLines, property, value):
+	filteredFileLines = []
+	for line in fileLines:
+		match = re.search('"' + str(property) + '": ([^,}]*)' , line)
+		if(match and (match.group(1) == str(value))):
+			filteredFileLines.append(line)
+	return filteredFileLines
 
+def filterFileLinesGreaterThan(fileLines, property, value):
+	filteredFileLines = []
+	for line in fileLines:
+		match = re.search('"' + str(property) + '": ([^,}]*)' , line)
+		if(match and (match.group(1) >= str(value))):
+			filteredFileLines.append(line)
+	return filteredFileLines
+
+def filterFileLinesLessThan(fileLines, property, value):
+	filteredFileLines = []
+	for line in fileLines:
+		match = re.search('"' + str(property) + '": ([^,}]*)' , line)
+		if(match and (match.group(1) <= str(value))):
+			filteredFileLines.append(line)
+	return filteredFileLines
 
 
 
