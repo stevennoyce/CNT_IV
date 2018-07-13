@@ -104,6 +104,7 @@ def runDeviceHistory(parameters):
 		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
 	} 
 	
+	print('Launching DeviceHistory.')
 	deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
 	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):

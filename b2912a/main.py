@@ -97,10 +97,12 @@ def main():
 		launcher.run(parameters)
 
 	else:
+		# File must end in '.json'
+		file = choice if(choice[-5:] == '.json') else (choice + '.json')
 		schedule_index = 0
 
-		while( schedule_index < len(dlu.loadJSON(directory='experiments', loadFileName=choice)) ):
-			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=choice)
+		while( schedule_index < len(dlu.loadJSON(directory='experiments', loadFileName=file)) ):
+			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=file)
 
 			additional_parameters = parameter_list[schedule_index]
 			parameters = defaults.with_added(additional_parameters)
