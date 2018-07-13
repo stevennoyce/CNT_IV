@@ -60,27 +60,6 @@ default_parameters = {
 		'incrementDelayBeforeReapplyingVoltage': 0,
 		'shuffleDelaysBeforeReapplyingVoltage': False
 	},
-	'DeviceHistory':{
-		'showFiguresGenerated': True,
-		'saveFiguresGenerated': True,
-		'postFiguresGenerated': False,
-		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
-		'plotStaticBias': True,
-		'specificPlotToCreate': '',
-		'figureSizeOverride': None,
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
-		'excludeDataBeforeJSONRelativeIndex': 0,
-		'excludeDataAfterJSONRelativeIndex':  float('inf'),
-		'gateSweepDirection': ['both','forward','reverse'][0],
-		'showOnlySuccessfulBurns': False,
-		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
-		'plotInRealTime': True,
-		'includeBiasVoltageSubplot': True
-	},
 	'Results':{
 
 	},
@@ -88,11 +67,9 @@ default_parameters = {
 
 	},
 	'MeasurementSystem': ['B2912A','PCB2v14'][0],
+	'NPLC':1,
 	'deviceRange': [],
 	'dataFolder': 'data/',
-	'postFolder': 'CurrentPlots/',
-	'postFigures':	False,
-	'NPLC':1
 }
 
 def get():

@@ -6,9 +6,6 @@ def postPlots(parameters):
 	print('When entering postPlots(), parameters is:')
 	print(parameters)
 	
-	if not parameters['postFigures']:
-		return
-	
 	try:
 		plotFileNames = glob.glob(parameters['postFolder'] + '*.png')
 		

@@ -11,17 +11,20 @@ from utilities import DataLoggerUtility as dlu
 # === Main ===
 def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=True):
 	# Create distinct parameters for plotting the results
-	deviceHistoryParameters = dict(parameters)
-	deviceHistoryParameters['runType'] = 'DeviceHistory'
-	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = False
-	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = False
-	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = True
-	deviceHistoryParameters['DeviceHistory']['showFiguresGenerated'] = True
-	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
-	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
-	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
-	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
-	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters = {}
+	deviceHistoryParameters['waferID'] = parameters['waferID']
+	deviceHistoryParameters['chipID']  = parameters['chipID']
+	deviceHistoryParameters['deviceID'] = parameters['deviceID']
+	deviceHistoryParameters['dataFolder'] = parameters['dataFolder']
+	deviceHistoryParameters['plotGateSweeps'] = False
+	deviceHistoryParameters['plotBurnOuts'] = False
+	deviceHistoryParameters['plotStaticBias'] = True
+	deviceHistoryParameters['showFiguresGenerated'] = True
+	deviceHistoryParameters['saveFiguresGenerated'] = True
+	deviceHistoryParameters['excludeDataBeforeJSONIndex'] = 0
+	deviceHistoryParameters['excludeDataAfterJSONIndex'] =  float('inf')
+	deviceHistoryParameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	deviceHistoryParameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
 	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totalBiasTime'])+' seconds...')
 	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	

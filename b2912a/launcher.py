@@ -47,8 +47,6 @@ def run(parameters):
 def runAction(parameters, smu_instance, arduino_instance):
 	print('Creating save folder.')
 	dlu.makeFolder(parameters['deviceDirectory'])
-	dlu.makeFolder(parameters['postFolder'])
-	dlu.emptyFolder(parameters['postFolder'])
 
 	if(parameters['runType'] == 'DeviceHistory'):
 		runDeviceHistory(parameters)
@@ -88,28 +86,26 @@ def runSMU(parameters, smu_instance, arduino_instance):
 
 	smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+
+	print('Saving to ParametersHistory...')
 	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
 
-	print('Posting plots online...')
-	plotPoster.postPlots(parameters)
+	#print('Posting plots online...')
+	#plotPoster.postPlots(parameters)
 
 # Run a "Device History" action.
 def runDeviceHistory(parameters):
-	parameters['startIndexes'] = {
-		'index': parameters['DeviceHistory']['excludeDataBeforeJSONIndex'],
-		'experimentNumber': parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber']
+	dh_parameters = {
+		'waferID':  parameters['waferID'],
+		'chipID':   parameters['chipID'],
+		'deviceID': parameters['deviceID'],
+		'dataFolder': parameters['dataFolder']
 	}
-	parameters['endIndexes'] = {
-		'index': min(parameters['DeviceHistory']['excludeDataBeforeJSONIndex'], dlu.loadJSONIndex(parameters['deviceDirectory'])['index']),
-		'experimentNumber': min(parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'], dlu.loadJSONIndex(parameters['deviceDirectory'])['experimentNumber'])
-	} 
-	
+	if('DeviceHistory' in parameters.keys()):
+		dh_parameters.update(parameters['DeviceHistory'])
+
 	print('Launching DeviceHistory.')
-	deviceHistoryScript.run(parameters)
-	
-	if(parameters['DeviceHistory']['postFiguresGenerated']):
-		print('Posting plots online...')
-		plotPoster.postPlots(parameters)
+	deviceHistoryScript.run(dh_parameters)
 
 
 

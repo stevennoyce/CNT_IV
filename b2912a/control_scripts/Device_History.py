@@ -1,49 +1,53 @@
 # === Imports ===
 from utilities import DataPlotterUtility as dpu
 from utilities import DataLoggerUtility as dlu
+from utilities import PlotPostingUtility as plotPoster
 
+
+
+# === Defaults ===
 default_dh_parameters = {
-	'DeviceHistory':{
-		'showFiguresGenerated': True,
-		'saveFiguresGenerated': True,
-		'postFiguresGenerated': False,
-		'plotGateSweeps': True,
-		'plotBurnOuts':   True,
-		'plotStaticBias': True,
-		'specificPlotToCreate': '',
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 0,
-		'excludeDataAfterJSONExperimentNumber':  float('inf'),
-		'excludeDataBeforeJSONRelativeIndex': 0,
-		'excludeDataAfterJSONRelativeIndex':  float('inf'),
-		'gateSweepDirection': ['both','forward','reverse'][0],
-		'showOnlySuccessfulBurns': False,
-		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
-		'plotInRealTime': True,
-		'includeBiasVoltageSubplot': True
-	}
+	'dataFolder': 'data/',
+	'postFolder': 'CurrentPlots/',
+	'showFiguresGenerated': True,
+	'saveFiguresGenerated': True,
+	'postFiguresGenerated': False,
+	'plotGateSweeps': True,
+	'plotBurnOuts':   True,
+	'plotStaticBias': True,
+	'specificPlotToCreate': '',
+	'excludeDataBeforeJSONIndex': 0,
+	'excludeDataAfterJSONIndex':  float('inf'),
+	'excludeDataBeforeJSONExperimentNumber': 0,
+	'excludeDataAfterJSONExperimentNumber':  float('inf'),
+	'excludeDataBeforeJSONRelativeIndex': 0,
+	'excludeDataAfterJSONRelativeIndex':  float('inf'),
+	'gateSweepDirection': ['both','forward','reverse'][0],
+	'showOnlySuccessfulBurns': False,
+	'timescale': ['','seconds','minutes','hours','days','weeks'][0],
+	'plotInRealTime': True,
+	'includeBiasVoltageSubplot': True
 }
 
 
 
 # === Optional External Interface ===
 def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, plotSaveName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
-	parameters = default_dh_parameters.copy()
-	
+	parameters = {}	
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
 	parameters['deviceID'] = deviceID
-	parameters['DeviceHistory']['showFiguresGenerated'] = showFigures
-	parameters['DeviceHistory']['saveFiguresGenerated'] = save
-	parameters['DeviceHistory']['postFiguresGenerated'] = False
-	parameters['DeviceHistory']['specificPlotToCreate'] = specificPlot
-	parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = startExperimentNumber
-	parameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
-	parameters['DeviceHistory']['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
-	parameters['DeviceHistory']['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
-	parameters['DeviceHistory']['gateSweepDirection'] = 'reverse'
-	parameters['DeviceHistory']['plotInRealTime'] = True
+
+	parameters['showFiguresGenerated'] = showFigures
+	parameters['saveFiguresGenerated'] = save
+	parameters['postFiguresGenerated'] = False
+	parameters['specificPlotToCreate'] = specificPlot
+	parameters['excludeDataBeforeJSONExperimentNumber'] = startExperimentNumber
+	parameters['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
+	parameters['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
+	parameters['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
+	parameters['gateSweepDirection'] = 'reverse'
+	parameters['plotInRealTime'] = True
 	
 	if(saveFolder is not None):
 		mode_parameters['plotSaveFolder'] = saveFolder + '/'
@@ -56,16 +60,15 @@ def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentN
 
 
 # === Main ===
-def run(parameters, plot_mode_parameters={}):
-	plotList = []
+def run(additional_parameters, plot_mode_parameters={}):
+	parameters = default_dh_parameters.copy()
+	parameters.update(additional_parameters)
 
-	gateSweepFileName = 'GateSweep.json'
-	burnOutFileName = 'BurnOut.json'
-	staticBiasFileName = 'StaticBias.json'
-	
-	p = parameters['DeviceHistory']
+	p = parameters
 	plot_mode_parameters['showFigures'] = p['showFiguresGenerated']
 	plot_mode_parameters['saveFigures'] = p['saveFiguresGenerated']
+
+	plotList = []
 	
 	# Print information about the device and experiment being plotted
 	print('  ' + parameters['waferID'] + parameters['chipID'] + ':' + parameters['deviceID'])
@@ -75,7 +78,7 @@ def run(parameters, plot_mode_parameters={}):
 
 	if(p['plotGateSweeps']):
 		try:			
-			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), gateSweepFileName, minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
+			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'GateSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
 				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=plot_mode_parameters)
@@ -94,7 +97,7 @@ def run(parameters, plot_mode_parameters={}):
 
 	if(p['plotBurnOuts']):
 		try:
-			burnOutHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), burnOutFileName, minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
+			burnOutHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'BurnOut.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if(p['showOnlySuccessfulBurns']):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
@@ -107,7 +110,7 @@ def run(parameters, plot_mode_parameters={}):
 
 	if(p['plotStaticBias']):
 		try:
-			staticBiasHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), staticBiasFileName, minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
+			staticBiasHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'StaticBias.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 			
 			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
 				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=plot_mode_parameters)
@@ -115,8 +118,24 @@ def run(parameters, plot_mode_parameters={}):
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias history.")
 
-	if(showFigures):
+	if(p['showFiguresGenerated']):
 		dpu.show()
+
+	if(p['postFiguresGenerated']):
+		parameters['startIndexes'] = {
+			'index': max( parameters['excludeDataBeforeJSONIndex'], min(loadIndexesOfExperiementRange(directory, parameters['excludeDataBeforeJSONExperimentNumber'], parameters['excludeDataAfterJSONExperimentNumber'])) ),
+			'experimentNumber': parameters['excludeDataBeforeJSONExperimentNumber']
+		}
+		parameters['endIndexes'] = {
+			'index': min( parameters['excludeDataAfterJSONIndex'], max(loadIndexesOfExperiementRange(directory, parameters['excludeDataBeforeJSONExperimentNumber'], parameters['excludeDataAfterJSONExperimentNumber'])) ),
+			'experimentNumber': min(parameters['excludeDataAfterJSONExperimentNumber'], dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))['experimentNumber'])
+		} 
+
+		dlu.makeFolder(parameters['postFolder'])
+		dlu.emptyFolder(parameters['postFolder'])
+
+		print('Posting plots online...')
+		plotPoster.postPlots(parameters)
 
 	return plotList
 

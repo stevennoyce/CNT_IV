@@ -6,6 +6,9 @@ import DataLoggerUtility as dlu
 
 directory = #'../data/C139/D/'
 
+#load_directory
+#save_directory
+
 gateSweepFileName = 'GateSweep.json'
 burnOutFileName = 'BurnOut.json'
 staticBiasFileName = 'StaticBias.json'
@@ -31,14 +34,7 @@ def main():
 		# *************************************************************
 
 
-		# Delete GateSweep.json, BurnOut.json, and StaticBias.json from device directory
-		if os.path.exists(deviceDirectory):
-			fileNames = glob.glob(deviceDirectory + '*')
-			for fileName in fileNames:
-				if((gateSweepFileName in fileName) or (burnOutFileName in fileName) or (staticBiasFileName in fileName)):
-					os.remove(fileName)
-		# *************************************************************
-
+		
 
 		# *************************************************************
 		# ****************** BEGIN DATA MODIFICATION ******************
@@ -150,7 +146,18 @@ def main():
 		# ******************  END DATA MODIFICATION  ******************
 		# *************************************************************
 
-				
+
+
+		# Delete GateSweep.json, BurnOut.json, and StaticBias.json from device directory
+		if os.path.exists(deviceDirectory):
+			fileNames = glob.glob(deviceDirectory + '*')
+			for fileName in fileNames:
+				if((gateSweepFileName in fileName) or (burnOutFileName in fileName) or (staticBiasFileName in fileName)):
+					os.remove(fileName)
+		# *************************************************************
+
+
+
 		# Save device history for GateSweep, BurnOut, and StaticBias
 		for deviceRun in gateSweepHistory:
 			dlu.saveJSON(deviceDirectory, 'GateSweep', deviceRun, incrementIndex=False)
