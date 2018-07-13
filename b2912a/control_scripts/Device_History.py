@@ -29,46 +29,45 @@ default_dh_parameters = {
 
 # === Optional External Interface ===
 def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, plotSaveName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
-	parameters = default_parameters
+	parameters = default_dh_parameters.copy()
 	
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
 	parameters['deviceID'] = deviceID
+	parameters['DeviceHistory']['showFiguresGenerated'] = showFigures
+	parameters['DeviceHistory']['saveFiguresGenerated'] = save
+	parameters['DeviceHistory']['postFiguresGenerated'] = False
+	parameters['DeviceHistory']['specificPlotToCreate'] = specificPlot
 	parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = startExperimentNumber
 	parameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
-	parameters['DeviceHistory']['specificPlotToCreate'] = specificPlot
-	parameters['DeviceHistory']['saveFiguresGenerated'] = save
 	parameters['DeviceHistory']['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
 	parameters['DeviceHistory']['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
-	parameters['DeviceHistory']['postFiguresGenerated'] = False
-	parameters['DeviceHistory']['plotInRealTime'] = True
 	parameters['DeviceHistory']['gateSweepDirection'] = 'reverse'
+	parameters['DeviceHistory']['plotInRealTime'] = True
 	
 	if(saveFolder is not None):
-		parameters['plotsFolder'] = saveFolder + '/'
+		mode_parameters['plotSaveFolder'] = saveFolder + '/'
 	
 	mode_parameters['plotSaveName'] = plotSaveName
 	mode_parameters['figureSizeOverride'] = figureSize
 	
-	return run(parameters, showFigures=showFigures, plot_mode_parameters=mode_parameters)
+	return run(parameters, plot_mode_parameters=mode_parameters)
 
 
 
 # === Main ===
-def run(parameters, showFigures=True, plot_mode_parameters={}):
+def run(parameters, plot_mode_parameters={}):
 	plotList = []
 
 	gateSweepFileName = 'GateSweep.json'
 	burnOutFileName = 'BurnOut.json'
 	staticBiasFileName = 'StaticBias.json'
-
-	dlu.makeFolder(parameters['plotsFolder'])
-	dlu.emptyFolder(parameters['plotsFolder'])
 	
 	p = parameters['DeviceHistory']
+	plot_mode_parameters['showFigures'] = p['showFiguresGenerated']
 	plot_mode_parameters['saveFigures'] = p['saveFiguresGenerated']
-	plot_mode_parameters['showFigures'] = showFigures
 	
+	# Print information about the device and experiment being plotted
 	print('  ' + parameters['waferID'] + parameters['chipID'] + ':' + parameters['deviceID'])
 	'' if((p['excludeDataBeforeJSONExperimentNumber'] == 0) and (p['excludeDataAfterJSONExperimentNumber'] == float('inf'))) else (print('  Experiment #{:}'.format(p['excludeDataAfterJSONExperimentNumber'])) if(p['excludeDataBeforeJSONExperimentNumber'] == p['excludeDataAfterJSONExperimentNumber']) else (print('  Experiments #{:} to #{:}'.format(p['excludeDataBeforeJSONExperimentNumber'],p['excludeDataAfterJSONExperimentNumber'])))) 
 	'' if((p['excludeDataBeforeJSONRelativeIndex'] == 0) and (p['excludeDataAfterJSONRelativeIndex'] == float('inf'))) else (print('  Rel. Index #{:}'.format(p['excludeDataAfterJSONRelativeIndex'])) if(p['excludeDataBeforeJSONRelativeIndex'] == p['excludeDataAfterJSONRelativeIndex']) else (print('  Rel. Indices #{:} to #{:}'.format(p['excludeDataBeforeJSONRelativeIndex'],p['excludeDataAfterJSONRelativeIndex']))))

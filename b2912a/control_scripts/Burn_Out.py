@@ -17,6 +17,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 	deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = False
 	deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = True
 	deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = False
+	deviceHistoryParameters['DeviceHistory']['showFiguresGenerated'] = True
 	deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
 	deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
 	deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
@@ -51,7 +52,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
 
 	# Show plots to the user
 	if(isPlottingResults):
-		deviceHistoryScript.run(deviceHistoryParameters, showFigures=True)
+		deviceHistoryScript.run(deviceHistoryParameters)
 
 	return jsonData
 

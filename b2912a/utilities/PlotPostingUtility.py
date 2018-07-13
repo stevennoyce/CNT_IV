@@ -10,7 +10,7 @@ def postPlots(parameters):
 		return
 	
 	try:
-		plotFileNames = glob.glob(parameters['plotsFolder'] + '*.png')
+		plotFileNames = glob.glob(parameters['postFolder'] + '*.png')
 		
 		for plotFileName in plotFileNames:
 			with open(plotFileName, "rb") as plotFile:
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 		'deviceID': '8-9',
 		'startIndexes': {'index': 1, 'ExperimentNumber': 5},
 		'runType': 'AutoGateSweep',
-		'plotsFolder': '../CurrentPlots/',
+		'postFolder': '../CurrentPlots/',
 		'figuresSaved': ['../fig1.png'],
 		'postFigures': True
 	}

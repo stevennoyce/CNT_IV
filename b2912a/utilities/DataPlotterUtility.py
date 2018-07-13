@@ -137,7 +137,7 @@ plot_parameters = {
 		'subplot_width_ratio':[1,1],
 		'colorMap':'Blues',
 		'vds_label':'$V_{DS}$ [V]',
-		'id_micro_label':'$I_{D}$ [$\mu$A]',
+		'id_micro_label':'$I_{D}$ [$\\mu$A]',
 		'time_label':'Time [sec]',
 		'id_annotation':'burn current',
 		'legend_title':'$V_{GS} = +15V$'
@@ -146,7 +146,7 @@ plot_parameters = {
 		'figsize':(2*2.2,2*1.6),#(5,4),
 		'colorMap':'plasma',
 		'xlabel':'Time [{:}]',
-		'ylabel':'$I_{D}$ [$\mu$A]',
+		'ylabel':'$I_{D}$ [$\\mu$A]',
 		'vds_label': '$V_{DS}^{{Hold}}$ [V]',
 		'vgs_label': '$V_{GS}^{{Hold}}$ [V]',
 		'subplot_height_ratio':[3,1],

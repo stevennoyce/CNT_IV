@@ -47,6 +47,8 @@ def run(parameters):
 def runAction(parameters, smu_instance, arduino_instance):
 	print('Creating save folder.')
 	dlu.makeFolder(parameters['deviceDirectory'])
+	dlu.makeFolder(parameters['postFolder'])
+	dlu.emptyFolder(parameters['postFolder'])
 
 	if(parameters['runType'] == 'DeviceHistory'):
 		runDeviceHistory(parameters)
@@ -103,7 +105,7 @@ def runDeviceHistory(parameters):
 	} 
 	
 	print('Launching DeviceHistory.')
-	deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
+	deviceHistoryScript.run(parameters)
 	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):
 		print('Posting plots online...')

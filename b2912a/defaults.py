@@ -90,7 +90,7 @@ default_parameters = {
 	'MeasurementSystem': ['B2912A','PCB2v14'][0],
 	'deviceRange': [],
 	'dataFolder': 'data/',
-	'plotsFolder': 'CurrentPlots/',
+	'postFolder': 'CurrentPlots/',
 	'postFigures':	False,
 	'NPLC':1
 }
