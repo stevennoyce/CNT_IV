@@ -81,9 +81,6 @@ default_parameters = {
 		'plotInRealTime': True,
 		'includeBiasVoltageSubplot': True
 	},
-	'ChipHistory':{
-		
-	},
 	'Results':{
 
 	},

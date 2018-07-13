@@ -12,5 +12,5 @@ def run(parameters):
 	firstRunChipHistory = dlu.loadFirstRunChipHistory(chipDirectory, gateSweepFileName, parameters['chipID'])
 	recentRunChipHistory = dlu.loadMostRecentRunChipHistory(chipDirectory, gateSweepFileName, parameters['chipID'])
 
-	dpu.plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters)
+	dpu.plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory)
 	dpu.show()

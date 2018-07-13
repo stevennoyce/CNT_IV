@@ -2,21 +2,41 @@
 from utilities import DataPlotterUtility as dpu
 from utilities import DataLoggerUtility as dlu
 
-import time
+default_dh_parameters = {
+	'DeviceHistory':{
+		'showFiguresGenerated': True,
+		'saveFiguresGenerated': True,
+		'postFiguresGenerated': False,
+		'plotGateSweeps': True,
+		'plotBurnOuts':   True,
+		'plotStaticBias': True,
+		'specificPlotToCreate': '',
+		'excludeDataBeforeJSONIndex': 0,
+		'excludeDataAfterJSONIndex':  float('inf'),
+		'excludeDataBeforeJSONExperimentNumber': 0,
+		'excludeDataAfterJSONExperimentNumber':  float('inf'),
+		'excludeDataBeforeJSONRelativeIndex': 0,
+		'excludeDataAfterJSONRelativeIndex':  float('inf'),
+		'gateSweepDirection': ['both','forward','reverse'][0],
+		'showOnlySuccessfulBurns': False,
+		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
+		'plotInRealTime': True,
+		'includeBiasVoltageSubplot': True
+	}
+}
+
 
 
 # === Optional External Interface ===
-def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, fileName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
+def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, plotSaveName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
 	parameters = default_parameters
 	
-	parameters['runType'] = 'DeviceHistory'
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
 	parameters['deviceID'] = deviceID
 	parameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = startExperimentNumber
 	parameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
 	parameters['DeviceHistory']['specificPlotToCreate'] = specificPlot
-	parameters['DeviceHistory']['figureSizeOverride'] = figureSize
 	parameters['DeviceHistory']['saveFiguresGenerated'] = save
 	parameters['DeviceHistory']['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
 	parameters['DeviceHistory']['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
@@ -27,7 +47,8 @@ def makePlots(default_parameters, waferID, chipID, deviceID, startExperimentNumb
 	if(saveFolder is not None):
 		parameters['plotsFolder'] = saveFolder + '/'
 	
-	mode_parameters['fileName'] = fileName
+	mode_parameters['plotSaveName'] = plotSaveName
+	mode_parameters['figureSizeOverride'] = figureSize
 	
 	return run(parameters, showFigures=showFigures, plot_mode_parameters=mode_parameters)
 
@@ -40,6 +61,9 @@ def run(parameters, showFigures=True, plot_mode_parameters={}):
 	gateSweepFileName = 'GateSweep.json'
 	burnOutFileName = 'BurnOut.json'
 	staticBiasFileName = 'StaticBias.json'
+
+	dlu.makeFolder(parameters['plotsFolder'])
+	dlu.emptyFolder(parameters['plotsFolder'])
 	
 	p = parameters['DeviceHistory']
 	plot_mode_parameters['saveFigures'] = p['saveFiguresGenerated']

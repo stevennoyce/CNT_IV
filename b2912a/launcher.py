@@ -45,10 +45,8 @@ def run(parameters):
 # === Internal API ===
 # Run generic user action
 def runAction(parameters, smu_instance, arduino_instance):
-	print('Creating save folders.')
+	print('Creating save folder.')
 	dlu.makeFolder(parameters['deviceDirectory'])
-	dlu.makeFolder(parameters['plotsFolder'])
-	dlu.emptyFolder(parameters['plotsFolder'])
 
 	if(parameters['runType'] == 'DeviceHistory'):
 		runDeviceHistory(parameters)

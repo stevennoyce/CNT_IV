@@ -90,15 +90,17 @@ plt.rcParams['ps.fonttype'] = 42
 
 # === Plot Parameters ===
 default_mode_parameters = {
-	'saveFigures': True,
 	'showFigures': True,
+	'saveFigures': True,
+	'plotSaveFolder': 'CurrentPlots/'
+	'plotSaveName': '',
 	'publication_mode': False,
 	'default_png_dpi': 120,
-	'plotGradient': False,
+	'figureSizeOverride': None,
 	'errorBarsOn': True,
+	'plotGradient': False,
 	'autoStaticBiasSegmentDividers': False,
-	'plotOffCurrent': True,
-	'fileName': ''
+	'plotOffCurrent': True
 }
 
 plot_parameters = {
@@ -203,7 +205,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 		mode_parameters.update(mode_params)
 
 	# Init Figure
-	fig, ax = initFigure(parameters, 1, 1, 'SubthresholdCurve')
+	fig, ax = initFigure(1, 1, 'SubthresholdCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
 		ax.set_title(getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID']))
 	if(len(deviceHistory) <= 0):
@@ -232,7 +234,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='lower left', title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
-	adjustFigure(fig, 'FullSubthresholdCurves', parameters, mode_parameters)
+	adjustFigure(fig, 'FullSubthresholdCurves', mode_parameters)
 
 	return (fig, ax)
 
@@ -242,7 +244,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 		mode_parameters.update(mode_params)
 
 	# Init Figure
-	fig, ax = initFigure(parameters, 1, 1, 'TransferCurve')
+	fig, ax = initFigure(1, 1, 'TransferCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
 		ax.set_title(getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID']))
 	if(len(deviceHistory) <= 0):
@@ -290,7 +292,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 
 	# Add Legend and save figure	
 	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
-	adjustFigure(fig, 'FullTransferCurves', parameters, mode_parameters)
+	adjustFigure(fig, 'FullTransferCurves', mode_parameters)
 
 	return (fig, ax)
 
@@ -300,7 +302,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 		mode_parameters.update(mode_params)
 
 	# Init Figure
-	fig, ax = initFigure(parameters, 1, 1, 'GateCurrent')
+	fig, ax = initFigure(1, 1, 'GateCurrent', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
 		ax.set_title(getTestLabel(deviceHistory, parameters['waferID'], parameters['chipID'], parameters['deviceID']))
 	if(len(deviceHistory) <= 0):
@@ -321,7 +323,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	
 	# Add Legend and save figure
 	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
-	adjustFigure(fig, 'FullGateCurrents', parameters, mode_parameters)
+	adjustFigure(fig, 'FullGateCurrents', mode_parameters)
 
 	return (fig, ax)
 
@@ -331,7 +333,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
 		mode_parameters.update(mode_params)
 
 	# Init Figure	
-	fig, (ax1, ax2) = initFigure(parameters, 1, 2, 'BurnOut')
+	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', figsizeOverride=mode_parameters['figureSizeOverride'])
 	ax2 = plt.subplot(222)
 	ax3 = plt.subplot(224)
 	if(not mode_parameters['publication_mode']):
@@ -354,7 +356,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
 
 	# Add Legend and save figure
 	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
-	adjustFigure(fig, 'FullBurnOut', parameters, mode_parameters, subplotWidthPad=0.25, subplotHeightPad=0.8)
+	adjustFigure(fig, 'FullBurnOut', mode_parameters, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
 	return (fig, (ax1, ax2, ax3))
 
@@ -377,7 +379,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	
 	# Init Figure
 	if(includeDualAxis):
-		fig, (ax1, ax2) = initFigure(parameters, 2, 1, 'StaticBias', shareX=True)
+		fig, (ax1, ax2) = initFigure(2, 1, 'StaticBias', shareX=True, figsizeOverride=mode_parameters['figureSizeOverride'])
 		ax = ax1
 		ax3 = None
 		
@@ -390,7 +392,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		else:
 			vgs_ax = ax2
 	else:
-		fig, ax = initFigure(parameters, 1, 1, 'StaticBias')
+		fig, ax = initFigure(1, 1, 'StaticBias', figsizeOverride=mode_parameters['figureSizeOverride'])
 		ax2 = None
 		ax3 = None
 	if(not mode_parameters['publication_mode']):
@@ -532,10 +534,10 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		
 		# Adjust tick alignment
 		[tick.set_verticalalignment('top') for tick in ax2.yaxis.get_majorticklabels()]
-		adjustFigure(fig, 'FullStaticBias', parameters, mode_parameters, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
+		adjustFigure(fig, 'FullStaticBias', mode_parameters, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
 	else:
 		axisLabels(ax, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
-		adjustFigure(fig, 'FullStaticBias', parameters, mode_parameters)
+		adjustFigure(fig, 'FullStaticBias', mode_parameters)
 
 	return (fig, (ax, ax2, ax3))
 
@@ -558,7 +560,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	
 	# Init Figure
 	if(includeDualAxis):
-		fig, (ax1, ax3) = initFigure(parameters, 2, 1, 'OnCurrent', shareX=True)
+		fig, (ax1, ax3) = initFigure(2, 1, 'OnCurrent', shareX=True, figsizeOverride=mode_parameters['figureSizeOverride'])
 		ax4 = None
 
 		if vds_setpoint_changes and vgs_setpoint_changes:
@@ -570,7 +572,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 		else:
 			vgs_ax = ax3
 	else:
-		fig, ax1 = initFigure(parameters, 1, 1, 'OnCurrent')
+		fig, ax1 = initFigure(1, 1, 'OnCurrent', figsizeOverride=mode_parameters['figureSizeOverride'])
 		ax3 = None
 		ax4 = None
 	if(not mode_parameters['publication_mode']):
@@ -640,17 +642,17 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 		legendax = ax2
 	
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
-	adjustFigure(fig, 'OnAndOffCurrents', parameters, mode_parameters)
+	adjustFigure(fig, 'OnAndOffCurrents', mode_parameters)
 
 	return (fig, (ax1, ax2, ax3, ax4))
 
-def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters, mode_params=None):
+def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=None):
 	mode_parameters = default_mode_parameters.copy()
 	if(mode_params is not None):
 		mode_parameters.update(mode_params)
 
 	# Init Figure
-	fig, ax = initFigure(parameters, 1, 1, 'ChipHistory')
+	fig, ax = initFigure(1, 1, 'ChipHistory', figsizeOverride=mode_parameters['figureSizeOverride'])
 
 	# Build On/Off Ratio lists
 	devices = []
@@ -678,7 +680,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, parameters, m
 	
 	# Add Legend and save figure
 	ax.legend(loc='best')
-	adjustFigure(fig, 'ChipHistory', parameters, mode_parameters)
+	adjustFigure(fig, 'ChipHistory', mode_parameters)
 
 	return (fig, ax)
 
@@ -780,16 +782,16 @@ def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', i
 
 
 # === Figures ===
-def initFigure(parameters, rows, columns, plotType, shareX=False):
-	if parameters['DeviceHistory']['figureSizeOverride'] != None:
-		plot_parameters[plotType]['figsize'] = parameters['DeviceHistory']['figureSizeOverride']
+def initFigure(rows, columns, plotType, shareX=False, figsizeOverride=None):
+	if(figsizeOverride != None):
+		plot_parameters[plotType]['figsize'] = figsizeOverride
 	if(rows > 1 or columns > 1):
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[plotType]['figsize'], sharex=shareX, gridspec_kw={'width_ratios':plot_parameters[plotType]['subplot_width_ratio'], 'height_ratios':plot_parameters[plotType]['subplot_height_ratio']})
 	else:
 		fig, axes = plt.subplots(rows, columns, figsize=plot_parameters[plotType]['figsize'])
 	return fig, axes
 
-def adjustFigure(figure, plotType, parameters, mode_parameters=default_mode_parameters.copy(), subplotWidthPad=0, subplotHeightPad=0):
+def adjustFigure(figure, plotType, mode_parameters=default_mode_parameters.copy(), subplotWidthPad=0, subplotHeightPad=0):
 	# figure.set_size_inches(2.2,1.6) # Static Bias
 	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current
@@ -797,12 +799,12 @@ def adjustFigure(figure, plotType, parameters, mode_parameters=default_mode_para
 	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
 	pngDPI = (300) if(mode_parameters['publication_mode']) else (mode_parameters['default_png_dpi'])
 	if(mode_parameters['saveFigures']):
-		if isinstance(mode_parameters['fileName'], io.BytesIO):
-			plt.savefig(mode_parameters['fileName'], transparent=True, dpi=pngDPI, format='png')
+		if isinstance(mode_parameters['plotSaveName'], io.BytesIO):
+			plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 		else:
-			plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.png'), transparent=True, dpi=pngDPI)
-			# plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.pdf'), transparent=True, dpi=pngDPI)
-			# plt.savefig(os.path.join(parameters['plotsFolder'], mode_parameters['fileName'] + plotType + '.eps'), transparent=True, dpi=pngDPI)
+			plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + '.png'), transparent=True, dpi=pngDPI)
+			# plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + '.pdf'), transparent=True, dpi=pngDPI)
+			# plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + '.eps'), transparent=True, dpi=pngDPI)
 	if(not mode_parameters['showFigures']):
 		plt.close(figure)
 
