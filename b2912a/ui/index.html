@@ -61,6 +61,14 @@
 					<v-toolbar-title>User Interface</v-toolbar-title>
 				</v-toolbar>
 				<v-content>
+					<v-breadcrumbs>
+						<v-icon slot="divider">chevron_right</v-icon>
+						<v-breadcrumbs-item :disabled="false" @click="console.log('Clicked')">Wafers</v-breadcrumbs-item>
+						<v-breadcrumbs-item :disabled="false" @click="page = 'chips'">Chips</v-breadcrumbs-item>
+						<v-breadcrumbs-item :disabled="false" @click="page = 'devices'">Devices</v-breadcrumbs-item>
+						<v-breadcrumbs-item :disabled="false" @click="page = 'experiments'">Experiments</v-breadcrumbs-item>
+					</v-breadcrumbs>
+					
 					<v-card v-if="page == 'wafers'">
 						<v-card-title>
 							Wafers
@@ -123,7 +131,7 @@
 					
 					<v-card v-if="page == 'experiments'">
 						<v-card-title>
-							{{ wafer }}{{ chip }}{{ device }} Experiments
+							{{ wafer }}{{ chip }} {{ device }} Experiments
 							<v-spacer></v-spacer>
 							<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
 						</v-card-title>
@@ -131,14 +139,20 @@
 							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
 							no-results-text="Your search did not return any results.">
 							<template slot="items" slot-scope="props">
-								<tr @click="goToExperiment(props.item.name)">
-									<td>{{ props.item.name }}</td>
-									<td>{{ props.item.path }}</td>
-									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
-									<td>{{ props.item.size }}</td>
+								<tr @click="goToExperiment(props.item)">
+									<td>{{ props.item.startIndexes.experimentNumber }}</td>
+									<td>{{ props.item.runType }}</td>
+									<td>{{ props.item.MeasurementSystem }}</td>
 								</tr>
 							</template>
 						</v-data-table>
+					</v-card>
+					
+					<v-card v-if="page == 'experiment'">
+						<v-card-title>
+							{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
+						</v-card-title>
+						{{ experiment }}
 					</v-card>
 					
 					<div>
@@ -203,10 +217,9 @@
 				experiments: [],
 				experiment: '',
 				experimentTableHeaders: [
-					{'text':'Name', 'value':'name'},
-					{'text':'Path', 'value':'path'},
-					{'text':'Modification Time', 'value':'modificationTime'},
-					{'text':'Size', 'value':'size'}],
+					{'text':'Experiment Number', 'value':'experimentNumber'},
+					{'text':'Run Type', 'value':'runType'},
+					{'text':'Measurement System', 'value':'MeasurementSystem'}],
 				experimentTableSearch: ''
 			},
 			methods: {
@@ -222,13 +235,14 @@
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
-					$.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+					console.log('About to get experiments');
+					$.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json', response => {app.$data.experiments = response;}).fail(() => {console.log("Error getting experiments");});
 					this.page = 'experiments';
 				},
-				goToExperiment: function(experimentName) {
-					this.experiment = experimentName;
-					$.getJSON('/' + this.experiment + '/experiments.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
-					this.page = 'experiments';
+				goToExperiment: function(experimentParameters) {
+					this.experiment = experimentParameters;
+					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+					this.page = 'experiment';
 				}
 			}
 		});

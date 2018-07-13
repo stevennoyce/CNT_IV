@@ -3,10 +3,12 @@ import os
 import sys
 import glob
 import flask
+import json
 import webbrowser
 from matplotlib import pyplot as plt
 import defaults
 from control_scripts import Device_History as DH
+from utilities import DataLoggerUtility as dlu
 
 if __name__ == '__main__':
 	os.chdir(sys.path[0])
@@ -26,7 +28,7 @@ def sendPlot(wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
 	filebuf = io.BytesIO()
 	DH.makePlots(defaults.get(), wafer, chip, device, fileName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, save=True, showFigures=False)
-	
+	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
 
@@ -65,14 +67,17 @@ def devices(wafer, chip):
 
 @app.route('/<wafer>/<chip>/<device>/experiments.json')
 def experiments(wafer, chip, device):
-	paths = glob.glob('data/' + wafer + '/' + chip + '/' + device + '/*/')
-	names = [os.path.basename(os.path.dirname(p)) for p in paths]
-	modificationTimes = [os.path.getmtime(p) for p in paths]
-	sizes = [os.path.getsize(p) for p in paths]
+	folder = 'data/' + wafer + '/' + chip + '/' + device + '/'
+	files = glob.glob(folder + '*.json')
+	fileNames = [os.path.basename(f) for f in files]
 	
-	experiments = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	parameters = dlu.loadJSON(folder, 'ParametersHistory.json')
 	
-	return flask.jsonify(experiments)
+	# experiments = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	
+	return flask.jsonify(parameters)
+	
+	# return flask.Response(json.dumps(parameters, allow_nan=False), mimetype='application/json')
 
 if __name__ == '__main__':
 	url = 'http://127.0.0.1:5000/ui/index.html'
