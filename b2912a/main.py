@@ -89,7 +89,7 @@ def main():
 			additional_parameters['runType'] = runTypes[choice]
 
 		# Allow user to confirm the parameters before continuing
-		confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults plus these additional parameters? (y/n): '))
+		confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults, plus these additional parameters? (y/n): '))
 		if(confirmation != 'y'):
 			return
 

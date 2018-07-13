@@ -47,6 +47,7 @@ default_parameters = {
 	},
 	'AutoStaticBias':{
 		'numberOfStaticBiases': 1,
+		'doInitialGateSweep': True,
 		'applyGateSweepBetweenBiases': False,
 		'turnChannelsOffBetweenBiases': False,
 		'channelsOffTime': 0,

@@ -45,6 +45,7 @@ def run(parameters):
 # === Internal API ===
 # Run generic user action
 def runAction(parameters, smu_instance, arduino_instance):
+	print('Creating save folders.')
 	dlu.makeFolder(parameters['deviceDirectory'])
 	dlu.makeFolder(parameters['plotsFolder'])
 	dlu.emptyFolder(parameters['plotsFolder'])
@@ -61,6 +62,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 	experiment = dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	print('About to begin experiment #' + str(experiment))
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
+
 	smu_instance.setDevice(parameters['deviceID'])
 
 	try:
@@ -87,6 +89,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 	smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
 	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+
 	print('Posting plots online...')
 	plotPoster.postPlots(parameters)
 
@@ -104,6 +107,7 @@ def runDeviceHistory(parameters):
 	deviceHistoryScript.run(parameters, showFigures=parameters['DeviceHistory']['showFiguresGenerated'])
 	
 	if(parameters['DeviceHistory']['postFiguresGenerated']):
+		print('Posting plots online...')
 		plotPoster.postPlots(parameters)
 
 

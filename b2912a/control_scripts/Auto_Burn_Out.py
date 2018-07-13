@@ -13,18 +13,6 @@ def run(parameters, smu_instance):
 
 	burnOutParameters = dict(parameters)
 	burnOutParameters['runType'] = 'BurnOut'
-	
-	# deviceHistoryParameters = dict(parameters)
-	# deviceHistoryParameters['runType'] = 'DeviceHistory'
-	# deviceHistoryParameters['DeviceHistory']['plotGateSweeps'] = True
-	# deviceHistoryParameters['DeviceHistory']['plotBurnOuts'] = True
-	# deviceHistoryParameters['DeviceHistory']['plotStaticBias'] = False
-	# deviceHistoryParameters['DeviceHistory']['saveFiguresGenerated'] = True
-	# deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONIndex'] = 0
-	# deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONIndex'] =  float('inf')
-	# deviceHistoryParameters['DeviceHistory']['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
-	# deviceHistoryParameters['DeviceHistory']['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
-	# deviceHistoryParameters['DeviceHistory']['showOnlySuccessfulBurns'] = False
 
 	runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters)
 
@@ -36,6 +24,8 @@ def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParamet
 
 	# === START ===
 	# Take an initial sweep to get a baseline for device performance
+	print('Beginning AutoBurnOut with a target On/Off ratio of: '+str(parameters['AutoBurnOut']['targetOnOffRatio']))
+	print('Taking an initial sweep to get baseline performance of the device...')
 	sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
 	previousOnOffRatio = sweepResults['Results']['onOffRatio']
 
