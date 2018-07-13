@@ -153,6 +153,10 @@
 							{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
 						</v-card-title>
 						{{ experiment }}
+						<div>
+							<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/FullSubthresholdCurveHistory'" alt="Can't display the image">
+							<!-- <img src="/plots/{{wafer}}/{{chip}}/{{device}}/{{experiment.startIndexes.experimentNumber}}/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
+						</div>
 					</v-card>
 					
 					<div>

@@ -27,7 +27,7 @@ def sendStatic(path):
 def sendPlot(wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
 	filebuf = io.BytesIO()
-	DH.makePlots(defaults.get(), wafer, chip, device, fileName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, save=True, showFigures=False)
+	DH.makePlots(wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, save=True, showFigures=False)
 	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
