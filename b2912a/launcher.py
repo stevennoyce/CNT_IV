@@ -17,10 +17,14 @@ from utilities import PlotPostingUtility as plotPoster
 from framework import SourceMeasureUnit as smu
 from framework import ArduinoBoard as arduinoBoard
 
+import defaults
+
 
 
 # === Main API ===
-def run(parameters):
+def run(additional_parameters):
+	parameters = defaults.with_added(additional_parameters)
+
 	# Define the working directory for saving all device data
 	parameters['deviceDirectory'] = dlu.getDeviceDirectory(parameters)
 

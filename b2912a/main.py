@@ -83,6 +83,8 @@ def main():
 	choice = selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): ')
 
 	if(choice.isdigit()):
+		choice = int(choice)
+
 		if(choice == 0):
 			return
 		else:
@@ -93,8 +95,7 @@ def main():
 		if(confirmation != 'y'):
 			return
 
-		parameters = defaults.with_added(additional_parameters)
-		launcher.run(parameters)
+		launcher.run(additional_parameters)
 
 	else:
 		# File must end in '.json'
@@ -105,8 +106,7 @@ def main():
 			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=file)
 
 			additional_parameters = parameter_list[schedule_index]
-			parameters = defaults.with_added(additional_parameters)
-			launcher.run(parameters)
+			launcher.run(additional_parameters)
 
 			schedule_index += 1
 		
