@@ -91,24 +91,34 @@ def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimen
 
 # === Device History API ===
 def getDeviceDirectory(parameters):
-	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + '/'
+	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + os.sep
 
 def loadSpecificDeviceHistory(directory, fileName, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
 	filteredHistory = loadJSON_fast(directory, fileName, minIndex, maxIndex, minExperiment, maxExperiment, minRelativeIndex, maxRelativeIndex)
 	return filteredHistory
 
+
+
+# === Chip History API ===
+def getChipDirectory(parameters):
+	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'])
+
+def loadChipIndexes(directory):
+	chipIndexes = {}
+	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
+		indexData = loadJSONIndex(os.path.join(directory, deviceSubdirectory))
+		chipIndexes[deviceSubdirectory] = indexData
+	return chipIndexes
+
 def loadFullChipHistory(directory, fileName, chipID):
 	chipHistory = []
 	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
-		jsonData = loadJSON(directory + deviceSubdirectory + '/', fileName)
+		jsonData = loadJSON(os.path.join(directory, deviceSubdirectory), fileName)
 		for deviceRun in jsonData:
 			if(deviceRun['chipID'] == chipID):
 				chipHistory.append(deviceRun)
 	return chipHistory
 
-
-
-# === Chip History API ===
 def loadFirstRunChipHistory(directory, fileName, chipID):
 	fullChipHistory = loadFullChipHistory(directory, fileName, chipID)
 	firstRunsOnly = []
@@ -223,7 +233,6 @@ def filterFileLinesGreaterThan(fileLines, property, value):
 	filteredFileLines = []
 	for line in fileLines:
 		match = re.search(' "' + str(property) + '": ([^,}]*)' , line)
-		print(match.group(0))
 		if(match and (match.group(1) >= str(value))):
 			filteredFileLines.append(line)
 

@@ -163,9 +163,13 @@ plot_parameters = {
 		'subplot_width_ratio': [1],
 		'subplot_spacing': 0.03
 	},
-	'ChipHistory':{
+	'ChipHistogram':{
 		'figsize':(5,4),
-		'subplot_size_ratio':[1],
+		'xlabel':'Device',
+		'ylabel':'Experiments'
+	},
+	'ChipOnOffRatios':{
+		'figsize':(5,4),
 		'xlabel':'Device',
 		'ylabel':'On/Off Ratio, (Order of Mag)'
 	}
@@ -650,16 +654,52 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
 	adjustFigure(fig, 'OnAndOffCurrents', mode_parameters)
-
+	
 	return (fig, (ax1, ax2, ax3, ax4))
 
-def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=None):
+def plotChipHistogram(chipIndexes, mode_params=None):
+	if(len(chipIndexes) <= 0):
+		print('No chip histogram to plot.')
+		return
+
 	mode_parameters = default_mode_parameters.copy()
 	if(mode_params is not None):
 		mode_parameters.update(mode_params)
 
 	# Init Figure
-	fig, ax = initFigure(1, 1, 'ChipHistory', figsizeOverride=mode_parameters['figureSizeOverride'])
+	fig, ax = initFigure(1, 1, 'ChipHistogram', figsizeOverride=mode_parameters['figureSizeOverride'])
+
+	# Build index, experiment lists
+	devices = list(chipIndexes.keys())
+	deviceExperiments = len(devices)*[0]
+	for device, indexData in chipIndexes.items():
+		deviceExperiments[devices.index(device)] = indexData['experimentNumber']
+	
+	deviceExperiments, devices = zip(*(reversed(sorted(zip(deviceExperiments, devices)))))
+
+	# Plot
+	ax.bar(devices, deviceExperiments)
+
+	# Label axes
+	axisLabels(ax, x_label=plot_parameters['ChipHistogram']['xlabel'], y_label=plot_parameters['ChipHistogram']['ylabel'])
+	tickLabels(ax, devices, rotation=90)
+
+	# Save figure
+	adjustFigure(fig, 'ChipHistogram', mode_parameters)
+	return (fig, ax)
+
+
+def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=None):
+	if(len(firstRunChipHistory) <= 0):
+		print('No chip on-off ratio history to plot.')
+		return
+
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'ChipOnOffRatios', figsizeOverride=mode_parameters['figureSizeOverride'])
 
 	# Build On/Off Ratio lists
 	devices = []
@@ -673,22 +713,19 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 
 	lastOnOffRatios, devices, firstOnOffRatios = zip(*(reversed(sorted(zip(lastOnOffRatios, devices, firstOnOffRatios)))))
 
-	# Plot First Run
+	# Plot
 	line = scatter(ax, range(len(devices)), firstOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=6, lineWidth=0, lineStyle=None)
 	setLabel(line, 'First Run')
-	
-	# Plot Most Recent Run
 	line = scatter(ax, range(len(devices)), lastOnOffRatios, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=4, lineWidth=0, lineStyle=None)
 	setLabel(line, 'Most Recent Run')
 
 	# Label axes
-	axisLabels(ax, x_label=plot_parameters['ChipHistory']['xlabel'], y_label=plot_parameters['ChipHistory']['ylabel'])
+	axisLabels(ax, x_label=plot_parameters['ChipOnOffRatios']['xlabel'], y_label=plot_parameters['ChipOnOffRatios']['ylabel'])
 	tickLabels(ax, devices, rotation=90)
 	
 	# Add Legend and save figure
 	ax.legend(loc='best')
-	adjustFigure(fig, 'ChipHistory', mode_parameters)
-
+	adjustFigure(fig, 'ChipOnOffRatios', mode_parameters)
 	return (fig, ax)
 
 def show():
