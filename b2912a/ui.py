@@ -58,8 +58,10 @@ def chips(wafer):
 def devices(wafer, chip):
 	paths = glob.glob('data/' + wafer + '/' + chip + '/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
-	modificationTimes = [os.path.getmtime(p) for p in paths]
-	sizes = [os.path.getsize(p) for p in paths]
+	# modificationTimes = [os.path.getmtime(p) for p in paths]
+	modificationTimes = [os.path.getmtime(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getmtime(p) for p in paths]
+	# sizes = [os.path.getsize(p) for p in paths]
+	sizes = [os.path.getsize(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getsize(p) for p in paths]
 	
 	devices = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
 	
@@ -72,6 +74,10 @@ def experiments(wafer, chip, device):
 	fileNames = [os.path.basename(f) for f in files]
 	
 	parameters = dlu.loadJSON(folder, 'ParametersHistory.json')
+	
+	for i in range(len(parameters)):
+		possiblePlots = DH.getPossiblePlotNames(parameters[i])
+		parameters[i]['possiblePlots'] = possiblePlots
 	
 	# experiments = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
 	

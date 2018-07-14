@@ -61,103 +61,122 @@
 					<v-toolbar-title>User Interface</v-toolbar-title>
 				</v-toolbar>
 				<v-content>
-					<v-breadcrumbs>
-						<v-icon slot="divider">chevron_right</v-icon>
-						<v-breadcrumbs-item :disabled="false" @click="console.log('Clicked')">Wafers</v-breadcrumbs-item>
-						<v-breadcrumbs-item :disabled="false" @click="page = 'chips'">Chips</v-breadcrumbs-item>
-						<v-breadcrumbs-item :disabled="false" @click="page = 'devices'">Devices</v-breadcrumbs-item>
-						<v-breadcrumbs-item :disabled="false" @click="page = 'experiments'">Experiments</v-breadcrumbs-item>
-					</v-breadcrumbs>
 					
-					<v-card v-if="page == 'wafers'">
-						<v-card-title>
-							Wafers
-							<v-spacer></v-spacer>
-							<v-text-field v-model="waferTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-						</v-card-title>
-						<v-data-table :items="wafers" :headers="waferTableHeaders" :search="waferTableSearch" must-sort
-							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-							no-results-text="Your search did not return any results.">
-							<template slot="items" slot-scope="props">
-								<tr @click="goToWafer(props.item.name)">
-									<td>{{ props.item.name }}</td>
-									<td>{{ props.item.path }}</td>
-									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
-									<td>{{ props.item.size }}</td>
-								</tr>
-							</template>
-						</v-data-table>
-					</v-card>
-					
-					<v-card v-if="page == 'chips'">
-						<v-card-title>
-							{{ wafer }} Chips
-							<v-spacer></v-spacer>
-							<v-text-field v-model="chipTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-						</v-card-title>
-						<v-data-table :items="chips" :headers="chipTableHeaders" :search="chipTableSearch" must-sort
-							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-							no-results-text="Your search did not return any results.">
-							<template slot="items" slot-scope="props">
-								<tr @click="goToChip(props.item.name)">
-									<td>{{ props.item.name }}</td>
-									<td>{{ props.item.path }}</td>
-									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
-									<td>{{ props.item.size }}</td>
-								</tr>
-							</template>
-						</v-data-table>
-					</v-card>
-					
-					<v-card v-if="page == 'devices'">
-						<v-card-title>
-							{{ wafer }}{{ chip }} Devices
-							<v-spacer></v-spacer>
-							<v-text-field v-model="deviceTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-						</v-card-title>
-						<v-data-table :items="devices" :headers="deviceTableHeaders" :search="deviceTableSearch" must-sort
-							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-							no-results-text="Your search did not return any results.">
-							<template slot="items" slot-scope="props">
-								<tr @click="goToDevice(props.item.name)">
-									<td>{{ props.item.name }}</td>
-									<td>{{ props.item.path }}</td>
-									<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
-									<td>{{ props.item.size }}</td>
-								</tr>
-							</template>
-						</v-data-table>
-					</v-card>
-					
-					<v-card v-if="page == 'experiments'">
-						<v-card-title>
-							{{ wafer }}{{ chip }} {{ device }} Experiments
-							<v-spacer></v-spacer>
-							<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-						</v-card-title>
-						<v-data-table :items="experiments" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
-							:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-							no-results-text="Your search did not return any results.">
-							<template slot="items" slot-scope="props">
-								<tr @click="goToExperiment(props.item)">
-									<td>{{ props.item.startIndexes.experimentNumber }}</td>
-									<td>{{ props.item.runType }}</td>
-									<td>{{ props.item.MeasurementSystem }}</td>
-								</tr>
-							</template>
-						</v-data-table>
-					</v-card>
-					
-					<v-card v-if="page == 'experiment'">
-						<v-card-title>
-							{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
-						</v-card-title>
-						{{ experiment }}
-						<div>
-							<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/FullSubthresholdCurveHistory'" alt="Can't display the image">
-							<!-- <img src="/plots/{{wafer}}/{{chip}}/{{device}}/{{experiment.startIndexes.experimentNumber}}/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
-						</div>
-					</v-card>
+					<v-stepper v-model="page" style="background-color:rgba(255,255,255,0);height:100%;">
+						<v-stepper-header style="background-color:rgba(255,255,255,1);">
+							<v-stepper-step step="1" :complete="page > 1" :editable="page > 1">Wafers</v-stepper-step>
+							<v-divider></v-divider>
+							<v-stepper-step step="2" :complete="page > 2" :editable="page > 2">Chips</v-stepper-step>
+							<v-divider></v-divider>
+							<v-stepper-step step="3" :complete="page > 3" :editable="page > 3">Devices</v-stepper-step>
+							<v-divider></v-divider>
+							<v-stepper-step step="4" :complete="page > 4" :editable="page > 4">Experiments</v-stepper-step>
+							<v-divider></v-divider>
+							<v-stepper-step step="5" :complete="page > 5" :editable="page > 5">Experiment</v-stepper-step>
+						</v-stepper-header>
+						
+						<v-stepper-items>	
+							<v-stepper-content step="1">
+								<v-card>
+									<v-card-title>
+										Wafers
+										<v-spacer></v-spacer>
+										<v-text-field v-model="waferTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+									</v-card-title>
+									<v-data-table :items="wafers" :headers="waferTableHeaders" :search="waferTableSearch" must-sort
+										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+										no-results-text="Your search did not return any results.">
+										<template slot="items" slot-scope="props">
+											<tr @click="goToWafer(props.item.name)">
+												<td>{{ props.item.name }}</td>
+												<td>{{ props.item.path }}</td>
+												<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+												<td>{{ props.item.size }}</td>
+											</tr>
+										</template>
+									</v-data-table>
+								</v-card>
+							</v-stepper-content>
+							
+							<v-stepper-content step="2">
+								<v-card v-if="page > 1">
+									<v-card-title>
+										{{ wafer }} Chips
+										<v-spacer></v-spacer>
+										<v-text-field v-model="chipTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+									</v-card-title>
+									<v-data-table :items="chips" :headers="chipTableHeaders" :search="chipTableSearch" must-sort
+										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+										no-results-text="Your search did not return any results.">
+										<template slot="items" slot-scope="props">
+											<tr @click="goToChip(props.item.name)">
+												<td>{{ props.item.name }}</td>
+												<td>{{ props.item.path }}</td>
+												<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+												<td>{{ props.item.size }}</td>
+											</tr>
+										</template>
+									</v-data-table>
+								</v-card>
+							</v-stepper-content>
+							
+							<v-stepper-content step="3">
+								<v-card v-if="page > 2">
+									<v-card-title>
+										{{ wafer }}{{ chip }} Devices
+										<v-spacer></v-spacer>
+										<v-text-field v-model="deviceTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+									</v-card-title>
+									<v-data-table :items="devices" :headers="deviceTableHeaders" :search="deviceTableSearch" must-sort
+										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+										no-results-text="Your search did not return any results.">
+										<template slot="items" slot-scope="props">
+											<tr @click="goToDevice(props.item.name)">
+												<td>{{ props.item.name }}</td>
+												<td>{{ props.item.path }}</td>
+												<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
+												<td>{{ props.item.size }}</td>
+											</tr>
+										</template>
+									</v-data-table>
+								</v-card>
+							</v-stepper-content>
+							
+							<v-stepper-content step="4">
+								<v-card v-if="page > 3">
+									<v-card-title>
+										{{ wafer }}{{ chip }} {{ device }} Experiments
+										<v-spacer></v-spacer>
+										<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+									</v-card-title>
+									<v-data-table :items="experiments" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
+										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
+										no-results-text="Your search did not return any results.">
+										<template slot="items" slot-scope="props">
+											<tr @click="goToExperiment(props.item)">
+												<td>{{ props.item.startIndexes.experimentNumber }}</td>
+												<td>{{ props.item.runType }}</td>
+												<td>{{ props.item.MeasurementSystem }}</td>
+											</tr>
+										</template>
+									</v-data-table>
+								</v-card>
+							</v-stepper-content>
+							
+							<v-stepper-content step="5">
+								<v-card v-if="page > 4">
+									<v-card-title>
+										{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
+									</v-card-title>
+									{{ experiment }}
+									<div>
+										<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+experiment.possiblePlots[0]" alt="Can't display the image">
+										<!-- <img src="/plots/{{wafer}}/{{chip}}/{{device}}/{{experiment.startIndexes.experimentNumber}}/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
+									</div>
+								</v-card>
+							</v-stepper-content>
+						</v-stepper-items>
+					</v-stepper>
 					
 					<div>
 						 <!-- <img src="/plots/C127/X/15-16/3/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
@@ -189,7 +208,8 @@
 			data: {
 				currentPage: window.location.hash.substr(1) || "",
 				drawer: false,
-				page: 'wafers',
+				page: 1,
+				pageNames: ['wafers','chips','devices','experiments','experiment'],
 				
 				wafers: [],
 				wafer: '',
@@ -230,23 +250,23 @@
 				goToWafer: function(waferName) {
 					this.wafer = waferName;
 					$.getJSON('/' + this.wafer + '/chips.json', response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
-					this.page = 'chips';
+					this.page++;
 				},
 				goToChip: function(chipName) {
 					this.chip = chipName;
 					$.getJSON('/' + this.wafer + '/' + this.chip + '/devices.json', response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
-					this.page = 'devices';
+					this.page++;
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
 					console.log('About to get experiments');
 					$.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json', response => {app.$data.experiments = response;}).fail(() => {console.log("Error getting experiments");});
-					this.page = 'experiments';
+					this.page++;
 				},
 				goToExperiment: function(experimentParameters) {
 					this.experiment = experimentParameters;
 					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
-					this.page = 'experiment';
+					this.page++;
 				}
 			}
 		});

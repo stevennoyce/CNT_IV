@@ -30,6 +30,58 @@ default_dh_parameters = {
 }
 
 
+def getPossiblePlotNames(parameters):
+	try:
+		p = parameters
+		if p['runType'] == 'GateSweep':
+			return [
+				'FullSubthresholdCurveHistory',
+				'FullTransferCurveHistory',
+				'FullGateCurrentHistory'
+			]
+		if p['runType'] == 'BurnOut':
+			return [
+				'FullBurnOutHistory'
+			]
+		if p['runType'] == 'AutoBurnOut':
+			return [
+				'FullBurnOutHistory'
+			]
+		if p['runType'] == 'StaticBias':
+			return [
+				'FullStaticBiasHistory'
+			]
+		if p['runType'] == 'AutoGateSweep':
+			return [
+				'FullSubthresholdCurveHistory',
+				'FullTransferCurveHistory',
+				'FullGateCurrentHistory',
+				'OnAndOffCurrentHistory'
+			]
+		if p['runType'] == 'AutoStaticBias':
+			if p['AutoStaticBias']['doInitialGateSweep'] or p['AutoStaticBias']['applyGateSweepBetweenBiases']:
+				return [
+					'FullStaticBiasHistory',
+					'FullSubthresholdCurveHistory',
+					'FullTransferCurveHistory',
+					'FullGateCurrentHistory',
+					'OnAndOffCurrentHistory'
+				]
+			else:
+				return [
+					'FullStaticBiasHistory'
+				]
+		raise
+	except:
+		return [
+			'FullStaticBiasHistory',
+			'FullSubthresholdCurveHistory',
+			'FullTransferCurveHistory',
+			'FullGateCurrentHistory',
+			'OnAndOffCurrentHistory',
+			'FullBurnOutHistory'
+		]
+
 
 # === Optional External Interface ===
 def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, plotSaveName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
@@ -120,7 +172,7 @@ def run(additional_parameters, plot_mode_parameters={}):
 
 	if(p['showFiguresGenerated']):
 		dpu.show()
-
+	
 	if(p['postFiguresGenerated']):
 		parameters['startIndexes'] = {
 			'index': max( parameters['excludeDataBeforeJSONIndex'], min(loadIndexesOfExperiementRange(directory, parameters['excludeDataBeforeJSONExperimentNumber'], parameters['excludeDataAfterJSONExperimentNumber'])) ),
