@@ -22,6 +22,13 @@
 			opacity: 0;
 		}
 		
+		img {
+			width: auto;
+			height: auto;
+			max-width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
 		
 		[v-cloak]::before { 
 			content: " ";
@@ -165,14 +172,65 @@
 							
 							<v-stepper-content step="5">
 								<v-card v-if="page > 4">
-									<v-card-title>
-										{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
-									</v-card-title>
-									{{ experiment }}
-									<div>
-										<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+experiment.possiblePlots[0]" alt="Can't display the image">
-										<!-- <img src="/plots/{{wafer}}/{{chip}}/{{device}}/{{experiment.startIndexes.experimentNumber}}/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
-									</div>
+									<v-toolbar dark class="blue-grey lighten-1">
+										<v-toolbar-title>
+											{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
+										</v-toolbar-title>
+									</v-toolbar>
+									
+									<v-container fluid grid-list-sm>
+										<v-layout row wrap>
+											
+											<v-flex xs12 md6 lg4 xl3 d-flex v-for="possiblePlot in experiment.possiblePlots">
+												<v-card class="ma-1" tile>
+													<v-toolbar dark class="blue-grey lighten-1">
+														<v-toolbar-title>
+															{{ possiblePlot }}
+														</v-toolbar-title>
+													</v-toolbar>
+													<div class="text-xs-center">
+														<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+possiblePlot">
+													</div>
+												</v-card>
+											</v-flex>
+											
+										</v-layout>
+									</v-container>
+									
+									
+									<!-- <v-container fluid grid-list-sm>
+										<v-layout row wrap>
+											<v-flex xs12 md6 lg4 xl3 d-flex v-for="section in _.keys(experiment)" v-if="typeof experiment[section] == 'object'">
+												<v-card class="ma-1" tile>
+													<v-card-title>{{ section }}</v-card-title>
+													<v-data-table :items="_.toPairs(experiment[section])" :headers="[{'text':'Property'},{'text':'Value'}]" hide-actions hide-headers>
+														<template slot="items" slot-scope="props">
+															<td> {{ props.item[0] }}</td>
+															<td> {{ props.item[1] }}</td>
+														</template>
+													</v-data-table>
+												</v-card>
+											</v-flex>
+										</v-layout>
+									</v-container> -->
+									
+									
+									
+									
+									<v-card class="ma-1">
+										<v-expansion-panel dark expand>
+											<v-expansion-panel-content class="blue-grey lighten-1" v-for="section in _.keys(experiment)" v-if="typeof experiment[section] == 'object'">
+												<div slot="header">{{ section }}</div>
+												<v-data-table :items="_.toPairs(experiment[section])" :headers="[{'text':'Property'},{'text':'Value'}]" hide-actions hide-headers light>
+													<template slot="items" slot-scope="props">
+														<td> {{ props.item[0] }}</td>
+														<td> {{ props.item[1] }}</td>
+													</template>
+												</v-data-table>
+											</v-expansion-panel-content>
+										</v-expansion-panel>
+									</v-card>
+									
 								</v-card>
 							</v-stepper-content>
 						</v-stepper-items>
@@ -192,6 +250,7 @@
 	
 	
 	<script src="/ui/jquery.js"></script>
+	<script src="/ui/lodash.js"></script>
 	<script src="/ui/vue.js"></script>
 	<script src="/ui/vuetify.js"></script>
 	<script type="text/javascript">
@@ -210,6 +269,8 @@
 				drawer: false,
 				page: 1,
 				pageNames: ['wafers','chips','devices','experiments','experiment'],
+				parametersTab: 0,
+				parametersSection: '',
 				
 				wafers: [],
 				wafer: '',
@@ -265,6 +326,8 @@
 				},
 				goToExperiment: function(experimentParameters) {
 					this.experiment = experimentParameters;
+					this.parametersTab = this.experiment.runType;
+					this.parametersSection = this.experiment.runType;
 					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
 					this.page++;
 				}
