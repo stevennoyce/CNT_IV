@@ -59,7 +59,7 @@ def getPossiblePlotNames(parameters):
 				'OnAndOffCurrentHistory'
 			]
 		if p['runType'] == 'AutoStaticBias':
-			if p['AutoStaticBias']['doInitialGateSweep'] or p['AutoStaticBias']['applyGateSweepBetweenBiases']:
+			if (('doInitialGateSweep' in p['AutoStaticBias']) and p['AutoStaticBias']['doInitialGateSweep']) or p['AutoStaticBias']['applyGateSweepBetweenBiases']:
 				return [
 					'FullStaticBiasHistory',
 					'FullSubthresholdCurveHistory',
@@ -72,7 +72,9 @@ def getPossiblePlotNames(parameters):
 					'FullStaticBiasHistory'
 				]
 		raise
-	except:
+	except Exception as e:
+		print('Exception raised in getPossiblePlotNames')
+		print(e)
 		return [
 			'FullStaticBiasHistory',
 			'FullSubthresholdCurveHistory',

@@ -219,7 +219,7 @@
 									
 									<v-card class="ma-1">
 										<v-expansion-panel dark expand>
-											<v-expansion-panel-content class="blue-grey lighten-1" v-for="section in _.keys(experiment)" v-if="typeof experiment[section] == 'object'">
+											<v-expansion-panel-content class="blue-grey lighten-1" v-for="section in _.keys(experiment)" v-if="typeof experiment[section] == 'object'" ripple>
 												<div slot="header">{{ section }}</div>
 												<v-data-table :items="_.toPairs(experiment[section])" :headers="[{'text':'Property'},{'text':'Value'}]" hide-actions hide-headers light>
 													<template slot="items" slot-scope="props">
