@@ -99,7 +99,7 @@ default_mode_parameters = {
 	'figureSizeOverride': None,
 	'errorBarsOn': True,
 	'plotGradient': False,
-	'autoStaticBiasSegmentDividers': False,
+	'staticBiasSegmentDividers': False,
 	'plotOffCurrent': True
 }
 
@@ -159,6 +159,8 @@ plot_parameters = {
 		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On-Current [A]',
 		'ylabel_dual_axis':'Off-Current [A]',
+		'vds_label': '$V_{DS}^{{Hold}}$ [V]',
+		'vgs_label': '$V_{GS}^{{Hold}}$ [V]',
 		'subplot_height_ratio':[3,1],
 		'subplot_width_ratio': [1],
 		'subplot_spacing': 0.03
@@ -382,13 +384,12 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	if(mode_params is not None):
 		mode_parameters.update(mode_params)
 	
-	vds_setpoint_values = [record['StaticBias']['drainVoltageSetPoint'] for record in deviceHistory]
-	vgs_setpoint_values = [record['StaticBias']['gateVoltageSetPoint'] for record in deviceHistory]
-	
+	vds_setpoint_values = [jsonData['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
+	vgs_setpoint_values = [jsonData['StaticBias']['gateVoltageSetPoint'] for jsonData in deviceHistory]
 	vds_setpoint_changes = min(vds_setpoint_values) != max(vds_setpoint_values)
 	vgs_setpoint_changes = min(vgs_setpoint_values) != max(vgs_setpoint_values)
 	
-	if not (vds_setpoint_changes or vgs_setpoint_changes):
+	if(not (vds_setpoint_changes or vgs_setpoint_changes)):
 		includeDualAxis = False
 	
 	# Init Figure
@@ -443,9 +444,13 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	for i in range(len(deviceHistory)):
 		# Plot
 		if(plotInRealTime):
-			time_offset = (deviceHistory[i]['Results']['timestamps'][0] - deviceHistory[0]['Results']['timestamps'][0])
+			t_0 = deviceHistory[0]['Results']['timestamps'][0]
+			t_i_start = deviceHistory[i]['Results']['timestamps'][0]
+			time_offset = (t_i_start - t_0)
 		else:
-			time_offset = (0) if(i == 0) else (time_offset + (deviceHistory[i-1]['Results']['timestamps'][-1] - deviceHistory[i-1]['Results']['timestamps'][0]))
+			t_prev_end = deviceHistory[i-1]['Results']['timestamps'][-1]
+			t_prev_start = deviceHistory[i-1]['Results']['timestamps'][0]
+			time_offset = (0) if(i == 0) else (time_offset + (t_prev_end - t_prev_start))
 		
 		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['plotGradient'])
 		if(includeDualAxis):
@@ -455,14 +460,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 				vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
 				
 		# Compare current plot's parameters to the next ones, and save any differences
-		#if('drainVoltageSetPoint' in deviceHistory[i] and 'drainVoltageSetPoint' in deviceHistory[i-1]):
-		#	# backwards compatibility for old parameters format
-		#	if (i == 0) or deviceHistory[i]['drainVoltageSetPoint'] != deviceHistory[i-1]['drainVoltageSetPoint']:
-		#		dotted_lines.append({'x':time_offset})
-		#		parameter_labels['drainVoltageSetPoint'].append({'x':time_offset, 'drainVoltageSetPoint':deviceHistory[i]['drainVoltageSetPoint']})
-		#		parameter_labels['gateVoltageSetPoint'].append({'x':time_offset, 'gateVoltageSetPoint':deviceHistory[i]['gateVoltageSetPoint']})
-		#else:
-		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias']) or mode_parameters['autoStaticBiasSegmentDividers']):
+		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias']) or mode_parameters['staticBiasSegmentDividers']):
 			dotted_lines.append({'x':time_offset})
 			for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
 				if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
@@ -472,13 +470,13 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	
 	
 	# Increase height of the plot to give more room for labels
-	if (len(dotted_lines) > 1) or mode_parameters['autoStaticBiasSegmentDividers']:
+	if((len(dotted_lines) > 1) or mode_parameters['staticBiasSegmentDividers']):
 		# Draw dotted lines between ANY plots that have different parameters
 		for i in range(len(dotted_lines)):
 			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=0.5))
 		
-		if not includeDualAxis:
-			if (len(parameter_labels['drainVoltageSetPoint']) > 1) or (len(parameter_labels['gateVoltageSetPoint']) > 1):
+		if(not includeDualAxis):
+			if(len(parameter_labels['drainVoltageSetPoint']) > 1) or (len(parameter_labels['gateVoltageSetPoint']) > 1):
 				# Make the data take up less of the vertical space to make room for the labels
 				x0, x1, y0, y1 = ax.axis()
 				ax.axis((x0,x1,y0,1.2*y1))
@@ -491,11 +489,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 				for i in range(len(parameter_labels['gateVoltageSetPoint'])):
 					ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 	
-	totalBiasTimeKey = 'totalBiasTime'
-	if deviceHistory[0]['ParametersFormatVersion'] < 2:
-		totalBiasTimeKey = 'biasTime'
-	
-	biasTimes = [history['StaticBias'][totalBiasTimeKey] for history in deviceHistory]
+	biasTimes = [jsonData['StaticBias']['totalBiasTime'] for jsonData in deviceHistory]
 	biasTimeSeconds = np.mean(biasTimes)
 	
 	legend_title = ''
@@ -562,9 +556,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	if(mode_params is not None):
 		mode_parameters.update(mode_params)
 	
-	vds_setpoint_values = [record['StaticBias']['drainVoltageSetPoint'] for record in deviceHistory]
-	vgs_setpoint_values = [record['StaticBias']['gateVoltageSetPoint'] for record in deviceHistory]
-	
+	vds_setpoint_values = [jsonData['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
+	vgs_setpoint_values = [jsonData['StaticBias']['gateVoltageSetPoint'] for jsonData in deviceHistory]
 	vds_setpoint_changes = min(vds_setpoint_values) != max(vds_setpoint_values)
 	vgs_setpoint_changes = min(vgs_setpoint_values) != max(vgs_setpoint_values)
 	
@@ -620,12 +613,11 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	# Plot On Current
 	if(plotInRealTime):
 		line = plotOverTime(ax1, timestamps, onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=0, markerSize=3, lineWidth=0)
-		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['time_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
 	else:
 		line = scatter(ax1, range(len(onCurrents)), onCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], markerSize=3, lineWidth=0, lineStyle=None)
-		axisLabels(ax1, x_label=plot_parameters['OnCurrent']['index_label'].format(timescale), y_label=plot_parameters['OnCurrent']['ylabel'])
 	setLabel(line, 'On-Currents')
 	ax1.set_ylim(bottom=0)
+	ax1.set_ylabel(plot_parameters['OnCurrent']['ylabel'])
 	
 	# Plot Off Current
 	if(mode_parameters['plotOffCurrent']):
@@ -637,23 +629,45 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 		setLabel(line, 'Off-Currents')
 		ax2.set_ylabel(plot_parameters['OnCurrent']['ylabel_dual_axis'])
 	
-	# if(includeDualAxis):
-	# 	if vds_setpoint_changes:
-	# 		vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
-	# 	if vgs_setpoint_changes:
-	# 		vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
-		
+	# Plot in Dual Axis
+	if(includeDualAxis):
+		time_offset = 0
+		for i in range(len(deviceHistory)):
+			t_0 = timestamps[0]
+			t_i = timestamps[i]
+			time_offset = (t_i - t_0)
+			t_i_next = timestamps[i] + deviceHistory[i]['StaticBias']['totalBiasTime']/secondsPer(timescale)
+
+			if vds_setpoint_changes:
+				vds_line = plotOverTime(vds_ax, [timestamps[i], t_i_next], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*2, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
+			if vgs_setpoint_changes:
+				vgs_line = plotOverTime(vgs_ax, [timestamps[i], t_i_next], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*2, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
 	
-	# Add Legend and save figure
+	# Add Legend
 	lines1, labels1 = ax1.get_legend_handles_labels()
 	lines2, labels2 = [],[]
 	legendax = ax1
 	if(mode_parameters['plotOffCurrent']):
 		lines2, labels2 = ax2.get_legend_handles_labels()
 		legendax = ax2
-	
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
-	adjustFigure(fig, 'OnAndOffCurrents', mode_parameters)
+
+	if(includeDualAxis):
+		if(plotInRealTime):
+			ax3.set_xlabel(plot_parameters['OnCurrent']['time_label'].format(timescale))
+		else:
+			ax3.set_xlabel(plot_parameters['OnCurrent']['index_label'])
+		if(vds_setpoint_changes):
+			vds_ax.set_ylabel(plot_parameters['StaticBias']['vds_label'])
+		if(vgs_setpoint_changes):
+			vgs_ax.set_ylabel(plot_parameters['StaticBias']['vgs_label'])
+		adjustFigure(fig, 'OnAndOffCurrents', mode_parameters, subplotHeightPad=plot_parameters['StaticBias']['subplot_spacing'])
+	else:
+		if(plotInRealTime):
+			ax1.set_xlabel(plot_parameters['OnCurrent']['time_label'].format(timescale))
+		else:
+			ax1.set_xlabel(plot_parameters['OnCurrent']['index_label'])
+		adjustFigure(fig, 'OnAndOffCurrents', mode_parameters)
 	
 	return (fig, (ax1, ax2, ax3, ax4))
 
