@@ -85,14 +85,17 @@
 						<v-stepper-items>	
 							<v-stepper-content step="1">
 								<v-card>
-									<v-card-title>
-										Wafers
+									<v-toolbar dark class="blue-grey darken-1">
+										<v-toolbar-title>
+											Wafers
+										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="waferTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-									</v-card-title>
+									</v-toolbar>
 									<v-data-table :items="wafers" :headers="waferTableHeaders" :search="waferTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-										no-results-text="Your search did not return any results.">
+										no-results-text="Your search did not return any results."
+										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
 											<tr @click="goToWafer(props.item.name)">
 												<td>{{ props.item.name }}</td>
@@ -107,14 +110,18 @@
 							
 							<v-stepper-content step="2">
 								<v-card v-if="page > 1">
-									<v-card-title>
-										{{ wafer }} Chips
+									<v-toolbar dark class="blue-grey darken-1">
+										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-toolbar-title>
+											{{ wafer }} Chips
+										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="chipTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-									</v-card-title>
+									</v-toolbar>
 									<v-data-table :items="chips" :headers="chipTableHeaders" :search="chipTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-										no-results-text="Your search did not return any results.">
+										no-results-text="Your search did not return any results."
+										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
 											<tr @click="goToChip(props.item.name)">
 												<td>{{ props.item.name }}</td>
@@ -129,14 +136,18 @@
 							
 							<v-stepper-content step="3">
 								<v-card v-if="page > 2">
-									<v-card-title>
-										{{ wafer }}{{ chip }} Devices
+									<v-toolbar dark class="blue-grey darken-1">
+										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-toolbar-title>
+											{{ wafer }}{{ chip }} Devices
+										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="deviceTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-									</v-card-title>
+									</v-toolbar>
 									<v-data-table :items="devices" :headers="deviceTableHeaders" :search="deviceTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-										no-results-text="Your search did not return any results.">
+										no-results-text="Your search did not return any results."
+										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
 											<tr @click="goToDevice(props.item.name)">
 												<td>{{ props.item.name }}</td>
@@ -151,14 +162,18 @@
 							
 							<v-stepper-content step="4">
 								<v-card v-if="page > 3">
-									<v-card-title>
-										{{ wafer }}{{ chip }} {{ device }} Experiments
+									<v-toolbar dark class="blue-grey darken-1">
+										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-toolbar-title>
+											{{ wafer }}{{ chip }} {{ device }} Experiments
+										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
-									</v-card-title>
+									</v-toolbar>
 									<v-data-table :items="experiments" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
-										no-results-text="Your search did not return any results.">
+										no-results-text="Your search did not return any results."
+										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
 											<tr @click="goToExperiment(props.item)">
 												<td>{{ props.item.startIndexes.experimentNumber }}</td>
@@ -172,7 +187,8 @@
 							
 							<v-stepper-content step="5">
 								<v-card v-if="page > 4">
-									<v-toolbar dark class="blue-grey lighten-1">
+									<v-toolbar dark class="blue-grey darken-1">
+										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
 										</v-toolbar-title>
@@ -219,7 +235,7 @@
 									
 									<v-card class="ma-1">
 										<v-expansion-panel dark expand>
-											<v-expansion-panel-content class="blue-grey lighten-1" v-for="section in _.keys(experiment)" v-if="typeof experiment[section] == 'object'" ripple>
+											<v-expansion-panel-content class="blue-grey darken-1" v-for="section in _.keys(experiment)" v-if="typeof experiment[section] == 'object'" ripple>
 												<div slot="header">{{ section }}</div>
 												<v-data-table :items="_.toPairs(experiment[section])" :headers="[{'text':'Property'},{'text':'Value'}]" hide-actions hide-headers light>
 													<template slot="items" slot-scope="props">
@@ -276,33 +292,33 @@
 				wafer: '',
 				waferTableHeaders: [
 					{'text':'Name', 'value':'name'},
-					{'text':'Path', 'value':'path'},
-					{'text':'Modification Time', 'value':'modificationTime'},
-					{'text':'Size', 'value':'size'}],
+					{'text':'Path', 'value':'path', 'searchable':false},
+					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
+					{'text':'Size', 'value':'size', 'searchable':false}],
 				waferTableSearch: '',
 				
 				chips: [],
 				chip: '',
 				chipTableHeaders: [
 					{'text':'Name', 'value':'name'},
-					{'text':'Path', 'value':'path'},
-					{'text':'Modification Time', 'value':'modificationTime'},
-					{'text':'Size', 'value':'size'}],
+					{'text':'Path', 'value':'path', 'searchable':false},
+					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
+					{'text':'Size', 'value':'size', 'searchable':false}],
 				chipTableSearch: '',
 				
 				devices: [],
 				device: '',
 				deviceTableHeaders: [
 					{'text':'Name', 'value':'name'},
-					{'text':'Path', 'value':'path'},
-					{'text':'Modification Time', 'value':'modificationTime'},
-					{'text':'Size', 'value':'size'}],
+					{'text':'Path', 'value':'path', 'searchable':false},
+					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
+					{'text':'Size', 'value':'size', 'searchable':false}],
 				deviceTableSearch: '',
 				
 				experiments: [],
 				experiment: '',
 				experimentTableHeaders: [
-					{'text':'Experiment Number', 'value':'experimentNumber'},
+					{'text':'Experiment Number', 'value':'startIndexes.experimentNumber'},
 					{'text':'Run Type', 'value':'runType'},
 					{'text':'Measurement System', 'value':'MeasurementSystem'}],
 				experimentTableSearch: ''
@@ -330,6 +346,16 @@
 					this.parametersSection = this.experiment.runType;
 					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
 					this.page++;
+				},
+				customVDataTableFilter: function(items, search, filter, headers) {
+					search = search.toString().toLowerCase();
+					if (search.trim() === '') return items;
+					
+					// const props = headers.map(h => h.value); // default
+					const props = headers.filter(h => !('searchable' in h) || h.searchable === true).map(h => h.value); // exclude searchable:false
+					// const props = headers.filter(h => h.searchable === true).map(h => h.value); // include searchable:true
+					
+					return items.filter(item => props.some(prop => filter(_.get(item, prop), search)));
 				}
 			}
 		});
