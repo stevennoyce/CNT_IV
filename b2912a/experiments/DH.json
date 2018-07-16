@@ -1,1 +1,1 @@
-{"runType": "DeviceHistory", "waferID": "C127", "chipID": "X", "deviceID": "15-16", "DeviceHistory":{"excludeDataBeforeJSONExperimentNumber": 24, "excludeDataAfterJSONExperimentNumber": 24}}
+{"runType": "DeviceHistory", "waferID": "C127", "chipID": "E", "deviceID": "27-28", "DeviceHistory":{"excludeDataBeforeJSONExperimentNumber":12, "gateSweepDirection":"reverse"}}

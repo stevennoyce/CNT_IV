@@ -233,7 +233,7 @@ def filterFileLinesGreaterThan(fileLines, property, value):
 	filteredFileLines = []
 	for line in fileLines:
 		match = re.search(' "' + str(property) + '": ([^,}]*)' , line)
-		if(match and (match.group(1) >= str(value))):
+		if(match and (float(match.group(1)) >= value)):
 			filteredFileLines.append(line)
 
 	return filteredFileLines
@@ -242,7 +242,7 @@ def filterFileLinesLessThan(fileLines, property, value):
 	filteredFileLines = []
 	for line in fileLines:
 		match = re.search(' "' + str(property) + '": ([^,}]*)' , line)
-		if(match and (match.group(1) <= str(value))):
+		if(match and (float(match.group(1)) <= value)):
 			filteredFileLines.append(line)
 	return filteredFileLines
 
