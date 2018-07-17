@@ -88,4 +88,4 @@ def experiments(wafer, chip, device):
 if __name__ == '__main__':
 	url = 'http://127.0.0.1:5000/ui/index.html'
 	# webbrowser.open_new(url)
-	app.run(debug=True)
+	app.run(debug=True, threaded=False)
