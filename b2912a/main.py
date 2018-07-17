@@ -67,7 +67,7 @@ else:
 	
 	waferID = 'C127'
 	chipID = 'P'
-	deviceID = '31-32'
+	deviceID = '43-44'
 
 
 

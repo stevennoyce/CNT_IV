@@ -9,7 +9,7 @@ from utilities import DataLoggerUtility as dlu
 
 
 # === Main ===
-def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=True):
+def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False):
 	# Create distinct parameters for plotting the results
 	deviceHistoryParameters = {}
 	deviceHistoryParameters['waferID'] = parameters['waferID']

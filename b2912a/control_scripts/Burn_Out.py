@@ -10,7 +10,7 @@ from utilities import DataGeneratorUtility as dgu
 
 
 # === Main ===
-def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=True):
+def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False):
 	# Create distinct parameters for plotting the results
 	deviceHistoryParameters = {}
 	deviceHistoryParameters['waferID'] = parameters['waferID']
