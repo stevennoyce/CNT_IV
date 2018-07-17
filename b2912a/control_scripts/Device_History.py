@@ -34,49 +34,74 @@ default_dh_parameters = {
 	'includeBiasVoltageSubplot': True
 }
 
+plots_for_experiment = {
+	'GateSweep' : {
+		'primary':[	
+			'FullSubthresholdCurveHistory',
+			'FullTransferCurveHistory',
+			'FullGateCurrentHistory'
+		]
+	},
+	'BurnOut' : {	
+		'primary':[	
+			'FullBurnOutHistory'
+		]
+	},
+	'AutoBurnOut' : {
+		'primary':[
+			'FullBurnOutHistory',
+			'FullSubthresholdCurveHistory',
+			'FullTransferCurveHistory',
+			'FullGateCurrentHistory',
+			'OnAndOffCurrentHistory'
+		]
+	},
+	'StaticBias' : {
+		'primary':[
+			'FullStaticBiasHistory'
+		]
+	},
+	'AutoGateSweep' : {
+		'primary':[
+			'FullSubthresholdCurveHistory',
+			'FullTransferCurveHistory',
+			'FullGateCurrentHistory',
+			'OnAndOffCurrentHistory'
+		],
+		'secondary':[
+			'FullSubthresholdCurveHistory',
+			'FullTransferCurveHistory',
+			'FullGateCurrentHistory',
+			'OnAndOffCurrentHistory',
+			'FullStaticBiasHistory'
+		]
+	},
+	'AutoStaticBias' : {
+		'primary':[
+			'FullStaticBiasHistory',
+			
+		],
+		'secondary':[
+			'FullStaticBiasHistory',
+			'FullSubthresholdCurveHistory',
+			'FullTransferCurveHistory',
+			'FullGateCurrentHistory',
+			'OnAndOffCurrentHistory'
+		]
+	}
+}
 
 def getPossiblePlotNames(parameters):
 	try:
 		p = parameters
-		if p['runType'] == 'GateSweep':
-			return [
-				'FullSubthresholdCurveHistory',
-				'FullTransferCurveHistory',
-				'FullGateCurrentHistory'
-			]
-		if p['runType'] == 'BurnOut':
-			return [
-				'FullBurnOutHistory'
-			]
-		if p['runType'] == 'AutoBurnOut':
-			return [
-				'FullBurnOutHistory'
-			]
-		if p['runType'] == 'StaticBias':
-			return [
-				'FullStaticBiasHistory'
-			]
-		if p['runType'] == 'AutoGateSweep':
-			return [
-				'FullSubthresholdCurveHistory',
-				'FullTransferCurveHistory',
-				'FullGateCurrentHistory',
-				'OnAndOffCurrentHistory'
-			]
-		if p['runType'] == 'AutoStaticBias':
-			if (('doInitialGateSweep' in p['AutoStaticBias']) and p['AutoStaticBias']['doInitialGateSweep']) or p['AutoStaticBias']['applyGateSweepBetweenBiases']:
-				return [
-					'FullStaticBiasHistory',
-					'FullSubthresholdCurveHistory',
-					'FullTransferCurveHistory',
-					'FullGateCurrentHistory',
-					'OnAndOffCurrentHistory'
-				]
-			else:
-				return [
-					'FullStaticBiasHistory'
-				]
-		raise
+		
+		plotsType = 'primary'
+		if(p['runType'] == 'AutoStaticBias'):
+			plotsType = 'secondary' if((('doInitialGateSweep' in p['AutoStaticBias']) and p['AutoStaticBias']['doInitialGateSweep']) or p['AutoStaticBias']['applyGateSweepBetweenBiases']) else 'primary' 
+		if(p['runType'] == 'AutoGateSweep'):
+			plotsType = 'secondary' if(p['AutoGateSweep']['applyStaticBiasBetweenSweeps']) else 'primary' 
+		
+		return plots_for_experiment[p['runType']][plotsType]
 	except Exception as e:
 		print('Exception raised in getPossiblePlotNames')
 		print(e)
@@ -88,6 +113,7 @@ def getPossiblePlotNames(parameters):
 			'OnAndOffCurrentHistory',
 			'FullBurnOutHistory'
 		]
+
 
 
 # === Optional External Interface ===
