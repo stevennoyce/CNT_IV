@@ -120,7 +120,7 @@ def getPossiblePlotNames(parameters):
 def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters=None):
 	parameters = {}	
 	mode_parameters = {}
-	
+
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
 	parameters['deviceID'] = deviceID
