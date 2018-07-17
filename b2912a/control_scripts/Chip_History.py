@@ -1,3 +1,8 @@
+# === Make this script runnable ===
+if(__name__ == '__main__'):
+	import sys
+	sys.path.append(sys.path[0] + '/..')
+
 # === Imports ===
 from utilities import DataPlotterUtility as dpu
 from utilities import DataLoggerUtility as dlu
@@ -27,7 +32,7 @@ def makePlots(waferID, chipID, specificPlot='', dataFolder=None, saveFolder=None
 	parameters['specificPlotToCreate'] = specificPlot
 	
 	if(saveFolder is not None):
-		mode_parameters['plotSaveFolder'] = saveFolder + '/'
+		mode_parameters['plotSaveFolder'] = saveFolder
 
 	return run(parameters, mode_parameters)
 
@@ -60,5 +65,10 @@ def run(additional_parameters, plot_mode_parameters={}):
 	return plotList
 
 
+
+
+
+if(__name__ == '__main__'):
+	makePlots('C127', 'X', dataFolder='../data', saveFolder='../CurrentPlots')
 
 

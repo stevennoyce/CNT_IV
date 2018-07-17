@@ -1,3 +1,8 @@
+# === Make this script runnable ===
+if(__name__ == '__main__'):
+	import sys
+	sys.path.append(sys.path[0] + '/..')
+
 # === Imports ===
 from utilities import DataPlotterUtility as dpu
 from utilities import DataLoggerUtility as dlu
@@ -86,14 +91,14 @@ def getPossiblePlotNames(parameters):
 
 
 # === Optional External Interface ===
-def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, saveFolder=None, plotSaveName='', save=False, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}, showFigures=True):
+def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters={}):
 	parameters = {}	
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
 	parameters['deviceID'] = deviceID
 
 	parameters['showFiguresGenerated'] = showFigures
-	parameters['saveFiguresGenerated'] = save
+	parameters['saveFiguresGenerated'] = saveFigures
 	parameters['postFiguresGenerated'] = False
 	parameters['specificPlotToCreate'] = specificPlot
 	parameters['excludeDataBeforeJSONExperimentNumber'] = startExperimentNumber
@@ -103,8 +108,10 @@ def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentN
 	parameters['gateSweepDirection'] = 'reverse'
 	parameters['plotInRealTime'] = True
 	
+	if(dataFolder is not None):
+		parameters['dataFolder'] = dataFolder
 	if(saveFolder is not None):
-		mode_parameters['plotSaveFolder'] = saveFolder + '/'
+		mode_parameters['plotSaveFolder'] = saveFolder
 	
 	mode_parameters['plotSaveName'] = plotSaveName
 	mode_parameters['figureSizeOverride'] = figureSize
@@ -194,5 +201,10 @@ def run(additional_parameters, plot_mode_parameters={}):
 	return plotList
 
 
+
+
+
 if __name__ == '__main__':
-    run(default_parameters)
+    makePlots('C127', 'X', '15-16', startExperimentNumber=0, endExperimentNumber=10, dataFolder='../data', saveFolder='../CurrentPlots', saveFigures=True)
+
+
