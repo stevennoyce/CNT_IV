@@ -105,29 +105,29 @@ default_mode_parameters = {
 
 plot_parameters = {
 	'SubthresholdCurve': {
-		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
+		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
-		'xlabel':'$V_{GS}^{Sweep}$ [V]',
-		'ylabel':'$I_{D}$ [A]',
+		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
+		'ylabel':'$I_{{D}}$ [A]',
 		'leg_vds_label':'$V_{{DS}}^{{Sweep}}$\n  = {:}V',
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'TransferCurve':{
-		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
+		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
-		'xlabel':'$V_{GS}^{{Sweep}}$ [V]',
-		'ylabel':'$I_{D}$ [$\\mu$A]',
-		'neg_label':'$-I_{D}$ [$\\mu$A]',
-		'ii_label':'$I_{D}$, $I_{G}$ [$\\mu$A]',
-		'neg_ii_label':'$-I_{D}$, $I_{G}$ [$\\mu$A]',
+		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
+		'ylabel':'$I_{{D}}$ [$\\mu$A]',
+		'neg_label':'$-I_{{D}}$ [$\\mu$A]',
+		'ii_label':'$I_{{D}}$, $I_{{G}}$ [$\\mu$A]',
+		'neg_ii_label':'$-I_{{D}}$, $I_{{G}}$ [$\\mu$A]',
 		'leg_vds_label':'$V_{{DS}}^{{Sweep}}$\n  = {:}V',
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'GateCurrent':{
-		'figsize':(2*1.4,2*1.6),#(4.2,4.9),
+		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
 		'colorMap':'hot',
-		'xlabel':'$V_{GS}^{{Sweep}}$ [V]',
-		'ylabel':'$I_{G}$ [A]',
+		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
+		'ylabel':'$I_{{G}}$ [A]',
 		'leg_vds_label':'$V_{{DS}}^{{Sweep}} = ${:}V',
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
@@ -136,31 +136,31 @@ plot_parameters = {
 		'subplot_height_ratio':[1],
 		'subplot_width_ratio':[1,1],
 		'colorMap':'Blues',
-		'vds_label':'$V_{DS}$ [V]',
-		'id_micro_label':'$I_{D}$ [$\\mu$A]',
+		'vds_label':'$V_{{DS}}$ [V]',
+		'id_micro_label':'$I_{{D}}$ [$\\mu$A]',
 		'time_label':'Time [sec]',
 		'id_annotation':'burn current',
-		'legend_title':'$V_{GS} = +15V$'
+		'legend_title':'$V_{{GS}} = +15V$'
 	},
 	'StaticBias':{
-		'figsize':(2*2.2,2*1.6),#(5,4),
+		'figsize':(4.4,3.2),#(2*2.2,2*1.6),#(5,4),
 		'colorMap':'plasma',
 		'xlabel':'Time [{:}]',
-		'ylabel':'$I_{D}$ [$\\mu$A]',
-		'vds_label': '$V_{DS}^{{Hold}}$ [V]',
-		'vgs_label': '$V_{GS}^{{Hold}}$ [V]',
+		'ylabel':'$I_{{D}}$ [$\\mu$A]',
+		'vds_label': '$V_{{DS}}^{{Hold}}$ [V]',
+		'vgs_label': '$V_{{GS}}^{{Hold}}$ [V]',
 		'subplot_height_ratio':[3,1],
 		'subplot_width_ratio': [1],
 		'subplot_spacing': 0.03
 	},
 	'OnCurrent':{
-		'figsize':(2*2.2,2*1.7),#(5,4),
+		'figsize':(4.4,3.4),#(2*2.2,2*1.7),#(5,4),
 		'time_label':'Time [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
 		'ylabel':'On-Current [A]',
 		'ylabel_dual_axis':'Off-Current [A]',
-		'vds_label': '$V_{DS}^{{Hold}}$ [V]',
-		'vgs_label': '$V_{GS}^{{Hold}}$ [V]',
+		'vds_label': '$V_{{DS}}^{{Hold}}$ [V]',
+		'vgs_label': '$V_{{GS}}^{{Hold}}$ [V]',
 		'subplot_height_ratio':[3,1],
 		'subplot_width_ratio': [1],
 		'subplot_spacing': 0.03
