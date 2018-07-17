@@ -66,10 +66,12 @@ else:
 	deviceID = '7-8'
 	
 	waferID = 'C127'
-	chipID = 'X'
-	deviceID = '15-16'
+	chipID = 'P'
+	deviceID = '31-32'
 
-additional_parameters = {
+
+
+default_additional_parameters = {
 	'waferID':waferID,
 	'chipID':chipID,
 	'deviceID':deviceID
@@ -79,6 +81,8 @@ additional_parameters = {
 
 # === Main ===
 def main():
+	additional_parameters = default_additional_parameters.copy()
+
 	# Get user's action selection
 	choice = selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): ')
 
