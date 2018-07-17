@@ -85,6 +85,14 @@ def experiments(wafer, chip, device):
 	
 	# return flask.Response(json.dumps(parameters, allow_nan=False), mimetype='application/json')
 
+# @app.after_request
+# def add_header(response):
+# 	# response.cache_control.max_age = 300
+#	# response.cache_control.no_store = True
+#	# if 'Cache-Control' not in response.headers:
+#		# response.headers['Cache-Control'] = 'no-store'
+#	return response
+
 if __name__ == '__main__':
 	url = 'http://127.0.0.1:5000/ui/index.html'
 	# webbrowser.open_new(url)
