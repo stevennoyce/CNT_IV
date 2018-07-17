@@ -205,7 +205,7 @@
 														</v-toolbar-title>
 													</v-toolbar>
 													<div class="text-xs-center">
-														<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+possiblePlot">
+														<img :src="'/plots/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+possiblePlot + cacheBust()">
 													</div>
 												</v-card>
 											</v-flex>
@@ -271,6 +271,10 @@
 	<script src="/ui/vuetify.js"></script>
 	<script type="text/javascript">
 		
+		function cacheBust() {
+			return '#cb=' + new Date().getTime();
+		}
+		
 		function groupBy(elements, groupKey) {
 			return elements.reduce(function(rv, x) {
 				(rv[x[groupKey]] = rv[x[groupKey]] || []).push(x);
@@ -326,18 +330,18 @@
 			methods: {
 				goToWafer: function(waferName) {
 					this.wafer = waferName;
-					$.getJSON('/' + this.wafer + '/chips.json', response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
+					$.getJSON('/' + this.wafer + '/chips.json' + cacheBust(), response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
 					this.page++;
 				},
 				goToChip: function(chipName) {
 					this.chip = chipName;
-					$.getJSON('/' + this.wafer + '/' + this.chip + '/devices.json', response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
+					$.getJSON('/' + this.wafer + '/' + this.chip + '/devices.json' + cacheBust(), response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
 					this.page++;
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
 					console.log('About to get experiments');
-					$.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json', response => {app.$data.experiments = response;}).fail(() => {console.log("Error getting experiments");});
+					$.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json' + cacheBust(), response => {app.$data.experiments = response;}).fail(() => {console.log("Error getting experiments");});
 					this.page++;
 				},
 				goToExperiment: function(experimentParameters) {
@@ -356,6 +360,9 @@
 					// const props = headers.filter(h => h.searchable === true).map(h => h.value); // include searchable:true
 					
 					return items.filter(item => props.some(prop => filter(_.get(item, prop), search)));
+				},
+				cacheBust: function() {
+					return cacheBust();
 				}
 			}
 		});
@@ -382,7 +389,7 @@
 			localStorage.exists = 'True';
 		}
 		
-		$.getJSON("/wafers.json", response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
+		$.getJSON("/wafers.json" + cacheBust(), response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
 		
 	</script>
 </body>
