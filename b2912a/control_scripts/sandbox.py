@@ -48,7 +48,7 @@ def run(isSavingResults=False, isPlottingResults=True):
 		print('Plotting results.')
 		#deviceHistoryScript.run(deviceHistoryParameters)
 		#plt.plot(jsonData['Results']['timestamps'], jsonData['Results']['vds_data'])
-		plt.plot(jsonData['Results']['timestamps'], jsonData['Results']['id_data'])
+		plt.plot(jsonData['Results']['timestamps'], -np.array(jsonData['Results']['id_data']))
 		#plt.plot(jsonData['Results']['timestamps'], jsonData['Results']['vgs_data'])
 		plt.show()
 	
@@ -62,7 +62,7 @@ def runSandBox(smu_instance):
 	ig_data = []
 	timestamps = []
 
-	steps = 100
+	steps = 1000
 	vgs_setpoint = -15
 	vds_setpoint = -0.5
 	smu_instance.setVgs(vgs_setpoint)
@@ -86,18 +86,19 @@ def runSandBox(smu_instance):
 
 
 		# Apply 
-		smu_instance.setVgs(0)
-		#smu_instance.setVds(0)
+		if(i % 5 == 0):
+			smu_instance.setVgs(0)
+			#smu_instance.setVds(0)
 
-		# Take Measurement and save it
-		measurement = smu_instance.takeMeasurement()
-		timestamp = time.time()
-		
-		vds_data.append(measurement['V_ds'])
-		id_data.append(measurement['I_d'])
-		vgs_data.append(measurement['V_gs'])
-		ig_data.append(measurement['I_g'])
-		timestamps.append(timestamp)
+			# Take Measurement and save it
+			measurement = smu_instance.takeMeasurement()
+			timestamp = time.time()
+			
+			#vds_data.append(measurement['V_ds'])
+			#id_data.append(measurement['I_d'])
+			#vgs_data.append(measurement['V_gs'])
+			#ig_data.append(measurement['I_g'])
+			#timestamps.append(timestamp)
 
 
 	return {
