@@ -117,13 +117,18 @@ def getPossiblePlotNames(parameters):
 
 
 # === Optional External Interface ===
-def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, startRelativeIndex=0, endRelativeIndex=float('inf'), mode_parameters=None):
+def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, sweepDirection='reverse', plotInRealTime=True, startRelativeIndex=0, endRelativeIndex=float('inf'), plot_mode_parameters=None):
 	parameters = {}	
 	mode_parameters = {}
-
+	if(plot_mode_parameters is not None):
+		mode_parameters.update(plot_mode_parameters)
+	
 	parameters['waferID'] = waferID
 	parameters['chipID'] = chipID
 	parameters['deviceID'] = deviceID
+
+	if(dataFolder is not None):
+		parameters['dataFolder'] = dataFolder
 
 	parameters['showFiguresGenerated'] = showFigures
 	parameters['saveFiguresGenerated'] = saveFigures
@@ -133,14 +138,11 @@ def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentN
 	parameters['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
 	parameters['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
 	parameters['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
-	parameters['gateSweepDirection'] = 'reverse'
-	parameters['plotInRealTime'] = True
+	parameters['gateSweepDirection'] = sweepDirection
+	parameters['plotInRealTime'] = plotInRealTime
 	
-	if(dataFolder is not None):
-		parameters['dataFolder'] = dataFolder
 	if(saveFolder is not None):
 		mode_parameters['plotSaveFolder'] = saveFolder
-	
 	mode_parameters['plotSaveName'] = plotSaveName
 	mode_parameters['figureSizeOverride'] = figureSize
 	
@@ -153,17 +155,15 @@ def run(additional_parameters, plot_mode_parameters=None):
 	parameters = default_dh_parameters.copy()
 	parameters.update(additional_parameters)
 
+	p = parameters
+	plotList = []
+
 	mode_parameters = {}
 	if(plot_mode_parameters != None):
 		mode_parameters.update(plot_mode_parameters)
-
-	p = parameters
-
 	mode_parameters['showFigures'] = p['showFiguresGenerated']
 	mode_parameters['saveFigures'] = p['saveFiguresGenerated']
 
-	plotList = []
-	
 	# Print information about the device and experiment being plotted
 	print('  ' + parameters['waferID'] + parameters['chipID'] + ':' + parameters['deviceID'])
 	'' if((p['excludeDataBeforeJSONExperimentNumber'] == 0) and (p['excludeDataAfterJSONExperimentNumber'] == float('inf'))) else (print('  Experiment #{:}'.format(p['excludeDataAfterJSONExperimentNumber'])) if(p['excludeDataBeforeJSONExperimentNumber'] == p['excludeDataAfterJSONExperimentNumber']) else (print('  Experiments #{:} to #{:}'.format(p['excludeDataBeforeJSONExperimentNumber'],p['excludeDataAfterJSONExperimentNumber'])))) 
@@ -238,6 +238,6 @@ def run(additional_parameters, plot_mode_parameters=None):
 
 
 if __name__ == '__main__':
-    makePlots('C127', 'X', '15-16', startExperimentNumber=24, endExperimentNumber=24, dataFolder='../data', saveFolder='../CurrentPlots', saveFigures=True)
+    makePlots('C127', 'X', '15-16', startExperimentNumber=145, endExperimentNumber=145, dataFolder='../data', saveFolder='../CurrentPlots', saveFigures=True)
 
 

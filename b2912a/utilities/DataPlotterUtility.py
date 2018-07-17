@@ -95,7 +95,7 @@ default_mode_parameters = {
 	'plotSaveFolder': 'CurrentPlots/',
 	'plotSaveName': '',
 	'publication_mode': False,
-	'default_png_dpi': 120,
+	'default_png_dpi': 300,
 	'figureSizeOverride': None,
 	'errorBarsOn': True,
 	'plotGradient': False,
