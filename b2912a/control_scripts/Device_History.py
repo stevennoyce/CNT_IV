@@ -249,7 +249,11 @@ if __name__ == '__main__':
 	#makePlots('C127', 'X', '15-16', 104, 104, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S8 - ', saveFigures=True, showFigures=False, sweepDirection='both', plot_mode_parameters={'publication_mode':False, 'errorBarsOn':False}) 
 	#makePlots('C127', 'X', '15-16', 91, 91, 'FullTransferCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S8 - ', saveFigures=True, showFigures=False, sweepDirection='both', startRelativeIndex=9, plot_mode_parameters={'publication_mode':False, 'errorBarsOn':False}) 
 	#makePlots('C127', 'X', '15-16', 24, 24, 'FullTransferCurveHistory', (1.48 *2.24/1.74,1.74 *2.24/1.74), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S9 - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False,'errorBarsOn':False})
+	#makePlots('C127', 'X', '15-16', 24, 24, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S9 - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False,'errorBarsOn':False})
+	makePlots('C127', 'X', '15-16', 147, 147, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':False,'staticBiasSegmentDividers':True, 'plotGradient':True})
 	
+
+
 
 
 

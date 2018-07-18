@@ -81,14 +81,13 @@ default_additional_parameters = {
 
 # === Main ===
 def main():
-	additional_parameters = default_additional_parameters.copy()
-
 	# Get user's action selection
 	choice = selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): ')
 
 	if(choice.isdigit()):
 		choice = int(choice)
 
+		additional_parameters = default_additional_parameters.copy()
 		if(choice == 0):
 			return
 		else:
@@ -109,7 +108,7 @@ def main():
 		while( schedule_index < len(dlu.loadJSON(directory='experiments', loadFileName=file)) ):
 			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=file)
 
-			additional_parameters = parameter_list[schedule_index]
+			additional_parameters = parameter_list[schedule_index].copy()
 			launcher.run(additional_parameters)
 
 			schedule_index += 1
