@@ -97,7 +97,9 @@ default_mode_parameters = {
 	'publication_mode': False,
 	'default_png_dpi': 300,
 	'figureSizeOverride': None,
+	'legendLoc': 'best',
 	'errorBarsOn': True,
+	'enableColorBar': True,
 	'plotGradient': False,
 	'staticBiasSegmentDividers': False,
 	'staticBiasChangeDividers': True,
@@ -225,7 +227,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
-	else:
+	elif(mode_parameters['enableColorBar']):
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		
 		axisLabel = 'Time'
@@ -242,7 +244,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	ax.yaxis.set_major_locator(matplotlib.ticker.LogLocator(numticks=10))
 	
 	# Add Legend and save figure
-	ax.legend([],[], loc='lower left', title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
+	ax.legend([],[], loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
 	adjustFigure(fig, 'FullSubthresholdCurves', mode_parameters)
 
 	return (fig, ax)
@@ -267,7 +269,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
-	else:
+	elif(mode_parameters['enableColorBar']):
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		
 		axisLabel = 'Time'
@@ -303,7 +305,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 		axisLabels(ax, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
 	# Add Legend and save figure	
-	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
+	ax.legend([],[], loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
 	adjustFigure(fig, 'FullTransferCurves', mode_parameters)
 
 	return (fig, ax)
@@ -327,7 +329,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
-	else:
+	elif(mode_parameters['enableColorBar']):
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		colorBar(fig, colorMap['smap'], tick_labels=[elapsedTime, 'Start'])
 
@@ -336,7 +338,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 		plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
 	
 	# Add Legend and save figure
-	ax.legend([],[], loc='best', title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
+	ax.legend([],[], loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
 	adjustFigure(fig, 'FullGateCurrents', mode_parameters)
 
 	return (fig, ax)
@@ -362,7 +364,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
-	else:
+	elif(mode_parameters['enableColorBar']):
 		plt.sca(ax1)
 		colorBar(fig, colorMap['smap'])
 
@@ -371,7 +373,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i], lineStyle=None)
 
 	# Add Legend and save figure
-	ax3.legend([],[], loc='lower right', title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
+	ax3.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
 	adjustFigure(fig, 'FullBurnOut', mode_parameters, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
 	return (fig, (ax1, ax2, ax3))
@@ -507,7 +509,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		legend_title += '$t_{{Hold}}$ = {}'.format(timeToString(biasTimeSeconds))
 	
 	if len(legend_title) > 0:
-		ax.legend([],[], loc='best', title=legend_title, labelspacing=0)
+		ax.legend([],[], loc=mode_parameters['legendLoc'], title=legend_title, labelspacing=0)
 	
 	# Add Grounding annotation
 	# for i in range(len(parameter_labels['groundDrainWhenDone'])):
@@ -525,18 +527,18 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 			vds_ax.set_ylabel(plot_parameters['StaticBias']['vds_label'])
 			setLabel(vds_line, '$V_{DS}^{{Hold}}$')
 			if vds_setpoint_changes and vgs_setpoint_changes:
-				vds_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
+				vds_ax.legend(loc=mode_parameters['legendLoc'], borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
 		if vgs_setpoint_changes:
 			includeOriginOnYaxis(vgs_ax)
 			vgs_ax.set_ylabel(plot_parameters['StaticBias']['vgs_label'])
 			setLabel(vgs_line, '$V_{GS}^{{Hold}}$')
 			if vds_setpoint_changes and vgs_setpoint_changes:
-				vgs_ax.legend(loc='best', borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
+				vgs_ax.legend(loc=mode_parameters['legendLoc'], borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1)
 		
 		# Legend
 		# lines1, labels1 = ax2.get_legend_handles_labels()
 		# lines2, labels2 = ax3.get_legend_handles_labels()
-		# ax2.legend(lines1 + lines2, labels1 + labels2, loc='best', ncol=2, borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1, columnspacing=0.1)
+		# ax2.legend(lines1 + lines2, labels1 + labels2, loc=mode_parameters['legendLoc'], ncol=2, borderpad=0.15, labelspacing=0.3, handlelength=0.2, handletextpad=0.1, columnspacing=0.1)
 		
 		fig.align_labels()
 		
@@ -652,7 +654,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 	if(mode_parameters['plotOffCurrent']):
 		lines2, labels2 = ax2.get_legend_handles_labels()
 		legendax = ax2
-	legendax.legend(lines1 + lines2, labels1 + labels2, loc='lower left')
+	legendax.legend(lines1 + lines2, labels1 + labels2, loc=mode_parameters['legendLoc'])
 
 	if(includeDualAxis):
 		if(plotInRealTime):
@@ -740,7 +742,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 	tickLabels(ax, devices, rotation=90)
 	
 	# Add Legend and save figure
-	ax.legend(loc='best')
+	ax.legend(loc=mode_parameters['legendLoc'])
 	adjustFigure(fig, 'ChipOnOffRatios', mode_parameters)
 	return (fig, ax)
 

@@ -238,6 +238,18 @@ def run(additional_parameters, plot_mode_parameters=None):
 
 
 if __name__ == '__main__':
-    makePlots('C127', 'X', '15-16', startExperimentNumber=0, endExperimentNumber=float('inf'), dataFolder='../data', saveFolder='../CurrentPlots', saveFigures=True, plotInRealTime=False)
+    #makePlots('C127', 'X', '15-16', 145, 145, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':False,'staticBiasSegmentDividers':True, 'plotGradient':True})
+	#makePlots('C127', 'X', '15-16', 118, 118, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S3 Grounded Between - ', saveFigures=True, showFigures=False, startRelativeIndex=9, endRelativeIndex=16, plot_mode_parameters={'publication_mode':False,'staticBiasSegmentDividers':True, 'plotGradient':True})
+	#makePlots('C127', 'E', '27-28', 3, 4, 'FullTransferCurveHistory', (1.48 *2.24/1.74,1.74 *2.24/1.74), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S1 Comparison - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False, 'enableColorBar':False})
+	#makePlots('C127', 'X', '15-16', 137, 137, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S5 Light - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False, 'plotGradient':True})
+	#makePlots('C127', 'X', '15-16', 127, 127, 'FullStaticBiasHistory', (2.2 *3.25/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S6a Light - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False, 'plotGradient':True})
+	#makePlots('C127', 'X', '15-16', 125, 125, 'FullStaticBiasHistory', (2.2 *3.25/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S6b Light - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False, 'plotGradient':True})
+	#makePlots('C127', 'X', '15-16', 127, 127, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S7a Light - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False})
+	#makePlots('C127', 'X', '15-16', 125, 125, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S7b Light - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False})
+	#makePlots('C127', 'X', '15-16', 104, 104, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S8 - ', saveFigures=True, showFigures=False, sweepDirection='both', plot_mode_parameters={'publication_mode':False, 'errorBarsOn':False}) 
+	#makePlots('C127', 'X', '15-16', 91, 91, 'FullTransferCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S8 - ', saveFigures=True, showFigures=False, sweepDirection='both', startRelativeIndex=9, plot_mode_parameters={'publication_mode':False, 'errorBarsOn':False}) 
+	#makePlots('C127', 'X', '15-16', 24, 24, 'FullTransferCurveHistory', (1.48 *2.24/1.74,1.74 *2.24/1.74), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S9 - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':False,'errorBarsOn':False})
+	
+
 
 
