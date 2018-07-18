@@ -72,16 +72,17 @@ default_parameters = {
 	'dataFolder': 'data/',
 }
 
+import copy
+
 def get():
-	return default_parameters.copy()
+	return copy.deepcopy(default_parameters)
 
 def with_added(additional_parameters):
-	default = default_parameters.copy()
+	default = get()
 	combined = merge(default, additional_parameters)
 	return combined
 
 def merge(a, b):
-	a = a.copy()
 	for key in b:
 		if( (key in a) and (isinstance(a[key], dict)) and (isinstance(b[key], dict)) ):
 			merge(a[key], b[key])
