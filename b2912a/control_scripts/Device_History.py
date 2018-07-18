@@ -238,6 +238,6 @@ def run(additional_parameters, plot_mode_parameters=None):
 
 
 if __name__ == '__main__':
-    makePlots('C127', 'P', '47-48', startExperimentNumber=0, endExperimentNumber=1, dataFolder='../data', saveFolder='../CurrentPlots', saveFigures=True)
+    makePlots('C127', 'X', '15-16', startExperimentNumber=0, endExperimentNumber=float('inf'), dataFolder='../data', saveFolder='../CurrentPlots', saveFigures=True, plotInRealTime=False)
 
 

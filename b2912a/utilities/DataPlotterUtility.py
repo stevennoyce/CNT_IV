@@ -100,6 +100,7 @@ default_mode_parameters = {
 	'errorBarsOn': True,
 	'plotGradient': False,
 	'staticBiasSegmentDividers': False,
+	'staticBiasChangeDividers': True,
 	'plotOffCurrent': True
 }
 
@@ -470,11 +471,12 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 	
 	
 	# Increase height of the plot to give more room for labels
-	if((len(dotted_lines) > 1) or mode_parameters['staticBiasSegmentDividers']):
+	if(len(dotted_lines) > 1):
 		# Draw dotted lines between ANY plots that have different parameters
-		for i in range(len(dotted_lines)):
-			ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=0.5))
-		
+		if(mode_parameters['staticBiasChangeDividers'] or mode_parameters['staticBiasSegmentDividers']):
+			for i in range(len(dotted_lines)):
+				ax.annotate('', xy=(dotted_lines[i]['x'], ax.get_ylim()[0]), xytext=(dotted_lines[i]['x'], ax.get_ylim()[1]), xycoords='data', arrowprops=dict(arrowstyle='-', color=(0,0,0,0.3), ls=':', lw=0.5))
+			
 		if(not includeDualAxis):
 			if(len(parameter_labels['drainVoltageSetPoint']) > 1) or (len(parameter_labels['gateVoltageSetPoint']) > 1):
 				# Make the data take up less of the vertical space to make room for the labels
