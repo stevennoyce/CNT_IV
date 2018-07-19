@@ -98,6 +98,7 @@ default_mode_parameters = {
 	'default_png_dpi': 300,
 	'figureSizeOverride': None,
 	'legendLoc': 'best',
+	'legendLabels': [],
 	'errorBarsOn': True,
 	'enableColorBar': True,
 	'plotGradient': False,
@@ -227,6 +228,8 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+	elif(len(deviceHistory) == 2):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(mode_parameters['enableColorBar']):
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		
@@ -239,12 +242,15 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])			
-	
+		line = plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])			
+		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			setLabel(line, mode_parameters['legendLabels'][i])
+
 	ax.yaxis.set_major_locator(matplotlib.ticker.LogLocator(numticks=10))
 	
 	# Add Legend and save figure
-	ax.legend([],[], loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=0)
+	lines, labels = ax.get_legend_handles_labels()
+	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=(0) if(len(labels) == 0) else (0.3))
 	adjustFigure(fig, 'FullSubthresholdCurves', mode_parameters)
 
 	return (fig, ax)
@@ -269,6 +275,8 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+	elif(len(deviceHistory) == 2):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(mode_parameters['enableColorBar']):
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		
@@ -286,7 +294,9 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
+		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
+		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			setLabel(line, mode_parameters['legendLabels'][i])
 
 	# Add gate current to axis
 	if(includeGateCurrent):
@@ -305,7 +315,8 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 		axisLabels(ax, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
 	# Add Legend and save figure	
-	ax.legend([],[], loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=0)
+	lines, labels = ax.get_legend_handles_labels()
+	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=(0) if(len(labels) == 0) else (0.3))
 	adjustFigure(fig, 'FullTransferCurves', mode_parameters)
 
 	return (fig, ax)
@@ -329,16 +340,21 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+	elif(len(deviceHistory) == 2):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(mode_parameters['enableColorBar']):
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		colorBar(fig, colorMap['smap'], tick_labels=[elapsedTime, 'Start'])
 
 	# Plot
 	for i in range(len(deviceHistory)):
-		plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
-	
+		line = plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
+		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			setLabel(line, mode_parameters['legendLabels'][i])
+
 	# Add Legend and save figure
-	ax.legend([],[], loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=0)
+	lines, labels = ax.get_legend_handles_labels()
+	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=(0) if(len(labels) == 0) else (0.3))
 	adjustFigure(fig, 'FullGateCurrents', mode_parameters)
 
 	return (fig, ax)
@@ -455,7 +471,10 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 			t_prev_start = deviceHistory[i-1]['Results']['timestamps'][0]
 			time_offset = (0) if(i == 0) else (time_offset + (t_prev_end - t_prev_start))
 		
-		plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['plotGradient'])
+		line = plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['plotGradient'])
+		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			setLabel(line, mode_parameters['legendLabels'][i])
+			
 		if(includeDualAxis):
 			if vds_setpoint_changes:
 				vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
@@ -813,17 +832,20 @@ def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', fitSubthr
 		fitted_region = semilogFit(vgs_region, id_region)['fitted_data']
 		print(avgSubthresholdSwing(vgs_region, fitted_region))
 		plot(axis, vgs_region, fitted_region, lineColor='b', lineStyle='--')
+	return line
 
 def plotTransferCurve(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None, errorBars=True):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
+	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
 	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
+	return line
 
 def plotGateCurrent(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None, errorBars=True):
-	plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
+	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
 	axisLabels(axis, x_label=plot_parameters['GateCurrent']['xlabel'], y_label=plot_parameters['GateCurrent']['ylabel'])
+	return line
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None):
-	plot(axis1, jsonData['Results']['vds_data'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor=lineColor, lineStyle=lineStyle)
+	line1 = plot(axis1, jsonData['Results']['vds_data'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor=lineColor, lineStyle=lineStyle)
 	axisLabels(axis1, x_label=plot_parameters['BurnOut']['vds_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
 	# Add burn threshold annotation
@@ -831,17 +853,18 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None):
 	axis1.plot([0, jsonData['Results']['vds_data'][-1]], [currentThreshold, currentThreshold], color=lineColor, linestyle='--', linewidth=1)
 	axis1.annotate(plot_parameters['BurnOut']['id_annotation'], xy=(0, currentThreshold), xycoords='data', horizontalalignment='left', verticalalignment='bottom', color=lineColor)
 	
-	plotOverTime(axis2, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor)	
+	line2 = plotOverTime(axis2, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor)	
 	axisLabels(axis2, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
-	plotOverTime(axis3, jsonData['Results']['timestamps'], jsonData['Results']['vds_data'], lineColor)
+	line3 = plotOverTime(axis3, jsonData['Results']['timestamps'], jsonData['Results']['vds_data'], lineColor)
 	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
+	return (line1, line2, line3)
 
 def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', includeLabel=True, lineStyle=None, gradient=False):
-	plotOverTime(axis, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*(10**6)), lineColor, offset=timeOffset, plotInnerGradient=gradient)	
+	line = plotOverTime(axis, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*(10**6)), lineColor, offset=timeOffset, plotInnerGradient=gradient)	
 	if(includeLabel):
 		axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
-
+	return line
 
 
 
