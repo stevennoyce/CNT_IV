@@ -524,7 +524,8 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		ax2.set_xlabel(plot_parameters['StaticBias']['xlabel'].format(timescale))
 		if vds_setpoint_changes:
 			includeOriginOnYaxis(vds_ax)
-			vds_ax.set_ylim(bottom=vds_ax.get_ylim()[0]*1.2)
+			vds_ax.set_ylim(bottom=vds_ax.get_ylim()[0] - (vds_ax.get_ylim()[1] - vds_ax.get_ylim()[0])*0.08)
+			vds_ax.set_ylim(top=   vds_ax.get_ylim()[1] + (vds_ax.get_ylim()[1] - vds_ax.get_ylim()[0])*0.08)
 			vds_ax.set_ylabel(plot_parameters['StaticBias']['vds_label'])
 			setLabel(vds_line, '$V_{DS}^{{Hold}}$')
 			if vds_setpoint_changes and vgs_setpoint_changes:
