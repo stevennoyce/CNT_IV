@@ -293,6 +293,18 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 		plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_label']
 	
 	# Plot
+	# import random
+	# indexes = list(range(len(deviceHistory)))
+	# inexes = random.shuffle(indexes)
+	# # indexes1 = indexes[0:len(indexes)//2]
+	# # indexes2 = indexes[len(indexes)//2:]
+	# # indexes1.reverse()
+	# # indexesInterleaved = [val for pair in zip(indexes1, indexes2) for val in pair]
+	# # print(indexes1)
+	# # print(indexes2)
+	# # print(indexesInterleaved)
+	# # Plot
+	# for i in indexes:
 	for i in range(len(deviceHistory)):
 		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
