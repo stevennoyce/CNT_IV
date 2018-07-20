@@ -105,9 +105,14 @@ def main():
 		file = choice if(choice[-5:] == '.json') else (choice + '.json')
 		schedule_index = 0
 
+		print('Opening schedule file: ' + file)
+
 		while( schedule_index < len(dlu.loadJSON(directory='experiments', loadFileName=file)) ):
+			print('Loading line #' + str(schedule_index+1) + ' in schedule file ' + file)
 			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=file)
 
+			print('Launching job #' + str(schedule_index+1) + ' in schedule file ' + file)
+			print('Schedule contains ' + str(len(parameter_list) - schedule_index - 1) + ' other incomplete jobs.')
 			additional_parameters = parameter_list[schedule_index].copy()
 			launcher.run(additional_parameters)
 
