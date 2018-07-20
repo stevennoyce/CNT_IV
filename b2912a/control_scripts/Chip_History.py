@@ -69,6 +69,6 @@ def run(additional_parameters, plot_mode_parameters={}):
 
 
 if(__name__ == '__main__'):
-	makePlots('C127', 'X', dataFolder='../data', saveFolder='../CurrentPlots')
+	makePlots('C127', 'E', dataFolder='../data', saveFolder='../CurrentPlots')
 
 

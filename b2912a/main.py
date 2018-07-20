@@ -111,7 +111,7 @@ def main():
 			print('Loading line #' + str(schedule_index+1) + ' in schedule file ' + file)
 			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=file)
 
-			print('Launching job #' + str(schedule_index+1) + ' in schedule file ' + file)
+			print('Launching job #' + str(schedule_index+1) + ' of ' + str(len(parameter_list)) + ' in schedule file ' + file)
 			print('Schedule contains ' + str(len(parameter_list) - schedule_index - 1) + ' other incomplete jobs.')
 			additional_parameters = parameter_list[schedule_index].copy()
 			launcher.run(additional_parameters)
