@@ -56,3 +56,101 @@ plt.show()
 
 
 
+
+
+
+
+
+
+
+
+plt.style.use('seaborn-paper')
+
+# plt.rcParams['mathtext.fontset'] = 'custom'
+# plt.rcParams['mathtext.rm'] = 'Arial'
+# plt.rcParams['mathtext.it'] = 'Arial'
+# plt.rcParams['mathtext.bf'] = 'Arial:bold'
+
+# plt.rcParams["font.family"] = 'Times New Roman'
+# plt.rcParams['mathtext.rm'] = 'Times New Roman'
+# plt.rcParams['mathtext.it'] = 'Times New Roman'
+# plt.rcParams['mathtext.bf'] = 'Times New Roman'
+
+# Used for the DRC Abstract
+plt.rcParams['axes.labelsize'] = 12
+plt.rcParams['axes.titlesize'] = 12
+plt.rcParams['legend.fontsize'] = 8
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['font.size'] = 8
+
+# Minimum Sizes based on Dr. Franklin's Publications (Body text is 10 pt)
+plt.rcParams['axes.labelsize'] = 6
+plt.rcParams['axes.titlesize'] = 6
+plt.rcParams['legend.fontsize'] = 4.5
+plt.rcParams['xtick.labelsize'] = 4.5
+plt.rcParams['ytick.labelsize'] = 4.5
+plt.rcParams['font.size'] = 4.5
+
+# Sizes based on Nature Nanotechnology (Body text is 9 pt)
+plt.rcParams['axes.labelsize'] = 7
+plt.rcParams['axes.titlesize'] = 7
+plt.rcParams['legend.fontsize'] = 7
+plt.rcParams['xtick.labelsize'] = 7
+plt.rcParams['ytick.labelsize'] = 7
+plt.rcParams['font.size'] = 7
+
+# Steven's preferences loosely based on Nature Nanotechnology (Body text is 9 pt)
+plt.rcParams['axes.labelsize'] = 7
+plt.rcParams['axes.titlesize'] = 7
+plt.rcParams['legend.fontsize'] = 6
+plt.rcParams['xtick.labelsize'] = 6
+plt.rcParams['ytick.labelsize'] = 6
+plt.rcParams['font.size'] = 6
+
+plt.rcParams['axes.labelpad'] = 0
+plt.rcParams['axes.titlepad'] = 6
+plt.rcParams['ytick.major.pad'] = 2
+plt.rcParams['xtick.major.pad'] = 2
+
+plt.rcParams['figure.figsize'] = [8,6]
+plt.rcParams['figure.titlesize'] = 8
+plt.rcParams['axes.formatter.use_mathtext'] = True
+plt.rcParams['axes.formatter.useoffset'] = False
+plt.rcParams['xtick.top'] = True
+plt.rcParams['ytick.right'] = True
+plt.rcParams['xtick.direction'] = 'in'
+plt.rcParams['ytick.direction'] = 'in'
+plt.rcParams['axes.axisbelow'] = False
+# plt.rcParams['figure.autolayout'] = True
+
+plt.rcParams['axes.linewidth'] = 0.5
+plt.rcParams['xtick.major.width'] = 0.5
+plt.rcParams['ytick.major.width'] = 0.5
+plt.rcParams['xtick.major.size'] = 3
+plt.rcParams['ytick.major.size'] = 3
+
+plt.rcParams['xtick.minor.width'] = 0.5
+plt.rcParams['ytick.minor.width'] = 0.5
+plt.rcParams['xtick.minor.size'] = 1
+plt.rcParams['ytick.minor.size'] = 1
+
+plt.rcParams['axes.formatter.limits'] = [-2, 3]
+
+# Change to Type 2/TrueType fonts (editable text)
+plt.rcParams['pdf.fonttype'] = 42
+plt.rcParams['ps.fonttype'] = 42
+
+
+plt.figure(figsize=(3.5,2.24))
+
+plt.plot(voltage2, (current9-np.mean(current9))*1e9)
+plt.plot([],[], label='RMS Noise = {:.2g} A'.format(np.sqrt(np.mean((current9 - linearfit9[1] - linearfit9[0]*voltage2)**2))), alpha=0)
+plt.gca().get_yaxis().get_major_formatter().set_powerlimits((0, 0))
+plt.xlabel('Voltage Across Resistor [V]')
+plt.ylabel('Current Through Resistor [nA]')
+plt.title('Red PCB Measurement of 1 G$\Omega$ Resistor')
+plt.legend()
+plt.show()
+
+
