@@ -36,10 +36,11 @@ def run(additional_parameters):
 	print("Sensor data: " + str(parameters['SensorData']))
 	
 	# Run specified action:
-	if((parameters['MeasurementSystem'] == 'PCB2v14') and (len(parameters['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
-		for device in parameters['deviceRange']:
+	if((parameters['MeasurementSystem']['system'] == 'PCB2v14') and (len(parameters['MeasurementSystem']['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
+		for device in parameters['MeasurementSystem']['deviceRange']:
 			params = dict(parameters)
-			params['deviceID'] = device
+			params['Identifiers']['device'] = device
+			params['deviceDirectory'] = dlu.getDeviceDirectory(params)
 			runAction(params, smu_instance, arduino_instance)
 	else:
 		runAction(parameters, smu_instance, arduino_instance)
@@ -89,10 +90,10 @@ def runSMU(parameters, smu_instance, arduino_instance):
 			raise
 
 	smu_instance.rampDownVoltages()
-	parameters['endIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 
 	print('Saving to ParametersHistory...')
-	dlu.saveJSON(parameters['deviceDirectory'], 'ParametersHistory', parameters, incrementIndex=False)
+	dlu.saveJSON(dlu.getDeviceDirectory(parameters), 'ParametersHistory', parameters, incrementIndex=False)
 
 	#print('Posting plots online...')
 	#plotPoster.postPlots(parameters)
@@ -100,9 +101,13 @@ def runSMU(parameters, smu_instance, arduino_instance):
 # Run a "Device History" action.
 def runDeviceHistory(parameters):
 	dh_parameters = {
-		'waferID':  parameters['waferID'],
-		'chipID':   parameters['chipID'],
-		'deviceID': parameters['deviceID'],
+		'Identifiers':{
+			'user': parameters['Identifiers']['user']
+			'project': parameters['Identifiers']['project']
+			'wafer': parameters['Identifiers']['wafer'],
+			'chip': parameters['Identifiers']['chip'],
+			'device': parameters['Identifiers']['device'],
+		}
 		'dataFolder': parameters['dataFolder']
 	}
 	if('DeviceHistory' in parameters.keys()):
@@ -117,13 +122,13 @@ def runDeviceHistory(parameters):
 def initSMU(parameters):
 	smu_instance = None
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		if(parameters['MeasurementSystem'] == 'B2912A'):
-			smu_instance = smu.getConnectionFromVisa(parameters['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
-		elif(parameters['MeasurementSystem'] == 'PCB2v14'):
+		if(parameters['MeasurementSystem']['system'] == 'B2912A'):
+			smu_instance = smu.getConnectionFromVisa(parameters['MeasurementSystem']['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
+		elif(parameters['MeasurementSystem']['system'] == 'PCB2v14'):
 			smu_instance = smu.getConnectionToPCB()
 		else:
 			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
-		print("Connected to SMU: " + str(parameters['MeasurementSystem']))
+		print("Connected to SMU: " + str(parameters['MeasurementSystem']['system']))
 	return smu_instance
 
 

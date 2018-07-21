@@ -48,6 +48,7 @@ def main():
 			deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 			deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 			deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+			deviceRun['Identifiers']['step'] = None
 			deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 			del deviceRun['waferID']
 			del deviceRun['chipID']
@@ -77,6 +78,7 @@ def main():
 				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+				deviceRun['Identifiers']['step'] = None
 				deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 				del deviceRun['waferID']
 				del deviceRun['chipID']
@@ -106,6 +108,7 @@ def main():
 				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+				deviceRun['Identifiers']['step'] = None
 				deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 				del deviceRun['waferID']
 				del deviceRun['chipID']
