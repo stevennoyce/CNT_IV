@@ -93,7 +93,7 @@ def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimen
 
 # === Device History API ===
 def getDeviceDirectory(parameters):
-	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'], parameters['deviceID']) + os.sep
+	return os.path.join(parameters['dataFolder'], parameters['Identifiers']['user'], parameters['Identifiers']['project'], parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']) + os.sep
 
 def loadSpecificDeviceHistory(directory, fileName, minIndex=0, maxIndex=float('inf'), minExperiment=0, maxExperiment=float('inf'), minRelativeIndex=0, maxRelativeIndex=float('inf')):
 	filteredHistory = loadJSON_fast(directory, fileName, minIndex, maxIndex, minExperiment, maxExperiment, minRelativeIndex, maxRelativeIndex)
@@ -103,7 +103,7 @@ def loadSpecificDeviceHistory(directory, fileName, minIndex=0, maxIndex=float('i
 
 # === Chip History API ===
 def getChipDirectory(parameters):
-	return os.path.join(parameters['dataFolder'], parameters['waferID'], parameters['chipID'])
+	return os.path.join(parameters['dataFolder'], parameters['Identifiers']['user'], parameters['Identifiers']['project'], parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'])
 
 def loadChipIndexes(directory):
 	chipIndexes = {}
