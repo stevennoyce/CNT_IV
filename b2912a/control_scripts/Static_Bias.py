@@ -12,17 +12,13 @@ from utilities import DataLoggerUtility as dlu
 def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False):
 	# Create distinct parameters for plotting the results
 	deviceHistoryParameters = {}
-	deviceHistoryParameters['waferID'] = parameters['waferID']
-	deviceHistoryParameters['chipID']  = parameters['chipID']
-	deviceHistoryParameters['deviceID'] = parameters['deviceID']
+	deviceHistoryParameters['Identifiers'] = dict(parameters['Identifiers'])
 	deviceHistoryParameters['dataFolder'] = parameters['dataFolder']
 	deviceHistoryParameters['plotGateSweeps'] = False
 	deviceHistoryParameters['plotBurnOuts'] = False
 	deviceHistoryParameters['plotStaticBias'] = True
 	deviceHistoryParameters['showFiguresGenerated'] = True
 	deviceHistoryParameters['saveFiguresGenerated'] = True
-	deviceHistoryParameters['excludeDataBeforeJSONIndex'] = 0
-	deviceHistoryParameters['excludeDataAfterJSONIndex'] =  float('inf')
 	deviceHistoryParameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 

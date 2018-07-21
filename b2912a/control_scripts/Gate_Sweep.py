@@ -13,17 +13,13 @@ from utilities import DataGeneratorUtility as dgu
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False):
 	# Create distinct parameters for plotting the results
 	deviceHistoryParameters = {}
-	deviceHistoryParameters['waferID'] = parameters['waferID']
-	deviceHistoryParameters['chipID']  = parameters['chipID']
-	deviceHistoryParameters['deviceID'] = parameters['deviceID']
+	deviceHistoryParameters['Identifiers'] = dict(parameters['Identifiers'])
 	deviceHistoryParameters['dataFolder'] = parameters['dataFolder']
 	deviceHistoryParameters['plotGateSweeps'] = True
 	deviceHistoryParameters['plotBurnOuts'] = False
 	deviceHistoryParameters['plotStaticBias'] = False
 	deviceHistoryParameters['showFiguresGenerated'] = True
 	deviceHistoryParameters['saveFiguresGenerated'] = True
-	deviceHistoryParameters['excludeDataBeforeJSONIndex'] = 0
-	deviceHistoryParameters['excludeDataAfterJSONIndex'] =  float('inf')
 	deviceHistoryParameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	deviceHistoryParameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
