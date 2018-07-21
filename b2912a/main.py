@@ -72,9 +72,14 @@ else:
 
 
 default_additional_parameters = {
-	'waferID':waferID,
-	'chipID':chipID,
-	'deviceID':deviceID
+	'Identifiers': {
+		'userID':'stevenjay',
+		'projectID':'BiasStress1',
+		'waferID':waferID,
+		'chipID':chipID,
+		'deviceID':deviceID,
+		'stepID'
+	}
 }
 
 

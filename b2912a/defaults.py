@@ -1,5 +1,4 @@
 default_parameters = {
-	'ParametersFormatVersion': 3,
 	'GateSweep':{
 		'saveFileName': 'GateSweep',
 		'isFastSweep': False,
@@ -66,10 +65,16 @@ default_parameters = {
 	'SensorData':{
 
 	},
-	'MeasurementSystem': ['B2912A','PCB2v14'][0],
-	'NPLC':1,
-	'deviceRange': [],
+	'Identifiers':{
+
+	},
+	'MeasurementSystem':{
+		'system': ['B2912A','PCB2v14'][0],
+		'NPLC':1,
+		'deviceRange': []
+	}
 	'dataFolder': 'data/',
+	'ParametersFormatVersion': 3
 }
 
 import copy

@@ -4,29 +4,24 @@ import numpy as np
 
 import DataLoggerUtility as dlu
 
-directory = #'../data/C139/D/'
-
-#load_directory
-#save_directory
-
-gateSweepFileName = 'GateSweep.json'
-burnOutFileName = 'BurnOut.json'
-staticBiasFileName = 'StaticBias.json'
+load_directory = '../data0/C139/D/'
+save_directory = '../data_reformatted/C139/D/'
 
 def main():
-	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
-		deviceDirectory = directory + deviceSubdirectory + '/'
+	for deviceSubdirectory in [name for name in os.listdir(load_directory) if os.path.isdir(os.path.join(load_directory, name))]:
+		deviceLoadDirectory = os.path.join(load_directory, deviceSubdirectory)
+		deviceSaveDirectory = os.path.join(save_directory, deviceSubdirectory)
 
 		# Load device history for GateSweep, BurnOut, and StaticBias
-		gateSweepHistory = dlu.loadJSON(deviceDirectory, gateSweepFileName)
+		gateSweepHistory = dlu.loadJSON(deviceLoadDirectory, 'GateSweep.json')
 		try:
-			burnOutHistory = dlu.loadJSON(deviceDirectory, burnOutFileName)
+			burnOutHistory = dlu.loadJSON(deviceLoadDirectory, 'BurnOut.json')
 			burnedout = True
 		except:
 			print('Device: ' + deviceSubdirectory + ' no burn-out')
 			burnedout = False
 		try:
-			staticBiasHistory = dlu.loadJSON(deviceDirectory, staticBiasFileName)
+			staticBiasHistory = dlu.loadJSON(deviceLoadDirectory, 'StaticBias.json')
 			staticed = True
 		except:
 			print('Device: ' + deviceSubdirectory + ' no static bias')
@@ -47,34 +42,25 @@ def main():
 			else:
 				deviceRun['ParametersFormatVersion'] = 3
 
-			if('current1s' in deviceRun):
-				deviceRun['Results'] = {}
-				deviceRun['Results']['id_data'] = deviceRun['current1s']
-				deviceRun['Results']['ig_data'] = deviceRun['current2s']
-				deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
-				deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
-				deviceRun['Results']['timestamps'] = deviceRun['timestamps']
-				deviceRun['Results']['gateVoltages'] = deviceRun['gateVoltages']
-				deviceRun['Results']['onOffRatio'] = onOffRatio(deviceRun['Results']['id_data'])
-				deviceRun['Results']['onCurrent'] = onCurrent(deviceRun['Results']['id_data'])
-				deviceRun['Results']['offCurrent'] = offCurrent(deviceRun['Results']['id_data'])
-				del deviceRun['current1s']
-				del deviceRun['current2s']
-				del deviceRun['voltage1s']
-				del deviceRun['voltage2s']
-				del deviceRun['timestamps']
-				del deviceRun['gateVoltages']
-				if('onOffRatio' in deviceRun):
-					del deviceRun['onOffRatio']
-				if('onCurrent' in deviceRun):
-					del deviceRun['onCurrent']
-				if('offCurrent' in deviceRun):
-					del deviceRun['offCurrent']
+			deviceRun['Identifiers'] = {}
+			deviceRun['Identifiers']['user'] = 'stevenjay'
+			deviceRun['Identifiers']['project'] = 'BiasStress1'
+			deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
+			deviceRun['Identifiers']['chip'] = deviceRun['chipID']
+			deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+			del deviceRun['waferID']
+			del deviceRun['chipID']
+			del deviceRun['deviceID']
 
-			#if(len(deviceRun['chipID']) > 1):
-			#	deviceRun['waferID'] = deviceRun['chipID'][:4]
-			#	deviceRun['chipID'] = deviceRun['chipID'][4]
-			#	deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
+			system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
+			deviceRun['MeasurementSystem'] = {}
+			deviceRun['MeasurementSystem']['system'] = system
+			deviceRun['MeasurementSystem']['NPLC'] = deviceRun['NPLC'] if('NPLC' in deviceRun) else 1
+			deviceRun['MeasurementSystem']['deviceRange'] = deviceRun['deviceRange'] if('deviceRange' in deviceRun) else []
+			if('NPLC' in deviceRun):
+				del deviceRun['NPLC']
+			if('deviceRange' in deviceRun):
+				del deviceRun['deviceRange']
 
 		# BURN OUT
 		if(burnedout):
@@ -84,36 +70,22 @@ def main():
 				else:
 					deviceRun['ParametersFormatVersion'] = 3
 
-				if('current1s' in deviceRun):
-					deviceRun['Results'] = {}
-					deviceRun['Results']['id_data'] = deviceRun['current1s']
-					deviceRun['Results']['ig_data'] = deviceRun['current2s']
-					deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
-					deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
-					deviceRun['Results']['timestamps'] = deviceRun['timestamps']
-					deviceRun['Results']['drainVoltages'] = deviceRun['drainVoltages']
-					del deviceRun['current1s']
-					del deviceRun['current2s']
-					del deviceRun['voltage1s']
-					del deviceRun['voltage2s']
-					del deviceRun['timestamps']
-					del deviceRun['drainVoltages']
-					if('didBurnOut' in deviceRun):
-						deviceRun['Results']['didBurnOut'] = deviceRun['didBurnOut']
-						del deviceRun['didBurnOut']
-					else:
-						deviceRun['Results']['didBurnOut'] = True
-					if('thresholdCurrent' in deviceRun):
-						deviceRun['Results']['thresholdCurrent'] = deviceRun['thresholdCurrent']
-						del deviceRun['thresholdCurrent']
-					else:
-						deviceRun['Results']['thresholdCurrent'] = 0
+				deviceRun['Identifiers'] = {}
+				deviceRun['Identifiers']['user'] = 'stevenjay'
+				deviceRun['Identifiers']['project'] = 'BiasStress1'
+				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
+				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
+				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
 
-				#if(len(deviceRun['chipID']) > 1):
-				#	deviceRun['waferID'] = deviceRun['chipID'][:4]
-				#	deviceRun['chipID'] = deviceRun['chipID'][4]
-				#	deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
-
+				system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
+				deviceRun['MeasurementSystem'] = {}
+				deviceRun['MeasurementSystem']['system'] = system
+				deviceRun['MeasurementSystem']['NPLC'] = deviceRun['NPLC'] if('NPLC' in deviceRun) else 1
+				deviceRun['MeasurementSystem']['deviceRange'] = deviceRun['deviceRange'] if('deviceRange' in deviceRun) else []
+				if('NPLC' in deviceRun):
+					del deviceRun['NPLC']
+				if('deviceRange' in deviceRun):
+					del deviceRun['deviceRange']
 
 		# STATIC BIAS
 		if(staticed):			
@@ -123,23 +95,22 @@ def main():
 				else:
 					deviceRun['ParametersFormatVersion'] = 3
 
-				if('current1s' in deviceRun):
-					deviceRun['Results'] = {}
-					deviceRun['Results']['id_data'] = deviceRun['current1s']
-					deviceRun['Results']['ig_data'] = deviceRun['current2s']
-					deviceRun['Results']['vds_data'] = deviceRun['voltage1s']
-					deviceRun['Results']['vgs_data'] = deviceRun['voltage2s']
-					deviceRun['Results']['timestamps'] = deviceRun['timestamps']
-					del deviceRun['current1s']
-					del deviceRun['current2s']
-					del deviceRun['voltage1s']
-					del deviceRun['voltage2s']
-					del deviceRun['timestamps']
+				deviceRun['Identifiers'] = {}
+				deviceRun['Identifiers']['user'] = 'stevenjay'
+				deviceRun['Identifiers']['project'] = 'BiasStress1'
+				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
+				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
+				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
 
-				#if(len(deviceRun['chipID']) > 1):
-				#	deviceRun['waferID'] = deviceRun['chipID'][:4]
-				#	deviceRun['chipID'] = deviceRun['chipID'][4]
-				#	deviceRun['deviceDirectory'] = deviceRun['dataFolder'] + deviceRun['waferID'] + '/' + deviceRun['chipID'] + '/' + deviceRun['deviceID'] + '/'	
+				system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
+				deviceRun['MeasurementSystem'] = {}
+				deviceRun['MeasurementSystem']['system'] = system
+				deviceRun['MeasurementSystem']['NPLC'] = deviceRun['NPLC'] if('NPLC' in deviceRun) else 1
+				deviceRun['MeasurementSystem']['deviceRange'] = deviceRun['deviceRange'] if('deviceRange' in deviceRun) else []
+				if('NPLC' in deviceRun):
+					del deviceRun['NPLC']
+				if('deviceRange' in deviceRun):
+					del deviceRun['deviceRange']
 
 
 		# *************************************************************
@@ -148,37 +119,22 @@ def main():
 
 
 
-		# Delete GateSweep.json, BurnOut.json, and StaticBias.json from device directory
-		if os.path.exists(deviceDirectory):
-			fileNames = glob.glob(deviceDirectory + '*')
-			for fileName in fileNames:
-				if((gateSweepFileName in fileName) or (burnOutFileName in fileName) or (staticBiasFileName in fileName)):
-					os.remove(fileName)
-		# *************************************************************
-
-
-
 		# Save device history for GateSweep, BurnOut, and StaticBias
 		for deviceRun in gateSweepHistory:
-			dlu.saveJSON(deviceDirectory, 'GateSweep', deviceRun, incrementIndex=False)
+			dlu.saveJSON(deviceSaveDirectory, 'GateSweep', deviceRun, incrementIndex=False)
 		if(burnedout):
 			for deviceRun in burnOutHistory:
-				dlu.saveJSON(deviceDirectory, 'BurnOut', deviceRun, incrementIndex=False)
+				dlu.saveJSON(deviceSaveDirectory, 'BurnOut', deviceRun, incrementIndex=False)
 		if(staticed):
 			for deviceRun in staticBiasHistory:
-				dlu.saveJSON(deviceDirectory, 'StaticBias', deviceRun, incrementIndex=False)
+				dlu.saveJSON(deviceSaveDirectory, 'StaticBias', deviceRun, incrementIndex=False)
 		# *************************************************************
 
-def onOffRatio(drainCurrent):
-	return onCurrent(drainCurrent)/offCurrent(drainCurrent)
 
-def onCurrent(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return np.percentile(absDrainCurrent, 99)
 
-def offCurrent(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return (np.percentile(absDrainCurrent, 5))
+if(__name__ == '__main__'):
+	main()
 
-main()
+
+
 
