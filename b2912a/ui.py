@@ -38,8 +38,9 @@ def wafers():
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	modificationTimes = [os.path.getmtime(p) for p in paths]
 	sizes = [os.path.getsize(p) for p in paths]
+	chipCounts = [len(glob.glob(p + '/*/')) for p in paths]
 	
-	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'chipCount': c} for n, p, m, s, c in zip(names, paths, modificationTimes, sizes, chipCounts)]
 	
 	return flask.jsonify(wafers)
 

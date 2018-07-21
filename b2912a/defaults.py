@@ -62,14 +62,14 @@ default_parameters = {
 	'Results':{
 
 	},
+	'Computed':{
+	
+	},
 	'SensorData':{
 
 	},
 	'Identifiers':{
 
-	},
-	'Computed':{
-	
 	},
 	'MeasurementSystem':{
 		'system': ['B2912A','PCB2v14'][0],
