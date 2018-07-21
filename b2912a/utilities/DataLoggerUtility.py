@@ -10,6 +10,7 @@ import time
 # === File System ===
 def makeFolder(folderPath):
 	if (not os.path.exists(folderPath)):
+		print('New Folder: ' + str(folderPath))
 		os.makedirs(folderPath)
 
 def emptyFolder(folderPath):
@@ -22,6 +23,7 @@ def emptyFolder(folderPath):
 
 # === JSON ===
 def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
+	makeFolder(directory)
 	with open(os.path.join(directory, saveFileName + '.json'), 'a') as file:
 		if(incrementIndex):
 			indexData = loadJSONIndex(directory)

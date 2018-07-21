@@ -4,8 +4,8 @@ import numpy as np
 
 import DataLoggerUtility as dlu
 
-load_directory = '../data0/C139/D/'
-save_directory = '../data_reformatted/C139/D/'
+load_directory = '../data0/C127/C/'
+save_directory = '../data_reformatted/C127/C/'
 
 def main():
 	for deviceSubdirectory in [name for name in os.listdir(load_directory) if os.path.isdir(os.path.join(load_directory, name))]:
@@ -37,7 +37,7 @@ def main():
 
 		# GATE SWEEP
 		for deviceRun in gateSweepHistory:
-			if(deviceRun['ParametersFormatVersion'] >= 3):
+			if(deviceRun['ParametersFormatVersion'] > 3):
 				continue
 			else:
 				deviceRun['ParametersFormatVersion'] = 3
@@ -48,6 +48,7 @@ def main():
 			deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 			deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 			deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+			deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 			del deviceRun['waferID']
 			del deviceRun['chipID']
 			del deviceRun['deviceID']
@@ -65,7 +66,7 @@ def main():
 		# BURN OUT
 		if(burnedout):
 			for deviceRun in burnOutHistory:
-				if(deviceRun['ParametersFormatVersion'] >= 3):
+				if(deviceRun['ParametersFormatVersion'] > 3):
 					continue
 				else:
 					deviceRun['ParametersFormatVersion'] = 3
@@ -76,6 +77,10 @@ def main():
 				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+				deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
+				del deviceRun['waferID']
+				del deviceRun['chipID']
+				del deviceRun['deviceID']
 
 				system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
 				deviceRun['MeasurementSystem'] = {}
@@ -90,7 +95,7 @@ def main():
 		# STATIC BIAS
 		if(staticed):			
 			for deviceRun in staticBiasHistory:
-				if(deviceRun['ParametersFormatVersion'] >= 3):
+				if(deviceRun['ParametersFormatVersion'] > 3):
 					continue
 				else:
 					deviceRun['ParametersFormatVersion'] = 3
@@ -101,6 +106,10 @@ def main():
 				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
+				deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
+				del deviceRun['waferID']
+				del deviceRun['chipID']
+				del deviceRun['deviceID']
 
 				system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
 				deviceRun['MeasurementSystem'] = {}
