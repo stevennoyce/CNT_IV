@@ -41,7 +41,6 @@ def wafers():
 	chipCounts = [len(glob.glob(p + '/*/')) for p in paths]
 	
 	indexFileLists = [glob.glob(p + '/**/index.json', recursive=True) for p in paths]
-	
 	indexObjectLists = [[dlu.loadJSONIndex(os.path.dirname(indexFile)) for indexFile in indexFileList] for indexFileList in indexFileLists]
 	indexCounts = [sum([(i['index'] if 'index' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
 	experimentCounts = [sum([(i['experimentNumber'] if 'experimentNumber' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
