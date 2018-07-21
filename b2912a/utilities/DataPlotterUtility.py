@@ -209,7 +209,7 @@ def timeToString(seconds):
 
 
 # === API ===
-def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='both', mode_params=None):
+def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection='both', mode_params=None):
 	if(len(deviceHistory) <= 0):
 		print('No subthreshold curve history to plot.')
 		return
@@ -221,7 +221,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'SubthresholdCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
-		ax.set_title(getTestLabel(deviceHistory, parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']))
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
 	
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['SubthresholdCurve']['colorMap'], 0.7, 0, len(deviceHistory))
@@ -255,7 +255,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, parameters, sweepDirection='
 
 	return (fig, ax)
 
-def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both', includeGateCurrent=False, mode_params=None):
+def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='both', includeGateCurrent=False, mode_params=None):
 	if(len(deviceHistory) <= 0):
 		print('No transfer curve history to plot.')
 		return
@@ -267,7 +267,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'TransferCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
-		ax.set_title(getTestLabel(deviceHistory, parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']))
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
 	
 	
 	# Build Color Map and Color Bar
@@ -333,7 +333,7 @@ def plotFullTransferCurveHistory(deviceHistory, parameters, sweepDirection='both
 
 	return (fig, ax)
 
-def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both', mode_params=None):
+def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both', mode_params=None):
 	if(len(deviceHistory) <= 0):
 		print('No gate current curve history to plot.')
 		return
@@ -345,7 +345,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'GateCurrent', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
-		ax.set_title(getTestLabel(deviceHistory, parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']))
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
 
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['GateCurrent']['colorMap'], 0.7, 0, len(deviceHistory))
@@ -371,7 +371,7 @@ def plotFullGateCurrentHistory(deviceHistory, parameters, sweepDirection='both',
 
 	return (fig, ax)
 
-def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
+def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 	if(len(deviceHistory) <= 0):
 		print('No burn out history to plot.')
 		return
@@ -385,7 +385,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
 	ax2 = plt.subplot(222)
 	ax3 = plt.subplot(224)
 	if(not mode_parameters['publication_mode']):
-		ax1.set_title(getTestLabel(deviceHistory, parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']))
+		ax1.set_title(getTestLabel(deviceHistory, identifiers))
 
 	# Build Color Map and Color Bar
 	colorMap = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.6, 1.0, len(deviceHistory))
@@ -406,7 +406,7 @@ def plotFullBurnOutHistory(deviceHistory, parameters, mode_params=None):
 
 	return (fig, (ax1, ax2, ax3))
 
-def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
+def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
 	if(len(deviceHistory) <= 0):
 		print('No static bias history to plot.')
 		return
@@ -442,7 +442,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 		ax2 = None
 		ax3 = None
 	if(not mode_parameters['publication_mode']):
-		ax.set_title(getTestLabel(deviceHistory, parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']))
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
 	
 	# Build Color Map
 	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
@@ -584,7 +584,7 @@ def plotFullStaticBiasHistory(deviceHistory, parameters, timescale='', plotInRea
 
 	return (fig, (ax, ax2, ax3))
 
-def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
+def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
 	if(len(deviceHistory) <= 0):
 		print('No on/off current history to plot.')
 		return
@@ -619,7 +619,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, parameters, timescale='', plotInRe
 		ax3 = None
 		ax4 = None
 	if(not mode_parameters['publication_mode']):
-		ax1.set_title(getTestLabel(deviceHistory, parameters['Identifiers']['wafer'], parameters['Identifiers']['chip'], parameters['Identifiers']['device']))
+		ax1.set_title(getTestLabel(deviceHistory, identifiers))
 	
 	# If timescale is unspecified, choose an appropriate one based on the data range
 	if(timescale == '' and (len(deviceHistory) > 0)):
@@ -756,11 +756,11 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 	devices = []
 	firstOnOffRatios = []
 	for deviceRun in firstRunChipHistory:
-		devices.append(deviceRun['deviceID']) 
+		devices.append(deviceRun['Identifiers']['device']) 
 		firstOnOffRatios.append(np.log10(deviceRun['Results']['onOffRatio']))
 	lastOnOffRatios = len(devices)*[0]
 	for deviceRun in recentRunChipHistory:
-		lastOnOffRatios[devices.index(deviceRun['deviceID'])] = np.log10(deviceRun['Results']['onOffRatio'])
+		lastOnOffRatios[devices.index(deviceRun['Identifiers']['device'])] = np.log10(deviceRun['Results']['onOffRatio'])
 
 	lastOnOffRatios, devices, firstOnOffRatios = zip(*(reversed(sorted(zip(lastOnOffRatios, devices, firstOnOffRatios)))))
 
@@ -911,8 +911,8 @@ def colorsFromMap(mapName, colorStartPoint, colorEndPoint, numberOfColors):
 	scalarColorMap = cm.ScalarMappable(norm=pltc.Normalize(vmin=0, vmax=1.0), cmap=mapName)
 	return {'colors':[scalarColorMap.to_rgba(i) for i in np.linspace(colorStartPoint, colorEndPoint, numberOfColors)], 'smap':scalarColorMap}
 
-def getTestLabel(deviceHistory, waferID, chipID, deviceID):
-	label = str(waferID) + str(chipID) + ':' + deviceID
+def getTestLabel(deviceHistory, identifiers):
+	label = str(identifiers['wafer']) + str(identifiers['chip']) + ':' + identifiers['device']
 	if len(deviceHistory) > 0:
 		test1Num = deviceHistory[0]['experimentNumber']
 		test2Num = deviceHistory[-1]['experimentNumber']

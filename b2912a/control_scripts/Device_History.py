@@ -178,16 +178,16 @@ def run(additional_parameters, plot_mode_parameters=None):
 			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'GateSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
-				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
+				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
 				plotList.append(plot1)
 			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
-				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
+				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
 				plotList.append(plot2)
 			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
-				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters, sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
+				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
 				plotList.append(plot3)
 			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
-				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
+				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters['Identifiers'], timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
 				plotList.append(plot4)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
@@ -200,7 +200,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True)
 			
 			if p['specificPlotToCreate'] in ['FullBurnOutHistory','']:
-				plot = dpu.plotFullBurnOutHistory(burnOutHistory, parameters, mode_params=mode_parameters)
+				plot = dpu.plotFullBurnOutHistory(burnOutHistory, parameters['Identifiers'], mode_params=mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout history.")
@@ -210,7 +210,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 			staticBiasHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'StaticBias.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 			
 			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
-				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters, timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
+				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters['Identifiers'], timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias history.")
@@ -241,7 +241,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 
 
 if __name__ == '__main__':
-	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 145, 145, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S6 floating - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':True, 'staticBiasSegmentDividers':True, 'plotGradient':True})
+	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 145, 145, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data_reformatted', saveFolder='../CurrentPlots', plotSaveName='Figure S6 floating - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':True, 'staticBiasSegmentDividers':True, 'plotGradient':True})
 	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 118, 118, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S5 Grounded Between - ', saveFigures=True, showFigures=False, startRelativeIndex=9, endRelativeIndex=16, plot_mode_parameters={'publication_mode':True,'staticBiasSegmentDividers':True, 'plotGradient':True})
 	#makePlots('stevenjay', 'BiasStress1', 'C127', 'E', '27-28', 3, 4, 'FullTransferCurveHistory', (1.48 *2.24/1.74,1.74 *2.24/1.74), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S1 Comparison - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':True, 'enableColorBar':False})
 	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 137, 137, 'FullStaticBiasHistory', (2.2 *3.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S8 Light - ', saveFigures=True, showFigures=False, plot_mode_parameters={'publication_mode':True, 'plotGradient':False})

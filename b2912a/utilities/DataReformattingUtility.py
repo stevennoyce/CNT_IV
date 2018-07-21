@@ -4,8 +4,8 @@ import numpy as np
 
 import DataLoggerUtility as dlu
 
-load_directory = '../data0/C127/C/'
-save_directory = '../data_reformatted/C127/C/'
+load_directory = '../data0/C127/X/'
+save_directory = '../data_reformatted/C127/X/'
 
 def main():
 	for deviceSubdirectory in [name for name in os.listdir(load_directory) if os.path.isdir(os.path.join(load_directory, name))]:
@@ -37,10 +37,10 @@ def main():
 
 		# GATE SWEEP
 		for deviceRun in gateSweepHistory:
-			if(deviceRun['ParametersFormatVersion'] > 3):
+			if(deviceRun['ParametersFormatVersion'] > 4):
 				continue
 			else:
-				deviceRun['ParametersFormatVersion'] = 3
+				deviceRun['ParametersFormatVersion'] = 4
 
 			deviceRun['Identifiers'] = {}
 			deviceRun['Identifiers']['user'] = 'stevenjay'
@@ -67,10 +67,10 @@ def main():
 		# BURN OUT
 		if(burnedout):
 			for deviceRun in burnOutHistory:
-				if(deviceRun['ParametersFormatVersion'] > 3):
+				if(deviceRun['ParametersFormatVersion'] > 4):
 					continue
 				else:
-					deviceRun['ParametersFormatVersion'] = 3
+					deviceRun['ParametersFormatVersion'] = 4
 
 				deviceRun['Identifiers'] = {}
 				deviceRun['Identifiers']['user'] = 'stevenjay'
@@ -97,10 +97,10 @@ def main():
 		# STATIC BIAS
 		if(staticed):			
 			for deviceRun in staticBiasHistory:
-				if(deviceRun['ParametersFormatVersion'] > 3):
+				if(deviceRun['ParametersFormatVersion'] > 4):
 					continue
 				else:
-					deviceRun['ParametersFormatVersion'] = 3
+					deviceRun['ParametersFormatVersion'] = 4
 
 				deviceRun['Identifiers'] = {}
 				deviceRun['Identifiers']['user'] = 'stevenjay'

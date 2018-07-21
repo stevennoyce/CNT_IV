@@ -57,8 +57,8 @@ def run(additional_parameters, plot_mode_parameters={}):
 		plotList.append(plot)
 
 	if(parameters['specificPlotToCreate'] in ['', 'ChipOnOffRatios']):
-		firstRunChipHistory = dlu.loadFirstRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json', parameters['chipID'])
-		recentRunChipHistory = dlu.loadMostRecentRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json', parameters['chipID'])
+		firstRunChipHistory = dlu.loadFirstRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json', parameters['Identifiers']['chip'])
+		recentRunChipHistory = dlu.loadMostRecentRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json', parameters['Identifiers']['chip'])
 		plot = dpu.plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=plot_mode_parameters)
 		plotList.append(plot)
 

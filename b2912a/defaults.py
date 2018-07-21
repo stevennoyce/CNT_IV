@@ -74,7 +74,7 @@ default_parameters = {
 		'deviceRange': []
 	}
 	'dataFolder': 'data/',
-	'ParametersFormatVersion': 3
+	'ParametersFormatVersion': 4
 }
 
 import copy

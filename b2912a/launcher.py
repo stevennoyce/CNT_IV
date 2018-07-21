@@ -66,7 +66,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 	print('About to begin experiment #' + str(experiment))
 	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
 
-	smu_instance.setDevice(parameters['deviceID'])
+	smu_instance.setDevice(parameters['Identifiers']['device'])
 
 	try:
 		if(parameters['runType'] == 'GateSweep'):
@@ -101,13 +101,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 # Run a "Device History" action.
 def runDeviceHistory(parameters):
 	dh_parameters = {
-		'Identifiers':{
-			'user': parameters['Identifiers']['user']
-			'project': parameters['Identifiers']['project']
-			'wafer': parameters['Identifiers']['wafer'],
-			'chip': parameters['Identifiers']['chip'],
-			'device': parameters['Identifiers']['device'],
-		}
+		'Identifiers': dict(parameters['Identifiers'])
 		'dataFolder': parameters['dataFolder']
 	}
 	if('DeviceHistory' in parameters.keys()):
