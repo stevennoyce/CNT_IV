@@ -53,12 +53,14 @@ def loadJSON_fast(directory, loadFileName, minIndex=0, maxIndex=float('inf'), mi
 	return jsonData
 
 def loadJSONIndex(directory):
+	print('Trying to load JSON Index from ' + directory)
 	indexData = {}
 	try:
 		with open(os.path.join(directory, 'index.json'), 'r') as file:
 			indexData = json.loads(file.readline())
 	except FileNotFoundError:	
 		indexData = {'index':0, 'experimentNumber':0}
+		print('Index file not found')
 	return indexData
 
 def incrementJSONIndex(directory):

@@ -40,7 +40,13 @@ def wafers():
 	sizes = [os.path.getsize(p) for p in paths]
 	chipCounts = [len(glob.glob(p + '/*/')) for p in paths]
 	
-	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'chipCount': c} for n, p, m, s, c in zip(names, paths, modificationTimes, sizes, chipCounts)]
+	indexFileLists = [glob.glob(p + '/**/index.json', recursive=True) for p in paths]
+	
+	indexObjectLists = [[dlu.loadJSONIndex(os.path.dirname(indexFile)) for indexFile in indexFileList] for indexFileList in indexFileLists]
+	indexCounts = [sum([(i['index'] if 'index' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
+	experimentCounts = [sum([(i['experimentNumber'] if 'experimentNumber' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
+	
+	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'chipCount': c, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, c, ic, ec in zip(names, paths, modificationTimes, sizes, chipCounts, indexCounts, experimentCounts)]
 	
 	return flask.jsonify(wafers)
 
@@ -51,7 +57,15 @@ def chips(wafer):
 	modificationTimes = [os.path.getmtime(p) for p in paths]
 	sizes = [os.path.getsize(p) for p in paths]
 	
-	chips = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	subPathsList = [glob.glob(p + '/*/') for p in paths]
+	deviceCounts = [len(subPaths) for subPaths in subPathsList]
+	
+	indexObjectLists = [[dlu.loadJSONIndex(p) for p in subPaths] for subPaths in subPathsList]
+	indexCounts = [sum([(i['index'] if 'index' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
+	experimentCounts = [sum([(i['experimentNumber'] if 'experimentNumber' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
+	
+	print('Not yet', file=sys.stderr)
+	chips = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'deviceCount': d, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, d, ic, ec in zip(names, paths, modificationTimes, sizes, deviceCounts, indexCounts, experimentCounts)]
 	
 	return flask.jsonify(chips)
 
@@ -63,8 +77,12 @@ def devices(wafer, chip):
 	modificationTimes = [os.path.getmtime(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getmtime(p) for p in paths]
 	# sizes = [os.path.getsize(p) for p in paths]
 	sizes = [os.path.getsize(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getsize(p) for p in paths]
+	indexObjects = [dlu.loadJSONIndex(p) for p in paths]
+	print(indexObjects, file=sys.stderr)
+	indexCounts = [i['index'] for i in indexObjects]
+	experimentCounts = [i['experimentNumber'] for i in indexObjects]
 	
-	devices = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
+	devices = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, ic, ec in zip(names, paths, modificationTimes, sizes, indexCounts, experimentCounts)]
 	
 	return flask.jsonify(devices)
 

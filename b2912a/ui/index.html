@@ -103,6 +103,8 @@
 												<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
 												<td>{{ props.item.size }}</td>
 												<td>{{ props.item.chipCount }}</td>
+												<td>{{ props.item.indexCount }}</td>
+												<td>{{ props.item.experimentCount }}</td>
 											</tr>
 										</template>
 									</v-data-table>
@@ -129,6 +131,9 @@
 												<td>{{ props.item.path }}</td>
 												<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
 												<td>{{ props.item.size }}</td>
+												<td>{{ props.item.deviceCount }}</td>
+												<td>{{ props.item.indexCount }}</td>
+												<td>{{ props.item.experimentCount }}</td>
 											</tr>
 										</template>
 									</v-data-table>
@@ -155,6 +160,8 @@
 												<td>{{ props.item.path }}</td>
 												<td>{{ new Date(props.item.modificationTime*1000).toLocaleString() }}</td>
 												<td>{{ props.item.size }}</td>
+												<td>{{ props.item.indexCount }}</td>
+												<td>{{ props.item.experimentCount }}</td>
 											</tr>
 										</template>
 									</v-data-table>
@@ -301,7 +308,9 @@
 					{'text':'Path', 'value':'path', 'searchable':false},
 					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
 					{'text':'Size', 'value':'size', 'searchable':false},
-					{'text':'Tested Chip Count', 'value':'chipCount', 'searchable':false}],
+					{'text':'Tested Chips', 'value':'chipCount', 'searchable':false},
+					{'text':'Indexes', 'value':'indexCount', 'searchable':false},
+					{'text':'Experiments', 'value':'experimentCount', 'searchable':false}],
 				waferTableSearch: '',
 				
 				chips: [],
@@ -310,7 +319,10 @@
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
 					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
-					{'text':'Size', 'value':'size', 'searchable':false}],
+					{'text':'Size', 'value':'size', 'searchable':false},
+					{'text':'Tested Devices', 'value':'deviceCount', 'searchable':false},
+					{'text':'Indexes', 'value':'indexCount', 'searchable':false},
+					{'text':'Experiments', 'value':'experimentCount', 'searchable':false}],
 				chipTableSearch: '',
 				
 				devices: [],
@@ -319,7 +331,9 @@
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
 					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
-					{'text':'Size', 'value':'size', 'searchable':false}],
+					{'text':'Size', 'value':'size', 'searchable':false},
+					{'text':'Indexes', 'value':'indexCount', 'searchable':false},
+					{'text':'Experiments', 'value':'experimentCount', 'searchable':false}],
 				deviceTableSearch: '',
 				
 				experiments: [],
@@ -328,7 +342,7 @@
 					{'text':'Experiment Number', 'value':'startIndexes.experimentNumber'},
 					{'text':'Run Type', 'value':'runType'},
 					{'text':'Measurement System', 'value':'MeasurementSystem'},
-					{'text':'Index Count', 'value':'uiComputed.indexCount'}],
+					{'text':'Indexes', 'value':'uiComputed.indexCount'}],
 				experimentTableSearch: ''
 			},
 			methods: {
