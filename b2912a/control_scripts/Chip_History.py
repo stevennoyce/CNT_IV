@@ -20,10 +20,13 @@ default_ch_parameters = {
 
 
 # === Optional External Interface ===
-def makePlots(waferID, chipID, specificPlot='', dataFolder=None, saveFolder=None, plotSaveName='', showFigures=True, saveFigures=True, mode_parameters={}):
+def makePlots(userID, projectID, waferID, chipID, specificPlot='', dataFolder=None, saveFolder=None, plotSaveName='', showFigures=True, saveFigures=True, mode_parameters={}):
 	parameters = {}	
-	parameters['waferID'] = waferID
-	parameters['chipID'] = chipID
+	parameters['Identifiers'] = {}
+	parameters['Identifiers']['user'] = userID
+	parameters['Identifiers']['project'] = projectID
+	parameters['Identifiers']['wafer'] = waferID
+	parameters['Identifiers']['chip'] = chipID
 
 	if(dataFolder is not None):
 		parameters['dataFolder'] = dataFolder
@@ -69,6 +72,6 @@ def run(additional_parameters, plot_mode_parameters={}):
 
 
 if(__name__ == '__main__'):
-	makePlots('C127', 'E', dataFolder='../data', saveFolder='../CurrentPlots')
+	makePlots('stevenjay', 'BiasStress1', 'C127', 'E', dataFolder='../data', saveFolder='../CurrentPlots')
 
 
