@@ -68,11 +68,14 @@ default_parameters = {
 	'Identifiers':{
 
 	},
+	'Computed':{
+	
+	},
 	'MeasurementSystem':{
 		'system': ['B2912A','PCB2v14'][0],
 		'NPLC':1,
 		'deviceRange': []
-	}
+	},
 	'dataFolder': 'data/',
 	'ParametersFormatVersion': 4
 }

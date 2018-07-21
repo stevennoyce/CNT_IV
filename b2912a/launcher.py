@@ -2,6 +2,7 @@
 import os
 import sys
 import platform
+import time
 
 from control_scripts import Burn_Out as burnOutScript
 from control_scripts import Gate_Sweep as gateSweepScript
@@ -64,7 +65,8 @@ def runAction(parameters, smu_instance, arduino_instance):
 def runSMU(parameters, smu_instance, arduino_instance):
 	experiment = dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
 	print('About to begin experiment #' + str(experiment))
-	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])	
+	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	parameters['startIndexes']['timestamp'] = time.time()
 
 	smu_instance.setDevice(parameters['Identifiers']['device'])
 
@@ -91,6 +93,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 
 	smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
+	parameters['endIndexes']['timestamp'] = time.time()
 
 	print('Saving to ParametersHistory...')
 	dlu.saveJSON(dlu.getDeviceDirectory(parameters), 'ParametersHistory', parameters, incrementIndex=False)

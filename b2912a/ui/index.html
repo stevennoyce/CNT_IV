@@ -179,6 +179,7 @@
 												<td>{{ props.item.startIndexes.experimentNumber }}</td>
 												<td>{{ props.item.runType }}</td>
 												<td>{{ props.item.MeasurementSystem }}</td>
+												<td>{{ props.item.endIndexes.index - props.item.startIndexes.index }}</td>
 											</tr>
 										</template>
 									</v-data-table>
@@ -197,7 +198,7 @@
 									<v-container fluid grid-list-sm>
 										<v-layout row wrap>
 											
-											<v-flex xs12 md6 lg4 xl3 d-flex v-for="possiblePlot in experiment.possiblePlots">
+											<v-flex xs12 sm6 md4 lg3 xl2 d-flex v-for="possiblePlot in experiment.possiblePlots">
 												<v-card class="ma-1" tile>
 													<v-toolbar dark class="blue-grey lighten-1">
 														<v-toolbar-title>
@@ -324,7 +325,8 @@
 				experimentTableHeaders: [
 					{'text':'Experiment Number', 'value':'startIndexes.experimentNumber'},
 					{'text':'Run Type', 'value':'runType'},
-					{'text':'Measurement System', 'value':'MeasurementSystem'}],
+					{'text':'Measurement System', 'value':'MeasurementSystem'},
+					{'text':'Index Count', 'value':'endIndexes.index - startIndexes.index'}],
 				experimentTableSearch: ''
 			},
 			methods: {
