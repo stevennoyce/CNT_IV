@@ -3,6 +3,7 @@ import os
 import sys
 import platform
 import time
+import copy
 
 from control_scripts import Burn_Out as burnOutScript
 from control_scripts import Gate_Sweep as gateSweepScript
@@ -26,9 +27,6 @@ import defaults
 def run(additional_parameters):
 	parameters = defaults.with_added(additional_parameters)
 
-	# Define the working directory for saving all device data
-	parameters['deviceDirectory'] = dlu.getDeviceDirectory(parameters)
-
 	# Initialize measurement system
 	smu_instance = initSMU(parameters)		
 
@@ -39,9 +37,8 @@ def run(additional_parameters):
 	# Run specified action:
 	if((parameters['MeasurementSystem']['system'] == 'PCB2v14') and (len(parameters['MeasurementSystem']['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
 		for device in parameters['MeasurementSystem']['deviceRange']:
-			params = dict(parameters)
+			params = copy.deepcopy(parameters)
 			params['Identifiers']['device'] = device
-			params['deviceDirectory'] = dlu.getDeviceDirectory(params)
 			runAction(params, smu_instance, arduino_instance)
 	else:
 		runAction(parameters, smu_instance, arduino_instance)
@@ -52,7 +49,7 @@ def run(additional_parameters):
 # Run generic user action
 def runAction(parameters, smu_instance, arduino_instance):
 	print('Creating save folder.')
-	dlu.makeFolder(parameters['deviceDirectory'])
+	dlu.makeFolder(dlu.getDeviceDirectory(parameters))
 
 	if(parameters['runType'] == 'DeviceHistory'):
 		runDeviceHistory(parameters)
@@ -63,9 +60,9 @@ def runAction(parameters, smu_instance, arduino_instance):
 
 # Run an action that interfaces with the SMU.
 def runSMU(parameters, smu_instance, arduino_instance):
-	experiment = dlu.incrementJSONExperiementNumber(parameters['deviceDirectory'])
+	experiment = dlu.incrementJSONExperiementNumber(dlu.getDeviceDirectory(parameters))
 	print('About to begin experiment #' + str(experiment))
-	parameters['startIndexes'] = dlu.loadJSONIndex(parameters['deviceDirectory'])
+	parameters['startIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 	parameters['startIndexes']['timestamp'] = time.time()
 
 	smu_instance.setDevice(parameters['Identifiers']['device'])

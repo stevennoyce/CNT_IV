@@ -49,10 +49,11 @@ def main():
 			deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 			deviceRun['Identifiers']['device'] = deviceRun['deviceID']
 			deviceRun['Identifiers']['step'] = None
-			deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 			del deviceRun['waferID']
 			del deviceRun['chipID']
 			del deviceRun['deviceID']
+			if('deviceDirectory' in deviceRun):
+				del deviceRun['deviceDirectory']
 
 			system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
 			deviceRun['MeasurementSystem'] = {}
@@ -79,10 +80,11 @@ def main():
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
 				deviceRun['Identifiers']['step'] = None
-				deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 				del deviceRun['waferID']
 				del deviceRun['chipID']
 				del deviceRun['deviceID']
+				if('deviceDirectory' in deviceRun):
+					del deviceRun['deviceDirectory']
 
 				system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
 				deviceRun['MeasurementSystem'] = {}
@@ -109,10 +111,11 @@ def main():
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
 				deviceRun['Identifiers']['step'] = None
-				deviceRun['deviceDirectory'] = 'data/stevenjay/BiasStress1/' + deviceRun['Identifiers']['wafer'] + '/' + deviceRun['Identifiers']['chip'] + '/' + deviceRun['Identifiers']['device'] + '/'
 				del deviceRun['waferID']
 				del deviceRun['chipID']
 				del deviceRun['deviceID']
+				if('deviceDirectory' in deviceRun):
+					del deviceRun['deviceDirectory']
 
 				system = deviceRun['MeasurementSystem'] if('MeasurementSystem' in deviceRun) else 'B2912A'
 				deviceRun['MeasurementSystem'] = {}
