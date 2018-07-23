@@ -82,11 +82,16 @@ def runSMU(parameters, smu_instance, arduino_instance):
 			autoBiasScript.run(parameters, smu_instance, arduino_instance)
 		else:
 			raise NotImplementedError("Invalid action for the Source Measure Unit")
-	except:
+	except Exception as e:
 		smu_instance.rampDownVoltages()
-		choice = str(input('An error occurred. Quit before posting plots? (y/n):'))
-		if(choice == 'y'):
-			raise
+
+		parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
+		parameters['endIndexes']['timestamp'] = time.time()
+		print('Saving to ParametersHistory...')
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), 'ParametersHistory', parameters, incrementIndex=False)
+
+		print('ERROR: Exception raised during the experiment.')
+		raise
 
 	smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
