@@ -4,24 +4,32 @@ import numpy as np
 
 import DataLoggerUtility as dlu
 
-load_directory = '../data0/C127/X/'
-save_directory = '../data_reformatted/C127/X/'
+load_directory = '../data0/C127'
+save_directory = '../data_reformatted/C127'
 
-def main():
+def reformat_wafer(load_directory, save_directory):
+	for chipSubdirectory in [name for name in os.listdir(load_directory) if os.path.isdir(os.path.join(load_directory, name))]:
+		chipLoadDirectory = os.path.join(load_directory, chipSubdirectory)
+		chipSaveDirectory = os.path.join(save_directory, chipSubdirectory)
+		reformat_chip(chipLoadDirectory, chipSaveDirectory)
+
+def reformat_chip(load_directory, save_directory):
 	for deviceSubdirectory in [name for name in os.listdir(load_directory) if os.path.isdir(os.path.join(load_directory, name))]:
 		deviceLoadDirectory = os.path.join(load_directory, deviceSubdirectory)
 		deviceSaveDirectory = os.path.join(save_directory, deviceSubdirectory)
+		reformat_device(load_directory, save_directory)
 
+def reformat_device(load_directory, save_directory):
 		# Load device history for GateSweep, BurnOut, and StaticBias
-		gateSweepHistory = dlu.loadJSON(deviceLoadDirectory, 'GateSweep.json')
+		gateSweepHistory = dlu.loadJSON(load_directory, 'GateSweep.json')
 		try:
-			burnOutHistory = dlu.loadJSON(deviceLoadDirectory, 'BurnOut.json')
+			burnOutHistory = dlu.loadJSON(load_directory, 'BurnOut.json')
 			burnedout = True
 		except:
 			print('Device: ' + deviceSubdirectory + ' no burn-out')
 			burnedout = False
 		try:
-			staticBiasHistory = dlu.loadJSON(deviceLoadDirectory, 'StaticBias.json')
+			staticBiasHistory = dlu.loadJSON(load_directory, 'StaticBias.json')
 			staticed = True
 		except:
 			print('Device: ' + deviceSubdirectory + ' no static bias')
@@ -136,19 +144,19 @@ def main():
 
 		# Save device history for GateSweep, BurnOut, and StaticBias
 		for deviceRun in gateSweepHistory:
-			dlu.saveJSON(deviceSaveDirectory, 'GateSweep', deviceRun, incrementIndex=False)
+			dlu.saveJSON(save_directory, 'GateSweep', deviceRun, incrementIndex=False)
 		if(burnedout):
 			for deviceRun in burnOutHistory:
-				dlu.saveJSON(deviceSaveDirectory, 'BurnOut', deviceRun, incrementIndex=False)
+				dlu.saveJSON(save_directory, 'BurnOut', deviceRun, incrementIndex=False)
 		if(staticed):
 			for deviceRun in staticBiasHistory:
-				dlu.saveJSON(deviceSaveDirectory, 'StaticBias', deviceRun, incrementIndex=False)
+				dlu.saveJSON(save_directory, 'StaticBias', deviceRun, incrementIndex=False)
 		# *************************************************************
 
 
 
 if(__name__ == '__main__'):
-	main()
+	reformat_wafer(load_directory, save_directory)
 
 
 
