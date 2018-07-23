@@ -27,14 +27,14 @@ def sendStatic(path):
 def sendPlot(wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
 	filebuf = io.BytesIO()
-	DH.makePlots('..', 'data0', wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False)
+	DH.makePlots('stevenjay', 'BiasStress1', wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False)
 	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
 
 @app.route('/wafers.json')
 def wafers():
-	paths = glob.glob('data0/*/')
+	paths = glob.glob('data/stevenjay/BiasStress1/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	modificationTimes = [os.path.getmtime(p) for p in paths]
 	sizes = [os.path.getsize(p) for p in paths]
@@ -51,7 +51,7 @@ def wafers():
 
 @app.route('/<wafer>/chips.json')
 def chips(wafer):
-	paths = glob.glob('data0/' + wafer + '/*/')
+	paths = glob.glob('data/stevenjay/BiasStress1/' + wafer + '/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	modificationTimes = [os.path.getmtime(p) for p in paths]
 	sizes = [os.path.getsize(p) for p in paths]
@@ -69,7 +69,7 @@ def chips(wafer):
 
 @app.route('/<wafer>/<chip>/devices.json')
 def devices(wafer, chip):
-	paths = glob.glob('data0/' + wafer + '/' + chip + '/*/')
+	paths = glob.glob('data/stevenjay/BiasStress1/' + wafer + '/' + chip + '/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	# modificationTimes = [os.path.getmtime(p) for p in paths]
 	modificationTimes = [os.path.getmtime(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getmtime(p) for p in paths]
@@ -86,7 +86,7 @@ def devices(wafer, chip):
 
 @app.route('/<wafer>/<chip>/<device>/experiments.json')
 def experiments(wafer, chip, device):
-	folder = 'data0/' + wafer + '/' + chip + '/' + device + '/'
+	folder = 'data/stevenjay/BiasStress1/' + wafer + '/' + chip + '/' + device + '/'
 	files = glob.glob(folder + '*.json')
 	fileNames = [os.path.basename(f) for f in files]
 	

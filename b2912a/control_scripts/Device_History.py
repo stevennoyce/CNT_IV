@@ -119,7 +119,7 @@ def getPossiblePlotNames(parameters):
 
 
 # === Optional External Interface ===
-def makePlots(waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, userID='', projectID='', saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, sweepDirection='reverse', plotInRealTime=True, startRelativeIndex=0, endRelativeIndex=float('inf'), plot_mode_parameters=None):
+def makePlots(userID, projectID, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, sweepDirection='reverse', plotInRealTime=True, startRelativeIndex=0, endRelativeIndex=float('inf'), plot_mode_parameters=None):
 	parameters = {}	
 	mode_parameters = {}
 	if(plot_mode_parameters is not None):
@@ -262,7 +262,7 @@ if __name__ == '__main__':
 	#makePlots('C127', 'E', '15-16', 1, 1, 'FullBurnOutHistory', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S3 burnout - ', saveFigures=True, showFigures=True, startRelativeIndex=5, plot_mode_parameters={'publication_mode':True})
 	#makePlots('C127', 'E', '15-16', 1, 1, 'FullSubthresholdCurveHistory', (1.48 *2.24/1.74,1.74 *2.24/1.74), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S3 burnout gs - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'errorBarsOn':False, 'legendLabels':['Initial','After Burn-out']})
 	#makePlots('C127', 'P', '1-2', 8, 8, 'FullStaticBiasHistory', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data/stevenjay/BiasStress1', saveFolder='../CurrentPlots', plotSaveName='Figure - ', saveFigures=False, showFigures=True, startRelativeIndex=20, endRelativeIndex=70, plot_mode_parameters={'publication_mode':True})
-	#makePlots('C127', 'X', '15-16', 105, 125, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data/stevenjay/BiasStress1', saveFolder='../CurrentPlots', plotSaveName='Figure S14 - ', saveFigures=False, showFigures=True, plot_mode_parameters={'publication_mode':True, 'errorBarsOn':False})
+	makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 105, 125, 'FullSubthresholdCurveHistory', (1.45 *2.24/1.55,1.55 *2.24/1.55), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S14 - ', saveFigures=False, showFigures=True, plot_mode_parameters={'publication_mode':True, 'errorBarsOn':False})
 	pass
 
 
