@@ -415,8 +415,8 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 	if(mode_params is not None):
 		mode_parameters.update(mode_params)
 	
-	vds_setpoint_values = [jsonData['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
-	vgs_setpoint_values = [jsonData['StaticBias']['gateVoltageSetPoint'] for jsonData in deviceHistory]
+	vds_setpoint_values = [jsonData['runConfigs']['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
+	vgs_setpoint_values = [jsonData['runConfigs']['StaticBias']['gateVoltageSetPoint'] for jsonData in deviceHistory]
 	vds_setpoint_changes = min(vds_setpoint_values) != max(vds_setpoint_values)
 	vgs_setpoint_changes = min(vgs_setpoint_values) != max(vgs_setpoint_values)
 	
@@ -489,18 +489,18 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 			
 		if(includeDualAxis):
 			if vds_setpoint_changes:
-				vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
+				vds_line = plotOverTime(vds_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['runConfigs']['StaticBias']['drainVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
 			if vgs_setpoint_changes:
-				vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
+				vgs_line = plotOverTime(vgs_ax, deviceHistory[i]['Results']['timestamps'], [deviceHistory[i]['runConfigs']['StaticBias']['gateVoltageSetPoint']]*len(deviceHistory[i]['Results']['timestamps']), plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
 				
 		# Compare current plot's parameters to the next ones, and save any differences
-		if((i == 0) or (deviceHistory[i]['StaticBias'] != deviceHistory[i-1]['StaticBias']) or mode_parameters['staticBiasSegmentDividers']):
+		if((i == 0) or (deviceHistory[i]['runConfigs']['StaticBias'] != deviceHistory[i-1]['runConfigs']['StaticBias']) or mode_parameters['staticBiasSegmentDividers']):
 			dotted_lines.append({'x':time_offset})
-			for key in set(deviceHistory[i]['StaticBias'].keys()).intersection(deviceHistory[i-1]['StaticBias'].keys()):
-				if((i == 0) or deviceHistory[i]['StaticBias'][key] != deviceHistory[i-1]['StaticBias'][key]):
+			for key in set(deviceHistory[i]['runConfigs']['StaticBias'].keys()).intersection(deviceHistory[i-1]['runConfigs']['StaticBias'].keys()):
+				if((i == 0) or deviceHistory[i]['runConfigs']['StaticBias'][key] != deviceHistory[i-1]['runConfigs']['StaticBias'][key]):
 					if(key not in parameter_labels):
 						parameter_labels[key] = []
-					parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['StaticBias'][key]})
+					parameter_labels[key].append({'x':time_offset, key:deviceHistory[i]['runConfigs']['StaticBias'][key]})
 	
 	
 	# Increase height of the plot to give more room for labels
@@ -524,7 +524,7 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 				for i in range(len(parameter_labels['gateVoltageSetPoint'])):
 					ax.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax.get_ylim()[1]*(0.09 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 	
-	biasTimes = [jsonData['StaticBias']['totalBiasTime'] for jsonData in deviceHistory]
+	biasTimes = [jsonData['runConfigs']['StaticBias']['totalBiasTime'] for jsonData in deviceHistory]
 	biasTimeSeconds = np.mean(biasTimes)
 	
 	legend_title = ''
@@ -593,8 +593,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	if(mode_params is not None):
 		mode_parameters.update(mode_params)
 	
-	vds_setpoint_values = [jsonData['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
-	vgs_setpoint_values = [jsonData['StaticBias']['gateVoltageSetPoint'] for jsonData in deviceHistory]
+	vds_setpoint_values = [jsonData['runConfigs']['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
+	vgs_setpoint_values = [jsonData['runConfigs']['StaticBias']['gateVoltageSetPoint'] for jsonData in deviceHistory]
 	vds_setpoint_changes = min(vds_setpoint_values) != max(vds_setpoint_values)
 	vgs_setpoint_changes = min(vgs_setpoint_values) != max(vgs_setpoint_values)
 	
@@ -643,8 +643,8 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	offCurrents = []
 	timestamps = []
 	for deviceRun in deviceHistory:
-		onCurrents.append(deviceRun['Results']['onCurrent'])
-		offCurrents.append(deviceRun['Results']['offCurrent'])
+		onCurrents.append(deviceRun['Computed']['onCurrent'])
+		offCurrents.append(deviceRun['Computed']['offCurrent'])
 		timestamps.append(flatten(deviceRun['Results']['timestamps'])[0])
 	
 	# Plot On Current
@@ -673,12 +673,12 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 			t_0 = timestamps[0]
 			t_i = timestamps[i]
 			time_offset = (t_i - t_0)
-			t_i_next = timestamps[i] + deviceHistory[i]['StaticBias']['totalBiasTime']/secondsPer(timescale)
+			t_i_next = timestamps[i] + deviceHistory[i]['runConfigs']['StaticBias']['totalBiasTime']/secondsPer(timescale)
 
 			if vds_setpoint_changes:
-				vds_line = plotOverTime(vds_ax, [timestamps[i], t_i_next], [deviceHistory[i]['StaticBias']['drainVoltageSetPoint']]*2, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
+				vds_line = plotOverTime(vds_ax, [timestamps[i], t_i_next], [deviceHistory[i]['runConfigs']['StaticBias']['drainVoltageSetPoint']]*2, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], offset=time_offset)
 			if vgs_setpoint_changes:
-				vgs_line = plotOverTime(vgs_ax, [timestamps[i], t_i_next], [deviceHistory[i]['StaticBias']['gateVoltageSetPoint']]*2, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
+				vgs_line = plotOverTime(vgs_ax, [timestamps[i], t_i_next], [deviceHistory[i]['runConfigs']['StaticBias']['gateVoltageSetPoint']]*2, plt.rcParams['axes.prop_cycle'].by_key()['color'][3], offset=time_offset)
 	
 	# Add Legend
 	lines1, labels1 = ax1.get_legend_handles_labels()
@@ -757,10 +757,10 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 	firstOnOffRatios = []
 	for deviceRun in firstRunChipHistory:
 		devices.append(deviceRun['Identifiers']['device']) 
-		firstOnOffRatios.append(np.log10(deviceRun['Results']['onOffRatio']))
+		firstOnOffRatios.append(np.log10(deviceRun['Computed']['onOffRatio']))
 	lastOnOffRatios = len(devices)*[0]
 	for deviceRun in recentRunChipHistory:
-		lastOnOffRatios[devices.index(deviceRun['Identifiers']['device'])] = np.log10(deviceRun['Results']['onOffRatio'])
+		lastOnOffRatios[devices.index(deviceRun['Identifiers']['device'])] = np.log10(deviceRun['Computed']['onOffRatio'])
 
 	lastOnOffRatios, devices, firstOnOffRatios = zip(*(reversed(sorted(zip(lastOnOffRatios, devices, firstOnOffRatios)))))
 
@@ -796,7 +796,7 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 
 	# Sort data if it was collected in an unordered fashion
 	try:
-		if(jsonData['GateSweep']['isAlternatingSweep']):
+		if(jsonData['runConfigs']['GateSweep']['isAlternatingSweep']):
 			forward_x, forward_y = zip(*sorted(zip(x[0], y[0])))
 			reverse_x, reverse_y = zip(*reversed(sorted(zip(x[1], y[1]))))
 			x = [list(forward_x), list(reverse_x)]
@@ -835,8 +835,8 @@ def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', fitSubthr
 	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=lineStyle, errorBars=errorBars)
 	axisLabels(axis, x_label=plot_parameters['SubthresholdCurve']['xlabel'], y_label=plot_parameters['SubthresholdCurve']['ylabel'])
 	if(includeLabel): 
-		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['Results']['onOffRatio'])))
-		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(max(abs(np.array(flatten(jsonData['Results']['ig_data']))))))
+		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['Computed']['onOffRatio'])))
+		setLabel(line, 'max $|I_{g}|$'+': {:.2e}'.format(jsonData['Computed']['ig_max']))
 	if(fitSubthresholdSwing):
 		startIndex, endIndex = steepestRegion(np.log10(np.abs(jsonData['Results']['id_data'][0])), 10)
 		vgs_region = jsonData['Results']['vgs_data'][0][startIndex:endIndex]
@@ -861,7 +861,7 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None):
 	axisLabels(axis1, x_label=plot_parameters['BurnOut']['vds_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
 	# Add burn threshold annotation
-	currentThreshold = np.percentile(np.array(jsonData['Results']['id_data']), 90) * jsonData['BurnOut']['thresholdProportion'] * 10**6
+	currentThreshold = np.percentile(np.array(jsonData['Results']['id_data']), 90) * jsonData['runConfigs']['BurnOut']['thresholdProportion'] * 10**6
 	axis1.plot([0, jsonData['Results']['vds_data'][-1]], [currentThreshold, currentThreshold], color=lineColor, linestyle='--', linewidth=1)
 	axis1.annotate(plot_parameters['BurnOut']['id_annotation'], xy=(0, currentThreshold), xycoords='data', horizontalalignment='left', verticalalignment='bottom', color=lineColor)
 	

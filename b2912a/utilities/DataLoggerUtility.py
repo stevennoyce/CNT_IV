@@ -112,7 +112,7 @@ def loadChipIndexes(directory):
 		chipIndexes[deviceSubdirectory] = indexData
 	return chipIndexes
 
-def loadFullChipHistory(directory, fileName, chipID):
+def loadFullChipHistory(directory, fileName):
 	chipHistory = []
 	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
 		jsonData = loadJSON(os.path.join(directory, deviceSubdirectory), fileName)
@@ -120,8 +120,8 @@ def loadFullChipHistory(directory, fileName, chipID):
 			chipHistory.append(deviceRun)
 	return chipHistory
 
-def loadFirstRunChipHistory(directory, fileName, chipID):
-	fullChipHistory = loadFullChipHistory(directory, fileName, chipID)
+def loadFirstRunChipHistory(directory, fileName):
+	fullChipHistory = loadFullChipHistory(directory, fileName)
 	firstRunsOnly = []
 	devicesLogged = []
 	for i in range(len(fullChipHistory)):
@@ -131,8 +131,8 @@ def loadFirstRunChipHistory(directory, fileName, chipID):
 			devicesLogged.append(deviceRun['Identifiers']['device'])
 	return firstRunsOnly
 
-def loadMostRecentRunChipHistory(directory, fileName, chipID):
-	fullChipHistory = list(reversed(loadFullChipHistory(directory, fileName, chipID)))
+def loadMostRecentRunChipHistory(directory, fileName):
+	fullChipHistory = list(reversed(loadFullChipHistory(directory, fileName)))
 	lastRunsOnly = []
 	devicesLogged = []
 	for i in range(len(fullChipHistory)):

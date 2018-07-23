@@ -1,11 +1,14 @@
 import glob
 import os
+import sys
 import numpy as np
 
+if(__name__ == '__main__'):
+	sys.path.append(sys.path[0] + '/..')
 import DataLoggerUtility as dlu
 
-load_directory = '../data0/C127'
-save_directory = '../data_reformatted/C127'
+load_directory = '../../data_to_reformat/C127'
+save_directory = '../../data_reformatted/C127'
 
 def reformat_wafer(load_directory, save_directory):
 	for chipSubdirectory in [name for name in os.listdir(load_directory) if os.path.isdir(os.path.join(load_directory, name))]:
@@ -64,8 +67,6 @@ def reformat_device(load_directory, save_directory):
 		for deviceRun in gateSweepHistory:
 			if(deviceRun['ParametersFormatVersion'] > 4):
 				continue
-			else:
-				deviceRun['ParametersFormatVersion'] = 4
 
 			deviceRun['Identifiers'] = {}
 			deviceRun['Identifiers']['user'] = 'stevenjay'
@@ -73,7 +74,7 @@ def reformat_device(load_directory, save_directory):
 			deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 			deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 			deviceRun['Identifiers']['device'] = deviceRun['deviceID']
-			deviceRun['Identifiers']['step'] = None
+			deviceRun['Identifiers']['step'] = 0
 			del deviceRun['waferID']
 			del deviceRun['chipID']
 			del deviceRun['deviceID']
@@ -101,8 +102,6 @@ def reformat_device(load_directory, save_directory):
 			for deviceRun in burnOutHistory:
 				if(deviceRun['ParametersFormatVersion'] > 4):
 					continue
-				else:
-					deviceRun['ParametersFormatVersion'] = 4
 
 				deviceRun['Identifiers'] = {}
 				deviceRun['Identifiers']['user'] = 'stevenjay'
@@ -110,7 +109,7 @@ def reformat_device(load_directory, save_directory):
 				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
-				deviceRun['Identifiers']['step'] = None
+				deviceRun['Identifiers']['step'] = 0
 				del deviceRun['waferID']
 				del deviceRun['chipID']
 				del deviceRun['deviceID']
@@ -138,8 +137,6 @@ def reformat_device(load_directory, save_directory):
 			for deviceRun in staticBiasHistory:
 				if(deviceRun['ParametersFormatVersion'] > 4):
 					continue
-				else:
-					deviceRun['ParametersFormatVersion'] = 4
 
 				deviceRun['Identifiers'] = {}
 				deviceRun['Identifiers']['user'] = 'stevenjay'
@@ -147,7 +144,7 @@ def reformat_device(load_directory, save_directory):
 				deviceRun['Identifiers']['wafer'] = deviceRun['waferID']
 				deviceRun['Identifiers']['chip'] = deviceRun['chipID']
 				deviceRun['Identifiers']['device'] = deviceRun['deviceID']
-				deviceRun['Identifiers']['step'] = None
+				deviceRun['Identifiers']['step'] = 0
 				del deviceRun['waferID']
 				del deviceRun['chipID']
 				del deviceRun['deviceID']

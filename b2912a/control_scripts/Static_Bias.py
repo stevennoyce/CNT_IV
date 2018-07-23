@@ -11,19 +11,21 @@ from utilities import DataLoggerUtility as dlu
 # === Main ===
 def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False):
 	# Create distinct parameters for plotting the results
-	deviceHistoryParameters = {}
-	deviceHistoryParameters['Identifiers'] = dict(parameters['Identifiers'])
-	deviceHistoryParameters['dataFolder'] = parameters['dataFolder']
-	deviceHistoryParameters['plotGateSweeps'] = False
-	deviceHistoryParameters['plotBurnOuts'] = False
-	deviceHistoryParameters['plotStaticBias'] = True
-	deviceHistoryParameters['showFiguresGenerated'] = True
-	deviceHistoryParameters['saveFiguresGenerated'] = True
-	deviceHistoryParameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
-	deviceHistoryParameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	dh_parameters = {}
+	dh_parameters['Identifiers'] = dict(parameters['Identifiers'])
+	dh_parameters['dataFolder'] = parameters['dataFolder']
+	dh_parameters['plotGateSweeps'] = False
+	dh_parameters['plotBurnOuts'] = False
+	dh_parameters['plotStaticBias'] = True
+	dh_parameters['showFiguresGenerated'] = True
+	dh_parameters['saveFiguresGenerated'] = True
+	dh_parameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
-	print('Applying static bias of V_GS='+str(parameters['StaticBias']['gateVoltageSetPoint'])+'V, V_DS='+str(parameters['StaticBias']['drainVoltageSetPoint'])+'V for '+str(parameters['StaticBias']['totalBiasTime'])+' seconds...')
-	smu_instance.setComplianceCurrent(parameters['StaticBias']['complianceCurrent'])	
+	sb_parameters = parameters['runConfigs']['StaticBias']
+
+	print('Applying static bias of V_GS='+str(sb_parameters['gateVoltageSetPoint'])+'V, V_DS='+str(sb_parameters['drainVoltageSetPoint'])+'V for '+str(sb_parameters['totalBiasTime'])+' seconds...')
+	smu_instance.setComplianceCurrent(sb_parameters['complianceCurrent'])	
 
 	# Ensure all sensor data is reset to empty lists so that there is one-to-one mapping between device and sensor measurements
 	sensor_data = arduino_instance.takeMeasurement()
@@ -32,37 +34,39 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 
 	# === START ===
 	# Delay before applying voltage (can be used in AutoStaticBias to hold the device grounded between runs)
-	if(parameters['StaticBias']['delayBeforeApplyingVoltage'] > 0):
-		time.sleep(parameters['StaticBias']['delayBeforeApplyingVoltage'])
+	if(sb_parameters['delayBeforeApplyingVoltage'] > 0):
+		time.sleep(sb_parameters['delayBeforeApplyingVoltage'])
 
-	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageSetPoint'])
-	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageSetPoint'])
+	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageSetPoint'])
+	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageSetPoint'])
 
 	# Delay before measurements begin (only useful for allowing current to settle a little, not usually necessary)
-	if(parameters['StaticBias']['delayBeforeMeasurementsBegin'] > 0):
-		time.sleep(parameters['StaticBias']['delayBeforeMeasurementsBegin'])
+	if(sb_parameters['delayBeforeMeasurementsBegin'] > 0):
+		time.sleep(sb_parameters['delayBeforeMeasurementsBegin'])
 
 	results = runStaticBias(smu_instance, 
 							arduino_instance,
-							drainVoltageSetPoint=parameters['StaticBias']['drainVoltageSetPoint'],
-							gateVoltageSetPoint=parameters['StaticBias']['gateVoltageSetPoint'],
-							totalBiasTime=parameters['StaticBias']['totalBiasTime'], 
-							measurementTime=parameters['StaticBias']['measurementTime'])
-	smu_instance.rampGateVoltageTo(parameters['StaticBias']['gateVoltageWhenDone'])
-	smu_instance.rampDrainVoltageTo(parameters['StaticBias']['drainVoltageWhenDone'])
+							drainVoltageSetPoint=sb_parameters['drainVoltageSetPoint'],
+							gateVoltageSetPoint=sb_parameters['gateVoltageSetPoint'],
+							totalBiasTime=sb_parameters['totalBiasTime'], 
+							measurementTime=sb_parameters['measurementTime'])
+	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageWhenDone'])
+	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageWhenDone'])
 
 	# Copy parameters and add in the test results
+	parameters['Computed'] = results['Computed']
+
 	jsonData = dict(parameters)
-	jsonData['Results'] = results
+	jsonData['Results'] = results['Raw']
 	
 	# Save results as a JSON object
 	if(isSavingResults):
 		print('Saving JSON.')
-		dlu.saveJSON(dlu.getDeviceDirectory(parameters), parameters['StaticBias']['saveFileName'], jsonData)
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), sb_parameters['saveFileName'], jsonData)
 	
 	# Show plots to the user
 	if(isPlottingResults):
-		deviceHistoryScript.run(deviceHistoryParameters)
+		deviceHistoryScript.run(dh_parameters)
 	
 	return jsonData
 
@@ -110,11 +114,18 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	print('')
 
 	return {
-		'vds_data':vds_data,
-		'id_data':id_data,
-		'vgs_data':vgs_data,
-		'ig_data':ig_data,
-		'timestamps':timestamps
+		'Raw':{
+			'vds_data':vds_data,
+			'id_data':id_data,
+			'vgs_data':vgs_data,
+			'ig_data':ig_data,
+			'timestamps':timestamps
+		},
+		'Computed':{
+			'id_std':drainCurrentSTD(id_data)
+		}
 	}
 
+def drainCurrentSTD(drainCurrent):
+	return np.std(drainCurrent)
 

@@ -17,17 +17,19 @@ def run(parameters, smu_instance):
 	runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters)
 
 def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParameters):
-	targetOnOffRatio = parameters['AutoBurnOut']['targetOnOffRatio']
-	allowedDegradationFactor = parameters['AutoBurnOut']['limitOnOffRatioDegradation']
-	burnOutLimit = parameters['AutoBurnOut']['limitBurnOutsAllowed']
+	abo_parameters = parameters['runConfigs']['AutoBurnOut']
+
+	targetOnOffRatio = abo_parameters['targetOnOffRatio']
+	allowedDegradationFactor = abo_parameters['limitOnOffRatioDegradation']
+	burnOutLimit = abo_parameters['limitBurnOutsAllowed']
 	burnOutCount = 0
 
 	# === START ===
 	# Take an initial sweep to get a baseline for device performance
-	print('Beginning AutoBurnOut with a target On/Off ratio of: '+str(parameters['AutoBurnOut']['targetOnOffRatio']))
+	print('Beginning AutoBurnOut with a target On/Off ratio of: '+str(abo_parameters['targetOnOffRatio']))
 	print('Taking an initial sweep to get baseline performance of the device...')
 	sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
-	previousOnOffRatio = sweepResults['Results']['onOffRatio']
+	previousOnOffRatio = sweepResults['Computed']['onOffRatio']
 
 	while((previousOnOffRatio < targetOnOffRatio) and (burnOutCount < burnOutLimit)):
 		print('Starting burnout #'+str(burnOutCount+1))
@@ -37,7 +39,7 @@ def runAutoBurnOut(parameters, smu_instance, gateSweepParameters, burnOutParamet
 		sweepResults = gateSweepScript.run(gateSweepParameters, smu_instance, True, False)
 
 		# If the On/Off ratio dropped by more than 'allowedDegredationFactor' stop BurnOut now
-		currentOnOffRatio = sweepResults['Results']['onOffRatio']
+		currentOnOffRatio = sweepResults['Computed']['onOffRatio']
 		if(currentOnOffRatio < allowedDegradationFactor*previousOnOffRatio):
 			break
 		previousOnOffRatio = currentOnOffRatio

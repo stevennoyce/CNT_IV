@@ -12,46 +12,50 @@ from utilities import DataGeneratorUtility as dgu
 # === Main ===
 def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False):
 	# Create distinct parameters for plotting the results
-	deviceHistoryParameters = {}
-	deviceHistoryParameters['Identifiers'] = dict(parameters['Identifiers'])
-	deviceHistoryParameters['dataFolder'] = parameters['dataFolder']
-	deviceHistoryParameters['plotGateSweeps'] = False
-	deviceHistoryParameters['plotBurnOuts'] = True
-	deviceHistoryParameters['plotStaticBias'] = False
-	deviceHistoryParameters['showFiguresGenerated'] = True
-	deviceHistoryParameters['saveFiguresGenerated'] = True
-	deviceHistoryParameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
-	deviceHistoryParameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
+	dh_parameters = {}
+	dh_parameters['Identifiers'] = dict(parameters['Identifiers'])
+	dh_parameters['dataFolder'] = parameters['dataFolder']
+	dh_parameters['plotGateSweeps'] = False
+	dh_parameters['plotBurnOuts'] = True
+	dh_parameters['plotStaticBias'] = False
+	dh_parameters['showFiguresGenerated'] = True
+	dh_parameters['saveFiguresGenerated'] = True
+	dh_parameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
+	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
-	print('Attempting to burnout metallic CNTs: V_GS='+str(parameters['BurnOut']['gateVoltageSetPoint'])+'V, max V_DS='+str(parameters['BurnOut']['drainVoltageMaxPoint'])+'V')
-	smu_instance.setComplianceCurrent(parameters['BurnOut']['complianceCurrent'])	
+	bo_parameters = parameters['runConfigs']['BurnOut']
+
+	print('Attempting to burnout metallic CNTs: V_GS='+str(bo_parameters['gateVoltageSetPoint'])+'V, max V_DS='+str(bo_parameters['drainVoltageMaxPoint'])+'V')
+	smu_instance.setComplianceCurrent(bo_parameters['complianceCurrent'])	
 
 	# === START ===
-	smu_instance.rampGateVoltageTo(parameters['BurnOut']['gateVoltageSetPoint'])
+	smu_instance.rampGateVoltageTo(bo_parameters['gateVoltageSetPoint'])
 	results = runBurnOutSweep(	smu_instance, 
-								thresholdProportion=parameters['BurnOut']['thresholdProportion'], 
-								minimumAppliedDrainVoltage=parameters['BurnOut']['minimumAppliedDrainVoltage'],
+								thresholdProportion=bo_parameters['thresholdProportion'], 
+								minimumAppliedDrainVoltage=bo_parameters['minimumAppliedDrainVoltage'],
 								voltageStart=0, 
-								voltageSetPoint=parameters['BurnOut']['drainVoltageMaxPoint'], 
-								voltagePlateaus=parameters['BurnOut']['drainVoltagePlateaus'], 
-								pointsPerRamp=parameters['BurnOut']['pointsPerRamp'],
-								pointsPerHold=parameters['BurnOut']['pointsPerHold'])
+								voltageSetPoint=bo_parameters['drainVoltageMaxPoint'], 
+								voltagePlateaus=bo_parameters['drainVoltagePlateaus'], 
+								pointsPerRamp=bo_parameters['pointsPerRamp'],
+								pointsPerHold=bo_parameters['pointsPerHold'])
 	smu_instance.rampDownVoltages()
 
 	# Copy parameters and add in the test results
+	parameters['Computed'] = results['Computed']
+
 	jsonData = dict(parameters)
-	jsonData['Results'] = results
+	jsonData['Results'] = results['Raw']
 
 	print('Did it burn?: '+str('Yes' if(results['didBurnOut']) else 'No'))
 
 	# Save results as a JSON object
 	if(isSavingResults):
 		print('Saving JSON.')
-		dlu.saveJSON(dlu.getDeviceDirectory(parameters), parameters['BurnOut']['saveFileName'], jsonData)
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), bo_parameters['saveFileName'], jsonData)
 
 	# Show plots to the user
 	if(isPlottingResults):
-		deviceHistoryScript.run(deviceHistoryParameters)
+		deviceHistoryScript.run(dh_parameters)
 
 	return jsonData
 
@@ -98,14 +102,18 @@ def runBurnOutSweep(smu_instance, thresholdProportion, minimumAppliedDrainVoltag
 	smu_instance.rampDrainVoltage(drainVoltage, 0, 20)
 
 	return {
-		'vds_data':vds_data,
-		'id_data':id_data,
-		'vgs_data':vgs_data,
-		'ig_data':ig_data,
-		'timestamps':timestamps,
-		'drainVoltages':drainVoltages,
-		'didBurnOut':burned,
-		'thresholdCurrent':id_threshold
+		'Raw':{
+			'vds_data':vds_data,
+			'id_data':id_data,
+			'vgs_data':vgs_data,
+			'ig_data':ig_data,
+			'timestamps':timestamps,
+			'drainVoltages':drainVoltages
+		},
+		'Computed':{
+			'didBurnOut':burned,
+			'thresholdCurrent':id_threshold
+		}
 	}
 
 def thresholdCrossed(threshold, recent_measurements, drainVoltage, minimumAppliedDrainVoltage):

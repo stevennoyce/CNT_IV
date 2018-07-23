@@ -16,7 +16,9 @@ def run(parameters, smu_instance, arduino_instance):
 	runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters)	
 
 def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters):
-	numberOfSweeps = parameters['AutoGateSweep']['numberOfSweeps']
+	ags_parameters = parameters['runConfigs']['AutoGateSweep']
+
+	numberOfSweeps = ags_parameters['numberOfSweeps']
 
 	# === START ===
 	for i in range(numberOfSweeps):
@@ -24,7 +26,7 @@ def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParame
 
 		# Run GateSweep, StaticBias (if desired)
 		gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
-		if(parameters['AutoGateSweep']['applyStaticBiasBetweenSweeps']):
+		if(ags_parameters['applyStaticBiasBetweenSweeps']):
 			staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		
 		print('Completed sweep #'+str(i+1)+' of '+str(numberOfSweeps))

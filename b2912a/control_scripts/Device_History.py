@@ -94,12 +94,14 @@ plots_for_experiment = {
 def getPossiblePlotNames(parameters):
 	try:
 		p = parameters
+		asb_parameters = parameters['runConfigs']['AutoStaticBias']
+		ags_parameters = parameters['runConfigs']['AutoGateSweep']
 		
 		plotsType = 'primary'
 		if(p['runType'] == 'AutoStaticBias'):
-			plotsType = 'secondary' if((('doInitialGateSweep' in p['AutoStaticBias']) and p['AutoStaticBias']['doInitialGateSweep']) or p['AutoStaticBias']['applyGateSweepBetweenBiases']) else 'primary' 
+			plotsType = 'secondary' if((('doInitialGateSweep' in asb_parameters) and asb_parameters['doInitialGateSweep']) or asb_parameters['applyGateSweepBetweenBiases']) else 'primary' 
 		if(p['runType'] == 'AutoGateSweep'):
-			plotsType = 'secondary' if(p['AutoGateSweep']['applyStaticBiasBetweenSweeps']) else 'primary' 
+			plotsType = 'secondary' if(ags_parameters['applyStaticBiasBetweenSweeps']) else 'primary' 
 		
 		return plots_for_experiment[p['runType']][plotsType]
 	except Exception as e:
