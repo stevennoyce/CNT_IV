@@ -53,6 +53,22 @@
 								<v-list-tile-title>Dashboard</v-list-tile-title>
 							</v-list-tile-content>
 						</v-list-tile>
+						<v-list-tile @click="setTopLevelPage('stepper')">
+							<v-list-tile-action>
+								<v-icon>list</v-icon>
+							</v-list-tile-action>
+							<v-list-tile-content>
+								<v-list-tile-title>Browser</v-list-tile-title>
+							</v-list-tile-content>
+						</v-list-tile>
+						<v-list-tile @click="setTopLevelPage('scheduleCreator')">
+							<v-list-tile-action>
+								<v-icon>schedule</v-icon>
+							</v-list-tile-action>
+							<v-list-tile-content>
+								<v-list-tile-title>Schedule Creator</v-list-tile-title>
+							</v-list-tile-content>
+						</v-list-tile>
 						<v-list-tile @click="">
 							<v-list-tile-action>
 								<v-icon>settings</v-icon>
@@ -69,17 +85,17 @@
 				</v-toolbar>
 				<v-content>
 					
-					<v-stepper v-model="page" style="background-color:rgba(255,255,255,0);height:100%;">
+					<v-stepper v-if="topLevelPage == 'stepper'" v-model="stepperPage" style="background-color:rgba(255,255,255,0);height:100%;">
 						<v-stepper-header style="background-color:rgba(255,255,255,1);">
-							<v-stepper-step step="1" :complete="page > 1" :editable="page > 1">Wafers</v-stepper-step>
+							<v-stepper-step step="1" :complete="stepperPage > 1" :editable="stepperPage > 1">Wafers</v-stepper-step>
 							<v-divider></v-divider>
-							<v-stepper-step step="2" :complete="page > 2" :editable="page > 2">Chips</v-stepper-step>
+							<v-stepper-step step="2" :complete="stepperPage > 2" :editable="stepperPage > 2">Chips</v-stepper-step>
 							<v-divider></v-divider>
-							<v-stepper-step step="3" :complete="page > 3" :editable="page > 3">Devices</v-stepper-step>
+							<v-stepper-step step="3" :complete="stepperPage > 3" :editable="stepperPage > 3">Devices</v-stepper-step>
 							<v-divider></v-divider>
-							<v-stepper-step step="4" :complete="page > 4" :editable="page > 4">Experiments</v-stepper-step>
+							<v-stepper-step step="4" :complete="stepperPage > 4" :editable="stepperPage > 4">Experiments</v-stepper-step>
 							<v-divider></v-divider>
-							<v-stepper-step step="5" :complete="page > 5" :editable="page > 5">Experiment</v-stepper-step>
+							<v-stepper-step step="5" :complete="stepperPage > 5" :editable="stepperPage > 5">Experiment</v-stepper-step>
 						</v-stepper-header>
 						
 						<v-stepper-items>	
@@ -112,9 +128,9 @@
 							</v-stepper-content>
 							
 							<v-stepper-content step="2">
-								<v-card v-if="page > 1">
+								<v-card v-if="stepperPage > 1">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }} Chips
 										</v-toolbar-title>
@@ -141,9 +157,9 @@
 							</v-stepper-content>
 							
 							<v-stepper-content step="3">
-								<v-card v-if="page > 2">
+								<v-card v-if="stepperPage > 2">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} Devices
 										</v-toolbar-title>
@@ -169,9 +185,9 @@
 							</v-stepper-content>
 							
 							<v-stepper-content step="4">
-								<v-card v-if="page > 3">
+								<v-card v-if="stepperPage > 3">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiments
 										</v-toolbar-title>
@@ -195,9 +211,9 @@
 							</v-stepper-content>
 							
 							<v-stepper-content step="5">
-								<v-card v-if="page > 4">
+								<v-card v-if="stepperPage > 4">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="page--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
 										</v-toolbar-title>
@@ -261,6 +277,106 @@
 						</v-stepper-items>
 					</v-stepper>
 					
+					
+					<v-flex xs12 ma-4 v-if="topLevelPage == 'scheduleCreator'">
+						<v-card>
+							<v-toolbar dark class="blue-grey darken-1">
+								<v-toolbar-title>
+									Schedule Creator
+								</v-toolbar-title>
+							</v-toolbar>
+							<v-container fluid grid-list-md>
+								<v-layout row wrap>
+									
+									<v-flex xs12 sm6 md4 lg3 xl2 d-flex>
+										<v-card ma-1 tile>
+											<v-toolbar dark class="blue-grey lighten-1">
+												<v-toolbar-title>
+													Parameters
+												</v-toolbar-title>
+											</v-toolbar>
+											<v-select box class="ma-3" label="Run Type" v-model="runType" :items="Object.keys(parametersDescription)"></v-select>
+											
+											<v-list>
+												<v-subheader>Identifiers</v-subheader>
+												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['Identifiers']" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
+													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"></v-switch>
+													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"></v-text-field>
+													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"></v-select>
+												</v-list-tile>
+												
+												<v-subheader>Measurement System</v-subheader>
+												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['MeasurementSystem']" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
+													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"
+														v-model="defaultParameters['MeasurementSystem'][settingName]"></v-switch>
+													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName"
+														v-model="defaultParameters['MeasurementSystem'][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName"
+														v-model="defaultParameters['MeasurementSystem'][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
+														v-model="defaultParameters['MeasurementSystem'][settingName]"></v-text-field>
+													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
+														v-model="defaultParameters['MeasurementSystem'][settingName]"></v-select>
+												</v-list-tile>
+											</v-list>
+										</v-card>
+									</v-flex>
+									
+									<v-flex xs12 sm6 md4 lg3 xl2 d-flex v-if="runType">
+										<v-card ma-1 tile>
+											<v-toolbar dark class="blue-grey lighten-1">
+												<v-toolbar-title>
+													{{ runType }}
+												</v-toolbar-title>
+											</v-toolbar>
+											<v-list>
+												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription[runType]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
+													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"
+														v-model="defaultParameters[runType][settingName]"></v-switch>
+													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
+														v-model="defaultParameters[runType][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
+														v-model="defaultParameters[runType][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
+														v-model="defaultParameters[runType][settingName]"></v-text-field>
+													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
+														v-model="defaultParameters[runType][settingName]"></v-select>
+												</v-list-tile>
+											</v-list>
+										</v-card>
+									</v-flex>
+									
+									<v-flex xs12 sm6 md4 lg3 xl2 d-flex v-for="dependency in _.get(parametersDescription, [runType, 'dependencies'])">
+										<v-card ma-1 tile>
+											<v-toolbar dark class="blue-grey lighten-1">
+												<v-toolbar-title>
+													{{ dependency }}
+												</v-toolbar-title>
+											</v-toolbar>
+											<v-list>
+												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription[dependency]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
+													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"
+														v-model="defaultParameters[dependency][settingName]"></v-switch>
+													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
+														v-model="defaultParameters[dependency][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
+														v-model="defaultParameters[dependency][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
+														v-model="defaultParameters[dependency][settingName]"></v-text-field>
+													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
+														v-model="defaultParameters[dependency][settingName]"></v-select>
+												</v-list-tile>
+											</v-list>
+										</v-card>
+									</v-flex>
+									
+								</v-layout>
+							</v-container>
+						</v-card>
+					</v-flex>
+					
 					<div>
 						 <!-- <img src="/plots/C127/X/15-16/3/FullSubthresholdCurveHistory" alt="Can't display the image"> -->
 					</div>
@@ -291,12 +407,16 @@
 			}, {});
 		}
 		
+		const get = path => object => path.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, object);
+		
 		var app = new Vue({
 			el: '#app',
 			data: {
 				currentPage: window.location.hash.substr(1) || "",
-				drawer: false,
-				page: 1,
+				drawer: null,
+				online: navigator.onLine,
+				stepperPage: 1,
+				topLevelPage: localStorage.topLevelPage || 'stepper',
 				pageNames: ['wafers','chips','devices','experiments','experiment'],
 				parametersTab: 0,
 				parametersSection: '',
@@ -343,18 +463,23 @@
 					{'text':'Run Type', 'value':'runType'},
 					{'text':'Measurement System', 'value':'MeasurementSystem'},
 					{'text':'Indexes', 'value':'uiComputed.indexCount'}],
-				experimentTableSearch: ''
+				experimentTableSearch: '',
+				
+				possibleRunTypes: ['GateSweep', 'AutoGateSweep', 'StaticBias', 'AutoStaticBias'],
+				defaultParameters: {},
+				parametersDescription: {},
+				runType: ''
 			},
 			methods: {
 				goToWafer: function(waferName) {
 					this.wafer = waferName;
 					$.getJSON('/' + this.wafer + '/chips.json' + cacheBust(), response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
-					this.page++;
+					this.stepperPage++;
 				},
 				goToChip: function(chipName) {
 					this.chip = chipName;
 					$.getJSON('/' + this.wafer + '/' + this.chip + '/devices.json' + cacheBust(), response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
-					this.page++;
+					this.stepperPage++;
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
@@ -366,14 +491,14 @@
 						}
 						app.$data.experiments = response;
 					}).fail(() => {console.log("Error getting experiments");});
-					this.page++;
+					this.stepperPage++;
 				},
 				goToExperiment: function(experimentParameters) {
 					this.experiment = experimentParameters;
 					this.parametersTab = this.experiment.runType;
 					this.parametersSection = this.experiment.runType;
 					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
-					this.page++;
+					this.stepperPage++;
 				},
 				customVDataTableFilter: function(items, search, filter, headers) {
 					search = search.toString().toLowerCase();
@@ -387,6 +512,10 @@
 				},
 				cacheBust: function() {
 					return cacheBust();
+				},
+				setTopLevelPage: function(name) {
+					this.topLevelPage = name;
+					localStorage.topLevelPage = name;
 				}
 			}
 		});
@@ -414,6 +543,8 @@
 		}
 		
 		$.getJSON("/wafers.json" + cacheBust(), response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
+		$.getJSON("/default_parameters.json" + cacheBust(), response => {app.$data.defaultParameters = response}).fail(() => {console.log("Error getting default parameters")});
+		$.getJSON("/default_parameters_description.json" + cacheBust(), response => {app.$data.parametersDescription = response}).fail(() => {console.log("Error getting parameters description")});
 		
 	</script>
 </body>

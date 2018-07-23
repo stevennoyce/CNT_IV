@@ -47,7 +47,7 @@ def wafers():
 	
 	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'chipCount': c, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, c, ic, ec in zip(names, paths, modificationTimes, sizes, chipCounts, indexCounts, experimentCounts)]
 	
-	return flask.jsonify(wafers)
+	return json.dumps(wafers)
 
 @app.route('/<wafer>/chips.json')
 def chips(wafer):
@@ -63,10 +63,9 @@ def chips(wafer):
 	indexCounts = [sum([(i['index'] if 'index' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
 	experimentCounts = [sum([(i['experimentNumber'] if 'experimentNumber' in i else 0) for i in indexObjectList]) for indexObjectList in indexObjectLists]
 	
-	print('Not yet', file=sys.stderr)
 	chips = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'deviceCount': d, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, d, ic, ec in zip(names, paths, modificationTimes, sizes, deviceCounts, indexCounts, experimentCounts)]
 	
-	return flask.jsonify(chips)
+	return json.dumps(chips)
 
 @app.route('/<wafer>/<chip>/devices.json')
 def devices(wafer, chip):
@@ -76,14 +75,14 @@ def devices(wafer, chip):
 	modificationTimes = [os.path.getmtime(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getmtime(p) for p in paths]
 	# sizes = [os.path.getsize(p) for p in paths]
 	sizes = [os.path.getsize(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getsize(p) for p in paths]
+	
 	indexObjects = [dlu.loadJSONIndex(p) for p in paths]
-	print(indexObjects, file=sys.stderr)
 	indexCounts = [i['index'] for i in indexObjects]
 	experimentCounts = [i['experimentNumber'] for i in indexObjects]
 	
 	devices = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, ic, ec in zip(names, paths, modificationTimes, sizes, indexCounts, experimentCounts)]
 	
-	return flask.jsonify(devices)
+	return json.dumps(devices)
 
 @app.route('/<wafer>/<chip>/<device>/experiments.json')
 def experiments(wafer, chip, device):
@@ -99,9 +98,18 @@ def experiments(wafer, chip, device):
 	
 	# experiments = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
 	
-	return flask.jsonify(parameters)
+	return json.dumps(parameters)
 	
 	# return flask.Response(json.dumps(parameters, allow_nan=False), mimetype='application/json')
+
+@app.route('/default_parameters_description.json')
+def parametersDescription():
+	# return flask.jsonify(defaults.default_parameters_description)
+	return json.dumps(defaults.default_parameters_description)
+
+@app.route('/default_parameters.json')
+def defaultParameters():
+	return json.dumps(defaults.default_parameters)
 
 # @app.after_request
 # def add_header(response):
