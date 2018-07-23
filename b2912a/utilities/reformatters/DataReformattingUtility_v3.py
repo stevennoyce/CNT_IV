@@ -68,17 +68,25 @@ def reformat_device(load_directory, save_directory):
 			if(deviceRun['ParametersFormatVersion'] > 4):
 				continue
 
-			deviceRun['Computed'] = {}
-			deviceRun['Computed']['onOffRatio'] = onOffRatio(deviceRun['Results']['id_data'])
-			deviceRun['Computed']['onCurrent'] = onCurrent(deviceRun['Results']['id_data'])
-			deviceRun['Computed']['offCurrent'] = offCurrent(deviceRun['Results']['id_data'])
-			deviceRun['Computed']['ig_max'] = offCurrent(max(abs(np.array(deviceRun['Results']['ig_data'][0] + deviceRun['Results']['ig_data'][1]))))
-			if('onOffRatio' in deviceRun['Results']):
-				del deviceRun['Results']['onOffRatio']
-			if('onCurrent' in deviceRun['Results']):
-				del deviceRun['Results']['onCurrent']
-			if('offCurrent' in deviceRun['Results']):
-				del deviceRun['Results']['offCurrent']
+			deviceRun['runConfigs'] = {}
+			if('GateSweep' in deviceRun):
+				deviceRun['runConfigs']['GateSweep'] = deviceRun['GateSweep']
+				del deviceRun['GateSweep']
+			if('BurnOut' in deviceRun):
+				deviceRun['runConfigs']['BurnOut'] = deviceRun['BurnOut']
+				del deviceRun['BurnOut']
+			if('AutoBurnOut' in deviceRun):
+				deviceRun['runConfigs']['AutoBurnOut'] = deviceRun['AutoBurnOut']
+				del deviceRun['AutoBurnOut']
+			if('StaticBias' in deviceRun):
+				deviceRun['runConfigs']['StaticBias'] = deviceRun['StaticBias']
+				del deviceRun['StaticBias']
+			if('AutoGateSweep' in deviceRun):
+				deviceRun['runConfigs']['AutoGateSweep'] = deviceRun['AutoGateSweep']
+				del deviceRun['AutoGateSweep']
+			if('AutoStaticBias' in deviceRun):
+				deviceRun['runConfigs']['AutoStaticBias'] = deviceRun['AutoStaticBias']
+				del deviceRun['AutoStaticBias']
 
 		# BURN OUT
 		if(burnedout):
@@ -86,13 +94,25 @@ def reformat_device(load_directory, save_directory):
 				if(deviceRun['ParametersFormatVersion'] > 4):
 					continue
 
-				deviceRun['Computed'] = {}
-				if('didBurnOut' in deviceRun['Results']):
-					deviceRun['Computed']['didBurnOut'] = deviceRun['Results']['didBurnOut']
-					del deviceRun['Results']['didBurnOut']
-				if('thresholdCurrent' in deviceRun['Results']):
-					deviceRun['Computed']['thresholdCurrent'] = deviceRun['Results']['thresholdCurrent']
-					del deviceRun['Results']['thresholdCurrent']
+				deviceRun['runConfigs'] = {}
+				if('GateSweep' in deviceRun):
+					deviceRun['runConfigs']['GateSweep'] = deviceRun['GateSweep']
+					del deviceRun['GateSweep']
+				if('BurnOut' in deviceRun):
+					deviceRun['runConfigs']['BurnOut'] = deviceRun['BurnOut']
+					del deviceRun['BurnOut']
+				if('AutoBurnOut' in deviceRun):
+					deviceRun['runConfigs']['AutoBurnOut'] = deviceRun['AutoBurnOut']
+					del deviceRun['AutoBurnOut']
+				if('StaticBias' in deviceRun):
+					deviceRun['runConfigs']['StaticBias'] = deviceRun['StaticBias']
+					del deviceRun['StaticBias']
+				if('AutoGateSweep' in deviceRun):
+					deviceRun['runConfigs']['AutoGateSweep'] = deviceRun['AutoGateSweep']
+					del deviceRun['AutoGateSweep']
+				if('AutoStaticBias' in deviceRun):
+					deviceRun['runConfigs']['AutoStaticBias'] = deviceRun['AutoStaticBias']
+					del deviceRun['AutoStaticBias']
 
 		# STATIC BIAS
 		if(staticed):			
@@ -100,13 +120,49 @@ def reformat_device(load_directory, save_directory):
 				if(deviceRun['ParametersFormatVersion'] > 4):
 					continue
 
-				deviceRun['Computed'] = {}
-				deviceRun['Computed']['id_std'] = drainCurrentSTD(deviceRun['Results']['id_data'])
+				deviceRun['runConfigs'] = {}
+				if('GateSweep' in deviceRun):
+					deviceRun['runConfigs']['GateSweep'] = deviceRun['GateSweep']
+					del deviceRun['GateSweep']
+				if('BurnOut' in deviceRun):
+					deviceRun['runConfigs']['BurnOut'] = deviceRun['BurnOut']
+					del deviceRun['BurnOut']
+				if('AutoBurnOut' in deviceRun):
+					deviceRun['runConfigs']['AutoBurnOut'] = deviceRun['AutoBurnOut']
+					del deviceRun['AutoBurnOut']
+				if('StaticBias' in deviceRun):
+					deviceRun['runConfigs']['StaticBias'] = deviceRun['StaticBias']
+					del deviceRun['StaticBias']
+				if('AutoGateSweep' in deviceRun):
+					deviceRun['runConfigs']['AutoGateSweep'] = deviceRun['AutoGateSweep']
+					del deviceRun['AutoGateSweep']
+				if('AutoStaticBias' in deviceRun):
+					deviceRun['runConfigs']['AutoStaticBias'] = deviceRun['AutoStaticBias']
+					del deviceRun['AutoStaticBias']
 
 		# PARAMETERS HISTORY
 		if(paramhist):
 			for deviceRun in parametersHistory:
-				pass
+
+				deviceRun['runConfigs'] = {}
+				if('GateSweep' in deviceRun):
+					deviceRun['runConfigs']['GateSweep'] = deviceRun['GateSweep']
+					del deviceRun['GateSweep']
+				if('BurnOut' in deviceRun):
+					deviceRun['runConfigs']['BurnOut'] = deviceRun['BurnOut']
+					del deviceRun['BurnOut']
+				if('AutoBurnOut' in deviceRun):
+					deviceRun['runConfigs']['AutoBurnOut'] = deviceRun['AutoBurnOut']
+					del deviceRun['AutoBurnOut']
+				if('StaticBias' in deviceRun):
+					deviceRun['runConfigs']['StaticBias'] = deviceRun['StaticBias']
+					del deviceRun['StaticBias']
+				if('AutoGateSweep' in deviceRun):
+					deviceRun['runConfigs']['AutoGateSweep'] = deviceRun['AutoGateSweep']
+					del deviceRun['AutoGateSweep']
+				if('AutoStaticBias' in deviceRun):
+					deviceRun['runConfigs']['AutoStaticBias'] = deviceRun['AutoStaticBias']
+					del deviceRun['AutoStaticBias']
 
 
 		# *************************************************************
@@ -135,22 +191,6 @@ def reformat_device(load_directory, save_directory):
 		except:
 			print('Device: ' + device + ' no index.json')
 		# *************************************************************
-
-
-
-def onOffRatio(drainCurrent):
-	return onCurrent(drainCurrent)/offCurrent(drainCurrent)
-
-def onCurrent(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return np.percentile(absDrainCurrent, 99)
-
-def offCurrent(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return (np.percentile(absDrainCurrent, 5))
-
-def drainCurrentSTD(drainCurrent):
-	return np.std(drainCurrent)
 
 
 if(__name__ == '__main__'):

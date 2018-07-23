@@ -250,7 +250,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 	
 	# Add Legend and save figure
 	lines, labels = ax.get_legend_handles_labels()
-	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=(0) if(len(labels) == 0) else (0.3))
+	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'runConfigs', 'GateSweep', includeVdsRange=True, includeSubthresholdSwing=False), labelspacing=(0) if(len(labels) == 0) else (0.3))
 	adjustFigure(fig, 'FullSubthresholdCurves', mode_parameters)
 
 	return (fig, ax)
@@ -328,7 +328,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 
 	# Add Legend and save figure	
 	lines, labels = ax.get_legend_handles_labels()
-	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'TransferCurve', 'GateSweep', includeVdsRange=True), labelspacing=(0) if(len(labels) == 0) else (0.3))
+	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'TransferCurve', 'runConfigs', 'GateSweep', includeVdsRange=True), labelspacing=(0) if(len(labels) == 0) else (0.3))
 	adjustFigure(fig, 'FullTransferCurves', mode_parameters)
 
 	return (fig, ax)
@@ -366,7 +366,7 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 
 	# Add Legend and save figure
 	lines, labels = ax.get_legend_handles_labels()
-	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'GateSweep', includeVdsRange=True), labelspacing=(0) if(len(labels) == 0) else (0.3))
+	ax.legend(lines, labels, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'runConfigs', 'GateSweep', includeVdsRange=True), labelspacing=(0) if(len(labels) == 0) else (0.3))
 	adjustFigure(fig, 'FullGateCurrents', mode_parameters)
 
 	return (fig, ax)
@@ -989,11 +989,11 @@ def includeOriginOnYaxis(axis):
 
 
 # === Legend ===
-def getLegendTitle(deviceHistory, plotType, parameterType, includeVdsRange, includeSubthresholdSwing=False):
+def getLegendTitle(deviceHistory, plotType, parameterSuperType, parameterType, includeVdsRange, includeSubthresholdSwing=False):
 	legend_title = ''
 	legend_entries = []
 	if(includeVdsRange):
-		vds_list = getParameterArray(deviceHistory, parameterType, 'drainVoltageSetPoint')
+		vds_list = getParameterArray(deviceHistory, parameterSuperType, parameterType, 'drainVoltageSetPoint')
 		vds_min = min(vds_list)
 		vds_max = max(vds_list)
 		legend_entries.append(plot_parameters[plotType]['leg_vds_label'].format(vds_min) if(vds_min == vds_max) else (plot_parameters[plotType]['leg_vds_range_label'].format(vds_min, vds_max)))
@@ -1123,13 +1123,15 @@ def scaledData(deviceHistory, dataSubdirectory, dataToScale, scalefactor):
 		data[i][dataSubdirectory][dataToScale] = data_entry
 	return data
 
-def getParameterArray(deviceHistory, parameterType, parameterName):
+def getParameterArray(deviceHistory, parameterSuperType, parameterSubType, parameterName):
 	result = []
 	for i in range(len(deviceHistory)):
-		if(parameterType != ''):
-			result.append(deviceHistory[i][parameterType][parameterName])
-		else:
-			result.append(deviceHistory[i][parameterName])
+		element = deviceHistory[i]
+		if(parameterSuperType != ''):
+			element = element[parameterSuperType]
+		if(parameterSubType != ''):
+			element = element[parameterSubType]
+		result.append(element[parameterName])
 	return result
 
 
