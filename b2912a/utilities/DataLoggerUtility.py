@@ -29,6 +29,7 @@ def saveJSON(directory, saveFileName, jsonData, incrementIndex=True):
 			indexData = loadJSONIndex(directory)
 			jsonData['index'] = indexData['index']
 			jsonData['experimentNumber'] = indexData['experimentNumber']
+			jsonData['timestamp'] = time.time()
 			incrementJSONIndex(directory)
 		json.dump(jsonData, file)
 		file.write('\n')
@@ -58,13 +59,14 @@ def loadJSONIndex(directory):
 		with open(os.path.join(directory, 'index.json'), 'r') as file:
 			indexData = json.loads(file.readline())
 	except FileNotFoundError:	
-		indexData = {'index':0, 'experimentNumber':0}
+		indexData = {'index':0, 'experimentNumber':0, 'timestamp':0}
 	return indexData
 
 def incrementJSONIndex(directory):
 	indexData = loadJSONIndex(directory)
 	with open(os.path.join(directory, 'index.json'), 'w') as file:
 		indexData['index'] += 1
+		indexData['timestamp'] = time.time()
 		json.dump(indexData, file)
 		file.write('\n')
 	return indexData['index']
@@ -73,6 +75,7 @@ def incrementJSONExperiementNumber(directory):
 	indexData = loadJSONIndex(directory)
 	with open(os.path.join(directory, 'index.json'), 'w') as file:
 		indexData['experimentNumber'] += 1
+		indexData['timestamp'] = time.time()
 		json.dump(indexData, file)
 		file.write('\n')
 	return indexData['experimentNumber']
