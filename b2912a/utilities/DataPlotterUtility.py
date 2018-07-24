@@ -99,9 +99,9 @@ default_mode_parameters = {
 	'figureSizeOverride': None,
 	'legendLoc': 'best',
 	'legendLabels': [],
-	'errorBarsOn': True,
+	'enableErrorBars': True,
 	'enableColorBar': True,
-	'plotGradient': False,
+	'enableGradient': False,
 	'staticBiasSegmentDividers': False,
 	'staticBiasChangeDividers': True,
 	'plotOffCurrent': True
@@ -242,7 +242,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])			
+		line = plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])			
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 
@@ -306,7 +306,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 	# # Plot
 	# for i in indexes:
 	for i in range(len(deviceHistory)):
-		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
+		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 
@@ -319,7 +319,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 			gate_colors = colors
 			gate_linestyle = '--'
 		for i in range(len(deviceHistory)):
-			plotGateCurrent(ax, deviceHistory[i], gate_colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=gate_linestyle, errorBars=mode_parameters['errorBarsOn'])
+			plotGateCurrent(ax, deviceHistory[i], gate_colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=gate_linestyle, errorBars=mode_parameters['enableErrorBars'])
 		if(plot_parameters['TransferCurve']['ylabel'] == plot_parameters['TransferCurve']['neg_label']):
 			plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_ii_label']
 		else:
@@ -360,7 +360,7 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['errorBarsOn'])
+		line = plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 
@@ -483,7 +483,7 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 			t_prev_start = deviceHistory[i-1]['Results']['timestamps'][0]
 			time_offset = (0) if(i == 0) else (time_offset + (t_prev_end - t_prev_start))
 		
-		line = plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['plotGradient'])
+		line = plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['enableGradient'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 			
