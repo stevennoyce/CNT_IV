@@ -190,7 +190,7 @@ class B2912A(SourceMeasureUnit):
 			'I_g':  data[7]
 		}
 	
-	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
+	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
 		points = int(points)
 
 		self.smu.write(":source1:voltage:mode sweep")
@@ -202,13 +202,22 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":source2:voltage:start {}".format(src2start))
 		self.smu.write(":source2:voltage:stop {}".format(src2stop)) 
 		self.smu.write(":source2:voltage:points {}".format(points))
-
-		self.smu.write(":trig1:source aint")
-		self.smu.write(":trig1:count {}".format(points))
-		self.smu.write(":trig2:source aint")
-		self.smu.write(":trig2:count {}".format(points))
+		
+		if triggerInterval is None:
+			self.smu.write(":trig1:source aint")
+			self.smu.write(":trig1:count {}".format(points))
+			self.smu.write(":trig2:source aint")
+			self.smu.write(":trig2:count {}".format(points))
+		else:
+			self.smu.write(":trig1:source tim")
+			self.smu.write(":trig1:tim {}".format(triggerInterval))
+			self.smu.write(":trig1:count {}".format(points))
+			self.smu.write(":trig2:source tim")
+			self.smu.write(":trig2:tim {}".format(triggerInterval))
+			self.smu.write(":trig2:count {}".format(points))
+		
 		self.smu.write(":init (@1:2)")
-
+		
 		timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
 		time.sleep(1.5 * timeToTakeMeasurements)
 
