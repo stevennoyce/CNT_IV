@@ -208,6 +208,7 @@ class B2912A(SourceMeasureUnit):
 			self.smu.write(":trig1:count {}".format(points))
 			self.smu.write(":trig2:source aint")
 			self.smu.write(":trig2:count {}".format(points))
+			timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
 		else:
 			self.smu.write(":trig1:source tim")
 			self.smu.write(":trig1:tim {}".format(triggerInterval))
@@ -215,12 +216,12 @@ class B2912A(SourceMeasureUnit):
 			self.smu.write(":trig2:source tim")
 			self.smu.write(":trig2:tim {}".format(triggerInterval))
 			self.smu.write(":trig2:count {}".format(points))
+			timeToTakeMeasurements = (triggerInterval*points)
 		
 		self.smu.write(":init (@1:2)")
 		
-		timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
 		time.sleep(1.5 * timeToTakeMeasurements)
-
+		
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
