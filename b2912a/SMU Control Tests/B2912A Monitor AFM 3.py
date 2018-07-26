@@ -12,15 +12,15 @@ saveFileName = 'SMU3_Testing.csv'
 saveFolder = 'data/'
 
 def startTriggers(smu, points):
-	# smu.write(":source1:voltage:mode sweep")
-	# smu.write(":source2:voltage:mode sweep")
+	smu.write(":source1:voltage:mode sweep")
+	smu.write(":source2:voltage:mode sweep")
 	
-	# smu.write(":source1:voltage:start {}".format(src1start))
-	# smu.write(":source1:voltage:stop {}".format(src1stop)) 
-	# smu.write(":source1:voltage:points {}".format(points))
-	# smu.write(":source2:voltage:start {}".format(src2start))
-	# smu.write(":source2:voltage:stop {}".format(src2stop)) 
-	# smu.write(":source2:voltage:points {}".format(points))
+	smu.write(":source1:voltage:start {}".format(src1start))
+	smu.write(":source1:voltage:stop {}".format(src1stop)) 
+	smu.write(":source1:voltage:points {}".format(points))
+	smu.write(":source2:voltage:start {}".format(src2start))
+	smu.write(":source2:voltage:stop {}".format(src2stop)) 
+	smu.write(":source2:voltage:points {}".format(points))
 	
 	smu.write(":trig1:source aint")
 	smu.write(":trig1:count {}".format(points))

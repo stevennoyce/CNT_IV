@@ -190,7 +190,7 @@ class B2912A(SourceMeasureUnit):
 			'I_g':  data[7]
 		}
 	
-	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
+	def startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
 		points = int(points)
 		
 		self.smu.write(":source1:voltage:mode sweep")
@@ -208,7 +208,7 @@ class B2912A(SourceMeasureUnit):
 			self.smu.write(":trig1:count {}".format(points))
 			self.smu.write(":trig2:source aint")
 			self.smu.write(":trig2:count {}".format(points))
-			timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
+			timeToTakeMeasurements = 1.5*(self.nplc)*(points/self.measurementsPerSecond)
 		else:
 			self.smu.write(":trig1:source tim")
 			self.smu.write(":trig1:tim {}".format(triggerInterval))
@@ -220,15 +220,17 @@ class B2912A(SourceMeasureUnit):
 		
 		self.smu.write(":init (@1:2)")
 		
-		time.sleep(1.5 * timeToTakeMeasurements)
-		
+		return timeToTakeMeasurements
+	
+	def endSweep(endMode=None):
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
 		voltage2s = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
 		
-		self.smu.write(":source1:voltage:mode fixed")
-		self.smu.write(":source2:voltage:mode fixed")
+		if endMode is not None:
+			self.smu.write(":source1:voltage:mode {}".format(endMode))
+			self.smu.write(":source2:voltage:mode {}".format(endMode))
 		
 		return {
 			'Vds_data': voltage1s,
@@ -236,6 +238,14 @@ class B2912A(SourceMeasureUnit):
 			'Vgs_data': voltage2s,
 			'Ig_data':  current2s
 		}
+	
+	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
+		timeToTakeMeasurements = startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval)
+		
+		time.sleep(timeToTakeMeasurements)
+		
+		endSweep(endMode='fixed')
+
 
 class PCB2v14(SourceMeasureUnit):
 	ser = None
