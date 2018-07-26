@@ -8,7 +8,7 @@ import random as rand
 import numpy as np
 import json
 
-def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defaultComplianceCurrent=100e-6, smuTimeout=60000)
+def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defaultComplianceCurrent=100e-6, smuTimeout=60000):
 	rm = visa.ResourceManager()
 	if(uniqueIdentifier == ''):
 		uniqueIdentifier = rm.list_resources()[0]
@@ -18,7 +18,7 @@ def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defau
 	return B2912A(instance, defaultComplianceCurrent)
 
 def getConnectionToPCB(port='', system_settings=None):
-	if(port == '')
+	if(port == ''):
 		#port = 'COM7'
 		port = '/dev/tty.HC-05-DevB'
 	ser = pySerial.Serial(port, 115200, timeout=0.5)
