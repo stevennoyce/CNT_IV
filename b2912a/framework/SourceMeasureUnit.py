@@ -192,10 +192,10 @@ class B2912A(SourceMeasureUnit):
 	
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
 		points = int(points)
-
+		
 		self.smu.write(":source1:voltage:mode sweep")
 		self.smu.write(":source2:voltage:mode sweep")
-
+		
 		self.smu.write(":source1:voltage:start {}".format(src1start))
 		self.smu.write(":source1:voltage:stop {}".format(src1stop)) 
 		self.smu.write(":source1:voltage:points {}".format(points))
@@ -226,7 +226,10 @@ class B2912A(SourceMeasureUnit):
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
 		voltage2s = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
-
+		
+		self.smu.write(":source1:voltage:mode fixed")
+		self.smu.write(":source2:voltage:mode fixed")
+		
 		return {
 			'Vds_data': voltage1s,
 			'Id_data':  current1s,

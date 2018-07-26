@@ -10,6 +10,11 @@ from matplotlib import pyplot as plt
 # inst.write(':SOUR:VOLT:MODE LIST')
 # inst.write(':SOUR:LIST:VOLT 0,2,4,6,8,10,0')
 
+# inst.write(':source:voltage:mode list')
+# inst.write(':souce:list:voltage {}'.format(','.join(voltages)))
+
+# np.rfft(, norm='ortho')
+
 # ----------------------------------
 
 
@@ -65,6 +70,12 @@ for vgs in np.linspace(0,Vgs,30):
 	inst.write(':source2:voltage {}'.format(vgs))
 	time.sleep(0.01)
 	inst.query_binary_values(':measure? (@1:2)')
+
+for channel in channels:
+	sinVoltages = 0.1*np.cos(np.linspace(0,2*np.pi,2500))
+	
+	inst.write(':source{}:voltage:mode list'.format(channel))
+	inst.write(':source{}:list:voltage {}'.format(channel, ','.join(map(str, sinVoltages))))
 
 for channel in channels:
 	inst.write(':trig{}:source tim'.format(channel))
