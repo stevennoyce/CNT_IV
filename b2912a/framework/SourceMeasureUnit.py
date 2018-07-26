@@ -213,11 +213,11 @@ class B2912A(SourceMeasureUnit):
 			self.smu.write(":trig2:count {}".format(points))
 			timeToTakeMeasurements = 1.5*(self.nplc)*(points/self.measurementsPerSecond)
 		else:
-			self.smu.write(":trig1:source tim")
-			self.smu.write(":trig1:tim {}".format(triggerInterval))
+			self.smu.write(":trig1:source timer")
+			self.smu.write(":trig1:timer {}".format(triggerInterval))
 			self.smu.write(":trig1:count {}".format(points))
-			self.smu.write(":trig2:source tim")
-			self.smu.write(":trig2:tim {}".format(triggerInterval))
+			self.smu.write(":trig2:source timer")
+			self.smu.write(":trig2:timer {}".format(triggerInterval))
 			self.smu.write(":trig2:count {}".format(points))
 			timeToTakeMeasurements = (triggerInterval*points)
 		
