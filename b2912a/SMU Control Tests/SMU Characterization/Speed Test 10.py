@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 # inst.write(':source:voltage:mode list')
 # inst.write(':souce:list:voltage {}'.format(','.join(voltages)))
 
-# np.rfft(, norm='ortho')
+# np.fft.rfft(, norm='ortho')
 
 # ----------------------------------
 
@@ -141,7 +141,20 @@ plt.xlabel('Time [s]')
 plt.ylabel('Current [A]')
 plt.show()
 
-plt.psd(currents, NFFT=2**16, Fs=len(times)/totalTime)
-plt.psd(currents2, NFFT=2**16, Fs=len(times)/totalTime)
+plt.psd(currents, Fs=len(times)/totalTime, NFFT=2**16)
+plt.psd(currents2, Fs=len(times)/totalTime, NFFT=2**16)
 plt.show()
+
+plt.magnitude_spectrum(currents, Fs=len(times)/totalTime)
+plt.magnitude_spectrum(currents2, Fs=len(times)/totalTime)
+plt.show()
+
+plt.plot(np.linspace(0, len(times)/totalTime/2, len(times)//2 + 1), np.abs(np.fft.rfft(currents, norm='ortho')))
+plt.plot(np.linspace(0, len(times)/totalTime/2, len(times)//2 + 1), np.abs(np.fft.rfft(currents2, norm='ortho')))
+plt.show()
+
+plt.semilogy(np.linspace(0, len(times)/totalTime/2, len(times)//2 + 1), np.abs(np.fft.rfft(currents, norm='ortho')))
+plt.semilogy(np.linspace(0, len(times)/totalTime/2, len(times)//2 + 1), np.abs(np.fft.rfft(currents2, norm='ortho')))
+plt.show()
+
 
