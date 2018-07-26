@@ -75,8 +75,13 @@ default_parameters = {
 
 	},
 	'MeasurementSystem':{
-		'system': ['B2912A','PCB2v14'][0],
-		'NPLC':1,
+		'systems': {
+			'default': {
+				'uniqueID': '',
+				'type': ['B2912A','PCB2v14'][0],
+				'settings': {}
+			}
+		},
 		'deviceRange': []
 	},
 	'dataFolder': 'data/',

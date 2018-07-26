@@ -8,16 +8,19 @@ import random as rand
 import numpy as np
 import json
 
-def getConnectionFromVisa(NPLC, defaultComplianceCurrent, smuTimeout=60000):
+def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defaultComplianceCurrent=100e-6, smuTimeout=60000)
 	rm = visa.ResourceManager()
-	instance = rm.open_resource(rm.list_resources()[0])
+	if(uniqueIdentifier == ''):
+		uniqueIdentifier = rm.list_resources()[0]
+	instance = rm.open_resource(uniqueIdentifier)
 	instance.timeout = smuTimeout
 	print(instance.query('*IDN?'))
-	return B2912A(instance, NPLC, defaultComplianceCurrent)
+	return B2912A(instance, defaultComplianceCurrent)
 
-def getConnectionToPCB():
-	#port = 'COM7'
-	port = '/dev/tty.HC-05-DevB'
+def getConnectionToPCB(port='', system_settings=None):
+	if(port == '')
+		#port = 'COM7'
+		port = '/dev/tty.HC-05-DevB'
 	ser = pySerial.Serial(port, 115200, timeout=0.5)
 	return PCB2v14(ser)
 
@@ -127,9 +130,9 @@ class B2912A(SourceMeasureUnit):
 	measurementsPerSecond = 60
 	nplc = 0
 	
-	def __init__(self, instance, NPLC, defaultComplianceCurrent):
-		self.smu = instance
-		self.initialize(NPLC)
+	def __init__(self, visa_instance, defaultComplianceCurrent):
+		self.smu = visa_instance
+		self.initialize()
 		self.setComplianceCurrent(defaultComplianceCurrent)
 	
 	def turnChannelsOn(self):
@@ -140,7 +143,7 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":outp1 OFF")
 		self.smu.write(":outp2 OFF")
 	
-	def initialize(self, NPLC):
+	def initialize(self):
 		self.smu.write("*RST") # Reset
 		self.smu.write(':system:lfrequency 60')
 		
@@ -156,9 +159,9 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(":source1:voltage 0.0")
 		self.smu.write(":source2:voltage 0.0")
 		
-		self.smu.write(":sense1:curr:nplc {}".format(NPLC))
-		self.smu.write(":sense2:curr:nplc {}".format(NPLC))
-		self.nplc = NPLC
+		self.smu.write(":sense1:curr:nplc 1")
+		self.smu.write(":sense2:curr:nplc 1")
+		self.nplc = 1
 		
 		self.smu.write(":outp1 ON")
 		self.smu.write(":outp2 ON")

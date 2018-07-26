@@ -28,7 +28,7 @@ def run(additional_parameters):
 	parameters = defaults.with_added(additional_parameters)
 
 	# Initialize measurement system
-	smu_instance = initSMU(parameters)		
+	smu_systems = initMeasurementSystems(parameters)		
 
 	# Initialize Arduino connection
 	arduino_instance = initArduino(parameters)
@@ -39,15 +39,15 @@ def run(additional_parameters):
 		for device in parameters['MeasurementSystem']['deviceRange']:
 			params = copy.deepcopy(parameters)
 			params['Identifiers']['device'] = device
-			runAction(params, smu_instance, arduino_instance)
+			runAction(params, smu_systems, arduino_instance)
 	else:
-		runAction(parameters, smu_instance, arduino_instance)
+		runAction(parameters, smu_systems, arduino_instance)
 
 
 
 # === Internal API ===
 # Run generic user action
-def runAction(parameters, smu_instance, arduino_instance):
+def runAction(parameters, smu_systems, arduino_instance):
 	print('Creating save folder.')
 	dlu.makeFolder(dlu.getDeviceDirectory(parameters))
 
@@ -56,34 +56,39 @@ def runAction(parameters, smu_instance, arduino_instance):
 	elif(parameters['runType'] == 'ChipHistory'):
 		chipHistoryScript.run(parameters)
 	else:
-		runSMU(parameters, smu_instance, arduino_instance)
+		runSMU(parameters, smu_systems, arduino_instance)
 
 # Run an action that interfaces with the SMU.
-def runSMU(parameters, smu_instance, arduino_instance):
+def runSMU(parameters, smu_systems, arduino_instance):
 	experiment = dlu.incrementJSONExperiementNumber(dlu.getDeviceDirectory(parameters))
 	print('About to begin experiment #' + str(experiment))
 	parameters['startIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 	parameters['startIndexes']['timestamp'] = time.time()
 
-	smu_instance.setDevice(parameters['Identifiers']['device'])
+	for smu_name, smu_instance in smu_systems.items():
+		smu_instance.setDevice(parameters['Identifiers']['device'])
+
+	smu_names = list(smu_systems.keys())
+	smu_default_instance = smu_systems[smu_names[0]]	
 
 	try:
 		if(parameters['runType'] == 'GateSweep'):
-			gateSweepScript.run(parameters, smu_instance)
+			gateSweepScript.run(parameters, smu_default_instance)
 		elif(parameters['runType'] == 'BurnOut'):
-			burnOutScript.run(parameters, smu_instance)
+			burnOutScript.run(parameters, smu_default_instance)
 		elif(parameters['runType'] == 'AutoBurnOut'):
-			autoBurnScript.run(parameters, smu_instance)
+			autoBurnScript.run(parameters, smu_default_instance)
 		elif(parameters['runType'] == 'StaticBias'):
-			staticBiasScript.run(parameters, smu_instance, arduino_instance)
+			staticBiasScript.run(parameters, smu_default_instance, arduino_instance)
 		elif(parameters['runType'] == 'AutoGateSweep'):
-			autoGateScript.run(parameters, smu_instance, arduino_instance)
+			autoGateScript.run(parameters, smu_default_instance, arduino_instance)
 		elif(parameters['runType'] == 'AutoStaticBias'):
-			autoBiasScript.run(parameters, smu_instance, arduino_instance)
+			autoBiasScript.run(parameters, smu_default_instance, arduino_instance)
 		else:
 			raise NotImplementedError("Invalid action for the Source Measure Unit")
 	except Exception as e:
-		smu_instance.rampDownVoltages()
+		for smu_name, smu_instance in smu_systems.items():
+			smu_instance.rampDownVoltages()
 
 		parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 		parameters['endIndexes']['timestamp'] = time.time()
@@ -93,7 +98,8 @@ def runSMU(parameters, smu_instance, arduino_instance):
 		print('ERROR: Exception raised during the experiment.')
 		raise
 
-	smu_instance.rampDownVoltages()
+	for smu_name, smu_instance in smu_systems.items():
+		smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 	parameters['endIndexes']['timestamp'] = time.time()
 
@@ -118,17 +124,21 @@ def runDeviceHistory(parameters):
 
 
 # === SMU Connection ===
-def initSMU(parameters):
-	smu_instance = None
+def initMeasurementSystems(parameters):
+	system_instances = {}
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
-		if(parameters['MeasurementSystem']['system'] == 'B2912A'):
-			smu_instance = smu.getConnectionFromVisa(parameters['MeasurementSystem']['NPLC'], defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
-		elif(parameters['MeasurementSystem']['system'] == 'PCB2v14'):
-			smu_instance = smu.getConnectionToPCB()
-		else:
-			raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
-		print("Connected to SMU: " + str(parameters['MeasurementSystem']['system']))
-	return smu_instance
+		for system_name,system_info in parameters['MeasurementSystem']['systems'].items():
+			system_id = system_info['uniqueID']
+			system_type = system_info['type']
+			system_settings = system_info['settings']
+			if(system_type == 'B2912A'):
+				system_instances[system_name] = smu.getConnectionToVisaResource(system_id, system_settings, defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
+			elif(system_type == 'PCB2v14'):
+				system_instances[system_name] = smu.getConnectionToPCB(system_id, system_settings)
+			else:
+				raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
+			print("Connected to " + str(system_type) + " system '" + str(system_name) + "', with ID: " + str(system_id))
+	return system_instances
 
 
 
