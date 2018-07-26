@@ -106,7 +106,7 @@ def runSMU(parameters, smu_instance, arduino_instance):
 # Run a "Device History" action.
 def runDeviceHistory(parameters):
 	dh_parameters = {
-		'Identifiers': dict(parameters['Identifiers'])
+		'Identifiers': dict(parameters['Identifiers']),
 		'dataFolder': parameters['dataFolder']
 	}
 	if('DeviceHistory' in parameters.keys()):
