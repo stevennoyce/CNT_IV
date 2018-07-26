@@ -78,8 +78,8 @@ for channel in channels:
 	inst.write(':source{}:list:voltage {}'.format(channel, ','.join(map(str, sinVoltages))))
 
 for channel in channels:
-	inst.write(':trig{}:source tim'.format(channel))
-	inst.write(':trig{}:tim {}'.format(channel, 10e-6))
+	inst.write(':trig{}:source timer'.format(channel))
+	inst.write(':trig{}:timer {}'.format(channel, 10e-6))
 	
 	inst.write(':trig{}:count {}'.format(channel, Npoints))
 	# inst.write(':trig{}:ACQ:DEL 1E-4'.format(channel))
