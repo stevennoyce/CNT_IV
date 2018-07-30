@@ -41,8 +41,7 @@ def run(additional_parameters):
 			params['Identifiers']['device'] = device
 			runAction(params, smu_systems, arduino_instance)
 	else:
-		
-	runAction(parameters, smu_systems, arduino_instance)
+		runAction(parameters, smu_systems, arduino_instance)
 
 
 
