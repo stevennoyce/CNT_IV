@@ -35,13 +35,14 @@ def run(additional_parameters):
 	print("Sensor data: " + str(parameters['SensorData']))
 	
 	# Run specified action:
-	if((parameters['MeasurementSystem']['system'] == 'PCB2v14') and (len(parameters['MeasurementSystem']['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
+	if((parameters['MeasurementSystem']['systemType'] == 'standalone') and (len(parameters['MeasurementSystem']['deviceRange']) > 0) and (parameters['runType'] not in ['DeviceHistory', 'ChipHistory'])):
 		for device in parameters['MeasurementSystem']['deviceRange']:
 			params = copy.deepcopy(parameters)
 			params['Identifiers']['device'] = device
 			runAction(params, smu_systems, arduino_instance)
 	else:
-		runAction(parameters, smu_systems, arduino_instance)
+		
+	runAction(parameters, smu_systems, arduino_instance)
 
 
 
