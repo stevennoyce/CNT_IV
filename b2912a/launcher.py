@@ -127,6 +127,7 @@ def runDeviceHistory(parameters):
 def initMeasurementSystems(parameters):
 	system_instances = {}
 	if(parameters['runType'] not in ['DeviceHistory', 'ChipHistory']):
+		parameters['MeasurementSystem']['systems'] = smu.getSystemConfiguration(parameters['MeasurementSystem']['systemType'])
 		for system_name,system_info in parameters['MeasurementSystem']['systems'].items():
 			system_id = system_info['uniqueID']
 			system_type = system_info['type']

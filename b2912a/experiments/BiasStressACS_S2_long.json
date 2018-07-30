@@ -1,6 +1,0 @@
-{"runType": "AutoStaticBias", "waferID": "C127", "chipID": "X", "deviceID": "15-16", "AutoStaticBias": {"numberOfStaticBiases": 4}, "StaticBias": {"totalBiasTime": 3600, "gateVoltageSetPoint": -15, "drainVoltageSetPoint": -0.5, "gateVoltageWhenDone": -15, "drainVoltageWhenDone": -0.5, "delayBeforeApplyingVoltage": 30}}
-{"runType": "GateSweep", "waferID": "C127", "chipID": "X", "deviceID": "15-16"}
-{"runType": "AutoStaticBias", "waferID": "C127", "chipID": "X", "deviceID": "15-16", "AutoStaticBias": {"numberOfStaticBiases": 4, "turnChannelsOffBetweenBiases": true, "channelsOffTime": 30}, "StaticBias": {"totalBiasTime": 10800, "gateVoltageSetPoint": -15, "drainVoltageSetPoint": -0.5, "gateVoltageWhenDone": -15, "drainVoltageWhenDone": -0.5}}
-{"runType": "GateSweep", "waferID": "C127", "chipID": "X", "deviceID": "15-16"}
-{"runType": "AutoStaticBias", "waferID": "C127", "chipID": "X", "deviceID": "15-16", "AutoStaticBias": {"numberOfStaticBiases": 4}, "StaticBias": {"totalBiasTime": 10800, "gateVoltageSetPoint": -15, "drainVoltageSetPoint": -0.5, "gateVoltageWhenDone": 0, "drainVoltageWhenDone": 0, "delayBeforeApplyingVoltage": 30}}
-{"runType": "GateSweep", "waferID": "C127", "chipID": "X", "deviceID": "15-16"}

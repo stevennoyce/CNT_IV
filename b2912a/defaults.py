@@ -75,12 +75,9 @@ default_parameters = {
 
 	},
 	'MeasurementSystem':{
+		'systemType': ['single', 'standalone', 'double'][0],
 		'systems': {
-			'default': {
-				'uniqueID': '',
-				'type': ['B2912A','PCB2v14'][0],
-				'settings': {}
-			}
+			
 		},
 		'deviceRange': []
 	},

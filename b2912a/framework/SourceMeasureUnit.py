@@ -8,6 +8,40 @@ import random as rand
 import numpy as np
 import json
 
+import copy
+
+smu_system_configurations = {
+	'single': {
+		'SMU': {
+			'uniqueID': '',
+			'type': 'B2912A',
+			'settings': {}
+		}
+	},
+	'standalone': {
+		'PCB': {
+			'uniqueID': '',
+			'type': 'PCB2v14',
+			'settings': {}
+		}
+	},
+	'double': {
+		'deviceSMU':{
+			'uniqueID': 'USB0::0x0957::0x8E18::MY51141244::INSTR',
+			'type': 'B2912A',
+			'settings': {}
+		},
+		'secondarySMU':{
+			'uniqueID': 'USB0::0x0957::0x8E18::MY51141241::INSTR',
+			'type': 'B2912A',
+			'settings': {}
+		}
+	}
+}
+
+def getSystemConfiguration(systemType):
+	return copy.deepcopy(smu_system_configurations[systemType])
+
 def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defaultComplianceCurrent=100e-6, smuTimeout=60000):
 	rm = visa.ResourceManager()
 	if(uniqueIdentifier == ''):
@@ -23,6 +57,8 @@ def getConnectionToPCB(port='', system_settings=None):
 		port = '/dev/tty.HC-05-DevB'
 	ser = pySerial.Serial(port, 115200, timeout=0.5)
 	return PCB2v14(ser)
+
+
 
 # class SimulationSMU(SourceMeasureUnit):
 # 	source1_voltage = 0
@@ -128,20 +164,12 @@ class SourceMeasureUnit:
 class B2912A(SourceMeasureUnit):
 	smu = None
 	measurementsPerSecond = 60
-	nplc = 0
+	nplc = 1
 	
 	def __init__(self, visa_instance, defaultComplianceCurrent):
 		self.smu = visa_instance
 		self.initialize()
 		self.setComplianceCurrent(defaultComplianceCurrent)
-	
-	def turnChannelsOn(self):
-		self.smu.write(":outp1 ON")
-		self.smu.write(":outp2 ON")
-	
-	def turnChannelsOff(self):
-		self.smu.write(":outp1 OFF")
-		self.smu.write(":outp2 OFF")
 	
 	def initialize(self):
 		self.smu.write("*RST") # Reset
@@ -161,7 +189,6 @@ class B2912A(SourceMeasureUnit):
 		
 		self.smu.write(":sense1:curr:nplc 1")
 		self.smu.write(":sense2:curr:nplc 1")
-		self.nplc = 1
 		
 		self.smu.write(":outp1 ON")
 		self.smu.write(":outp2 ON")
@@ -171,12 +198,38 @@ class B2912A(SourceMeasureUnit):
 	def setDevice(self, deviceID):
 		pass
 
-	def setComplianceCurrent(self, complianceCurrent):
-		self.smu.write(":sense1:curr:prot {}".format(complianceCurrent))
-		self.smu.write(":sense2:curr:prot {}".format(complianceCurrent))
-
 	def setParameter(self, parameter):
 		self.smu.write(parameter)
+
+	def turnChannelsOn(self):
+		self.setParameter(":outp1 ON")
+		self.setParameter(":outp2 ON")
+	
+	def turnChannelsOff(self):
+		self.setParameter(":outp1 OFF")
+		self.setParameter(":outp2 OFF")
+
+	def turnAutoRangingOn(self):
+		self.setParameter(':sense1:curr:range:auto ON')
+		self.setParameter(':sense2:curr:range:auto ON')
+
+	def turnAutoRangingOff(self):
+		self.setParameter(':sense1:curr:range:auto OFF')
+		self.setParameter(':sense2:curr:range:auto OFF')
+
+	def setComplianceCurrent(self, complianceCurrent=100e-6):
+		self.setParameter(":sense1:curr:prot {}".format(complianceCurrent))
+		self.setParameter(":sense2:curr:prot {}".format(complianceCurrent))
+
+	def setComplianceVoltage(self, complianceVoltage):
+		self.setParameter(":sense1:volt:prot {}".format(complianceVoltage))
+		self.setParameter(":sense2:volt:prot {}".format(complianceVoltage))
+
+	def setChannel1SourceMode(self, mode="voltage"):
+		self.setParameter(":source1:function:mode {}".format(mode))
+
+	def setChannel2SourceMode(self, mode="voltage"):
+		self.setParameter(":source2:function:mode {}".format(mode))
 
 	def setVds(self, voltage):
 		self.setParameter(":source1:voltage {}".format(voltage))

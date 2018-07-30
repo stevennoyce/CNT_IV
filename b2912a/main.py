@@ -112,9 +112,9 @@ def main():
 
 		print('Opening schedule file: ' + file)
 
-		while( schedule_index < len(dlu.loadJSON(directory='experiments', loadFileName=file)) ):
+		while( schedule_index < len(dlu.loadJSON(directory='', loadFileName=file)) ):
 			print('Loading line #' + str(schedule_index+1) + ' in schedule file ' + file)
-			parameter_list = dlu.loadJSON(directory='experiments', loadFileName=file)
+			parameter_list = dlu.loadJSON(directory='', loadFileName=file)
 
 			print('Launching job #' + str(schedule_index+1) + ' of ' + str(len(parameter_list)) + ' in schedule file ' + file)
 			print('Schedule contains ' + str(len(parameter_list) - schedule_index - 1) + ' other incomplete jobs.')
