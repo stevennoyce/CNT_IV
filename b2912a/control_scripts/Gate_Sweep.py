@@ -48,9 +48,9 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	jsonData = dict(parameters)
 	jsonData['Results'] = results['Raw']
 	
-	print('On/Off ratio: {:.4f}'.format(results['onOffRatio']))
-	print('On current: {:.4e}'.format(results['onCurrent']))
-	print('Off current: {:.4e}'.format(results['offCurrent']))
+	print('On/Off ratio: {:.4f}'.format(results['Computed']['onOffRatio']))
+	print('On current: {:.4e}'.format(results['Computed']['onCurrent']))
+	print('Off current: {:.4e}'.format(results['Computed']['offCurrent']))
 
 	# Save results as a JSON object
 	if(isSavingResults):

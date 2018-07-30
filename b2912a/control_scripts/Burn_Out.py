@@ -46,7 +46,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	jsonData = dict(parameters)
 	jsonData['Results'] = results['Raw']
 
-	print('Did it burn?: '+str('Yes' if(results['didBurnOut']) else 'No'))
+	print('Did it burn?: '+str('Yes' if(results['Computed']['didBurnOut']) else 'No'))
 
 	# Save results as a JSON object
 	if(isSavingResults):
