@@ -401,6 +401,8 @@ def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i], lineStyle=None)
 
 	# Add Legend and save figure
+	ax1.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
+	ax2.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
 	ax3.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
 	adjustFigure(fig, 'FullBurnOut', mode_parameters, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
