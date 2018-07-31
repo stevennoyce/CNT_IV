@@ -294,7 +294,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 	
 	# Plot
 	# import random
-	# indexes = list(range(len(deviceHistory)))
+	# indexes = list(reversed(range(len(deviceHistory))))
 	# inexes = random.shuffle(indexes)
 	# # indexes1 = indexes[0:len(indexes)//2]
 	# # indexes2 = indexes[len(indexes)//2:]
