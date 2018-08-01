@@ -73,8 +73,8 @@ else:
 
 default_additional_parameters = {
 	'Identifiers': {
-		'user':'stevenjay',
-		'project':'BiasStress1',
+		'user':'nick',
+		'project':'Project1',
 		'wafer':waferID,
 		'chip':chipID,
 		'device':deviceID,

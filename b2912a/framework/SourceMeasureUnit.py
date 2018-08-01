@@ -278,7 +278,7 @@ class B2912A(SourceMeasureUnit):
 		
 		return timeToTakeMeasurements
 	
-	def endSweep(endMode=None):
+	def endSweep(self, endMode=None):
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
@@ -296,11 +296,11 @@ class B2912A(SourceMeasureUnit):
 		}
 	
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
-		timeToTakeMeasurements = startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval)
+		timeToTakeMeasurements = self.startSweep(src1start, src1stop, src2start, src2stop, points, triggerInterval=triggerInterval)
 		
 		time.sleep(timeToTakeMeasurements)
 		
-		endSweep(endMode='fixed')
+		return self.endSweep(endMode='fixed')
 
 
 class PCB2v14(SourceMeasureUnit):
