@@ -279,6 +279,8 @@ class B2912A(SourceMeasureUnit):
 		return timeToTakeMeasurements
 	
 	def endSweep(self, endMode=None):
+		self.smu.write("*WAI")
+
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
