@@ -132,6 +132,8 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		print('\r[' + int(elapsedTime*70.0/totalBiasTime)*'=' + (70-int(elapsedTime*70.0/totalBiasTime)-1)*' ' + ']', end='')
 	print('')
 
+	print('Completed StaticBias in "' + '{:.4f}'.format(time.time() - startTime) + '" seconds.')
+
 	return {
 		'Raw':{
 			'vds_data':vds_data,

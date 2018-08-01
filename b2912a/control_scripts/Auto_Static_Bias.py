@@ -30,7 +30,7 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 	drainVoltageSetPointList = [sb_parameters['drainVoltageSetPoint']]*numberOfStaticBiases
 	gateVoltageWhenDoneList = [sb_parameters['gateVoltageWhenDone']]*numberOfStaticBiases
 	drainVoltageWhenDoneList = [sb_parameters['drainVoltageWhenDone']]*numberOfStaticBiases
-	delayBeforeApplyingVoltageList = [sb_parameters['delayBeforeApplyingVoltage']]*numberOfStaticBiases
+	delayWhenDoneList = [sb_parameters['delayWhenDone']]*numberOfStaticBiases
 	delayBeforeMeasurementsList = [sb_parameters['delayBeforeMeasurementsBegin']]*numberOfStaticBiases
 
 	# Modify parameter arrays so that they increment there values as desired
@@ -42,18 +42,18 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		drainVoltageSetPointList[i] += asb_parameters['incrementStaticDrainVoltage']*(currentIncrementNumber-1)
 		gateVoltageWhenDoneList[i] += asb_parameters['incrementGateVoltageWhenDone']*(currentIncrementNumber-1)
 		drainVoltageWhenDoneList[i] += asb_parameters['incrementDrainVoltageWhenDone']*(currentIncrementNumber-1)
-		delayBeforeApplyingVoltageList[i] += asb_parameters['incrementDelayBeforeReapplyingVoltage']*(currentIncrementNumber-1)	
+		delayWhenDoneList[i] += asb_parameters['incrementDelayBeforeReapplyingVoltage']*(currentIncrementNumber-1)	
 	delayBeforeMeasurementsList[0] = asb_parameters['firstDelayBeforeMeasurementsBegin']
 
 	# Randomize the time spent grounding the terminals if desired
 	if(asb_parameters['shuffleDelaysBeforeReapplyingVoltage']):
-		random.shuffle(delayBeforeApplyingVoltageList)
+		random.shuffle(delayWhenDoneList)
 
 
 
 	## === START ===
 	print('Beginning AutoStaticBias test with the following parameter lists:')
-	print(' Gate Voltages:  {:} \n Drain Voltages:  {:} \n Gate Voltages between biases:  {:} \n Drain Voltages between biases:  {:} \n Delay Between Applying Voltages:  {:} \n Delay Before Measurements Begin:  {:}'.format(gateVoltageSetPointList, drainVoltageSetPointList, gateVoltageWhenDoneList, drainVoltageWhenDoneList, delayBeforeApplyingVoltageList, delayBeforeMeasurementsList))
+	print(' Gate Voltages:  {:} \n Drain Voltages:  {:} \n Gate Voltages between biases:  {:} \n Drain Voltages between biases:  {:} \n Delay Between Applying Voltages:  {:} \n Delay Before Measurements Begin:  {:}'.format(gateVoltageSetPointList, drainVoltageSetPointList, gateVoltageWhenDoneList, drainVoltageWhenDoneList, delayWhenDoneList, delayBeforeMeasurementsList))
 	
 	# Run a pre-test gate sweep just to make sure everything looks good
 	if(asb_parameters['doInitialGateSweep']):
@@ -69,7 +69,7 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		sb_parameters['drainVoltageSetPoint'] = drainVoltageSetPointList[i]
 		sb_parameters['gateVoltageWhenDone'] = gateVoltageWhenDoneList[i]
 		sb_parameters['drainVoltageWhenDone'] = drainVoltageWhenDoneList[i]
-		sb_parameters['delayBeforeApplyingVoltage'] = delayBeforeApplyingVoltageList[i]
+		sb_parameters['delayWhenDone'] = delayWhenDoneList[i]
 		sb_parameters['delayBeforeMeasurementsBegin'] = delayBeforeMeasurementsList[i]
 		
 		# Run StaticBias, GateSweep (if desired)
