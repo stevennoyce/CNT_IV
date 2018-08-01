@@ -9,6 +9,7 @@
 
 #ignore data files
 *.json
+data/
 
 #ignore generated plots
 *.png
