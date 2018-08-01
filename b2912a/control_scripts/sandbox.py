@@ -24,7 +24,7 @@ def run(isSavingResults=False, isPlottingResults=True):
 
 	NPLC = 1
 	compliance = 100e-6
-	smu_instance = smu.getConnectionFromVisa(NPLC, defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
+	smu_instance = smu.getConnectionToVisaResource(defaultComplianceCurrent=100e-6, smuTimeout=60*1000)
 	smu_instance.setComplianceCurrent(compliance)
 	
 	print('Beginning sandbox.')
@@ -48,9 +48,9 @@ def run(isSavingResults=False, isPlottingResults=True):
 		print('Plotting results.')
 		#deviceHistoryScript.run(deviceHistoryParameters)
 		#plt.plot(jsonData['Results']['timestamps'], jsonData['Results']['vds_data'])
-		plt.plot(jsonData['Results']['timestamps'], -np.array(jsonData['Results']['id_data']))
+		#plt.plot(jsonData['Results']['timestamps'], -np.array(jsonData['Results']['id_data']))
 		#plt.plot(jsonData['Results']['timestamps'], jsonData['Results']['vgs_data'])
-		plt.show()
+		#plt.show()
 	
 	return jsonData
 
@@ -62,44 +62,21 @@ def runSandBox(smu_instance):
 	ig_data = []
 	timestamps = []
 
-	steps = 1000
+	steps = 1
 	vgs_setpoint = -15
 	vds_setpoint = -0.5
 	smu_instance.setVgs(vgs_setpoint)
 	smu_instance.setVds(vds_setpoint)
 		
+	start = time.time()
+
 	for i in range(steps):
-		# Apply 
-		smu_instance.setVgs(vgs_setpoint)
-		#smu_instance.setVds(vds_setpoint)
-
-		# Take Measurement and save it
-		measurement = smu_instance.takeMeasurement()
-		timestamp = time.time()
+		measurement = smu_instance.takeSweep(vds_setpoint, vds_setpoint, vgs_setpoint, vgs_setpoint, 300)
 		
-		vds_data.append(measurement['V_ds'])
-		id_data.append(measurement['I_d'])
-		vgs_data.append(measurement['V_gs'])
-		ig_data.append(measurement['I_g'])
-		timestamps.append(timestamp)
+	end = time.time()
 
-
-
-		# Apply 
-		if(i % 5 == 0):
-			smu_instance.setVgs(0)
-			#smu_instance.setVds(0)
-
-			# Take Measurement and save it
-			measurement = smu_instance.takeMeasurement()
-			timestamp = time.time()
-			
-			#vds_data.append(measurement['V_ds'])
-			#id_data.append(measurement['I_d'])
-			#vgs_data.append(measurement['V_gs'])
-			#ig_data.append(measurement['I_g'])
-			#timestamps.append(timestamp)
-
+	print('TOTAL: ' + str(end - start))
+	print('RATE: ' + str(300*steps/(end - start)))
 
 	return {
 		'vds_data':vds_data,

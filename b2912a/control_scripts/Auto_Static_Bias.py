@@ -76,14 +76,6 @@ def runAutoStaticBias(parameters, smu_instance, arduino_instance, gateSweepParam
 		staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		if(asb_parameters['applyGateSweepBetweenBiases']):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
-		
-		# Float the channels if desired
-		if(asb_parameters['turnChannelsOffBetweenBiases']):
-			print('Turning channels off for: ' + str(asb_parameters['channelsOffTime']) + ' seconds...')
-			smu_instance.turnChannelsOff()
-			time.sleep(asb_parameters['channelsOffTime'])
-			smu_instance.turnChannelsOn()
-			print('Channels are back on.')
 
 		print('Completed static bias #'+str(i+1)+' of '+str(numberOfStaticBiases))
 		

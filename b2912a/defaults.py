@@ -35,12 +35,13 @@ default_parameters = {
 			'totalBiasTime': 60,
 			'measurementTime': 10,
 			'complianceCurrent': 100e-6,
-			'delayBeforeApplyingVoltage': 0,
 			'delayBeforeMeasurementsBegin': 0,
 			'gateVoltageSetPoint': 	-15,
 			'drainVoltageSetPoint':	-0.5,
 			'gateVoltageWhenDone':  0,
-			'drainVoltageWhenDone': 0
+			'drainVoltageWhenDone': 0,
+			'floatChannelsWhenDone': False,
+			'delayWhenDone': 0
 		},
 		'AutoGateSweep':{
 			'numberOfSweeps': 1,
@@ -50,8 +51,6 @@ default_parameters = {
 			'numberOfStaticBiases': 1,
 			'doInitialGateSweep': True,
 			'applyGateSweepBetweenBiases': False,
-			'turnChannelsOffBetweenBiases': False,
-			'channelsOffTime': 0,
 			'firstDelayBeforeMeasurementsBegin': 0,
 			'numberOfBiasesBetweenIncrements': 1,
 			'incrementStaticGateVoltage': 0,

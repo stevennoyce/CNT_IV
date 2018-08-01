@@ -34,9 +34,6 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 
 	# === START ===
 	# Delay before applying voltage (can be used in AutoStaticBias to hold the device grounded between runs)
-	if(sb_parameters['delayBeforeApplyingVoltage'] > 0):
-		time.sleep(sb_parameters['delayBeforeApplyingVoltage'])
-
 	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageSetPoint'])
 	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageSetPoint'])
 
@@ -52,6 +49,18 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 							measurementTime=sb_parameters['measurementTime'])
 	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageWhenDone'])
 	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageWhenDone'])
+
+	if(b_parameters['floatChannelsWhenDone']):
+		print('Turning channels off.')
+		smu_instance.turnChannelsOff()
+
+	if(sb_parameters['delayWhenDone'] > 0):
+		print('Waiting for: ' + str(sb_parameters['delayWhenDone']) + ' seconds...')
+		time.sleep(sb_parameters['delayWhenDone'])
+		
+	if(b_parameters['floatChannelsWhenDone']):
+		smu_instance.turnChannelsOn()
+		print('Channels are back on.')
 
 	# Copy parameters and add in the test results
 	parameters['Computed'] = results['Computed']
@@ -78,27 +87,37 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	ig_data = []
 	timestamps = []
 
-	steps = int(totalBiasTime/measurementTime)
-	pointsToAverageOver = (measurementTime)*(smu_instance.measurementsPerSecond)/(smu_instance.nplc)/1.5
-	
+	smu_measurementsPerSecond = smu_instance.measurementsPerSecond
+	smu_secondsPerMeasurement = 1/smu_measurementsPerSecond
+
+	steps = int(totalBiasTime/measurementTime) if(measurementTime > 0) else None
 	startTime = time.time()
+
+	continueCriterion = lambda i: i < steps
+	if(measurementTime < smu_secondsPerMeasurement):
+		continueCriterion = lambda i: time.time() - startTime < totalBiasTime
 	
-	for i in range(steps):
-		# Take a 'sweep' at static voltage to get many measurements. Sweep takes 'measurementTime' number of seconds to complete.
-		# measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, pointsToAverageOver)
+	i = 0
+	while(continueCriterion(i)):
+		i += 1
 		
-		measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, int(1/4*pointsToAverageOver))
+		measurements = {'Vds_data':[], 'Id_data':[], 'Vgs_data':[], 'Ig_data':[]}
+		measurement = smu_instance.takeMeasurement()
+		measurements['Vds_data'].append(measurement['V_ds'])
+		measurements['Id_data'].append(measurement['I_d'])
+		measurements['Vgs_data'].append(measurement['V_gs'])
+		measurements['Ig_data'].append(measurement['I_g'])
+
+		elapsedTime = time.time() - startTime
+		while elapsedTime < measurementTime*i - smu_secondsPerMeasurement/2:
+			measurement = smu_instance.takeMeasurement()
+			measurements['Vds_data'].append(measurement['V_ds'])
+			measurements['Id_data'].append(measurement['I_d'])
+			measurements['Vgs_data'].append(measurement['V_gs'])
+			measurements['Ig_data'].append(measurement['I_g'])
 		
-		while time.time() - startTime < measurementTime*(i+3/4):
-			measurement = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageSetPoint, gateVoltageSetPoint, int(1/4*pointsToAverageOver))
-			for key, value in measurement.items():
-				if isinstance(value, list):
-					measurements[key].extend(value)
-		
+		# Save the median of the measurements
 		timestamp = time.time()
-		
-		
-		# Save the median of the sweep as this measurement
 		vds_data.append(np.median(measurements['Vds_data']))
 		id_data.append(np.median(measurements['Id_data']))
 		vgs_data.append(np.median(measurements['Vgs_data']))
@@ -110,7 +129,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		for (measurement, value) in sensor_data.items():
 			parameters['SensorData'][measurement].append(value)
 
-		print('\r[' + int(i*70.0/steps)*'=' + (70-int(i*70.0/steps)-1)*' ' + ']', end='')
+		print('\r[' + int(elapsedTime*70.0/totalBiasTime)*'=' + (70-int(elapsedTime*70.0/totalBiasTime)-1)*' ' + ']', end='')
 	print('')
 
 	return {

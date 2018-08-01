@@ -163,7 +163,7 @@ class SourceMeasureUnit:
 
 class B2912A(SourceMeasureUnit):
 	smu = None
-	measurementsPerSecond = 60
+	measurementsPerSecond = 40
 	nplc = 1
 	
 	def __init__(self, visa_instance, defaultComplianceCurrent):
@@ -264,7 +264,7 @@ class B2912A(SourceMeasureUnit):
 			self.smu.write(":trig1:count {}".format(points))
 			self.smu.write(":trig2:source aint")
 			self.smu.write(":trig2:count {}".format(points))
-			timeToTakeMeasurements = 1.5*(self.nplc)*(points/self.measurementsPerSecond)
+			timeToTakeMeasurements = (self.nplc)*(points/self.measurementsPerSecond)
 		else:
 			self.smu.write(":trig1:source timer")
 			self.smu.write(":trig1:timer {}".format(triggerInterval))
@@ -275,12 +275,11 @@ class B2912A(SourceMeasureUnit):
 			timeToTakeMeasurements = (triggerInterval*points)
 		
 		self.smu.write(":init (@1:2)")
+		self.smu.write("*WAI")
 		
 		return timeToTakeMeasurements
 	
 	def endSweep(self, endMode=None):
-		self.smu.write("*WAI")
-
 		current1s = self.smu.query_ascii_values(":fetch:arr:curr? (@1)")
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
