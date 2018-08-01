@@ -33,7 +33,7 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 		parameters['SensorData'][measurement] = []
 
 	# === START ===
-	# Delay before applying voltage (can be used in AutoStaticBias to hold the device grounded between runs)
+	# Apply voltages
 	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageSetPoint'])
 	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageSetPoint'])
 
@@ -87,20 +87,22 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	ig_data = []
 	timestamps = []
 
+	# Get the SMU
 	smu_measurementsPerSecond = smu_instance.measurementsPerSecond
 	smu_secondsPerMeasurement = 1/smu_measurementsPerSecond
 
-	steps = int(totalBiasTime/measurementTime) if(measurementTime > 0) else None
+	steps = max(int(totalBiasTime/measurementTime), 1) if(measurementTime > 0) else None
 	startTime = time.time()
 
+	# Criteria to keep taking measurements when measurementTime is relatively large
 	continueCriterion = lambda i: i < steps
 	if(measurementTime < smu_secondsPerMeasurement):
-		continueCriterion = lambda i: time.time() - startTime < totalBiasTime
-	
+		# Criteria to keep taking measurements when measurementTime is very small
+		continueCriterion = lambda i: time.time() - startTime < totalBiasTime - smu_secondsPerMeasurement/2
+		continueCriterion = lambda i: time.time() - startTime < totalBiasTime - ((time.time() - startTime)/(i+1))/2
+
 	i = 0
 	while(continueCriterion(i)):
-		i += 1
-		
 		measurements = {'Vds_data':[], 'Id_data':[], 'Vgs_data':[], 'Ig_data':[]}
 		measurement = smu_instance.takeMeasurement()
 		measurements['Vds_data'].append(measurement['V_ds'])
@@ -108,7 +110,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		measurements['Vgs_data'].append(measurement['V_gs'])
 		measurements['Ig_data'].append(measurement['I_g'])
 
-		while time.time() - startTime < measurementTime*i - smu_secondsPerMeasurement/2:
+		while time.time() - startTime < measurementTime*(i+1) - ((time.time() - startTime)/(i+1))/2:
 			measurement = smu_instance.takeMeasurement()
 			measurements['Vds_data'].append(measurement['V_ds'])
 			measurements['Id_data'].append(measurement['I_d'])
@@ -130,9 +132,11 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 
 		elapsedTime = time.time() - startTime
 		print('\r[' + int(elapsedTime*70.0/totalBiasTime)*'=' + (70-int(elapsedTime*70.0/totalBiasTime)-1)*' ' + ']', end='')
+		i += 1
+	
+	endTime = time.time()
 	print('')
-
-	print('Completed StaticBias in "' + '{:.4f}'.format(time.time() - startTime) + '" seconds.')
+	print('Completed static bias in "' + '{:.4f}'.format(endTime - startTime) + '" seconds.')
 
 	return {
 		'Raw':{
