@@ -50,7 +50,7 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageWhenDone'])
 	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageWhenDone'])
 
-	if(b_parameters['floatChannelsWhenDone']):
+	if(sb_parameters['floatChannelsWhenDone']):
 		print('Turning channels off.')
 		smu_instance.turnChannelsOff()
 
@@ -58,7 +58,7 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 		print('Waiting for: ' + str(sb_parameters['delayWhenDone']) + ' seconds...')
 		time.sleep(sb_parameters['delayWhenDone'])
 		
-	if(b_parameters['floatChannelsWhenDone']):
+	if(sb_parameters['floatChannelsWhenDone']):
 		smu_instance.turnChannelsOn()
 		print('Channels are back on.')
 
@@ -108,8 +108,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		measurements['Vgs_data'].append(measurement['V_gs'])
 		measurements['Ig_data'].append(measurement['I_g'])
 
-		elapsedTime = time.time() - startTime
-		while elapsedTime < measurementTime*i - smu_secondsPerMeasurement/2:
+		while time.time() - startTime < measurementTime*i - smu_secondsPerMeasurement/2:
 			measurement = smu_instance.takeMeasurement()
 			measurements['Vds_data'].append(measurement['V_ds'])
 			measurements['Id_data'].append(measurement['I_d'])
@@ -129,6 +128,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		for (measurement, value) in sensor_data.items():
 			parameters['SensorData'][measurement].append(value)
 
+		elapsedTime = time.time() - startTime
 		print('\r[' + int(elapsedTime*70.0/totalBiasTime)*'=' + (70-int(elapsedTime*70.0/totalBiasTime)-1)*' ' + ']', end='')
 	print('')
 

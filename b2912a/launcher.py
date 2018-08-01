@@ -25,6 +25,8 @@ import defaults
 
 # === Main API ===
 def run(additional_parameters):
+	startTime = time.time()
+	
 	parameters = defaults.with_added(additional_parameters)
 
 	# Initialize measurement system
@@ -42,13 +44,16 @@ def run(additional_parameters):
 			runAction(params, smu_systems, arduino_instance)
 	else:
 		runAction(parameters, smu_systems, arduino_instance)
+	
+	endTime = time.time()
+	print('Completed job in "' + '{:.4f}'.format(endTime - startTime) + '" seconds.')
 
 
 
 # === Internal API ===
 # Run generic user action
 def runAction(parameters, smu_systems, arduino_instance):
-	print('Creating save folder.')
+	print('Checking that save folder exists.')
 	dlu.makeFolder(dlu.getDeviceDirectory(parameters))
 
 	if(parameters['runType'] == 'DeviceHistory'):
