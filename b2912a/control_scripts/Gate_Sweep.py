@@ -5,7 +5,6 @@ import numpy as np
 from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import DataGeneratorUtility as dgu
-#from framework import SourceMeasureUnit as smu
 
 
 
@@ -23,12 +22,15 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	dh_parameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
+	# Get shorthand name to easily refer to configuration parameters
 	gs_parameters = parameters['runConfigs']['GateSweep']
 
+	# Print the starting message
 	print('Sweeping the gate: V_DS='+str(gs_parameters['drainVoltageSetPoint'])+'V, min V_GS='+str(gs_parameters['gateVoltageMinimum'])+'V, max V_GS='+str(gs_parameters['gateVoltageMaximum'])+'V')
 	smu_instance.setComplianceCurrent(gs_parameters['complianceCurrent'])	
 
 	# === START ===
+	# Apply drain voltage
 	print('Ramping drain voltage.')
 	smu_instance.rampDrainVoltageTo(gs_parameters['drainVoltageSetPoint'])
 	
@@ -44,17 +46,20 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 							stepsInVGSPerDirection=gs_parameters['stepsInVGSPerDirection'],
 							pointsPerVGS=gs_parameters['pointsPerVGS'])
 	smu_instance.rampDownVoltages()
+	# === COMPLETE ===
 
-	# Copy parameters and add in the test results
+	# Add important metrics from the run to the parameters for easy access later in ParametersHistory
 	parameters['Computed'] = results['Computed']
-
-	jsonData = dict(parameters)
-	jsonData['Results'] = results['Raw']
 	
+	# Print the metrics
 	print('On/Off ratio: {:.4f}'.format(results['Computed']['onOffRatio']))
 	print('On current: {:.4e}'.format(results['Computed']['onCurrent']))
 	print('Off current: {:.4e}'.format(results['Computed']['offCurrent']))
 
+	# Copy parameters and add in the test results
+	jsonData = dict(parameters)
+	jsonData['Results'] = results['Raw']
+	
 	# Save results as a JSON object
 	if(isSavingResults):
 		print('Saving JSON.')
@@ -80,7 +85,7 @@ def runGateSweep(smu_instance, isFastSweep, isAlternatingSweep, pulsedMeasuremen
 	else:
 		gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
 		
-		# Ramp gate and wait a few seconds for everything to settle down
+		# Ramp gate and wait a second for everything to settle down
 		smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
 		time.sleep(1)
 

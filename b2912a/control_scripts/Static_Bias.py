@@ -4,7 +4,6 @@ import numpy as np
 
 from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
-#from framework import SourceMeasureUnit as smu
 
 
 
@@ -22,8 +21,10 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	dh_parameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
+	# Get shorthand name to easily refer to configuration parameters
 	sb_parameters = parameters['runConfigs']['StaticBias']
 
+	# Print the starting message
 	print('Applying static bias of V_GS='+str(sb_parameters['gateVoltageSetPoint'])+'V, V_DS='+str(sb_parameters['drainVoltageSetPoint'])+'V for '+str(sb_parameters['totalBiasTime'])+' seconds...')
 	smu_instance.setComplianceCurrent(sb_parameters['complianceCurrent'])	
 
@@ -34,11 +35,13 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 
 	# === START ===
 	# Apply voltages
+	print('Applying bias voltages.')
 	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageSetPoint'])
 	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageSetPoint'])
 
 	# Delay before measurements begin (only useful for allowing current to settle a little, not usually necessary)
 	if(sb_parameters['delayBeforeMeasurementsBegin'] > 0):
+		print('Waiting for: ' + str(sb_parameters['delayBeforeMeasurementsBegin']) + ' seconds before measurements begin.')
 		time.sleep(sb_parameters['delayBeforeMeasurementsBegin'])
 
 	results = runStaticBias(smu_instance, 
@@ -50,21 +53,29 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	smu_instance.rampGateVoltageTo(sb_parameters['gateVoltageWhenDone'])
 	smu_instance.rampDrainVoltageTo(sb_parameters['drainVoltageWhenDone'])
 
+	# Float channels if desired
 	if(sb_parameters['floatChannelsWhenDone']):
 		print('Turning channels off.')
 		smu_instance.turnChannelsOff()
 
+	# Delay to allow channels to float or sit at their "WhenDone" values
 	if(sb_parameters['delayWhenDone'] > 0):
 		print('Waiting for: ' + str(sb_parameters['delayWhenDone']) + ' seconds...')
 		time.sleep(sb_parameters['delayWhenDone'])
-		
+	
+	# If the channels were turned off, need to turn them back on
 	if(sb_parameters['floatChannelsWhenDone']):
 		smu_instance.turnChannelsOn()
 		print('Channels are back on.')
+	# === COMPLETE ===
+
+	# Add important metrics from the run to the parameters for easy access later in ParametersHistory
+	parameters['Computed'] = results['Computed']
+	
+	# Print the metrics
+	print('Standard Deviation: {:.4f}'.format(results['Computed']['id_std']))
 
 	# Copy parameters and add in the test results
-	parameters['Computed'] = results['Computed']
-
 	jsonData = dict(parameters)
 	jsonData['Results'] = results['Raw']
 	
@@ -73,7 +84,7 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 		print('Saving JSON.')
 		dlu.saveJSON(dlu.getDeviceDirectory(parameters), sb_parameters['saveFileName'], jsonData)
 	
-	# Show plots to the user
+	# Show plots to the user if desired
 	if(isPlottingResults):
 		deviceHistoryScript.run(dh_parameters)
 	
@@ -87,37 +98,47 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	ig_data = []
 	timestamps = []
 
-	# Get the SMU
+	# Get the SMU measurement speed
 	smu_measurementsPerSecond = smu_instance.measurementsPerSecond
 	smu_secondsPerMeasurement = 1/smu_measurementsPerSecond
 
+	# Compute the number of data points we will be collecting (unless measurementTime is unreasonably small)
 	steps = max(int(totalBiasTime/measurementTime), 1) if(measurementTime > 0) else None
+	
+	# Take a timestamp for the start of the StaticBias
 	startTime = time.time()
 
 	# Criteria to keep taking measurements when measurementTime is relatively large
-	continueCriterion = lambda i: i < steps
+	continueCriterion = lambda i, measurementCount: i < steps
 	if(measurementTime < smu_secondsPerMeasurement):
 		# Criteria to keep taking measurements when measurementTime is very small
-		continueCriterion = lambda i: time.time() - startTime < totalBiasTime - smu_secondsPerMeasurement/2
-		continueCriterion = lambda i: time.time() - startTime < totalBiasTime - ((time.time() - startTime)/(i+1))/2
+		continueCriterion = lambda i, measurementCount: (time.time() - startTime) < (totalBiasTime - (1/2)*smu_secondsPerMeasurement)
+		continueCriterion = lambda i, measurementCount: (time.time() - startTime) < (totalBiasTime - (1/2)*(time.time() - startTime)/max(measurementCount, 1))
 
 	i = 0
-	while(continueCriterion(i)):
+	measurementCount = 0
+	while(continueCriterion(i, measurementCount)):
+		# Define buffers for data to fill during each "measurementTime"
 		measurements = {'Vds_data':[], 'Id_data':[], 'Vgs_data':[], 'Ig_data':[]}
+		
+		# Take the first data point of this "measurementTime"
 		measurement = smu_instance.takeMeasurement()
 		measurements['Vds_data'].append(measurement['V_ds'])
 		measurements['Id_data'].append(measurement['I_d'])
 		measurements['Vgs_data'].append(measurement['V_gs'])
 		measurements['Ig_data'].append(measurement['I_g'])
+		measurementCount += 1
 
-		while time.time() - startTime < measurementTime*(i+1) - ((time.time() - startTime)/(i+1))/2:
+		# While the current measurementTime has not been exceeded, continuously collect data. (subtract half of the SMU's speed so on average we take the right amount of time)
+		while (time.time() - startTime) < (measurementTime*(i+1) - (1/2)*(time.time() - startTime)/measurementCount):
 			measurement = smu_instance.takeMeasurement()
 			measurements['Vds_data'].append(measurement['V_ds'])
 			measurements['Id_data'].append(measurement['I_d'])
 			measurements['Vgs_data'].append(measurement['V_gs'])
 			measurements['Ig_data'].append(measurement['I_g'])
+			measurementCount += 1
 		
-		# Save the median of the measurements
+		# Save the median of all the measurements taken in this measurementTime window
 		timestamp = time.time()
 		vds_data.append(np.median(measurements['Vds_data']))
 		id_data.append(np.median(measurements['Id_data']))
@@ -130,6 +151,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		for (measurement, value) in sensor_data.items():
 			parameters['SensorData'][measurement].append(value)
 
+		# Update progress bar
 		elapsedTime = time.time() - startTime
 		print('\r[' + int(elapsedTime*70.0/totalBiasTime)*'=' + (70-int(elapsedTime*70.0/totalBiasTime)-1)*' ' + ']', end='')
 		i += 1

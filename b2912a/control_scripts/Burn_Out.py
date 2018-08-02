@@ -5,7 +5,6 @@ import numpy as np
 from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 from utilities import DataGeneratorUtility as dgu
-#from framework import SourceMeasureUnit as smu
 
 
 
@@ -23,13 +22,18 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	dh_parameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
+	# Get shorthand name to easily refer to configuration parameters
 	bo_parameters = parameters['runConfigs']['BurnOut']
-
+	
+	# Print the starting message
 	print('Attempting to burnout metallic CNTs: V_GS='+str(bo_parameters['gateVoltageSetPoint'])+'V, max V_DS='+str(bo_parameters['drainVoltageMaxPoint'])+'V')
 	smu_instance.setComplianceCurrent(bo_parameters['complianceCurrent'])	
 
 	# === START ===
+	# Apply gate voltage to turn off semiconducting CNTs
+	print('Ramping gate voltage.')
 	smu_instance.rampGateVoltageTo(bo_parameters['gateVoltageSetPoint'])
+	
 	results = runBurnOutSweep(	smu_instance, 
 								thresholdProportion=bo_parameters['thresholdProportion'], 
 								minimumAppliedDrainVoltage=bo_parameters['minimumAppliedDrainVoltage'],
@@ -39,14 +43,17 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 								pointsPerRamp=bo_parameters['pointsPerRamp'],
 								pointsPerHold=bo_parameters['pointsPerHold'])
 	smu_instance.rampDownVoltages()
+	# === COMPLETE ===
+
+	# Add important metrics from the run to the parameters for easy access later in ParametersHistory
+	parameters['Computed'] = results['Computed']
+	
+	# Print the metrics
+	print('Did it burn?: '+str('Yes' if(results['Computed']['didBurnOut']) else 'No'))
 
 	# Copy parameters and add in the test results
-	parameters['Computed'] = results['Computed']
-
 	jsonData = dict(parameters)
 	jsonData['Results'] = results['Raw']
-
-	print('Did it burn?: '+str('Yes' if(results['Computed']['didBurnOut']) else 'No'))
 
 	# Save results as a JSON object
 	if(isSavingResults):
