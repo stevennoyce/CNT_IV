@@ -55,6 +55,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	print('On/Off ratio: {:.4f}'.format(results['Computed']['onOffRatio']))
 	print('On current: {:.4e}'.format(results['Computed']['onCurrent']))
 	print('Off current: {:.4e}'.format(results['Computed']['offCurrent']))
+	print('Max gate current: {:.4e}'.format(results['Computed']['ig_max']))
 
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)

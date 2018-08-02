@@ -50,6 +50,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	
 	# Print the metrics
 	print('Did it burn?: '+str('Yes' if(results['Computed']['didBurnOut']) else 'No'))
+	print('max drain current: ' + str(max(results['Raw']['id_data'])))
 
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)

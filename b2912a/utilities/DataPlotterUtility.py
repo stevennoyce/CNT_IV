@@ -144,7 +144,7 @@ plot_parameters = {
 		'id_micro_label':'$I_{{D}}$ [$\\mu$A]',
 		'time_label':'Time [sec]',
 		'id_annotation':'burn current',
-		'legend_title':'$V_{{GS}} = +15V$'
+		'legend_title':'$V_{{GS}}$ = {:}V'
 	},
 	'StaticBias':{
 		'figsize':(4.4,3.2),#(2*2.2,2*1.6),#(5,4),
@@ -401,9 +401,9 @@ def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 		plotBurnOut(ax1, ax2, ax3, deviceHistory[i], colors[i], lineStyle=None)
 
 	# Add Legend and save figure
-	ax1.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
-	ax2.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
-	ax3.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'], labelspacing=0)
+	ax1.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'].format(np.mean([deviceRun['runConfigs']['BurnOut']['gateVoltageSetPoint'] for deviceRun in deviceHistory])), labelspacing=0)
+	ax2.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'].format(np.mean([deviceRun['runConfigs']['BurnOut']['gateVoltageSetPoint'] for deviceRun in deviceHistory])), labelspacing=0)
+	ax3.legend([],[], loc=mode_parameters['legendLoc'], title=plot_parameters['BurnOut']['legend_title'].format(np.mean([deviceRun['runConfigs']['BurnOut']['gateVoltageSetPoint'] for deviceRun in deviceHistory])), labelspacing=0)
 	adjustFigure(fig, 'FullBurnOut', mode_parameters, subplotWidthPad=0.25, subplotHeightPad=0.8)
 
 	return (fig, (ax1, ax2, ax3))
