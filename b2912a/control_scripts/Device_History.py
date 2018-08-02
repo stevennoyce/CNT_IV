@@ -119,7 +119,7 @@ def getPossiblePlotNames(parameters):
 
 
 # === Optional External Interface ===
-def makePlots(userID, projectID, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, sweepDirection='reverse', plotInRealTime=True, startRelativeIndex=0, endRelativeIndex=float('inf'), plot_mode_parameters=None):
+def makePlots(userID, projectID, waferID, chipID, deviceID, startExperimentNumber=0, endExperimentNumber=float('inf'), specificPlot='', figureSize=None, dataFolder=None, saveFolder=None, plotSaveName='', saveFigures=False, showFigures=True, sweepDirection='both', plotInRealTime=True, startRelativeIndex=0, endRelativeIndex=float('inf'), plot_mode_parameters=None):
 	parameters = {}	
 	mode_parameters = {}
 	if(plot_mode_parameters is not None):

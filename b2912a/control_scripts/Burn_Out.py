@@ -34,6 +34,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	print('Ramping gate voltage.')
 	smu_instance.rampGateVoltageTo(bo_parameters['gateVoltageSetPoint'])
 	
+	print('Begining to ramp drain voltage.')
 	results = runBurnOutSweep(	smu_instance, 
 								thresholdProportion=bo_parameters['thresholdProportion'], 
 								minimumAppliedDrainVoltage=bo_parameters['minimumAppliedDrainVoltage'],
