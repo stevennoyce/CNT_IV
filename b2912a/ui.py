@@ -23,18 +23,33 @@ def root():
 def sendStatic(path):
 	return flask.send_from_directory('ui', path)
 
-@app.route('/plots/<wafer>/<chip>/<device>/<experiment>/<plotType>')
-def sendPlot(wafer, chip, device, experiment, plotType):
+@app.route('/plots/<user>/<project>/<wafer>/<chip>/<device>/<experiment>/<plotType>')
+def sendPlot(user, project, wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
 	filebuf = io.BytesIO()
-	DH.makePlots('nick', 'Project1', wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False)
+	DH.makePlots(user, project, wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False)
 	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
 
-@app.route('/wafers.json')
-def wafers():
-	paths = glob.glob('data/nick/Project1/*/')
+@app.route('/users.json')
+def users():
+	paths = glob.glob('data/*/')
+	names = [os.path.basename(os.path.dirname(p)) for p in paths]
+	return json.dumps(names)
+
+@app.route('/<user>/projects.json')
+def projects(user):
+	paths = glob.glob('data/' + user + '/*/')
+	names = [os.path.basename(os.path.dirname(p)) for p in paths]
+	
+	projects = [{'name': n} for n in names]
+	
+	return json.dumps(projects)
+
+@app.route('/<user>/<project>/wafers.json')
+def wafers(user, project):
+	paths = glob.glob('data/' + user + '/' + project + '/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	modificationTimes = [os.path.getmtime(p) for p in paths]
 	sizes = [os.path.getsize(p) for p in paths]
@@ -49,9 +64,9 @@ def wafers():
 	
 	return json.dumps(wafers)
 
-@app.route('/<wafer>/chips.json')
-def chips(wafer):
-	paths = glob.glob('data/nick/Project1/' + wafer + '/*/')
+@app.route('/<user>/<project>/<wafer>/chips.json')
+def chips(user, project, wafer):
+	paths = glob.glob('data/' + user + '/' + project + '/' + wafer + '/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	modificationTimes = [os.path.getmtime(p) for p in paths]
 	sizes = [os.path.getsize(p) for p in paths]
@@ -67,9 +82,9 @@ def chips(wafer):
 	
 	return json.dumps(chips)
 
-@app.route('/<wafer>/<chip>/devices.json')
-def devices(wafer, chip):
-	paths = glob.glob('data/nick/Project1/' + wafer + '/' + chip + '/*/')
+@app.route('/<user>/<project>/<wafer>/<chip>/devices.json')
+def devices(user, project, wafer, chip):
+	paths = glob.glob('data/' + user + '/' + project + '/' + wafer + '/' + chip + '/*/')
 	names = [os.path.basename(os.path.dirname(p)) for p in paths]
 	# modificationTimes = [os.path.getmtime(p) for p in paths]
 	modificationTimes = [os.path.getmtime(p+'ParametersHistory.json') if os.path.exists(p+'ParametersHistory.json') else os.path.getmtime(p) for p in paths]
@@ -84,9 +99,9 @@ def devices(wafer, chip):
 	
 	return json.dumps(devices)
 
-@app.route('/<wafer>/<chip>/<device>/experiments.json')
-def experiments(wafer, chip, device):
-	folder = 'data/nick/Project1/' + wafer + '/' + chip + '/' + device + '/'
+@app.route('/<user>/<project>/<wafer>/<chip>/<device>/experiments.json')
+def experiments(user, project, wafer, chip, device):
+	folder = 'data/' + user + '/' + project + '/' + wafer + '/' + chip + '/' + device + '/'
 	files = glob.glob(folder + '*.json')
 	fileNames = [os.path.basename(f) for f in files]
 	
