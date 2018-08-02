@@ -143,6 +143,7 @@ def initMeasurementSystems(parameters):
 				system_instances[system_name] = smu.getConnectionToPCB(system_id, system_settings)
 			else:
 				raise NotImplementedError("Unkown Measurement System specified (try B2912A, PCB2v14, ...)")
+			system_id = system_instances[system_name].system_id
 			print("Connected to " + str(system_type) + " system '" + str(system_name) + "', with ID: " + str(system_id))
 	return system_instances
 

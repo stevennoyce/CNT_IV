@@ -29,7 +29,10 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	smu_instance.setComplianceCurrent(gs_parameters['complianceCurrent'])	
 
 	# === START ===
+	print('Ramping drain voltage.')
 	smu_instance.rampDrainVoltageTo(gs_parameters['drainVoltageSetPoint'])
+	
+	print('Beginning to sweep gate voltage.')
 	results = runGateSweep( smu_instance, 
 							isFastSweep=gs_parameters['isFastSweep'],
 							isAlternatingSweep=gs_parameters['isAlternatingSweep'],

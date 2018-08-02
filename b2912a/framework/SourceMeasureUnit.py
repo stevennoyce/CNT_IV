@@ -1,5 +1,7 @@
 import ast
 import serial as pySerial
+import serial.tools.list_ports as pySerialPorts
+import glob
 import visa
 
 import time
@@ -49,14 +51,19 @@ def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defau
 	instance = rm.open_resource(uniqueIdentifier)
 	instance.timeout = smuTimeout
 	print(instance.query('*IDN?'))
-	return B2912A(instance, defaultComplianceCurrent)
+	return B2912A(instance, uniqueIdentifier, defaultComplianceCurrent)
 
-def getConnectionToPCB(port='', system_settings=None):
-	if(port == ''):
-		#port = 'COM7'
-		port = '/dev/tty.HC-05-DevB'
-	ser = pySerial.Serial(port, 115200, timeout=0.5)
-	return PCB2v14(ser)
+def getConnectionToPCB(pcb_port='', system_settings=None):
+	if(pcb_port == ''):
+		active_ports = [port for port in pySerialPorts.comports() if(port.description != 'n/a')]
+		if(len(active_ports) == 0):
+			raise Exception('Unable to find any active serial ports to connect to PCB.')
+		else:
+			pcb_port = active_ports[0].device
+		#pcb_port = '/dev/tty.HC-05-DevB'
+		#pcb_port = '/dev/tty.usbmodem1411'
+	ser = pySerial.Serial(pcb_port, 115200, timeout=0.5)
+	return PCB2v14(ser, pcb_port)
 
 
 
@@ -92,6 +99,7 @@ def getConnectionToPCB(port='', system_settings=None):
 # 		return measurement * (1.0 + self.modelError*(2.0*rand.random() - 1.0))
 
 class SourceMeasureUnit:
+	system_id = ''
 	measurementsPerSecond = None
 	stepsPerRamp = 15
 	
@@ -163,11 +171,13 @@ class SourceMeasureUnit:
 
 class B2912A(SourceMeasureUnit):
 	smu = None
+	system_id = ''
 	measurementsPerSecond = 40
 	nplc = 1
 	
-	def __init__(self, visa_instance, defaultComplianceCurrent):
+	def __init__(self, visa_instance, visa_id, defaultComplianceCurrent):
 		self.smu = visa_instance
+		self.system_id = visa_id
 		self.initialize()
 		self.setComplianceCurrent(defaultComplianceCurrent)
 	
@@ -306,12 +316,14 @@ class B2912A(SourceMeasureUnit):
 
 class PCB2v14(SourceMeasureUnit):
 	ser = None
+	system_id = ''
 	measurementsPerSecond = 10
 	nplc = 1
 
-	def __init__(self, pySerial):
+	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
-		self.setParameter('connect-intermediates !')
+		self.system_id = pcb_port
+		#self.setParameter('connect-intermediates !')
 		time.sleep(0.5)
 
 	def setComplianceCurrent(self, complianceCurrent):
@@ -325,7 +337,7 @@ class PCB2v14(SourceMeasureUnit):
 		response = self.ser.readline().decode(encoding='UTF-8')
 		if(startsWith != ''):
 			while(response[0] != startsWith):
-				print('SKIP')
+				print('SKIPPED: ' + str(response))
 				if(not self.ser.in_waiting):
 					time.sleep(0.5)
 				response = self.ser.readline().decode(encoding='UTF-8')
@@ -342,15 +354,15 @@ class PCB2v14(SourceMeasureUnit):
 		}
 
 	def setDevice(self, deviceID):
-		self.setParameter('disconnect-all-from-all !')
+		#self.setParameter('disconnect-all-from-all !')
 		time.sleep(0.5)
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
 		intermediate2 = (2) if(contactPad2 <= 32) else (4)
-		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
+		#self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
 		time.sleep(0.5)
-		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
+		#self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
 		time.sleep(0.5)
 		while (self.ser.in_waiting):
 			print(self.getResponse(), end='')
