@@ -94,6 +94,7 @@ def runSMU(parameters, smu_systems, arduino_instance):
 	except Exception as e:
 		for smu_name, smu_instance in smu_systems.items():
 			smu_instance.rampDownVoltages()
+			smu_instance.disconnect()
 
 		parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 		parameters['endIndexes']['timestamp'] = time.time()

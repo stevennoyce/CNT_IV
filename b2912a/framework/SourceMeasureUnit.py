@@ -129,6 +129,9 @@ class SourceMeasureUnit:
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
 		raise NotImplementedError("Please implement SourceMeasureUnit.takeSweep()")
+	
+	def disconnect(self):
+		raise NotImplementedError("Please implement SourceMeasureUnit.disconnect()")
 
 	def getVds(self):
 		return self.takeMeasurement()['V_ds']
@@ -168,7 +171,7 @@ class SourceMeasureUnit:
 		source2_voltage = self.getVgs()
 		self.rampDrainVoltage(source1_voltage, 0, steps)
 		self.rampGateVoltage(source2_voltage, 0, steps)
-
+	
 class B2912A(SourceMeasureUnit):
 	smu = None
 	system_id = ''
@@ -312,6 +315,10 @@ class B2912A(SourceMeasureUnit):
 		time.sleep(timeToTakeMeasurements)
 		
 		return self.endSweep(endMode='fixed')
+	
+	def disconnect(self):
+		pass
+		
 
 
 class PCB2v14(SourceMeasureUnit):
@@ -421,6 +428,9 @@ class PCB2v14(SourceMeasureUnit):
 			'Vgs_data': vgs_data,
 			'Ig_data': ig_data
 		}
+	
+	def disconnect(self):
+		ser.close()
 
 
 
