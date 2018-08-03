@@ -485,6 +485,20 @@ void Set_Vds_Rel(int16 value) {
 	}
 	
 	Vds_Index_Goal_Relative = (int16)value;
+	
+	uint16 Vds_minRefRaw = Vds_Index_Goal_Relative > 0? 0: -Vds_Index_Goal_Relative;
+	uint16 Vds_maxRefRaw = Vds_Index_Goal_Relative > 0? 255 - Vds_Index_Goal_Relative: 255;
+	uint16 Vgs_minRefRaw = Vgs_Index_Goal_Relative > 0? 0: -Vgs_Index_Goal_Relative;
+	uint16 Vgs_maxRefRaw = Vgs_Index_Goal_Relative > 0? 255 - Vgs_Index_Goal_Relative: 255;
+	
+	uint16 newRefRaw = VDAC_Ref_Data;
+	
+	if (newRefRaw < Vgs_minRefRaw) newRefRaw = Vgs_minRefRaw;
+	if (newRefRaw > Vgs_maxRefRaw) newRefRaw = Vgs_maxRefRaw;
+	if (newRefRaw < Vds_minRefRaw) newRefRaw = Vds_minRefRaw;
+	if (newRefRaw > Vds_maxRefRaw) newRefRaw = Vds_maxRefRaw;
+	
+	Set_Ref_Raw(newRefRaw);
 }
 
 // Set Vgs and move the reference voltage if necessary
@@ -505,6 +519,20 @@ void Set_Vgs_Rel(int16 value) {
 	}
 	
 	Vgs_Index_Goal_Relative = (int16)value;
+	
+	uint16 Vds_minRefRaw = Vds_Index_Goal_Relative > 0? 0: -Vds_Index_Goal_Relative;
+	uint16 Vds_maxRefRaw = Vds_Index_Goal_Relative > 0? 255 - Vds_Index_Goal_Relative: 255;
+	uint16 Vgs_minRefRaw = Vgs_Index_Goal_Relative > 0? 0: -Vgs_Index_Goal_Relative;
+	uint16 Vgs_maxRefRaw = Vgs_Index_Goal_Relative > 0? 255 - Vgs_Index_Goal_Relative: 255;
+	
+	uint16 newRefRaw = VDAC_Ref_Data;
+	
+	if (newRefRaw < Vds_minRefRaw) newRefRaw = Vds_minRefRaw;
+	if (newRefRaw > Vds_maxRefRaw) newRefRaw = Vds_maxRefRaw;
+	if (newRefRaw < Vgs_minRefRaw) newRefRaw = Vgs_minRefRaw;
+	if (newRefRaw > Vgs_maxRefRaw) newRefRaw = Vgs_maxRefRaw;
+	
+	Set_Ref_Raw(newRefRaw);
 }
 // ****************************
 
