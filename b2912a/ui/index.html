@@ -294,12 +294,12 @@
 										<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
 										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
-									<v-data-table :items="experiments" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
+									<v-data-table :items="experimentsWithIndexes" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
 										no-results-text="Your search did not return any results."
 										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
-											<tr @click="goToExperiment(props.index)">
+											<tr @click="goToExperiment(props.item.i)">
 												<td>{{ props.item.startIndexes.experimentNumber }}</td>
 												<td>{{ props.item.runType }}</td>
 												<td>{{ props.item.MeasurementSystem.systemType }}</td>
@@ -712,6 +712,9 @@
 						this.experimentIndex = 0;
 					}
 					return this.experiments[this.experimentIndex];
+				},
+				experimentsWithIndexes: function() {
+					return this.experiments.map((x, i) => { return {...x, i} })
 				}
 			}
 		});
