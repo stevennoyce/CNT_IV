@@ -7,11 +7,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 	
 	<style media="screen" type="text/css">
+		html {
+			overscroll-behavior: contain;
+			background-color: #546e79;
+			background-color: #77909b;
+		}
+
 		[v-cloak] > * {
-			
 			display: none;
 		}
-		
+
 		.fade-leave-active, .fade-enter-active {
 			transition: 0.7s ease;
 		}
@@ -22,6 +27,57 @@
 			opacity: 0;
 		}
 		
+		.loaderfadeaway-enter-active .loaderfadeaway-leave-active {
+			transition: opacity .5s;
+		}
+		.loaderfadeaway-enter, .loaderfadeaway-leave-to {
+			opacity: 0;
+		}
+		
+		.spinner {
+			margin: 100px auto;
+			width: 40px;
+			height: 40px;
+			position: relative;
+			text-align: center;
+			
+			-webkit-animation: sk-rotate 2.0s infinite linear;
+			animation: sk-rotate 2.0s infinite linear;
+		}
+		.dot1, .dot2 {
+			width: 60%;
+			height: 60%;
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			background-color: #333;
+			border-radius: 100%;
+			
+			-webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+			animation: sk-bounce 2.0s infinite ease-in-out;
+		}
+		.dot2 {
+			top: auto;
+			bottom: 0;
+			-webkit-animation-delay: -1.0s;
+			animation-delay: -1.0s;
+		}
+		@-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}
+		@keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+		@-webkit-keyframes sk-bounce {
+			0%, 100% { -webkit-transform: scale(0.0) }
+			50% { -webkit-transform: scale(1.0) }
+		}
+		@keyframes sk-bounce {
+			0%, 100% { 
+				transform: scale(0.0);
+				-webkit-transform: scale(0.0);
+			} 50% { 
+				transform: scale(1.0);
+				-webkit-transform: scale(1.0);
+			}
+		}
+		
 		img {
 			width: auto;
 			height: auto;
@@ -29,20 +85,22 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-		
-		[v-cloak]::before { 
-			content: " ";
-			display: block;
-			width: 16em;
-			height: 16em;
-			background-image: url('data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==');
-		}
 	</style>
 </head>
 <body>
-	<div id="app" v-cloak>
-		<transition name="fade" mode="out-in" appear><div>
-			<v-app>
+	<div id="app">
+		
+		<transition name="loaderfadeaway">
+		<div style="height:100%; width: 100%; z-index: 1000; position: absolute; background-color: rgb(255,255,255);" v-if="pageLoading">
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</div>
+		</transition>
+		
+	<transition name="fade" mode="out-in" appear>
+		<v-app v-cloak>
 				<v-navigation-drawer clipped fixed v-model="drawer" class="blue-grey lighten-1" dark app>
 					<v-list dense>
 						<v-list-tile @click="">
@@ -122,6 +180,7 @@
 										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="projectTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
 									<v-data-table :items="projects" :headers="projectTableHeaders" :search="projectTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
@@ -144,6 +203,7 @@
 										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="waferTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
 									<v-data-table :items="wafers" :headers="waferTableHeaders" :search="waferTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
@@ -173,6 +233,7 @@
 										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="chipTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
 									<v-data-table :items="chips" :headers="chipTableHeaders" :search="chipTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
@@ -202,6 +263,7 @@
 										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="deviceTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
 									<v-data-table :items="devices" :headers="deviceTableHeaders" :search="deviceTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
@@ -230,13 +292,14 @@
 										</v-toolbar-title>
 										<v-spacer></v-spacer>
 										<v-text-field v-model="experimentTableSearch" append-icon="search" label="Search" single-line hide-details></v-text-field>
+										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
 									<v-data-table :items="experiments" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
 										no-results-text="Your search did not return any results."
 										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
-											<tr @click="goToExperiment(props.item)">
+											<tr @click="goToExperiment(props.index)">
 												<td>{{ props.item.startIndexes.experimentNumber }}</td>
 												<td>{{ props.item.runType }}</td>
 												<td>{{ props.item.MeasurementSystem.systemType }}</td>
@@ -248,12 +311,14 @@
 							</v-stepper-content>
 							
 							<v-stepper-content step="6">
-								<v-card v-if="stepperPage > 5">
+								<v-card v-if="stepperPage > 5 && experiments.length > experimentIndex">
 									<v-toolbar dark class="blue-grey darken-1">
 										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
 										</v-toolbar-title>
+										<v-spacer></v-spacer>
+										<v-btn icon @click="getAll()"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
 									
 									<v-container fluid grid-list-sm>
@@ -422,8 +487,8 @@
 				<v-footer app inset>
 					<v-spacer></v-spacer><span class="pr-3">Created by Steven Noyce. Updated July 2018.</span>
 				</v-footer>
-			</v-app>
-		</div></transition>
+					</v-app>
+		</transition>
 	</div>
 	
 	
@@ -449,26 +514,27 @@
 		var app = new Vue({
 			el: '#app',
 			data: {
+				pageLoading: true,
 				currentPage: window.location.hash.substr(1) || "",
 				drawer: null,
 				online: navigator.onLine,
-				stepperPage: 1,
+				stepperPage: localStorage.stepperPage || 1,
 				topLevelPage: localStorage.topLevelPage || 'stepper',
 				pageNames: ['projects','wafers','chips','devices','experiments','experiment'],
 				parametersTab: 0,
 				parametersSection: '',
 				
 				users: [],
-				user: '',
+				user: localStorage.user || '',
 				
 				projects: [],
-				project: '',
+				project: localStorage.project || '',
 				projectTableHeaders: [
 					{'text':'Name', 'value':'name'}],
 				projectTableSearch: '',
 				
 				wafers: [],
-				wafer: '',
+				wafer: localStorage.wafer || '',
 				waferTableHeaders: [
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
@@ -480,7 +546,7 @@
 				waferTableSearch: '',
 				
 				chips: [],
-				chip: '',
+				chip: localStorage.chip || '',
 				chipTableHeaders: [
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
@@ -492,7 +558,7 @@
 				chipTableSearch: '',
 				
 				devices: [],
-				device: '',
+				device: localStorage.device || '',
 				deviceTableHeaders: [
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
@@ -503,7 +569,7 @@
 				deviceTableSearch: '',
 				
 				experiments: [],
-				experiment: '',
+				experimentIndex: localStorage.experimentIndex || 0,
 				experimentTableHeaders: [
 					{'text':'Experiment Number', 'value':'startIndexes.experimentNumber'},
 					{'text':'Run Type', 'value':'runType'},
@@ -517,44 +583,108 @@
 				runType: ''
 			},
 			methods: {
+				
+				getAll: function() {
+					this.getUsers();
+					this.getProjects();
+					this.getWafers();
+					this.getChips();
+					this.getDevices();
+					this.getExperiments();
+					this.pageLoading = false;
+				},
+				
+				getUsers: function() {
+					var path = "/users.json" + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {this.users = response})
+						.fail(() => {console.log("Error getting users")});
+					}
+				},
+				getProjects: function() {
+					var path = '/' + this.user + '/projects.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.projects = response})
+						.fail(() => {console.log("Error getting projects")});
+					}
+				},
+				getWafers: function() {
+					var path = '/' + this.user + '/' + this.project + '/wafers.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.wafers = response})
+						.fail(() => {console.log("Error getting wafers")});
+					}
+				},
+				getChips: function() {
+					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/chips.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.chips = response})
+						.fail(() => {console.log("Error getting chips")});
+					}
+				},
+				getDevices: function() {
+					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/devices.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.devices = response})
+						.fail(() => {console.log("Error getting devices")});
+					}
+				},
+				getExperiments: function() {
+					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {
+							for (var i = 0; i < response.length; i++) {
+								response[i]['uiComputed'] = {};
+								response[i]['uiComputed']['indexCount'] = response[i]['endIndexes']['index'] - response[i]['startIndexes']['index'];
+							}
+							app.$data.experiments = response;
+						})
+						.fail(() => {console.log("Error getting experiments");});
+					}
+				},
+				getExperiment: function() {
+					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+				},
+				
 				goToUser: function(userName) {
 					this.user = userName;
-					$.getJSON('/' + this.user + '/projects.json' + cacheBust(), response => {app.$data.projects = response}).fail(() => {console.log("Error getting projects")});
+					localStorage.user = userName;
+					this.getProjects();
 				},
 				goToProject: function(projectName) {
 					this.project = projectName;
-					$.getJSON('/' + this.user + '/' + this.project + '/wafers.json' + cacheBust(), response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
+					localStorage.project = projectName;
+					this.getWafers();
 					this.stepperPage++;
 				},
 				goToWafer: function(waferName) {
 					this.wafer = waferName;
-					$.getJSON('/' + this.user + '/' + this.project + '/' + this.wafer + '/chips.json' + cacheBust(), response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
+					localStorage.wafer = waferName;
+					this.getChips();
 					this.stepperPage++;
 				},
 				goToChip: function(chipName) {
 					this.chip = chipName;
-					$.getJSON('/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/devices.json' + cacheBust(), response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
+					localStorage.chip = chipName;
+					this.getDevices();
 					this.stepperPage++;
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
-					console.log('About to get experiments');
-					$.getJSON('/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json' + cacheBust(), response => {
-						for (var i = 0; i < response.length; i++) {
-							response[i]['uiComputed'] = {};
-							response[i]['uiComputed']['indexCount'] = response[i]['endIndexes']['index'] - response[i]['startIndexes']['index'];
-						}
-						app.$data.experiments = response;
-					}).fail(() => {console.log("Error getting experiments");});
+					localStorage.device = deviceName;
+					this.getExperiments();
 					this.stepperPage++;
 				},
-				goToExperiment: function(experimentParameters) {
-					this.experiment = experimentParameters;
-					this.parametersTab = this.experiment.runType;
-					this.parametersSection = this.experiment.runType;
-					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+				goToExperiment: function(experimentIndex) {
+					this.experimentIndex = experimentIndex;
+					localStorage.experimentIndex = experimentIndex;
+					// this.experiment = experimentParameters;
+					this.parametersTab = this.experiments[experimentIndex].runType;
+					this.parametersSection = this.experiments[experimentIndex].runType;
+					this.getExperiment();
 					this.stepperPage++;
 				},
+				
 				customVDataTableFilter: function(items, search, filter, headers) {
 					search = search.toString().toLowerCase();
 					if (search.trim() === '') return items;
@@ -571,6 +701,17 @@
 				setTopLevelPage: function(name) {
 					this.topLevelPage = name;
 					localStorage.topLevelPage = name;
+				}
+			},
+			watch: {
+				stepperPage: function(val) { localStorage.stepperPage = val; }
+			},
+			computed: {
+				experiment: function() {
+					if (this.experimentIndex > this.experiments.length) {
+						this.experimentIndex = 0;
+					}
+					return this.experiments[this.experimentIndex];
 				}
 			}
 		});
@@ -597,8 +738,8 @@
 			localStorage.exists = 'True';
 		}
 		
-		$.getJSON("/users.json" + cacheBust(), response => {app.$data.users = response}).fail(() => {console.log("Error getting users")});
-		// $.getJSON("/wafers.json" + cacheBust(), response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
+		app.getAll();
+		
 		$.getJSON("/default_parameters.json" + cacheBust(), response => {app.$data.defaultParameters = response}).fail(() => {console.log("Error getting default parameters")});
 		$.getJSON("/default_parameters_description.json" + cacheBust(), response => {app.$data.parametersDescription = response}).fail(() => {console.log("Error getting parameters description")});
 		
