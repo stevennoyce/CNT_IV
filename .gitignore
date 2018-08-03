@@ -26,3 +26,6 @@ data/
 *~
 *#
 *.bak
+
+#ignore PSoC files
+*.o
