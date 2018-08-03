@@ -793,7 +793,7 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 	elif(currentSource == 'drain'):
 		currentData = 'id_data'
 	
-	x = jsonData['Results']['gateVoltages']
+	x = jsonData['Results']['vgs_data']
 	y = jsonData['Results'][currentData]
 
 	# Sort data if it was collected in an unordered fashion
