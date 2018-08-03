@@ -60,7 +60,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)
 	jsonData['Results'] = results['Raw']
-	
+		
 	# Save results as a JSON object
 	if(isSavingResults):
 		print('Saving JSON.')
@@ -87,7 +87,7 @@ def runGateSweep(smu_instance, isFastSweep, isAlternatingSweep, pulsedMeasuremen
 		gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
 		
 		# Ramp gate and wait a second for everything to settle down
-		smu_instance.rampGateVoltageTo(gateVoltageMinimum, steps=20)
+		smu_instance.rampGateVoltageTo(gateVoltageMinimum)
 		time.sleep(1)
 
 	if(isFastSweep):

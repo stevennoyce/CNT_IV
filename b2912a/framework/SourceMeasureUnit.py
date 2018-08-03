@@ -139,44 +139,45 @@ class SourceMeasureUnit:
 	def getVgs(self):
 		return self.takeMeasurement()['V_gs']
 
-	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps=stepsPerRamp):
+	def rampGateVoltage(self, voltageStart, voltageSetPoint, steps=None):
+		if(steps == None):
+			steps = self.stepsPerRamp
 		gateVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for gateVoltage in gateVoltages:
 			self.setVgs(gateVoltage)
 
-	def rampGateVoltageTo(self, voltageSetPoint, steps=stepsPerRamp):
+	def rampGateVoltageTo(self, voltageSetPoint, steps=None):
 		voltageStart = self.getVgs()
 		self.rampGateVoltage(voltageStart, voltageSetPoint, steps)
 
-	def rampGateVoltageDown(self, steps=stepsPerRamp):
-		voltageStart = self.getVgs()
-		self.rampGateVoltage(voltageStart, 0, steps)
+	def rampGateVoltageDown(self, steps=None):
+		self.rampGateVoltageTo(0, steps)
 
-	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps=stepsPerRamp):
+	def rampDrainVoltage(self, voltageStart, voltageSetPoint, steps=None):
+		if(steps == None):
+			steps = self.stepsPerRamp
 		drainVoltages = np.linspace(voltageStart, voltageSetPoint, steps).tolist()
 		for drainVoltage in drainVoltages:
 			self.setVds(drainVoltage)
 
-	def rampDrainVoltageTo(self, voltageSetPoint, steps=stepsPerRamp):
+	def rampDrainVoltageTo(self, voltageSetPoint, steps=None):
 		voltageStart = self.getVds()
 		self.rampDrainVoltage(voltageStart, voltageSetPoint, steps)
 
-	def rampDrainVoltageDown(self, steps=stepsPerRamp):
-		voltageStart = self.getVds()
-		self.rampDrainVoltage(voltageStart, 0, steps)
+	def rampDrainVoltageDown(self, steps=None):
+		self.rampDrainVoltageTo(0, steps)
 
-	def rampDownVoltages(self, steps=stepsPerRamp):
+	def rampDownVoltages(self, steps=None):
 		print('Ramping down SMU channels.')
-		source1_voltage = self.getVds()
-		source2_voltage = self.getVgs()
-		self.rampDrainVoltage(source1_voltage, 0, steps)
-		self.rampGateVoltage(source2_voltage, 0, steps)
+		self.rampDrainVoltageDown(steps)
+		self.rampGateVoltageDown(steps)
 	
 class B2912A(SourceMeasureUnit):
 	smu = None
 	system_id = ''
 	measurementsPerSecond = 40
 	nplc = 1
+	stepsPerRamp = 20
 	
 	def __init__(self, visa_instance, visa_id, defaultComplianceCurrent):
 		self.smu = visa_instance
@@ -326,69 +327,82 @@ class PCB2v14(SourceMeasureUnit):
 	system_id = ''
 	measurementsPerSecond = 10
 	nplc = 1
+	stepsPerRamp = 5
+	
+	# Communication times seem to be quite fast, but just to be safe delay for 1 ms
+	wait_sending = 0.001
+	wait_recieving = 0.001
+	
+	# The DAC has much more to do than the ADC, so it gets more time to do its work
+	wait_DAC = 0.35
+	wait_ADC = 0.001
+	
+	# This delay is used for rare communication patterns that we don't mind giving a little extra time
+	wait_long = 0.5
 
 	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
 		self.system_id = pcb_port
-		#self.setParameter('connect-intermediates !')
-		time.sleep(0.5)
+		self.setParameter('connect-intermediates !')
+		time.sleep(self.wait_long)
 
 	def setComplianceCurrent(self, complianceCurrent):
 		pass
 
 	def setParameter(self, parameter):
 		self.ser.write( str(parameter).encode('UTF-8') )
-		time.sleep(0.2)
+		time.sleep(self.wait_sending)
 
 	def getResponse(self, startsWith=''):
+		time.sleep(self.wait_recieving)
 		response = self.ser.readline().decode(encoding='UTF-8')
 		if(startsWith != ''):
 			while(response[0] != startsWith):
 				print('SKIPPED: ' + str(response))
-				if(not self.ser.in_waiting):
-					time.sleep(0.5)
+				time.sleep(self.wait_long)
 				response = self.ser.readline().decode(encoding='UTF-8')
-
 		return response
 
 	def formatMeasurement(self, measurement):
 		data = json.loads(str(measurement))
 		return {
-			'V_ds':data[2],
-			'I_d': data[0],
-			'V_gs':data[1],
-			'I_g': 0
+			'V_ds':float(data[2]),
+			'I_d': float(data[0]),
+			'V_gs':float(data[1]),
+			'I_g': 0.0
 		}
 
 	def setDevice(self, deviceID):
-		#self.setParameter('disconnect-all-from-all !')
-		time.sleep(0.5)
+		self.setParameter('disconnect-all-from-all !')
+		time.sleep(self.wait_long)
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
 		intermediate2 = (2) if(contactPad2 <= 32) else (4)
-		#self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
-		time.sleep(0.5)
-		#self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
-		time.sleep(0.5)
+		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
+		time.sleep(self.wait_long)
+		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
+		time.sleep(self.wait_long)
 		while (self.ser.in_waiting):
 			print(self.getResponse(), end='')
-			time.sleep(0.1)
 
 	def setVds(self, voltage):
 		self.setParameter("set-vds-mv {:.0f}!".format(voltage*1000))
+		time.sleep(self.wait_DAC)
 		response = self.getResponse(startsWith='#')
-		print('VDS: ' + str(response), end='')
+		print(str(response), end='')
 
 	def setVgs(self, voltage):
 		self.setParameter("set-vgs-mv {:.0f}!".format(voltage*1000))
+		time.sleep(self.wait_DAC)
 		response = self.getResponse(startsWith='#')
-		print('VGS: ' + str(response), end='')
+		print(str(response), end='')
 
 	def takeMeasurement(self):
 		self.setParameter('measure !')
+		time.sleep(self.wait_ADC)
 		response = self.getResponse(startsWith='[')
-		print('MEAS: ' + str(response), end='')
+		print('MEASURE: ' + str(response), end='')
 		return self.formatMeasurement(response)
 
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points):
@@ -430,7 +444,7 @@ class PCB2v14(SourceMeasureUnit):
 		}
 	
 	def disconnect(self):
-		ser.close()
+		self.ser.close()
 
 
 
