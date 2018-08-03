@@ -1,0 +1,7 @@
+C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Proto\Master\Master 1\Design01.cydsn\Design01.cyprj|396b6d7a-2c16-4719-a332-9d7c0f6552ae
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|03f5af90-47d0-46bc-9f73-ced72c623562
+C:\Users\FranklinLab_PC_1\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|55e3d740-9449-4084-aec6-dbf9a5c57050
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|16715a42-0914-4f36-b267-c751d3bc6851
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|4e7bd9d2-734f-4509-b553-0ab684f920a8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|45d75b3e-510f-483a-9ecd-104cc75bdd5a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|a9605685-9446-441d-b238-c7ba4b1d6a4e
