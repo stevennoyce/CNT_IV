@@ -452,23 +452,23 @@
 				currentPage: window.location.hash.substr(1) || "",
 				drawer: null,
 				online: navigator.onLine,
-				stepperPage: 1,
+				stepperPage: localStorage.stepperPage || 1,
 				topLevelPage: localStorage.topLevelPage || 'stepper',
 				pageNames: ['projects','wafers','chips','devices','experiments','experiment'],
 				parametersTab: 0,
 				parametersSection: '',
 				
 				users: [],
-				user: '',
+				user: localStorage.user || '',
 				
 				projects: [],
-				project: '',
+				project: localStorage.project || '',
 				projectTableHeaders: [
 					{'text':'Name', 'value':'name'}],
 				projectTableSearch: '',
 				
 				wafers: [],
-				wafer: '',
+				wafer: localStorage.wafer || '',
 				waferTableHeaders: [
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
@@ -480,7 +480,7 @@
 				waferTableSearch: '',
 				
 				chips: [],
-				chip: '',
+				chip: localStorage.chip || '',
 				chipTableHeaders: [
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
@@ -492,7 +492,7 @@
 				chipTableSearch: '',
 				
 				devices: [],
-				device: '',
+				device: localStorage.device || '',
 				deviceTableHeaders: [
 					{'text':'Name', 'value':'name'},
 					{'text':'Path', 'value':'path', 'searchable':false},
@@ -517,44 +517,101 @@
 				runType: ''
 			},
 			methods: {
+				
+				getUsers: function() {
+					var path = "/users.json" + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {this.users = response})
+						.fail(() => {console.log("Error getting users")});
+					}
+				},
+				getProjects: function() {
+					var path = '/' + this.user + '/projects.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.projects = response})
+						.fail(() => {console.log("Error getting projects")});
+					}
+				},
+				getWafers: function() {
+					var path = '/' + this.user + '/' + this.project + '/wafers.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.wafers = response})
+						.fail(() => {console.log("Error getting wafers")});
+					}
+				},
+				getChips: function() {
+					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/chips.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.chips = response})
+						.fail(() => {console.log("Error getting chips")});
+					}
+				},
+				getDevices: function() {
+					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/devices.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {app.$data.devices = response})
+						.fail(() => {console.log("Error getting devices")});
+					}
+				},
+				getExperiments: function() {
+					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json' + cacheBust();
+					if (path) {
+						$.getJSON(path, response => {
+							for (var i = 0; i < response.length; i++) {
+								response[i]['uiComputed'] = {};
+								response[i]['uiComputed']['indexCount'] = response[i]['endIndexes']['index'] - response[i]['startIndexes']['index'];
+							}
+							app.$data.experiments = response;
+						})
+						.fail(() => {console.log("Error getting experiments");});
+					}
+				},
+				getExperiment: function() {
+					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+				},
+				
 				goToUser: function(userName) {
 					this.user = userName;
-					$.getJSON('/' + this.user + '/projects.json' + cacheBust(), response => {app.$data.projects = response}).fail(() => {console.log("Error getting projects")});
+					localStorage.user = userName;
+					this.getProjects();
 				},
 				goToProject: function(projectName) {
 					this.project = projectName;
-					$.getJSON('/' + this.user + '/' + this.project + '/wafers.json' + cacheBust(), response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
+					localStorage.project = projectName;
+					this.getWafers();
 					this.stepperPage++;
+					localStorage.stepperPage = this.stepperPage;
 				},
 				goToWafer: function(waferName) {
 					this.wafer = waferName;
-					$.getJSON('/' + this.user + '/' + this.project + '/' + this.wafer + '/chips.json' + cacheBust(), response => {app.$data.chips = response}).fail(() => {console.log("Error getting chips")});
+					localStorage.wafer = waferName;
+					this.getChips();
 					this.stepperPage++;
+					localStorage.stepperPage = this.stepperPage;
 				},
 				goToChip: function(chipName) {
 					this.chip = chipName;
-					$.getJSON('/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/devices.json' + cacheBust(), response => {app.$data.devices = response}).fail(() => {console.log("Error getting devices")});
+					localStorage.chip = chipName;
+					this.getDevices();
 					this.stepperPage++;
+					localStorage.stepperPage = this.stepperPage;
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
-					console.log('About to get experiments');
-					$.getJSON('/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/' + this.device + '/experiments.json' + cacheBust(), response => {
-						for (var i = 0; i < response.length; i++) {
-							response[i]['uiComputed'] = {};
-							response[i]['uiComputed']['indexCount'] = response[i]['endIndexes']['index'] - response[i]['startIndexes']['index'];
-						}
-						app.$data.experiments = response;
-					}).fail(() => {console.log("Error getting experiments");});
+					localStorage.device = deviceName;
+					this.getExperiments();
 					this.stepperPage++;
+					localStorage.stepperPage = this.stepperPage;
 				},
 				goToExperiment: function(experimentParameters) {
 					this.experiment = experimentParameters;
 					this.parametersTab = this.experiment.runType;
 					this.parametersSection = this.experiment.runType;
-					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+					this.getExperiment();
 					this.stepperPage++;
+					localStorage.stepperPage = this.stepperPage;
 				},
+				
 				customVDataTableFilter: function(items, search, filter, headers) {
 					search = search.toString().toLowerCase();
 					if (search.trim() === '') return items;
@@ -597,8 +654,13 @@
 			localStorage.exists = 'True';
 		}
 		
-		$.getJSON("/users.json" + cacheBust(), response => {app.$data.users = response}).fail(() => {console.log("Error getting users")});
-		// $.getJSON("/wafers.json" + cacheBust(), response => {app.$data.wafers = response}).fail(() => {console.log("Error getting wafers")});
+		app.getUsers();
+		app.getProjects();
+		app.getWafers();
+		app.getChips();
+		app.getDevices();
+		app.getExperiments();
+		
 		$.getJSON("/default_parameters.json" + cacheBust(), response => {app.$data.defaultParameters = response}).fail(() => {console.log("Error getting default parameters")});
 		$.getJSON("/default_parameters_description.json" + cacheBust(), response => {app.$data.parametersDescription = response}).fail(() => {console.log("Error getting parameters description")});
 		
