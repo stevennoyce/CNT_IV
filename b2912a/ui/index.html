@@ -236,7 +236,7 @@
 										no-results-text="Your search did not return any results."
 										:custom-filter="customVDataTableFilter">
 										<template slot="items" slot-scope="props">
-											<tr @click="goToExperiment(props.item)">
+											<tr @click="goToExperiment(props.index)">
 												<td>{{ props.item.startIndexes.experimentNumber }}</td>
 												<td>{{ props.item.runType }}</td>
 												<td>{{ props.item.MeasurementSystem.systemType }}</td>
@@ -248,7 +248,7 @@
 							</v-stepper-content>
 							
 							<v-stepper-content step="6">
-								<v-card v-if="stepperPage > 5">
+								<v-card v-if="stepperPage > 5 && experiments.length > experimentIndex">
 									<v-toolbar dark class="blue-grey darken-1">
 										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
@@ -503,7 +503,7 @@
 				deviceTableSearch: '',
 				
 				experiments: [],
-				experiment: '',
+				experimentIndex: localStorage.experimentIndex || 0,
 				experimentTableHeaders: [
 					{'text':'Experiment Number', 'value':'startIndexes.experimentNumber'},
 					{'text':'Run Type', 'value':'runType'},
@@ -517,6 +517,15 @@
 				runType: ''
 			},
 			methods: {
+				
+				getAll: function() {
+					this.getUsers();
+					this.getProjects();
+					this.getWafers();
+					this.getChips();
+					this.getDevices();
+					this.getExperiments();
+				},
 				
 				getUsers: function() {
 					var path = "/users.json" + cacheBust();
@@ -580,36 +589,33 @@
 					localStorage.project = projectName;
 					this.getWafers();
 					this.stepperPage++;
-					localStorage.stepperPage = this.stepperPage;
 				},
 				goToWafer: function(waferName) {
 					this.wafer = waferName;
 					localStorage.wafer = waferName;
 					this.getChips();
 					this.stepperPage++;
-					localStorage.stepperPage = this.stepperPage;
 				},
 				goToChip: function(chipName) {
 					this.chip = chipName;
 					localStorage.chip = chipName;
 					this.getDevices();
 					this.stepperPage++;
-					localStorage.stepperPage = this.stepperPage;
 				},
 				goToDevice: function(deviceName) {
 					this.device = deviceName;
 					localStorage.device = deviceName;
 					this.getExperiments();
 					this.stepperPage++;
-					localStorage.stepperPage = this.stepperPage;
 				},
-				goToExperiment: function(experimentParameters) {
-					this.experiment = experimentParameters;
-					this.parametersTab = this.experiment.runType;
-					this.parametersSection = this.experiment.runType;
+				goToExperiment: function(experimentIndex) {
+					this.experimentIndex = experimentIndex;
+					localStorage.experimentIndex = experimentIndex;
+					// this.experiment = experimentParameters;
+					this.parametersTab = this.experiments[experimentIndex].runType;
+					this.parametersSection = this.experiments[experimentIndex].runType;
 					this.getExperiment();
 					this.stepperPage++;
-					localStorage.stepperPage = this.stepperPage;
 				},
 				
 				customVDataTableFilter: function(items, search, filter, headers) {
@@ -628,6 +634,17 @@
 				setTopLevelPage: function(name) {
 					this.topLevelPage = name;
 					localStorage.topLevelPage = name;
+				}
+			},
+			watch: {
+				stepperPage: function(val) { localStorage.stepperPage = val; }
+			},
+			computed: {
+				experiment: function() {
+					if (this.experimentIndex > this.experiments.length) {
+						this.experimentIndex = 0;
+					}
+					return this.experiments[this.experimentIndex];
 				}
 			}
 		});
@@ -654,12 +671,7 @@
 			localStorage.exists = 'True';
 		}
 		
-		app.getUsers();
-		app.getProjects();
-		app.getWafers();
-		app.getChips();
-		app.getDevices();
-		app.getExperiments();
+		app.getAll();
 		
 		$.getJSON("/default_parameters.json" + cacheBust(), response => {app.$data.defaultParameters = response}).fail(() => {console.log("Error getting default parameters")});
 		$.getJSON("/default_parameters_description.json" + cacheBust(), response => {app.$data.parametersDescription = response}).fail(() => {console.log("Error getting parameters description")});
