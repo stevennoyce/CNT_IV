@@ -288,13 +288,9 @@ void ADC_Adjust_Range(uint32 sampleCount) {
 	
 	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, sampleCount);
 	
-	sprintf(TransmitBuffer, "# voltage: %li \r\n", ADC_Voltage);
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
-	
-	if(ADC_Voltage > 870400L) {
+	if(abs(ADC_Voltage) > 870400) {
 		ADC_Increase_Range();
-	} else if (ADC_Voltage < 10240L) {
+	} else if (abs(ADC_Voltage) < 10240) {
 		ADC_Decrease_Range();
 	}
 }
