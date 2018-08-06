@@ -41,9 +41,9 @@ volatile char USBUART_Receive_Buffer[USBUART_BUFFER_SIZE];
 volatile uint8 USBUART_Rx_Position;
 
 enum TIA_resistor {R20K, R30K, R40K, R80K, R120K, R250K, R500K, R1000K};
-uint8 TIA_Selected_Resistor = R20K;
+uint8 TIA_Selected_Resistor = R1000K;
 
-uint8 TIA_Resistor_Codes[8] = {TIA_RES_FEEDBACK_20K, TIA_RES_FEEDBACK_30K, TIA_RES_FEEDBACK_40K, TIA_RES_FEEDBACK_80K, TIA_RES_FEEDBACK_120K, TIA_RES_FEEDBACK_250K, TIA_RES_FEEDBACK_500K, TIA_RES_FEEDBACK_1000K};
+uint8 TIA_Resistor_Codes[8] = {TIA_1_RES_FEEDBACK_20K, TIA_1_RES_FEEDBACK_30K, TIA_1_RES_FEEDBACK_40K, TIA_1_RES_FEEDBACK_80K, TIA_1_RES_FEEDBACK_120K, TIA_1_RES_FEEDBACK_250K, TIA_1_RES_FEEDBACK_500K, TIA_1_RES_FEEDBACK_1000K};
 float TIA_Resistor_Values[8] = {20e3, 30e3, 40e3, 80e3, 120e3, 250e3, 500e3, 1e6};
 int32 TIA_Offsets_uV[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -232,7 +232,7 @@ void Connect_Intermediates() {
 
 void TIA_Set_Resistor(uint8 resistor) {
 	TIA_Selected_Resistor = resistor;
-	TIA_SetResFB(TIA_Resistor_Codes[resistor]);
+	TIA_1_SetResFB(TIA_Resistor_Codes[resistor]);
 }
 
 void ADC_Increase_Range() {
@@ -609,7 +609,9 @@ void Zero_All_DACs() {
 	VDAC_Vgs_SetValue(0);
 }
 
-void Calibrate_ADC_Offset() {
+void Calibrate_ADC_Offset(uint32 sampleCount) {
+	uint8 current_range_resistor = TIA_Selected_Resistor;
+	
 	// Zero the DACs
 	Set_Vds(0);
 	Set_Vgs(0);
@@ -619,14 +621,23 @@ void Calibrate_ADC_Offset() {
 	int32 voltageSD = 0;
 	
 	// Measure ADC offset voltages
-	for (uint8 i = R20K; i < R1000K; i++) {
+	for (uint8 i = R20K; i <= R1000K; i++) {
 		TIA_Set_Resistor(i);
-		ADC_Measure_uV(&voltage, &voltageSD, 10);
+		// Take a few measurements to discard any problems with the initial measurements
+		ADC_Measure_uV(&voltage, &voltageSD, 3);
+		ADC_Measure_uV(&voltage, &voltageSD, sampleCount);
 		TIA_Offsets_uV[i] = -voltage;
+		sprintf(TransmitBuffer, "# Offset %e Ohm: %li uV\r\n", TIA_Resistor_Values[i], -voltage);
+		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+		UART_1_PutString(TransmitBuffer);
 	}
 	
 	// Reset TIA Resistor
-	TIA_Set_Resistor(R20K);
+	TIA_Set_Resistor(current_range_resistor);
+	
+	sprintf(TransmitBuffer, "# Calibrated ADC Offsets\r\n");
+	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	UART_1_PutString(TransmitBuffer);
 }
 
 // Take a measurement of the system (Id - from delta-sigma ADC, Vgs, Vds, SAR1 ADC, SAR2 ADC)
@@ -637,7 +648,7 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, deltaSigmaSampleCount);
 	
 	float TIA_Feedback_R = TIA_Resistor_Values[TIA_Selected_Resistor];
-	float TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor]
+	int32 TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor];
 	float unitConversion = -1.0e-6/TIA_Feedback_R;
 	
 	float IdsAverageAmps = unitConversion * (ADC_Voltage + TIA_Offset_uV);
@@ -953,7 +964,8 @@ int main(void) {
 	
 	Current_Measurement_Sample_Count = 100;
 	
-	Calibrate_ADC_Offset();
+	Calibrate_ADC_Offset(300);
+	TIA_Set_Resistor(TIA_Selected_Resistor);
 	
 	while (1) {
 		G_Stop = 0;
@@ -983,6 +995,9 @@ int main(void) {
 			if (strstr(ReceiveBuffer, "measure-gate-sweep-loop ") == &ReceiveBuffer[0]) {
 				Measure_Gate_Sweep(1);
 			} else 
+			if (strstr(ReceiveBuffer, "calibrate-offset ") == &ReceiveBuffer[0]) {
+				Calibrate_ADC_Offset(300);
+			} else
 			if (strstr(ReceiveBuffer, "set-vgs-raw ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 vgsi = strtol(location, &location, 10);
