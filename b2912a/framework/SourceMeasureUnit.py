@@ -62,7 +62,7 @@ def getConnectionToPCB(pcb_port='', system_settings=None):
 			pcb_port = active_ports[0].device
 		#pcb_port = '/dev/tty.HC-05-DevB'
 		#pcb_port = '/dev/tty.usbmodem1411'
-	ser = pySerial.Serial(pcb_port, 115200, timeout=0.5)
+	ser = pySerial.Serial(pcb_port, 115200)
 	return PCB2v14(ser, pcb_port)
 
 
