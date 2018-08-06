@@ -292,7 +292,12 @@ void ADC_Adjust_Range(uint32 sampleCount) {
 		ADC_Increase_Range();
 	} else if (abs(ADC_Voltage) < 10240) {
 		ADC_Decrease_Range();
+	} else {
+		return;
 	}
+	
+	// If the range switches, discard a few measurements
+	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 10);
 }
 
 // Measure SAR1 ADC
