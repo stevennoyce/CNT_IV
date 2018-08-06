@@ -14,6 +14,7 @@ data/
 #ignore generated plots
 *.png
 *.pdf
+*.svg
 
 #ignore compiled files
 *.pyc
@@ -29,3 +30,14 @@ data/
 
 #ignore PSoC files
 *.o
+*/Debug
+*/Release
+*/Export
+*/codegentemp
+*/Generated_Source
+*_datasheet.pdf
+*_timing.html
+*.cycdx
+*.cyfit
+*.rpt
+*.svd
