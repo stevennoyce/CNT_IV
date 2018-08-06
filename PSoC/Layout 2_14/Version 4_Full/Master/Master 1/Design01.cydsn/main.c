@@ -236,6 +236,9 @@ void TIA_Set_Resistor(uint8 resistor) {
 }
 
 void ADC_Increase_Range() {
+	sprintf(TransmitBuffer, "# Increasing Range\r\n");
+	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	UART_1_PutString(TransmitBuffer);
 	TIA_Set_Resistor(R20K);
 	return;
 	switch(TIA_Selected_Resistor) {
@@ -252,6 +255,9 @@ void ADC_Increase_Range() {
 }
 
 void ADC_Decrease_Range() {
+	sprintf(TransmitBuffer, "# Decreasing Range\r\n");
+	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	UART_1_PutString(TransmitBuffer);
 	TIA_Set_Resistor(R1000K);
 	return;
 	switch(TIA_Selected_Resistor) {
