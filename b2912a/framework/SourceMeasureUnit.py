@@ -329,39 +329,32 @@ class PCB2v14(SourceMeasureUnit):
 	nplc = 1
 	stepsPerRamp = 5
 	
-	# Communication times seem to be quite fast, but just to be safe delay for 1 ms
-	wait_sending = 0.001
-	wait_recieving = 0.001
-	
-	# The DAC has much more to do than the ADC, so it gets more time to do its work
-	wait_DAC = 0.35
-	wait_ADC = 0.001
-	
 	# These delays are used for rare communication patterns that we don't mind giving a little extra time
 	wait_long = 0.5
-	wait_calibration = 2.0
 
 	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
 		self.system_id = pcb_port
 		self.setParameter('connect-intermediates !')
-		time.sleep(self.wait_long)
+		self.getResponse(lines=5)
 
 	def setComplianceCurrent(self, complianceCurrent):
 		pass
 
 	def setParameter(self, parameter):
 		self.ser.write( str(parameter).encode('UTF-8') )
-		time.sleep(self.wait_sending)
 
-	def getResponse(self, startsWith=''):
-		time.sleep(self.wait_recieving)
-		response = self.ser.readline().decode(encoding='UTF-8')
-		if(startsWith != ''):
-			while(response[0] != startsWith):
-				print('SKIPPED: ' + str(response))
-				time.sleep(self.wait_long)
-				response = self.ser.readline().decode(encoding='UTF-8')
+	def getResponse(self, startsWith='', lines=1, printResponse=True):
+		response = ''
+		for i in range(lines):
+			line = self.ser.readline().decode(encoding='UTF-8')
+			if(startsWith != ''):
+				while(line[0] != startsWith):
+					print('SKIPPED: ' + str(line))
+					line = self.ser.readline().decode(encoding='UTF-8')
+			response += line
+		if(printResponse):
+			print(response, end='')
 		return response
 
 	def formatMeasurement(self, measurement):
@@ -375,38 +368,29 @@ class PCB2v14(SourceMeasureUnit):
 
 	def setDevice(self, deviceID):
 		self.setParameter('disconnect-all-from-all !')
-		time.sleep(self.wait_long)
+		self.getResponse()
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
 		intermediate2 = (2) if(contactPad2 <= 32) else (4)
 		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
-		time.sleep(self.wait_long)
+		self.getResponse(lines=2)
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
-		time.sleep(self.wait_long)
-		while (self.ser.in_waiting):
-			print(self.getResponse(), end='')
+		self.getResponse(lines=2)
 		self.setParameter("calibrate-offset !")
-		time.sleep(self.wait_calibration)
-		while (self.ser.in_waiting):
-			print(self.getResponse(), end='')
+		self.getResponse(startsWith='#', lines=9)
 
 	def setVds(self, voltage):
 		self.setParameter("set-vds-mv {:.0f}!".format(voltage*1000))
-		time.sleep(self.wait_DAC)
-		response = self.getResponse(startsWith='#')
-		print(str(response), end='')
+		self.getResponse(startsWith='#')
 
 	def setVgs(self, voltage):
 		self.setParameter("set-vgs-mv {:.0f}!".format(voltage*1000))
-		time.sleep(self.wait_DAC)
-		response = self.getResponse(startsWith='#')
-		print(str(response), end='')
+		self.getResponse(startsWith='#')
 
 	def takeMeasurement(self):
 		self.setParameter('measure !')
-		time.sleep(self.wait_ADC)
-		response = self.getResponse(startsWith='[')
+		response = self.getResponse(startsWith='[', printResponse=False)
 		print('MEASURE: ' + str(response), end='')
 		return self.formatMeasurement(response)
 
