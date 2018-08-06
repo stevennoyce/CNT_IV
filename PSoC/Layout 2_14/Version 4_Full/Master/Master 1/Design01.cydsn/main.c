@@ -238,26 +238,26 @@ void TIA_Set_Resistor(uint8 resistor) {
 void ADC_Increase_Range() {
 	switch(TIA_Selected_Resistor) {
 		case R20K: 	 break;
-		case R30K: 	 TIA_Set_Resistor(R20K); break;
-		case R40K:	 TIA_Set_Resistor(R30K); break;
-		case R80K:	 TIA_Set_Resistor(R40K); break;
-		case R120K:	 TIA_Set_Resistor(R80K); break;
-		case R250K:	 TIA_Set_Resistor(R120K); break;
-		case R500K:	 TIA_Set_Resistor(R250K); break;
-		case R1000K: TIA_Set_Resistor(R500K); break;
+		//case R30K: 	 TIA_Set_Resistor(R20K); break;
+		//case R40K:	 TIA_Set_Resistor(R30K); break;
+		//case R80K:	 TIA_Set_Resistor(R40K); break;
+		//case R120K:	 TIA_Set_Resistor(R80K); break;
+		//case R250K:	 TIA_Set_Resistor(R120K); break;
+		//case R500K:	 TIA_Set_Resistor(R250K); break;
+		case R1000K: TIA_Set_Resistor(R20K); break;
 		default: return;
 	}
 }
 
 void ADC_Decrease_Range() {
 	switch(TIA_Selected_Resistor) {
-		case R20K: 	 TIA_Set_Resistor(R30K); break;
-		case R30K: 	 TIA_Set_Resistor(R40K); break;
-		case R40K:	 TIA_Set_Resistor(R80K); break;
-		case R80K:	 TIA_Set_Resistor(R120K); break;
-		case R120K:	 TIA_Set_Resistor(R250K); break;
-		case R250K:	 TIA_Set_Resistor(R500K); break;
-		case R500K:	 TIA_Set_Resistor(R1000K); break;
+		case R20K: 	 TIA_Set_Resistor(R1000K); break;
+		//case R30K: 	 TIA_Set_Resistor(R40K); break;
+		//case R40K:	 TIA_Set_Resistor(R80K); break;
+		//case R80K:	 TIA_Set_Resistor(R120K); break;
+		//case R120K:	 TIA_Set_Resistor(R250K); break;
+		//case R250K:	 TIA_Set_Resistor(R500K); break;
+		//case R500K:	 TIA_Set_Resistor(R1000K); break;
 		case R1000K: break;
 		default: return;
 	}
@@ -280,6 +280,19 @@ void ADC_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount
 	
 	*average = ADC_Result;
 	*standardDeviation = ADC_SD;
+}
+
+void ADC_Adjust_Range(uint32 sampleCount) {
+	int32 ADC_Result = 0;
+	int32 ADC_SD = 0;
+	
+	ADC_Measure_uV(&ADC_Result, &ADC_SD, sampleCount);
+	
+	if(ADC_Result > 1.024*1e6 * 0.85){
+		ADC_Increase_Range();
+	} else if (ADC_Result < 1.024*1e6 * 0.01) {
+		ADC_Decrease_Range();
+	}
 }
 
 // Measure SAR1 ADC
@@ -644,6 +657,8 @@ void Calibrate_ADC_Offset(uint32 sampleCount) {
 void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_SampleCount) {
 	int32 ADC_Voltage = 0;
 	int32 ADC_Voltage_SD = 0;
+	
+	ADC_Adjust_Range(3);
 	
 	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, deltaSigmaSampleCount);
 	
