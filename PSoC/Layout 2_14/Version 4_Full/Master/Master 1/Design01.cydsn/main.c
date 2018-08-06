@@ -236,11 +236,6 @@ void TIA_Set_Resistor(uint8 resistor) {
 }
 
 void ADC_Increase_Range() {
-	sprintf(TransmitBuffer, "# Increasing Range\r\n");
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
-	TIA_Set_Resistor(R20K);
-	return;
 	switch(TIA_Selected_Resistor) {
 		case R20K: 	 break;
 		//case R30K: 	 TIA_Set_Resistor(R20K); break;
@@ -255,11 +250,6 @@ void ADC_Increase_Range() {
 }
 
 void ADC_Decrease_Range() {
-	sprintf(TransmitBuffer, "# Decreasing Range\r\n");
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
-	TIA_Set_Resistor(R1000K);
-	return;
 	switch(TIA_Selected_Resistor) {
 		case R20K: 	 TIA_Set_Resistor(R1000K); break;
 		//case R30K: 	 TIA_Set_Resistor(R40K); break;
@@ -293,14 +283,18 @@ void ADC_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount
 }
 
 void ADC_Adjust_Range(uint32 sampleCount) {
-	int32 ADC_Result = 0;
-	int32 ADC_SD = 0;
+	int32 ADC_Voltage = 0;
+	int32 ADC_Voltage_SD = 0;
 	
-	ADC_Measure_uV(&ADC_Result, &ADC_SD, sampleCount);
+	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, sampleCount);
 	
-	if(ADC_Result > 870400) {
+	sprintf(TransmitBuffer, "# voltage: %li \r\n", ADC_Voltage);
+	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	UART_1_PutString(TransmitBuffer);
+	
+	if(ADC_Voltage > 870400L) {
 		ADC_Increase_Range();
-	} else if (ADC_Result < 10240) {
+	} else if (ADC_Voltage < 10240L) {
 		ADC_Decrease_Range();
 	}
 }
