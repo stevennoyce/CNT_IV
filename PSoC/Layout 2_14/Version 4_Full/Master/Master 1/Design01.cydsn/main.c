@@ -297,7 +297,7 @@ void ADC_Adjust_Range(uint32 sampleCount) {
 	}
 	
 	// If the range switches, discard a few measurements
-	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 1);
+	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 5);
 }
 
 // Measure SAR1 ADC
