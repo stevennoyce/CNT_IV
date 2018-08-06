@@ -236,6 +236,8 @@ void TIA_Set_Resistor(uint8 resistor) {
 }
 
 void ADC_Increase_Range() {
+	TIA_Set_Resistor(R20K);
+	return;
 	switch(TIA_Selected_Resistor) {
 		case R20K: 	 break;
 		//case R30K: 	 TIA_Set_Resistor(R20K); break;
@@ -250,6 +252,8 @@ void ADC_Increase_Range() {
 }
 
 void ADC_Decrease_Range() {
+	TIA_Set_Resistor(R1000K);
+	return;
 	switch(TIA_Selected_Resistor) {
 		case R20K: 	 TIA_Set_Resistor(R1000K); break;
 		//case R30K: 	 TIA_Set_Resistor(R40K); break;
@@ -288,9 +292,9 @@ void ADC_Adjust_Range(uint32 sampleCount) {
 	
 	ADC_Measure_uV(&ADC_Result, &ADC_SD, sampleCount);
 	
-	if(ADC_Result > 1.024*1e6 * 0.85){
+	if(ADC_Result > 870400) {
 		ADC_Increase_Range();
-	} else if (ADC_Result < 1.024*1e6 * 0.01) {
+	} else if (ADC_Result < 10240) {
 		ADC_Decrease_Range();
 	}
 }
