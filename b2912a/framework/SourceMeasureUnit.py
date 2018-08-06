@@ -337,8 +337,9 @@ class PCB2v14(SourceMeasureUnit):
 	wait_DAC = 0.35
 	wait_ADC = 0.001
 	
-	# This delay is used for rare communication patterns that we don't mind giving a little extra time
+	# These delays are used for rare communication patterns that we don't mind giving a little extra time
 	wait_long = 0.5
+	wait_calibration = 2.0
 
 	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
@@ -383,6 +384,10 @@ class PCB2v14(SourceMeasureUnit):
 		time.sleep(self.wait_long)
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
 		time.sleep(self.wait_long)
+		while (self.ser.in_waiting):
+			print(self.getResponse(), end='')
+		self.setParameter("calibrate-offset !")
+		time.sleep(self.wait_calibration)
 		while (self.ser.in_waiting):
 			print(self.getResponse(), end='')
 
