@@ -8,11 +8,9 @@
 	
 	<style media="screen" type="text/css">
 		html {
-			overscroll-behavior: contain;
-			background-color: #546e79;
-			background-color: #77909b;
+			overscroll-behavior: none;
 		}
-
+		
 		[v-cloak] > * {
 			display: none;
 		}
@@ -198,6 +196,7 @@
 							<v-stepper-content step="2">
 								<v-card v-if="stepperPage > 1">
 									<v-toolbar dark class="blue-grey darken-1">
+										<v-btn icon @click="stepperPage--; getProjects()"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											Wafers
 										</v-toolbar-title>
@@ -227,7 +226,7 @@
 							<v-stepper-content step="3">
 								<v-card v-if="stepperPage > 2">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--; getWafers()"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }} Chips
 										</v-toolbar-title>
@@ -257,7 +256,7 @@
 							<v-stepper-content step="4">
 								<v-card v-if="stepperPage > 3">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--; getChips();"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} Devices
 										</v-toolbar-title>
@@ -286,7 +285,7 @@
 							<v-stepper-content step="5">
 								<v-card v-if="stepperPage > 4">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--; getDevices();"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiments
 										</v-toolbar-title>
@@ -297,7 +296,8 @@
 									<v-data-table :items="experimentsWithIndexes" :headers="experimentTableHeaders" :search="experimentTableSearch" must-sort
 										:rows-per-page-items="[10,20,50,{'text':'$vuetify.dataIterator.rowsPerPageAll','value':-1}]"
 										no-results-text="Your search did not return any results."
-										:custom-filter="customVDataTableFilter">
+										:custom-filter="customVDataTableFilter"
+										:pagination.sync="experimentTablePagination">
 										<template slot="items" slot-scope="props">
 											<tr @click="goToExperiment(props.item.i)">
 												<td>{{ props.item.startIndexes.experimentNumber }}</td>
@@ -313,7 +313,7 @@
 							<v-stepper-content step="6">
 								<v-card v-if="stepperPage > 5 && experiments.length > experimentIndex">
 									<v-toolbar dark class="blue-grey darken-1">
-										<v-btn icon @click="stepperPage--;"><v-icon>arrow_back</v-icon></v-btn>
+										<v-btn icon @click="stepperPage--; getExperiments();"><v-icon>arrow_back</v-icon></v-btn>
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
 										</v-toolbar-title>
@@ -576,6 +576,7 @@
 					{'text':'Measurement System', 'value':'MeasurementSystem.systemType'},
 					{'text':'Indexes', 'value':'uiComputed.indexCount'}],
 				experimentTableSearch: '',
+				experimentTablePagination: {'sortBy': 'startIndexes.experimentNumber', 'descending': true},
 				
 				possibleRunTypes: ['GateSweep', 'AutoGateSweep', 'StaticBias', 'AutoStaticBias'],
 				defaultParameters: {},

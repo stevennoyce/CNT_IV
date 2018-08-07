@@ -19,7 +19,7 @@ def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParame
 	ags_parameters = parameters['runConfigs']['AutoGateSweep']
 
 	numberOfSweeps = ags_parameters['numberOfSweeps']
-
+	
 	# === START ===
 	for i in range(numberOfSweeps):
 		print('Starting sweep #'+str(i+1)+' of '+str(numberOfStaticBiases))
