@@ -351,8 +351,6 @@ class PCB2v14(SourceMeasureUnit):
 	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
 		self.system_id = pcb_port
-		self.setParameter('connect-intermediates !')
-		self.getResponse(lines=9)
 
 	def setComplianceCurrent(self, complianceCurrent):
 		pass
@@ -383,16 +381,20 @@ class PCB2v14(SourceMeasureUnit):
 		}
 
 	def setDevice(self, deviceID):
+		self.setParameter('connect-intermediates !')
+		self.getResponse(lines=9)
 		self.setParameter('disconnect-all-from-all !')
-		self.getResponse(lines=4)
+		self.getResponse(lines=9)
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
 		intermediate2 = (2) if(contactPad2 <= 32) else (4)
+		print('connecting contact: ' + str(contactPad1) + ' to AMUX: ' + str(intermediate1))
+		print('connecting contact: ' + str(contactPad2) + ' to AMUX: ' + str(intermediate2))
 		self.setParameter("connect {} {}!".format(contactPad1, intermediate1))
-		self.getResponse(lines=2)
+		self.getResponse(lines=3)
 		self.setParameter("connect {} {}!".format(contactPad2, intermediate2))
-		self.getResponse(lines=2)
+		self.getResponse(lines=3)
 		self.setParameter("calibrate-offset !")
 		self.getResponse(startsWith='#', lines=9)
 		print('Switched to device: ' + str(deviceID))
