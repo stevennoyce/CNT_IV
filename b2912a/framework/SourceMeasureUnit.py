@@ -352,7 +352,7 @@ class PCB2v14(SourceMeasureUnit):
 		self.ser = pySerial
 		self.system_id = pcb_port
 		self.setParameter('connect-intermediates !')
-		self.getResponse(lines=5)
+		self.getResponse(lines=8)
 
 	def setComplianceCurrent(self, complianceCurrent):
 		pass
