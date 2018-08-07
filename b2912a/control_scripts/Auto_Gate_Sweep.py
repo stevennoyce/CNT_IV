@@ -1,32 +1,27 @@
 # === Imports ===
 from control_scripts import Gate_Sweep as gateSweepScript
-from control_scripts import Static_Bias as staticBiasScript
 from utilities import DataLoggerUtility as dlu
 
 
 # === Main ===
 def run(parameters, smu_instance, arduino_instance):
-	# Create distinct parameters for all scripts that could be run
-	gateSweepParameters = dict(parameters)
-	gateSweepParameters['runType'] = 'GateSweep'
+	# No setup required, just run
+	runAutoGateSweep(parameters, smu_instance, arduino_instance)	
 
-	staticBiasParameters = dict(parameters)
-	staticBiasParameters['runType'] = 'StaticBias'
-
-	runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters)	
-
-def runAutoGateSweep(parameters, smu_instance, arduino_instance, gateSweepParameters, staticBiasParameters):
+def runAutoGateSweep(parameters, smu_instance, arduino_instance):
 	ags_parameters = parameters['runConfigs']['AutoGateSweep']
 
-	numberOfSweeps = ags_parameters['numberOfSweeps']
+	numberOfSweeps = len(ags_parameters['drainVoltageSetPoints'])
 	
 	# === START ===
 	for i in range(numberOfSweeps):
-		print('Starting sweep #'+str(i+1)+' of '+str(numberOfStaticBiases))
+		print('Starting sweep #'+str(i+1)+' of '+str(numberOfSweeps))
 
-		# Run GateSweep, StaticBias (if desired)
+		# Make copy of parameters to run GateSweep, but modify the Vds setpoint
+		gateSweepParameters = dict(parameters)
+		gateSweepParameters['runType'] = 'GateSweep'
+		gateSweepParameters['runConfigs']['GateSweep']['drainVoltageSetPoint'] = ags_parameters['drainVoltageSetPoints'][i]
+		
 		gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
-		if(ags_parameters['applyStaticBiasBetweenSweeps']):
-			staticBiasScript.run(staticBiasParameters, smu_instance, arduino_instance, isSavingResults=True, isPlottingResults=False)
 		
 		print('Completed sweep #'+str(i+1)+' of '+str(numberOfSweeps))

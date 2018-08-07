@@ -14,7 +14,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	dh_parameters = {}
 	dh_parameters['Identifiers'] = dict(parameters['Identifiers'])
 	dh_parameters['dataFolder'] = parameters['dataFolder']
-	dh_parameters['plotGateSweeps'] = True
+	dh_parameters['plotGateSweeps'] = False
 	dh_parameters['plotBurnOuts'] = False
 	dh_parameters['plotStaticBias'] = False
 	dh_parameters['showFiguresGenerated'] = True
@@ -23,25 +23,25 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
 
 	# Get shorthand name to easily refer to configuration parameters
-	gs_parameters = parameters['runConfigs']['GateSweep']
+	ds_parameters = parameters['runConfigs']['DrainSweep']
 
 	# Print the starting message
-	print('Sweeping the gate: V_DS='+str(gs_parameters['drainVoltageSetPoint'])+'V, min V_GS='+str(gs_parameters['gateVoltageMinimum'])+'V, max V_GS='+str(gs_parameters['gateVoltageMaximum'])+'V')
-	smu_instance.setComplianceCurrent(gs_parameters['complianceCurrent'])	
+	print('Sweeping the drain: V_GS='+str(ds_parameters['gateVoltageSetPoint'])+'V, min V_DS='+str(ds_parameters['drainVoltageMinimum'])+'V, max V_DS='+str(ds_parameters['drainVoltageMaximum'])+'V')
+	smu_instance.setComplianceCurrent(ds_parameters['complianceCurrent'])	
 
 	# === START ===
 	# Apply drain voltage
-	print('Ramping drain voltage.')
-	smu_instance.rampDrainVoltageTo(gs_parameters['drainVoltageSetPoint'])
+	print('Ramping gate voltage.')
+	smu_instance.rampGateVoltageTo(ds_parameters['gateVoltageSetPoint'])
 	
-	print('Beginning to sweep gate voltage.')
-	results = runGateSweep( smu_instance, 
-							isFastSweep=gs_parameters['isFastSweep'],
-							drainVoltageSetPoint=gs_parameters['drainVoltageSetPoint'],
-							gateVoltageMinimum=gs_parameters['gateVoltageMinimum'], 
-							gateVoltageMaximum=gs_parameters['gateVoltageMaximum'], 
-							stepsInVGSPerDirection=gs_parameters['stepsInVGSPerDirection'],
-							pointsPerVGS=gs_parameters['pointsPerVGS'])
+	print('Beginning to sweep drain voltage.')
+	results = runDrainSweep( smu_instance, 
+							isFastSweep=ds_parameters['isFastSweep'],
+							gateVoltageSetPoint=ds_parameters['gateVoltageSetPoint'],
+							drainVoltageMinimum=ds_parameters['drainVoltageMinimum'], 
+							drainVoltageMaximum=ds_parameters['drainVoltageMaximum'], 
+							stepsInVDSPerDirection=ds_parameters['stepsInVDSPerDirection'],
+							pointsPerVDS=ds_parameters['pointsPerVDS'])
 	smu_instance.rampDownVoltages()
 	# === COMPLETE ===
 
@@ -49,9 +49,8 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	parameters['Computed'] = results['Computed']
 	
 	# Print the metrics
-	print('On/Off ratio: {:.4f}'.format(results['Computed']['onOffRatio']))
-	print('On current: {:.4e}'.format(results['Computed']['onCurrent']))
-	print('Off current: {:.4e}'.format(results['Computed']['offCurrent']))
+	print('Max conductance: {:.4e}'.format(results['Computed']['G_max']))
+	print('Max drain current: {:.4e}'.format(results['Computed']['id_max']))
 	print('Max gate current: {:.4e}'.format(results['Computed']['ig_max']))
 
 	# Copy parameters and add in the test results
@@ -61,7 +60,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	# Save results as a JSON object
 	if(isSavingResults):
 		print('Saving JSON.')
-		dlu.saveJSON(dlu.getDeviceDirectory(parameters), gs_parameters['saveFileName'], jsonData)
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), ds_parameters['saveFileName'], jsonData)
 
 	# Show plots to the user
 	if(isPlottingResults):
@@ -70,24 +69,24 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 	return jsonData
 
 # === Data Collection ===
-def runGateSweep(smu_instance, isFastSweep, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection, pointsPerVGS):
+def runDrainSweep(smu_instance, isFastSweep, gateVoltageSetPoint, drainVoltageMinimum, drainVoltageMaximum, stepsInVDSPerDirection, pointsPerVDS):
 	vds_data = [[],[]]
 	id_data = [[],[]]
 	vgs_data = [[],[]]
 	ig_data = [[],[]]
 	timestamps = [[],[]]
 
-	# Generate list of gate voltages to apply
-	gateVoltages = dgu.sweepValuesWithDuplicates(gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection*2*pointsPerVGS, pointsPerVGS)
+	# Generate list of drain voltages to apply
+	drainVoltages = dgu.sweepValuesWithDuplicates(drainVoltageMinimum, drainVoltageMaximum, stepsInVDSPerDirection*2*pointsPerVDS, pointsPerVDS)
 	
-	# Ramp gate and wait a second for everything to settle down
-	smu_instance.rampGateVoltageTo(gateVoltageMinimum)
+	# Ramp drain and wait a second for everything to settle down
+	smu_instance.rampDrainVoltageTo(drainVoltageMinimum)
 	time.sleep(1)
 
 	if(isFastSweep):
-		# Use SMU built-in sweep to sweep the gate forwards and backwards
-		forward_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMinimum, gateVoltageMaximum, stepsInVGSPerDirection)
-		reverse_measurements = smu_instance.takeSweep(drainVoltageSetPoint, drainVoltageSetPoint, gateVoltageMaximum, gateVoltageMinimum, stepsInVGSPerDirection)
+		# Use SMU built-in sweep to sweep the drain forwards and backwards
+		forward_measurements = smu_instance.takeSweep(drainVoltageMinimum, drainVoltageMaximum, gateVoltageSetPoint, gateVoltageSetPoint, stepsInVDSPerDirection)
+		reverse_measurements = smu_instance.takeSweep(drainVoltageMaximum, drainVoltageMinimum, gateVoltageSetPoint, gateVoltageSetPoint, stepsInVDSPerDirection)
 
 		# Save forward measurements
 		vds_data[0] = forward_measurements['Vds_data']
@@ -104,12 +103,12 @@ def runGateSweep(smu_instance, isFastSweep, drainVoltageSetPoint, gateVoltageMin
 		timestamps[1] = reverse_measurements['timestamps']
 
 		# Save true measured Vgs as the applied voltages
-		gateVoltages = vgs_data
+		drainVoltages = vds_data
 	else:
 		for direction in [0,1]:
-			for gateVoltage in gateVoltages[direction]:
-				# Apply V_GS
-				smu_instance.setVgs(gateVoltage)
+			for drainVoltage in drainVoltages[direction]:
+				# Apply V_DS
+				smu_instance.setVds(drainVoltage)
 
 				# Take Measurement and save it
 				measurement = smu_instance.takeMeasurement()
@@ -129,25 +128,13 @@ def runGateSweep(smu_instance, isFastSweep, drainVoltageSetPoint, gateVoltageMin
 			'vgs_data':vgs_data,
 			'ig_data':ig_data,
 			'timestamps':timestamps,
-			'gateVoltages':gateVoltages,
+			'drainVoltages':drainVoltages,
 		},
 		'Computed':{
-			'onOffRatio':onOffRatio(id_data),
-			'onCurrent':onCurrent(id_data),
-			'offCurrent':offCurrent(id_data),
+			'id_max':max(abs(np.array(id_data[0] + id_data[1]))),
+			'G_max':max(abs(np.array(id_data[0] + id_data[1]) / np.array(vds_data[0] + vds_data[1]))),
 			'ig_max':max(abs(np.array(ig_data[0] + ig_data[1])))
 		}
 	}
-
-def onOffRatio(drainCurrent):
-	return onCurrent(drainCurrent)/offCurrent(drainCurrent)
-
-def onCurrent(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return np.percentile(absDrainCurrent, 99)
-
-def offCurrent(drainCurrent):
-	absDrainCurrent = abs(np.array(drainCurrent))
-	return (np.percentile(absDrainCurrent, 5))
 
 	

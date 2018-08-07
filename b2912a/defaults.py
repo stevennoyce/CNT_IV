@@ -14,6 +14,16 @@ default_parameters = {
 			'gateVoltageMinimum': 	-15,
 			'gateVoltageMaximum': 	15
 		},
+		'DrainSweep':{
+			'saveFileName': 'DrainSweep',
+			'isFastSweep': False,
+			'stepsInVDSPerDirection': 100,
+			'pointsPerVDS': 1,
+			'complianceCurrent':	100e-6,
+			'gateVoltageSetPoint':	-15,
+			'drainVoltageMinimum': 	-0.5,
+			'gateVoltageMaximum': 	0.5
+		},
 		'BurnOut':{
 			'saveFileName': 'BurnOut',
 			'pointsPerRamp': 50,
@@ -24,11 +34,6 @@ default_parameters = {
 			'gateVoltageSetPoint':	15.0,
 			'drainVoltageMaxPoint':	10,
 			'drainVoltagePlateaus': 10
-		},
-		'AutoBurnOut':{
-			'targetOnOffRatio': 300,
-			'limitBurnOutsAllowed': 8,
-			'limitOnOffRatioDegradation': 0.7
 		},
 		'StaticBias':{
 			'saveFileName': 'StaticBias',
@@ -43,9 +48,16 @@ default_parameters = {
 			'floatChannelsWhenDone': False,
 			'delayWhenDone': 0
 		},
+		'AutoBurnOut':{
+			'targetOnOffRatio': 300,
+			'limitBurnOutsAllowed': 8,
+			'limitOnOffRatioDegradation': 0.7
+		},
 		'AutoGateSweep':{
-			'numberOfSweeps': 1,
-			'applyStaticBiasBetweenSweeps': False,
+			'drainVoltageSetPoints': [-0.5, -0.1, -0.01]
+		},
+		'AutoDrainSweep':{
+			'gateVoltageSetPoints': [-15, -10, -5, 0]
 		},
 		'AutoStaticBias':{
 			'numberOfStaticBiases': 1,
@@ -61,7 +73,7 @@ default_parameters = {
 			'shuffleDelaysBeforeReapplyingVoltage': False
 		},
 		'AFMControl':{
-		
+			'saveFileName': 'AFMControl'
 		}
 	},
 	'Results':{
