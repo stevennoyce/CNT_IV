@@ -55,14 +55,17 @@ def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defau
 
 def getConnectionToPCB(pcb_port='', system_settings=None):
 	if(pcb_port == ''):
-		active_ports = [port for port in pySerialPorts.comports() if(port.description == 'PCB 2_14')]
+		active_ports = [port for port in pySerialPorts.comports() if(port.description == 'n/a')]
 		if(len(active_ports) == 0):
 			raise Exception('Unable to find any active serial ports to connect to PCB.')
 		else:
-			pcb_port = active_ports[0].device
+			pcb_port = active_ports[0]
 		#pcb_port = '/dev/tty.HC-05-DevB'
 		#pcb_port = '/dev/tty.usbmodem1411'
-	ser = pySerial.Serial(pcb_port, 115200)
+	try:
+		ser = pySerial.Serial(pcb_port, 115200)
+	except:
+		ser = pySerial.Serial(pcb_port.device, 115200)
 	return PCB2v14(ser, pcb_port)
 
 
