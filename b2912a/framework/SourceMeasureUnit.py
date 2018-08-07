@@ -55,7 +55,7 @@ def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defau
 
 def getConnectionToPCB(pcb_port='', system_settings=None):
 	if(pcb_port == ''):
-		active_ports = [port for port in pySerialPorts.comports() if(port.description == 'n/a')]
+		active_ports = [port for port in pySerialPorts.comports() if(port.description != 'n/a')]
 		if(len(active_ports) == 0):
 			raise Exception('Unable to find any active serial ports to connect to PCB.')
 		else:
