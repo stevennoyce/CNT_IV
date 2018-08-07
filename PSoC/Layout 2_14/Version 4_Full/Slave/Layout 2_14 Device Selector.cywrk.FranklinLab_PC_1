@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Layout 2_14 Device Selector\Design01\TopDesign">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Layout 2_14 Device Selector\Design01\Design01.cydwr\Pins">
 <ExpandedNodeIds>
 <v>Layout 2_14 Device Selector</v>
 <v>Layout 2_14 Device Selector\Design01</v>
@@ -319,10 +319,22 @@
 <v>Layout 2_14 Device Selector\Design01\PSoC 4 Architecture TRM</v>
 <v>Layout 2_14 Device Selector\Design01\PSoC 4200 Family Datasheet</v>
 <v>Layout 2_14 Device Selector\Design01\System Reference Guides</v>
+<v>Layout 2_14 Device Selector\Design01\System Reference Guides\cy_boot_v5_60</v>
+<v>Layout 2_14 Device Selector\Design01\System Reference Guides\cy_lfclk_v1_20</v>
+<v>Layout 2_14 Device Selector\Design01\ADC_SAR_SEQ_P4_v2_50.pdf</v>
+<v>Layout 2_14 Device Selector\Design01\AMux_v1_80.pdf</v>
+<v>Layout 2_14 Device Selector\Design01\cy_pins_v2_20</v>
+<v>Layout 2_14 Device Selector\Design01\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Layout 2_14 Device Selector\Design01\SCB_P4_v3_20.pdf</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1\PSoC 4 Architecture TRM</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1\PSoC 4200 Family Datasheet</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1\System Reference Guides</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\System Reference Guides\cy_boot_v5_60</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\System Reference Guides\cy_lfclk_v1_20</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\cy_pins_v2_20</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\SCB_P4_v3_20.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Layout 2_14 Device Selector</v>
@@ -330,10 +342,22 @@
 <v>Layout 2_14 Device Selector\Design01\PSoC 4 Architecture TRM</v>
 <v>Layout 2_14 Device Selector\Design01\PSoC 4200 Family Datasheet</v>
 <v>Layout 2_14 Device Selector\Design01\System Reference Guides</v>
+<v>Layout 2_14 Device Selector\Design01\System Reference Guides\cy_boot_v5_60</v>
+<v>Layout 2_14 Device Selector\Design01\System Reference Guides\cy_lfclk_v1_20</v>
+<v>Layout 2_14 Device Selector\Design01\ADC_SAR_SEQ_P4_v2_50.pdf</v>
+<v>Layout 2_14 Device Selector\Design01\AMux_v1_80.pdf</v>
+<v>Layout 2_14 Device Selector\Design01\cy_pins_v2_20</v>
+<v>Layout 2_14 Device Selector\Design01\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Layout 2_14 Device Selector\Design01\SCB_P4_v3_20.pdf</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1\PSoC 4 Architecture TRM</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1\PSoC 4200 Family Datasheet</v>
 <v>Layout 2_14 Device Selector\Proto Board Test 1\System Reference Guides</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\System Reference Guides\cy_boot_v5_60</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\System Reference Guides\cy_lfclk_v1_20</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\cy_pins_v2_20</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Layout 2_14 Device Selector\Proto Board Test 1\SCB_P4_v3_20.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -345,7 +369,6 @@
 <OpenDocs>
 <name v=".\Design01.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Design01.cydsn\Design01.cydwr" />
-<name v=".\Proto Board Test 1.cydsn\TopDesign\TopDesign.cysch" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -353,7 +376,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1300, 712" SelectedTabbedMdiWindow="c8365465-0239-4ea5-b85d-d3ddfa6b270f"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Slave\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="c8365465-0239-4ea5-b85d-d3ddfa6b270f" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Slave\Design01.cydsn\Design01.cydwr" Guid="bfd808de-c944-47ba-b981-f782268ebc90" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 2\Slave\Proto Board Test 1.cydsn\TopDesign\TopDesign.cysch" Guid="a473bd84-df75-4f1b-a671-76d3f326657a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1554, 712" SelectedTabbedMdiWindow="100381b7-3ccb-40c3-b186-242091b00854"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Slave\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="108940c5-e86c-4ea2-99b9-e53ff9d49fc0" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Slave\Design01.cydsn\Design01.cydwr" Guid="100381b7-3ccb-40c3-b186-242091b00854" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
