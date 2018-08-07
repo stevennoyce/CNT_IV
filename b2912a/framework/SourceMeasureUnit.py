@@ -384,7 +384,7 @@ class PCB2v14(SourceMeasureUnit):
 
 	def setDevice(self, deviceID):
 		self.setParameter('disconnect-all-from-all !')
-		self.getResponse()
+		self.getResponse(lines=4)
 		contactPad1 = int(deviceID.split('-')[0])
 		contactPad2 = int(deviceID.split('-')[1])
 		intermediate1 = (1) if(contactPad1 <= 32) else (3)
