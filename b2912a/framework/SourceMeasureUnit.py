@@ -395,6 +395,7 @@ class PCB2v14(SourceMeasureUnit):
 		self.getResponse(lines=2)
 		self.setParameter("calibrate-offset !")
 		self.getResponse(startsWith='#', lines=9)
+		print('Switched to device: ' + str(deviceID))
 
 	def setVds(self, voltage):
 		self.setParameter("set-vds-mv {:.0f}!".format(voltage*1000))
