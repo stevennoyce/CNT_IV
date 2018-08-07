@@ -328,9 +328,6 @@ class PCB2v14(SourceMeasureUnit):
 	measurementsPerSecond = 10
 	nplc = 1
 	stepsPerRamp = 5
-	
-	# These delays are used for rare communication patterns that we don't mind giving a little extra time
-	wait_long = 0.5
 
 	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
