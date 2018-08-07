@@ -11,6 +11,7 @@ from control_scripts import Auto_Burn_Out as autoBurnScript
 from control_scripts import Static_Bias as staticBiasScript
 from control_scripts import Auto_Gate_Sweep as autoGateScript
 from control_scripts import Auto_Static_Bias as autoBiasScript
+from control_scripts import AFM_Control as afmControlScript
 from control_scripts import Device_History as deviceHistoryScript
 from control_scripts import Chip_History as chipHistoryScript
 
@@ -89,6 +90,8 @@ def runSMU(parameters, smu_systems, arduino_instance):
 			autoGateScript.run(parameters, smu_default_instance, arduino_instance)
 		elif(parameters['runType'] == 'AutoStaticBias'):
 			autoBiasScript.run(parameters, smu_default_instance, arduino_instance)
+		elif(parameters['runType'] == 'AFMControl'):
+			afmControlScript.run(parameters, smu_systems)
 		else:
 			raise NotImplementedError("Invalid action for the Source Measure Unit")
 	except Exception as e:

@@ -177,6 +177,8 @@ class B2912A(SourceMeasureUnit):
 	system_id = ''
 	measurementsPerSecond = 40
 	nplc = 1
+	source1_mode = 'voltage'
+	source2_mode = 'voltage'
 	stepsPerRamp = 20
 	
 	def __init__(self, visa_instance, visa_id, defaultComplianceCurrent):
@@ -222,6 +224,12 @@ class B2912A(SourceMeasureUnit):
 	def turnChannelsOff(self):
 		self.setParameter(":outp1 OFF")
 		self.setParameter(":outp2 OFF")
+	
+	def setNPLC(self, nplc=1):
+		self.setParameter(":sense1:curr:nplc {}".format(nplc))
+		self.setParameter(":sense1:volt:nplc {}".format(nplc))
+		self.setParameter(":sense2:curr:nplc {}".format(nplc))
+		self.setParameter(":sense2:volt:nplc {}".format(nplc))	
 
 	def turnAutoRangingOn(self):
 		self.setParameter(':sense1:curr:range:auto ON')
@@ -240,10 +248,16 @@ class B2912A(SourceMeasureUnit):
 		self.setParameter(":sense2:volt:prot {}".format(complianceVoltage))
 
 	def setChannel1SourceMode(self, mode="voltage"):
-		self.setParameter(":source1:function:mode {}".format(mode))
+		if(mode in ["voltage", "current"]):
+			self.setParameter(":source1:function:mode {}".format(mode))
+			source1_mode = mode
+			print('Source 1 mode set to: ' + str(mode))
 
 	def setChannel2SourceMode(self, mode="voltage"):
-		self.setParameter(":source2:function:mode {}".format(mode))
+		if(mode in ["voltage", "current"]):
+			self.setParameter(":source2:function:mode {}".format(mode))
+			source2_mode = mode
+			print('Source 2 mode set to: ' + str(mode))
 
 	def setVds(self, voltage):
 		self.setParameter(":source1:voltage {}".format(voltage))
@@ -263,15 +277,15 @@ class B2912A(SourceMeasureUnit):
 	def startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
 		points = int(points)
 		
-		self.smu.write(":source1:voltage:mode sweep")
-		self.smu.write(":source2:voltage:mode sweep")
+		self.smu.write(":source1:{}:mode sweep".format(self.source1_mode))
+		self.smu.write(":source2:{}:mode sweep".format(self.source2_mode))
 		
-		self.smu.write(":source1:voltage:start {}".format(src1start))
-		self.smu.write(":source1:voltage:stop {}".format(src1stop)) 
-		self.smu.write(":source1:voltage:points {}".format(points))
-		self.smu.write(":source2:voltage:start {}".format(src2start))
-		self.smu.write(":source2:voltage:stop {}".format(src2stop)) 
-		self.smu.write(":source2:voltage:points {}".format(points))
+		self.smu.write(":source1:{}:start {}".format(self.source1_mode, src1start))
+		self.smu.write(":source1:{}:stop {}".format(self.source1_mode, src1stop)) 
+		self.smu.write(":source1:{}:points {}".format(self.source1_mode, points))
+		self.smu.write(":source2:{}:start {}".format(self.source2_mode, src2start))
+		self.smu.write(":source2:{}:stop {}".format(self.source2_mode, src2stop)) 
+		self.smu.write(":source2:{}:points {}".format(self.source2_mode, points))
 		
 		if triggerInterval is None:
 			self.smu.write(":trig1:source aint")
@@ -298,16 +312,18 @@ class B2912A(SourceMeasureUnit):
 		voltage1s = self.smu.query_ascii_values(":fetch:arr:voltage? (@1)")
 		current2s = self.smu.query_ascii_values(":fetch:arr:curr? (@2)")
 		voltage2s = self.smu.query_ascii_values(":fetch:arr:voltage? (@2)")
+		timestamps = self.smu.query_ascii_values(":fetch:array:time? (@2)")
 		
 		if endMode is not None:
-			self.smu.write(":source1:voltage:mode {}".format(endMode))
-			self.smu.write(":source2:voltage:mode {}".format(endMode))
+			self.smu.write(":source1:{}:mode {}".format(self.source1_mode, endMode))
+			self.smu.write(":source2:{}:mode {}".format(self.source2_mode, endMode))
 		
 		return {
 			'Vds_data': voltage1s,
 			'Id_data':  current1s,
 			'Vgs_data': voltage2s,
-			'Ig_data':  current2s
+			'Ig_data':  current2s,
+			'timestamps': timestamps
 		}
 	
 	def takeSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):

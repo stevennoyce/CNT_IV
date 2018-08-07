@@ -59,6 +59,9 @@ default_parameters = {
 			'incrementDrainVoltageWhenDone': 0,
 			'incrementDelayBeforeReapplyingVoltage': 0,
 			'shuffleDelaysBeforeReapplyingVoltage': False
+		},
+		'AFMControl':{
+		
 		}
 	},
 	'Results':{

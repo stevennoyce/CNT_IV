@@ -488,6 +488,7 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 		line = plotStaticBias(ax, deviceHistory[i], colors[i], time_offset, timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['enableGradient'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
+		#line = plotStaticBias(ax, deviceHistory[i], 'b', time_offset, currentData='ig_data', timescale=timescale, includeLabel=False, lineStyle=None, gradient=mode_parameters['enableGradient'])
 			
 		if(includeDualAxis):
 			if vds_setpoint_changes:
@@ -875,8 +876,8 @@ def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None, annota
 	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
 	return (line1, line2, line3)
 
-def plotStaticBias(axis, jsonData, lineColor, timeOffset, timescale='seconds', includeLabel=True, lineStyle=None, gradient=False):
-	line = plotOverTime(axis, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*(10**6)), lineColor, offset=timeOffset, plotInnerGradient=gradient)	
+def plotStaticBias(axis, jsonData, lineColor, timeOffset, currentData='id_data', timescale='seconds', includeLabel=True, lineStyle=None, gradient=False):
+	line = plotOverTime(axis, jsonData['Results']['timestamps'], (np.array(jsonData['Results'][currentData])*(10**6)), lineColor, offset=timeOffset, plotInnerGradient=gradient)	
 	if(includeLabel):
 		axisLabels(axis, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale), y_label=plot_parameters['StaticBias']['ylabel'])
 	return line
