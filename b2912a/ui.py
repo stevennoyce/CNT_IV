@@ -26,13 +26,19 @@ def sendStatic(path):
 @app.route('/plots/<user>/<project>/<wafer>/<chip>/<device>/<experiment>/<plotType>')
 def sendPlot(user, project, wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
-	# sweepDirection = flask.request.args.get('sweepDirection')
-	plotSettings = {'sweepDirection': 'both'}
+	sweepDirection = flask.request.args.get('sweepDirection')
+	# plotSettings = {'sweepDirection': 'both'}
+	plotSettings = {}
 	filebuf = io.BytesIO()
-	DH.makePlots(user, project, wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False, **plotSettings)
+	DH.makePlots(user, project, wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False, sweepDirection=sweepDirection, **plotSettings)
 	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
+
+@app.route('/defaultPlotSettings.json')
+def defaultPlotSettings():
+	settings = 
+	return json.dumps(settings)
 
 @app.route('/users.json')
 def users():
