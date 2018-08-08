@@ -498,6 +498,7 @@
 	<script src="/ui/vuetify.js"></script>
 	<script type="text/javascript">
 		
+		
 		function groupBy(elements, groupKey) {
 			return elements.reduce(function(rv, x) {
 				(rv[x[groupKey]] = rv[x[groupKey]] || []).push(x);
@@ -557,7 +558,7 @@
 				devices: [],
 				device: localStorage.device || '',
 				deviceTableHeaders: [
-					{'text':'Name', 'value':"name"},
+					{'text':'Name', 'value':'displayName'},
 					{'text':'Path', 'value':'path', 'searchable':false},
 					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
 					{'text':'Size', 'value':'size', 'searchable':false},
@@ -625,7 +626,14 @@
 				getDevices: function() {
 					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/' + this.chip + '/devices.json' + this.cacheBust;
 					if (path) {
-						$.getJSON(path, response => {app.$data.devices = response})
+						$.getJSON(path, response => {
+							response.map(function(device) {
+								var contacts = device.name.match(/\d+/g).map(num => num.padStart(2, '0'));
+								device.displayName = contacts.join('-');
+								return device;
+							});
+							app.$data.devices = response;
+						})
 						.fail(() => {console.log("Error getting devices")});
 					}
 				},
@@ -752,12 +760,4 @@
 </body>
 </html>
 
-<!-- 
 
-
-
-replace(/-/i, ' d ')
-
-
-
- -->
