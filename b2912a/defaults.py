@@ -49,7 +49,7 @@ default_parameters = {
 			'delayWhenDone': 0
 		},
 		'AutoBurnOut':{
-			'targetOnOffRatio': 100,
+			'targetOnOffRatio': 80,
 			'limitBurnOutsAllowed': 8,
 			'limitOnOffRatioDegradation': 0.7
 		},
