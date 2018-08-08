@@ -139,7 +139,7 @@ plot_parameters = {
 		'figsize':(8,4.5),
 		'subplot_height_ratio':[1],
 		'subplot_width_ratio':[1,1],
-		'colorMap':'Blues',
+		'colorMap':'hot',
 		'vds_label':'$V_{{DS}}$ [V]',
 		'id_micro_label':'$I_{{D}}$ [$\\mu$A]',
 		'time_label':'Time [sec]',
@@ -382,7 +382,7 @@ def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 		ax1.set_title(getTestLabel(deviceHistory, identifiers))
 
 	# Build Color Map and Color Bar
-	colorMap = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.6, 1.0, len(deviceHistory))
+	colorMap = colorsFromMap(plot_parameters['BurnOut']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
