@@ -195,11 +195,14 @@ def parseJSON(fileLines):
 
 
 # === Filtering ===
-def filterHistory(deviceHistory, property, value):
+def filterHistory(deviceHistory, property, value, subproperties=[]):
 	filteredHistory = []
 	for deviceRun in deviceHistory:
+		propertyLocation = deviceRun
+		for sub in subproperties:
+			propertyLocation = propertyLocation[sub]
 		try:
-			if(deviceRun[property] == value):
+			if(propertyLocation[property] == value):
 				filteredHistory.append(deviceRun)
 		except:
 			print("Unable to apply filter on '"+str(property)+"' == '"+str(value)+"'")

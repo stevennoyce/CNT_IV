@@ -386,6 +386,8 @@ def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
+	elif(len(deviceHistory) == 2):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(mode_parameters['enableColorBar']):
 		plt.sca(ax1)
 		colorBar(fig, colorMap['smap'])
