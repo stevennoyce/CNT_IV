@@ -293,8 +293,8 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 		
 		colorBar(fig, colorMap['smap'], ticks=[0,0.6,1], tick_labels=[elapsedTime, axisLabel, '$t_0$'], axisLabel='')
 
-	# If first segment of device history is all negative current, flip data
-	if((len(deviceHistory) > 0) and (np.mean(deviceHistory[0]['Results']['id_data']) < 0)):
+	# If first segment of device history is mostly negative current, flip data
+	if((len(deviceHistory) > 0) and (np.percentile(deviceHistory[0]['Results']['id_data'], 75) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'Results', 'id_data', -1)
 		plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_label']
 	
@@ -460,8 +460,8 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 	# Rescale timestamp data by factor related to the time scale
 	deviceHistory = scaledData(deviceHistory, 'Results', 'timestamps', 1/secondsPer(timescale))
 	
-	# If first segment of device history is all negative current, flip data
-	if((np.mean(deviceHistory[0]['Results']['id_data']) < 0)):
+	# If first segment of device history is mostly negative current, flip data
+	if((np.percentile(deviceHistory[0]['Results']['id_data'], 75) < 0)):
 		deviceHistory = scaledData(deviceHistory, 'Results', 'id_data', -1)
 		plot_parameters['StaticBias']['ylabel'] = '$-I_{D}$ [$\\mu$A]'
 	
