@@ -20,7 +20,7 @@ default_ch_parameters = {
 
 
 # === Optional External Interface ===
-def makePlots(waferID, chipID, dataFolder=None, userID='', projectID='', specificPlot='', saveFolder=None, plotSaveName='', showFigures=True, saveFigures=True, plot_mode_parameters=None):
+def makePlots(userID, projectID, waferID, chipID, dataFolder=None, specificPlot='', saveFolder=None, plotSaveName='', showFigures=True, saveFigures=True, plot_mode_parameters=None):
 	parameters = {}	
 	mode_parameters = {}
 	if(plot_mode_parameters is not None):
@@ -61,8 +61,8 @@ def run(additional_parameters, plot_mode_parameters={}):
 		plotList.append(plot)
 
 	if(parameters['specificPlotToCreate'] in ['', 'ChipOnOffRatios']):
-		firstRunChipHistory = dlu.loadFirstRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json', parameters['Identifiers']['chip'])
-		recentRunChipHistory = dlu.loadMostRecentRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json', parameters['Identifiers']['chip'])
+		firstRunChipHistory = dlu.loadFirstRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json')
+		recentRunChipHistory = dlu.loadMostRecentRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json')
 		plot = dpu.plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=plot_mode_parameters)
 		plotList.append(plot)
 
@@ -76,6 +76,6 @@ def run(additional_parameters, plot_mode_parameters={}):
 
 
 if(__name__ == '__main__'):
-	makePlots('C127', 'E', dataFolder='../data0', saveFolder='../CurrentPlots')
+	makePlots('stevenjay', 'RedBoard', 'C127', 'Q', dataFolder='../data', saveFolder='../CurrentPlots')
 
 
