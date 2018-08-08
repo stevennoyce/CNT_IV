@@ -519,7 +519,7 @@
 				pageNames: ['projects','wafers','chips','devices','experiments','experiment'],
 				parametersTab: 0,
 				parametersSection: '',
-				cacheBust: newCacheBust(),
+				cacheBust: '',
 				
 				users: [],
 				user: localStorage.user || '',
@@ -557,7 +557,7 @@
 				devices: [],
 				device: localStorage.device || '',
 				deviceTableHeaders: [
-					{'text':'Name', 'value':'name'},
+					{'text':'Name', 'value':"name"},
 					{'text':'Path', 'value':'path', 'searchable':false},
 					{'text':'Modification Time', 'value':'modificationTime', 'searchable':false},
 					{'text':'Size', 'value':'size', 'searchable':false},
@@ -589,7 +589,9 @@
 					this.getChips();
 					this.getDevices();
 					this.getExperiments();
+					
 					this.pageLoading = false;
+					this.newCacheBust();
 				},
 				
 				getUsers: function() {
@@ -749,3 +751,13 @@
 	</script>
 </body>
 </html>
+
+<!-- 
+
+
+
+replace(/-/i, ' d ')
+
+
+
+ -->
