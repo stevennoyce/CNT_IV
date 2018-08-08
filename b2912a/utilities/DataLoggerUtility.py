@@ -117,7 +117,7 @@ def loadChipIndexes(directory):
 
 def loadFullChipHistory(directory, fileName):
 	chipHistory = []
-	for deviceSubdirectory in [name for name in os.listdir(directory) if os.path.isdir(os.path.join(directory, name))]:
+	for deviceSubdirectory in [name for name in os.listdir(directory) if(os.path.isdir(os.path.join(directory, name)) and os.path.exists(os.path.join(directory, name, fileName)))]:
 		jsonData = loadJSON(os.path.join(directory, deviceSubdirectory), fileName)
 		for deviceRun in jsonData:
 			chipHistory.append(deviceRun)

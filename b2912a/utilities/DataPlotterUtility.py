@@ -178,6 +178,11 @@ plot_parameters = {
 		'figsize':(5,4),
 		'xlabel':'Device',
 		'ylabel':'On/Off Ratio, (Order of Mag)'
+	},
+	'ChipOnCurrents':{
+		'figsize':(5,4),
+		'xlabel':'Device',
+		'ylabel':'On Current [A]'
 	}
 }
 
@@ -780,6 +785,45 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 	# Add Legend and save figure
 	ax.legend(loc=mode_parameters['legendLoc'])
 	adjustFigure(fig, 'ChipOnOffRatios', mode_parameters)
+	return (fig, ax)
+	
+def plotChipOnCurrents(firstRunChipHistory, recentRunChipHistory, mode_params=None):
+	if(len(firstRunChipHistory) <= 0):
+		print('No chip on-off ratio history to plot.')
+		return
+
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'ChipOnCurrents', figsizeOverride=mode_parameters['figureSizeOverride'])
+
+	# Build On Current lists
+	devices = []
+	firstOnCurrents = []
+	for deviceRun in firstRunChipHistory:
+		devices.append(deviceRun['Identifiers']['device']) 
+		firstOnCurrents.append(deviceRun['Computed']['onCurrent'])
+	lastOnCurrents = len(devices)*[0]
+	for deviceRun in recentRunChipHistory:
+		lastOnCurrents[devices.index(deviceRun['Identifiers']['device'])] = deviceRun['Computed']['onCurrent']
+
+	lastOnCurrents, devices, firstOnCurrents = zip(*(reversed(sorted(zip(lastOnCurrents, devices, firstOnCurrents)))))
+
+	# Plot
+	line = scatter(ax, range(len(devices)), firstOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=6, lineWidth=0, lineStyle=None)
+	setLabel(line, 'First Run')
+	line = scatter(ax, range(len(devices)), lastOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=4, lineWidth=0, lineStyle=None)
+	setLabel(line, 'Most Recent Run')
+
+	# Label axes
+	axisLabels(ax, x_label=plot_parameters['ChipOnCurrents']['xlabel'], y_label=plot_parameters['ChipOnCurrents']['ylabel'])
+	tickLabels(ax, devices, rotation=90)
+	
+	# Add Legend and save figure
+	ax.legend(loc=mode_parameters['legendLoc'])
+	adjustFigure(fig, 'ChipOnCurrents', mode_parameters)
 	return (fig, ax)
 
 def show():
