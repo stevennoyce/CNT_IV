@@ -183,7 +183,7 @@ plot_parameters = {
 		'figsize':(5,4),
 		'xlabel':'Device',
 		'ylabel':'$I_{{ON}}$ [$\\mu$A]',
-		'ylabel_dual_axis':'$I_{{OFF}}$ [A]'
+		'ylabel_dual_axis':'$I_{{OFF}}$ [$\\mu$A]'
 	}
 }
 
@@ -795,7 +795,7 @@ def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
 	for deviceRun in recentRunChipHistory:
 		devices.append(deviceRun['Identifiers']['device']) 
 		recentOnCurrents.append(deviceRun['Computed']['onCurrent'] * 10**6)
-		recentOffCurrents.append(deviceRun['Computed']['offCurrent'])
+		recentOffCurrents.append(deviceRun['Computed']['offCurrent'] * 10**6)
 
 	recentOnCurrents, devices, recentOffCurrents = zip(*(reversed(sorted(zip(recentOnCurrents, devices, recentOffCurrents)))))
 
