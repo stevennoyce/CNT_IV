@@ -519,7 +519,7 @@
 				pageNames: ['projects','wafers','chips','devices','experiments','experiment'],
 				parametersTab: 0,
 				parametersSection: '',
-				cacheBust: '?cb=' + new Date().getTime(),
+				cacheBust: newCacheBust(),
 				
 				users: [],
 				user: localStorage.user || '',
@@ -694,8 +694,9 @@
 					return items.filter(item => props.some(prop => filter(_.get(item, prop), search)));
 				},
 				newCacheBust: function() {
-					this.cacheBust = '?cb=' + new Date().getTime();
-					console.log('New cache bust of ' + this.cacheBust);
+					var cacheBust = '?cb=' + new Date().getTime();
+					this.cacheBust = cacheBust;
+					return cacheBust;
 				},
 				setTopLevelPage: function(name) {
 					this.topLevelPage = name;

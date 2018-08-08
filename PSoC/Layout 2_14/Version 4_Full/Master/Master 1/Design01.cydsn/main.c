@@ -263,16 +263,53 @@ void ADC_Decrease_Range() {
 	}
 }
 
+void sortArray(int32 array[], uint32 size) {
+	int32 temp;
+	// the following two loops sort the array x in ascending order
+	for(uint32 i = 0; i < size-1; i++) {
+		for(uint32 j = i+1; j < size; j++) {
+			if(array[j] < array[i]) {
+				// swap elements
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+		}
+	}
+}
+
+int32 medianOfArray(int32 array[], uint32 size) {
+	sortArray(array, size);
+	
+	if(size%2 == 0) {
+		// if size is even, return the mean of middle elements
+		return((x[size/2] + x[size/2 - 1]) / 2.0);
+	} else {
+		// else return the middle element
+		return x[size/2];
+	}
+}
+
 // Measure Delta-Sigma ADC
 void ADC_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount) {
 	int32 ADC_Result = 0;
 	int32 ADC_SD = 0;
 	
-	for (uint32 i = 1; i <= sampleCount; i++) {
-		ADC_DelSig_1_StartConvert();
-		while (!ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_RETURN_STATUS));
-		//int16 ADC_Result = ADC_DelSig_1_CountsTo_mVolts(ADC_DelSig_1_GetResult16());
-		int32 ADC_Result_Current = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());
+	int32 medianArraySize = 19;
+	if (sampleCount < medianArraySize) medianArraySize = sampleCount;
+	
+	int32 medianCount = sampleCount/medianArraySize;
+	int32 medianArray[medianArraySize];
+	
+	for (uint32 i = 1; i <= medianCount; i++) {
+		for (uint32 j = 0; j < medianArraySize; j++) {
+			ADC_DelSig_1_StartConvert();
+			while (!ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_RETURN_STATUS));
+			//int16 ADC_Result = ADC_DelSig_1_CountsTo_mVolts(ADC_DelSig_1_GetResult16());
+			medianArray[j] = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());
+		}
+		
+		int32 ADC_Result_Current = medianOfArray(medianArray, medianArraySize);
 		
 		ADC_SD += (float)(i-1)/(float)(i)*(ADC_Result_Current - ADC_Result)*(ADC_Result_Current - ADC_Result);
 		ADC_Result += ((float)ADC_Result_Current - (float)ADC_Result)/(float)i;
