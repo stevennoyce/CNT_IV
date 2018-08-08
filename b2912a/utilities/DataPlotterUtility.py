@@ -801,10 +801,9 @@ def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
 
 	# Plot
 	if(mode_parameters['plotOffCurrent']):
-		ax2 = ax.twinx()
-		line = scatter(ax2, range(len(devices)), recentOffCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=4, lineWidth=0, lineStyle=None)
+		line = scatter(ax, range(len(devices)), recentOffCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=8, lineWidth=0, lineStyle=None)
 		setLabel(line, 'Off Currents')
-	line = scatter(ax, range(len(devices)), recentOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=8, lineWidth=0, lineStyle=None)
+	line = scatter(ax, range(len(devices)), recentOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=4, lineWidth=0, lineStyle=None)
 	setLabel(line, 'On Currents')
 
 	# Label axes
@@ -812,14 +811,7 @@ def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
 	tickLabels(ax, devices, rotation=90)
 	
 	# Add Legend
-	lines1, labels1 = ax.get_legend_handles_labels()
-	lines2, labels2 = [],[]
-	legendax = ax
-	if(mode_parameters['plotOffCurrent']):
-		ax2.set_ylabel(plot_parameters['ChipOnOffCurrents']['ylabel_dual_axis'])
-		lines2, labels2 = ax2.get_legend_handles_labels()
-		legendax = ax2
-	legendax.legend(lines1 + lines2, labels1 + labels2, loc=mode_parameters['legendLoc'])
+	ax.legend(loc=mode_parameters['legendLoc'])
 	
 	# Save Figure
 	adjustFigure(fig, 'ChipOnOffCurrents', mode_parameters)

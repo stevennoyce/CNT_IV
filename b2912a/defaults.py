@@ -29,7 +29,7 @@ default_parameters = {
 			'pointsPerRamp': 50,
 			'pointsPerHold': 50,
 			'complianceCurrent':	2e-3,
-			'thresholdProportion':	0.8,
+			'thresholdProportion':	0.92,
 			'minimumAppliedDrainVoltage': 1.1,
 			'gateVoltageSetPoint':	15.0,
 			'drainVoltageMaxPoint':	5,
