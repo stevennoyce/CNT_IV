@@ -283,10 +283,10 @@ int32 medianOfArray(int32 array[], uint32 size) {
 	
 	if(size%2 == 0) {
 		// if size is even, return the mean of middle elements
-		return((x[size/2] + x[size/2 - 1]) / 2.0);
+		return((array[size/2] + array[size/2 - 1]) / 2);
 	} else {
 		// else return the middle element
-		return x[size/2];
+		return array[size/2];
 	}
 }
 
@@ -295,10 +295,10 @@ void ADC_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount
 	int32 ADC_Result = 0;
 	int32 ADC_SD = 0;
 	
-	int32 medianArraySize = 19;
+	uint32 medianArraySize = 19;
 	if (sampleCount < medianArraySize) medianArraySize = sampleCount;
 	
-	int32 medianCount = sampleCount/medianArraySize;
+	uint32 medianCount = sampleCount/medianArraySize;
 	int32 medianArray[medianArraySize];
 	
 	for (uint32 i = 1; i <= medianCount; i++) {
