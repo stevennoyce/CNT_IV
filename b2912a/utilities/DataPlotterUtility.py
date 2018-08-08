@@ -179,10 +179,11 @@ plot_parameters = {
 		'xlabel':'Device',
 		'ylabel':'On/Off Ratio, (Order of Mag)'
 	},
-	'ChipOnCurrents':{
+	'ChipOnOffCurrents':{
 		'figsize':(5,4),
 		'xlabel':'Device',
-		'ylabel':'On Current [A]'
+		'ylabel':'$I_{{ON}}$ [$\\mu$A]',
+		'ylabel_dual_axis':'$I_{{OFF}}$ [A]'
 	}
 }
 
@@ -298,18 +299,6 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 		plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_label']
 	
 	# Plot
-	# import random
-	# indexes = list(reversed(range(len(deviceHistory))))
-	# inexes = random.shuffle(indexes)
-	# # indexes1 = indexes[0:len(indexes)//2]
-	# # indexes2 = indexes[len(indexes)//2:]
-	# # indexes1.reverse()
-	# # indexesInterleaved = [val for pair in zip(indexes1, indexes2) for val in pair]
-	# # print(indexes1)
-	# # print(indexes2)
-	# # print(indexesInterleaved)
-	# # Plot
-	# for i in indexes:
 	for i in range(len(deviceHistory)):
 		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
@@ -787,9 +776,9 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 	adjustFigure(fig, 'ChipOnOffRatios', mode_parameters)
 	return (fig, ax)
 	
-def plotChipOnCurrents(firstRunChipHistory, recentRunChipHistory, mode_params=None):
-	if(len(firstRunChipHistory) <= 0):
-		print('No chip on-off ratio history to plot.')
+def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
+	if(len(recentRunChipHistory) <= 0):
+		print('No chip on-current history to plot.')
 		return
 
 	mode_parameters = default_mode_parameters.copy()
@@ -797,33 +786,43 @@ def plotChipOnCurrents(firstRunChipHistory, recentRunChipHistory, mode_params=No
 		mode_parameters.update(mode_params)
 
 	# Init Figure
-	fig, ax = initFigure(1, 1, 'ChipOnCurrents', figsizeOverride=mode_parameters['figureSizeOverride'])
+	fig, ax = initFigure(1, 1, 'ChipOnOffCurrents', figsizeOverride=mode_parameters['figureSizeOverride'])
 
 	# Build On Current lists
 	devices = []
-	firstOnCurrents = []
-	for deviceRun in firstRunChipHistory:
-		devices.append(deviceRun['Identifiers']['device']) 
-		firstOnCurrents.append(deviceRun['Computed']['onCurrent'])
-	lastOnCurrents = len(devices)*[0]
+	recentOnCurrents = []
+	recentOffCurrents = []
 	for deviceRun in recentRunChipHistory:
-		lastOnCurrents[devices.index(deviceRun['Identifiers']['device'])] = deviceRun['Computed']['onCurrent']
+		devices.append(deviceRun['Identifiers']['device']) 
+		recentOnCurrents.append(deviceRun['Computed']['onCurrent'] * 10**6)
+		recentOffCurrents.append(deviceRun['Computed']['offCurrent'])
 
-	lastOnCurrents, devices, firstOnCurrents = zip(*(reversed(sorted(zip(lastOnCurrents, devices, firstOnCurrents)))))
+	recentOnCurrents, devices, recentOffCurrents = zip(*(reversed(sorted(zip(recentOnCurrents, devices, recentOffCurrents)))))
 
 	# Plot
-	line = scatter(ax, range(len(devices)), firstOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=6, lineWidth=0, lineStyle=None)
-	setLabel(line, 'First Run')
-	line = scatter(ax, range(len(devices)), lastOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=4, lineWidth=0, lineStyle=None)
-	setLabel(line, 'Most Recent Run')
+	if(mode_parameters['plotOffCurrent']):
+		ax2 = ax.twinx()
+		line = scatter(ax2, range(len(devices)), recentOffCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=4, lineWidth=0, lineStyle=None)
+		setLabel(line, 'Off Currents')
+	line = scatter(ax, range(len(devices)), recentOnCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][0], markerSize=8, lineWidth=0, lineStyle=None)
+	setLabel(line, 'On Currents')
 
 	# Label axes
-	axisLabels(ax, x_label=plot_parameters['ChipOnCurrents']['xlabel'], y_label=plot_parameters['ChipOnCurrents']['ylabel'])
+	axisLabels(ax, x_label=plot_parameters['ChipOnOffCurrents']['xlabel'], y_label=plot_parameters['ChipOnOffCurrents']['ylabel'])
 	tickLabels(ax, devices, rotation=90)
 	
-	# Add Legend and save figure
-	ax.legend(loc=mode_parameters['legendLoc'])
-	adjustFigure(fig, 'ChipOnCurrents', mode_parameters)
+	# Add Legend
+	lines1, labels1 = ax.get_legend_handles_labels()
+	lines2, labels2 = [],[]
+	legendax = ax
+	if(mode_parameters['plotOffCurrent']):
+		ax2.set_ylabel(plot_parameters['ChipOnOffCurrents']['ylabel_dual_axis'])
+		lines2, labels2 = ax2.get_legend_handles_labels()
+		legendax = ax2
+	legendax.legend(lines1 + lines2, labels1 + labels2, loc=mode_parameters['legendLoc'])
+	
+	# Save Figure
+	adjustFigure(fig, 'ChipOnOffCurrents', mode_parameters)
 	return (fig, ax)
 
 def show():
