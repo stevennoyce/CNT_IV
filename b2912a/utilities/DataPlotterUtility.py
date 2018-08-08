@@ -233,7 +233,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 	colorMap = colorsFromMap(plot_parameters['SubthresholdCurve']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
-		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(len(deviceHistory) == 2):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(mode_parameters['enableColorBar']):
@@ -345,7 +345,7 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 	colorMap = colorsFromMap(plot_parameters['GateCurrent']['colorMap'], 0.7, 0, len(deviceHistory))
 	colors = colorMap['colors']
 	if(len(deviceHistory) == 1):
-		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][2]]
 	elif(len(deviceHistory) == 2):
 		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
 	elif(mode_parameters['enableColorBar']):
@@ -831,7 +831,7 @@ def show():
 
 
 # === Device Plots ===
-def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=None, errorBars=True):
+def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=None, errorBars=True, alphaForwardSweep=1):
 	if(currentSource == 'gate'):
 		currentData = 'ig_data'
 	elif(currentSource == 'drain'):
@@ -858,8 +858,12 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 		x = x[1]
 		y = y[1]
 	else:
-		x = flatten(x)
-		y = flatten(y)
+		if(alphaForwardSweep < 1):
+			x = x
+			y = y
+		else:
+			x = flatten(x)
+			y = flatten(y)
 
 	# Make y-axis a logarithmic scale
 	if(logScale):
@@ -869,11 +873,24 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 	# Scale the data by a given factor
 	y = np.array(y)*scaleCurrentBy
 
-	# data contains multiple y-values per x-value
-	if(x[0] == x[1]):
-		line = plotWithErrorBars(axis, x, y, lineColor, errorBars=errorBars)
+	
+	if(alphaForwardSweep < 1):
+		forward_x = x[0]
+		forward_y = y[0]
+		reverse_x = x[1]
+		reverse_y = y[1]
+		if(forward_x[0] == forward_x[1]):
+			plotWithErrorBars(axis, forward_x, forward_y, lineColor, errorBars=errorBars, alpha=alphaForwardSweep)
+			line = plotWithErrorBars(axis, reverse_x, reverse_y, lineColor, errorBars=errorBars)
+		else:
+			scatter(axis, forward_x, forward_y, lineColor, markerSize=2, lineWidth=1, lineStyle=lineStyle, alpha=alphaForwardSweep)
+			line = scatter(axis, reverse_x, reverse_y, lineColor, markerSize=2, lineWidth=1, lineStyle=lineStyle)
 	else:
-		line = scatter(axis, x, y, lineColor, markerSize=2, lineWidth=1, lineStyle=lineStyle)
+		# data contains multiple y-values per x-value
+		if(x[0] == x[1]):
+			line = plotWithErrorBars(axis, x, y, lineColor, errorBars=errorBars)
+		else:
+			line = scatter(axis, x, y, lineColor, markerSize=2, lineWidth=1, lineStyle=lineStyle)
 
 	return line
 
@@ -972,21 +989,21 @@ def getTestLabel(deviceHistory, identifiers):
 
 
 # === Plots === 
-def plot(axis, x, y, lineColor, lineStyle=None):
-	return axis.plot(x, y, color=lineColor, linestyle=lineStyle)[0]
+def plot(axis, x, y, lineColor, lineStyle=None, alpha=1):
+	return axis.plot(x, y, color=lineColor, linestyle=lineStyle, alpha=alpha)[0]
 
-def scatter(axis, x, y, lineColor, markerSize=3, lineWidth=0, lineStyle=None):
-	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=lineWidth, linestyle=lineStyle)[0]
+def scatter(axis, x, y, lineColor, markerSize=3, lineWidth=0, lineStyle=None, alpha=1):
+	return axis.plot(x, y, color=lineColor, marker='o', markersize=markerSize, markeredgecolor='none', linewidth=lineWidth, linestyle=lineStyle, alpha=alpha)[0]
 
-def plotWithErrorBars(axis, x, y, lineColor, errorBars=True):
+def plotWithErrorBars(axis, x, y, lineColor, errorBars=True, alpha=1):
 	x_unique, avg, std = avgAndStdAtEveryPoint(x, y)
 	if(not errorBars):
 		std = None
-	return axis.errorbar(x_unique, avg, yerr=std, color=lineColor, capsize=2, capthick=0.5, elinewidth=0.5)[0]
+	return axis.errorbar(x_unique, avg, yerr=std, color=lineColor, capsize=2, capthick=0.5, elinewidth=0.5, alpha=alpha)[0]
 
 def plotOverTime(axis, timestamps, y, lineColor, offset=0, markerSize=1, lineWidth=1, lineStyle=None, plotInnerGradient=False):
 	zeroed_timestamps = list( np.array(timestamps) - timestamps[0] + offset )
-	if not plotInnerGradient:
+	if(not plotInnerGradient):
 		return axis.plot(zeroed_timestamps, y, color=lineColor, marker='o', markersize=markerSize, linewidth=lineWidth, linestyle=lineStyle)[0]
 	else:
 		colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.95, len(y))['colors']
