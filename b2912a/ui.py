@@ -35,10 +35,10 @@ def sendPlot(user, project, wafer, chip, device, experiment, plotType):
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
 
-@app.route('/defaultPlotSettings.json')
-def defaultPlotSettings():
-	settings = 
-	return json.dumps(settings)
+# @app.route('/defaultPlotSettings.json')
+# def defaultPlotSettings():
+# 	settings = 
+# 	return json.dumps(settings)
 
 @app.route('/users.json')
 def users():
