@@ -81,7 +81,7 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	
 	# Save results as a JSON object
 	if(isSavingResults):
-		print('Saving JSON.')
+		print('Saving JSON: ' + str(dlu.getDeviceDirectory(parameters)))
 		dlu.saveJSON(dlu.getDeviceDirectory(parameters), sb_parameters['saveFileName'], jsonData)
 	
 	# Show plots to the user if desired

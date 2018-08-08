@@ -59,7 +59,7 @@ def run(parameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 
 	# Save results as a JSON object
 	if(isSavingResults):
-		print('Saving JSON.')
+		print('Saving JSON: ' + str(dlu.getDeviceDirectory(parameters)))
 		dlu.saveJSON(dlu.getDeviceDirectory(parameters), bo_parameters['saveFileName'], jsonData)
 
 	# Show plots to the user
