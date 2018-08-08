@@ -106,9 +106,18 @@ def runBurnOutSweep(smu_instance, thresholdProportion, minimumAppliedDrainVoltag
 		if(thresholdCrossed(id_threshold, id_recent_measurements, drainVoltages[i], minimumAppliedDrainVoltage)):
 			burned = True
 			break
-			
-	# Rapidly ramp down V_DS
-	smu_instance.rampDrainVoltage(drainVoltage, 0, 20)
+	
+	for i in range(int(pointsPerHold/2)):
+		measurement = smu_instance.takeMeasurement()
+		timestamp = time.time()
+
+		vds_data.append(measurement['V_ds'])
+		id_data.append(measurement['I_d'])
+		vgs_data.append(measurement['V_gs'])
+		ig_data.append(measurement['I_g'])
+		timestamps.append(timestamp)
+				
+	smu_instance.rampDrainVoltage(drainVoltage, 0, 30)
 
 	return {
 		'Raw':{

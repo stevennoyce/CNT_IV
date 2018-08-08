@@ -22,7 +22,7 @@ default_parameters = {
 			'complianceCurrent':	100e-6,
 			'gateVoltageSetPoint':	-15,
 			'drainVoltageMinimum': 	-0.5,
-			'gateVoltageMaximum': 	0.5
+			'drainVoltageMaximum': 	0.5
 		},
 		'BurnOut':{
 			'saveFileName': 'BurnOut',
@@ -32,8 +32,8 @@ default_parameters = {
 			'thresholdProportion':	0.8,
 			'minimumAppliedDrainVoltage': 1.1,
 			'gateVoltageSetPoint':	15.0,
-			'drainVoltageMaxPoint':	10,
-			'drainVoltagePlateaus': 10
+			'drainVoltageMaxPoint':	5,
+			'drainVoltagePlateaus': 5
 		},
 		'StaticBias':{
 			'saveFileName': 'StaticBias',

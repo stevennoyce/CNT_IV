@@ -7,6 +7,7 @@ import copy
 
 from control_scripts import Burn_Out as burnOutScript
 from control_scripts import Gate_Sweep as gateSweepScript
+from control_scripts import Drain_Sweep as drainSweepScript
 from control_scripts import Auto_Burn_Out as autoBurnScript
 from control_scripts import Static_Bias as staticBiasScript
 from control_scripts import Auto_Gate_Sweep as autoGateScript
@@ -80,6 +81,8 @@ def runSMU(parameters, smu_systems, arduino_instance):
 	try:
 		if(parameters['runType'] == 'GateSweep'):
 			gateSweepScript.run(parameters, smu_default_instance)
+		elif(parameters['runType'] == 'DrainSweep'):
+			drainSweepScript.run(parameters, smu_default_instance)
 		elif(parameters['runType'] == 'BurnOut'):
 			burnOutScript.run(parameters, smu_default_instance)
 		elif(parameters['runType'] == 'AutoBurnOut'):
