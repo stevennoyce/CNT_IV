@@ -86,6 +86,6 @@ def run(additional_parameters, plot_mode_parameters={}):
 
 
 if(__name__ == '__main__'):
-	makePlots('stevenjay', 'SolutionBias1', 'C127', 'V', dataFolder='../data', saveFolder='../CurrentPlots')
+	makePlots('stevenjay', 'RedBoard', 'C127', 'W', dataFolder='../data', saveFolder='../CurrentPlots')
 
 

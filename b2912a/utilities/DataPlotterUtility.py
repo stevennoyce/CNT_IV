@@ -862,9 +862,6 @@ def plotChipTransferCurves(recentRunChipHistory, identifiers, sweepDirection='bo
 	# Label axes
 	axisLabels(ax, x_label=plot_parameters['ChipTransferCurves']['xlabel'], y_label=plot_parameters['ChipTransferCurves']['ylabel'])
 	
-	# Add Legend
-	ax.legend(loc=mode_parameters['legendLoc'])
-	
 	# Save Figure
 	adjustFigure(fig, 'ChipTransferCurves', mode_parameters)
 	return (fig, ax)
