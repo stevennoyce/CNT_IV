@@ -184,6 +184,13 @@ plot_parameters = {
 		'xlabel':'Device',
 		'ylabel':'$I_{{ON}}$ [$\\mu$A]',
 		'ylabel_dual_axis':'$I_{{OFF}}$ [$\\mu$A]'
+	},
+	'ChipTransferCurves':{
+		'figsize':(2.8,3.2),
+		'colorMap':'plasma',
+		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
+		'ylabel':'$I_{{D}}$ [$\\mu$A]',
+		'neg_label':'$-I_{{D}}$ [$\\mu$A]',
 	}
 }
 
@@ -817,6 +824,49 @@ def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
 	
 	# Save Figure
 	adjustFigure(fig, 'ChipOnOffCurrents', mode_parameters)
+	return (fig, ax)
+
+def plotChipTransferCurves(recentRunChipHistory, identifiers, sweepDirection='both', mode_params=None):
+	if(len(recentRunChipHistory) <= 0):
+		print('No chip transfer curve history to plot.')
+		return
+
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'ChipTransferCurves', figsizeOverride=mode_parameters['figureSizeOverride'])
+	if(not mode_parameters['publication_mode']):
+		ax.set_title('Chip ' + str(identifiers['wafer']) + str(identifiers['chip']))
+	
+	# Colors
+	colorMap = colorsFromMap(plot_parameters['ChipTransferCurves']['colorMap'], 0, 0.87, len(recentRunChipHistory))
+	colors = colorMap['colors']
+	if(len(recentRunChipHistory) == 1):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1]]
+	elif(len(recentRunChipHistory) == 2):
+		colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][1], plt.rcParams['axes.prop_cycle'].by_key()['color'][0]]
+	
+	# If first segment of device history is mostly negative current, flip data
+	if((len(recentRunChipHistory) > 0) and (np.percentile(recentRunChipHistory[0]['Results']['id_data'], 75) < 0)):
+		recentRunChipHistory = scaledData(recentRunChipHistory, 'Results', 'id_data', -1)
+		plot_parameters['ChipTransferCurves']['ylabel'] = plot_parameters['ChipTransferCurves']['neg_label']
+	
+	# Plot
+	for i in range(len(recentRunChipHistory)):
+		line = plotTransferCurve(ax, recentRunChipHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
+		if(len(recentRunChipHistory) == len(mode_parameters['legendLabels'])):
+			setLabel(line, mode_parameters['legendLabels'][i])
+	
+	# Label axes
+	axisLabels(ax, x_label=plot_parameters['ChipTransferCurves']['xlabel'], y_label=plot_parameters['ChipTransferCurves']['ylabel'])
+	
+	# Add Legend
+	ax.legend(loc=mode_parameters['legendLoc'])
+	
+	# Save Figure
+	adjustFigure(fig, 'ChipTransferCurves', mode_parameters)
 	return (fig, ax)
 
 def show():

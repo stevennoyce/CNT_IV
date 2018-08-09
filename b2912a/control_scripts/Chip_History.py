@@ -70,6 +70,11 @@ def run(additional_parameters, plot_mode_parameters={}):
 		recentRunChipHistory = dlu.loadMostRecentRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json')
 		plot = dpu.plotChipOnOffCurrents(recentRunChipHistory, mode_params=plot_mode_parameters)
 		plotList.append(plot)
+	
+	if(parameters['specificPlotToCreate'] in ['', 'ChipTransferCurves']):
+		recentRunChipHistory = dlu.loadMostRecentRunChipHistory(dlu.getChipDirectory(parameters), 'GateSweep.json')
+		plot = dpu.plotChipTransferCurves(recentRunChipHistory, parameters['Identifiers'], sweepDirection='both', mode_params=plot_mode_parameters)
+		plotList.append(plot)
 
 	if(parameters['showFiguresGenerated']):
 		dpu.show()
@@ -81,6 +86,6 @@ def run(additional_parameters, plot_mode_parameters={}):
 
 
 if(__name__ == '__main__'):
-	makePlots('stevenjay', 'RedBoard', 'C127', 'V', dataFolder='../data', saveFolder='../CurrentPlots')
+	makePlots('stevenjay', 'SolutionBias1', 'C127', 'V', dataFolder='../data', saveFolder='../CurrentPlots')
 
 
