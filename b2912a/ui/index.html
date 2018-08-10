@@ -323,6 +323,8 @@
 										</template>
 									</v-data-table>
 								</v-card>
+								
+								
 							</v-stepper-content>
 							
 							<v-stepper-content step="6">
@@ -603,6 +605,8 @@
 				experimentTableSearch: '',
 				experimentTablePagination: {'sortBy': 'startIndexes.experimentNumber', 'descending': true},
 				
+				indexes: [],
+				
 				possibleRunTypes: ['GateSweep', 'AutoGateSweep', 'StaticBias', 'AutoStaticBias'],
 				defaultParameters: {},
 				parametersDescription: {},
@@ -642,6 +646,8 @@
 						$.getJSON(path, response => {app.$data.wafers = response})
 						.fail(() => {console.log("Error getting wafers")});
 					}
+					
+					this.getIndexes();
 				},
 				getChips: function() {
 					var path = '/' + this.user + '/' + this.project + '/' + this.wafer + '/chips.json' + this.cacheBust;
@@ -676,9 +682,24 @@
 						})
 						.fail(() => {console.log("Error getting experiments");});
 					}
+					
+					// let lastFinishedIndex = this.experiments[this.experiments.length - 1]['endIndexes']['index'];
+					// let lastIndexObject = this.indexes[this.wafer][this.chip][this.device];
+					// let lastIndex = lastIndexObject['index'];
+					
+					// if (lastIndex > lastFinishedIndex) {
+					// 	this.experiments.push({'startIndexes': lastIndexObject})
+					// }
 				},
 				getExperiment: function() {
 					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
+				},
+				getIndexes: function() {
+					var path = '/' + this.user + '/' + this.project + '/indexes.json' + this.cacheBust;
+					if (path) {
+						$.getJSON(path, response => {app.$data.indexes = response})
+						.fail(() => {console.log("Error getting indexes")});
+					}
 				},
 				
 				goToUser: function(userName) {

@@ -65,6 +65,28 @@ def projects(user):
 	
 	return json.dumps(projects)
 
+@app.route('/<user>/<project>/indexes.json')
+def indexes(user, project):
+	indexObject = {}
+	
+	waferPaths = glob.glob('data/' + user + '/' + project + '/*/')
+	waferNames = [os.path.basename(os.path.dirname(p)) for p in waferPaths]
+	
+	for waferPath, waferName in zip(waferPaths, waferNames):
+		indexObject[waferName] = {}
+		chipPaths = glob.glob(waferPath + '/*/')
+		chipNames = [os.path.basename(os.path.dirname(p)) for p in chipPaths]
+		
+		for chipPath, chipName in zip(chipPaths, chipNames):
+			indexObject[waferName][chipName] = {}
+			devicePaths = glob.glob(chipPath + '/*/index.json')
+			deviceNames = [os.path.basename(os.path.dirname(p)) for p in devicePaths]
+			
+			for devicePath, deviceName in zip(devicePaths, deviceNames):
+				indexObject[waferName][chipName][deviceName] = dlu.loadJSONIndex(os.path.dirname(devicePath))
+	
+	return json.dumps(indexObject)
+
 @app.route('/<user>/<project>/wafers.json')
 def wafers(user, project):
 	paths = glob.glob('data/' + user + '/' + project + '/*/')

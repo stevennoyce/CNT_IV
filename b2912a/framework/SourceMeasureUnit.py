@@ -45,7 +45,7 @@ def getSystemConfiguration(systemType):
 	return copy.deepcopy(smu_system_configurations[systemType])
 
 def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defaultComplianceCurrent=100e-6, smuTimeout=60000):
-	rm = visa.ResourceManager()
+	rm = visa.ResourceManager('@py')
 	if(uniqueIdentifier == ''):
 		uniqueIdentifier = rm.list_resources()[0]
 	instance = rm.open_resource(uniqueIdentifier)
