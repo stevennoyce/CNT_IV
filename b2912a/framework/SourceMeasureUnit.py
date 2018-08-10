@@ -47,7 +47,7 @@ def getSystemConfiguration(systemType):
 def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defaultComplianceCurrent=100e-6, smuTimeout=60000):
 	rm = visa.ResourceManager('@py')
 	if(uniqueIdentifier == ''):
-		uniqueIdentifier = rm.list_resources()[0]
+		uniqueIdentifier = rm.list_resources()[-1]
 	instance = rm.open_resource(uniqueIdentifier)
 	instance.timeout = smuTimeout
 	print(instance.query('*IDN?'))
