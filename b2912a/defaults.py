@@ -54,10 +54,14 @@ default_parameters = {
 			'limitOnOffRatioDegradation': 0.7
 		},
 		'AutoGateSweep':{
-			'drainVoltageSetPoints': [-0.5, -0.1, -0.01]
+			'drainVoltageSetPoints': [-0.1, -0.01],
+			'sweepsPerVDS': 1,
+			'delayBetweenSweeps': 0
 		},
 		'AutoDrainSweep':{
-			'gateVoltageSetPoints': [-15, -10, -5, 0]
+			'gateVoltageSetPoints': [-10, -5, 0],
+			'sweepsPerVGS': 1,
+			'delayBetweenSweeps': 0
 		},
 		'AutoStaticBias':{
 			'numberOfStaticBiases': 1,
