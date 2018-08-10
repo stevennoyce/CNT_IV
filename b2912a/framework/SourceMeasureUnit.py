@@ -271,10 +271,10 @@ class B2912A(SourceMeasureUnit):
 	def takeMeasurement(self):
 		data = self.smu.query_ascii_values(':MEAS? (@1:2)')
 		return {
-			'V_ds': float(data[0]),
-			'I_d':  float(data[1]),
-			'V_gs': float(data[6]),
-			'I_g':  float(data[7])
+			'V_ds': data[0],
+			'I_d':  data[1],
+			'V_gs': data[6],
+			'I_g':  data[7]
 		}
 	
 	def startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
