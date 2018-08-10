@@ -30,6 +30,6 @@ def runAutoGateSweep(parameters, smu_instance, arduino_instance):
 			gateSweepScript.run(gateSweepParameters, smu_instance, isSavingResults=True, isPlottingResults=False)
 			print('Completed sweep #'+str(sweepCount+1)+' of '+str(numberOfSweeps))
 			sweepCount += 1
-			if(ags_parameters['delayBetweenSweeps'] > 0):
+			if((ags_parameters['delayBetweenSweeps'] > 0) and (sweepCount < numberOfSweeps)):
 				print('Waiting for ' + str(ags_parameters['delayBetweenSweeps']) + ' seconds...')
 				time.sleep(ags_parameters['delayBetweenSweeps'])
