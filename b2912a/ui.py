@@ -4,6 +4,7 @@ import sys
 import glob
 import flask
 import json
+import copy
 import webbrowser
 from matplotlib import pyplot as plt
 import defaults
@@ -26,11 +27,20 @@ def sendStatic(path):
 @app.route('/plots/<user>/<project>/<wafer>/<chip>/<device>/<experiment>/<plotType>')
 def sendPlot(user, project, wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
-	sweepDirection = flask.request.args.get('sweepDirection')
+	# sweepDirection = flask.request.args.get('sweepDirection')
 	# plotSettings = {'sweepDirection': 'both'}
-	plotSettings = {}
+	plotSettings = {
+		'startExperimentNumber': experiment,
+		'endExperimentNumber': experiment,
+		'specificPlot': plotType
+	}
+	plotSettings.update(flask.request.args)
+	del plotSettings['cb']
+	# plotSettings['endExperimentNumber'] = int(plotSettings['endExperimentNumber'][-1])
+	# plotSettings['plotInRealTime'] = bool(int(plotSettings['plotInRealTime'][-1]))
+	# plotSettings = {}
 	filebuf = io.BytesIO()
-	DH.makePlots(user, project, wafer, chip, device, plotSaveName=filebuf, startExperimentNumber=experiment, endExperimentNumber=experiment, specificPlot=plotType, saveFigures=True, showFigures=False, sweepDirection=sweepDirection, **plotSettings)
+	DH.makePlots(user, project, wafer, chip, device, plotSaveName=filebuf, saveFigures=True, showFigures=False, **plotSettings)
 	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
