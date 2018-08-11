@@ -155,6 +155,21 @@
 					<v-toolbar-title>User Interface</v-toolbar-title>
 					<v-spacer></v-spacer>
 					<v-toolbar-items>
+						<v-menu attach bottom left offset-y :close-on-content-click="false" :nudge-width="200">
+							<v-btn slot="activator" flat><v-icon>art_track</v-icon></v-btn>
+							<v-card>
+								<v-list dark>
+									<v-list-tile v-for="plotSettingValue, plotSettingName in setPlotSettings">
+										<v-switch v-if="plotSettingTypes[plotSettingName]['type'] == 'bool'" dark :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-switch>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'int'" dark :label="plotSettingName" v-model.number="setPlotSettings[plotSettingName]" type="number"></v-text-field>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'float'" dark :label="plotSettingName" v-model.number="setPlotSettings[plotSettingName]" type="number"></v-text-field>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'array'" dark :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-text-field>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'object'" dark :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-text-field>
+										<v-select v-if="plotSettingTypes[plotSettingName]['type'] == 'choice'" dark :label="plotSettingName" :items="plotSettingTypes[plotSettingName]['choices']" v-model="setPlotSettings[plotSettingName]"></v-select>
+									</v-list-tile>
+								</v-list>
+							</v-card>
+						</v-menu>
 						<v-menu attach bottom left offset-y>
 							<v-btn slot="activator" flat>{{ user }}<v-icon right>people</v-icon></v-btn>
 							<v-list light>
@@ -350,7 +365,7 @@
 													</v-toolbar>
 													<div class="text-xs-center">
 														<!-- <img :src="'/plots/'+user+'/'+project+'/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+possiblePlot + cacheBust" @click="console.log('clicked image')"> -->
-														<zoomable-image :src="'/plots/'+user+'/'+project+'/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+possiblePlot + cacheBust"></zoomable-image>
+														<zoomable-image :src="'/plots/'+user+'/'+project+'/'+wafer+'/'+chip+'/'+device+'/'+experiment.startIndexes.experimentNumber+'/'+possiblePlot + cacheBust + '&plotSettings=' + encodeURI(JSON.stringify(plotSettings))"></zoomable-image>
 													</div>
 												</v-card>
 											</v-flex>
@@ -551,6 +566,39 @@
 				parametersSection: '',
 				cacheBust: '',
 				
+				defaultPlotSettings: {
+					'startExperimentNumber': null,
+					'endExperimentNumber': null,
+					'figureSize': null,
+					'sweepDirection': 'both',
+					'plotInRealTime': true,
+					'startRelativeIndex': 0,
+					'endRelativeIndex': 1e10,
+					'plot_mode_parameters': null
+				},
+				
+				setPlotSettings: {
+					'startExperimentNumber': null,
+					'endExperimentNumber': null,
+					'figureSize': null,
+					'sweepDirection': 'both',
+					'plotInRealTime': true,
+					'startRelativeIndex': 0,
+					'endRelativeIndex': 1e10,
+					'plot_mode_parameters': null
+				},
+				
+				plotSettingTypes: {
+					'startExperimentNumber': {'type': 'int'},
+					'endExperimentNumber': {'type': 'int'},
+					'figureSize': {'type': 'array'},
+					'sweepDirection': {'type': 'choice', 'choices': ['both', 'forward', 'reverse']},
+					'plotInRealTime': {'type': 'bool'},
+					'startRelativeIndex': {'type': 'int'},
+					'endRelativeIndex': {'type': 'int'},
+					'plot_mode_parameters': {'type': 'object'}
+				},
+				
 				users: [],
 				user: localStorage.user || '',
 				
@@ -679,17 +727,24 @@
 								response[i]['uiComputed']['indexCount'] = response[i]['endIndexes']['index'] - response[i]['startIndexes']['index'];
 							}
 							app.$data.experiments = response;
+							
+							
+							let lastExperiment = this.experiments[this.experiments.length - 1];
+							let lastFinishedIndex = lastExperiment['endIndexes']['index'];
+							let lastIndexObject = this.indexes[this.wafer][this.chip][this.device];
+							let lastIndex = lastIndexObject['index'];
+							
+							if (lastIndex > lastFinishedIndex) {
+								let currentExperiment = JSON.parse(JSON.stringify(lastExperiment));
+								currentExperiment['startIndexes'] = JSON.parse(JSON.stringify(lastExperiment['startIndexes']));
+								currentExperiment['startIndexes']['experimentNumber']++;
+								currentExperiment['endIndexes'] = JSON.parse(JSON.stringify(lastIndexObject));
+								currentExperiment['runType'] = 'Running';
+								this.experiments.push(currentExperiment);
+							}
 						})
 						.fail(() => {console.log("Error getting experiments");});
 					}
-					
-					// let lastFinishedIndex = this.experiments[this.experiments.length - 1]['endIndexes']['index'];
-					// let lastIndexObject = this.indexes[this.wafer][this.chip][this.device];
-					// let lastIndex = lastIndexObject['index'];
-					
-					// if (lastIndex > lastFinishedIndex) {
-					// 	this.experiments.push({'startIndexes': lastIndexObject})
-					// }
 				},
 				getExperiment: function() {
 					// $.getJSON('/' + this.wafer + '/' + this.chip + '/' + this.device + '/' + this.experiment + '/?.json', response => {app.$data.experiments = response}).fail(() => {console.log("Error getting devices")});
@@ -773,6 +828,10 @@
 				},
 				experimentsWithIndexes: function() {
 					return this.experiments.map((x, i) => { return {...x, i} })
+				},
+				plotSettings: function() {
+					// return _.omitBy(this.setPlotSettings, function(v,k) { return this.defaultPlotSettings[k] == v; });
+					return this.setPlotSettings;
 				}
 			}
 		});

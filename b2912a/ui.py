@@ -24,23 +24,45 @@ def root():
 def sendStatic(path):
 	return flask.send_from_directory('ui', path)
 
+default_makePlot_parameters = {
+	'startExperimentNumber': 0,
+	'endExperimentNumber': 1e10,
+	'specificPlot': '',
+	'figureSize': None,
+	'dataFolder': None,
+	'saveFolder': None,
+	'plotSaveName': '',
+	'saveFigures': False,
+	'showFigures': True,
+	'sweepDirection': 'both',
+	'plotInRealTime': True,
+	'startRelativeIndex': 0,
+	'endRelativeIndex': 1e10,
+	'plot_mode_parameters': None
+}
+
 @app.route('/plots/<user>/<project>/<wafer>/<chip>/<device>/<experiment>/<plotType>')
 def sendPlot(user, project, wafer, chip, device, experiment, plotType):
 	experiment = int(experiment)
-	# sweepDirection = flask.request.args.get('sweepDirection')
-	# plotSettings = {'sweepDirection': 'both'}
-	plotSettings = {
-		'startExperimentNumber': experiment,
-		'endExperimentNumber': experiment,
-		'specificPlot': plotType
-	}
-	plotSettings.update(flask.request.args)
-	del plotSettings['cb']
-	# plotSettings['endExperimentNumber'] = int(plotSettings['endExperimentNumber'][-1])
-	# plotSettings['plotInRealTime'] = bool(int(plotSettings['plotInRealTime'][-1]))
-	# plotSettings = {}
+	
+	plotSettings = copy.deepcopy(default_makePlot_parameters)
+	receivedPlotSettings = json.loads(flask.request.args.get('plotSettings'))
+	plotSettings.update(receivedPlotSettings)
+	
 	filebuf = io.BytesIO()
-	DH.makePlots(user, project, wafer, chip, device, plotSaveName=filebuf, saveFigures=True, showFigures=False, **plotSettings)
+	
+	if plotSettings['startExperimentNumber'] == None:
+		plotSettings['startExperimentNumber'] = experiment
+	
+	if plotSettings['endExperimentNumber'] == None:
+		plotSettings['endExperimentNumber'] = experiment
+	
+	plotSettings['plotSaveName'] = filebuf
+	plotSettings['saveFigures'] = True
+	plotSettings['showFigures'] = False
+	plotSettings['specificPlot'] = plotType
+	
+	DH.makePlots(user, project, wafer, chip, device, **plotSettings)
 	# plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 	filebuf.seek(0)
 	return flask.send_file(filebuf, attachment_filename='plot.png')
