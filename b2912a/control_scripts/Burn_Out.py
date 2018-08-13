@@ -94,7 +94,7 @@ def runBurnOutSweep(smu_instance, thresholdProportion, minimumAppliedDrainVoltag
 		timestamps.append(timestamp)
 		
 		# Re-compute threshold as a function of all measurements so far
-		id_threshold = np.percentile(np.array(id_data), 90) * thresholdProportion
+		id_threshold = np.percentile(np.array(id_data), 99) * thresholdProportion
 		
 		# If we are in a plateau, consider last 3 points, if we are in a rise just look at a single point
 		if(drainVoltages[i] == drainVoltages[i-1]):
@@ -107,7 +107,8 @@ def runBurnOutSweep(smu_instance, thresholdProportion, minimumAppliedDrainVoltag
 			burned = True
 			break
 	
-	for i in range(int(pointsPerHold/2)):
+	# Keep taking measurements and holding voltage
+	for i in range(30):
 		measurement = smu_instance.takeMeasurement()
 		timestamp = time.time()
 
@@ -116,9 +117,20 @@ def runBurnOutSweep(smu_instance, thresholdProportion, minimumAppliedDrainVoltag
 		vgs_data.append(measurement['V_gs'])
 		ig_data.append(measurement['I_g'])
 		timestamps.append(timestamp)
-				
-	smu_instance.rampDrainVoltage(drainVoltage, 0, 30)
+			
+	# Ramp down voltage while taking measurements		
+	rampDownVoltages = np.linspace(drainVoltage, 0, 30)			
+	for drainVoltage in rampDownVoltages:
+		smu_instance.setVds(drainVoltage)
+		measurement = smu_instance.takeMeasurement()
+		timestamp = time.time()
 
+		vds_data.append(measurement['V_ds'])
+		id_data.append(measurement['I_d'])
+		vgs_data.append(measurement['V_gs'])
+		ig_data.append(measurement['I_g'])
+		timestamps.append(timestamp)
+		
 	return {
 		'Raw':{
 			'vds_data':vds_data,
