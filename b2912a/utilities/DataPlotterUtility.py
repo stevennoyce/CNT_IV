@@ -97,6 +97,7 @@ default_mode_parameters = {
 	'publication_mode': False,
 	'default_png_dpi': 300,
 	'figureSizeOverride': None,
+	'colorsOverride': [],
 	'legendLoc': 'best',
 	'legendLabels': [],
 	'enableErrorBars': True,
@@ -253,6 +254,9 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 		
 		colorBar(fig, colorMap['smap'], ticks=[0,0.6,1], tick_labels=[elapsedTime, axisLabel, '$t_0$'], axisLabel='')
 	
+	if(len(deviceHistory) == len(mode_parameters['colorsOverride'])):
+		colors = mode_parameters['colorsOverride']
+		
 	# Plot
 	for i in range(len(deviceHistory)):
 		line = plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])			
@@ -299,6 +303,9 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 			axisLabel = '[$t_{{Hold}}$ = {}]'.format(timeToString(biasTimeSeconds))
 		
 		colorBar(fig, colorMap['smap'], ticks=[0,0.6,1], tick_labels=[elapsedTime, axisLabel, '$t_0$'], axisLabel='')
+
+	if(len(deviceHistory) == len(mode_parameters['colorsOverride'])):
+		colors = mode_parameters['colorsOverride']
 
 	# If first segment of device history is mostly negative current, flip data
 	if((len(deviceHistory) > 0) and (np.percentile(deviceHistory[0]['Results']['id_data'], 75) < 0)):
@@ -359,6 +366,9 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 		elapsedTime = timeToString(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
 		colorBar(fig, colorMap['smap'], tick_labels=[elapsedTime, 'Start'])
 
+	if(len(deviceHistory) == len(mode_parameters['colorsOverride'])):
+		colors = mode_parameters['colorsOverride']
+
 	# Plot
 	for i in range(len(deviceHistory)):
 		line = plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
@@ -398,6 +408,9 @@ def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 	elif(mode_parameters['enableColorBar']):
 		plt.sca(ax1)
 		colorBar(fig, colorMap['smap'])
+	
+	if(len(deviceHistory) == len(mode_parameters['colorsOverride'])):
+		colors = mode_parameters['colorsOverride']
 
 	# Plot
 	for i in range(len(deviceHistory)):
@@ -451,6 +464,8 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 	
 	# Build Color Map
 	colors = colorsFromMap(plot_parameters['StaticBias']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
+	if(len(deviceHistory) == len(mode_parameters['colorsOverride'])):
+		colors = mode_parameters['colorsOverride']
 	
 	# If timescale is unspecified, choose an appropriate one based on the data range
 	if(timescale == '' and (len(deviceHistory) > 0)):
