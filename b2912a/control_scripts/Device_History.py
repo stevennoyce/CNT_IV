@@ -66,7 +66,8 @@ plots_for_experiment = {
 			'FullSubthresholdCurveHistory',
 			'FullTransferCurveHistory',
 			'FullGateCurrentHistory',
-			'OnAndOffCurrentHistory'
+			'OnAndOffCurrentHistory',
+			'FullStaticBiasHistory'
 		],
 	},
 	'AutoStaticBias' : {
@@ -257,8 +258,8 @@ if __name__ == '__main__':
 	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 172, 172, '', (1.48 *2.24/1.74, 2.24), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S14 carriers - ', saveFigures=False, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'lower left'})
 	#makePlots('stevenjay', 'SolutionBias1', 'C127', 'V', '2-3', 15, 23, '', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? burnout - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'best'})
 	#makePlots('stevenjay', 'SolutionBias1', 'C127', 'W', '2-3', 0, 50, '', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? burnout - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'best'})
-	#makePlots('stevenjay', 'SingleTube', 'C127', 'V', '2-3', 0, 50, '', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? burnout - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'best'})
 	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 80, 168, 'OnAndOffCurrentHistory', (2.2 *5.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S10 full - ', saveFigures=True, showFigures=False, plotInRealTime=True, plot_mode_parameters={'publication_mode':True, 'staticBiasChangeDividers':False, 'enableGradient':False, 'legendLoc':'lower left'})
+	makePlots('stevenjay', 'SingleTube', 'C127', 'V', '2-3', 0, 50, '', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? burnout - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'best'})
 	pass
 
 
