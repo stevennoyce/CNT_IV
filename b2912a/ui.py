@@ -25,8 +25,8 @@ def sendStatic(path):
 	return flask.send_from_directory('ui', path)
 
 default_makePlot_parameters = {
-	'startExperimentNumber': 0,
-	'endExperimentNumber': 1e10,
+	'startExperimentNumber': None,
+	'endExperimentNumber': None,
 	'specificPlot': '',
 	'figureSize': None,
 	'dataFolder': None,

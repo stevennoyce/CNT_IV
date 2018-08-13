@@ -830,8 +830,8 @@
 					return this.experiments.map((x, i) => { return {...x, i} })
 				},
 				plotSettings: function() {
-					// return _.omitBy(this.setPlotSettings, function(v,k) { return this.defaultPlotSettings[k] == v; });
-					return this.setPlotSettings;
+					return _.omitBy(this.setPlotSettings, (v,k) => this.defaultPlotSettings[k] == v );
+					// return this.setPlotSettings;
 				}
 			}
 		});
