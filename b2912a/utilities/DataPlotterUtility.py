@@ -161,8 +161,8 @@ plot_parameters = {
 		'figsize':(4.4,3.4),#(2*2.2,2*1.7),#(5,4),
 		'time_label':'Time [{:}]',
 		'index_label':'Time Index of Gate Sweep [#]',
-		'ylabel':'On-Current [A]',
-		'ylabel_dual_axis':'Off-Current [A]',
+		'ylabel':'$I_{{ON}}$ [$\\mu$A]',
+		'ylabel_dual_axis':'$I_{{OFF}}$ [nA]',
 		'vds_label': '$V_{{DS}}^{{Hold}}$ [V]',
 		'vgs_label': '$V_{{GS}}^{{Hold}}$ [V]',
 		'subplot_height_ratio':[3,1],
@@ -648,10 +648,17 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	onCurrents = []
 	offCurrents = []
 	timestamps = []
-	for deviceRun in deviceHistory:
-		onCurrents.append(deviceRun['Computed']['onCurrent'])
-		offCurrents.append(deviceRun['Computed']['offCurrent'])
-		timestamps.append(flatten(deviceRun['Results']['timestamps'])[0])
+	blacklisted = []
+	for i, deviceRun in enumerate(deviceHistory):
+		if(abs(deviceRun['runConfigs']['GateSweep']['drainVoltageSetPoint']) > 0):
+			onCurrents.append(deviceRun['Computed']['onCurrent'] * 10**6)
+			offCurrents.append(deviceRun['Computed']['offCurrent'] * 10**9)
+			timestamps.append(flatten(deviceRun['Results']['timestamps'])[0])
+		else:
+			blacklisted.append(i)
+		
+	for i in blacklisted:
+		del deviceHistory[i]
 	
 	# Plot On Current
 	if(plotInRealTime):
@@ -670,6 +677,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 		else:
 			line = scatter(ax2, range(len(offCurrents)), offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], markerSize=2, lineWidth=0, lineStyle=None)
 		setLabel(line, 'Off-Currents')
+		ax2.set_ylim(top=max(10, max(offCurrents)))
 		ax2.set_ylabel(plot_parameters['OnCurrent']['ylabel_dual_axis'])
 	
 	# Plot in Dual Axis
