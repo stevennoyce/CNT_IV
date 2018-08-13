@@ -157,15 +157,15 @@
 					<v-toolbar-items>
 						<v-menu attach bottom left offset-y :close-on-content-click="false" :nudge-width="200">
 							<v-btn slot="activator" flat><v-icon>art_track</v-icon></v-btn>
-							<v-card>
-								<v-list dark>
+							<v-card light>
+								<v-list>
 									<v-list-tile v-for="plotSettingValue, plotSettingName in setPlotSettings">
-										<v-switch v-if="plotSettingTypes[plotSettingName]['type'] == 'bool'" dark :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-switch>
-										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'int'" dark :label="plotSettingName" v-model.number="setPlotSettings[plotSettingName]" type="number"></v-text-field>
-										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'float'" dark :label="plotSettingName" v-model.number="setPlotSettings[plotSettingName]" type="number"></v-text-field>
-										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'array'" dark :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-text-field>
-										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'object'" dark :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-text-field>
-										<v-select v-if="plotSettingTypes[plotSettingName]['type'] == 'choice'" dark :label="plotSettingName" :items="plotSettingTypes[plotSettingName]['choices']" v-model="setPlotSettings[plotSettingName]"></v-select>
+										<v-switch v-if="plotSettingTypes[plotSettingName]['type'] == 'bool'" :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-switch>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'int'" :label="plotSettingName" v-model.number="setPlotSettings[plotSettingName]" type="number"></v-text-field>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'float'" :label="plotSettingName" v-model.number="setPlotSettings[plotSettingName]" type="number"></v-text-field>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'array'" :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-text-field>
+										<v-text-field v-if="plotSettingTypes[plotSettingName]['type'] == 'object'" :label="plotSettingName" v-model="setPlotSettings[plotSettingName]"></v-text-field>
+										<v-select v-if="plotSettingTypes[plotSettingName]['type'] == 'choice'" :label="plotSettingName" :items="plotSettingTypes[plotSettingName]['choices']" v-model="setPlotSettings[plotSettingName]"></v-select>
 									</v-list-tile>
 								</v-list>
 							</v-card>
@@ -836,14 +836,16 @@
 			}
 		});
 		
+		app.$vuetify.theme.primary = '#938E94';
+		app.$vuetify.theme.secondary = '#557A95';
+		app.$vuetify.theme.accent = '#7395AE';
+		app.$vuetify.theme.error = '#BF360C';
+		app.$vuetify.theme.success = '#00897B';
+		app.$vuetify.theme.info = '#B1A296';
+		app.$vuetify.theme.warning = '#FFB300';
+		
 		$( document ).ready(function(){
-			app.$vuetify.theme.primary = '#938E94';
-			app.$vuetify.theme.secondary = '#557A95';
-			app.$vuetify.theme.accent = '#7395AE';
-			app.$vuetify.theme.error = '#BF360C';
-			app.$vuetify.theme.success = '#00897B';
-			app.$vuetify.theme.info = '#B1A296';
-			app.$vuetify.theme.warning = '#FFB300';
+			
 		});
 		
 		function updateConnectionStatus() {
