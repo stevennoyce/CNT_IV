@@ -990,21 +990,25 @@ def plotGateCurrent(axis, jsonData, lineColor, direction='both', scaleCurrentBy=
 	axisLabels(axis, x_label=plot_parameters['GateCurrent']['xlabel'], y_label=plot_parameters['GateCurrent']['ylabel'])
 	return line
 
-def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None, annotate=False):
-	line1 = plot(axis1, jsonData['Results']['vds_data'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor=lineColor, lineStyle=lineStyle)
-	axisLabels(axis1, x_label=plot_parameters['BurnOut']['vds_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
+def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None, annotate=False, plotLine1=True, plotLine2=True, plotLine3=True):
+	line1, line2, line3 = None, None, None
+	if(plotLine1):
+		line1 = plot(axis1, jsonData['Results']['vds_data'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor=lineColor, lineStyle=lineStyle)
+		axisLabels(axis1, x_label=plot_parameters['BurnOut']['vds_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
 	# Add burn threshold annotation
 	if(annotate):
 		currentThreshold = np.percentile(np.array(jsonData['Results']['id_data']), 90) * jsonData['runConfigs']['BurnOut']['thresholdProportion'] * 10**6
 		axis1.plot([0, jsonData['Results']['vds_data'][-1]], [currentThreshold, currentThreshold], color=lineColor, linestyle='--', linewidth=1)
 		axis1.annotate(plot_parameters['BurnOut']['id_annotation'], xy=(0, currentThreshold), xycoords='data', horizontalalignment='left', verticalalignment='bottom', color=lineColor)
-		
-	line2 = plotOverTime(axis2, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor)	
-	axisLabels(axis2, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
+	
+	if(plotLine2):
+		line2 = plotOverTime(axis2, jsonData['Results']['timestamps'], (np.array(jsonData['Results']['id_data'])*10**6), lineColor)	
+		axisLabels(axis2, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['id_micro_label'])
 
-	line3 = plotOverTime(axis3, jsonData['Results']['timestamps'], jsonData['Results']['vds_data'], lineColor)
-	axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
+	if(plotLine3):
+		line3 = plotOverTime(axis3, jsonData['Results']['timestamps'], jsonData['Results']['vds_data'], lineColor)
+		axisLabels(axis3, x_label=plot_parameters['BurnOut']['time_label'], y_label=plot_parameters['BurnOut']['vds_label'])
 	return (line1, line2, line3)
 
 def plotStaticBias(axis, jsonData, lineColor, timeOffset, currentData='id_data', timescale='seconds', includeLabel=True, lineStyle=None, gradient=False):
