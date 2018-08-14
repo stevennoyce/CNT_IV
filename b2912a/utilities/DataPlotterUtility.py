@@ -202,7 +202,10 @@ def timeToString(seconds):
 	unit = 's'
 	threshold = 2
 	
-	if seconds >= 60*60*24*7:
+	if seconds >= 60*60*24*30:
+		time = seconds/(60*60*24*30)
+		unit = 'month'
+	elif seconds >= 60*60*24*7:
 		time = seconds/(60*60*24*7)
 		unit = 'wk'
 	elif seconds >= 60*60*24:
@@ -478,8 +481,10 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 			timescale = 'hours'
 		elif(timerange < 2*60*60*24*7):
 			timescale = 'days'
-		else:
+		elif(timerange < 4*60*60*24*30):
 			timescale = 'weeks'
+		else:
+			timescale = 'months'
 	
 	# Rescale timestamp data by factor related to the time scale
 	deviceHistory = scaledData(deviceHistory, 'Results', 'timestamps', 1/secondsPer(timescale))
@@ -653,8 +658,10 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 			timescale = 'hours'
 		elif(timerange < 2*60*60*24*7):
 			timescale = 'days'
-		else:
+		elif(timerange < 2*60*60*24*30):
 			timescale = 'weeks'
+		else:
+			timescale = 'months'
 	
 	# Rescale timestamp data by factor related to the time scale
 	deviceHistory = scaledData(deviceHistory, 'Results', 'timestamps', 1/secondsPer(timescale))
@@ -1227,6 +1234,8 @@ def secondsPer(amountOfTime):
 		return 3600*24
 	elif(amountOfTime == 'weeks'):
 		return 3600*24*7
+	elif(amountOfTime == 'months'):
+		return 3600*24*30
 	else: 
 		return 0
 
