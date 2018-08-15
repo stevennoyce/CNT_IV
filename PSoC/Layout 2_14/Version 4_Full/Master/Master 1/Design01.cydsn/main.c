@@ -376,40 +376,50 @@ void SAR2_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount
 }
 
 // Measure current and compare it to some compliance value
-void Measure_Current_Vss(float* currentAverageIn, float* currentStdDevIn, uint32 sampleCount) {
+void Measure_Current_Vss(float* currentAverageIn, float* currentStdDevIn, uint32 sampleCount, uint8 checkCompliance) {
 	Compliance_Reached = 0;
+		
+	// Auto-adjust the current range
+	ADC_Adjust_Range(3);
 	
 	// Voltage and its standard deviation (in uV)
-	int32 voltage = 0;
-	int32 voltageSD = 0;
+	int32 ADC_Voltage = 0;
+	int32 ADC_Voltage_SD = 0;
 	
 	// Current and its standard deviation (in A)
 	float currentNow = 0;
-	
 	float currentAverage = 0;
 	float currentStdDev = 0;
 	
 	float TIA_Feedback_R = TIA_Resistor_Values[TIA_Selected_Resistor];
+	int32 TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor];
 	float unitConversion = -1.0e-6/TIA_Feedback_R;
 	
 	// Allow for the first measurement (normally not correct) to take place
-	ADC_Measure_uV(&voltage, &voltageSD, 3);
+	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 3);
 	
 	// Now take the real measurement
-	for (uint32 i = 1; i <= sampleCount; i++) {
-		ADC_Measure_uV(&voltage, &voltageSD, 1);
-		
-		currentNow = unitConversion*voltage;
-		
-		if (abs(currentNow) > COMPLIANCE_CURRENT_LIMIT) {
-			Compliance_Reached += 1;
-			break;
-		} else {
-			Compliance_Reached = 0;
+	if (checkCompliance) {
+		for (uint32 i = 1; i <= sampleCount; i++) {
+			ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 1);
+			
+			currentNow = unitConversion * (ADC_Voltage + TIA_Offset_uV);
+			
+			currentStdDev += ((float)i-1.0)/(float)(i)*(currentNow - currentAverage)*(currentNow - currentAverage);
+			currentAverage += (currentNow - currentAverage)/(float)i;
+			
+			if (abs(currentNow) > COMPLIANCE_CURRENT_LIMIT) {
+				Compliance_Reached += 1;
+				break;
+			} else {
+				Compliance_Reached = 0;
+			}
 		}
-		
-		currentStdDev += ((float)i-1.0)/(float)(i)*(currentNow - currentAverage)*(currentNow - currentAverage);
-		currentAverage += (currentNow - currentAverage)/(float)i;
+	} else {
+		ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, sampleCount);
+			
+		currentAverage = unitConversion * (ADC_Voltage + TIA_Offset_uV);
+		currentStdDev = unitConversion * (ADC_Voltage_SD + TIA_Offset_uV);
 	}
 	
 	*currentAverageIn = currentAverage;
@@ -422,7 +432,7 @@ uint8 At_Compliance() {
 	float current = 0;
 	float currentSD = 0;
 	
-	Measure_Current_Vss(&current, &currentSD, 3);
+	Measure_Current_Vss(&current, &currentSD, 3, 1);
 	
 	if (abs(current) > COMPLIANCE_CURRENT_LIMIT) {
 		Compliance_Reached = 1;
@@ -697,25 +707,23 @@ void Calibrate_ADC_Offset(uint32 sampleCount) {
 
 // Take a measurement of the system (Id - from delta-sigma ADC, Vgs, Vds, SAR1 ADC, SAR2 ADC)
 void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_SampleCount) {
-	int32 ADC_Voltage = 0;
-	int32 ADC_Voltage_SD = 0;
+	//int32 ADC_Voltage = 0;
+	//int32 ADC_Voltage_SD = 0;
 	
-	ADC_Adjust_Range(3);
+	//ADC_Adjust_Range(3);
 	
-	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, deltaSigmaSampleCount);
+	//ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, deltaSigmaSampleCount);
 	
-	float TIA_Feedback_R = TIA_Resistor_Values[TIA_Selected_Resistor];
-	int32 TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor];
-	float unitConversion = -1.0e-6/TIA_Feedback_R;
+	//float TIA_Feedback_R = TIA_Resistor_Values[TIA_Selected_Resistor];
+	//int32 TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor];
+	//float unitConversion = -1.0e-6/TIA_Feedback_R;
 	
-	float IdsAverageAmps = unitConversion * (ADC_Voltage + TIA_Offset_uV);
+	//float IdsAverageAmps = unitConversion * (ADC_Voltage + TIA_Offset_uV);
 	
-	//ADC_SAR_1_StartConvert();
-	//ADC_SAR_2_StartConvert();
-	//while (!ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS));
-	//while (!ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS));
-	//float SAR1 = ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16());
-	//float SAR2 = ADC_SAR_2_CountsTo_Volts(ADC_SAR_2_GetResult16());
+	float IdsAverageAmps = 0;
+	float IdsSDAmps = 0;
+	
+	Measure_Current_Vss(&IdsAverageAmps, &IdsSDAmps, deltaSigmaSampleCount, 0);
 	
 	int32 SAR1_Average = 0;
 	int32 SAR1_SD = 0;
