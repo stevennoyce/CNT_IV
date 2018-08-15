@@ -707,19 +707,6 @@ void Calibrate_ADC_Offset(uint32 sampleCount) {
 
 // Take a measurement of the system (Id - from delta-sigma ADC, Vgs, Vds, SAR1 ADC, SAR2 ADC)
 void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_SampleCount) {
-	//int32 ADC_Voltage = 0;
-	//int32 ADC_Voltage_SD = 0;
-	
-	//ADC_Adjust_Range(3);
-	
-	//ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, deltaSigmaSampleCount);
-	
-	//float TIA_Feedback_R = TIA_Resistor_Values[TIA_Selected_Resistor];
-	//int32 TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor];
-	//float unitConversion = -1.0e-6/TIA_Feedback_R;
-	
-	//float IdsAverageAmps = unitConversion * (ADC_Voltage + TIA_Offset_uV);
-	
 	float IdsAverageAmps = 0;
 	float IdsSDAmps = 0;
 	
