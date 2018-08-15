@@ -110,7 +110,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 
 	# Criteria to keep taking measurements when measurementTime is relatively large
 	continueCriterion = lambda i, measurementCount: i < steps
-	if(measurementTime < smu_secondsPerMeasurement):
+	if(measurementTime < smu_instance.measurementRateVariabilityFactor*smu_secondsPerMeasurement):
 		# Criteria to keep taking measurements when measurementTime is very small
 		continueCriterion = lambda i, measurementCount: (time.time() - startTime) < (totalBiasTime - (1/2)*smu_secondsPerMeasurement)
 		continueCriterion = lambda i, measurementCount: (time.time() - startTime) < (totalBiasTime - (1/2)*(time.time() - startTime)/max(measurementCount, 1))

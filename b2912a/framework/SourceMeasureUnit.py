@@ -103,8 +103,9 @@ def getConnectionToPCB(pcb_port='', system_settings=None):
 
 class SourceMeasureUnit:
 	system_id = ''
-	measurementsPerSecond = None
 	stepsPerRamp = 15
+	measurementsPerSecond = None
+	measurementRateVariabilityFactor = None
 	
 	def turnChannelsOn(self):
 		raise NotImplementedError("Please implement SourceMeasureUnit.turnChannelsOn()")
@@ -178,11 +179,12 @@ class SourceMeasureUnit:
 class B2912A(SourceMeasureUnit):
 	smu = None
 	system_id = ''
+	stepsPerRamp = 20
 	measurementsPerSecond = 40
+	measurementRateVariabilityFactor = 2
 	nplc = 1
 	source1_mode = 'voltage'
 	source2_mode = 'voltage'
-	stepsPerRamp = 20
 	
 	def __init__(self, visa_instance, visa_id, defaultComplianceCurrent):
 		self.smu = visa_instance
@@ -344,9 +346,10 @@ class B2912A(SourceMeasureUnit):
 class PCB2v14(SourceMeasureUnit):
 	ser = None
 	system_id = ''
-	measurementsPerSecond = 10
-	nplc = 1
 	stepsPerRamp = 5
+	measurementsPerSecond = 10
+	measurementRateVariabilityFactor = 2
+	nplc = 1
 
 	def __init__(self, pySerial, pcb_port):
 		self.ser = pySerial
