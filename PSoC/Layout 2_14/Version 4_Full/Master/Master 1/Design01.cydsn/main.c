@@ -505,6 +505,7 @@ void Set_Vds_Raw(uint8 value) {
 	int8 increment = 1;
 	if (istart > value) increment = -1;
 	
+	// Ramp up to the Vds value
 	for (uint8 i = istart; i != value; i += increment) {
 		if (At_Compliance()) {
 			for (uint8 j = i; j != istart; j -= increment) {
@@ -521,6 +522,7 @@ void Set_Vds_Raw(uint8 value) {
 		VDAC_Vds_SetValue(i);
 	}
 	
+	// Now that ramp is done, set the Vds value
 	VDAC_Vds_SetValue(value);
 }
 
@@ -532,6 +534,7 @@ void Set_Vgs_Raw(uint8 value) {
 	uint8 istart = VDAC_Vgs_Data;
 	if (value < istart) increment = -1;
 	
+	// Ramp up to the Vgs value
 	for (uint8 i = istart; i != value; i += increment) {
 		if (At_Compliance()) {
 			for (uint8 j = i; j != istart; j -= increment) {
@@ -548,6 +551,7 @@ void Set_Vgs_Raw(uint8 value) {
 		VDAC_Vgs_SetValue(i);
 	}
 	
+	// Now that ramp is done, set the Vgs value
 	VDAC_Vgs_SetValue(value);
 }
 
@@ -558,6 +562,7 @@ void Set_Ref_Raw(uint8 value) {
 	int8 increment = 1;
 	if (value < VDAC_Ref_Data) increment = -1;
 	
+	// Ramp up to the Reference value
 	for (uint8 i = VDAC_Ref_Data; i != value; i += increment) {
 		
 		if (At_Compliance()) return;
@@ -576,6 +581,7 @@ void Set_Ref_Raw(uint8 value) {
 		VDAC_Vds_SetValue(new_Vds);
 	}
 	
+	// Now that ramp is done, set the Reference value
 	int16 new_Vgs = (int16)value + Vgs_Index_Goal_Relative;
 	int16 new_Vds = (int16)value + Vds_Index_Goal_Relative;
 	
