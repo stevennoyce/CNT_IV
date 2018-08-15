@@ -505,7 +505,7 @@ void Set_Vds_Raw(uint8 value) {
 	int8 increment = 1;
 	if (istart > value) increment = -1;
 	
-	for (uint8 i = 0; i != (value + increment); i += increment) {
+	for (uint8 i = 0; i != value; i += increment) {
 		if (At_Compliance()) {
 			for (uint8 j = i; j != istart; j -= increment) {
 				VDAC_Vds_SetValue(j);
@@ -530,7 +530,7 @@ void Set_Vgs_Raw(uint8 value) {
 	uint8 istart = VDAC_Vgs_Data;
 	if (value < istart) increment = -1;
 	
-	for (uint8 i = istart; i != (value + increment); i += increment) {
+	for (uint8 i = istart; i != value; i += increment) {
 		if (At_Compliance()) {
 			for (uint8 j = i; j != istart; j -= increment) {
 				VDAC_Vgs_SetValue(j);
