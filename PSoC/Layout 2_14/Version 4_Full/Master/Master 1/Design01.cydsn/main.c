@@ -554,7 +554,7 @@ void Set_Ref_Raw(uint8 value) {
 	int8 increment = 1;
 	if (value < VDAC_Ref_Data) increment = -1;
 	
-	for (uint8 i = VDAC_Ref_Data; i != (value + increment); i += increment) {
+	for (uint8 i = VDAC_Ref_Data; i != value; i += increment) {
 		
 		if (At_Compliance()) return;
 		

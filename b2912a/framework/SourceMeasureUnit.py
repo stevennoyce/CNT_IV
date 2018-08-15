@@ -27,6 +27,13 @@ smu_system_configurations = {
 			'settings': {}
 		}
 	},
+	'bluetooth': {
+		'PCB': {
+			'uniqueID': '/dev/tty.HC-05-DevB',
+			'type': 'PCB2v14',
+			'settings': {}
+		}
+	},
 	'double': {
 		'deviceSMU':{
 			'uniqueID': 'USB0::0x0957::0x8E18::MY51141244::INSTR',
