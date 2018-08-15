@@ -83,7 +83,7 @@ def incrementJSONExperiementNumber(directory):
 def loadIndexesOfExperiementRange(directory, startExperimentNumber, endExperimentNumber):
 	indexes = []
 	for filePath in glob.glob(directory + '/*.json'):
-		if(not os.path.basename(filePath) in ['BurnOut.json', 'GateSweep.json', 'StaticBias.json']):
+		if(not os.path.basename(filePath) in ['BurnOut.json', 'GateSweep.json', 'DrainSweep.json', 'StaticBias.json']):
 			continue
 		jsonData = loadJSON_fast('', filePath, minExperiment=startExperimentNumber, maxExperiment=endExperimentNumber)
 		for deviceRun in jsonData:

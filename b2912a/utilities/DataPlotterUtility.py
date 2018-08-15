@@ -139,6 +139,16 @@ plot_parameters = {
 		'leg_vds_label':'$V_{{DS}}^{{Sweep}} = ${:}V',
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
+	'OutputCurve':{
+		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
+		'colorMap':'plasma',
+		'colorDefault': plt.rcParams['axes.prop_cycle'].by_key()['color'][0],
+		'xlabel':'$V_{{DS}}^{{Sweep}}$ [V]',
+		'ylabel':'$I_{{D}}$ [$\\mu$A]',
+		'neg_label':'$-I_{{D}}$ [$\\mu$A]',
+		'leg_vgs_label':'$V_{{GS}}^{{Sweep}}$\n  = {:}V',
+		'leg_vgs_range_label':'$V_{{GS}}^{{min}} = $ {:}V\n'+'$V_{{GS}}^{{max}} = $ {:}V'
+	},
 	'BurnOut':{
 		'figsize':(8,4.5),
 		'subplot_height_ratio':[1],
@@ -320,6 +330,42 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 	# Add Legend and save figure
 	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'runConfigs', 'GateSweep', includeVdsSweep=True))
 	adjustAndSaveFigure(fig, 'FullGateCurrents', mode_parameters)
+
+	return (fig, ax)
+
+def plotFullOutputCurveHistory(deviceHistory, identifiers, sweepDirection='both', mode_params=None):
+	if(len(deviceHistory) <= 0):
+		print('No output curve history to plot.')
+		return
+		
+	mode_parameters = default_mode_parameters.copy()
+	if(mode_params is not None):
+		mode_parameters.update(mode_params)
+
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'OutputCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
+	if(not mode_parameters['publication_mode']):
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
+
+	# Build Color Map and Color Bar
+	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps'][0][0] - deviceHistory[0]['Results']['timestamps'][-1][-1])
+	holdTime = '[$t_{{Hold}}$ = {}]'.format(timeWithUnits(deviceHistory[1]['Results']['timestamps'][-1][-1] - deviceHistory[0]['Results']['timestamps'][0][0])) if(len(deviceHistory) >= 2) else ('[$t_{{Hold}}$ = 0]')
+	colors = setupColors(fig, len(deviceHistory), colorOverride=mode_parameters['colorsOverride'], colorDefault=plot_parameters['OutputCurve']['colorDefault'], colorMapName=plot_parameters['OutputCurve']['colorMap'], colorMapStart=0, colorMapEnd=0.87, enableColorBar=mode_parameters['enableColorBar'], colorBarTicks=[0,0.6,1], colorBarTickLabels=[totalTime, holdTime, '$t_0$'], colorBarAxisLabel='')		
+	
+	# If first segment of device history is mostly negative current, flip data
+	if((len(deviceHistory) > 0) and (np.percentile(deviceHistory[0]['Results']['id_data'], 75) < 0)):
+		deviceHistory = scaledData(deviceHistory, 'Results', 'id_data', -1)
+		plot_parameters['OutputCurve']['ylabel'] = plot_parameters['OutputCurve']['neg_label']
+	
+	# Plot
+	for i in range(len(deviceHistory)):
+		line = plotOutputCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
+		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			setLabel(line, mode_parameters['legendLabels'][i])
+
+	# Add Legend and save figure	
+	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'OutputCurve', 'runConfigs', 'DrainSweep', includeVgsSweep=True))
+	adjustAndSaveFigure(fig, 'FullOutputCurves', mode_parameters)
 
 	return (fig, ax)
 
@@ -772,13 +818,18 @@ def show():
 
 
 # === Device Plots ===
-def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=None, errorBars=True, alphaForwardSweep=1):
-	if(currentSource == 'gate'):
+def plotSweep(axis, jsonData, lineColor, direction='both', voltageData='gate', currentData='drain', logScale=True, scaleCurrentBy=1, lineStyle=None, errorBars=True, alphaForwardSweep=1):
+	if(currentData == 'gate'):
 		currentData = 'ig_data'
-	elif(currentSource == 'drain'):
+	elif(currentData == 'drain'):
 		currentData = 'id_data'
 	
-	x = jsonData['Results']['vgs_data']
+	if(voltageData == 'gate'):
+		voltageData = 'vgs_data'
+	elif(voltageData == 'drain'):
+		voltageData = 'vds_data'
+	
+	x = jsonData['Results'][voltageData]
 	y = jsonData['Results'][currentData]
 
 	# Sort data if it was collected in an unordered fashion
@@ -835,7 +886,7 @@ def plotGateSweepCurrent(axis, jsonData, lineColor, direction='both', currentSou
 	return line
 
 def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=True):
-	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=True, scaleCurrentBy=1, lineStyle=lineStyle, errorBars=errorBars)
+	line = plotSweep(axis, jsonData, lineColor, direction, voltageData='gate', currentData='drain', logScale=True, scaleCurrentBy=1, lineStyle=lineStyle, errorBars=errorBars)
 	axisLabels(axis, x_label=plot_parameters['SubthresholdCurve']['xlabel'], y_label=plot_parameters['SubthresholdCurve']['ylabel'])
 	if(includeLabel): 
 		#setLabel(line, '$log_{10}(I_{on}/I_{off})$'+': {:.1f}'.format(np.log10(jsonData['Computed']['onOffRatio'])))
@@ -850,13 +901,18 @@ def plotSubthresholdCurve(axis, jsonData, lineColor, direction='both', fitSubthr
 	return line
 
 def plotTransferCurve(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None, errorBars=True):
-	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='drain', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
+	line = plotSweep(axis, jsonData, lineColor, direction, voltageData='gate', currentData='drain', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
 	axisLabels(axis, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 	return line
 
 def plotGateCurrent(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None, errorBars=True):
-	line = plotGateSweepCurrent(axis, jsonData, lineColor, direction, currentSource='gate', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
+	line = plotSweep(axis, jsonData, lineColor, direction, voltageData='gate', currentData='gate', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
 	axisLabels(axis, x_label=plot_parameters['GateCurrent']['xlabel'], y_label=plot_parameters['GateCurrent']['ylabel'])
+	return line
+
+def plotOutputCurve(axis, jsonData, lineColor, direction='both', scaleCurrentBy=1, lineStyle=None, errorBars=True):
+	line = plotSweep(axis, jsonData, lineColor, direction, voltageData='drain', currentData='drain', logScale=False, scaleCurrentBy=scaleCurrentBy, lineStyle=lineStyle, errorBars=errorBars)
+	axisLabels(axis, x_label=plot_parameters['OutputCurve']['xlabel'], y_label=plot_parameters['OutputCurve']['ylabel'])
 	return line
 
 def plotBurnOut(axis1, axis2, axis3, jsonData, lineColor, lineStyle=None, annotate=False, plotLine1=True, plotLine2=True, plotLine3=True):
@@ -1017,7 +1073,7 @@ def addLegend(axis, loc, title):
 	lines, labels = axis.get_legend_handles_labels()
 	axis.legend(lines, labels, loc=loc, title=title, labelspacing=(0) if(len(labels) == 0) else (0.3))
 
-def getLegendTitle(deviceHistory, plotType, parameterSuperType, parameterType, includeVdsSweep=False, includeSubthresholdSwing=False, includeVdsHold=False, includeVgsHold=False, includeHoldTime=False, includeTimeHold=False):
+def getLegendTitle(deviceHistory, plotType, parameterSuperType, parameterType, includeVdsSweep=False, includeVgsSweep=False, includeSubthresholdSwing=False, includeVdsHold=False, includeVgsHold=False, includeHoldTime=False, includeTimeHold=False):
 	legend_title = ''
 	legend_entries = []
 	if(includeVdsSweep):
@@ -1025,6 +1081,11 @@ def getLegendTitle(deviceHistory, plotType, parameterSuperType, parameterType, i
 		vds_min = min(vds_list)
 		vds_max = max(vds_list)
 		legend_entries.append(plot_parameters[plotType]['leg_vds_label'].format(vds_min) if(vds_min == vds_max) else (plot_parameters[plotType]['leg_vds_range_label'].format(vds_min, vds_max)))
+	if(includeVgsSweep):
+		vgs_list = getParameterArray(deviceHistory, parameterSuperType, parameterType, 'gateVoltageSetPoint')
+		vgs_min = min(vgs_list)
+		vgs_max = max(vgs_list)
+		legend_entries.append(plot_parameters[plotType]['leg_vgs_label'].format(vgs_min) if(vgs_min == vgs_max) else (plot_parameters[plotType]['leg_vds_range_label'].format(vgs_min, vgs_max)))
 	if(includeSubthresholdSwing):
 		SS_list = []
 		for deviceRun in deviceHistory:

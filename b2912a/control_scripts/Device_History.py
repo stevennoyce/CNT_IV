@@ -27,7 +27,7 @@ default_dh_parameters = {
 	'excludeDataAfterJSONExperimentNumber':  float('inf'),
 	'excludeDataBeforeJSONRelativeIndex': 0,
 	'excludeDataAfterJSONRelativeIndex':  float('inf'),
-	'gateSweepDirection': ['both','forward','reverse'][0],
+	'sweepDirection': ['both','forward','reverse'][0],
 	'showOnlySuccessfulBurns': False,
 	'timescale': ['','seconds','minutes','hours','days','weeks'][0],
 	'plotInRealTime': True,
@@ -40,6 +40,11 @@ plots_for_experiment = {
 			'FullSubthresholdCurveHistory',
 			'FullTransferCurveHistory',
 			'FullGateCurrentHistory'
+		]
+	},
+	'DrainSweep': {
+		'primary':[
+			'FullOutputCurveHistory'
 		]
 	},
 	'BurnOut' : {	
@@ -135,7 +140,7 @@ def makePlots(userID, projectID, waferID, chipID, deviceID, startExperimentNumbe
 	parameters['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
 	parameters['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
 	parameters['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
-	parameters['gateSweepDirection'] = sweepDirection
+	parameters['sweepDirection'] = sweepDirection
 	parameters['plotInRealTime'] = plotInRealTime
 	
 	if(saveFolder is not None):
@@ -172,19 +177,29 @@ def run(additional_parameters, plot_mode_parameters=None):
 			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'GateSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
-				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
+				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
 				plotList.append(plot1)
 			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
-				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
+				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
 				plotList.append(plot2)
 			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
-				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['gateSweepDirection'], mode_params=mode_parameters)
+				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
 				plotList.append(plot3)
 			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
 				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters['Identifiers'], timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
 				plotList.append(plot4)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
+
+	if(p['specificPlotToCreate'] in ['', 'FullOutputCurveHistory']):
+		try:
+			drainSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'DrainSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
+
+			if p['specificPlotToCreate'] in ['FullOutputCurveHistory','']:
+				plot = dpu.plotFullOutputCurveHistory(drainSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
+				plotList.append(plot)
+		except FileNotFoundError:
+			print("Error: Unable to find Drain Sweep history.")
 
 	if(p['plotBurnOuts'] and (p['specificPlotToCreate'] in ['FullBurnOutHistory',''])):
 		try:
@@ -259,7 +274,9 @@ if __name__ == '__main__':
 	#makePlots('stevenjay', 'SolutionBias1', 'C127', 'V', '2-3', 15, 23, '', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? burnout - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'best'})
 	#makePlots('stevenjay', 'SolutionBias1', 'C127', 'W', '2-3', 0, 50, '', (2.2 *4.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S? burnout - ', saveFigures=True, showFigures=True, plot_mode_parameters={'publication_mode':True, 'enableErrorBars':False, 'legendLoc':'best'})
 	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 80, 168, 'FullStaticBiasHistory', (2.2 *5.5/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S17a full - ', saveFigures=True, showFigures=False, plotInRealTime=False, plot_mode_parameters={'publication_mode':True, 'staticBiasChangeDividers':False, 'enableGradient':True, 'legendLoc':'best'})
-	makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 80, 168, 'OnAndOffCurrentHistory', (2.2 *5.78/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S17b full - ', saveFigures=True, showFigures=False, plotInRealTime=True, plot_mode_parameters={'publication_mode':True, 'staticBiasChangeDividers':False, 'enableGradient':False, 'legendLoc':'lower left'})
+	#makePlots('stevenjay', 'BiasStress1', 'C127', 'X', '15-16', 80, 168, 'OnAndOffCurrentHistory', (2.2 *5.78/2.2,1.408 *3.5/2.2), dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S17b full - ', saveFigures=True, showFigures=False, plotInRealTime=True, plot_mode_parameters={'publication_mode':True, 'staticBiasChangeDividers':False, 'enableGradient':False, 'legendLoc':'lower left'})
+	#makePlots('stevenjay', 'BiasStress1', 'C127', 'P', '15-16', 0, 500, '', None, dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S17b full - ', saveFigures=False, showFigures=True, plotInRealTime=True, plot_mode_parameters={'publication_mode':False, 'staticBiasChangeDividers':False, 'enableGradient':False, 'legendLoc':'best'})
+	makePlots('stevenjay', 'SolutionBias1', 'C127', 'V', '2-3', 0, 500, 'FullOutputCurveHistory', None, dataFolder='../data', saveFolder='../CurrentPlots', plotSaveName='Figure S17b full - ', saveFigures=False, showFigures=True, plotInRealTime=True, plot_mode_parameters={'publication_mode':False, 'staticBiasChangeDividers':False, 'enableGradient':False, 'legendLoc':'best'})
 	pass
 
 
