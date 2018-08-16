@@ -1,0 +1,1395 @@
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"PGA_1.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.PGA_1_Enable,"ax",%progbits
+  20              		.align	2
+  21              		.global	PGA_1_Enable
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	PGA_1_Enable, %function
+  25              	PGA_1_Enable:
+  26              	.LFB1:
+  27              		.file 1 "Generated_Source\\PSoC5\\PGA_1.c"
+   1:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/PGA_1.c **** * File Name: PGA_1.c  
+   3:Generated_Source\PSoC5/PGA_1.c **** * Version 2.0
+   4:Generated_Source\PSoC5/PGA_1.c **** *
+   5:Generated_Source\PSoC5/PGA_1.c **** * Description:
+   6:Generated_Source\PSoC5/PGA_1.c **** *  This file provides the source code to the API for the PGA 
+   7:Generated_Source\PSoC5/PGA_1.c **** *  User Module.
+   8:Generated_Source\PSoC5/PGA_1.c **** *
+   9:Generated_Source\PSoC5/PGA_1.c **** * Note:
+  10:Generated_Source\PSoC5/PGA_1.c **** *
+  11:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/PGA_1.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/PGA_1.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC5/PGA_1.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC5/PGA_1.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/PGA_1.c **** 
+  18:Generated_Source\PSoC5/PGA_1.c **** #include "PGA_1.h"
+  19:Generated_Source\PSoC5/PGA_1.c **** 
+  20:Generated_Source\PSoC5/PGA_1.c **** #if (!CY_PSOC5A)
+  21:Generated_Source\PSoC5/PGA_1.c ****     #if (CYDEV_VARIABLE_VDDA == 1u)
+  22:Generated_Source\PSoC5/PGA_1.c ****         #include "CyScBoostClk.h"
+  23:Generated_Source\PSoC5/PGA_1.c ****     #endif /* (CYDEV_VARIABLE_VDDA == 1u) */
+  24:Generated_Source\PSoC5/PGA_1.c **** #endif /* (!CY_PSOC5A) */
+  25:Generated_Source\PSoC5/PGA_1.c **** 
+  26:Generated_Source\PSoC5/PGA_1.c **** #if (CY_PSOC5A)
+  27:Generated_Source\PSoC5/PGA_1.c ****     static PGA_1_BACKUP_STRUCT  PGA_1_P5backup;
+  28:Generated_Source\PSoC5/PGA_1.c **** #endif /* (CY_ PSOC5A) */
+  29:Generated_Source\PSoC5/PGA_1.c **** 
+  30:Generated_Source\PSoC5/PGA_1.c **** uint8 PGA_1_initVar = 0u;
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 2
+
+
+  31:Generated_Source\PSoC5/PGA_1.c **** 
+  32:Generated_Source\PSoC5/PGA_1.c **** 
+  33:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************   
+  34:Generated_Source\PSoC5/PGA_1.c **** * Function Name: PGA_1_Init
+  35:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+  36:Generated_Source\PSoC5/PGA_1.c **** *
+  37:Generated_Source\PSoC5/PGA_1.c **** * Summary:
+  38:Generated_Source\PSoC5/PGA_1.c **** *  Initialize component's parameters to the parameters set by user in the 
+  39:Generated_Source\PSoC5/PGA_1.c **** *  customizer of the component placed onto schematic. Usually called in 
+  40:Generated_Source\PSoC5/PGA_1.c **** *  PGA_1_Start().
+  41:Generated_Source\PSoC5/PGA_1.c **** *
+  42:Generated_Source\PSoC5/PGA_1.c **** * Parameters:
+  43:Generated_Source\PSoC5/PGA_1.c **** *  void
+  44:Generated_Source\PSoC5/PGA_1.c **** *
+  45:Generated_Source\PSoC5/PGA_1.c **** * Return:
+  46:Generated_Source\PSoC5/PGA_1.c **** *  void
+  47:Generated_Source\PSoC5/PGA_1.c **** *
+  48:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+  49:Generated_Source\PSoC5/PGA_1.c **** void PGA_1_Init(void) 
+  50:Generated_Source\PSoC5/PGA_1.c **** {
+  51:Generated_Source\PSoC5/PGA_1.c ****     /* Set PGA mode */
+  52:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_CR0_REG = PGA_1_MODE_PGA;      
+  53:Generated_Source\PSoC5/PGA_1.c ****     /* Set non-inverting PGA mode and reference mode */
+  54:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_CR1_REG |= PGA_1_PGA_NINV;  
+  55:Generated_Source\PSoC5/PGA_1.c ****     /* Set default gain and ref mode */
+  56:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_CR2_REG = PGA_1_VREF_MODE;
+  57:Generated_Source\PSoC5/PGA_1.c ****     /* Set gain and compensation */
+  58:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_SetGain(PGA_1_DEFAULT_GAIN);
+  59:Generated_Source\PSoC5/PGA_1.c ****     /* Set power */
+  60:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_SetPower(PGA_1_DEFAULT_POWER);
+  61:Generated_Source\PSoC5/PGA_1.c **** }
+  62:Generated_Source\PSoC5/PGA_1.c **** 
+  63:Generated_Source\PSoC5/PGA_1.c **** 
+  64:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************   
+  65:Generated_Source\PSoC5/PGA_1.c **** * Function Name: PGA_1_Enable
+  66:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+  67:Generated_Source\PSoC5/PGA_1.c **** *
+  68:Generated_Source\PSoC5/PGA_1.c **** * Summary:
+  69:Generated_Source\PSoC5/PGA_1.c **** *  Enables the PGA block operation.
+  70:Generated_Source\PSoC5/PGA_1.c **** *
+  71:Generated_Source\PSoC5/PGA_1.c **** * Parameters:
+  72:Generated_Source\PSoC5/PGA_1.c **** *  void
+  73:Generated_Source\PSoC5/PGA_1.c **** *
+  74:Generated_Source\PSoC5/PGA_1.c **** * Return:
+  75:Generated_Source\PSoC5/PGA_1.c **** *  void
+  76:Generated_Source\PSoC5/PGA_1.c **** *
+  77:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+  78:Generated_Source\PSoC5/PGA_1.c **** void PGA_1_Enable(void) 
+  79:Generated_Source\PSoC5/PGA_1.c **** {
+  28              		.loc 1 79 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  80:Generated_Source\PSoC5/PGA_1.c ****     /* This is to restore the value of register CR1 and CR2 which is saved 
+  81:Generated_Source\PSoC5/PGA_1.c ****       in prior to the modifications in stop() API */
+  82:Generated_Source\PSoC5/PGA_1.c ****     #if (CY_PSOC5A)
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 3
+
+
+  83:Generated_Source\PSoC5/PGA_1.c ****         if(PGA_1_P5backup.enableState == 1u)
+  84:Generated_Source\PSoC5/PGA_1.c ****         {
+  85:Generated_Source\PSoC5/PGA_1.c ****             PGA_1_CR1_REG = PGA_1_P5backup.scCR1Reg;
+  86:Generated_Source\PSoC5/PGA_1.c ****             PGA_1_CR2_REG = PGA_1_P5backup.scCR2Reg;
+  87:Generated_Source\PSoC5/PGA_1.c ****             PGA_1_P5backup.enableState = 0u;
+  88:Generated_Source\PSoC5/PGA_1.c ****         }
+  89:Generated_Source\PSoC5/PGA_1.c ****     #endif /* CY_PSOC5A */   
+  90:Generated_Source\PSoC5/PGA_1.c **** 
+  91:Generated_Source\PSoC5/PGA_1.c ****     /* Enable power to the Amp in Active mode*/
+  92:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_PM_ACT_CFG_REG |= PGA_1_ACT_PWR_EN;
+  33              		.loc 1 92 0
+  34 0000 084A     		ldr	r2, .L2
+  35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  36 0004 43F00803 		orr	r3, r3, #8
+  37 0008 1370     		strb	r3, [r2]
+  93:Generated_Source\PSoC5/PGA_1.c **** 
+  94:Generated_Source\PSoC5/PGA_1.c ****     /* Enable power to the Amp in Alternative Active mode*/
+  95:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_PM_STBY_CFG_REG |= PGA_1_STBY_PWR_EN;
+  38              		.loc 1 95 0
+  39 000a 1032     		adds	r2, r2, #16
+  40 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  41 000e 43F00803 		orr	r3, r3, #8
+  42 0012 1370     		strb	r3, [r2]
+  96:Generated_Source\PSoC5/PGA_1.c ****     
+  97:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_PUMP_CR1_REG |= PGA_1_PUMP_CR1_SC_CLKSEL;
+  43              		.loc 1 97 0
+  44 0014 02F5A552 		add	r2, r2, #5280
+  45 0018 1E32     		adds	r2, r2, #30
+  46 001a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  47 001c 43F08003 		orr	r3, r3, #128
+  48 0020 1370     		strb	r3, [r2]
+  49 0022 7047     		bx	lr
+  50              	.L3:
+  51              		.align	2
+  52              	.L2:
+  53 0024 A9430040 		.word	1073759145
+  54              		.cfi_endproc
+  55              	.LFE1:
+  56              		.size	PGA_1_Enable, .-PGA_1_Enable
+  57              		.section	.text.PGA_1_Stop,"ax",%progbits
+  58              		.align	2
+  59              		.global	PGA_1_Stop
+  60              		.thumb
+  61              		.thumb_func
+  62              		.type	PGA_1_Stop, %function
+  63              	PGA_1_Stop:
+  64              	.LFB3:
+  98:Generated_Source\PSoC5/PGA_1.c ****     
+  99:Generated_Source\PSoC5/PGA_1.c ****     #if (!CY_PSOC5A)
+ 100:Generated_Source\PSoC5/PGA_1.c ****         #if (CYDEV_VARIABLE_VDDA == 1u)
+ 101:Generated_Source\PSoC5/PGA_1.c ****             if(CyScPumpEnabled == 1u)
+ 102:Generated_Source\PSoC5/PGA_1.c ****             {
+ 103:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_BSTCLK_REG &= (uint8)(~PGA_1_BST_CLK_INDEX_MASK);
+ 104:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_BSTCLK_REG |= PGA_1_BST_CLK_EN | CyScBoostClk__INDEX;
+ 105:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_SC_MISC_REG |= PGA_1_PUMP_FORCE;
+ 106:Generated_Source\PSoC5/PGA_1.c ****                 CyScBoostClk_Start();
+ 107:Generated_Source\PSoC5/PGA_1.c ****             }
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 4
+
+
+ 108:Generated_Source\PSoC5/PGA_1.c ****             else
+ 109:Generated_Source\PSoC5/PGA_1.c ****             {
+ 110:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_BSTCLK_REG &= (uint8)(~PGA_1_BST_CLK_EN);
+ 111:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_SC_MISC_REG &= (uint8)(~PGA_1_PUMP_FORCE);
+ 112:Generated_Source\PSoC5/PGA_1.c ****             }
+ 113:Generated_Source\PSoC5/PGA_1.c ****         #endif /* (CYDEV_VARIABLE_VDDA == 1u) */
+ 114:Generated_Source\PSoC5/PGA_1.c ****     #endif /* (!CY_PSOC5A) */
+ 115:Generated_Source\PSoC5/PGA_1.c **** }
+ 116:Generated_Source\PSoC5/PGA_1.c **** 
+ 117:Generated_Source\PSoC5/PGA_1.c **** 
+ 118:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************
+ 119:Generated_Source\PSoC5/PGA_1.c **** * Function Name: PGA_1_Start
+ 120:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+ 121:Generated_Source\PSoC5/PGA_1.c **** *
+ 122:Generated_Source\PSoC5/PGA_1.c **** * Summary:
+ 123:Generated_Source\PSoC5/PGA_1.c **** *  The start function initializes the PGA with the default values and sets
+ 124:Generated_Source\PSoC5/PGA_1.c **** *  the power to the given level. A power level of 0, is same as executing
+ 125:Generated_Source\PSoC5/PGA_1.c **** *  the stop function.
+ 126:Generated_Source\PSoC5/PGA_1.c **** *
+ 127:Generated_Source\PSoC5/PGA_1.c **** * Parameters:
+ 128:Generated_Source\PSoC5/PGA_1.c **** *  void
+ 129:Generated_Source\PSoC5/PGA_1.c **** *
+ 130:Generated_Source\PSoC5/PGA_1.c **** * Return:
+ 131:Generated_Source\PSoC5/PGA_1.c **** *  void
+ 132:Generated_Source\PSoC5/PGA_1.c **** *
+ 133:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+ 134:Generated_Source\PSoC5/PGA_1.c **** void PGA_1_Start(void) 
+ 135:Generated_Source\PSoC5/PGA_1.c **** {
+ 136:Generated_Source\PSoC5/PGA_1.c **** 
+ 137:Generated_Source\PSoC5/PGA_1.c ****     /* This is to restore the value of register CR1 and CR2 which is saved 
+ 138:Generated_Source\PSoC5/PGA_1.c ****       in prior to the modification in stop() API */
+ 139:Generated_Source\PSoC5/PGA_1.c **** 
+ 140:Generated_Source\PSoC5/PGA_1.c ****     if(PGA_1_initVar == 0u)
+ 141:Generated_Source\PSoC5/PGA_1.c ****     {
+ 142:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_Init();
+ 143:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_initVar = 1u;
+ 144:Generated_Source\PSoC5/PGA_1.c ****     }
+ 145:Generated_Source\PSoC5/PGA_1.c **** 
+ 146:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_Enable();
+ 147:Generated_Source\PSoC5/PGA_1.c **** }
+ 148:Generated_Source\PSoC5/PGA_1.c **** 
+ 149:Generated_Source\PSoC5/PGA_1.c **** 
+ 150:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************
+ 151:Generated_Source\PSoC5/PGA_1.c **** * Function Name: PGA_1_Stop
+ 152:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+ 153:Generated_Source\PSoC5/PGA_1.c **** *
+ 154:Generated_Source\PSoC5/PGA_1.c **** * Summary:
+ 155:Generated_Source\PSoC5/PGA_1.c **** *  Powers down amplifier to lowest power state.
+ 156:Generated_Source\PSoC5/PGA_1.c **** *
+ 157:Generated_Source\PSoC5/PGA_1.c **** * Parameters:
+ 158:Generated_Source\PSoC5/PGA_1.c **** *  void
+ 159:Generated_Source\PSoC5/PGA_1.c **** *
+ 160:Generated_Source\PSoC5/PGA_1.c **** * Return:
+ 161:Generated_Source\PSoC5/PGA_1.c **** *  void
+ 162:Generated_Source\PSoC5/PGA_1.c **** *
+ 163:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+ 164:Generated_Source\PSoC5/PGA_1.c **** void PGA_1_Stop(void) 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 5
+
+
+ 165:Generated_Source\PSoC5/PGA_1.c **** { 
+  65              		.loc 1 165 0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+ 166:Generated_Source\PSoC5/PGA_1.c ****     /* Disble power to the Amp in Active mode template */
+ 167:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_PM_ACT_CFG_REG &= (uint8)(~PGA_1_ACT_PWR_EN);
+  70              		.loc 1 167 0
+  71 0000 054A     		ldr	r2, .L5
+  72 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  73 0004 03F0F703 		and	r3, r3, #247
+  74 0008 1370     		strb	r3, [r2]
+ 168:Generated_Source\PSoC5/PGA_1.c **** 
+ 169:Generated_Source\PSoC5/PGA_1.c ****     /* Disble power to the Amp in Alternative Active mode template */
+ 170:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_PM_STBY_CFG_REG &= (uint8)(~PGA_1_STBY_PWR_EN);
+  75              		.loc 1 170 0
+  76 000a 1032     		adds	r2, r2, #16
+  77 000c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  78 000e 03F0F703 		and	r3, r3, #247
+  79 0012 1370     		strb	r3, [r2]
+  80 0014 7047     		bx	lr
+  81              	.L6:
+  82 0016 00BF     		.align	2
+  83              	.L5:
+  84 0018 A9430040 		.word	1073759145
+  85              		.cfi_endproc
+  86              	.LFE3:
+  87              		.size	PGA_1_Stop, .-PGA_1_Stop
+  88              		.section	.text.PGA_1_SetPower,"ax",%progbits
+  89              		.align	2
+  90              		.global	PGA_1_SetPower
+  91              		.thumb
+  92              		.thumb_func
+  93              		.type	PGA_1_SetPower, %function
+  94              	PGA_1_SetPower:
+  95              	.LFB4:
+ 171:Generated_Source\PSoC5/PGA_1.c **** 
+ 172:Generated_Source\PSoC5/PGA_1.c ****     #if (!CY_PSOC5A)
+ 173:Generated_Source\PSoC5/PGA_1.c ****         #if (CYDEV_VARIABLE_VDDA == 1u)
+ 174:Generated_Source\PSoC5/PGA_1.c ****             PGA_1_BSTCLK_REG &= (uint8)(~PGA_1_BST_CLK_EN);
+ 175:Generated_Source\PSoC5/PGA_1.c ****             /* Disable pumps only if there aren't any SC block in use */
+ 176:Generated_Source\PSoC5/PGA_1.c ****             if ((PGA_1_PM_ACT_CFG_REG & PGA_1_PM_ACT_CFG_MASK) == 0u)
+ 177:Generated_Source\PSoC5/PGA_1.c ****             {
+ 178:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_SC_MISC_REG &= (uint8)(~PGA_1_PUMP_FORCE);
+ 179:Generated_Source\PSoC5/PGA_1.c ****                 PGA_1_PUMP_CR1_REG &= (uint8)(~PGA_1_PUMP_CR1_SC_CLKSEL);
+ 180:Generated_Source\PSoC5/PGA_1.c ****                 CyScBoostClk_Stop();
+ 181:Generated_Source\PSoC5/PGA_1.c ****             }
+ 182:Generated_Source\PSoC5/PGA_1.c ****         #endif /* CYDEV_VARIABLE_VDDA == 1u */
+ 183:Generated_Source\PSoC5/PGA_1.c ****     #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+ 184:Generated_Source\PSoC5/PGA_1.c **** 
+ 185:Generated_Source\PSoC5/PGA_1.c ****     /* This sets PGA in zero current mode and output routes are valid */
+ 186:Generated_Source\PSoC5/PGA_1.c ****     #if (CY_PSOC5A)
+ 187:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_P5backup.scCR1Reg = PGA_1_CR1_REG;
+ 188:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_P5backup.scCR2Reg = PGA_1_CR2_REG;
+ 189:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_CR1_REG = 0x00u;
+ 190:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_CR2_REG = 0x00u;
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 6
+
+
+ 191:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_P5backup.enableState = 1u;
+ 192:Generated_Source\PSoC5/PGA_1.c ****     #endif /* CY_PSOC5A */
+ 193:Generated_Source\PSoC5/PGA_1.c **** }
+ 194:Generated_Source\PSoC5/PGA_1.c **** 
+ 195:Generated_Source\PSoC5/PGA_1.c **** 
+ 196:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************
+ 197:Generated_Source\PSoC5/PGA_1.c **** * Function Name: PGA_1_SetPower
+ 198:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+ 199:Generated_Source\PSoC5/PGA_1.c **** *
+ 200:Generated_Source\PSoC5/PGA_1.c **** * Summary:
+ 201:Generated_Source\PSoC5/PGA_1.c **** *  Set the power of the PGA.
+ 202:Generated_Source\PSoC5/PGA_1.c **** *
+ 203:Generated_Source\PSoC5/PGA_1.c **** * Parameters:
+ 204:Generated_Source\PSoC5/PGA_1.c **** *  power: Sets power level between (0) and (3) high power
+ 205:Generated_Source\PSoC5/PGA_1.c **** *
+ 206:Generated_Source\PSoC5/PGA_1.c **** * Return:
+ 207:Generated_Source\PSoC5/PGA_1.c **** *  void
+ 208:Generated_Source\PSoC5/PGA_1.c **** *
+ 209:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+ 210:Generated_Source\PSoC5/PGA_1.c **** void PGA_1_SetPower(uint8 power) 
+ 211:Generated_Source\PSoC5/PGA_1.c **** {
+  96              		.loc 1 211 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+ 101              	.LVL0:
+ 212:Generated_Source\PSoC5/PGA_1.c ****     uint8 tmpCR;
+ 213:Generated_Source\PSoC5/PGA_1.c **** 
+ 214:Generated_Source\PSoC5/PGA_1.c ****     tmpCR = PGA_1_CR1_REG & (uint8)(~PGA_1_DRIVE_MASK);
+ 102              		.loc 1 214 0
+ 103 0000 044A     		ldr	r2, .L8
+ 104 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 105 0004 03F0FC03 		and	r3, r3, #252
+ 106              	.LVL1:
+ 215:Generated_Source\PSoC5/PGA_1.c ****     tmpCR |= (power & PGA_1_DRIVE_MASK);
+ 107              		.loc 1 215 0
+ 108 0008 00F00300 		and	r0, r0, #3
+ 109              	.LVL2:
+ 110 000c 1843     		orrs	r0, r0, r3
+ 111              	.LVL3:
+ 216:Generated_Source\PSoC5/PGA_1.c ****     PGA_1_CR1_REG = tmpCR;  
+ 112              		.loc 1 216 0
+ 113 000e 1070     		strb	r0, [r2]
+ 114 0010 7047     		bx	lr
+ 115              	.L9:
+ 116 0012 00BF     		.align	2
+ 117              	.L8:
+ 118 0014 0D580040 		.word	1073764365
+ 119              		.cfi_endproc
+ 120              	.LFE4:
+ 121              		.size	PGA_1_SetPower, .-PGA_1_SetPower
+ 122              		.section	.text.PGA_1_SetGain,"ax",%progbits
+ 123              		.align	2
+ 124              		.global	PGA_1_SetGain
+ 125              		.thumb
+ 126              		.thumb_func
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 7
+
+
+ 127              		.type	PGA_1_SetGain, %function
+ 128              	PGA_1_SetGain:
+ 129              	.LFB5:
+ 217:Generated_Source\PSoC5/PGA_1.c **** }
+ 218:Generated_Source\PSoC5/PGA_1.c **** 
+ 219:Generated_Source\PSoC5/PGA_1.c **** 
+ 220:Generated_Source\PSoC5/PGA_1.c **** /*******************************************************************************
+ 221:Generated_Source\PSoC5/PGA_1.c **** * Function Name: PGA_1_SetGain
+ 222:Generated_Source\PSoC5/PGA_1.c **** ********************************************************************************
+ 223:Generated_Source\PSoC5/PGA_1.c **** *
+ 224:Generated_Source\PSoC5/PGA_1.c **** * Summary:
+ 225:Generated_Source\PSoC5/PGA_1.c **** *  This function sets values of the input and feedback resistors to set a 
+ 226:Generated_Source\PSoC5/PGA_1.c **** *  specific gain of the amplifier.
+ 227:Generated_Source\PSoC5/PGA_1.c **** *
+ 228:Generated_Source\PSoC5/PGA_1.c **** * Parameters:
+ 229:Generated_Source\PSoC5/PGA_1.c **** *  gain: Gain value of PGA (See header file for gain values.)
+ 230:Generated_Source\PSoC5/PGA_1.c **** *
+ 231:Generated_Source\PSoC5/PGA_1.c **** * Return:
+ 232:Generated_Source\PSoC5/PGA_1.c **** *  void 
+ 233:Generated_Source\PSoC5/PGA_1.c **** *
+ 234:Generated_Source\PSoC5/PGA_1.c **** *******************************************************************************/
+ 235:Generated_Source\PSoC5/PGA_1.c **** void PGA_1_SetGain(uint8 gain) 
+ 236:Generated_Source\PSoC5/PGA_1.c **** {
+ 130              		.loc 1 236 0
+ 131              		.cfi_startproc
+ 132              		@ args = 0, pretend = 0, frame = 24
+ 133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134              		@ link register save eliminated.
+ 135              	.LVL4:
+ 136 0000 10B4     		push	{r4}
+ 137              		.cfi_def_cfa_offset 4
+ 138              		.cfi_offset 4, -4
+ 139 0002 87B0     		sub	sp, sp, #28
+ 140              		.cfi_def_cfa_offset 32
+ 141 0004 0446     		mov	r4, r0
+ 237:Generated_Source\PSoC5/PGA_1.c ****     /* Constant array for gain settings */
+ 238:Generated_Source\PSoC5/PGA_1.c ****     const uint8 PGA_1_GainArray[9] = { 
+ 142              		.loc 1 238 0
+ 143 0006 194B     		ldr	r3, .L13
+ 144 0008 03AA     		add	r2, sp, #12
+ 145 000a 1868     		ldr	r0, [r3]	@ unaligned
+ 146              	.LVL5:
+ 147 000c 5968     		ldr	r1, [r3, #4]	@ unaligned
+ 148 000e 03C2     		stmia	r2!, {r0, r1}
+ 149 0010 197A     		ldrb	r1, [r3, #8]	@ zero_extendqisi2
+ 150 0012 1170     		strb	r1, [r2]
+ 239:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_0K   | PGA_1_R20_40B_40K | PGA_1_BIAS_LOW), /* G=1  */
+ 240:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_40K  | PGA_1_R20_40B_40K | PGA_1_BIAS_LOW), /* G=2  */
+ 241:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_120K | PGA_1_R20_40B_40K | PGA_1_BIAS_LOW), /* G=4  */
+ 242:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_280K | PGA_1_R20_40B_40K | PGA_1_BIAS_LOW), /* G=8  */
+ 243:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_600K | PGA_1_R20_40B_40K | PGA_1_BIAS_LOW), /* G=16 */
+ 244:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_460K | PGA_1_R20_40B_40K | PGA_1_BIAS_LOW), /* G=24, Sets Rin as 20k */
+ 245:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_620K | PGA_1_R20_40B_20K | PGA_1_BIAS_LOW), /* G=32 */
+ 246:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_470K | PGA_1_R20_40B_20K | PGA_1_BIAS_LOW), /* G=48, Sets Rin as 10k */
+ 247:Generated_Source\PSoC5/PGA_1.c ****         (PGA_1_RVAL_490K | PGA_1_R20_40B_20K | PGA_1_BIAS_LOW)  /* G=50, Sets Rin as 10k */
+ 248:Generated_Source\PSoC5/PGA_1.c ****     };
+ 249:Generated_Source\PSoC5/PGA_1.c ****     
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 8
+
+
+ 250:Generated_Source\PSoC5/PGA_1.c ****     /* Constant array for gain compenstion settings */
+ 251:Generated_Source\PSoC5/PGA_1.c ****     const uint8 PGA_1_GainComp[9] = { 
+ 151              		.loc 1 251 0
+ 152 0014 6A46     		mov	r2, sp
+ 153 0016 53F80C0F 		ldr	r0, [r3, #12]!	@ unaligned
+ 154 001a 5968     		ldr	r1, [r3, #4]	@ unaligned
+ 155 001c 03C2     		stmia	r2!, {r0, r1}
+ 156 001e 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+ 157 0020 1370     		strb	r3, [r2]
+ 252:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_4P35PF  | (uint8)( PGA_1_REDC_00 >> 2 )), /* G=1  */
+ 253:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_4P35PF  | (uint8)( PGA_1_REDC_01 >> 2 )), /* G=2  */
+ 254:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P0PF   | (uint8)( PGA_1_REDC_01 >> 2 )), /* G=4  */
+ 255:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P0PF   | (uint8)( PGA_1_REDC_01 >> 2 )), /* G=8  */
+ 256:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P6PF   | (uint8)( PGA_1_REDC_01 >> 2 )), /* G=16 */
+ 257:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P6PF   | (uint8)( PGA_1_REDC_11 >> 2 )), /* G=24 */
+ 258:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P6PF   | (uint8)( PGA_1_REDC_11 >> 2 )), /* G=32 */
+ 259:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P6PF   | (uint8)( PGA_1_REDC_00 >> 2 )), /* G=48 */
+ 260:Generated_Source\PSoC5/PGA_1.c ****         ( PGA_1_COMP_3P6PF   | (uint8)( PGA_1_REDC_00 >> 2 ))  /* G=50 */
+ 261:Generated_Source\PSoC5/PGA_1.c ****     };
+ 262:Generated_Source\PSoC5/PGA_1.c ****     
+ 263:Generated_Source\PSoC5/PGA_1.c ****     /* Only set new gain if it is a valid gain */
+ 264:Generated_Source\PSoC5/PGA_1.c ****     if( gain <= PGA_1_GAIN_MAX)
+ 158              		.loc 1 264 0
+ 159 0022 082C     		cmp	r4, #8
+ 160 0024 1ED8     		bhi	.L10
+ 265:Generated_Source\PSoC5/PGA_1.c ****     {
+ 266:Generated_Source\PSoC5/PGA_1.c ****         /* Clear resistors, redc, and bias */
+ 267:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_CR2_REG &= (uint8)(~(PGA_1_RVAL_MASK | PGA_1_R20_40B_MASK | 
+ 161              		.loc 1 267 0
+ 162 0026 1249     		ldr	r1, .L13+4
+ 163 0028 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 164 002a 03F08003 		and	r3, r3, #128
+ 165 002e DBB2     		uxtb	r3, r3
+ 166 0030 0B70     		strb	r3, [r1]
+ 268:Generated_Source\PSoC5/PGA_1.c ****                                 PGA_1_REDC_MASK | PGA_1_BIAS_MASK ));
+ 269:Generated_Source\PSoC5/PGA_1.c **** 
+ 270:Generated_Source\PSoC5/PGA_1.c ****         /* Set gain value resistors, redc comp, and bias */
+ 271:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_CR2_REG |= (PGA_1_GainArray[gain] |
+ 167              		.loc 1 271 0
+ 168 0032 0878     		ldrb	r0, [r1]	@ zero_extendqisi2
+ 169 0034 06AB     		add	r3, sp, #24
+ 170 0036 1C44     		add	r4, r4, r3
+ 171 0038 14F80C3C 		ldrb	r3, [r4, #-12]	@ zero_extendqisi2
+ 272:Generated_Source\PSoC5/PGA_1.c ****                                 ((uint8)(PGA_1_GainComp[gain] << 2 ) & PGA_1_REDC_MASK));
+ 172              		.loc 1 272 0
+ 173 003c 14F8182C 		ldrb	r2, [r4, #-24]	@ zero_extendqisi2
+ 174 0040 9200     		lsls	r2, r2, #2
+ 271:Generated_Source\PSoC5/PGA_1.c ****                                 ((uint8)(PGA_1_GainComp[gain] << 2 ) & PGA_1_REDC_MASK));
+ 175              		.loc 1 271 0
+ 176 0042 02F00C02 		and	r2, r2, #12
+ 177 0046 1343     		orrs	r3, r3, r2
+ 178 0048 0343     		orrs	r3, r3, r0
+ 179 004a 0B70     		strb	r3, [r1]
+ 273:Generated_Source\PSoC5/PGA_1.c **** 
+ 274:Generated_Source\PSoC5/PGA_1.c ****         /* Clear sc_comp  */
+ 275:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_CR1_REG &= (uint8)(~PGA_1_COMP_MASK);
+ 180              		.loc 1 275 0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 9
+
+
+ 181 004c 094A     		ldr	r2, .L13+8
+ 182 004e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 183 0050 03F0F303 		and	r3, r3, #243
+ 184 0054 1370     		strb	r3, [r2]
+ 276:Generated_Source\PSoC5/PGA_1.c ****         /* Set sc_comp  */
+ 277:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_CR1_REG |= ( PGA_1_GainComp[gain] | PGA_1_COMP_MASK );
+ 185              		.loc 1 277 0
+ 186 0056 1178     		ldrb	r1, [r2]	@ zero_extendqisi2
+ 187 0058 14F8183C 		ldrb	r3, [r4, #-24]	@ zero_extendqisi2
+ 188 005c 0B43     		orrs	r3, r3, r1
+ 189 005e 43F00C03 		orr	r3, r3, #12
+ 190 0062 1370     		strb	r3, [r2]
+ 191              	.L10:
+ 278:Generated_Source\PSoC5/PGA_1.c ****     }
+ 279:Generated_Source\PSoC5/PGA_1.c **** }
+ 192              		.loc 1 279 0
+ 193 0064 07B0     		add	sp, sp, #28
+ 194              		.cfi_def_cfa_offset 4
+ 195              		@ sp needed
+ 196 0066 10BC     		pop	{r4}
+ 197              		.cfi_restore 4
+ 198              		.cfi_def_cfa_offset 0
+ 199 0068 7047     		bx	lr
+ 200              	.L14:
+ 201 006a 00BF     		.align	2
+ 202              	.L13:
+ 203 006c 00000000 		.word	.LANCHOR0
+ 204 0070 0E580040 		.word	1073764366
+ 205 0074 0D580040 		.word	1073764365
+ 206              		.cfi_endproc
+ 207              	.LFE5:
+ 208              		.size	PGA_1_SetGain, .-PGA_1_SetGain
+ 209              		.section	.text.PGA_1_Init,"ax",%progbits
+ 210              		.align	2
+ 211              		.global	PGA_1_Init
+ 212              		.thumb
+ 213              		.thumb_func
+ 214              		.type	PGA_1_Init, %function
+ 215              	PGA_1_Init:
+ 216              	.LFB0:
+  50:Generated_Source\PSoC5/PGA_1.c ****     /* Set PGA mode */
+ 217              		.loc 1 50 0
+ 218              		.cfi_startproc
+ 219              		@ args = 0, pretend = 0, frame = 0
+ 220              		@ frame_needed = 0, uses_anonymous_args = 0
+ 221 0000 08B5     		push	{r3, lr}
+ 222              		.cfi_def_cfa_offset 8
+ 223              		.cfi_offset 3, -8
+ 224              		.cfi_offset 14, -4
+  52:Generated_Source\PSoC5/PGA_1.c ****     /* Set non-inverting PGA mode and reference mode */
+ 225              		.loc 1 52 0
+ 226 0002 0C22     		movs	r2, #12
+ 227 0004 084B     		ldr	r3, .L17
+ 228 0006 1A70     		strb	r2, [r3]
+  54:Generated_Source\PSoC5/PGA_1.c ****     /* Set default gain and ref mode */
+ 229              		.loc 1 54 0
+ 230 0008 084A     		ldr	r2, .L17+4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 10
+
+
+ 231 000a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 232 000c 43F02003 		orr	r3, r3, #32
+ 233 0010 1370     		strb	r3, [r2]
+  56:Generated_Source\PSoC5/PGA_1.c ****     /* Set gain and compensation */
+ 234              		.loc 1 56 0
+ 235 0012 8022     		movs	r2, #128
+ 236 0014 064B     		ldr	r3, .L17+8
+ 237 0016 1A70     		strb	r2, [r3]
+  58:Generated_Source\PSoC5/PGA_1.c ****     /* Set power */
+ 238              		.loc 1 58 0
+ 239 0018 0020     		movs	r0, #0
+ 240 001a FFF7FEFF 		bl	PGA_1_SetGain
+ 241              	.LVL6:
+  60:Generated_Source\PSoC5/PGA_1.c **** }
+ 242              		.loc 1 60 0
+ 243 001e 0120     		movs	r0, #1
+ 244 0020 FFF7FEFF 		bl	PGA_1_SetPower
+ 245              	.LVL7:
+ 246 0024 08BD     		pop	{r3, pc}
+ 247              	.L18:
+ 248 0026 00BF     		.align	2
+ 249              	.L17:
+ 250 0028 0C580040 		.word	1073764364
+ 251 002c 0D580040 		.word	1073764365
+ 252 0030 0E580040 		.word	1073764366
+ 253              		.cfi_endproc
+ 254              	.LFE0:
+ 255              		.size	PGA_1_Init, .-PGA_1_Init
+ 256              		.section	.text.PGA_1_Start,"ax",%progbits
+ 257              		.align	2
+ 258              		.global	PGA_1_Start
+ 259              		.thumb
+ 260              		.thumb_func
+ 261              		.type	PGA_1_Start, %function
+ 262              	PGA_1_Start:
+ 263              	.LFB2:
+ 135:Generated_Source\PSoC5/PGA_1.c **** 
+ 264              		.loc 1 135 0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 0
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
+ 268 0000 08B5     		push	{r3, lr}
+ 269              		.cfi_def_cfa_offset 8
+ 270              		.cfi_offset 3, -8
+ 271              		.cfi_offset 14, -4
+ 140:Generated_Source\PSoC5/PGA_1.c ****     {
+ 272              		.loc 1 140 0
+ 273 0002 054B     		ldr	r3, .L22
+ 274 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 275 0006 23B9     		cbnz	r3, .L20
+ 142:Generated_Source\PSoC5/PGA_1.c ****         PGA_1_initVar = 1u;
+ 276              		.loc 1 142 0
+ 277 0008 FFF7FEFF 		bl	PGA_1_Init
+ 278              	.LVL8:
+ 143:Generated_Source\PSoC5/PGA_1.c ****     }
+ 279              		.loc 1 143 0
+ 280 000c 0122     		movs	r2, #1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 11
+
+
+ 281 000e 024B     		ldr	r3, .L22
+ 282 0010 1A70     		strb	r2, [r3]
+ 283              	.L20:
+ 146:Generated_Source\PSoC5/PGA_1.c **** }
+ 284              		.loc 1 146 0
+ 285 0012 FFF7FEFF 		bl	PGA_1_Enable
+ 286              	.LVL9:
+ 287 0016 08BD     		pop	{r3, pc}
+ 288              	.L23:
+ 289              		.align	2
+ 290              	.L22:
+ 291 0018 00000000 		.word	.LANCHOR1
+ 292              		.cfi_endproc
+ 293              	.LFE2:
+ 294              		.size	PGA_1_Start, .-PGA_1_Start
+ 295              		.global	PGA_1_initVar
+ 296              		.section	.rodata
+ 297              		.align	2
+ 298              		.set	.LANCHOR0,. + 0
+ 299              	.LC0:
+ 300 0000 01       		.byte	1
+ 301 0001 11       		.byte	17
+ 302 0002 21       		.byte	33
+ 303 0003 31       		.byte	49
+ 304 0004 41       		.byte	65
+ 305 0005 61       		.byte	97
+ 306 0006 53       		.byte	83
+ 307 0007 63       		.byte	99
+ 308 0008 73       		.byte	115
+ 309 0009 000000   		.space	3
+ 310              	.LC1:
+ 311 000c 08       		.byte	8
+ 312 000d 09       		.byte	9
+ 313 000e 01       		.byte	1
+ 314 000f 01       		.byte	1
+ 315 0010 05       		.byte	5
+ 316 0011 07       		.byte	7
+ 317 0012 07       		.byte	7
+ 318 0013 04       		.byte	4
+ 319 0014 04       		.byte	4
+ 320              		.bss
+ 321              		.set	.LANCHOR1,. + 0
+ 322              		.type	PGA_1_initVar, %object
+ 323              		.size	PGA_1_initVar, 1
+ 324              	PGA_1_initVar:
+ 325 0000 00       		.space	1
+ 326              		.text
+ 327              	.Letext0:
+ 328              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 329              		.section	.debug_info,"",%progbits
+ 330              	.Ldebug_info0:
+ 331 0000 CF010000 		.4byte	0x1cf
+ 332 0004 0400     		.2byte	0x4
+ 333 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 334 000a 04       		.byte	0x4
+ 335 000b 01       		.uleb128 0x1
+ 336 000c 4C000000 		.4byte	.LASF27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 12
+
+
+ 337 0010 0C       		.byte	0xc
+ 338 0011 67010000 		.4byte	.LASF28
+ 339 0015 ED010000 		.4byte	.LASF29
+ 340 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 341 001d 00000000 		.4byte	0
+ 342 0021 00000000 		.4byte	.Ldebug_line0
+ 343 0025 02       		.uleb128 0x2
+ 344 0026 01       		.byte	0x1
+ 345 0027 06       		.byte	0x6
+ 346 0028 E1010000 		.4byte	.LASF0
+ 347 002c 02       		.uleb128 0x2
+ 348 002d 01       		.byte	0x1
+ 349 002e 08       		.byte	0x8
+ 350 002f 3E000000 		.4byte	.LASF1
+ 351 0033 02       		.uleb128 0x2
+ 352 0034 02       		.byte	0x2
+ 353 0035 05       		.byte	0x5
+ 354 0036 B3010000 		.4byte	.LASF2
+ 355 003a 02       		.uleb128 0x2
+ 356 003b 02       		.byte	0x2
+ 357 003c 07       		.byte	0x7
+ 358 003d 12000000 		.4byte	.LASF3
+ 359 0041 02       		.uleb128 0x2
+ 360 0042 04       		.byte	0x4
+ 361 0043 05       		.byte	0x5
+ 362 0044 BD010000 		.4byte	.LASF4
+ 363 0048 02       		.uleb128 0x2
+ 364 0049 04       		.byte	0x4
+ 365 004a 07       		.byte	0x7
+ 366 004b DF000000 		.4byte	.LASF5
+ 367 004f 02       		.uleb128 0x2
+ 368 0050 08       		.byte	0x8
+ 369 0051 05       		.byte	0x5
+ 370 0052 A0010000 		.4byte	.LASF6
+ 371 0056 02       		.uleb128 0x2
+ 372 0057 08       		.byte	0x8
+ 373 0058 07       		.byte	0x7
+ 374 0059 32010000 		.4byte	.LASF7
+ 375 005d 03       		.uleb128 0x3
+ 376 005e 04       		.byte	0x4
+ 377 005f 05       		.byte	0x5
+ 378 0060 696E7400 		.ascii	"int\000"
+ 379 0064 02       		.uleb128 0x2
+ 380 0065 04       		.byte	0x4
+ 381 0066 07       		.byte	0x7
+ 382 0067 18010000 		.4byte	.LASF8
+ 383 006b 04       		.uleb128 0x4
+ 384 006c F1000000 		.4byte	.LASF12
+ 385 0070 02       		.byte	0x2
+ 386 0071 9201     		.2byte	0x192
+ 387 0073 2C000000 		.4byte	0x2c
+ 388 0077 02       		.uleb128 0x2
+ 389 0078 04       		.byte	0x4
+ 390 0079 04       		.byte	0x4
+ 391 007a 38000000 		.4byte	.LASF9
+ 392 007e 02       		.uleb128 0x2
+ 393 007f 08       		.byte	0x8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 13
+
+
+ 394 0080 04       		.byte	0x4
+ 395 0081 F7000000 		.4byte	.LASF10
+ 396 0085 02       		.uleb128 0x2
+ 397 0086 01       		.byte	0x1
+ 398 0087 08       		.byte	0x8
+ 399 0088 AE010000 		.4byte	.LASF11
+ 400 008c 04       		.uleb128 0x4
+ 401 008d DA000000 		.4byte	.LASF13
+ 402 0091 02       		.byte	0x2
+ 403 0092 3C02     		.2byte	0x23c
+ 404 0094 98000000 		.4byte	0x98
+ 405 0098 05       		.uleb128 0x5
+ 406 0099 6B000000 		.4byte	0x6b
+ 407 009d 02       		.uleb128 0x2
+ 408 009e 08       		.byte	0x8
+ 409 009f 04       		.byte	0x4
+ 410 00a0 D5010000 		.4byte	.LASF14
+ 411 00a4 02       		.uleb128 0x2
+ 412 00a5 04       		.byte	0x4
+ 413 00a6 07       		.byte	0x7
+ 414 00a7 91010000 		.4byte	.LASF15
+ 415 00ab 06       		.uleb128 0x6
+ 416 00ac 25010000 		.4byte	.LASF16
+ 417 00b0 01       		.byte	0x1
+ 418 00b1 4E       		.byte	0x4e
+ 419 00b2 00000000 		.4byte	.LFB1
+ 420 00b6 28000000 		.4byte	.LFE1-.LFB1
+ 421 00ba 01       		.uleb128 0x1
+ 422 00bb 9C       		.byte	0x9c
+ 423 00bc 06       		.uleb128 0x6
+ 424 00bd FE000000 		.4byte	.LASF17
+ 425 00c1 01       		.byte	0x1
+ 426 00c2 A4       		.byte	0xa4
+ 427 00c3 00000000 		.4byte	.LFB3
+ 428 00c7 1C000000 		.4byte	.LFE3-.LFB3
+ 429 00cb 01       		.uleb128 0x1
+ 430 00cc 9C       		.byte	0x9c
+ 431 00cd 07       		.uleb128 0x7
+ 432 00ce C6010000 		.4byte	.LASF18
+ 433 00d2 01       		.byte	0x1
+ 434 00d3 D2       		.byte	0xd2
+ 435 00d4 00000000 		.4byte	.LFB4
+ 436 00d8 18000000 		.4byte	.LFE4-.LFB4
+ 437 00dc 01       		.uleb128 0x1
+ 438 00dd 9C       		.byte	0x9c
+ 439 00de 01010000 		.4byte	0x101
+ 440 00e2 08       		.uleb128 0x8
+ 441 00e3 9A010000 		.4byte	.LASF20
+ 442 00e7 01       		.byte	0x1
+ 443 00e8 D2       		.byte	0xd2
+ 444 00e9 6B000000 		.4byte	0x6b
+ 445 00ed 00000000 		.4byte	.LLST0
+ 446 00f1 09       		.uleb128 0x9
+ 447 00f2 0C000000 		.4byte	.LASF22
+ 448 00f6 01       		.byte	0x1
+ 449 00f7 D4       		.byte	0xd4
+ 450 00f8 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 14
+
+
+ 451 00fc 21000000 		.4byte	.LLST1
+ 452 0100 00       		.byte	0
+ 453 0101 07       		.uleb128 0x7
+ 454 0102 59010000 		.4byte	.LASF19
+ 455 0106 01       		.byte	0x1
+ 456 0107 EB       		.byte	0xeb
+ 457 0108 00000000 		.4byte	.LFB5
+ 458 010c 78000000 		.4byte	.LFE5-.LFB5
+ 459 0110 01       		.uleb128 0x1
+ 460 0111 9C       		.byte	0x9c
+ 461 0112 42010000 		.4byte	0x142
+ 462 0116 08       		.uleb128 0x8
+ 463 0117 25000000 		.4byte	.LASF21
+ 464 011b 01       		.byte	0x1
+ 465 011c EB       		.byte	0xeb
+ 466 011d 6B000000 		.4byte	0x6b
+ 467 0121 3F000000 		.4byte	.LLST2
+ 468 0125 0A       		.uleb128 0xa
+ 469 0126 49010000 		.4byte	.LASF23
+ 470 012a 01       		.byte	0x1
+ 471 012b EE       		.byte	0xee
+ 472 012c 57010000 		.4byte	0x157
+ 473 0130 02       		.uleb128 0x2
+ 474 0131 91       		.byte	0x91
+ 475 0132 6C       		.sleb128 -20
+ 476 0133 0A       		.uleb128 0xa
+ 477 0134 09010000 		.4byte	.LASF24
+ 478 0138 01       		.byte	0x1
+ 479 0139 FB       		.byte	0xfb
+ 480 013a 5C010000 		.4byte	0x15c
+ 481 013e 02       		.uleb128 0x2
+ 482 013f 91       		.byte	0x91
+ 483 0140 60       		.sleb128 -32
+ 484 0141 00       		.byte	0
+ 485 0142 0B       		.uleb128 0xb
+ 486 0143 52010000 		.4byte	0x152
+ 487 0147 52010000 		.4byte	0x152
+ 488 014b 0C       		.uleb128 0xc
+ 489 014c A4000000 		.4byte	0xa4
+ 490 0150 08       		.byte	0x8
+ 491 0151 00       		.byte	0
+ 492 0152 0D       		.uleb128 0xd
+ 493 0153 6B000000 		.4byte	0x6b
+ 494 0157 0D       		.uleb128 0xd
+ 495 0158 42010000 		.4byte	0x142
+ 496 015c 0D       		.uleb128 0xd
+ 497 015d 42010000 		.4byte	0x142
+ 498 0161 07       		.uleb128 0x7
+ 499 0162 86010000 		.4byte	.LASF25
+ 500 0166 01       		.byte	0x1
+ 501 0167 31       		.byte	0x31
+ 502 0168 00000000 		.4byte	.LFB0
+ 503 016c 34000000 		.4byte	.LFE0-.LFB0
+ 504 0170 01       		.uleb128 0x1
+ 505 0171 9C       		.byte	0x9c
+ 506 0172 99010000 		.4byte	0x199
+ 507 0176 0E       		.uleb128 0xe
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 15
+
+
+ 508 0177 1E000000 		.4byte	.LVL6
+ 509 017b 01010000 		.4byte	0x101
+ 510 017f 89010000 		.4byte	0x189
+ 511 0183 0F       		.uleb128 0xf
+ 512 0184 01       		.uleb128 0x1
+ 513 0185 50       		.byte	0x50
+ 514 0186 01       		.uleb128 0x1
+ 515 0187 30       		.byte	0x30
+ 516 0188 00       		.byte	0
+ 517 0189 10       		.uleb128 0x10
+ 518 018a 24000000 		.4byte	.LVL7
+ 519 018e CD000000 		.4byte	0xcd
+ 520 0192 0F       		.uleb128 0xf
+ 521 0193 01       		.uleb128 0x1
+ 522 0194 50       		.byte	0x50
+ 523 0195 01       		.uleb128 0x1
+ 524 0196 31       		.byte	0x31
+ 525 0197 00       		.byte	0
+ 526 0198 00       		.byte	0
+ 527 0199 07       		.uleb128 0x7
+ 528 019a 00000000 		.4byte	.LASF26
+ 529 019e 01       		.byte	0x1
+ 530 019f 86       		.byte	0x86
+ 531 01a0 00000000 		.4byte	.LFB2
+ 532 01a4 1C000000 		.4byte	.LFE2-.LFB2
+ 533 01a8 01       		.uleb128 0x1
+ 534 01a9 9C       		.byte	0x9c
+ 535 01aa C1010000 		.4byte	0x1c1
+ 536 01ae 11       		.uleb128 0x11
+ 537 01af 0C000000 		.4byte	.LVL8
+ 538 01b3 61010000 		.4byte	0x161
+ 539 01b7 11       		.uleb128 0x11
+ 540 01b8 16000000 		.4byte	.LVL9
+ 541 01bc AB000000 		.4byte	0xab
+ 542 01c0 00       		.byte	0
+ 543 01c1 12       		.uleb128 0x12
+ 544 01c2 2A000000 		.4byte	.LASF30
+ 545 01c6 01       		.byte	0x1
+ 546 01c7 1E       		.byte	0x1e
+ 547 01c8 6B000000 		.4byte	0x6b
+ 548 01cc 05       		.uleb128 0x5
+ 549 01cd 03       		.byte	0x3
+ 550 01ce 00000000 		.4byte	PGA_1_initVar
+ 551 01d2 00       		.byte	0
+ 552              		.section	.debug_abbrev,"",%progbits
+ 553              	.Ldebug_abbrev0:
+ 554 0000 01       		.uleb128 0x1
+ 555 0001 11       		.uleb128 0x11
+ 556 0002 01       		.byte	0x1
+ 557 0003 25       		.uleb128 0x25
+ 558 0004 0E       		.uleb128 0xe
+ 559 0005 13       		.uleb128 0x13
+ 560 0006 0B       		.uleb128 0xb
+ 561 0007 03       		.uleb128 0x3
+ 562 0008 0E       		.uleb128 0xe
+ 563 0009 1B       		.uleb128 0x1b
+ 564 000a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 16
+
+
+ 565 000b 55       		.uleb128 0x55
+ 566 000c 17       		.uleb128 0x17
+ 567 000d 11       		.uleb128 0x11
+ 568 000e 01       		.uleb128 0x1
+ 569 000f 10       		.uleb128 0x10
+ 570 0010 17       		.uleb128 0x17
+ 571 0011 00       		.byte	0
+ 572 0012 00       		.byte	0
+ 573 0013 02       		.uleb128 0x2
+ 574 0014 24       		.uleb128 0x24
+ 575 0015 00       		.byte	0
+ 576 0016 0B       		.uleb128 0xb
+ 577 0017 0B       		.uleb128 0xb
+ 578 0018 3E       		.uleb128 0x3e
+ 579 0019 0B       		.uleb128 0xb
+ 580 001a 03       		.uleb128 0x3
+ 581 001b 0E       		.uleb128 0xe
+ 582 001c 00       		.byte	0
+ 583 001d 00       		.byte	0
+ 584 001e 03       		.uleb128 0x3
+ 585 001f 24       		.uleb128 0x24
+ 586 0020 00       		.byte	0
+ 587 0021 0B       		.uleb128 0xb
+ 588 0022 0B       		.uleb128 0xb
+ 589 0023 3E       		.uleb128 0x3e
+ 590 0024 0B       		.uleb128 0xb
+ 591 0025 03       		.uleb128 0x3
+ 592 0026 08       		.uleb128 0x8
+ 593 0027 00       		.byte	0
+ 594 0028 00       		.byte	0
+ 595 0029 04       		.uleb128 0x4
+ 596 002a 16       		.uleb128 0x16
+ 597 002b 00       		.byte	0
+ 598 002c 03       		.uleb128 0x3
+ 599 002d 0E       		.uleb128 0xe
+ 600 002e 3A       		.uleb128 0x3a
+ 601 002f 0B       		.uleb128 0xb
+ 602 0030 3B       		.uleb128 0x3b
+ 603 0031 05       		.uleb128 0x5
+ 604 0032 49       		.uleb128 0x49
+ 605 0033 13       		.uleb128 0x13
+ 606 0034 00       		.byte	0
+ 607 0035 00       		.byte	0
+ 608 0036 05       		.uleb128 0x5
+ 609 0037 35       		.uleb128 0x35
+ 610 0038 00       		.byte	0
+ 611 0039 49       		.uleb128 0x49
+ 612 003a 13       		.uleb128 0x13
+ 613 003b 00       		.byte	0
+ 614 003c 00       		.byte	0
+ 615 003d 06       		.uleb128 0x6
+ 616 003e 2E       		.uleb128 0x2e
+ 617 003f 00       		.byte	0
+ 618 0040 3F       		.uleb128 0x3f
+ 619 0041 19       		.uleb128 0x19
+ 620 0042 03       		.uleb128 0x3
+ 621 0043 0E       		.uleb128 0xe
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 17
+
+
+ 622 0044 3A       		.uleb128 0x3a
+ 623 0045 0B       		.uleb128 0xb
+ 624 0046 3B       		.uleb128 0x3b
+ 625 0047 0B       		.uleb128 0xb
+ 626 0048 27       		.uleb128 0x27
+ 627 0049 19       		.uleb128 0x19
+ 628 004a 11       		.uleb128 0x11
+ 629 004b 01       		.uleb128 0x1
+ 630 004c 12       		.uleb128 0x12
+ 631 004d 06       		.uleb128 0x6
+ 632 004e 40       		.uleb128 0x40
+ 633 004f 18       		.uleb128 0x18
+ 634 0050 9742     		.uleb128 0x2117
+ 635 0052 19       		.uleb128 0x19
+ 636 0053 00       		.byte	0
+ 637 0054 00       		.byte	0
+ 638 0055 07       		.uleb128 0x7
+ 639 0056 2E       		.uleb128 0x2e
+ 640 0057 01       		.byte	0x1
+ 641 0058 3F       		.uleb128 0x3f
+ 642 0059 19       		.uleb128 0x19
+ 643 005a 03       		.uleb128 0x3
+ 644 005b 0E       		.uleb128 0xe
+ 645 005c 3A       		.uleb128 0x3a
+ 646 005d 0B       		.uleb128 0xb
+ 647 005e 3B       		.uleb128 0x3b
+ 648 005f 0B       		.uleb128 0xb
+ 649 0060 27       		.uleb128 0x27
+ 650 0061 19       		.uleb128 0x19
+ 651 0062 11       		.uleb128 0x11
+ 652 0063 01       		.uleb128 0x1
+ 653 0064 12       		.uleb128 0x12
+ 654 0065 06       		.uleb128 0x6
+ 655 0066 40       		.uleb128 0x40
+ 656 0067 18       		.uleb128 0x18
+ 657 0068 9742     		.uleb128 0x2117
+ 658 006a 19       		.uleb128 0x19
+ 659 006b 01       		.uleb128 0x1
+ 660 006c 13       		.uleb128 0x13
+ 661 006d 00       		.byte	0
+ 662 006e 00       		.byte	0
+ 663 006f 08       		.uleb128 0x8
+ 664 0070 05       		.uleb128 0x5
+ 665 0071 00       		.byte	0
+ 666 0072 03       		.uleb128 0x3
+ 667 0073 0E       		.uleb128 0xe
+ 668 0074 3A       		.uleb128 0x3a
+ 669 0075 0B       		.uleb128 0xb
+ 670 0076 3B       		.uleb128 0x3b
+ 671 0077 0B       		.uleb128 0xb
+ 672 0078 49       		.uleb128 0x49
+ 673 0079 13       		.uleb128 0x13
+ 674 007a 02       		.uleb128 0x2
+ 675 007b 17       		.uleb128 0x17
+ 676 007c 00       		.byte	0
+ 677 007d 00       		.byte	0
+ 678 007e 09       		.uleb128 0x9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 18
+
+
+ 679 007f 34       		.uleb128 0x34
+ 680 0080 00       		.byte	0
+ 681 0081 03       		.uleb128 0x3
+ 682 0082 0E       		.uleb128 0xe
+ 683 0083 3A       		.uleb128 0x3a
+ 684 0084 0B       		.uleb128 0xb
+ 685 0085 3B       		.uleb128 0x3b
+ 686 0086 0B       		.uleb128 0xb
+ 687 0087 49       		.uleb128 0x49
+ 688 0088 13       		.uleb128 0x13
+ 689 0089 02       		.uleb128 0x2
+ 690 008a 17       		.uleb128 0x17
+ 691 008b 00       		.byte	0
+ 692 008c 00       		.byte	0
+ 693 008d 0A       		.uleb128 0xa
+ 694 008e 34       		.uleb128 0x34
+ 695 008f 00       		.byte	0
+ 696 0090 03       		.uleb128 0x3
+ 697 0091 0E       		.uleb128 0xe
+ 698 0092 3A       		.uleb128 0x3a
+ 699 0093 0B       		.uleb128 0xb
+ 700 0094 3B       		.uleb128 0x3b
+ 701 0095 0B       		.uleb128 0xb
+ 702 0096 49       		.uleb128 0x49
+ 703 0097 13       		.uleb128 0x13
+ 704 0098 02       		.uleb128 0x2
+ 705 0099 18       		.uleb128 0x18
+ 706 009a 00       		.byte	0
+ 707 009b 00       		.byte	0
+ 708 009c 0B       		.uleb128 0xb
+ 709 009d 01       		.uleb128 0x1
+ 710 009e 01       		.byte	0x1
+ 711 009f 49       		.uleb128 0x49
+ 712 00a0 13       		.uleb128 0x13
+ 713 00a1 01       		.uleb128 0x1
+ 714 00a2 13       		.uleb128 0x13
+ 715 00a3 00       		.byte	0
+ 716 00a4 00       		.byte	0
+ 717 00a5 0C       		.uleb128 0xc
+ 718 00a6 21       		.uleb128 0x21
+ 719 00a7 00       		.byte	0
+ 720 00a8 49       		.uleb128 0x49
+ 721 00a9 13       		.uleb128 0x13
+ 722 00aa 2F       		.uleb128 0x2f
+ 723 00ab 0B       		.uleb128 0xb
+ 724 00ac 00       		.byte	0
+ 725 00ad 00       		.byte	0
+ 726 00ae 0D       		.uleb128 0xd
+ 727 00af 26       		.uleb128 0x26
+ 728 00b0 00       		.byte	0
+ 729 00b1 49       		.uleb128 0x49
+ 730 00b2 13       		.uleb128 0x13
+ 731 00b3 00       		.byte	0
+ 732 00b4 00       		.byte	0
+ 733 00b5 0E       		.uleb128 0xe
+ 734 00b6 898201   		.uleb128 0x4109
+ 735 00b9 01       		.byte	0x1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 19
+
+
+ 736 00ba 11       		.uleb128 0x11
+ 737 00bb 01       		.uleb128 0x1
+ 738 00bc 31       		.uleb128 0x31
+ 739 00bd 13       		.uleb128 0x13
+ 740 00be 01       		.uleb128 0x1
+ 741 00bf 13       		.uleb128 0x13
+ 742 00c0 00       		.byte	0
+ 743 00c1 00       		.byte	0
+ 744 00c2 0F       		.uleb128 0xf
+ 745 00c3 8A8201   		.uleb128 0x410a
+ 746 00c6 00       		.byte	0
+ 747 00c7 02       		.uleb128 0x2
+ 748 00c8 18       		.uleb128 0x18
+ 749 00c9 9142     		.uleb128 0x2111
+ 750 00cb 18       		.uleb128 0x18
+ 751 00cc 00       		.byte	0
+ 752 00cd 00       		.byte	0
+ 753 00ce 10       		.uleb128 0x10
+ 754 00cf 898201   		.uleb128 0x4109
+ 755 00d2 01       		.byte	0x1
+ 756 00d3 11       		.uleb128 0x11
+ 757 00d4 01       		.uleb128 0x1
+ 758 00d5 31       		.uleb128 0x31
+ 759 00d6 13       		.uleb128 0x13
+ 760 00d7 00       		.byte	0
+ 761 00d8 00       		.byte	0
+ 762 00d9 11       		.uleb128 0x11
+ 763 00da 898201   		.uleb128 0x4109
+ 764 00dd 00       		.byte	0
+ 765 00de 11       		.uleb128 0x11
+ 766 00df 01       		.uleb128 0x1
+ 767 00e0 31       		.uleb128 0x31
+ 768 00e1 13       		.uleb128 0x13
+ 769 00e2 00       		.byte	0
+ 770 00e3 00       		.byte	0
+ 771 00e4 12       		.uleb128 0x12
+ 772 00e5 34       		.uleb128 0x34
+ 773 00e6 00       		.byte	0
+ 774 00e7 03       		.uleb128 0x3
+ 775 00e8 0E       		.uleb128 0xe
+ 776 00e9 3A       		.uleb128 0x3a
+ 777 00ea 0B       		.uleb128 0xb
+ 778 00eb 3B       		.uleb128 0x3b
+ 779 00ec 0B       		.uleb128 0xb
+ 780 00ed 49       		.uleb128 0x49
+ 781 00ee 13       		.uleb128 0x13
+ 782 00ef 3F       		.uleb128 0x3f
+ 783 00f0 19       		.uleb128 0x19
+ 784 00f1 02       		.uleb128 0x2
+ 785 00f2 18       		.uleb128 0x18
+ 786 00f3 00       		.byte	0
+ 787 00f4 00       		.byte	0
+ 788 00f5 00       		.byte	0
+ 789              		.section	.debug_loc,"",%progbits
+ 790              	.Ldebug_loc0:
+ 791              	.LLST0:
+ 792 0000 00000000 		.4byte	.LVL0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 20
+
+
+ 793 0004 0C000000 		.4byte	.LVL2
+ 794 0008 0100     		.2byte	0x1
+ 795 000a 50       		.byte	0x50
+ 796 000b 0C000000 		.4byte	.LVL2
+ 797 000f 18000000 		.4byte	.LFE4
+ 798 0013 0400     		.2byte	0x4
+ 799 0015 F3       		.byte	0xf3
+ 800 0016 01       		.uleb128 0x1
+ 801 0017 50       		.byte	0x50
+ 802 0018 9F       		.byte	0x9f
+ 803 0019 00000000 		.4byte	0
+ 804 001d 00000000 		.4byte	0
+ 805              	.LLST1:
+ 806 0021 08000000 		.4byte	.LVL1
+ 807 0025 0E000000 		.4byte	.LVL3
+ 808 0029 0100     		.2byte	0x1
+ 809 002b 53       		.byte	0x53
+ 810 002c 0E000000 		.4byte	.LVL3
+ 811 0030 18000000 		.4byte	.LFE4
+ 812 0034 0100     		.2byte	0x1
+ 813 0036 50       		.byte	0x50
+ 814 0037 00000000 		.4byte	0
+ 815 003b 00000000 		.4byte	0
+ 816              	.LLST2:
+ 817 003f 00000000 		.4byte	.LVL4
+ 818 0043 0C000000 		.4byte	.LVL5
+ 819 0047 0100     		.2byte	0x1
+ 820 0049 50       		.byte	0x50
+ 821 004a 0C000000 		.4byte	.LVL5
+ 822 004e 78000000 		.4byte	.LFE5
+ 823 0052 0400     		.2byte	0x4
+ 824 0054 F3       		.byte	0xf3
+ 825 0055 01       		.uleb128 0x1
+ 826 0056 50       		.byte	0x50
+ 827 0057 9F       		.byte	0x9f
+ 828 0058 00000000 		.4byte	0
+ 829 005c 00000000 		.4byte	0
+ 830              		.section	.debug_aranges,"",%progbits
+ 831 0000 44000000 		.4byte	0x44
+ 832 0004 0200     		.2byte	0x2
+ 833 0006 00000000 		.4byte	.Ldebug_info0
+ 834 000a 04       		.byte	0x4
+ 835 000b 00       		.byte	0
+ 836 000c 0000     		.2byte	0
+ 837 000e 0000     		.2byte	0
+ 838 0010 00000000 		.4byte	.LFB1
+ 839 0014 28000000 		.4byte	.LFE1-.LFB1
+ 840 0018 00000000 		.4byte	.LFB3
+ 841 001c 1C000000 		.4byte	.LFE3-.LFB3
+ 842 0020 00000000 		.4byte	.LFB4
+ 843 0024 18000000 		.4byte	.LFE4-.LFB4
+ 844 0028 00000000 		.4byte	.LFB5
+ 845 002c 78000000 		.4byte	.LFE5-.LFB5
+ 846 0030 00000000 		.4byte	.LFB0
+ 847 0034 34000000 		.4byte	.LFE0-.LFB0
+ 848 0038 00000000 		.4byte	.LFB2
+ 849 003c 1C000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 21
+
+
+ 850 0040 00000000 		.4byte	0
+ 851 0044 00000000 		.4byte	0
+ 852              		.section	.debug_ranges,"",%progbits
+ 853              	.Ldebug_ranges0:
+ 854 0000 00000000 		.4byte	.LFB1
+ 855 0004 28000000 		.4byte	.LFE1
+ 856 0008 00000000 		.4byte	.LFB3
+ 857 000c 1C000000 		.4byte	.LFE3
+ 858 0010 00000000 		.4byte	.LFB4
+ 859 0014 18000000 		.4byte	.LFE4
+ 860 0018 00000000 		.4byte	.LFB5
+ 861 001c 78000000 		.4byte	.LFE5
+ 862 0020 00000000 		.4byte	.LFB0
+ 863 0024 34000000 		.4byte	.LFE0
+ 864 0028 00000000 		.4byte	.LFB2
+ 865 002c 1C000000 		.4byte	.LFE2
+ 866 0030 00000000 		.4byte	0
+ 867 0034 00000000 		.4byte	0
+ 868              		.section	.debug_line,"",%progbits
+ 869              	.Ldebug_line0:
+ 870 0000 C8000000 		.section	.debug_str,"MS",%progbits,1
+ 870      02004200 
+ 870      00000201 
+ 870      FB0E0D00 
+ 870      01010101 
+ 871              	.LASF26:
+ 872 0000 5047415F 		.ascii	"PGA_1_Start\000"
+ 872      315F5374 
+ 872      61727400 
+ 873              	.LASF22:
+ 874 000c 746D7043 		.ascii	"tmpCR\000"
+ 874      5200
+ 875              	.LASF3:
+ 876 0012 73686F72 		.ascii	"short unsigned int\000"
+ 876      7420756E 
+ 876      7369676E 
+ 876      65642069 
+ 876      6E7400
+ 877              	.LASF21:
+ 878 0025 6761696E 		.ascii	"gain\000"
+ 878      00
+ 879              	.LASF30:
+ 880 002a 5047415F 		.ascii	"PGA_1_initVar\000"
+ 880      315F696E 
+ 880      69745661 
+ 880      7200
+ 881              	.LASF9:
+ 882 0038 666C6F61 		.ascii	"float\000"
+ 882      7400
+ 883              	.LASF1:
+ 884 003e 756E7369 		.ascii	"unsigned char\000"
+ 884      676E6564 
+ 884      20636861 
+ 884      7200
+ 885              	.LASF27:
+ 886 004c 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 886      43313120 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 22
+
+
+ 886      352E342E 
+ 886      31203230 
+ 886      31363036 
+ 887 007f 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 887      20726576 
+ 887      6973696F 
+ 887      6E203233 
+ 887      37373135 
+ 888 00b2 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 888      66756E63 
+ 888      74696F6E 
+ 888      2D736563 
+ 888      74696F6E 
+ 889              	.LASF13:
+ 890 00da 72656738 		.ascii	"reg8\000"
+ 890      00
+ 891              	.LASF5:
+ 892 00df 6C6F6E67 		.ascii	"long unsigned int\000"
+ 892      20756E73 
+ 892      69676E65 
+ 892      6420696E 
+ 892      7400
+ 893              	.LASF12:
+ 894 00f1 75696E74 		.ascii	"uint8\000"
+ 894      3800
+ 895              	.LASF10:
+ 896 00f7 646F7562 		.ascii	"double\000"
+ 896      6C6500
+ 897              	.LASF17:
+ 898 00fe 5047415F 		.ascii	"PGA_1_Stop\000"
+ 898      315F5374 
+ 898      6F7000
+ 899              	.LASF24:
+ 900 0109 5047415F 		.ascii	"PGA_1_GainComp\000"
+ 900      315F4761 
+ 900      696E436F 
+ 900      6D7000
+ 901              	.LASF8:
+ 902 0118 756E7369 		.ascii	"unsigned int\000"
+ 902      676E6564 
+ 902      20696E74 
+ 902      00
+ 903              	.LASF16:
+ 904 0125 5047415F 		.ascii	"PGA_1_Enable\000"
+ 904      315F456E 
+ 904      61626C65 
+ 904      00
+ 905              	.LASF7:
+ 906 0132 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 906      206C6F6E 
+ 906      6720756E 
+ 906      7369676E 
+ 906      65642069 
+ 907              	.LASF23:
+ 908 0149 5047415F 		.ascii	"PGA_1_GainArray\000"
+ 908      315F4761 
+ 908      696E4172 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 23
+
+
+ 908      72617900 
+ 909              	.LASF19:
+ 910 0159 5047415F 		.ascii	"PGA_1_SetGain\000"
+ 910      315F5365 
+ 910      74476169 
+ 910      6E00
+ 911              	.LASF28:
+ 912 0167 47656E65 		.ascii	"Generated_Source\\PSoC5\\PGA_1.c\000"
+ 912      72617465 
+ 912      645F536F 
+ 912      75726365 
+ 912      5C50536F 
+ 913              	.LASF25:
+ 914 0186 5047415F 		.ascii	"PGA_1_Init\000"
+ 914      315F496E 
+ 914      697400
+ 915              	.LASF15:
+ 916 0191 73697A65 		.ascii	"sizetype\000"
+ 916      74797065 
+ 916      00
+ 917              	.LASF20:
+ 918 019a 706F7765 		.ascii	"power\000"
+ 918      7200
+ 919              	.LASF6:
+ 920 01a0 6C6F6E67 		.ascii	"long long int\000"
+ 920      206C6F6E 
+ 920      6720696E 
+ 920      7400
+ 921              	.LASF11:
+ 922 01ae 63686172 		.ascii	"char\000"
+ 922      00
+ 923              	.LASF2:
+ 924 01b3 73686F72 		.ascii	"short int\000"
+ 924      7420696E 
+ 924      7400
+ 925              	.LASF4:
+ 926 01bd 6C6F6E67 		.ascii	"long int\000"
+ 926      20696E74 
+ 926      00
+ 927              	.LASF18:
+ 928 01c6 5047415F 		.ascii	"PGA_1_SetPower\000"
+ 928      315F5365 
+ 928      74506F77 
+ 928      657200
+ 929              	.LASF14:
+ 930 01d5 6C6F6E67 		.ascii	"long double\000"
+ 930      20646F75 
+ 930      626C6500 
+ 931              	.LASF0:
+ 932 01e1 7369676E 		.ascii	"signed char\000"
+ 932      65642063 
+ 932      68617200 
+ 933              	.LASF29:
+ 934 01ed 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 934      73657273 
+ 934      5C467261 
+ 934      6E6B6C69 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cci0pqPh.s 			page 24
+
+
+ 934      6E4C6162 
+ 935 021c 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Mas"
+ 935      434E545F 
+ 935      49565C50 
+ 935      536F435C 
+ 935      4C61796F 
+ 936 024a 7465725C 		.ascii	"ter\\Master 1\\Design01.cydsn\000"
+ 936      4D617374 
+ 936      65722031 
+ 936      5C446573 
+ 936      69676E30 
+ 937              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

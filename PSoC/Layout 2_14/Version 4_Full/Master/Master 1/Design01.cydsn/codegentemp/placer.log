@@ -6,7 +6,7 @@
 
 #Build Date:         Jul 19 2017 14:31:00
 
-#File Generated:     Aug 6 2018 11:33:59
+#File Generated:     Aug 16 2018 11:41:14
 
 #Purpose:            
 
@@ -55,10 +55,10 @@ Design Statistics after Packing
 Device Utilization Summary after Packing
     Macrocells                  :	58/192
     UDBS                        :	11/24
-    IOs                         :	14/72
+    IOs                         :	15/72
 
 
-D2088: Phase 3, elapsed time : 0.1 (sec)
+D2088: Phase 3, elapsed time : 0.0 (sec)
 
 Phase 4
 D2088: Phase 4, elapsed time : 0.0 (sec)
@@ -82,8 +82,8 @@ analysis after routing.
 Number of clocks: 17
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.1 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.3 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.3 MHz
 Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
@@ -111,8 +111,8 @@ Phase 7
 Number of clocks: 17
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.1 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.3 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.3 MHz
 Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
@@ -130,7 +130,7 @@ Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 1.0 (sec)
+D2088: Phase 7, elapsed time : 1.2 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	19
@@ -140,11 +140,11 @@ Final Design Statistics
     Number of Status            	:	3
     Number of SyncCells         	:	0
     Number of count7cells       	:	1
-    Number of IOs       	:	14
+    Number of IOs       	:	15
 
 Device Utilization Summary
     Macrocells                  :	58/192
-    IOs                         :	14/72
+    IOs                         :	15/72
 
 
 
@@ -163,8 +163,8 @@ analysis after routing.
 Number of clocks: 17
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.1 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.3 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.3 MHz
 Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
@@ -188,5 +188,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 2.3 sec.
+I2076: Total run-time: 2.0 sec.
 

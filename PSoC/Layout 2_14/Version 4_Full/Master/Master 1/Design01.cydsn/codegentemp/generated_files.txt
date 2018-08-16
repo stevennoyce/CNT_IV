@@ -115,6 +115,9 @@
   <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\Pin_LocalGates_aliases.h" value="HEADER;;;;;Pin_LocalGates" />
   <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\Pin_LocalGates.c" value="SOURCE_C;CortexM3;;;;Pin_LocalGates" />
   <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\Pin_LocalGates.h" value="HEADER;;;;;Pin_LocalGates" />
+  <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\Opamp_1.c" value="SOURCE_C;CortexM3;;;;Opamp_1" />
+  <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\Opamp_1.h" value="HEADER;;;;;Opamp_1" />
+  <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\Opamp_1_PM.c" value="SOURCE_C;CortexM3;;;;Opamp_1" />
   <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\USBUART_Dm_aliases.h" value="HEADER;;;;;USBUART_Dm" />
   <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\USBUART_Dm.c" value="SOURCE_C;CortexM3;;;;USBUART_Dm" />
   <file name="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\codegentemp\USBUART_Dm.h" value="HEADER;;;;;USBUART_Dm" />

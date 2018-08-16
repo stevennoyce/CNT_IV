@@ -735,18 +735,18 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 	
 	Measure_Current_Vss(&IdsAverageAmps, &IdsSDAmps, deltaSigmaSampleCount, 0);
 	
-	int32 SAR1_Average = 0;
-	int32 SAR1_SD = 0;
-	int32 SAR2_Average = 0;
-	int32 SAR2_SD = 0;
-
-	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
-	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
-
-	float SAR1 = 1e-6*SAR1_Average;
-	float SAR2 = 1e-6*SAR2_Average;
-
-	sprintf(TransmitBuffer, "[%e,%f,%f,%f,%u]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1, VDAC_Ref_Data);
+//	int32 SAR1_Average = 0;
+//	int32 SAR1_SD = 0;
+//	int32 SAR2_Average = 0;
+//	int32 SAR2_SD = 0;
+//
+//	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
+//	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
+//
+//	float SAR1 = 1e-6*SAR1_Average;
+//	float SAR2 = 1e-6*SAR2_Average;
+	
+	sprintf(TransmitBuffer, "[%e,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds());
 	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
 	UART_1_PutString(TransmitBuffer);
 }
@@ -1023,6 +1023,9 @@ int main(void) {
 	I2C_1_Start();
 	ADC_SAR_1_Start();
 	ADC_SAR_2_Start();
+	
+	//Start the op-amp buffers
+	Opamp_1_Start();
 	
 	CyDelay(1000);
 	

@@ -1,5 +1,5 @@
 # Design01
-# 2018-08-06 15:34:02Z
+# 2018-08-16 15:41:16Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -53,7 +53,7 @@ set_location "\ADC_DelSig_1:DEC\" decimatorcell -1 -1 0
 set_location "__ONE__" 2 3 0 0
 set_location "\TIA_1:SC\" sccell -1 -1 2
 set_location "\VDAC_Vgs:viDAC8\" vidaccell -1 -1 3
-set_location "\VDAC_Vds:viDAC8\" vidaccell -1 -1 0
+set_location "\VDAC_Vds:viDAC8\" vidaccell -1 -1 1
 set_location "\VDAC_Ref:viDAC8\" vidaccell -1 -1 2
 set_location "\I2C_1:I2C_IRQ\" interrupt -1 -1 2
 set_location "\I2C_1:bI2C_UDB:SyncCtl:CtrlReg\" 1 5 6
@@ -72,6 +72,7 @@ set_location "\ADC_SAR_1:IRQ\" interrupt -1 -1 0
 set_location "\ADC_SAR_1:ADC_SAR\" sarcell -1 -1 0
 set_location "\ADC_SAR_2:IRQ\" interrupt -1 -1 1
 set_location "\ADC_SAR_2:ADC_SAR\" sarcell -1 -1 1
+set_location "\Opamp_1:ABuf\" abufcell -1 -1 3
 set_location "\I2C_1:bI2C_UDB:sda_in_reg\" 0 5 1 2
 set_location "\I2C_1:bI2C_UDB:m_state_4\" 0 2 0 1
 set_location "\I2C_1:bI2C_UDB:m_state_3\" 1 5 0 0
@@ -102,6 +103,7 @@ set_location "\UART_1:BUART:tx_state_0\" 0 0 0 0
 set_location "\UART_1:BUART:tx_state_2\" 0 0 1 0
 set_location "\UART_1:BUART:tx_bitclk\" 0 0 0 1
 set_location "\UART_1:BUART:tx_ctrl_mark_last\" 1 1 1 1
+set_io "Dedicated_Output" iocell 3 7
 set_location "\UART_1:BUART:rx_state_0\" 1 0 1 3
 set_location "\UART_1:BUART:rx_load_fifo\" 1 0 1 1
 set_location "\UART_1:BUART:rx_state_3\" 1 0 1 2
