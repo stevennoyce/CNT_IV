@@ -1056,6 +1056,9 @@ def includeOriginOnYaxis(axis):
 		axis.set_ylim(bottom=0)	
 		
 def getTestLabel(deviceHistory, identifiers):
+	if(identifiers is None):
+		return ''
+	
 	label = str(identifiers['wafer']) + str(identifiers['chip']) + ':' + identifiers['device']
 	if len(deviceHistory) > 0:
 		test1Num = deviceHistory[0]['experimentNumber']
