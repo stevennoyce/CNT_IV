@@ -99,13 +99,15 @@ default_mode_parameters = {
 	'figureSizeOverride': None,
 	'colorsOverride': [],
 	'legendLoc': 'best',
+	'legendTitleSuffix':'',
 	'legendLabels': [],
 	'enableErrorBars': True,
 	'enableColorBar': True,
 	'enableGradient': False,
 	'staticBiasSegmentDividers': False,
 	'staticBiasChangeDividers': True,
-	'plotOffCurrent': True
+	'plotOffCurrent': True,
+	'generalInfo': None
 }
 
 plot_parameters = {
@@ -245,7 +247,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 	ax.yaxis.set_major_locator(matplotlib.ticker.LogLocator(numticks=10))
 	
 	# Add Legend and save figure
-	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'SubthresholdCurve', 'runConfigs', 'GateSweep', includeVdsSweep=True, includeSubthresholdSwing=False))
+	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))
 	adjustAndSaveFigure(fig, 'FullSubthresholdCurves', mode_parameters)
 
 	return (fig, ax)
@@ -297,7 +299,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 		axisLabels(ax, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
 
 	# Add Legend and save figure	
-	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'TransferCurve', 'runConfigs', 'GateSweep', includeVdsSweep=True))
+	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'TransferCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True))
 	adjustAndSaveFigure(fig, 'FullTransferCurves', mode_parameters)
 
 	return (fig, ax)
@@ -328,7 +330,7 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 			setLabel(line, mode_parameters['legendLabels'][i])
 
 	# Add Legend and save figure
-	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'GateCurrent', 'runConfigs', 'GateSweep', includeVdsSweep=True))
+	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'GateCurrent', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True))
 	adjustAndSaveFigure(fig, 'FullGateCurrents', mode_parameters)
 
 	return (fig, ax)
@@ -364,7 +366,7 @@ def plotFullOutputCurveHistory(deviceHistory, identifiers, sweepDirection='both'
 			setLabel(line, mode_parameters['legendLabels'][i])
 
 	# Add Legend and save figure	
-	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, 'OutputCurve', 'runConfigs', 'DrainSweep', includeVgsSweep=True))
+	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'OutputCurve', 'runConfigs', 'DrainSweep', mode_parameters, includeVgsSweep=True))
 	adjustAndSaveFigure(fig, 'FullOutputCurves', mode_parameters)
 
 	return (fig, ax)
@@ -512,7 +514,7 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 					ax1.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax1.get_ylim()[1]*(0.90 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 	
 	# Main Axis Legend
-	legend_title = getLegendTitle(deviceHistory, 'StaticBias', 'runConfigs', 'StaticBias', includeVdsHold=(not vds_setpoint_changes), includeVgsHold=(not vgs_setpoint_changes), includeTimeHold=(not biasTime_changes))
+	legend_title = getLegendTitle(deviceHistory, identifiers, 'StaticBias', 'runConfigs', 'StaticBias', mode_parameters, includeVdsHold=(not vds_setpoint_changes), includeVgsHold=(not vgs_setpoint_changes), includeTimeHold=(not biasTime_changes))
 	if(len(legend_title) > 0):
 		addLegend(ax1, loc=mode_parameters['legendLoc'], title=legend_title)
 	
@@ -1076,7 +1078,7 @@ def addLegend(axis, loc, title):
 	lines, labels = axis.get_legend_handles_labels()
 	axis.legend(lines, labels, loc=loc, title=title, labelspacing=(0) if(len(labels) == 0) else (0.3))
 
-def getLegendTitle(deviceHistory, plotType, parameterSuperType, parameterType, includeVdsSweep=False, includeVgsSweep=False, includeSubthresholdSwing=False, includeVdsHold=False, includeVgsHold=False, includeHoldTime=False, includeTimeHold=False):
+def getLegendTitle(deviceHistory, identifiers, plotType, parameterSuperType, parameterType, mode_parameters=None, includeVdsSweep=False, includeVgsSweep=False, includeSubthresholdSwing=False, includeVdsHold=False, includeVgsHold=False, includeHoldTime=False, includeTimeHold=False, includeChannelLength=True):
 	legend_title = ''
 	legend_entries = []
 	if(includeVdsSweep):
@@ -1106,6 +1108,17 @@ def getLegendTitle(deviceHistory, plotType, parameterSuperType, parameterType, i
 		legend_entries.append(plot_parameters[plotType]['vgs_legend'].format(deviceHistory[0][parameterSuperType][parameterType]['gateVoltageSetPoint']))
 	if(includeTimeHold):
 		legend_entries.append(plot_parameters[plotType]['t_legend'].format(timeWithUnits(np.mean([jsonData[parameterSuperType][parameterType]['totalBiasTime'] for jsonData in deviceHistory]))))
+	if(includeChannelLength):
+		if((mode_parameters is not None) and (mode_parameters['generalInfo'] is not None)):
+			wafer_info = mode_parameters['generalInfo']
+			L_ch = wafer_info['channel_length_nm'][identifiers['device']]
+			if(L_ch < 1000):
+				legend_entries.append('$L_{{ch}} = $ {:} nm'.format(L_ch))
+			else:
+				legend_entries.append('$L_{{ch}} = $ {:.1f} $\\mu$m'.format(L_ch/1000))
+				
+	if((mode_parameters is not None) and (mode_parameters['legendTitleSuffix'] != '')):
+		legend_entries.append(mode_parameters['legendTitleSuffix'])
 	
 	# Concatentate legend entries with new lines
 	for i in range(len(legend_entries)):

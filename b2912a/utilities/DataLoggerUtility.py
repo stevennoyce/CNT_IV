@@ -147,6 +147,12 @@ def loadMostRecentRunChipHistory(directory, fileName):
 
 
 
+# === Wafer History API ===
+def getWaferDirectory(parameters):
+	return os.path.join(parameters['dataFolder'], parameters['Identifiers']['user'], parameters['Identifiers']['project'], parameters['Identifiers']['wafer'])
+
+
+
 # === Faster JSON Loading ===
 def loadJSONtoStringArray(directory, loadFileName):
 	fileLines = []
