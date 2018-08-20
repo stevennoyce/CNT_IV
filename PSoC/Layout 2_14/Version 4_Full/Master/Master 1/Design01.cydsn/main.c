@@ -198,7 +198,7 @@ void Disconnect_Contact_From_All_Intermediates(uint8 contact) {
 }
 
 void Disconnect_All_Contacts_From_All_Intermediates() {
-	for (uint8 intermediate = 0; intermediate < INTERMEDIATE_COUNT/*/2*/; intermediate++) {
+	for (uint8 intermediate = 0; intermediate < INTERMEDIATE_COUNT; intermediate++) {
 		for (uint8 contact = 0; contact < CONTACT_COUNT/2; contact++) {
 			selectors[intermediate].write.data[contact] = CONTACT_DISCONNECT_CODE;
 		}
@@ -228,7 +228,7 @@ void Connect_Intermediate(uint8 intermediate) {
 }
 
 void Connect_Intermediates() {
-	for (uint8 i = 1; i <= INTERMEDIATE_COUNT/*/2*/; i++) {
+	for (uint8 i = 1; i <= INTERMEDIATE_COUNT; i++) {
 		Connect_Intermediate(i);
 	}
 }
