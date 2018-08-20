@@ -53,6 +53,14 @@ int16 Vds_Index_Goal_Relative;
 
 uint32 Current_Measurement_Sample_Count;
 
+bool uartSendingEnabled = true;
+bool usbuSendingEnabled = true;
+
+void sendTransmitBuffer() {
+	if (uartSendingEnabled) USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	if (usbuSendingEnabled) UART_1_PutString(TransmitBuffer);
+}
+
 void Setup_Selector_I2C_Struct(struct Selector_I2C_Struct *selector) {
 	selector->write.subAddress = 1;
 	selector->read.subAddress = sizeof(selector->write) + 1;
@@ -67,8 +75,7 @@ void Setup_Selector_I2C_Struct(struct Selector_I2C_Struct *selector) {
 
 void Update_Selector(uint8 selectori) {
 	sprintf(TransmitBuffer, "Updating Selector %u\r\n", selectori + 1);
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
+	sendTransmitBuffer();
 	
 	struct Selector_I2C_Struct* selector = &selectors[selectori];
 	
@@ -78,8 +85,7 @@ void Update_Selector(uint8 selectori) {
 		if ((I2C_1_MasterStatus() & I2C_1_MSTAT_WR_CMPLT)) break;
 		if (i >= 4e5 - 1) {
 			sprintf(TransmitBuffer, "I2C Transfer Error! Type: Timeout\r\n");
-			USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-			UART_1_PutString(TransmitBuffer);
+			sendTransmitBuffer();
 			I2C_1_Stop();
 			I2C_1_Start();
 		}
@@ -98,23 +104,19 @@ void Update_Selector(uint8 selectori) {
 	
 	if (I2C_1_MasterStatus() & I2C_1_MSTAT_ERR_XFER) {
 		sprintf(TransmitBuffer, "I2C Transfer Error! ");
-		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-		UART_1_PutString(TransmitBuffer);
+		sendTransmitBuffer();
 		
 		if (I2C_1_MasterStatus() & I2C_1_MSTAT_ERR_ADDR_NAK) {
 			sprintf(TransmitBuffer, "Type: NAK");
-			USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-			UART_1_PutString(TransmitBuffer);
+			sendTransmitBuffer();
 		}
 		
 		sprintf(TransmitBuffer, "\r\n");
-		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-		UART_1_PutString(TransmitBuffer);
+		sendTransmitBuffer();
 	}
 	
 	sprintf(TransmitBuffer, "Updated Selector %u\r\n", selectori + 1);
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
+	sendTransmitBuffer();
 }
 
 void Setup_Selectors() {
@@ -716,16 +718,14 @@ void Calibrate_ADC_Offset(uint32 sampleCount) {
 		ADC_Measure_uV(&voltage, &voltageSD, sampleCount);
 		TIA_Offsets_uV[i] = -voltage;
 		sprintf(TransmitBuffer, "# Offset %e Ohm: %li uV\r\n", TIA_Resistor_Values[i], -voltage);
-		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-		UART_1_PutString(TransmitBuffer);
+		sendTransmitBuffer();
 	}
 	
 	// Reset TIA Resistor
 	TIA_Set_Resistor(current_range_resistor);
 	
 	sprintf(TransmitBuffer, "# Calibrated ADC Offsets\r\n");
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
+	sendTransmitBuffer();
 }
 
 // Take a measurement of the system (Id - from delta-sigma ADC, Vgs, Vds, SAR1 ADC, SAR2 ADC)
@@ -747,8 +747,7 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 //	float SAR2 = 1e-6*SAR2_Average;
 	
 	sprintf(TransmitBuffer, "[%e,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds());
-	USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	UART_1_PutString(TransmitBuffer);
+	sendTransmitBuffer();
 }
 
 // Repeatedly take measurements of the system
@@ -893,8 +892,7 @@ void Scan(uint8 wide, uint8 loop) {
 		Connect_Contact_To_Intermediate(contact2, intermediate2);
 		
 		sprintf(TransmitBuffer, "\r\n%u\r\n", device);
-		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-		UART_1_PutString(TransmitBuffer);
+		sendTransmitBuffer();
 		
 		if (wide) {
 			Measure_Wide_Gate_Sweep(loop);
@@ -924,8 +922,7 @@ void Scan_Range(uint8 startDevice, uint8 stopDevice, uint8 wide, uint8 loop) {
 		Connect_Contact_To_Intermediate(contact2, intermediate2);
 		
 		sprintf(TransmitBuffer, "\r\n%u\r\n", device);
-		USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-		UART_1_PutString(TransmitBuffer);
+		sendTransmitBuffer();
 		
 		if (wide) {
 			Measure_Wide_Gate_Sweep(loop);
@@ -1121,8 +1118,7 @@ int main(void) {
 				Set_Vgs_mV(Vgs_mV);
 				
 				sprintf(TransmitBuffer, "# Vgs set to %f mV\r\n", Vgs_mV);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "set-vds-mv ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1131,24 +1127,20 @@ int main(void) {
 				Set_Vds_mV(Vds_mV);
 				
 				sprintf(TransmitBuffer, "# Vds set to %f mV\r\n", Vds_mV);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "scan ") == &ReceiveBuffer[0]) {
 				sprintf(TransmitBuffer, "\r\n# Scan Starting\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 				
 				Scan(0, 0);
 				
 				sprintf(TransmitBuffer, "\r\n# Scan Complete\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "scan-range ") == &ReceiveBuffer[0]) {
 				sprintf(TransmitBuffer, "\r\n# Scan-Range Starting\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 				
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 startDevice = strtol(location, &location, 10);
@@ -1156,13 +1148,11 @@ int main(void) {
 				Scan_Range(startDevice, stopDevice, 0, 0);
 				
 				sprintf(TransmitBuffer, "\r\n# Scan Range Complete\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "scan-range-loop ") == &ReceiveBuffer[0]) {
 				sprintf(TransmitBuffer, "\r\n# Scan-Range-Loop Starting\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 				
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 startDevice = strtol(location, &location, 10);
@@ -1170,13 +1160,11 @@ int main(void) {
 				Scan_Range(startDevice, stopDevice, 0, 1);
 				
 				sprintf(TransmitBuffer, "\r\n# Scan Range Loop Complete\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "scan-range-wide-loop ") == &ReceiveBuffer[0]) {
 				sprintf(TransmitBuffer, "\r\n# Scan-Range-Wide-Loop Starting\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 				
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 startDevice = strtol(location, &location, 10);
@@ -1184,8 +1172,7 @@ int main(void) {
 				Scan_Range(startDevice, stopDevice, 1, 1);
 				
 				sprintf(TransmitBuffer, "\r\n# Scan Range Wide Loop Complete\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "connect ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1194,8 +1181,7 @@ int main(void) {
 				Connect_Contact_To_Intermediate(contact, intermediate);
 				
 				sprintf(TransmitBuffer, "# Connected %u to %u\r\n", contact, intermediate);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "connect-c ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1204,8 +1190,7 @@ int main(void) {
 				Connect_Channel_On_Intermediate(channel, intermediate);
 				
 				sprintf(TransmitBuffer, "# Connected channel %u to %u\r\n", channel, intermediate);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "disconnect ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1214,8 +1199,7 @@ int main(void) {
 				Disconnect_Contact_From_Intermediate(contact, intermediate);
 				
 				sprintf(TransmitBuffer, "# Disonnected %u from %u\r\n", contact, intermediate);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "disconnect-all-from ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1223,15 +1207,13 @@ int main(void) {
 				Disconnect_All_Contacts_From_Intermediate(intermediate);
 				
 				sprintf(TransmitBuffer, "# Disconnected all from  %u\r\n", intermediate);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "disconnect-all-from-all ") == &ReceiveBuffer[0]) {
 				Disconnect_All_Contacts_From_All_Intermediates();
 				
 				sprintf(TransmitBuffer, "# Disconnected all from all\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "disconnect-from-all ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1239,8 +1221,7 @@ int main(void) {
 				Disconnect_Contact_From_All_Intermediates(contact);
 				
 				sprintf(TransmitBuffer, "# Disconnected %u from all\r\n", contact);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "connect-intermediate ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1248,15 +1229,13 @@ int main(void) {
 				Connect_Intermediate(intermediate);
 				
 				sprintf(TransmitBuffer, "# Connected intermediate %u\r\n", intermediate);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "connect-intermediates ") == &ReceiveBuffer[0]) {
 				Connect_Intermediates();
 				
 				sprintf(TransmitBuffer, "# Connected intermediates\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "Set_Current_Measurement_Sample_Count ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1265,12 +1244,34 @@ int main(void) {
 				Current_Measurement_Sample_Count = sampleCount;
 				
 				sprintf(TransmitBuffer, "# Set Current Measurement Sample Count\r\n");
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
+			} else 
+			if (strstr(ReceiveBuffer, "enable-uart-sending ") == &ReceiveBuffer[0]) {
+				uartSendingEnabled = true;
+				
+				sprintf(TransmitBuffer, "# Enabled UART Sending\r\n");
+				sendTransmitBuffer();
+			} else 
+			if (strstr(ReceiveBuffer, "enable-usbu-sending ") == &ReceiveBuffer[0]) {
+				usbuSendingEnabled = true;
+				
+				sprintf(TransmitBuffer, "# Enabled USBU Sending\r\n");
+				sendTransmitBuffer();
+			} else 
+			if (strstr(ReceiveBuffer, "disable-uart-sending ") == &ReceiveBuffer[0]) {
+				uartSendingEnabled = false;
+				
+				sprintf(TransmitBuffer, "# Disabled UART Sending\r\n");
+				sendTransmitBuffer();
+			} else 
+			if (strstr(ReceiveBuffer, "disable-usbu-sending ") == &ReceiveBuffer[0]) {
+				usbuSendingEnabled = false;
+				
+				sprintf(TransmitBuffer, "# Disabled USBU Sending\r\n");
+				sendTransmitBuffer();
 			} else {
 				sprintf(TransmitBuffer, "! Unidentified command: |%s|\r\n", ReceiveBuffer);
-				USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-				UART_1_PutString(TransmitBuffer);
+				sendTransmitBuffer();
 			}
 		}
 		
