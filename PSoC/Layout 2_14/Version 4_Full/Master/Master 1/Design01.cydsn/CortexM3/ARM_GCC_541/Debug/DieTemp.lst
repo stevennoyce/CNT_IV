@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
   28:Generated_Source\PSoC5/DieTemp.c ****                                                 ((uint32)(DieTemp_SPC_CLK_PERIOD * \
   29:Generated_Source\PSoC5/DieTemp.c ****                                                 DieTemp_CLK_DIV_SELECT)) * \
   30:Generated_Source\PSoC5/DieTemp.c ****                                                 ((uint32)DieTemp_TIMER_PERIOD)) + \
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 2
 
 
   31:Generated_Source\PSoC5/DieTemp.c ****                                                 (uint32)DieTemp_FRM_EXEC_TIME)
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
   43 000a 58B9     		cbnz	r0, .L4
   70:Generated_Source\PSoC5/DieTemp.c ****     {
   71:Generated_Source\PSoC5/DieTemp.c ****         #if(CY_PSOC5A)
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 3
 
 
   72:Generated_Source\PSoC5/DieTemp.c ****             if(CYRET_STARTED == CySpcGetTemp(DieTemp_NUMBER_OF_SAMPLES,
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
   77              		.thumb
   78              		.thumb_func
   79              		.type	DieTemp_Stop, %function
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 4
 
 
   80              	DieTemp_Stop:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  127:Generated_Source\PSoC5/DieTemp.c **** * Return:
  128:Generated_Source\PSoC5/DieTemp.c **** *  CYRET_SUCCESS if the temperature command completed sucessfully.
  129:Generated_Source\PSoC5/DieTemp.c **** *  CYRET_UNKNOWN if the there was an spc failure.
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 5
 
 
  130:Generated_Source\PSoC5/DieTemp.c **** *  CYRET_STARTED if the temperature command has not completed.
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  149:Generated_Source\PSoC5/DieTemp.c ****                     *temperature = (int16) ((uint16) temp[1]);
  134              		.loc 1 149 0
  135 002c 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 6
 
 
  136 0030 2380     		strh	r3, [r4]	@ movhi
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  171:Generated_Source\PSoC5/DieTemp.c **** 
  172:Generated_Source\PSoC5/DieTemp.c ****     if(status != CYRET_STARTED)
  166              		.loc 1 172 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 7
 
 
  167 004e 072C     		cmp	r4, #7
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  194              		.loc 1 199 0
  195              		.cfi_startproc
  196              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 8
 
 
  197              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  229              		.loc 1 221 0
  230 0022 3046     		mov	r0, r6
  231 0024 FFF7FEFF 		bl	DieTemp_Query
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 9
 
 
  232              	.LVL23:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  273              	DieTemp_GetTemp:
  274              	.LFB4:
  233:Generated_Source\PSoC5/DieTemp.c **** cystatus DieTemp_GetTemp(int16 * temperature) 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 10
 
 
  234:Generated_Source\PSoC5/DieTemp.c **** {
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  314              		.cfi_endproc
  315              	.LFE4:
  316              		.size	DieTemp_GetTemp, .-DieTemp_GetTemp
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 11
 
 
  317 001e 00BF     		.text
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  371 0060 696E7400 		.ascii	"int\000"
  372 0064 02       		.uleb128 0x2
  373 0065 04       		.byte	0x4
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 12
 
 
  374 0066 07       		.byte	0x7
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  428 00db 06       		.uleb128 0x6
  429 00dc 75000000 		.4byte	.LASF20
  430 00e0 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 13
 
 
  431 00e1 3B       		.byte	0x3b
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  485 0162 86       		.byte	0x86
  486 0163 AB010000 		.4byte	0x1ab
  487 0167 38000000 		.4byte	.LLST1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 14
 
 
  488 016b 0D       		.uleb128 0xd
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  542 01da 0C       		.uleb128 0xc
  543 01db 69000000 		.4byte	.LASF24
  544 01df 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 15
 
 
  545 01e0 C6       		.byte	0xc6
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  599 0257 53010000 		.4byte	.LLST6
  600 025b 07       		.uleb128 0x7
  601 025c 41000000 		.4byte	.LASF22
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 16
 
 
  602 0260 01       		.byte	0x1
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  656 0000 01       		.uleb128 0x1
  657 0001 11       		.uleb128 0x11
  658 0002 01       		.byte	0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 17
 
 
  659 0003 25       		.uleb128 0x25
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  713 0039 49       		.uleb128 0x49
  714 003a 13       		.uleb128 0x13
  715 003b 00       		.byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 18
 
 
  716 003c 00       		.byte	0
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  770 0077 01       		.byte	0x1
  771 0078 11       		.uleb128 0x11
  772 0079 01       		.uleb128 0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 19
 
 
  773 007a 31       		.uleb128 0x31
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  827 00b4 34       		.uleb128 0x34
  828 00b5 00       		.byte	0
  829 00b6 03       		.uleb128 0x3
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 20
 
 
  830 00b7 0E       		.uleb128 0xe
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  884 00ed 06       		.uleb128 0x6
  885 00ee 40       		.uleb128 0x40
  886 00ef 18       		.uleb128 0x18
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 21
 
 
  887 00f0 9742     		.uleb128 0x2117
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  941 000a 09       		.byte	0x9
  942 000b FF       		.byte	0xff
  943 000c 9F       		.byte	0x9f
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 22
 
 
  944 000d 1E000000 		.4byte	.LVL4
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  998 0095 F3       		.byte	0xf3
  999 0096 01       		.uleb128 0x1
  1000 0097 50       		.byte	0x50
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 23
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 23
 
 
  1001 0098 9F       		.byte	0x9f
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  1055 0127 0100     		.2byte	0x1
  1056 0129 55       		.byte	0x55
  1057 012a 36000000 		.4byte	.LVL28
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 24
 
 
  1058 012e 3A000000 		.4byte	.LVL29
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  1112 01c0 00000000 		.4byte	0
  1113              		.section	.debug_aranges,"",%progbits
  1114 0000 3C000000 		.4byte	0x3c
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 25
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 25
 
 
  1115 0004 0200     		.2byte	0x2
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  1159 0020 73686F72 		.ascii	"short unsigned int\000"
  1159      7420756E 
  1159      7369676E 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 26
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 26
 
 
  1159      65642069 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  1181      20756E73 
  1181      69676E65 
  1181      6420696E 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 27
 
 
  1181      7400
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 1
  1207      6F636B00 
  1208              	.LASF6:
  1209 01cb 6C6F6E67 		.ascii	"long long int\000"
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccRVg8Pw.s 			page 28
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cciXdFnT.s 			page 28
 
 
  1209      206C6F6E 
