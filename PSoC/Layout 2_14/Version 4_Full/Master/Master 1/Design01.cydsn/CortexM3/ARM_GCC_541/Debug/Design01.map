@@ -2391,8 +2391,8 @@ END GROUP
  *(.shdata)
  *(.data .data.* .gnu.linkonce.d.*)
  .data          0x1fff80cc       0x2c .\CortexM3\ARM_GCC_541\Debug\main.o
-                0x1fff80cc                uartSendingEnabled
-                0x1fff80cd                usbuSendingEnabled
+                0x1fff80cc                usbuSendingEnabled
+                0x1fff80cd                uartSendingEnabled
                 0x1fff80d0                TIA_Resistor_Codes
                 0x1fff80d8                TIA_Resistor_Values
  .data          0x1fff80f8        0x4 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
