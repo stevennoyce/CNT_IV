@@ -58,8 +58,8 @@ bool uartSendingEnabled = true;
 bool usbuSendingEnabled = true;
 
 void sendTransmitBuffer() {
-	if (uartSendingEnabled) USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
-	if (usbuSendingEnabled) UART_1_PutString(TransmitBuffer);
+	if (usbuSendingEnabled) USBUARTH_Send(TransmitBuffer, strlen(TransmitBuffer));
+	if (uartSendingEnabled) UART_1_PutString(TransmitBuffer);
 }
 
 void Setup_Selector_I2C_Struct(struct Selector_I2C_Struct *selector) {
@@ -1248,28 +1248,28 @@ int main(void) {
 				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "enable-uart-sending ") == &ReceiveBuffer[0]) {
-				uartSendingEnabled = true;
-				
 				sprintf(TransmitBuffer, "# Enabled UART Sending\r\n");
 				sendTransmitBuffer();
+				
+				uartSendingEnabled = true;
 			} else 
 			if (strstr(ReceiveBuffer, "enable-usbu-sending ") == &ReceiveBuffer[0]) {
-				usbuSendingEnabled = true;
-				
 				sprintf(TransmitBuffer, "# Enabled USBU Sending\r\n");
 				sendTransmitBuffer();
+				
+				usbuSendingEnabled = true;
 			} else 
 			if (strstr(ReceiveBuffer, "disable-uart-sending ") == &ReceiveBuffer[0]) {
-				uartSendingEnabled = false;
-				
 				sprintf(TransmitBuffer, "# Disabled UART Sending\r\n");
 				sendTransmitBuffer();
+				
+				uartSendingEnabled = false;
 			} else 
 			if (strstr(ReceiveBuffer, "disable-usbu-sending ") == &ReceiveBuffer[0]) {
-				usbuSendingEnabled = false;
-				
 				sprintf(TransmitBuffer, "# Disabled USBU Sending\r\n");
 				sendTransmitBuffer();
+				
+				usbuSendingEnabled = false;
 			} else {
 				sprintf(TransmitBuffer, "! Unidentified command: |%s|\r\n", ReceiveBuffer);
 				sendTransmitBuffer();
