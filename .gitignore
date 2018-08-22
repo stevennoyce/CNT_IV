@@ -30,11 +30,13 @@ data/
 
 #ignore PSoC files
 *.o
-*/Debug
-*/Release
-*/Export
-*/codegentemp
-*/Generated_Source
+Archive/
+Backup/
+Debug/
+Release/
+Export/
+codegentemp/
+Generated_Source/
 *_datasheet.pdf
 *_timing.html
 *.cycdx
