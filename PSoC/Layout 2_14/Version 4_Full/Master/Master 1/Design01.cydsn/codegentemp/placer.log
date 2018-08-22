@@ -6,7 +6,7 @@
 
 #Build Date:         Jul 19 2017 14:31:00
 
-#File Generated:     Aug 20 2018 08:08:30
+#File Generated:     Aug 22 2018 07:48:56
 
 #Purpose:            
 
@@ -55,7 +55,7 @@ Design Statistics after Packing
 Device Utilization Summary after Packing
     Macrocells                  :	58/192
     UDBS                        :	11/24
-    IOs                         :	15/72
+    IOs                         :	16/72
 
 
 D2088: Phase 3, elapsed time : 0.0 (sec)
@@ -82,20 +82,20 @@ analysis after routing.
 Number of clocks: 17
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.3 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.3 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   3.0 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   3.0 MHz
 Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
-Clock: CyBUS_CLK            | Frequency:  57.3 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK            | Frequency:  50.2 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.1 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: I2C_1_IntClock       | Frequency:  38.1 MHz | Target:   1.6 MHz
-Clock: UART_1_IntClock      | Frequency:  52.1 MHz | Target:   0.1 MHz
+Clock: I2C_1_IntClock       | Frequency:  37.3 MHz | Target:   1.6 MHz
+Clock: UART_1_IntClock      | Frequency:  50.2 MHz | Target:   0.1 MHz
 Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 
 ======================================================================
@@ -111,8 +111,8 @@ Phase 7
 Number of clocks: 17
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.3 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.3 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   3.0 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   3.0 MHz
 Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
@@ -123,7 +123,7 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.1 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: I2C_1_IntClock       | Frequency:   1.7 MHz | Target:   1.6 MHz
+Clock: I2C_1_IntClock       | Frequency:   1.9 MHz | Target:   1.6 MHz
 Clock: UART_1_IntClock      | Frequency:   1.4 MHz | Target:   0.1 MHz
 Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 
@@ -140,11 +140,11 @@ Final Design Statistics
     Number of Status            	:	3
     Number of SyncCells         	:	0
     Number of count7cells       	:	1
-    Number of IOs       	:	15
+    Number of IOs       	:	16
 
 Device Utilization Summary
     Macrocells                  :	58/192
-    IOs                         :	15/72
+    IOs                         :	16/72
 
 
 
@@ -163,20 +163,20 @@ analysis after routing.
 Number of clocks: 17
 Clock: ADC_DelSig_1_Ext_CP_Clk | Frequency: N/A       | Target:  24.0 MHz
 Clock: ADC_DelSig_1_Ext_CP_Clk(routed) | Frequency: N/A       | Target:  24.0 MHz
-Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   0.3 MHz
-Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   0.3 MHz
+Clock: ADC_DelSig_1_theACLK | Frequency: N/A       | Target:   3.0 MHz
+Clock: ADC_DelSig_1_theACLK(fixed-function) | Frequency: N/A       | Target:   3.0 MHz
 Clock: ADC_SAR_1_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_1_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK    | Frequency: N/A       | Target:   1.6 MHz
 Clock: ADC_SAR_2_theACLK(fixed-function) | Frequency: N/A       | Target:   1.6 MHz
-Clock: CyBUS_CLK            | Frequency:   1.5 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK            | Frequency:   1.6 MHz | Target:  24.0 MHz
 Clock: CyBUS_CLK(fixed-function) | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.1 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
 Clock: I2C_1_IntClock       | Frequency:   2.4 MHz | Target:   1.6 MHz
-Clock: UART_1_IntClock      | Frequency:   1.5 MHz | Target:   0.1 MHz
+Clock: UART_1_IntClock      | Frequency:   1.6 MHz | Target:   0.1 MHz
 Clock: \ADC_DelSig_1:DSM\/dec_clock | Frequency: N/A       | Target:   0.1 MHz
 
 ======================================================================

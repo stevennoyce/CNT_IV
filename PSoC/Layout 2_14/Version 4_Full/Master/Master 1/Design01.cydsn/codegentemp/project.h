@@ -61,6 +61,7 @@
 #include "Pin_LocalGates_aliases.h"
 #include "Pin_LocalGates.h"
 #include "Opamp_1.h"
+#include "Opamp_2.h"
 #include "USBUART_Dm_aliases.h"
 #include "USBUART_Dm.h"
 #include "USBUART_Dp_aliases.h"

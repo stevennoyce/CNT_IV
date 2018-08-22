@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
   29:Generated_Source\PSoC5/ADC_SAR_2.c **** static void ADC_SAR_2_CalcGain(uint8 resolution);
   30:Generated_Source\PSoC5/ADC_SAR_2.c **** 
   31:Generated_Source\PSoC5/ADC_SAR_2.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 2
 
 
   32:Generated_Source\PSoC5/ADC_SAR_2.c **** /***************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
   86:Generated_Source\PSoC5/ADC_SAR_2.c **** 
   87:Generated_Source\PSoC5/ADC_SAR_2.c **** /*******************************************************************************
   88:Generated_Source\PSoC5/ADC_SAR_2.c **** * Function Name: ADC_SAR_2_Init
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 3
 
 
   89:Generated_Source\PSoC5/ADC_SAR_2.c **** ********************************************************************************
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  143:Generated_Source\PSoC5/ADC_SAR_2.c **** void ADC_SAR_2_Enable(void)
  144:Generated_Source\PSoC5/ADC_SAR_2.c **** {
  145:Generated_Source\PSoC5/ADC_SAR_2.c ****     uint8 tmpReg;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 4
 
 
  146:Generated_Source\PSoC5/ADC_SAR_2.c ****     uint8 enableInterrupts;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  200:Generated_Source\PSoC5/ADC_SAR_2.c ****         ADC_SAR_2_SAR_CSR5_REG |= ADC_SAR_2_SAR_SEL_CSEL_DFT_CHAR;
  201:Generated_Source\PSoC5/ADC_SAR_2.c ****     #else /* for <500ksps */
  202:Generated_Source\PSoC5/ADC_SAR_2.c ****         ADC_SAR_2_SAR_CSR5_REG &= (uint8)~ADC_SAR_2_SAR_SEL_CSEL_DFT_CHAR;
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 5
 
 
  203:Generated_Source\PSoC5/ADC_SAR_2.c ****     #endif /* ADC_SAR_2_HIGH_POWER_PULSE == 0u */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  257:Generated_Source\PSoC5/ADC_SAR_2.c ****     /* Disable the SAR ADC in Standby Power Mode */
  258:Generated_Source\PSoC5/ADC_SAR_2.c ****     ADC_SAR_2_STBY_PWRMGR_SAR_REG &= (uint8)~ADC_SAR_2_STBY_PWR_SAR_EN;
  259:Generated_Source\PSoC5/ADC_SAR_2.c **** 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 6
 
 
  260:Generated_Source\PSoC5/ADC_SAR_2.c ****     /* This is only valid if there is an internal clock */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  314:Generated_Source\PSoC5/ADC_SAR_2.c **** *  10 ->    RES10
  315:Generated_Source\PSoC5/ADC_SAR_2.c **** *  8  ->    RES8
  316:Generated_Source\PSoC5/ADC_SAR_2.c **** *
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 7
 
 
  317:Generated_Source\PSoC5/ADC_SAR_2.c **** * Return:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  371:Generated_Source\PSoC5/ADC_SAR_2.c **** 
  372:Generated_Source\PSoC5/ADC_SAR_2.c ****     /*******************************************************************************
  373:Generated_Source\PSoC5/ADC_SAR_2.c ****     * Function Name: ADC_SAR_2_StartConvert
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 8
 
 
  374:Generated_Source\PSoC5/ADC_SAR_2.c ****     ********************************************************************************
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  428:Generated_Source\PSoC5/ADC_SAR_2.c ****     *  Stops ADC conversion in Free Running mode.
  429:Generated_Source\PSoC5/ADC_SAR_2.c ****     *
  430:Generated_Source\PSoC5/ADC_SAR_2.c ****     * Side Effects:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 9
 
 
  431:Generated_Source\PSoC5/ADC_SAR_2.c ****     *  In Software Trigger sample mode, this function sets a software version of the
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  485:Generated_Source\PSoC5/ADC_SAR_2.c ****     {
  486:Generated_Source\PSoC5/ADC_SAR_2.c ****         /* wait one ADC clock to let the EOC status bit release */
  487:Generated_Source\PSoC5/ADC_SAR_2.c ****         CyDelayUs(1u);
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 10
 
 
  488:Generated_Source\PSoC5/ADC_SAR_2.c ****         /* Do the unconditional read operation of the CSR1 register to make sure the EOC bit has be
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  542:Generated_Source\PSoC5/ADC_SAR_2.c **** * Global Variables:
  543:Generated_Source\PSoC5/ADC_SAR_2.c **** *  ADC_SAR_2_shift - used to convert the ADC counts to the 2s
  544:Generated_Source\PSoC5/ADC_SAR_2.c **** *  compliment form.
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 11
 
 
  545:Generated_Source\PSoC5/ADC_SAR_2.c **** *
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  599:Generated_Source\PSoC5/ADC_SAR_2.c **** *  uint8: resolution
  600:Generated_Source\PSoC5/ADC_SAR_2.c **** *
  601:Generated_Source\PSoC5/ADC_SAR_2.c **** * Return:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 12
 
 
  602:Generated_Source\PSoC5/ADC_SAR_2.c **** *  None.
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  630:Generated_Source\PSoC5/ADC_SAR_2.c ****         case (uint8)ADC_SAR_2__BITS_10:
  631:Generated_Source\PSoC5/ADC_SAR_2.c ****             counts = (int32)ADC_SAR_2_SAR_WRK_MAX_10BIT;
  632:Generated_Source\PSoC5/ADC_SAR_2.c ****             #if(!((ADC_SAR_2_DEFAULT_RANGE == ADC_SAR_2__VSS_TO_VREF) || \
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 13
 
 
  633:Generated_Source\PSoC5/ADC_SAR_2.c ****                  (ADC_SAR_2_DEFAULT_RANGE == ADC_SAR_2__VSSA_TO_VDDA) || \
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  656:Generated_Source\PSoC5/ADC_SAR_2.c ****     ADC_SAR_2_countsPerVolt = 0; /* Clear obsolete variable */
   78              		.loc 1 656 0
   79 0036 0020     		movs	r0, #0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 14
 
 
   80 0038 084B     		ldr	r3, .L10
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  122              		.cfi_def_cfa_offset 16
  123              		.cfi_offset 3, -16
  124              		.cfi_offset 4, -12
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 15
 
 
  125              		.cfi_offset 5, -8
@@ -865,13 +865,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  142              		.loc 1 157 0
  143 001c 1A3A     		subs	r2, r2, #26
  144 001e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 145 0020 43F00203 		orr	r3, r3, #2
+ 145 0020 43F00403 		orr	r3, r3, #4
  146 0024 1370     		strb	r3, [r2]
  158:Generated_Source\PSoC5/ADC_SAR_2.c ****     #endif /* End ADC_SAR_2_DEFAULT_INTERNAL_CLK */
  147              		.loc 1 158 0
  148 0026 1032     		adds	r2, r2, #16
  149 0028 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 150 002a 43F00203 		orr	r3, r3, #2
+ 150 002a 43F00403 		orr	r3, r3, #4
  151 002e 1370     		strb	r3, [r2]
  162:Generated_Source\PSoC5/ADC_SAR_2.c ****     tmpReg |= ADC_SAR_2_SAR_EN_BUF_VCM_EN;
  152              		.loc 1 162 0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  169 0044 013B     		subs	r3, r3, #1
  170 0046 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
  171 0048 42F04002 		orr	r2, r2, #64
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 16
 
 
  172 004c 1A70     		strb	r2, [r3]
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  219              		.type	ADC_SAR_2_Stop, %function
  220              	ADC_SAR_2_Stop:
  221              	.LFB3:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 17
 
 
  249:Generated_Source\PSoC5/ADC_SAR_2.c ****     uint8 enableInterrupts;
@@ -997,13 +997,13 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  249              		.loc 1 262 0
  250 0028 1A3A     		subs	r2, r2, #26
  251 002a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 252 002c 03F0FD03 		and	r3, r3, #253
+ 252 002c 03F0FB03 		and	r3, r3, #251
  253 0030 1370     		strb	r3, [r2]
  263:Generated_Source\PSoC5/ADC_SAR_2.c ****     #endif /* End ADC_SAR_2_DEFAULT_INTERNAL_CLK */
  254              		.loc 1 263 0
  255 0032 1032     		adds	r2, r2, #16
  256 0034 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 257 0036 03F0FD03 		and	r3, r3, #253
+ 257 0036 03F0FB03 		and	r3, r3, #251
  258 003a 1370     		strb	r3, [r2]
  266:Generated_Source\PSoC5/ADC_SAR_2.c **** 
  259              		.loc 1 266 0
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  268              	.LFE3:
  269              		.size	ADC_SAR_2_Stop, .-ADC_SAR_2_Stop
  270              		.section	.text.ADC_SAR_2_SetPower,"ax",%progbits
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 18
 
 
  271              		.align	2
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  320              		.cfi_offset 14, -4
  321 0002 0446     		mov	r4, r0
  345:Generated_Source\PSoC5/ADC_SAR_2.c ****     {
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 19
 
 
  322              		.loc 1 345 0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  368              		.cfi_endproc
  369              	.LFE5:
  370              		.size	ADC_SAR_2_SetResolution, .-ADC_SAR_2_SetResolution
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 20
 
 
  371              		.section	.text.ADC_SAR_2_Init,"ax",%progbits
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  418 0030 00000000 		.word	ADC_SAR_2_ISR
  419 0034 09590040 		.word	1073764617
  420 0038 00000000 		.word	ADC_SAR_2_offset
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 21
 
 
  421              		.cfi_endproc
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  470              	.LFB6:
  402:Generated_Source\PSoC5/ADC_SAR_2.c ****         #if(ADC_SAR_2_DEFAULT_CONV_MODE != ADC_SAR_2__FREE_RUNNING)  /* If software triggered mode 
  471              		.loc 1 402 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 22
 
 
  472              		.cfi_startproc
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  476:Generated_Source\PSoC5/ADC_SAR_2.c ****     uint8 status;
  523              		.loc 1 476 0
  524              		.cfi_startproc
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 23
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 23
 
 
  525              		@ args = 0, pretend = 0, frame = 0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  572              	.LFB9:
  521:Generated_Source\PSoC5/ADC_SAR_2.c ****     return( (int8)ADC_SAR_2_SAR_WRK0_REG - (int8)ADC_SAR_2_shift);
  573              		.loc 1 521 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 24
 
 
  574              		.cfi_startproc
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  622              	.L60:
  623              		.align	2
  624              	.L59:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 25
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 25
 
 
  625 0010 A25B0040 		.word	1073765282
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  681:Generated_Source\PSoC5/ADC_SAR_2.c **** * Parameters:
  682:Generated_Source\PSoC5/ADC_SAR_2.c **** *  int16 adcGain counts per volt
  683:Generated_Source\PSoC5/ADC_SAR_2.c **** *
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 26
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 26
 
 
  684:Generated_Source\PSoC5/ADC_SAR_2.c **** * Return:
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  710:Generated_Source\PSoC5/ADC_SAR_2.c **** *
  711:Generated_Source\PSoC5/ADC_SAR_2.c **** * Return:
  712:Generated_Source\PSoC5/ADC_SAR_2.c **** *  None.
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 27
 
 
  713:Generated_Source\PSoC5/ADC_SAR_2.c **** *
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  742:Generated_Source\PSoC5/ADC_SAR_2.c **** *******************************************************************************/
  743:Generated_Source\PSoC5/ADC_SAR_2.c **** int16 ADC_SAR_2_CountsTo_mVolts(int16 adcCounts)
  744:Generated_Source\PSoC5/ADC_SAR_2.c **** {
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 28
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 28
 
 
  716              		.loc 1 744 0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  761:Generated_Source\PSoC5/ADC_SAR_2.c ****                        (countsPer10Volt / 2) : (-(countsPer10Volt / 2)) )) / countsPer10Volt);
  754              		.loc 1 761 0
  755 002c 0029     		cmp	r1, #0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 29
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 29
 
 
  756 002e 03DD     		ble	.L73
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  774:Generated_Source\PSoC5/ADC_SAR_2.c **** * Parameters:
  775:Generated_Source\PSoC5/ADC_SAR_2.c **** *  int16 adcCounts: Result from the ADC conversion
  776:Generated_Source\PSoC5/ADC_SAR_2.c **** *
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 30
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 30
 
 
  777:Generated_Source\PSoC5/ADC_SAR_2.c **** * Return:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  800:Generated_Source\PSoC5/ADC_SAR_2.c ****     /* Subtract ADC offset */
  801:Generated_Source\PSoC5/ADC_SAR_2.c ****     adcCounts -= ADC_SAR_2_offset;
  828              		.loc 1 801 0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 31
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 31
 
 
  829 001c 084B     		ldr	r3, .L82+8
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  819:Generated_Source\PSoC5/ADC_SAR_2.c **** *  int16 adcCounts: Result from the ADC conversion
  820:Generated_Source\PSoC5/ADC_SAR_2.c **** *
  821:Generated_Source\PSoC5/ADC_SAR_2.c **** * Return:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 32
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 32
 
 
  822:Generated_Source\PSoC5/ADC_SAR_2.c **** *  float Result in Volts
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  897              		.loc 1 844 0
  898 001c 0A4B     		ldr	r3, .L88+8
  899 001e 1B88     		ldrh	r3, [r3]
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 33
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 33
 
 
  900 0020 C01A     		subs	r0, r0, r3
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  949 0004 0400     		.2byte	0x4
  950 0006 00000000 		.4byte	.Ldebug_abbrev0
  951 000a 04       		.byte	0x4
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 34
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 34
 
 
  952 000b 01       		.uleb128 0x1
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1006 0074 07       		.byte	0x7
  1007 0075 A1020000 		.4byte	.LASF10
  1008 0079 03       		.uleb128 0x3
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 35
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 35
 
 
  1009 007a 01       		.byte	0x1
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1063 00f4 3C02     		.2byte	0x23c
  1064 00f6 FA000000 		.4byte	0xfa
  1065 00fa 05       		.uleb128 0x5
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 36
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 36
 
 
  1066 00fb 80000000 		.4byte	0x80
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1120 017c 01       		.byte	0x1
  1121 017d 8F       		.byte	0x8f
  1122 017e 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 37
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 37
 
 
  1123 0182 94000000 		.4byte	.LFE2-.LFB2
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1177 01f7 D7000000 		.4byte	.LLST5
  1178 01fb 0D       		.uleb128 0xd
  1179 01fc 06000000 		.4byte	.LVL17
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 38
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 38
 
 
  1180 0200 8D050000 		.4byte	0x58d
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1234 028a 50       		.byte	0x50
  1235 028b 01       		.uleb128 0x1
  1236 028c 30       		.byte	0x30
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 39
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 39
 
 
  1237 028d 00       		.byte	0
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1291 02f0 31       		.byte	0x31
  1292 02f1 00       		.byte	0
  1293 02f2 09       		.uleb128 0x9
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 40
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 40
 
 
  1294 02f3 28000000 		.4byte	.LVL34
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1348 036e DB01     		.2byte	0x1db
  1349 0370 80000000 		.4byte	0x80
  1350 0374 A1010000 		.4byte	.LLST10
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 41
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 41
 
 
  1351 0378 08       		.uleb128 0x8
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1405 03f5 4902     		.2byte	0x249
  1406 03f7 B0000000 		.4byte	0xb0
  1407 03fb 01       		.uleb128 0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 42
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 42
 
 
  1408 03fc 50       		.byte	0x50
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1462 047a E902     		.2byte	0x2e9
  1463 047c B0000000 		.4byte	0xb0
  1464 0480 01       		.uleb128 0x1
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 43
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 43
 
 
  1465 0481 50       		.byte	0x50
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1519 0509 01       		.byte	0x1
  1520 050a 3F03     		.2byte	0x33f
  1521 050c C8000000 		.4byte	0xc8
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 44
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 44
 
 
  1522 0510 01       		.uleb128 0x1
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1576 0583 5C030000 		.4byte	.LASF60
  1577 0587 5C030000 		.4byte	.LASF60
  1578 058b 03       		.byte	0x3
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 45
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 45
 
 
  1579 058c 7F       		.byte	0x7f
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1633 0014 24       		.uleb128 0x24
  1634 0015 00       		.byte	0
  1635 0016 0B       		.uleb128 0xb
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 46
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 46
 
 
  1636 0017 0B       		.uleb128 0xb
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1690 004d 18       		.uleb128 0x18
  1691 004e 9742     		.uleb128 0x2117
  1692 0050 19       		.uleb128 0x19
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 47
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 47
 
 
  1693 0051 01       		.uleb128 0x1
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1747 008c 01       		.byte	0x1
  1748 008d 3F       		.uleb128 0x3f
  1749 008e 19       		.uleb128 0x19
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 48
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 48
 
 
  1750 008f 03       		.uleb128 0x3
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1804 00ca 00       		.byte	0
  1805 00cb 0F       		.uleb128 0xf
  1806 00cc 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 49
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 49
 
 
  1807 00cd 01       		.byte	0x1
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1861 0105 0B       		.uleb128 0xb
  1862 0106 3B       		.uleb128 0x3b
  1863 0107 05       		.uleb128 0x5
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 50
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 50
 
 
  1864 0108 27       		.uleb128 0x27
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1918 0140 00       		.byte	0
  1919 0141 00       		.byte	0
  1920 0142 14       		.uleb128 0x14
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 51
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 51
 
 
  1921 0143 05       		.uleb128 0x5
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  1975 017a 00       		.byte	0
  1976 017b 00       		.byte	0
  1977 017c 17       		.uleb128 0x17
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 52
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 52
 
 
  1978 017d 34       		.uleb128 0x34
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2032 000b 24000000 		.4byte	.LVL3
  2033 000f 2E000000 		.4byte	.LVL5
  2034 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 53
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 53
 
 
  2035 0015 F3       		.byte	0xf3
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2089 0093 38000000 		.4byte	.LVL10
  2090 0097 3C000000 		.4byte	.LVL11
  2091 009b 0500     		.2byte	0x5
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 54
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 54
 
 
  2092 009d 73       		.byte	0x73
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2146              	.LLST7:
  2147 011c 08000000 		.4byte	.LVL20
  2148 0120 0E000000 		.4byte	.LVL22
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 55
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 55
 
 
  2149 0124 0100     		.2byte	0x1
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2203 01a5 14000000 		.4byte	.LVL39
  2204 01a9 0100     		.2byte	0x1
  2205 01ab 50       		.byte	0x50
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 56
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 56
 
 
  2206 01ac 14000000 		.4byte	.LVL39
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2260 022f 18000000 		.4byte	.LVL49
  2261 0233 0100     		.2byte	0x1
  2262 0235 54       		.byte	0x54
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 57
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 57
 
 
  2263 0236 1C000000 		.4byte	.LVL50
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2317 000a 04       		.byte	0x4
  2318 000b 00       		.byte	0
  2319 000c 0000     		.2byte	0
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 58
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 58
 
 
  2320 000e 0000     		.2byte	0
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2374 0034 1C000000 		.4byte	.LFE0
  2375 0038 00000000 		.4byte	.LFB6
  2376 003c 10000000 		.4byte	.LFE6
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 59
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 59
 
 
  2377 0040 00000000 		.4byte	.LFB7
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2413      6C634761 
  2413      696E00
  2414              	.LASF45:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 60
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 60
 
 
  2415 0053 4144435F 		.ascii	"ADC_SAR_2_SetGain\000"
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2435      546F5F75 
  2436              	.LASF23:
  2437 0101 72656731 		.ascii	"reg16\000"
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 61
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 61
 
 
  2437      3600
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2463 01a3 766F6C74 		.ascii	"volts\000"
  2463      7300
  2464              	.LASF61:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 62
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 62
 
 
  2465 01a9 4379456E 		.ascii	"CyEnterCriticalSection\000"
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2485 0299 666C6F61 		.ascii	"float32\000"
  2485      74333200 
  2486              	.LASF10:
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 63
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 63
 
 
  2487 02a1 73697A65 		.ascii	"sizetype\000"
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2510              	.LASF60:
  2511 035c 43794861 		.ascii	"CyHalt\000"
  2511      6C7400
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 64
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 64
 
 
  2512              	.LASF4:
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 1
  2533      325F7468 
  2533      6541434C 
  2533      4B5F5365 
-ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccTGYVQZ.s 			page 65
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc7kBvjC.s 			page 65
 
 
  2534              	.LASF49:

@@ -213,6 +213,9 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Opamp_1.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Opamp_1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Opamp_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Opamp_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Opamp_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Opamp_2_PM.c</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\Export\ARM_GCC_Generic">

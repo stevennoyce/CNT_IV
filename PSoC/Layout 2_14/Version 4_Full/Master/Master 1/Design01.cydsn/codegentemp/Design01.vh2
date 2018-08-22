@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Aug 20 08:08:27 2018
+--	Wed Aug 22 07:48:52 2018
 --
 
 USE cypress.cypress.all;
@@ -136,6 +136,7 @@ SIGNAL tmpINTERRUPT_0__Pin_Vss_net_0 : bit;
 SIGNAL \VDAC_Ref:Net_83\ : bit;
 SIGNAL \VDAC_Ref:Net_81\ : bit;
 SIGNAL \VDAC_Ref:Net_82\ : bit;
+TERMINAL Net_256 : bit;
 TERMINAL \VDAC_Ref:Net_77\ : bit;
 SIGNAL tmpOE__SDA_1_net_0 : bit;
 SIGNAL tmpFB_0__SDA_1_net_0 : bit;
@@ -846,13 +847,13 @@ TERMINAL tmpSIOVREF__Pin_I12_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_I12_net_0 : bit;
 SIGNAL tmpOE__Pin_I11_net_0 : bit;
 SIGNAL tmpFB_0__Pin_I11_net_0 : bit;
-TERMINAL Net_162 : bit;
+TERMINAL Net_261 : bit;
 SIGNAL tmpIO_0__Pin_I11_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_I11_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_I11_net_0 : bit;
 TERMINAL \ADC_SAR_2:Net_248\ : bit;
 TERMINAL \ADC_SAR_2:Net_233\ : bit;
-SIGNAL Net_155 : bit;
+SIGNAL Net_247 : bit;
 SIGNAL \ADC_SAR_2:vp_ctl_0\ : bit;
 SIGNAL \ADC_SAR_2:vp_ctl_2\ : bit;
 SIGNAL \ADC_SAR_2:vn_ctl_1\ : bit;
@@ -870,7 +871,7 @@ TERMINAL \ADC_SAR_2:Net_215\ : bit;
 TERMINAL \ADC_SAR_2:Net_257\ : bit;
 SIGNAL \ADC_SAR_2:soc\ : bit;
 SIGNAL \ADC_SAR_2:Net_252\ : bit;
-SIGNAL Net_158 : bit;
+SIGNAL Net_250 : bit;
 SIGNAL \ADC_SAR_2:Net_207_11\ : bit;
 SIGNAL \ADC_SAR_2:Net_207_10\ : bit;
 SIGNAL \ADC_SAR_2:Net_207_9\ : bit;
@@ -903,6 +904,7 @@ SIGNAL tmpIO_0__Pin_LocalGates_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_LocalGates_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_LocalGates_net_0 : bit;
 TERMINAL \Opamp_1:Net_29\ : bit;
+TERMINAL \Opamp_2:Net_29\ : bit;
 SIGNAL \I2C_1:bI2C_UDB:sda_in_reg\\D\ : bit;
 SIGNAL \I2C_1:bI2C_UDB:m_state_4\\D\ : bit;
 SIGNAL \I2C_1:bI2C_UDB:m_state_3\\D\ : bit;
@@ -1497,7 +1499,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 		id=>"8bda02ab-ec76-474b-8a67-a1480733cde5/edd15f43-b66b-457b-be3a-5342345270c8",
 		source_clock_id=>"61737EF6-3B74-48f9-8B91-F7473A442AE7",
 		divisor=>0,
-		period=>"3906250000",
+		period=>"325520833.333333",
 		is_direct=>'0',
 		is_digital=>'0')
 	PORT MAP(clock_out=>\ADC_DelSig_1:Net_488\,
@@ -1770,7 +1772,7 @@ Pin_Vss:cy_psoc3_pins_v1_10
 			zero, zero, zero, zero),
 		strobe=>zero,
 		strobe_udb=>zero,
-		vout=>Net_26,
+		vout=>Net_256,
 		iout=>\VDAC_Ref:Net_77\);
 \VDAC_Ref:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\VDAC_Ref:Net_77\);
@@ -2797,7 +2799,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_I11_net_0),
-		analog=>Net_162,
+		analog=>Net_261,
 		io=>(tmpIO_0__Pin_I11_net_0),
 		siovref=>(tmpSIOVREF__Pin_I11_net_0),
 		annotation=>(open),
@@ -2816,7 +2818,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 \ADC_SAR_2:IRQ\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_155);
+	PORT MAP(int_signal=>Net_247);
 \ADC_SAR_2:theACLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"aea7725a-ea8a-41a6-a37e-458b96871364/696a0979-21fc-4185-bf38-6c79febcde7a",
@@ -2829,7 +2831,7 @@ Pin_I11:cy_psoc3_pins_v1_10
 		dig_domain_out=>\ADC_SAR_2:Net_381\);
 \ADC_SAR_2:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
-	PORT MAP(vplus=>Net_162,
+	PORT MAP(vplus=>Net_261,
 		vminus=>\ADC_SAR_2:Net_126\,
 		ext_pin=>\ADC_SAR_2:Net_215\,
 		vrefhi_out=>\ADC_SAR_2:Net_257\,
@@ -2841,11 +2843,11 @@ Pin_I11:cy_psoc3_pins_v1_10
 		vp_ctl_udb=>(zero, zero, zero, zero),
 		vn_ctl_udb=>(zero, zero, zero, zero),
 		irq=>\ADC_SAR_2:Net_252\,
-		next_out=>Net_158,
+		next_out=>Net_250,
 		data_out=>(\ADC_SAR_2:Net_207_11\, \ADC_SAR_2:Net_207_10\, \ADC_SAR_2:Net_207_9\, \ADC_SAR_2:Net_207_8\,
 			\ADC_SAR_2:Net_207_7\, \ADC_SAR_2:Net_207_6\, \ADC_SAR_2:Net_207_5\, \ADC_SAR_2:Net_207_4\,
 			\ADC_SAR_2:Net_207_3\, \ADC_SAR_2:Net_207_2\, \ADC_SAR_2:Net_207_1\, \ADC_SAR_2:Net_207_0\),
-		eof_udb=>Net_155);
+		eof_udb=>Net_247);
 \ADC_SAR_2:cy_analog_virtualmux_2_connect\:cy_connect_v1_0
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
@@ -3093,6 +3095,16 @@ Pin_LocalGates:cy_psoc3_pins_v1_10
 		is_net_join=>'0')
 	PORT MAP(signal1=>\Opamp_1:Net_29\,
 		signal2=>Net_194);
+\Opamp_2:ABuf\:cy_psoc3_abuf_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(vplus=>Net_256,
+		vminus=>\Opamp_2:Net_29\,
+		vout=>Net_26);
+\Opamp_2:abuf_negInput_mux_connect\:cy_connect_v1_0
+	GENERIC MAP(sig_width=>1,
+		is_net_join=>'0')
+	PORT MAP(signal1=>\Opamp_2:Net_29\,
+		signal2=>Net_26);
 \I2C_1:bI2C_UDB:sda_in_reg\:cy_dff
 	PORT MAP(d=>\I2C_1:Net_1109_1\,
 		clk=>\I2C_1:bI2C_UDB:op_clk\,

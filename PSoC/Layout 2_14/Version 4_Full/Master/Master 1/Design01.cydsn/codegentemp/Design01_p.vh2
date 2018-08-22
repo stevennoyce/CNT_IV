@@ -1,5 +1,5 @@
 -- Project:   Design01
--- Generated: 08/20/2018 08:08:30
+-- Generated: 08/22/2018 07:48:56
 -- PSoC Creator  4.1 Update 1
 
 ENTITY Design01 IS
@@ -31,13 +31,14 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     SIGNAL ClockBlock_PLL_OUT : bit;
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
+    SIGNAL Dedicated_Output_1__PA : bit;
     SIGNAL Dedicated_Output__PA : bit;
     SIGNAL Net_122 : bit;
     SIGNAL Net_140 : bit;
     SIGNAL Net_150 : bit;
     SIGNAL Net_153 : bit;
-    SIGNAL Net_155 : bit;
-    SIGNAL Net_158 : bit;
+    SIGNAL Net_247 : bit;
+    SIGNAL Net_250 : bit;
     SIGNAL Net_56 : bit;
     SIGNAL Net_61 : bit;
     SIGNAL Net_89 : bit;
@@ -295,7 +296,7 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell17";
     ATTRIBUTE Location OF \TIA_1:SC\ : LABEL IS "F(SC,2)";
     ATTRIBUTE Location OF \VDAC_Vgs:viDAC8\ : LABEL IS "F(VIDAC,3)";
-    ATTRIBUTE Location OF \VDAC_Vds:viDAC8\ : LABEL IS "F(VIDAC,1)";
+    ATTRIBUTE Location OF \VDAC_Vds:viDAC8\ : LABEL IS "F(VIDAC,0)";
     ATTRIBUTE Location OF \VDAC_Ref:viDAC8\ : LABEL IS "F(VIDAC,2)";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:StsReg\ : LABEL IS "statusicell1";
@@ -308,7 +309,8 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE lib_model OF \UART_1:BUART:sRX:RxSts\ : LABEL IS "statusicell3";
     ATTRIBUTE Location OF \ADC_SAR_1:ADC_SAR\ : LABEL IS "F(SAR,0)";
     ATTRIBUTE Location OF \ADC_SAR_2:ADC_SAR\ : LABEL IS "F(SAR,1)";
-    ATTRIBUTE Location OF \Opamp_1:ABuf\ : LABEL IS "F(OpAmp,3)";
+    ATTRIBUTE Location OF \Opamp_1:ABuf\ : LABEL IS "F(OpAmp,2)";
+    ATTRIBUTE Location OF \Opamp_2:ABuf\ : LABEL IS "F(OpAmp,0)";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:sda_in_reg\ : LABEL IS "macrocell18";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:m_state_4\ : LABEL IS "macrocell19";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:m_state_3\ : LABEL IS "macrocell20";
@@ -340,7 +342,9 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE lib_model OF \UART_1:BUART:tx_bitclk\ : LABEL IS "macrocell46";
     ATTRIBUTE lib_model OF \UART_1:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell47";
     ATTRIBUTE lib_model OF Dedicated_Output : LABEL IS "iocell15";
-    ATTRIBUTE Location OF Dedicated_Output : LABEL IS "P3[7]";
+    ATTRIBUTE Location OF Dedicated_Output : LABEL IS "P0[1]";
+    ATTRIBUTE lib_model OF Dedicated_Output_1 : LABEL IS "iocell16";
+    ATTRIBUTE Location OF Dedicated_Output_1 : LABEL IS "P0[0]";
     ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_0\ : LABEL IS "macrocell48";
     ATTRIBUTE lib_model OF \UART_1:BUART:rx_load_fifo\ : LABEL IS "macrocell49";
     ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_3\ : LABEL IS "macrocell50";
@@ -840,20 +844,20 @@ BEGIN
             dsi_glb_div => open,
             dclk_glb_0 => \ADC_DelSig_1:Net_93\,
             dclk_0 => \ADC_DelSig_1:Net_93_local\,
+            aclk_glb_0 => \ADC_DelSig_1:Net_488\,
+            aclk_0 => \ADC_DelSig_1:Net_488_local\,
+            clk_a_dig_glb_0 => \ADC_DelSig_1:Net_488_adig\,
+            clk_a_dig_0 => \ADC_DelSig_1:Net_488_adig_local\,
             dclk_glb_1 => \I2C_1:Net_970\,
             dclk_1 => \I2C_1:Net_970_local\,
-            aclk_glb_0 => \ADC_SAR_1:Net_385\,
-            aclk_0 => \ADC_SAR_1:Net_385_local\,
-            clk_a_dig_glb_0 => \ADC_SAR_1:Net_381\,
-            clk_a_dig_0 => \ADC_SAR_1:Net_381_local\,
-            aclk_glb_1 => \ADC_SAR_2:Net_385\,
-            aclk_1 => \ADC_SAR_2:Net_385_local\,
-            clk_a_dig_glb_1 => \ADC_SAR_2:Net_381\,
-            clk_a_dig_1 => \ADC_SAR_2:Net_381_local\,
-            aclk_glb_2 => \ADC_DelSig_1:Net_488\,
-            aclk_2 => \ADC_DelSig_1:Net_488_local\,
-            clk_a_dig_glb_2 => \ADC_DelSig_1:Net_488_adig\,
-            clk_a_dig_2 => \ADC_DelSig_1:Net_488_adig_local\,
+            aclk_glb_1 => \ADC_SAR_1:Net_385\,
+            aclk_1 => \ADC_SAR_1:Net_385_local\,
+            clk_a_dig_glb_1 => \ADC_SAR_1:Net_381\,
+            clk_a_dig_1 => \ADC_SAR_1:Net_381_local\,
+            aclk_glb_2 => \ADC_SAR_2:Net_385\,
+            aclk_2 => \ADC_SAR_2:Net_385_local\,
+            clk_a_dig_glb_2 => \ADC_SAR_2:Net_381\,
+            clk_a_dig_2 => \ADC_SAR_2:Net_381_local\,
             dclk_glb_2 => \UART_1:Net_9\,
             dclk_2 => \UART_1:Net_9_local\,
             clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
@@ -2404,7 +2408,7 @@ BEGIN
             cy_registers => "",
             resolution => 16)
         PORT MAP(
-            aclock => \ClockBlock.aclk_glb_ff_2__sig\,
+            aclock => \ClockBlock.aclk_glb_ff_0__sig\,
             modbitin_udb => open,
             reset_udb => open,
             reset_dec => \ADC_DelSig_1:mod_reset\,
@@ -2811,8 +2815,8 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.aclk_glb_ff_0__sig\,
-            pump_clock => \ClockBlock.aclk_glb_ff_0__sig\,
+            clock => \ClockBlock.aclk_glb_ff_1__sig\,
+            pump_clock => \ClockBlock.aclk_glb_ff_1__sig\,
             sof_udb => open,
             vp_ctl_udb_3 => open,
             vp_ctl_udb_2 => open,
@@ -2843,15 +2847,15 @@ BEGIN
             int_type => "10",
             is_nmi => 0)
         PORT MAP(
-            interrupt => Net_155,
+            interrupt => Net_247,
             clock => ClockBlock_BUS_CLK);
 
     \ADC_SAR_2:ADC_SAR\:sarcell
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.aclk_glb_ff_1__sig\,
-            pump_clock => \ClockBlock.aclk_glb_ff_1__sig\,
+            clock => \ClockBlock.aclk_glb_ff_2__sig\,
+            pump_clock => \ClockBlock.aclk_glb_ff_2__sig\,
             sof_udb => open,
             vp_ctl_udb_3 => open,
             vp_ctl_udb_2 => open,
@@ -2862,7 +2866,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC_SAR_2:Net_252\,
-            next => Net_158,
+            next => Net_250,
             data_out_udb_11 => \ADC_SAR_2:Net_207_11\,
             data_out_udb_10 => \ADC_SAR_2:Net_207_10\,
             data_out_udb_9 => \ADC_SAR_2:Net_207_9\,
@@ -2875,9 +2879,13 @@ BEGIN
             data_out_udb_2 => \ADC_SAR_2:Net_207_2\,
             data_out_udb_1 => \ADC_SAR_2:Net_207_1\,
             data_out_udb_0 => \ADC_SAR_2:Net_207_0\,
-            eof_udb => Net_155);
+            eof_udb => Net_247);
 
     \Opamp_1:ABuf\:abufcell
+        GENERIC MAP(
+            cy_registers => "");
+
+    \Opamp_2:ABuf\:abufcell
         GENERIC MAP(
             cy_registers => "");
 
@@ -3345,6 +3353,21 @@ BEGIN
             io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
         PORT MAP(
             pa_out => Dedicated_Output__PA,
+            in_clock => open,
+            in_clock_en => open,
+            in_reset => open,
+            out_clock => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    Dedicated_Output_1:iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
+        PORT MAP(
+            pa_out => Dedicated_Output_1__PA,
             in_clock => open,
             in_clock_en => open,
             in_reset => open,
