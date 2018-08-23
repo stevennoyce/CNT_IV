@@ -27,11 +27,7 @@ default_dh_parameters = {
 	'excludeDataAfterJSONExperimentNumber':  float('inf'),
 	'excludeDataBeforeJSONRelativeIndex': 0,
 	'excludeDataAfterJSONRelativeIndex':  float('inf'),
-	'sweepDirection': ['both','forward','reverse'][0],
 	'showOnlySuccessfulBurns': False,
-	'timescale': ['','seconds','minutes','hours','days','weeks'][0],
-	'plotInRealTime': True,
-	'includeBiasVoltageSubplot': True
 }
 
 plots_for_experiment = {
@@ -140,13 +136,13 @@ def makePlots(userID, projectID, waferID, chipID, deviceID, startExperimentNumbe
 	parameters['excludeDataAfterJSONExperimentNumber'] = endExperimentNumber
 	parameters['excludeDataBeforeJSONRelativeIndex'] = startRelativeIndex
 	parameters['excludeDataAfterJSONRelativeIndex'] = endRelativeIndex
-	parameters['sweepDirection'] = sweepDirection
-	parameters['plotInRealTime'] = plotInRealTime
 	
 	if(saveFolder is not None):
 		mode_parameters['plotSaveFolder'] = saveFolder
 	mode_parameters['plotSaveName'] = plotSaveName
 	mode_parameters['figureSizeOverride'] = figureSize
+	mode_parameters['sweepDirection'] = sweepDirection
+	mode_parameters['plotInRealTime'] = plotInRealTime
 	
 	return run(parameters, plot_mode_parameters=mode_parameters)
 
@@ -185,16 +181,16 @@ def run(additional_parameters, plot_mode_parameters=None):
 			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'GateSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','']:
-				plot1 = dpu.plotFullSubthresholdCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
+				plot1 = dpu.makeDevicePlot('SubthresholdCurve', gateSweepHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot1)
 			if p['specificPlotToCreate'] in ['FullTransferCurveHistory','']:
-				plot2 = dpu.plotFullTransferCurveHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
+				plot2 = dpu.makeDevicePlot('TransferCurve', gateSweepHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot2)
 			if p['specificPlotToCreate'] in ['FullGateCurrentHistory','']:
-				plot3 = dpu.plotFullGateCurrentHistory(gateSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
+				plot3 = dpu.makeDevicePlot('GateCurrent', gateSweepHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot3)
 			if p['specificPlotToCreate'] in ['OnAndOffCurrentHistory','']:
-				plot4 = dpu.plotOnAndOffCurrentHistory(gateSweepHistory, parameters['Identifiers'], timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
+				plot4 = dpu.makeDevicePlot('OnCurrent', gateSweepHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot4)
 		except FileNotFoundError:
 			print("Error: Unable to find Gate Sweep history.")
@@ -204,7 +200,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 			drainSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'DrainSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 
 			if p['specificPlotToCreate'] in ['FullOutputCurveHistory','']:
-				plot = dpu.plotFullOutputCurveHistory(drainSweepHistory, parameters['Identifiers'], sweepDirection=p['sweepDirection'], mode_params=mode_parameters)
+				plot = dpu.makeDevicePlot('OutputCurve', drainSweepHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Drain Sweep history.")
@@ -217,7 +213,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 				burnOutHistory = dlu.filterHistory(burnOutHistory, 'didBurnOut', True, ['Computed'])
 			
 			if p['specificPlotToCreate'] in ['FullBurnOutHistory','']:
-				plot = dpu.plotFullBurnOutHistory(burnOutHistory, parameters['Identifiers'], mode_params=mode_parameters)
+				plot = dpu.makeDevicePlot('BurnOut', burnOutHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Burnout history.")
@@ -227,7 +223,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 			staticBiasHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'StaticBias.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
 			
 			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
-				plot = dpu.plotFullStaticBiasHistory(staticBiasHistory, parameters['Identifiers'], timescale=p['timescale'], plotInRealTime=p['plotInRealTime'], includeDualAxis=p['includeBiasVoltageSubplot'], mode_params=mode_parameters)
+				plot = dpu.makeDevicePlot('StaticBias', staticBiasHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias history.")

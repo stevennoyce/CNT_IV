@@ -94,19 +94,32 @@ default_mode_parameters = {
 	'saveFigures': True,
 	'plotSaveFolder': 'CurrentPlots/',
 	'plotSaveName': '',
+	'plotSaveExtension': '.png',
+	
 	'publication_mode': False,
 	'default_png_dpi': 300,
+	
 	'figureSizeOverride': None,
 	'colorsOverride': [],
 	'legendLoc': 'best',
 	'legendTitleSuffix':'',
 	'legendLabels': [],
+	
 	'enableErrorBars': True,
 	'enableColorBar': True,
 	'enableGradient': False,
+	
+	'sweepDirection': ['both','forward','reverse'][0],
+	'timescale': ['','seconds','minutes','hours','days','weeks'][0],
+	'plotInRealTime': True,
+	
+	'includeDualAxis': True,
+	'includeOffCurrent': True,
+	'includeGateCurrent': False,
+	
 	'staticBiasSegmentDividers': False,
 	'staticBiasChangeDividers': True,
-	'plotOffCurrent': True,
+	
 	'generalInfo': None
 }
 
@@ -135,6 +148,7 @@ plot_parameters = {
 	},
 	'GateCurrent':{
 		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
+		'includeOrigin':False,
 		'colorMap':'hot',
 		'colorDefault': plt.rcParams['axes.prop_cycle'].by_key()['color'][2],
 		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
@@ -143,7 +157,7 @@ plot_parameters = {
 		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
 	},
 	'OutputCurve':{
-		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
+		'figsize':(2.8,3.2),
 		'colorMap':'plasma',
 		'colorDefault': plt.rcParams['axes.prop_cycle'].by_key()['color'][0],
 		'xlabel':'$V_{{DS}}^{{Sweep}}$ [V]',
@@ -221,16 +235,65 @@ plot_parameters = {
 
 
 
-# === API ===
-def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection='both', mode_params=None):
+# === External API ===
+def makeDevicePlot(plotType, deviceHistory, identifiers, mode_parameters=None):
 	if(len(deviceHistory) <= 0):
-		print('No subthreshold curve history to plot.')
+		print('No ' + str(plotType) + ' device history to plot.')
 		return
+	
+	updated_mode_parameters = default_mode_parameters.copy()
+	if(mode_parameters is not None):
+		updated_mode_parameters.update(mode_parameters)
+	
+	if(plotType == 'SubthresholdCurve'):
+		fig, axes = plotFullSubthresholdCurveHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'TransferCurve'):
+		fig, axes = plotFullTransferCurveHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'GateCurrent'):
+		fig, axes = plotFullGateCurrentHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'OutputCurve'):
+		fig, axes = plotFullOutputCurveHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'BurnOut'):
+		fig, axes = plotFullBurnOutHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'StaticBias'):
+		fig, axes = plotFullStaticBiasHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'OnCurrent'):
+		fig, axes = plotOnAndOffCurrentHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	else:
+		raise NotImplementedError('Unrecognized "plotType": ' + str(plotType))
+			
+	return fig, axes
 
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
+def makeChipPlot(plotType, identifiers=None, chipIndexes=None, firstRunChipHistory=None, recentRunChipHistory=None, mode_parameters=None):	
+	if(plotType is 'ChipHistogram' and ((chipIndexes is None) or len(chipIndexes) <= 0)):
+		print('No chip histogram to plot.')
+		return
+	elif((recentRunChipHistory is None) or len(recentRunChipHistory) <= 0):
+		print('No ' + str(plotType) + ' chip history to plot.')
+	
+	if((recentRunChipHistory is None) or len(recentRunChipHistory) <= 0):
+			print('No  ratios to plot.')
+			return
+	
+	updated_mode_parameters = default_mode_parameters.copy()
+	if(mode_parameters is not None):
+		updated_mode_parameters.update(mode_parameters)
 
+	if(plotType == 'ChipHistogram'):			
+		return plotChipHistogram(chipIndexes, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'ChipOnOffRatios'):
+		return plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'ChipOnOffCurrents'):
+		return plotChipOnOffCurrents(recentRunChipHistory, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'ChipTransferCurves'):
+		return plotChipTransferCurves(recentRunChipHistory, identifiers, mode_parameters=updated_mode_parameters)
+	else:
+		raise NotImplementedError('Unrecognized "plotType": ' + str(plotType))
+
+
+
+# === Internal API ===
+def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'SubthresholdCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
@@ -243,7 +306,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])			
+		line = plotSubthresholdCurve(ax, deviceHistory[i], colors[i], direction=mode_parameters['sweepDirection'], fitSubthresholdSwing=False, includeLabel=False, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])			
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 
@@ -255,15 +318,7 @@ def plotFullSubthresholdCurveHistory(deviceHistory, identifiers, sweepDirection=
 
 	return (fig, ax)
 
-def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='both', includeGateCurrent=False, mode_params=None):
-	if(len(deviceHistory) <= 0):
-		print('No transfer curve history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotFullTransferCurveHistory(deviceHistory, identifiers, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'TransferCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
@@ -281,12 +336,12 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
+		line = plotTransferCurve(ax, deviceHistory[i], colors[i], direction=mode_parameters['sweepDirection'], scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 
 	# Add gate current to axis
-	if(includeGateCurrent):
+	if(mode_parameters['includeGateCurrent']):
 		if(len(deviceHistory) == 1):
 			gate_colors = [plt.rcParams['axes.prop_cycle'].by_key()['color'][2]]
 			gate_linestyle = None
@@ -294,7 +349,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 			gate_colors = colors
 			gate_linestyle = '--'
 		for i in range(len(deviceHistory)):
-			plotGateCurrent(ax, deviceHistory[i], gate_colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=gate_linestyle, errorBars=mode_parameters['enableErrorBars'])
+			plotGateCurrent(ax, deviceHistory[i], gate_colors[i], direction=mode_parameters['sweepDirection'], scaleCurrentBy=1e6, lineStyle=gate_linestyle, errorBars=mode_parameters['enableErrorBars'])
 		if(plot_parameters['TransferCurve']['ylabel'] == plot_parameters['TransferCurve']['neg_label']):
 			plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['neg_ii_label']
 		else:
@@ -310,15 +365,7 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 
 	return (fig, ax)
 
-def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both', mode_params=None):
-	if(len(deviceHistory) <= 0):
-		print('No gate current curve history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotFullGateCurrentHistory(deviceHistory, identifiers, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'GateCurrent', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
@@ -331,9 +378,12 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = plotGateCurrent(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
+		line = plotGateCurrent(ax, deviceHistory[i], colors[i], direction=mode_parameters['sweepDirection'], scaleCurrentBy=1, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
+
+	# Adjust Y-lim (if desired)
+	includeOriginOnYaxis(ax, include=plot_parameters['GateCurrent']['includeOrigin'])
 
 	# Add Legend and save figure
 	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'GateCurrent', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True))
@@ -341,15 +391,7 @@ def plotFullGateCurrentHistory(deviceHistory, identifiers, sweepDirection='both'
 
 	return (fig, ax)
 
-def plotFullOutputCurveHistory(deviceHistory, identifiers, sweepDirection='both', mode_params=None):
-	if(len(deviceHistory) <= 0):
-		print('No output curve history to plot.')
-		return
-		
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotFullOutputCurveHistory(deviceHistory, identifiers, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'OutputCurve', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
@@ -367,7 +409,7 @@ def plotFullOutputCurveHistory(deviceHistory, identifiers, sweepDirection='both'
 	
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = plotOutputCurve(ax, deviceHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
+		line = plotOutputCurve(ax, deviceHistory[i], colors[i], direction=mode_parameters['sweepDirection'], scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 
@@ -377,15 +419,7 @@ def plotFullOutputCurveHistory(deviceHistory, identifiers, sweepDirection='both'
 
 	return (fig, ax)
 
-def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
-	if(len(deviceHistory) <= 0):
-		print('No burn out history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotFullBurnOutHistory(deviceHistory, identifiers, mode_parameters=None):
 	# Init Figure	
 	fig, (ax1, ax2) = initFigure(1, 2, 'BurnOut', figsizeOverride=mode_parameters['figureSizeOverride'])
 	ax2 = plt.subplot(222)
@@ -409,14 +443,10 @@ def plotFullBurnOutHistory(deviceHistory, identifiers, mode_params=None):
 
 	return (fig, (ax1, ax2, ax3))
 
-def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRealTime=True, includeDualAxis=True, includeGateCurrent=False, mode_params=None):
-	if(len(deviceHistory) <= 0):
-		print('No static bias history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
+def plotFullStaticBiasHistory(deviceHistory, identifiers, mode_parameters=None):
+	timescale = mode_parameters['timescale']
+	plotInRealTime = mode_parameters['plotInRealTime']
+	includeDualAxis = mode_parameters['includeDualAxis']
 	
 	# Check if V_DS or V_GS are changing during this experiment
 	vds_setpoint_values = [jsonData['runConfigs']['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
@@ -477,7 +507,7 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 			setLabel(line, mode_parameters['legendLabels'][i])
 		
 		# Plot Gate Current (if desired)	
-		if(includeGateCurrent):
+		if(mode_parameters['includeGateCurrent']):
 			line = plotStaticBias(ax1, deviceHistory[i], plot_parameters['GateCurrent']['colorDefault'], time_offset, currentData='ig_data', timescale=timescale, includeLabel=False, lineStyle=None, gradient=False)
 			
 		# Plot Dual Axis (if desired)
@@ -557,14 +587,10 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 
 	return (fig, (ax1, ax2, ax3))
 
-def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInRealTime=True, includeDualAxis=True, mode_params=None):
-	if(len(deviceHistory) <= 0):
-		print('No on/off current history to plot.')
-		return
-	
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
+def plotOnAndOffCurrentHistory(deviceHistory, identifiers, mode_parameters=None):
+	timescale = mode_parameters['timescale']
+	plotInRealTime = mode_parameters['plotInRealTime']
+	includeDualAxis = mode_parameters['includeDualAxis']
 	
 	# Check if V_DS or V_GS are changing during this experiment
 	vds_setpoint_values = [jsonData['runConfigs']['StaticBias']['drainVoltageSetPoint'] for jsonData in deviceHistory]
@@ -584,7 +610,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	else:
 		fig, ax1 = initFigure(1, 1, 'OnCurrent', figsizeOverride=mode_parameters['figureSizeOverride'])
 		ax3, ax4 = None, None
-	ax2 = ax1.twinx() if(mode_parameters['plotOffCurrent']) else None
+	ax2 = ax1.twinx() if(mode_parameters['includeOffCurrent']) else None
 	if(not mode_parameters['publication_mode']):
 		ax1.set_title(getTestLabel(deviceHistory, identifiers))
 	
@@ -621,7 +647,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	axisLabels(ax1, y_label=plot_parameters['OnCurrent']['ylabel'])
 	
 	# Plot Off Current
-	if(mode_parameters['plotOffCurrent']):
+	if(mode_parameters['includeOffCurrent']):
 		if(plotInRealTime):
 			line = plotOverTime(ax2, timestamps, offCurrents, plt.rcParams['axes.prop_cycle'].by_key()['color'][1], offset=0, markerSize=2, lineWidth=0)
 		else:
@@ -648,7 +674,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	lines1, labels1 = ax1.get_legend_handles_labels()
 	lines2, labels2 = [],[]
 	legendax = ax1
-	if(mode_parameters['plotOffCurrent']):
+	if(mode_parameters['includeOffCurrent']):
 		lines2, labels2 = ax2.get_legend_handles_labels()
 		legendax = ax2
 	legendax.legend(lines1 + lines2, labels1 + labels2, loc=mode_parameters['legendLoc'])
@@ -672,15 +698,7 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, timescale='', plotInR
 	
 	return (fig, (ax1, ax2, ax3, ax4))
 
-def plotChipHistogram(chipIndexes, mode_params=None):
-	if(len(chipIndexes) <= 0):
-		print('No chip histogram to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotChipHistogram(chipIndexes, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'ChipHistogram', figsizeOverride=mode_parameters['figureSizeOverride'])
 
@@ -703,15 +721,7 @@ def plotChipHistogram(chipIndexes, mode_params=None):
 	adjustAndSaveFigure(fig, 'ChipHistogram', mode_parameters)
 	return (fig, ax)
 
-def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=None):
-	if(len(firstRunChipHistory) <= 0):
-		print('No chip on-off ratio history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'ChipOnOffRatios', figsizeOverride=mode_parameters['figureSizeOverride'])
 
@@ -742,15 +752,7 @@ def plotChipOnOffRatios(firstRunChipHistory, recentRunChipHistory, mode_params=N
 	adjustAndSaveFigure(fig, 'ChipOnOffRatios', mode_parameters)
 	return (fig, ax)
 	
-def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
-	if(len(recentRunChipHistory) <= 0):
-		print('No chip on-current history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotChipOnOffCurrents(recentRunChipHistory, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'ChipOnOffCurrents', figsizeOverride=mode_parameters['figureSizeOverride'])
 
@@ -766,7 +768,7 @@ def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
 	recentOnCurrents, devices, recentOffCurrents = zip(*(reversed(sorted(zip(recentOnCurrents, devices, recentOffCurrents)))))
 
 	# Plot
-	if(mode_parameters['plotOffCurrent']):
+	if(mode_parameters['inlcudeOffCurrent']):
 		line = ax.plot(range(len(devices)), recentOffCurrents, color=plt.rcParams['axes.prop_cycle'].by_key()['color'][1], marker='o', markersize=8, linewidth=0, linestyle=None)[0]
 		setLabel(line, 'Off Currents')
 	line = ax.plot(range(len(devices)), recentOnCurrents, color=plt.rcParams['axes.prop_cycle'].by_key()['color'][0], marker='o', markersize=4, linewidth=0, linestyle=None)[0]
@@ -783,15 +785,7 @@ def plotChipOnOffCurrents(recentRunChipHistory, mode_params=None):
 	adjustAndSaveFigure(fig, 'ChipOnOffCurrents', mode_parameters)
 	return (fig, ax)
 
-def plotChipTransferCurves(recentRunChipHistory, identifiers, sweepDirection='both', mode_params=None):
-	if(len(recentRunChipHistory) <= 0):
-		print('No chip transfer curve history to plot.')
-		return
-
-	mode_parameters = default_mode_parameters.copy()
-	if(mode_params is not None):
-		mode_parameters.update(mode_params)
-
+def plotChipTransferCurves(recentRunChipHistory, identifiers, mode_parameters=None):
 	# Init Figure
 	fig, ax = initFigure(1, 1, 'ChipTransferCurves', figsizeOverride=mode_parameters['figureSizeOverride'])
 	if(not mode_parameters['publication_mode']):
@@ -812,7 +806,7 @@ def plotChipTransferCurves(recentRunChipHistory, identifiers, sweepDirection='bo
 	
 	# Plot
 	for i in range(len(recentRunChipHistory)):
-		line = plotTransferCurve(ax, recentRunChipHistory[i], colors[i], direction=sweepDirection, scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
+		line = plotTransferCurve(ax, recentRunChipHistory[i], colors[i], direction=mode_parameters['sweepDirection'], scaleCurrentBy=1e6, lineStyle=None, errorBars=mode_parameters['enableErrorBars'])
 		if(len(recentRunChipHistory) == len(mode_parameters['legendLabels'])):
 			setLabel(line, mode_parameters['legendLabels'][i])
 	
@@ -977,7 +971,7 @@ def adjustAndSaveFigure(figure, plotType, mode_parameters, subplotWidthPad=0, su
 		if isinstance(mode_parameters['plotSaveName'], io.BytesIO):
 			plt.savefig(mode_parameters['plotSaveName'], transparent=True, dpi=pngDPI, format='png')
 		else:
-			plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + '.png'), transparent=True, dpi=pngDPI)
+			plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + mode_parameters['plotSaveExtension']), transparent=True, dpi=pngDPI)
 			# plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + '.pdf'), transparent=True, dpi=pngDPI)
 			# plt.savefig(os.path.join(mode_parameters['plotSaveFolder'], mode_parameters['plotSaveName'] + plotType + '.eps'), transparent=True, dpi=pngDPI)
 	if(not mode_parameters['showFigures']):
