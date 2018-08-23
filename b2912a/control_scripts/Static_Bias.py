@@ -149,10 +149,10 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		vgs_data.append(np.median(measurements['Vgs_data']))
 		ig_data.append(np.median(measurements['Ig_data']))
 		timestamps.append(timestamp)
-		vds_std.append(np.std(measurements['Vds_data']))
-		id_std.append(np.std(measurements['Id_data']))
-		vgs_std.append(np.std(measurements['Vgs_data']))
-		ig_std.append(np.std(measurements['Ig_data']))
+		id_normalized = np.array(measurements['Id_data']) - np.polyval(np.polyfit(range(len(measurements['Id_data'])), measurements['Id_data'], 1), np.array(measurements['Id_data']))
+		ig_normalized = np.array(measurements['Ig_data']) - np.polyval(np.polyfit(range(len(measurements['Ig_data'])), measurements['Ig_data'], 1), np.array(measurements['Ig_data']))
+		id_std.append(np.std(id_normalized))
+		ig_std.append(np.std(ig_normalized))
 
 		# Take a measurement with the Arduino
 		sensor_data = arduino_instance.takeMeasurement()
@@ -175,9 +175,7 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 			'vgs_data':vgs_data,
 			'ig_data':ig_data,
 			'timestamps':timestamps,
-			'vds_std':vds_std,
 			'id_std':id_std,
-			'vgs_std':vgs_std,
 			'ig_std':ig_std
 		},
 		'Computed':{
