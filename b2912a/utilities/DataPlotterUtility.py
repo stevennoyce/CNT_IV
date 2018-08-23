@@ -122,6 +122,7 @@ plot_parameters = {
 	},
 	'TransferCurve':{
 		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
+		'includeOrigin':True,
 		'colorMap':'hot',
 		'colorDefault': plt.rcParams['axes.prop_cycle'].by_key()['color'][1],
 		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
@@ -130,7 +131,7 @@ plot_parameters = {
 		'ii_label':'$I_{{D}}$, $I_{{G}}$ [$\\mu$A]',
 		'neg_ii_label':'$-I_{{D}}$, $I_{{G}}$ [$\\mu$A]',
 		'leg_vds_label':'$V_{{DS}}^{{Sweep}}$\n  = {:}V',
-		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V'
+		'leg_vds_range_label':'$V_{{DS}}^{{min}} = $ {:}V\n'+'$V_{{DS}}^{{max}} = $ {:}V',
 	},
 	'GateCurrent':{
 		'figsize':(2.8,3.2),#(2*1.4,2*1.6),#(4.2,4.9),
@@ -165,6 +166,8 @@ plot_parameters = {
 	},
 	'StaticBias':{
 		'figsize':(4.4,3.2),#(2*2.2,2*1.6),#(5,4),
+		'mainIncludeOrigin':True,
+		'dualIncludeOrigin':False,
 		'colorMap':'plasma',
 		'colorDefault': plt.rcParams['axes.prop_cycle'].by_key()['color'][4],
 		'xlabel':'Time [{:}]',
@@ -297,6 +300,9 @@ def plotFullTransferCurveHistory(deviceHistory, identifiers, sweepDirection='bot
 		else:
 			plot_parameters['TransferCurve']['ylabel'] = plot_parameters['TransferCurve']['ii_label']
 		axisLabels(ax, x_label=plot_parameters['TransferCurve']['xlabel'], y_label=plot_parameters['TransferCurve']['ylabel'])
+
+	# Adjust Y-lim (if desired)
+	includeOriginOnYaxis(ax, include=plot_parameters['TransferCurve']['includeOrigin'])
 
 	# Add Legend and save figure	
 	addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'TransferCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True))
@@ -513,6 +519,9 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 				for i in range(len(parameter_labels['gateVoltageSetPoint'])):
 					ax1.annotate(' $V_{GS} = $'+'{:.0f}V'.format(parameter_labels['gateVoltageSetPoint'][i]['gateVoltageSetPoint']), xy=(parameter_labels['gateVoltageSetPoint'][i]['x'], ax1.get_ylim()[1]*(0.90 - 0*0.03*i)), xycoords='data', ha='left', va='bottom', rotation=-90)
 	
+	# Adjust Y-lim (if desired)
+	includeOriginOnYaxis(ax1, include=plot_parameters['StaticBias']['mainIncludeOrigin'])
+	
 	# Main Axis Legend
 	legend_title = getLegendTitle(deviceHistory, identifiers, 'StaticBias', 'runConfigs', 'StaticBias', mode_parameters, includeVdsHold=(not vds_setpoint_changes), includeVgsHold=(not vgs_setpoint_changes), includeTimeHold=(not biasTime_changes))
 	if(len(legend_title) > 0):
@@ -525,12 +534,12 @@ def plotFullStaticBiasHistory(deviceHistory, identifiers, timescale='', plotInRe
 		axisLabels(ax2, x_label=plot_parameters['StaticBias']['xlabel'].format(timescale))
 		
 		if(vds_setpoint_changes):
-			includeOriginOnYaxis(vds_ax)
+			includeOriginOnYaxis(vds_ax, include=plot_parameters['StaticBias']['dualIncludeOrigin'])
 			vds_ax.set_ylim(bottom=vds_ax.get_ylim()[0] - (vds_ax.get_ylim()[1] - vds_ax.get_ylim()[0])*0.08, top=vds_ax.get_ylim()[1] + (vds_ax.get_ylim()[1] - vds_ax.get_ylim()[0])*0.08)
 			axisLabels(vds_ax, y_label=plot_parameters['StaticBias']['vds_label'])
 			
 		if(vgs_setpoint_changes):
-			includeOriginOnYaxis(vgs_ax)
+			includeOriginOnYaxis(vgs_ax, include=plot_parameters['StaticBias']['dualIncludeOrigin'])
 			axisLabels(vgs_ax, y_label=plot_parameters['StaticBias']['vgs_label'])
 			
 		if(vds_setpoint_changes and vgs_setpoint_changes):
@@ -1051,11 +1060,12 @@ def tickLabels(axis, labelList, rotation=0):
 	axis.set_xticks(range(len(labelList)))
 	axis.xaxis.set_tick_params(rotation=rotation)
 
-def includeOriginOnYaxis(axis):
-	if(axis.get_ylim()[1] < 0):
-		axis.set_ylim(top=0)
-	elif(axis.get_ylim()[0] > 0):
-		axis.set_ylim(bottom=0)	
+def includeOriginOnYaxis(axis, include=True):
+	if(include):
+		if(axis.get_ylim()[1] < 0):
+			axis.set_ylim(top=0)
+		elif(axis.get_ylim()[0] > 0):
+			axis.set_ylim(bottom=0)	
 		
 def getTestLabel(deviceHistory, identifiers):
 	if(identifiers is None):
