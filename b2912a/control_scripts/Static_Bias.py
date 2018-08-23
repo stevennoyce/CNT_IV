@@ -97,6 +97,10 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 	vgs_data = []
 	ig_data = []
 	timestamps = []
+	vds_std = []
+	id_std = []
+	vgs_std = []
+	ig_std = []
 
 	# Get the SMU measurement speed
 	smu_measurementsPerSecond = smu_instance.measurementsPerSecond
@@ -145,6 +149,10 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		vgs_data.append(np.median(measurements['Vgs_data']))
 		ig_data.append(np.median(measurements['Ig_data']))
 		timestamps.append(timestamp)
+		vds_std.append(np.std(measurements['Vds_data']))
+		id_std.append(np.std(measurements['Id_data']))
+		vgs_std.append(np.std(measurements['Vgs_data']))
+		ig_std.append(np.std(measurements['Ig_data']))
 
 		# Take a measurement with the Arduino
 		sensor_data = arduino_instance.takeMeasurement()
@@ -166,13 +174,17 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 			'id_data':id_data,
 			'vgs_data':vgs_data,
 			'ig_data':ig_data,
-			'timestamps':timestamps
+			'timestamps':timestamps,
+			'vds_std':vds_std,
+			'id_std':id_std,
+			'vgs_std':vgs_std,
+			'ig_std':ig_std
 		},
 		'Computed':{
-			'id_std':drainCurrentSTD(id_data)
+			'id_max':max(id_data),
+			'id_min':min(id_data),
+			'avg_id_std':np.mean(id_std)
 		}
 	}
 
-def drainCurrentSTD(drainCurrent):
-	return np.std(drainCurrent)
 
