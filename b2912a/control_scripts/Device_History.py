@@ -173,11 +173,12 @@ def run(additional_parameters, plot_mode_parameters=None):
 	'' if((p['excludeDataBeforeJSONIndex'] == 0) and (p['excludeDataAfterJSONIndex'] == float('inf'))) else (print('  Abs. Index #{:}'.format(p['excludeDataAfterJSONIndex'])) if(p['excludeDataBeforeJSONIndex'] == p['excludeDataAfterJSONIndex']) else (print('  Abs. Indices #{:} to #{:}'.format(p['excludeDataBeforeJSONIndex'],p['excludeDataAfterJSONIndex']))))
 
 	# Try to load general information file 'wafer.json' if such a file exists
-	try:
-		wafer_info = dlu.loadJSON(dlu.getWaferDirectory(parameters), 'wafer.json')[0]
-		mode_parameters['generalInfo'] = wafer_info
-	except:
-		print('Error: no information in wafer.json for this device.')
+	if('generalInfo' not in mode_parameters):
+		try:
+			wafer_info = dlu.loadJSON(dlu.getWaferDirectory(parameters), 'wafer.json')[0]
+			mode_parameters['generalInfo'] = wafer_info
+		except:
+			print('Error: no information in wafer.json for this device.')
 
 	if(p['plotGateSweeps'] and (p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','FullTransferCurveHistory','FullGateCurrentHistory','OnAndOffCurrentHistory',''])):
 		try:			
