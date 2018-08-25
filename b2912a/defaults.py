@@ -20,8 +20,8 @@ default_parameters = {
 			'stepsInVDSPerDirection': 100,
 			'pointsPerVDS': 1,
 			'complianceCurrent':	100e-6,
-			'gateVoltageSetPoint':	-15,
-			'drainVoltageMinimum': 	-0.5,
+			'gateVoltageSetPoint':	0,
+			'drainVoltageMinimum': 	0,
 			'drainVoltageMaximum': 	0.5
 		},
 		'BurnOut':{
