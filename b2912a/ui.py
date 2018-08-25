@@ -14,6 +14,33 @@ from utilities import DataLoggerUtility as dlu
 if __name__ == '__main__':
 	os.chdir(sys.path[0])
 
+
+from collections import Mapping, Sequence
+
+def replaceInfNan(obj):
+	if isinstance(obj, float):
+		if obj == float('nan'):
+			return None
+		if obj == float('inf'):
+			return 1e99
+		if obj == -float('inf'):
+			return -1e99
+		return obj
+	elif isinstance(obj, str):
+		return obj
+	elif isinstance(obj, bytes):
+		return obj
+	elif isinstance(obj, Sequence):
+		return [replaceInfNan(item) for item in obj]
+	elif isinstance(obj, Mapping):
+		return dict((key, replaceInfNan(value)) for key, value in obj.items())
+	else:
+		return obj
+
+def jsonvalid(obj):
+	return json.dumps(replaceInfNan(obj))
+
+
 app = flask.Flask(__name__, static_url_path='', static_folder='ui')
 
 @app.route('/')
@@ -85,7 +112,7 @@ def projects(user):
 	
 	projects = [{'name': n} for n in names]
 	
-	return json.dumps(projects)
+	return jsonvalid(projects)
 
 @app.route('/<user>/<project>/indexes.json')
 def indexes(user, project):
@@ -107,7 +134,7 @@ def indexes(user, project):
 			for devicePath, deviceName in zip(devicePaths, deviceNames):
 				indexObject[waferName][chipName][deviceName] = dlu.loadJSONIndex(os.path.dirname(devicePath))
 	
-	return json.dumps(indexObject)
+	return jsonvalid(indexObject)
 
 @app.route('/<user>/<project>/wafers.json')
 def wafers(user, project):
@@ -124,7 +151,7 @@ def wafers(user, project):
 	
 	wafers = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'chipCount': c, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, c, ic, ec in zip(names, paths, modificationTimes, sizes, chipCounts, indexCounts, experimentCounts)]
 	
-	return json.dumps(wafers)
+	return jsonvalid(wafers)
 
 @app.route('/<user>/<project>/<wafer>/chips.json')
 def chips(user, project, wafer):
@@ -142,7 +169,7 @@ def chips(user, project, wafer):
 	
 	chips = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'deviceCount': d, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, d, ic, ec in zip(names, paths, modificationTimes, sizes, deviceCounts, indexCounts, experimentCounts)]
 	
-	return json.dumps(chips)
+	return jsonvalid(chips)
 
 @app.route('/<user>/<project>/<wafer>/<chip>/devices.json')
 def devices(user, project, wafer, chip):
@@ -159,7 +186,7 @@ def devices(user, project, wafer, chip):
 	
 	devices = [{'name': n, 'path': p, 'modificationTime': m, 'size': s, 'indexCount': ic, 'experimentCount': ec} for n, p, m, s, ic, ec in zip(names, paths, modificationTimes, sizes, indexCounts, experimentCounts)]
 	
-	return json.dumps(devices)
+	return jsonvalid(devices)
 
 @app.route('/<user>/<project>/<wafer>/<chip>/<device>/experiments.json')
 def experiments(user, project, wafer, chip, device):
@@ -175,18 +202,18 @@ def experiments(user, project, wafer, chip, device):
 	
 	# experiments = [{'name': n, 'path': p, 'modificationTime': m, 'size': s} for n, p, m, s in zip(names, paths, modificationTimes, sizes)]
 	
-	return json.dumps(parameters)
+	return jsonvalid(parameters)
 	
-	# return flask.Response(json.dumps(parameters, allow_nan=False), mimetype='application/json')
+	# return flask.Response(jsonvalid(parameters, allow_nan=False), mimetype='application/json')
 
 @app.route('/default_parameters_description.json')
 def parametersDescription():
 	# return flask.jsonify(defaults.default_parameters_description)
-	return json.dumps(defaults.default_parameters_description)
+	return jsonvalid(defaults.default_parameters_description)
 
 @app.route('/default_parameters.json')
 def defaultParameters():
-	return json.dumps(defaults.default_parameters)
+	return jsonvalid(defaults.default_parameters)
 
 # @app.after_request
 # def add_header(response):
