@@ -349,8 +349,8 @@
 										<v-toolbar-title>
 											{{ wafer }}{{ chip }} {{ device }} Experiment #{{ experiment.startIndexes.experimentNumber }}
 										</v-toolbar-title>
-										<v-btn icon @click="experimentIndex--" :disabled="experimentIndex <= 0"><v-icon>arrow_downward</v-icon></v-btn>
-										<v-btn icon @click="experimentIndex++" :disabled="experimentIndex >= experiments.length - 1"><v-icon>arrow_upward</v-icon></v-btn>
+										<v-btn icon @click="experimentIndex--" :disabled="experimentIndex <= 0" class="ml-4"><v-icon>arrow_back_ios</v-icon></v-btn>
+										<v-btn icon @click="experimentIndex++" :disabled="experimentIndex >= experiments.length - 1"><v-icon>arrow_forward_ios</v-icon></v-btn>
 										<v-spacer></v-spacer>
 										<v-btn icon @click="getAll(); newCacheBust();"><v-icon>refresh</v-icon></v-btn>
 									</v-toolbar>
