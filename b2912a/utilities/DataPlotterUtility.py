@@ -230,6 +230,11 @@ plot_parameters = {
 		'xlabel':'$V_{{GS}}^{{Sweep}}$ [V]',
 		'ylabel':'$I_{{D}}$ [$\\mu$A]',
 		'neg_label':'$-I_{{D}}$ [$\\mu$A]',
+	},
+	'AFMSignalsOverTime':{
+		'figsize':(5,4),
+		'xlabel':'Time',
+		'ylabel':'Current'
 	}
 }
 
@@ -259,6 +264,8 @@ def makeDevicePlot(plotType, deviceHistory, identifiers, mode_parameters=None):
 		fig, axes = plotFullStaticBiasHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
 	elif(plotType == 'OnCurrent'):
 		fig, axes = plotOnAndOffCurrentHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'AFMSignalsOverTime'):
+		fig, axes = plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
 	else:
 		raise NotImplementedError('Unrecognized "plotType": ' + str(plotType))
 			
@@ -697,6 +704,32 @@ def plotOnAndOffCurrentHistory(deviceHistory, identifiers, mode_parameters=None)
 		adjustAndSaveFigure(fig, 'OnAndOffCurrents', mode_parameters)
 	
 	return (fig, (ax1, ax2, ax3, ax4))
+
+def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'AFMSignalsOverTime', figsizeOverride=mode_parameters['figureSizeOverride'])
+	if(not mode_parameters['publication_mode']):
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
+	
+	# Build Color Map and Color Bar
+	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
+	
+	# Plot
+	for i in range(len(deviceHistory)):
+		line = ax.plot(deviceHistory[i]['Results']['timestamps_device'], deviceHistory[i]['Results']['id_data'])
+		ax2 = plt.twinx()
+		ax2.plot([])
+		line = ax2.plot(deviceHistory[i]['Results']['timestamps_smu2'], deviceHistory[i]['Results']['smu2_v1_data'])
+		line = ax2.plot(deviceHistory[i]['Results']['timestamps_smu2'], deviceHistory[i]['Results']['smu2_v2_data'])
+		
+		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			# setLabel(line, mode_parameters['legendLabels'][i])
+	
+	# Add Legend and save figure
+	# addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))
+	adjustAndSaveFigure(fig, 'FullSubthresholdCurves', mode_parameters)
+
+	return (fig, ax)
 
 def plotChipHistogram(chipIndexes, mode_parameters=None):
 	# Init Figure

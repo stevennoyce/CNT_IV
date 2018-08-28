@@ -17,13 +17,13 @@ def run(parameters, smu_systems, isSavingResults=True, isPlottingResults=False):
 	dh_parameters['plotBurnOuts'] = False
 	dh_parameters['plotStaticBias'] = False
 	dh_parameters['showFiguresGenerated'] = True
-	dh_parameters['saveFiguresGenerated'] = True
+	dh_parameters['saveFiguresGenerated'] = False
 	dh_parameters['excludeDataBeforeJSONExperimentNumber'] = parameters['startIndexes']['experimentNumber']
 	dh_parameters['excludeDataAfterJSONExperimentNumber'] =  parameters['startIndexes']['experimentNumber']
-
+	
 	# Get shorthand name to easily refer to configuration parameters
 	afm_parameters = parameters['runConfigs']['AFMControl']
-
+	
 	smu_device = smu_systems['deviceSMU']
 	smu_secondary = smu_systems['secondarySMU']
 
@@ -36,7 +36,7 @@ def run(parameters, smu_systems, isSavingResults=True, isPlottingResults=False):
 
 	# Add important metrics from the run to the parameters for easy access later in ParametersHistory
 	parameters['Computed'] = results['Computed']
-
+	
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)
 	jsonData['Results'] = results['Raw']
@@ -44,7 +44,7 @@ def run(parameters, smu_systems, isSavingResults=True, isPlottingResults=False):
 	# Save results as a JSON object
 	if(isSavingResults):
 		print('Saving JSON: ' + str(dlu.getDeviceDirectory(parameters)))
-		dlu.saveJSON(dlu.getDeviceDirectory(parameters), gs_parameters['saveFileName'], jsonData)
+		dlu.saveJSON(dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData)
 
 	# Show plots to the user
 	if(isPlottingResults):
@@ -53,7 +53,10 @@ def run(parameters, smu_systems, isSavingResults=True, isPlottingResults=False):
 	return jsonData
 
 # === Data Collection ===
-def runAFM(smu_device, smu_secondary, complianceCurrent=50e-6, complianceVoltage=10, gateVoltageSetPoint=0, drainVoltageSetPoint=0):
+def runAFM(smu_device, smu_secondary, complianceCurrent=1e-6, complianceVoltage=10, gateVoltageSetPoint=0, drainVoltageSetPoint=0):
+	# Duke label 184553 is 'USB0::0x0957::0x8E18::MY51141244::INSTR' - use for device drain (CH1) and gate (CH2)
+	# Duke Label 184554 is 'USB0::0x0957::0x8E18::MY51141241::INSTR' - use for AFM channels x (CH1) and y (CH2)
+	
 	# Device SMU data
 	vds_data = []
 	id_data = []

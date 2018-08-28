@@ -83,6 +83,11 @@ plots_for_experiment = {
 			'FullGateCurrentHistory',
 			'OnAndOffCurrentHistory'
 		]
+	},
+	'AFMControl' : {
+		'primary':[
+			'AFMSignalsOverTime'
+		]
 	}
 }
 
@@ -175,7 +180,7 @@ def run(additional_parameters, plot_mode_parameters=None):
 			mode_parameters['generalInfo'] = wafer_info
 		except:
 			print('Error: no information in wafer.json for this device.')
-
+	
 	if(p['plotGateSweeps'] and (p['specificPlotToCreate'] in ['FullSubthresholdCurveHistory','FullTransferCurveHistory','FullGateCurrentHistory','OnAndOffCurrentHistory',''])):
 		try:			
 			gateSweepHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'GateSweep.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
@@ -224,6 +229,16 @@ def run(additional_parameters, plot_mode_parameters=None):
 			
 			if p['specificPlotToCreate'] in ['FullStaticBiasHistory','']:
 				plot = dpu.makeDevicePlot('StaticBias', staticBiasHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
+				plotList.append(plot)
+		except FileNotFoundError:
+			print("Error: Unable to find Static Bias history.")
+	
+	if( (p['specificPlotToCreate'] in ['AFMSignalsOverTime',''])):
+		try:
+			AFMHistory = dlu.loadSpecificDeviceHistory(dlu.getDeviceDirectory(parameters), 'AFMControl.json', minIndex=p['excludeDataBeforeJSONIndex'], maxIndex=p['excludeDataAfterJSONIndex'], minExperiment=p['excludeDataBeforeJSONExperimentNumber'], maxExperiment=p['excludeDataAfterJSONExperimentNumber'], minRelativeIndex=p['excludeDataBeforeJSONRelativeIndex'], maxRelativeIndex=p['excludeDataAfterJSONRelativeIndex'])
+			
+			if p['specificPlotToCreate'] in ['AFMSignalsOverTime','']:
+				plot = dpu.makeDevicePlot('AFMSignalsOverTime', AFMHistory, parameters['Identifiers'], mode_parameters=mode_parameters)
 				plotList.append(plot)
 		except FileNotFoundError:
 			print("Error: Unable to find Static Bias history.")

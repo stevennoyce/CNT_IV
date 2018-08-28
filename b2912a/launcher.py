@@ -105,7 +105,7 @@ def runAction(parameters, schedule_parameters, smu_systems, arduino_instance):
 		smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))
 	parameters['endIndexes']['timestamp'] = time.time()
-
+	
 	print('Saving to ParametersHistory...')
 	dlu.saveJSON(dlu.getDeviceDirectory(parameters), 'ParametersHistory', parameters, incrementIndex=False)
 
