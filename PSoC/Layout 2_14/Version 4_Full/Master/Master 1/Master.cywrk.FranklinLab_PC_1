@@ -13,10 +13,9 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Master\Design01\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Master\Design01\TopDesign">
 <ExpandedNodeIds>
 <v>Master</v>
-<v>Master\Design01</v>
 <v>Master\Design01\TopDesign</v>
 <v>Master\Design01\Design01.cydwr</v>
 <v>Master\Design01\Design01.cydwr\Pins</v>
@@ -57,53 +56,7 @@
 <VisibleNodeIds>
 <v>Master</v>
 <v>Master\Design01</v>
-<v>Master\Design01\TopDesign</v>
-<v>Master\Design01\Design01.cydwr</v>
-<v>Master\Design01\Design01.cydwr\Pins</v>
-<v>Master\Design01\Design01.cydwr\Analog</v>
-<v>Master\Design01\Design01.cydwr\Clocks</v>
-<v>Master\Design01\Design01.cydwr\Interrupts</v>
-<v>Master\Design01\Design01.cydwr\DMA</v>
-<v>Master\Design01\Design01.cydwr\System</v>
-<v>Master\Design01\Design01.cydwr\Directives</v>
-<v>Master\Design01\Design01.cydwr\Flash Security</v>
-<v>Master\Design01\Design01.cydwr\EEPROM</v>
-<v>Master\Design01\Header Files</v>
-<v>Master\Design01\Header Files\cyapicallbacks.h</v>
-<v>Master\Design01\Source Files</v>
-<v>Master\Design01\Source Files\main.c</v>
-<v>Master\Design01\Source Files\USBUART_Helpers.h</v>
-<v>Master\Design01\Generated_Source</v>
-<v>Master\Design01\Generated_Source\PSoC5</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1_Ext_CP_Clk</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1_IRQ</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1_theACLK</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_1</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_1_IRQ</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_1_theACLK</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_2</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_2_IRQ</v>
-<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_2_theACLK</v>
-<v>Master\Design01\Generated_Source\PSoC5\CommunicationInterrupt</v>
-<v>Master\Design01\Generated_Source\PSoC5\CommunicationTimer</v>
-<v>Master\Design01\Generated_Source\PSoC5\cy_boot</v>
-<v>Master\Design01\Generated_Source\PSoC5\DieTemp</v>
-<v>Master\Design01\Generated_Source\PSoC5\I2C_1</v>
-<v>Master\Design01\Generated_Source\PSoC5\I2C_1_IntClock</v>
-<v>Master\Design01\Generated_Source\PSoC5\Opamp_1</v>
-<v>Master\Design01\Generated_Source\PSoC5\Opamp_2</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_BackGate</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_I1_GND</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_I11</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_I12</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_LocalGates</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_SolutionGate</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_Vds</v>
-<v>Master\Design01\Generated_Source\PSoC5\Pin_Vss</v>
-<v>Master\Design01\Generated_Source\PSoC5\SCL_1</v>
-<v>Master\Design01\Generated_Source\PSoC5\SDA_1</v>
-<v>Master\Design01\Generated_Source\PSoC5\TIA_1</v>
+<v>Master\WithIG1</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -321,6 +274,53 @@
 <VisibleNodeIds>
 <v>Master</v>
 <v>Master\Design01</v>
+<v>Master\Design01\CortexM3</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_Ext_CP_Clk.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_IRQ.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_theACLK.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_IRQ.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_theACLK.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_IRQ.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_theACLK.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationInterrupt.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationTimer.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationTimer_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\DieTemp.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_BOOT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_IntClock.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_MASTER.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_SLAVE.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_BackGate.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -442,9 +442,8 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Design01.cydsn\main.c" />
+<name v=".\WithIG1.cydsn\WithIG1.cydwr" />
 <name v=".\Design01.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Design01.cydsn\Design01.cydwr" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -452,7 +451,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1297, 712" SelectedTabbedMdiWindow="c9eaadb6-f4c2-45a4-93f0-b8028fcc5736"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\main.c" Guid="c9eaadb6-f4c2-45a4-93f0-b8028fcc5736" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="e76b5a16-f0db-4172-be4b-ba3059083d60" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\Design01.cydwr" Guid="5e65fcef-b42f-425d-93ac-406d9e1d23d9" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1300, 712" SelectedTabbedMdiWindow="fa1ad35e-fc7e-4a60-ab0c-a652b93da960"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\WithIG1.cydsn\WithIG1.cydwr" Guid="5a589d97-02dd-43db-8f86-dc79d96fe37f" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="fa1ad35e-fc7e-4a60-ab0c-a652b93da960" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
