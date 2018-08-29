@@ -714,16 +714,24 @@ def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
 	# Build Color Map and Color Bar
 	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
 	
+	ax2 = plt.twinx()
+	startTime = min(deviceHistory[0]['Results']['timestamps_device'])
+	
 	# Plot
 	for i in range(len(deviceHistory)):
-		line = ax.plot(deviceHistory[i]['Results']['timestamps_device'], deviceHistory[i]['Results']['id_data'])
-		ax2 = plt.twinx()
+		ax.set_prop_cycle(None)
+		ax2.set_prop_cycle(None)
+		line = ax.plot(np.array(deviceHistory[i]['Results']['timestamps_device']) - startTime, deviceHistory[i]['Results']['id_data'])
 		ax2.plot([])
-		line = ax2.plot(deviceHistory[i]['Results']['timestamps_smu2'], deviceHistory[i]['Results']['smu2_v1_data'])
-		line = ax2.plot(deviceHistory[i]['Results']['timestamps_smu2'], deviceHistory[i]['Results']['smu2_v2_data'])
+		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v1_data'])
+		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v2_data'])
 		
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			# setLabel(line, mode_parameters['legendLabels'][i])
+	
+	ax.set_ylabel('$I_D$ [A]')
+	ax.set_xlabel('Time [s]')
+	ax2.set_ylabel('AFM Voltages [V]', rotation=-90, va='bottom', labelpad=5)
 	
 	# Add Legend and save figure
 	# addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))

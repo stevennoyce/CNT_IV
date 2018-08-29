@@ -26,8 +26,8 @@ inst.values_format.use_binary('d', False, np.array)
 
 channels = [1,2]
 Npoints = 10000
-Vds = 0.1
-Vgs = 0.1
+Vds = 0.01
+Vgs = -15
 voltageSetpoints = [None, Vds, Vgs]
 
 for channel in channels:

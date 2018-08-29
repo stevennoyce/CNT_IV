@@ -77,7 +77,15 @@ default_parameters = {
 			'shuffleDelaysBeforeReapplyingVoltage': False
 		},
 		'AFMControl':{
-			'saveFileName': 'AFMControl'
+			'saveFileName': 'AFMControl',
+			'lines': 3,
+			'scanRate': 1,
+			'napOn': True,
+			'drainVoltageSetPoint': 0.01,
+			'gateVoltageSetPoint': 0,
+			'complianceCurrent': 1e-6,
+			'complianceVoltage': 10,
+			'deviceMeasurementSpeed': 600
 		}
 	},
 	'Results':{

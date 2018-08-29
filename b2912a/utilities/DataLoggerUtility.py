@@ -179,8 +179,8 @@ def filterStringArrayByIndexAndExperiment(directory, fileLines, minIndex=0, maxI
 			filteredFileLines = filterFileLinesGreaterThan(filteredFileLines, 'index', minIndex)
 		if(maxIndex < float('inf')):
 			filteredFileLines = filterFileLinesLessThan(filteredFileLines, 'index', maxIndex)
-
-	if(minRelativeIndex > 0 or maxRelativeIndex < float('inf')):
+	
+	if(minRelativeIndex > 0 or maxRelativeIndex < 1e10):
 		experimentBaseIndex = min(loadIndexesOfExperiementRange(directory, minExperiment, maxExperiment))
 		if(minRelativeIndex > 0):
 			filteredFileLines = filterFileLinesGreaterThan(filteredFileLines, 'index', experimentBaseIndex + minRelativeIndex)

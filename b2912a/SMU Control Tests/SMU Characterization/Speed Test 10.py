@@ -31,8 +31,8 @@ inst.values_format.use_binary('d', False, np.array)
 
 channels = [1,2]
 Npoints = 10000
-Vds = 0.1
-Vgs = 0.1
+Vds = 0.01
+Vgs = -15
 voltageSetpoints = [None, Vds, Vgs]
 
 for channel in channels:
@@ -73,6 +73,7 @@ for vgs in np.linspace(0,Vgs,30):
 
 for channel in channels:
 	sinVoltages = 0.1*np.cos(np.linspace(0,2*np.pi,2500))
+	sinVoltages = voltageSetpoints[channel]*np.linspace(1,1,2500)
 	
 	inst.write(':source{}:voltage:mode list'.format(channel))
 	inst.write(':source{}:list:voltage {}'.format(channel, ','.join(map(str, sinVoltages))))
@@ -140,6 +141,8 @@ plt.plot(times2, currents2)
 plt.xlabel('Time [s]')
 plt.ylabel('Current [A]')
 plt.show()
+
+exit()
 
 plt.psd(currents, Fs=len(times)/totalTime, NFFT=2**16)
 plt.psd(currents2, Fs=len(times)/totalTime, NFFT=2**16)
