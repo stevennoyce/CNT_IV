@@ -82,6 +82,7 @@
 #include "EZI2C_1_EZI2C.h"
 #include "EZI2C_1_EZI2C_PVT.h"
 #include "EZI2C_1_BOOT.h"
+#include "Opamp_1.h"
 #include "ADC_SAR_Seq_1_IRQ.h"
 #include "ADC_SAR_Seq_1_intClock.h"
 #include "EZI2C_1_SCBCLK.h"

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
   28:Generated_Source\PSoC4/AMux_1.c **** *
   29:Generated_Source\PSoC4/AMux_1.c **** * Parameters:
   30:Generated_Source\PSoC4/AMux_1.c **** *  void
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 2
 
 
   31:Generated_Source\PSoC4/AMux_1.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
   59              		.loc 1 51 0
   60              		@ sp needed
   61              	.LVL5:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 3
 
 
   62 001a 10BD     		pop	{r4, pc}
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
   73:Generated_Source\PSoC4/AMux_1.c ****     AMux_1_lastChannel = channel;  /* Update last channel */
   95              		.loc 1 73 0
   96 000e 014B     		ldr	r3, .L7
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 4
 
 
   97 0010 1C70     		strb	r4, [r3]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  127 0004 054B     		ldr	r3, .L11
  128 0006 1878     		ldrb	r0, [r3]
  129              	.LVL10:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 5
 
 
  130 0008 FF28     		cmp	r0, #255
@@ -296,48 +296,48 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  167 0006 00000000 		.4byte	.Ldebug_abbrev0
  168 000a 04       		.byte	0x4
  169 000b 01       		.uleb128 0x1
- 170 000c B8000000 		.4byte	.LASF20
+ 170 000c 27010000 		.4byte	.LASF20
  171 0010 0C       		.byte	0xc
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 6
 
 
- 172 0011 15000000 		.4byte	.LASF21
- 173 0015 6C010000 		.4byte	.LASF22
+ 172 0011 84000000 		.4byte	.LASF21
+ 173 0015 15000000 		.4byte	.LASF22
  174 0019 00000000 		.4byte	.Ldebug_ranges0+0
  175 001d 00000000 		.4byte	0
  176 0021 00000000 		.4byte	.Ldebug_line0
  177 0025 02       		.uleb128 0x2
  178 0026 01       		.byte	0x1
  179 0027 06       		.byte	0x6
- 180 0028 E6010000 		.4byte	.LASF0
+ 180 0028 FF010000 		.4byte	.LASF0
  181 002c 02       		.uleb128 0x2
  182 002d 01       		.byte	0x1
  183 002e 08       		.byte	0x8
- 184 002f 3B000000 		.4byte	.LASF1
+ 184 002f AA000000 		.4byte	.LASF1
  185 0033 02       		.uleb128 0x2
  186 0034 02       		.byte	0x2
  187 0035 05       		.byte	0x5
- 188 0036 C2010000 		.4byte	.LASF2
+ 188 0036 DB010000 		.4byte	.LASF2
  189 003a 02       		.uleb128 0x2
  190 003b 02       		.byte	0x2
  191 003c 07       		.byte	0x7
- 192 003d 6D000000 		.4byte	.LASF3
+ 192 003d DC000000 		.4byte	.LASF3
  193 0041 02       		.uleb128 0x2
  194 0042 04       		.byte	0x4
  195 0043 05       		.byte	0x5
- 196 0044 DD010000 		.4byte	.LASF4
+ 196 0044 F6010000 		.4byte	.LASF4
  197 0048 02       		.uleb128 0x2
  198 0049 04       		.byte	0x4
  199 004a 07       		.byte	0x7
- 200 004b 5B000000 		.4byte	.LASF5
+ 200 004b CA000000 		.4byte	.LASF5
  201 004f 02       		.uleb128 0x2
  202 0050 08       		.byte	0x8
  203 0051 05       		.byte	0x5
- 204 0052 4B010000 		.4byte	.LASF6
+ 204 0052 BA010000 		.4byte	.LASF6
  205 0056 02       		.uleb128 0x2
  206 0057 08       		.byte	0x8
  207 0058 07       		.byte	0x7
- 208 0059 A1000000 		.4byte	.LASF7
+ 208 0059 10010000 		.4byte	.LASF7
  209 005d 03       		.uleb128 0x3
  210 005e 04       		.byte	0x4
  211 005f 05       		.byte	0x5
@@ -345,29 +345,29 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  213 0064 02       		.uleb128 0x2
  214 0065 04       		.byte	0x4
  215 0066 07       		.byte	0x7
- 216 0067 94000000 		.4byte	.LASF8
+ 216 0067 03010000 		.4byte	.LASF8
  217 006b 04       		.uleb128 0x4
- 218 006c CC010000 		.4byte	.LASF23
+ 218 006c E5010000 		.4byte	.LASF23
  219 0070 03       		.byte	0x3
  220 0071 D201     		.2byte	0x1d2
  221 0073 2C000000 		.4byte	0x2c
  222 0077 02       		.uleb128 0x2
  223 0078 04       		.byte	0x4
  224 0079 04       		.byte	0x4
- 225 007a 35000000 		.4byte	.LASF9
+ 225 007a A4000000 		.4byte	.LASF9
  226 007e 02       		.uleb128 0x2
  227 007f 08       		.byte	0x8
  228 0080 04       		.byte	0x4
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 7
 
 
- 229 0081 80000000 		.4byte	.LASF10
+ 229 0081 EF000000 		.4byte	.LASF10
  230 0085 02       		.uleb128 0x2
  231 0086 01       		.byte	0x1
  232 0087 08       		.byte	0x8
- 233 0088 59010000 		.4byte	.LASF11
+ 233 0088 C8010000 		.4byte	.LASF11
  234 008c 05       		.uleb128 0x5
- 235 008d 87000000 		.4byte	.LASF12
+ 235 008d F6000000 		.4byte	.LASF12
  236 0091 01       		.byte	0x1
  237 0092 24       		.byte	0x24
  238 0093 00000000 		.4byte	.LFB0
@@ -376,7 +376,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  241 009c 9C       		.byte	0x9c
  242 009d C1000000 		.4byte	0xc1
  243 00a1 06       		.uleb128 0x6
- 244 00a2 46010000 		.4byte	.LASF16
+ 244 00a2 B5010000 		.4byte	.LASF16
  245 00a6 01       		.byte	0x1
  246 00a7 26       		.byte	0x26
  247 00a8 6B000000 		.4byte	0x6b
@@ -393,7 +393,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  258 00bf 00       		.byte	0
  259 00c0 00       		.byte	0
  260 00c1 05       		.uleb128 0x5
- 261 00c2 5E010000 		.4byte	.LASF13
+ 261 00c2 CD010000 		.4byte	.LASF13
  262 00c6 01       		.byte	0x1
  263 00c7 45       		.byte	0x45
  264 00c8 00000000 		.4byte	.LFB1
@@ -418,14 +418,14 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  283 00f9 50       		.byte	0x50
  284 00fa 02       		.uleb128 0x2
  285 00fb 74       		.byte	0x74
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 8
 
 
  286 00fc 00       		.sleb128 0
  287 00fd 00       		.byte	0
  288 00fe 00       		.byte	0
  289 00ff 05       		.uleb128 0x5
- 290 0100 49000000 		.4byte	.LASF14
+ 290 0100 B8000000 		.4byte	.LASF14
  291 0104 01       		.byte	0x1
  292 0105 5E       		.byte	0x5e
  293 0106 00000000 		.4byte	.LFB2
@@ -454,7 +454,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  316 013b 00       		.byte	0
  317 013c 00       		.byte	0
  318 013d 0B       		.uleb128 0xb
- 319 013e F2010000 		.4byte	.LASF17
+ 319 013e 0B020000 		.4byte	.LASF17
  320 0142 01       		.byte	0x1
  321 0143 14       		.byte	0x14
  322 0144 6B000000 		.4byte	0x6b
@@ -467,8 +467,8 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  329 0157 02       		.byte	0x2
  330 0158 1B       		.byte	0x1b
  331 0159 0C       		.uleb128 0xc
- 332 015a D2010000 		.4byte	.LASF19
- 333 015e D2010000 		.4byte	.LASF19
+ 332 015a EB010000 		.4byte	.LASF19
+ 333 015e EB010000 		.4byte	.LASF19
  334 0162 02       		.byte	0x2
  335 0163 1A       		.byte	0x1a
  336 0164 00       		.byte	0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  340 0001 11       		.uleb128 0x11
  341 0002 01       		.byte	0x1
  342 0003 25       		.uleb128 0x25
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 9
 
 
  343 0004 0E       		.uleb128 0xe
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  397 003a 19       		.uleb128 0x19
  398 003b 03       		.uleb128 0x3
  399 003c 0E       		.uleb128 0xe
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 10
 
 
  400 003d 3A       		.uleb128 0x3a
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  454 0079 03       		.uleb128 0x3
  455 007a 0E       		.uleb128 0xe
  456 007b 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 11
 
 
  457 007c 0B       		.uleb128 0xb
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  511 0000 02000000 		.4byte	.LVL0
  512 0004 06000000 		.4byte	.LVL1
  513 0008 0200     		.2byte	0x2
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 12
 
 
  514 000a 30       		.byte	0x30
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  568 0028 00000000 		.4byte	0
  569 002c 00000000 		.4byte	0
  570              		.section	.debug_ranges,"",%progbits
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 13
 
 
  571              	.Ldebug_ranges0:
@@ -745,129 +745,134 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 1
  586      5F315F55 
  586      6E736574 
  586      00
- 587              	.LASF21:
- 588 0015 47656E65 		.ascii	"Generated_Source\\PSoC4\\AMux_1.c\000"
- 588      72617465 
- 588      645F536F 
- 588      75726365 
- 588      5C50536F 
- 589              	.LASF9:
- 590 0035 666C6F61 		.ascii	"float\000"
- 590      7400
- 591              	.LASF1:
- 592 003b 756E7369 		.ascii	"unsigned char\000"
- 592      676E6564 
- 592      20636861 
- 592      7200
- 593              	.LASF14:
- 594 0049 414D7578 		.ascii	"AMux_1_FastSelect\000"
- 594      5F315F46 
- 594      61737453 
- 594      656C6563 
+ 587              	.LASF22:
+ 588 0015 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 588      73657273 
+ 588      5C467261 
+ 588      6E6B6C69 
+ 588      6E4C6162 
+ 589 0044 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Sla"
+ 589      434E545F 
+ 589      49565C50 
+ 589      536F435C 
+ 589      4C61796F 
+ 590 0072 76655C44 		.ascii	"ve\\Design01.cydsn\000"
+ 590      65736967 
+ 590      6E30312E 
+ 590      63796473 
+ 590      6E00
+ 591              	.LASF21:
+ 592 0084 47656E65 		.ascii	"Generated_Source\\PSoC4\\AMux_1.c\000"
+ 592      72617465 
+ 592      645F536F 
+ 592      75726365 
+ 592      5C50536F 
+ 593              	.LASF9:
+ 594 00a4 666C6F61 		.ascii	"float\000"
  594      7400
- 595              	.LASF5:
- 596 005b 6C6F6E67 		.ascii	"long unsigned int\000"
- 596      20756E73 
- 596      69676E65 
- 596      6420696E 
- 596      7400
- 597              	.LASF3:
- 598 006d 73686F72 		.ascii	"short unsigned int\000"
- 598      7420756E 
- 598      7369676E 
- 598      65642069 
- 598      6E7400
- 599              	.LASF10:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 14
+ 595              	.LASF1:
+ 596 00aa 756E7369 		.ascii	"unsigned char\000"
+ 596      676E6564 
+ 596      20636861 
+ 596      7200
+ 597              	.LASF14:
+ 598 00b8 414D7578 		.ascii	"AMux_1_FastSelect\000"
+ 598      5F315F46 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 14
 
 
- 600 0080 646F7562 		.ascii	"double\000"
- 600      6C6500
- 601              	.LASF12:
- 602 0087 414D7578 		.ascii	"AMux_1_Start\000"
- 602      5F315F53 
- 602      74617274 
- 602      00
- 603              	.LASF8:
- 604 0094 756E7369 		.ascii	"unsigned int\000"
- 604      676E6564 
- 604      20696E74 
- 604      00
- 605              	.LASF7:
- 606 00a1 6C6F6E67 		.ascii	"long long unsigned int\000"
- 606      206C6F6E 
- 606      6720756E 
- 606      7369676E 
- 606      65642069 
- 607              	.LASF20:
- 608 00b8 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 608      43313120 
- 608      352E342E 
- 608      31203230 
- 608      31363036 
- 609 00eb 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
- 609      20726576 
- 609      6973696F 
- 609      6E203233 
- 609      37373135 
- 610 011e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 610      66756E63 
- 610      74696F6E 
- 610      2D736563 
- 610      74696F6E 
- 611              	.LASF16:
- 612 0146 6368616E 		.ascii	"chan\000"
- 612      00
- 613              	.LASF6:
- 614 014b 6C6F6E67 		.ascii	"long long int\000"
- 614      206C6F6E 
- 614      6720696E 
- 614      7400
- 615              	.LASF11:
- 616 0159 63686172 		.ascii	"char\000"
+ 598      61737453 
+ 598      656C6563 
+ 598      7400
+ 599              	.LASF5:
+ 600 00ca 6C6F6E67 		.ascii	"long unsigned int\000"
+ 600      20756E73 
+ 600      69676E65 
+ 600      6420696E 
+ 600      7400
+ 601              	.LASF3:
+ 602 00dc 73686F72 		.ascii	"short unsigned int\000"
+ 602      7420756E 
+ 602      7369676E 
+ 602      65642069 
+ 602      6E7400
+ 603              	.LASF10:
+ 604 00ef 646F7562 		.ascii	"double\000"
+ 604      6C6500
+ 605              	.LASF12:
+ 606 00f6 414D7578 		.ascii	"AMux_1_Start\000"
+ 606      5F315F53 
+ 606      74617274 
+ 606      00
+ 607              	.LASF8:
+ 608 0103 756E7369 		.ascii	"unsigned int\000"
+ 608      676E6564 
+ 608      20696E74 
+ 608      00
+ 609              	.LASF7:
+ 610 0110 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 610      206C6F6E 
+ 610      6720756E 
+ 610      7369676E 
+ 610      65642069 
+ 611              	.LASF20:
+ 612 0127 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 612      43313120 
+ 612      352E342E 
+ 612      31203230 
+ 612      31363036 
+ 613 015a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 613      20726576 
+ 613      6973696F 
+ 613      6E203233 
+ 613      37373135 
+ 614 018d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 614      66756E63 
+ 614      74696F6E 
+ 614      2D736563 
+ 614      74696F6E 
+ 615              	.LASF16:
+ 616 01b5 6368616E 		.ascii	"chan\000"
  616      00
- 617              	.LASF13:
- 618 015e 414D7578 		.ascii	"AMux_1_Select\000"
- 618      5F315F53 
- 618      656C6563 
+ 617              	.LASF6:
+ 618 01ba 6C6F6E67 		.ascii	"long long int\000"
+ 618      206C6F6E 
+ 618      6720696E 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccSmpfN7.s 			page 15
+
+
  618      7400
- 619              	.LASF22:
- 620 016c 433A5C55 		.ascii	"C:\\Users\\noyce\\home\\Research\\illumina\\PSoC\\L"
- 620      73657273 
- 620      5C6E6F79 
- 620      63655C68 
- 620      6F6D655C 
- 621 0198 61796F75 		.ascii	"ayout 2_14 Device Selector\\Design01.cydsn\000"
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccpfeJ4d.s 			page 15
-
-
- 621      7420325F 
- 621      31342044 
- 621      65766963 
- 621      65205365 
- 622              	.LASF2:
- 623 01c2 73686F72 		.ascii	"short int\000"
- 623      7420696E 
- 623      7400
- 624              	.LASF23:
- 625 01cc 75696E74 		.ascii	"uint8\000"
- 625      3800
- 626              	.LASF19:
- 627 01d2 414D7578 		.ascii	"AMux_1_Set\000"
- 627      5F315F53 
- 627      657400
- 628              	.LASF4:
- 629 01dd 6C6F6E67 		.ascii	"long int\000"
- 629      20696E74 
- 629      00
- 630              	.LASF0:
- 631 01e6 7369676E 		.ascii	"signed char\000"
- 631      65642063 
- 631      68617200 
- 632              	.LASF17:
- 633 01f2 414D7578 		.ascii	"AMux_1_lastChannel\000"
- 633      5F315F6C 
- 633      61737443 
- 633      68616E6E 
- 633      656C00
- 634              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 619              	.LASF11:
+ 620 01c8 63686172 		.ascii	"char\000"
+ 620      00
+ 621              	.LASF13:
+ 622 01cd 414D7578 		.ascii	"AMux_1_Select\000"
+ 622      5F315F53 
+ 622      656C6563 
+ 622      7400
+ 623              	.LASF2:
+ 624 01db 73686F72 		.ascii	"short int\000"
+ 624      7420696E 
+ 624      7400
+ 625              	.LASF23:
+ 626 01e5 75696E74 		.ascii	"uint8\000"
+ 626      3800
+ 627              	.LASF19:
+ 628 01eb 414D7578 		.ascii	"AMux_1_Set\000"
+ 628      5F315F53 
+ 628      657400
+ 629              	.LASF4:
+ 630 01f6 6C6F6E67 		.ascii	"long int\000"
+ 630      20696E74 
+ 630      00
+ 631              	.LASF0:
+ 632 01ff 7369676E 		.ascii	"signed char\000"
+ 632      65642063 
+ 632      68617200 
+ 633              	.LASF17:
+ 634 020b 414D7578 		.ascii	"AMux_1_lastChannel\000"
+ 634      5F315F6C 
+ 634      61737443 
+ 634      68616E6E 
+ 634      656C00
+ 635              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

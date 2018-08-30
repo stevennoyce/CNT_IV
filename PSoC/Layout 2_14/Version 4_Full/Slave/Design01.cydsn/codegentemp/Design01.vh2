@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Sep 22 17:22:36 2017
+--	Thu Aug 30 09:24:52 2018
 --
 
 USE cypress.cypress.all;
@@ -308,6 +308,7 @@ TERMINAL Net_270 : bit;
 TERMINAL Net_393 : bit;
 TERMINAL Net_233 : bit;
 TERMINAL Net_232 : bit;
+TERMINAL Net_454 : bit;
 SIGNAL \EZI2C_1:Net_847\ : bit;
 SIGNAL \EZI2C_1:select_s_wire\ : bit;
 SIGNAL \EZI2C_1:rx_wire\ : bit;
@@ -352,6 +353,11 @@ SIGNAL Net_449 : bit;
 SIGNAL Net_450 : bit;
 SIGNAL Net_451 : bit;
 SIGNAL Net_452 : bit;
+TERMINAL \Opamp_1:Net_9\ : bit;
+TERMINAL \Opamp_1:Net_18\ : bit;
+TERMINAL \Opamp_1:Net_29\ : bit;
+TERMINAL \Opamp_1:Net_19\ : bit;
+SIGNAL \Opamp_1:Net_12\ : bit;
 BEGIN
 
 zero <=  ('0') ;
@@ -2682,7 +2688,7 @@ AMux_1:cy_psoc3_amux_v1_0
 			Net_221, Net_220, Net_219, Net_218,
 			Net_217, Net_216),
 		hw_ctrl_en=>(others => zero),
-		vout=>Net_342);
+		vout=>Net_454);
 \EZI2C_1:SCBCLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"7c22e3c5-da93-4267-9ea2-622856a53add/2dc2d7a8-ce2b-43c7-af4a-821c8cd73ccf",
@@ -2858,5 +2864,28 @@ AMux_1:cy_psoc3_amux_v1_0
 		sda=>\EZI2C_1:sda_wire\,
 		tx_req=>Net_441,
 		rx_req=>Net_440);
+\Opamp_1:cy_psoc4_abuf\:cy_psoc4_abuf_v1_0
+	GENERIC MAP(cy_registers=>"",
+		needs_dsab=>'0',
+		deepsleep_available=>'0',
+		has_resistor=>'0')
+	PORT MAP(vplus=>Net_454,
+		vminus=>\Opamp_1:Net_9\,
+		vout1=>\Opamp_1:Net_18\,
+		rs_bot=>\Opamp_1:Net_29\,
+		vout10=>\Opamp_1:Net_19\,
+		cmpout=>\Opamp_1:Net_12\);
+\Opamp_1:cy_analog_virtualmux_1_connect\:cy_connect_v1_0
+	GENERIC MAP(sig_width=>1,
+		is_net_join=>'0')
+	PORT MAP(signal1=>\Opamp_1:Net_9\,
+		signal2=>Net_342);
+\Opamp_1:cy_analog_virtualmux_2_connect\:cy_connect_v1_0
+	GENERIC MAP(sig_width=>1,
+		is_net_join=>'0')
+	PORT MAP(signal1=>Net_342,
+		signal2=>\Opamp_1:Net_18\);
+\Opamp_1:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
+	PORT MAP(noconnect=>\Opamp_1:Net_29\);
 
 END R_T_L;

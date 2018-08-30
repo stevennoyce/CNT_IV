@@ -1,5 +1,5 @@
 -- Project:   Design01
--- Generated: 09/22/2017 17:23:06
+-- Generated: 08/30/2018 09:24:53
 -- PSoC Creator  4.1 Update 1
 
 ENTITY Design01 IS
@@ -88,6 +88,7 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     SIGNAL \EZI2C_1:select_m_wire_2\ : bit;
     SIGNAL \EZI2C_1:select_m_wire_3\ : bit;
     SIGNAL \EZI2C_1:tx_wire\ : bit;
+    SIGNAL \Opamp_1:Net_12\ : bit;
     SIGNAL __ONE__ : bit;
     ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(0,1,A)0";
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
@@ -165,6 +166,7 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE Location OF \ADC_SAR_Seq_1:cy_psoc4_sar\ : LABEL IS "F(SARADC,0)";
     ATTRIBUTE Location OF \EZI2C_1:SCB_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(11)]";
     ATTRIBUTE Location OF \EZI2C_1:SCB\ : LABEL IS "F(SCB,1)";
+    ATTRIBUTE Location OF \Opamp_1:cy_psoc4_abuf\ : LABEL IS "F(OA,0)";
     COMPONENT interrupt
         PORT (
             interrupt : IN std_ulogic;
@@ -395,6 +397,11 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
             q : OUT std_ulogic;
             q_fixed : OUT std_ulogic);
     END COMPONENT;
+    COMPONENT p4abufcell
+        PORT (
+            ctb_dsi_comp : OUT std_ulogic;
+            ctb_dsi_comp_n : OUT std_ulogic);
+    END COMPONENT;
     COMPONENT p4sarcell
         PORT (
             clock : IN std_ulogic;
@@ -551,7 +558,6 @@ BEGIN
             pa_out => Pin_1(0)__PA,
             oe => open,
             in_clock => open,
-            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1091,7 +1097,6 @@ BEGIN
             pa_out => Pin_7(0)__PA,
             oe => open,
             in_clock => open,
-            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1271,6 +1276,7 @@ BEGIN
             pa_out => Pin_9(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1360,6 +1366,7 @@ BEGIN
             pa_out => Pin_10(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1449,6 +1456,7 @@ BEGIN
             pa_out => Pin_11(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1538,6 +1546,7 @@ BEGIN
             pa_out => Pin_12(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1627,6 +1636,7 @@ BEGIN
             pa_out => Pin_13(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1716,6 +1726,7 @@ BEGIN
             pa_out => Pin_14(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1805,6 +1816,7 @@ BEGIN
             pa_out => Pin_15(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -1894,6 +1906,7 @@ BEGIN
             pa_out => Pin_16(0)__PA,
             oe => open,
             in_clock => open,
+            pin_input => __ONE__,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -3241,5 +3254,14 @@ BEGIN
             i2c_sda => \EZI2C_1:sda_wire\,
             tr_tx_req => Net_441,
             tr_rx_req => Net_440);
+
+    \Opamp_1:cy_psoc4_abuf\:p4abufcell
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_available => 0,
+            has_resistor => 0,
+            needs_dsab => 0)
+        PORT MAP(
+            ctb_dsi_comp => \Opamp_1:Net_12\);
 
 END __DEFAULT__;

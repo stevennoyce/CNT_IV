@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
   28:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** * Summary:
   29:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** *  Starts the clock, aligned to the specified running clock.
   30:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** *
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 2
 
 
   31:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** * Parameters:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
   39 000a 1360     		str	r3, [r2]
   74:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** }
   40              		.loc 1 74 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 3
 
 
   41              		@ sp needed
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  107:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c ****         ((uint32)EZI2C_1_SCBCLK_CMD_DISABLE_MASK);
  108:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** 
  109:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** #else
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 4
 
 
  110:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
   91              		@ link register save eliminated.
   92              	.LVL0:
  136:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c ****     uint32 maskVal;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 5
 
 
  137:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c ****     uint32 regVal;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  162:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** * Function Name: EZI2C_1_SCBCLK_GetDividerRegister
  163:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** ********************************************************************************
  164:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** *
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 6
 
 
  165:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** * Summary:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  192:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** *
  193:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** * Returns:
  194:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** *  Fractional Divide value of the clock
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 7
 
 
  195:Generated_Source\PSoC4/EZI2C_1_SCBCLK.c **** *  0 if the fractional divider is not in use.
@@ -396,48 +396,48 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  168 0006 00000000 		.4byte	.Ldebug_abbrev0
  169 000a 04       		.byte	0x4
  170 000b 01       		.uleb128 0x1
- 171 000c E0000000 		.4byte	.LASF24
+ 171 000c 4F010000 		.4byte	.LASF24
  172 0010 0C       		.byte	0xc
- 173 0011 5F020000 		.4byte	.LASF25
- 174 0015 AD010000 		.4byte	.LASF26
+ 173 0011 78020000 		.4byte	.LASF25
+ 174 0015 22000000 		.4byte	.LASF26
  175 0019 00000000 		.4byte	.Ldebug_ranges0+0
  176 001d 00000000 		.4byte	0
  177 0021 00000000 		.4byte	.Ldebug_line0
  178 0025 02       		.uleb128 0x2
  179 0026 01       		.byte	0x1
  180 0027 06       		.byte	0x6
- 181 0028 53020000 		.4byte	.LASF0
+ 181 0028 6C020000 		.4byte	.LASF0
  182 002c 02       		.uleb128 0x2
  183 002d 01       		.byte	0x1
  184 002e 08       		.byte	0x8
- 185 002f 28000000 		.4byte	.LASF1
+ 185 002f 97000000 		.4byte	.LASF1
  186 0033 02       		.uleb128 0x2
  187 0034 02       		.byte	0x2
  188 0035 05       		.byte	0x5
- 189 0036 03020000 		.4byte	.LASF2
+ 189 0036 1C020000 		.4byte	.LASF2
  190 003a 02       		.uleb128 0x2
  191 003b 02       		.byte	0x2
  192 003c 07       		.byte	0x7
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 8
 
 
- 193 003d 48000000 		.4byte	.LASF3
+ 193 003d B7000000 		.4byte	.LASF3
  194 0041 02       		.uleb128 0x2
  195 0042 04       		.byte	0x4
  196 0043 05       		.byte	0x5
- 197 0044 4A020000 		.4byte	.LASF4
+ 197 0044 63020000 		.4byte	.LASF4
  198 0048 02       		.uleb128 0x2
  199 0049 04       		.byte	0x4
  200 004a 07       		.byte	0x7
- 201 004b 36000000 		.4byte	.LASF5
+ 201 004b A5000000 		.4byte	.LASF5
  202 004f 02       		.uleb128 0x2
  203 0050 08       		.byte	0x8
  204 0051 05       		.byte	0x5
- 205 0052 6E010000 		.4byte	.LASF6
+ 205 0052 DD010000 		.4byte	.LASF6
  206 0056 02       		.uleb128 0x2
  207 0057 08       		.byte	0x8
  208 0058 07       		.byte	0x7
- 209 0059 9D000000 		.4byte	.LASF7
+ 209 0059 0C010000 		.4byte	.LASF7
  210 005d 03       		.uleb128 0x3
  211 005e 04       		.byte	0x4
  212 005f 05       		.byte	0x5
@@ -445,46 +445,46 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  214 0064 02       		.uleb128 0x2
  215 0065 04       		.byte	0x4
  216 0066 07       		.byte	0x7
- 217 0067 90000000 		.4byte	.LASF8
+ 217 0067 FF000000 		.4byte	.LASF8
  218 006b 04       		.uleb128 0x4
- 219 006c 2F020000 		.4byte	.LASF9
+ 219 006c 48020000 		.4byte	.LASF9
  220 0070 02       		.byte	0x2
  221 0071 D201     		.2byte	0x1d2
  222 0073 2C000000 		.4byte	0x2c
  223 0077 04       		.uleb128 0x4
- 224 0078 82000000 		.4byte	.LASF10
+ 224 0078 F1000000 		.4byte	.LASF10
  225 007c 02       		.byte	0x2
  226 007d D301     		.2byte	0x1d3
  227 007f 3A000000 		.4byte	0x3a
  228 0083 04       		.uleb128 0x4
- 229 0084 89000000 		.4byte	.LASF11
+ 229 0084 F8000000 		.4byte	.LASF11
  230 0088 02       		.byte	0x2
  231 0089 D401     		.2byte	0x1d4
  232 008b 48000000 		.4byte	0x48
  233 008f 02       		.uleb128 0x2
  234 0090 04       		.byte	0x4
  235 0091 04       		.byte	0x4
- 236 0092 22000000 		.4byte	.LASF12
+ 236 0092 91000000 		.4byte	.LASF12
  237 0096 02       		.uleb128 0x2
  238 0097 08       		.byte	0x8
  239 0098 04       		.byte	0x4
- 240 0099 66000000 		.4byte	.LASF13
+ 240 0099 D5000000 		.4byte	.LASF13
  241 009d 02       		.uleb128 0x2
  242 009e 01       		.byte	0x1
  243 009f 08       		.byte	0x8
- 244 00a0 7C010000 		.4byte	.LASF14
+ 244 00a0 EB010000 		.4byte	.LASF14
  245 00a4 04       		.uleb128 0x4
  246 00a5 00000000 		.4byte	.LASF15
  247 00a9 02       		.byte	0x2
  248 00aa 7E02     		.2byte	0x27e
  249 00ac B0000000 		.4byte	0xb0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 9
 
 
  250 00b0 05       		.uleb128 0x5
  251 00b1 83000000 		.4byte	0x83
  252 00b5 06       		.uleb128 0x6
- 253 00b6 35020000 		.4byte	.LASF16
+ 253 00b6 4E020000 		.4byte	.LASF16
  254 00ba 01       		.byte	0x1
  255 00bb 46       		.byte	0x46
  256 00bc 00000000 		.4byte	.LFB0
@@ -500,7 +500,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  266 00d5 01       		.uleb128 0x1
  267 00d6 9C       		.byte	0x9c
  268 00d7 07       		.uleb128 0x7
- 269 00d8 81010000 		.4byte	.LASF27
+ 269 00d8 F0010000 		.4byte	.LASF27
  270 00dc 01       		.byte	0x1
  271 00dd 86       		.byte	0x86
  272 00de 00000000 		.4byte	.LFB2
@@ -509,14 +509,14 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  275 00e7 9C       		.byte	0x9c
  276 00e8 23010000 		.4byte	0x123
  277 00ec 08       		.uleb128 0x8
- 278 00ed 5B000000 		.4byte	.LASF18
+ 278 00ed CA000000 		.4byte	.LASF18
  279 00f1 01       		.byte	0x1
  280 00f2 86       		.byte	0x86
  281 00f3 77000000 		.4byte	0x77
  282 00f7 01       		.uleb128 0x1
  283 00f8 50       		.byte	0x50
  284 00f9 08       		.uleb128 0x8
- 285 00fa 74000000 		.4byte	.LASF19
+ 285 00fa E3000000 		.4byte	.LASF19
  286 00fe 01       		.byte	0x1
  287 00ff 86       		.byte	0x86
  288 0100 6B000000 		.4byte	0x6b
@@ -529,7 +529,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  295 010d 83000000 		.4byte	0x83
  296 0111 00000000 		.4byte	.LLST0
  297 0115 0A       		.uleb128 0xa
- 298 0116 6D000000 		.4byte	.LASF21
+ 298 0116 DC000000 		.4byte	.LASF21
  299 011a 01       		.byte	0x1
  300 011b 89       		.byte	0x89
  301 011c 83000000 		.4byte	0x83
@@ -537,8 +537,8 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  303 0121 53       		.byte	0x53
  304 0122 00       		.byte	0
  305 0123 0B       		.uleb128 0xb
- 306 0124 0D020000 		.4byte	.LASF22
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 10
+ 306 0124 26020000 		.4byte	.LASF22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 10
 
 
  307 0128 01       		.byte	0x1
@@ -549,7 +549,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  312 0136 01       		.uleb128 0x1
  313 0137 9C       		.byte	0x9c
  314 0138 0B       		.uleb128 0xb
- 315 0139 B4000000 		.4byte	.LASF23
+ 315 0139 23010000 		.4byte	.LASF23
  316 013d 01       		.byte	0x1
  317 013e C6       		.byte	0xc6
  318 013f 6B000000 		.4byte	0x6b
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  361 0023 3E       		.uleb128 0x3e
  362 0024 0B       		.uleb128 0xb
  363 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 11
 
 
  364 0026 08       		.uleb128 0x8
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  418 005d 0B       		.uleb128 0xb
  419 005e 3B       		.uleb128 0x3b
  420 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 12
 
 
  421 0060 27       		.uleb128 0x27
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  475 0097 13       		.uleb128 0x13
  476 0098 02       		.uleb128 0x2
  477 0099 18       		.uleb128 0x18
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 13
 
 
  478 009a 00       		.byte	0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  532 0034 04000000 		.4byte	.LFE4-.LFB4
  533 0038 00000000 		.4byte	0
  534 003c 00000000 		.4byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 14
 
 
  535              		.section	.debug_ranges,"",%progbits
@@ -814,142 +814,150 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 1
  556              	.LASF20:
  557 001a 6D61736B 		.ascii	"maskVal\000"
  557      56616C00 
- 558              	.LASF12:
- 559 0022 666C6F61 		.ascii	"float\000"
- 559      7400
- 560              	.LASF1:
- 561 0028 756E7369 		.ascii	"unsigned char\000"
- 561      676E6564 
- 561      20636861 
- 561      7200
- 562              	.LASF5:
- 563 0036 6C6F6E67 		.ascii	"long unsigned int\000"
- 563      20756E73 
- 563      69676E65 
- 563      6420696E 
+ 558              	.LASF26:
+ 559 0022 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 559      73657273 
+ 559      5C467261 
+ 559      6E6B6C69 
+ 559      6E4C6162 
+ 560 0051 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Sla"
+ 560      434E545F 
+ 560      49565C50 
+ 560      536F435C 
+ 560      4C61796F 
+ 561 007f 76655C44 		.ascii	"ve\\Design01.cydsn\000"
+ 561      65736967 
+ 561      6E30312E 
+ 561      63796473 
+ 561      6E00
+ 562              	.LASF12:
+ 563 0091 666C6F61 		.ascii	"float\000"
  563      7400
- 564              	.LASF3:
- 565 0048 73686F72 		.ascii	"short unsigned int\000"
- 565      7420756E 
- 565      7369676E 
- 565      65642069 
- 565      6E7400
- 566              	.LASF18:
- 567 005b 636C6B44 		.ascii	"clkDivider\000"
- 567      69766964 
- 567      657200
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 15
+ 564              	.LASF1:
+ 565 0097 756E7369 		.ascii	"unsigned char\000"
+ 565      676E6564 
+ 565      20636861 
+ 565      7200
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 15
 
 
- 568              	.LASF13:
- 569 0066 646F7562 		.ascii	"double\000"
- 569      6C6500
- 570              	.LASF21:
- 571 006d 72656756 		.ascii	"regVal\000"
- 571      616C00
- 572              	.LASF19:
- 573 0074 636C6B46 		.ascii	"clkFractional\000"
- 573      72616374 
- 573      696F6E61 
- 573      6C00
- 574              	.LASF10:
- 575 0082 75696E74 		.ascii	"uint16\000"
- 575      313600
- 576              	.LASF11:
- 577 0089 75696E74 		.ascii	"uint32\000"
- 577      333200
- 578              	.LASF8:
- 579 0090 756E7369 		.ascii	"unsigned int\000"
- 579      676E6564 
- 579      20696E74 
- 579      00
- 580              	.LASF7:
- 581 009d 6C6F6E67 		.ascii	"long long unsigned int\000"
- 581      206C6F6E 
- 581      6720756E 
- 581      7369676E 
- 581      65642069 
- 582              	.LASF23:
- 583 00b4 455A4932 		.ascii	"EZI2C_1_SCBCLK_GetFractionalDividerRegister\000"
- 583      435F315F 
- 583      53434243 
- 583      4C4B5F47 
- 583      65744672 
- 584              	.LASF24:
- 585 00e0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 585      43313120 
- 585      352E342E 
- 585      31203230 
- 585      31363036 
- 586 0113 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
- 586      20726576 
- 586      6973696F 
- 586      6E203233 
- 586      37373135 
- 587 0146 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 587      66756E63 
- 587      74696F6E 
- 587      2D736563 
- 587      74696F6E 
- 588              	.LASF6:
- 589 016e 6C6F6E67 		.ascii	"long long int\000"
- 589      206C6F6E 
- 589      6720696E 
- 589      7400
- 590              	.LASF14:
- 591 017c 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccOU38RS.s 			page 16
+ 566              	.LASF5:
+ 567 00a5 6C6F6E67 		.ascii	"long unsigned int\000"
+ 567      20756E73 
+ 567      69676E65 
+ 567      6420696E 
+ 567      7400
+ 568              	.LASF3:
+ 569 00b7 73686F72 		.ascii	"short unsigned int\000"
+ 569      7420756E 
+ 569      7369676E 
+ 569      65642069 
+ 569      6E7400
+ 570              	.LASF18:
+ 571 00ca 636C6B44 		.ascii	"clkDivider\000"
+ 571      69766964 
+ 571      657200
+ 572              	.LASF13:
+ 573 00d5 646F7562 		.ascii	"double\000"
+ 573      6C6500
+ 574              	.LASF21:
+ 575 00dc 72656756 		.ascii	"regVal\000"
+ 575      616C00
+ 576              	.LASF19:
+ 577 00e3 636C6B46 		.ascii	"clkFractional\000"
+ 577      72616374 
+ 577      696F6E61 
+ 577      6C00
+ 578              	.LASF10:
+ 579 00f1 75696E74 		.ascii	"uint16\000"
+ 579      313600
+ 580              	.LASF11:
+ 581 00f8 75696E74 		.ascii	"uint32\000"
+ 581      333200
+ 582              	.LASF8:
+ 583 00ff 756E7369 		.ascii	"unsigned int\000"
+ 583      676E6564 
+ 583      20696E74 
+ 583      00
+ 584              	.LASF7:
+ 585 010c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 585      206C6F6E 
+ 585      6720756E 
+ 585      7369676E 
+ 585      65642069 
+ 586              	.LASF23:
+ 587 0123 455A4932 		.ascii	"EZI2C_1_SCBCLK_GetFractionalDividerRegister\000"
+ 587      435F315F 
+ 587      53434243 
+ 587      4C4B5F47 
+ 587      65744672 
+ 588              	.LASF24:
+ 589 014f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 589      43313120 
+ 589      352E342E 
+ 589      31203230 
+ 589      31363036 
+ 590 0182 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 16
 
 
- 591      00
- 592              	.LASF27:
- 593 0181 455A4932 		.ascii	"EZI2C_1_SCBCLK_SetFractionalDividerRegister\000"
- 593      435F315F 
- 593      53434243 
- 593      4C4B5F53 
- 593      65744672 
- 594              	.LASF26:
- 595 01ad 433A5C55 		.ascii	"C:\\Users\\noyce\\home\\Research\\illumina\\PSoC\\L"
- 595      73657273 
- 595      5C6E6F79 
- 595      63655C68 
- 595      6F6D655C 
- 596 01d9 61796F75 		.ascii	"ayout 2_14 Device Selector\\Design01.cydsn\000"
- 596      7420325F 
- 596      31342044 
- 596      65766963 
- 596      65205365 
- 597              	.LASF2:
- 598 0203 73686F72 		.ascii	"short int\000"
- 598      7420696E 
- 598      7400
- 599              	.LASF22:
- 600 020d 455A4932 		.ascii	"EZI2C_1_SCBCLK_GetDividerRegister\000"
- 600      435F315F 
- 600      53434243 
- 600      4C4B5F47 
- 600      65744469 
- 601              	.LASF9:
- 602 022f 75696E74 		.ascii	"uint8\000"
- 602      3800
- 603              	.LASF16:
- 604 0235 455A4932 		.ascii	"EZI2C_1_SCBCLK_Start\000"
- 604      435F315F 
- 604      53434243 
- 604      4C4B5F53 
- 604      74617274 
- 605              	.LASF4:
- 606 024a 6C6F6E67 		.ascii	"long int\000"
- 606      20696E74 
- 606      00
- 607              	.LASF0:
- 608 0253 7369676E 		.ascii	"signed char\000"
- 608      65642063 
- 608      68617200 
- 609              	.LASF25:
- 610 025f 47656E65 		.ascii	"Generated_Source\\PSoC4\\EZI2C_1_SCBCLK.c\000"
- 610      72617465 
- 610      645F536F 
- 610      75726365 
- 610      5C50536F 
- 611              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 590      20726576 
+ 590      6973696F 
+ 590      6E203233 
+ 590      37373135 
+ 591 01b5 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 591      66756E63 
+ 591      74696F6E 
+ 591      2D736563 
+ 591      74696F6E 
+ 592              	.LASF6:
+ 593 01dd 6C6F6E67 		.ascii	"long long int\000"
+ 593      206C6F6E 
+ 593      6720696E 
+ 593      7400
+ 594              	.LASF14:
+ 595 01eb 63686172 		.ascii	"char\000"
+ 595      00
+ 596              	.LASF27:
+ 597 01f0 455A4932 		.ascii	"EZI2C_1_SCBCLK_SetFractionalDividerRegister\000"
+ 597      435F315F 
+ 597      53434243 
+ 597      4C4B5F53 
+ 597      65744672 
+ 598              	.LASF2:
+ 599 021c 73686F72 		.ascii	"short int\000"
+ 599      7420696E 
+ 599      7400
+ 600              	.LASF22:
+ 601 0226 455A4932 		.ascii	"EZI2C_1_SCBCLK_GetDividerRegister\000"
+ 601      435F315F 
+ 601      53434243 
+ 601      4C4B5F47 
+ 601      65744469 
+ 602              	.LASF9:
+ 603 0248 75696E74 		.ascii	"uint8\000"
+ 603      3800
+ 604              	.LASF16:
+ 605 024e 455A4932 		.ascii	"EZI2C_1_SCBCLK_Start\000"
+ 605      435F315F 
+ 605      53434243 
+ 605      4C4B5F53 
+ 605      74617274 
+ 606              	.LASF4:
+ 607 0263 6C6F6E67 		.ascii	"long int\000"
+ 607      20696E74 
+ 607      00
+ 608              	.LASF0:
+ 609 026c 7369676E 		.ascii	"signed char\000"
+ 609      65642063 
+ 609      68617200 
+ 610              	.LASF25:
+ 611 0278 47656E65 		.ascii	"Generated_Source\\PSoC4\\EZI2C_1_SCBCLK.c\000"
+ 611      72617465 
+ 611      645F536F 
+ 611      75726365 
+ 611      5C50536F 
+ 612              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccEYxC8v.s 			page 17
+
+

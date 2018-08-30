@@ -1,6 +1,6 @@
 #include "project.h"
 
-#define SELECTOR_ID (0)
+#define SELECTOR_ID (2)
 
 #define SELECTOR_COUNT (4u)
 #define INTERMEDIATE_COUNT (4u)
@@ -25,6 +25,11 @@ int main(void) {
 	
 	struct Selector_I2C_Struct selector;
 	uint8 I2C_Bus_Addresses[SELECTOR_COUNT] = {0x66, 0x11, 0x44, 0x22};
+
+	// Start all hardware blocks
+	//AMux_1_Start(); //not required for a passive block
+	Opamp_1_Start();
+	ADC_SAR_Seq_1_Start();
 	
 	EZI2C_1_Start();
 	EZI2C_1_EzI2CSetAddress1(I2C_Bus_Addresses[SELECTOR_ID]);

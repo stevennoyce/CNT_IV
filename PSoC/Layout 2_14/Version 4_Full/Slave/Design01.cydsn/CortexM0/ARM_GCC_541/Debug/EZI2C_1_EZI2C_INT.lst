@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
   28:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****     *  Handles the Interrupt Service Routine for the SCB EZI2C mode.
   29:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****     *  The clock stretching is used during operation.
   30:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****     *
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 2
 
 
   31:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****     *******************************************************************************/
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
   66:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****     #else
   67:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****         CY_EZI2C_1_CUSTOM_INTR_HANDLER();
   68:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****     #endif /* !defined (CY_REMOVE_EZI2C_1_CUSTOM_INTR_HANDLER) */
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 3
 
 
   69:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
   79 0038 8B43     		bics	r3, r1
   80 003a 1370     		strb	r3, [r2]
   91:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                 EZI2C_1_curStatus |= (uint8)  EZI2C_1_EZI2C_STATUS_ERR;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 4
 
 
   81              		.loc 1 91 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  117 0074 974A     		ldr	r2, .L38+32
  118 0076 1168     		ldr	r1, [r2]
  119 0078 974B     		ldr	r3, .L38+36
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 5
 
 
  120 007a 0B40     		ands	r3, r1
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  132:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                 EZI2C_1_SetI2CExtClkInterruptMode(EZI2C_1_NO_INTR_SOURCES);
  152              		.loc 1 132 0
  153 00aa 0022     		movs	r2, #0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 6
 
 
  154 00ac 904B     		ldr	r3, .L38+60
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  157:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                 EZI2C_1_I2C_SLAVE_GENERATE_ACK;
  184              		.loc 1 157 0
  185 00d8 0121     		movs	r1, #1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 7
 
 
  186 00da 894A     		ldr	r2, .L38+76
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  186:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             {
  187:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                 /* Collect 2 bytes offset */
  188:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                 locByte = ((uint32) ((uint32) locBufSize << 8u)) | locByte;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 8
 
 
  189:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             }
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  245 0126 14E0     		b	.L18
  246              	.L17:
  210:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                 }
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 9
 
 
  211:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                 /* Receive RX FIFO chunks */
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  237:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                         EZI2C_1_fsmState = EZI2C_1_EZI2C_FSM_BYTE_WRITE;
  238:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                     }
  239:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                     /* Receive RX FIFO chunks */
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 10
 
 
  240:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                                     else if (locBufSize == EZI2C_1_EZI2C_FIFO_SIZE)
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  297 016a 1A60     		str	r2, [r3]
  298 016c 35E0     		b	.L8
  299              	.L9:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 11
 
 
  271:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                     }
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  304:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                         endTransfer = EZI2C_1_EZI2C_CONTINUE_TRANSFER;
  321              		.loc 1 304 0
  322 018c 0120     		movs	r0, #1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 12
 
 
  323 018e 14E0     		b	.L21
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  348 01a8 564B     		ldr	r3, .L38+80
  349 01aa 1B68     		ldr	r3, [r3]
  350 01ac 1B19     		adds	r3, r3, r4
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 13
 
 
  351 01ae 524A     		ldr	r2, .L38+68
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  347:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                 {
  348:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                     /* Exit for slave interrupts which are not active for RX direction:
  349:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                     * INTR_SLAVE.I2C_ADDR_MATCH and INTR_SLAVE.I2C_STOP while byte-by-byte receptio
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 14
 
 
  350:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                     */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  413              	.LVL25:
  377:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                     }
  378:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 15
 
 
  379:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                     /* Complete read or write transaction */
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  412:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                         {
  413:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             /* Set buffer exposed to primary slave address */
  414:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             EZI2C_1_dataBuffer = EZI2C_1_dataBuffer1;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 16
 
 
  415:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             EZI2C_1_bufSizeBuf = EZI2C_1_bufSizeBuf1;
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  469:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                         EZI2C_1_curStatus |= (uint8) EZI2C_1_EZI2C_STATUS_BUSY;
  435              		.loc 1 469 0
  436 0212 2D4A     		ldr	r2, .L38+20
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 17
 
 
  437 0214 1178     		ldrb	r1, [r2]
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  484:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                         else
  485:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                         {
  486:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             /* Master writes: enable reception interrupt. The FSM state was set in 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 18
 
 
  487:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                             EZI2C_1_SetRxInterruptMode(EZI2C_1_INTR_RX_NOT_EMPTY);
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  513:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****             {
  514:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                 /* Put data into TX FIFO until there is a room */
  515:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                 do
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 19
 
 
  516:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****                 {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  543 02ac 1A60     		str	r2, [r3]
  544              	.L6:
  532:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****             }
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 20
 
 
  533:Generated_Source\PSoC4/EZI2C_1_EZI2C_INT.c ****         }
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  589              	.LFE0:
  590              		.size	EZI2C_1_EZI2C_STRETCH_ISR, .-EZI2C_1_EZI2C_STRETCH_ISR
  591              		.bss
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 21
 
 
  592              		.align	1
@@ -1221,25 +1221,25 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  609 0006 00000000 		.4byte	.Ldebug_abbrev0
  610 000a 04       		.byte	0x4
  611 000b 01       		.uleb128 0x1
- 612 000c 7E010000 		.4byte	.LASF37
+ 612 000c ED010000 		.4byte	.LASF37
  613 0010 0C       		.byte	0xc
- 614 0011 60000000 		.4byte	.LASF38
- 615 0015 5A020000 		.4byte	.LASF39
+ 614 0011 CF000000 		.4byte	.LASF38
+ 615 0015 5A000000 		.4byte	.LASF39
  616 0019 00000000 		.4byte	.Ldebug_ranges0+0
  617 001d 00000000 		.4byte	0
  618 0021 00000000 		.4byte	.Ldebug_line0
  619 0025 02       		.uleb128 0x2
  620 0026 01       		.byte	0x1
  621 0027 06       		.byte	0x6
- 622 0028 EE020000 		.4byte	.LASF0
+ 622 0028 07030000 		.4byte	.LASF0
  623 002c 02       		.uleb128 0x2
  624 002d 01       		.byte	0x1
  625 002e 08       		.byte	0x8
- 626 002f AA000000 		.4byte	.LASF1
+ 626 002f 19010000 		.4byte	.LASF1
  627 0033 02       		.uleb128 0x2
  628 0034 02       		.byte	0x2
  629 0035 05       		.byte	0x5
- 630 0036 B0020000 		.4byte	.LASF2
+ 630 0036 C9020000 		.4byte	.LASF2
  631 003a 02       		.uleb128 0x2
  632 003b 02       		.byte	0x2
  633 003c 07       		.byte	0x7
@@ -1247,22 +1247,22 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  635 0041 02       		.uleb128 0x2
  636 0042 04       		.byte	0x4
  637 0043 05       		.byte	0x5
- 638 0044 D9020000 		.4byte	.LASF4
+ 638 0044 F2020000 		.4byte	.LASF4
  639 0048 02       		.uleb128 0x2
  640 0049 04       		.byte	0x4
  641 004a 07       		.byte	0x7
- 642 004b CB000000 		.4byte	.LASF5
+ 642 004b 3A010000 		.4byte	.LASF5
  643 004f 02       		.uleb128 0x2
  644 0050 08       		.byte	0x8
  645 0051 05       		.byte	0x5
- 646 0052 15020000 		.4byte	.LASF6
+ 646 0052 84020000 		.4byte	.LASF6
  647 0056 02       		.uleb128 0x2
  648 0057 08       		.byte	0x8
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 22
 
 
  649 0058 07       		.byte	0x7
- 650 0059 40010000 		.4byte	.LASF7
+ 650 0059 AF010000 		.4byte	.LASF7
  651 005d 03       		.uleb128 0x3
  652 005e 04       		.byte	0x4
  653 005f 05       		.byte	0x5
@@ -1270,34 +1270,34 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  655 0064 02       		.uleb128 0x2
  656 0065 04       		.byte	0x4
  657 0066 07       		.byte	0x7
- 658 0067 1E010000 		.4byte	.LASF8
+ 658 0067 8D010000 		.4byte	.LASF8
  659 006b 04       		.uleb128 0x4
- 660 006c DD000000 		.4byte	.LASF9
+ 660 006c 4C010000 		.4byte	.LASF9
  661 0070 02       		.byte	0x2
  662 0071 D201     		.2byte	0x1d2
  663 0073 2C000000 		.4byte	0x2c
  664 0077 04       		.uleb128 0x4
- 665 0078 10010000 		.4byte	.LASF10
+ 665 0078 7F010000 		.4byte	.LASF10
  666 007c 02       		.byte	0x2
  667 007d D301     		.2byte	0x1d3
  668 007f 3A000000 		.4byte	0x3a
  669 0083 04       		.uleb128 0x4
- 670 0084 17010000 		.4byte	.LASF11
+ 670 0084 86010000 		.4byte	.LASF11
  671 0088 02       		.byte	0x2
  672 0089 D401     		.2byte	0x1d4
  673 008b 48000000 		.4byte	0x48
  674 008f 02       		.uleb128 0x2
  675 0090 04       		.byte	0x4
  676 0091 04       		.byte	0x4
- 677 0092 5A000000 		.4byte	.LASF12
+ 677 0092 C9000000 		.4byte	.LASF12
  678 0096 02       		.uleb128 0x2
  679 0097 08       		.byte	0x8
  680 0098 04       		.byte	0x4
- 681 0099 E3000000 		.4byte	.LASF13
+ 681 0099 52010000 		.4byte	.LASF13
  682 009d 02       		.uleb128 0x2
  683 009e 01       		.byte	0x1
  684 009f 08       		.byte	0x8
- 685 00a0 23020000 		.4byte	.LASF14
+ 685 00a0 92020000 		.4byte	.LASF14
  686 00a4 05       		.uleb128 0x5
  687 00a5 6B000000 		.4byte	0x6b
  688 00a9 04       		.uleb128 0x4
@@ -1308,7 +1308,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  693 00b5 05       		.uleb128 0x5
  694 00b6 83000000 		.4byte	0x83
  695 00ba 04       		.uleb128 0x4
- 696 00bb 57010000 		.4byte	.LASF16
+ 696 00bb C6010000 		.4byte	.LASF16
  697 00bf 02       		.byte	0x2
  698 00c0 8E02     		.2byte	0x28e
  699 00c2 C6000000 		.4byte	0xc6
@@ -1318,17 +1318,17 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  703 00cc 07       		.uleb128 0x7
  704 00cd 02       		.uleb128 0x2
  705 00ce 08       		.byte	0x8
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 23
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 23
 
 
  706 00cf 04       		.byte	0x4
- 707 00d0 E2020000 		.4byte	.LASF17
+ 707 00d0 FB020000 		.4byte	.LASF17
  708 00d4 02       		.uleb128 0x2
  709 00d5 04       		.byte	0x4
  710 00d6 07       		.byte	0x7
- 711 00d7 0C020000 		.4byte	.LASF18
+ 711 00d7 7B020000 		.4byte	.LASF18
  712 00db 08       		.uleb128 0x8
- 713 00dc 64010000 		.4byte	.LASF40
+ 713 00dc D3010000 		.4byte	.LASF40
  714 00e0 01       		.byte	0x1
  715 00e1 20       		.byte	0x20
  716 00e2 00000000 		.4byte	.LFB0
@@ -1337,7 +1337,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  719 00eb 9C       		.byte	0x9c
  720 00ec 8C010000 		.4byte	0x18c
  721 00f0 09       		.uleb128 0x9
- 722 00f1 2B010000 		.4byte	.LASF19
+ 722 00f1 9A010000 		.4byte	.LASF19
  723 00f5 01       		.byte	0x1
  724 00f6 22       		.byte	0x22
  725 00f7 77000000 		.4byte	0x77
@@ -1345,13 +1345,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  727 00fc 03       		.byte	0x3
  728 00fd 00000000 		.4byte	locBufSize.4923
  729 0101 0A       		.uleb128 0xa
- 730 0102 B8000000 		.4byte	.LASF20
+ 730 0102 27010000 		.4byte	.LASF20
  731 0106 01       		.byte	0x1
  732 0107 23       		.byte	0x23
  733 0108 83000000 		.4byte	0x83
  734 010c 00000000 		.4byte	.LLST0
  735 0110 0A       		.uleb128 0xa
- 736 0111 C1000000 		.4byte	.LASF21
+ 736 0111 30010000 		.4byte	.LASF21
  737 0115 01       		.byte	0x1
  738 0116 24       		.byte	0x24
  739 0117 83000000 		.4byte	0x83
@@ -1363,28 +1363,28 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  745 0126 83000000 		.4byte	0x83
  746 012a 8F000000 		.4byte	.LLST2
  747 012e 0A       		.uleb128 0xa
- 748 012f 36010000 		.4byte	.LASF23
+ 748 012f A5010000 		.4byte	.LASF23
  749 0133 01       		.byte	0x1
  750 0134 27       		.byte	0x27
  751 0135 83000000 		.4byte	0x83
  752 0139 BA000000 		.4byte	.LLST3
  753 013d 0A       		.uleb128 0xa
- 754 013e FA020000 		.4byte	.LASF24
+ 754 013e 13030000 		.4byte	.LASF24
  755 0142 01       		.byte	0x1
  756 0143 28       		.byte	0x28
  757 0144 83000000 		.4byte	0x83
  758 0148 D8000000 		.4byte	.LLST4
  759 014c 0A       		.uleb128 0xa
- 760 014d CC020000 		.4byte	.LASF25
+ 760 014d E5020000 		.4byte	.LASF25
  761 0151 01       		.byte	0x1
  762 0152 2A       		.byte	0x2a
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 24
 
 
  763 0153 83000000 		.4byte	0x83
  764 0157 0C010000 		.4byte	.LLST5
  765 015b 0A       		.uleb128 0xa
- 766 015c 28020000 		.4byte	.LASF26
+ 766 015c 97020000 		.4byte	.LASF26
  767 0160 01       		.byte	0x1
  768 0161 2B       		.byte	0x2b
  769 0162 83000000 		.4byte	0x83
@@ -1411,17 +1411,17 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  790 0192 3B       		.byte	0x3b
  791 0193 BA000000 		.4byte	0xba
  792 0197 0E       		.uleb128 0xe
- 793 0198 EA000000 		.4byte	.LASF28
+ 793 0198 59010000 		.4byte	.LASF28
  794 019c 04       		.byte	0x4
  795 019d 1E       		.byte	0x1e
  796 019e A4000000 		.4byte	0xa4
  797 01a2 0E       		.uleb128 0xe
- 798 01a3 49020000 		.4byte	.LASF29
+ 798 01a3 B8020000 		.4byte	.LASF29
  799 01a7 04       		.byte	0x4
  800 01a8 1F       		.byte	0x1f
  801 01a9 6B000000 		.4byte	0x6b
  802 01ad 0E       		.uleb128 0xe
- 803 01ae 35020000 		.4byte	.LASF30
+ 803 01ae A4020000 		.4byte	.LASF30
  804 01b2 04       		.byte	0x4
  805 01b3 22       		.byte	0x22
  806 01b4 B8010000 		.4byte	0x1b8
@@ -1434,26 +1434,26 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  813 01c4 23       		.byte	0x23
  814 01c5 77000000 		.4byte	0x77
  815 01c9 0E       		.uleb128 0xe
- 816 01ca FC000000 		.4byte	.LASF32
+ 816 01ca 6B010000 		.4byte	.LASF32
  817 01ce 04       		.byte	0x4
  818 01cf 24       		.byte	0x24
  819 01d0 77000000 		.4byte	0x77
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 25
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 25
 
 
  820 01d4 0E       		.uleb128 0xe
- 821 01d5 02030000 		.4byte	.LASF33
+ 821 01d5 1B030000 		.4byte	.LASF33
  822 01d9 04       		.byte	0x4
  823 01da 25       		.byte	0x25
  824 01db 6B000000 		.4byte	0x6b
  825 01df 0E       		.uleb128 0xe
- 826 01e0 BA020000 		.4byte	.LASF34
+ 826 01e0 D3020000 		.4byte	.LASF34
  827 01e4 04       		.byte	0x4
  828 01e5 26       		.byte	0x26
  829 01e6 77000000 		.4byte	0x77
  830 01ea 0F       		.uleb128 0xf
- 831 01eb 8B000000 		.4byte	.LASF35
- 832 01ef 8B000000 		.4byte	.LASF35
+ 831 01eb FA000000 		.4byte	.LASF35
+ 832 01ef FA000000 		.4byte	.LASF35
  833 01f3 05       		.byte	0x5
  834 01f4 1507     		.2byte	0x715
  835 01f6 10       		.uleb128 0x10
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  874 001f 24       		.uleb128 0x24
  875 0020 00       		.byte	0
  876 0021 0B       		.uleb128 0xb
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 26
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 26
 
 
  877 0022 0B       		.uleb128 0xb
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  931 0058 27       		.uleb128 0x27
  932 0059 19       		.uleb128 0x19
  933 005a 11       		.uleb128 0x11
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 27
 
 
  934 005b 01       		.uleb128 0x1
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  988 0096 01       		.uleb128 0x1
  989 0097 31       		.uleb128 0x31
  990 0098 13       		.uleb128 0x13
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 28
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 28
 
 
  991 0099 00       		.byte	0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  1045 00d2 03       		.uleb128 0x3
  1046 00d3 0E       		.uleb128 0xe
  1047 00d4 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 29
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 29
 
 
  1048 00d5 0B       		.uleb128 0xb
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  1102 007b 06020000 		.4byte	.LVL28
  1103 007f 0600     		.2byte	0x6
  1104 0081 73       		.byte	0x73
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 30
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 30
 
 
  1105 0082 00       		.sleb128 0
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  1159              	.LLST5:
  1160 010c 18000000 		.4byte	.LVL3
  1161 0110 B2020000 		.4byte	.LVL36
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 31
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 31
 
 
  1162 0114 0100     		.2byte	0x1
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  1202              	.LASF3:
  1203 003b 73686F72 		.ascii	"short unsigned int\000"
  1203      7420756E 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 32
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 32
 
 
  1203      7369676E 
@@ -1868,193 +1868,198 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 1
  1205 004e 656E6454 		.ascii	"endTransfer\000"
  1205      72616E73 
  1205      66657200 
- 1206              	.LASF12:
- 1207 005a 666C6F61 		.ascii	"float\000"
- 1207      7400
- 1208              	.LASF38:
- 1209 0060 47656E65 		.ascii	"Generated_Source\\PSoC4\\EZI2C_1_EZI2C_INT.c\000"
- 1209      72617465 
- 1209      645F536F 
- 1209      75726365 
- 1209      5C50536F 
- 1210              	.LASF35:
- 1211 008b 455A4932 		.ascii	"EZI2C_1_I2CSlaveNackGeneration\000"
- 1211      435F315F 
- 1211      49324353 
- 1211      6C617665 
- 1211      4E61636B 
- 1212              	.LASF1:
- 1213 00aa 756E7369 		.ascii	"unsigned char\000"
- 1213      676E6564 
- 1213      20636861 
- 1213      7200
- 1214              	.LASF20:
- 1215 00b8 6C6F6349 		.ascii	"locIndex\000"
- 1215      6E646578 
- 1215      00
- 1216              	.LASF21:
- 1217 00c1 6C6F6353 		.ascii	"locStatus\000"
- 1217      74617475 
- 1217      7300
- 1218              	.LASF5:
- 1219 00cb 6C6F6E67 		.ascii	"long unsigned int\000"
- 1219      20756E73 
- 1219      69676E65 
- 1219      6420696E 
- 1219      7400
- 1220              	.LASF9:
- 1221 00dd 75696E74 		.ascii	"uint8\000"
- 1221      3800
- 1222              	.LASF13:
- 1223 00e3 646F7562 		.ascii	"double\000"
- 1223      6C6500
- 1224              	.LASF28:
- 1225 00ea 455A4932 		.ascii	"EZI2C_1_curStatus\000"
- 1225      435F315F 
- 1225      63757253 
- 1225      74617475 
- 1225      7300
- 1226              	.LASF32:
- 1227 00fc 455A4932 		.ascii	"EZI2C_1_protectBuf1\000"
- 1227      435F315F 
- 1227      70726F74 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 33
+ 1206              	.LASF39:
+ 1207 005a 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 1207      73657273 
+ 1207      5C467261 
+ 1207      6E6B6C69 
+ 1207      6E4C6162 
+ 1208 0089 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Sla"
+ 1208      434E545F 
+ 1208      49565C50 
+ 1208      536F435C 
+ 1208      4C61796F 
+ 1209 00b7 76655C44 		.ascii	"ve\\Design01.cydsn\000"
+ 1209      65736967 
+ 1209      6E30312E 
+ 1209      63796473 
+ 1209      6E00
+ 1210              	.LASF12:
+ 1211 00c9 666C6F61 		.ascii	"float\000"
+ 1211      7400
+ 1212              	.LASF38:
+ 1213 00cf 47656E65 		.ascii	"Generated_Source\\PSoC4\\EZI2C_1_EZI2C_INT.c\000"
+ 1213      72617465 
+ 1213      645F536F 
+ 1213      75726365 
+ 1213      5C50536F 
+ 1214              	.LASF35:
+ 1215 00fa 455A4932 		.ascii	"EZI2C_1_I2CSlaveNackGeneration\000"
+ 1215      435F315F 
+ 1215      49324353 
+ 1215      6C617665 
+ 1215      4E61636B 
+ 1216              	.LASF1:
+ 1217 0119 756E7369 		.ascii	"unsigned char\000"
+ 1217      676E6564 
+ 1217      20636861 
+ 1217      7200
+ 1218              	.LASF20:
+ 1219 0127 6C6F6349 		.ascii	"locIndex\000"
+ 1219      6E646578 
+ 1219      00
+ 1220              	.LASF21:
+ 1221 0130 6C6F6353 		.ascii	"locStatus\000"
+ 1221      74617475 
+ 1221      7300
+ 1222              	.LASF5:
+ 1223 013a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1223      20756E73 
+ 1223      69676E65 
+ 1223      6420696E 
+ 1223      7400
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 33
 
 
- 1227      65637442 
- 1227      75663100 
- 1228              	.LASF10:
- 1229 0110 75696E74 		.ascii	"uint16\000"
- 1229      313600
- 1230              	.LASF11:
- 1231 0117 75696E74 		.ascii	"uint32\000"
- 1231      333200
- 1232              	.LASF8:
- 1233 011e 756E7369 		.ascii	"unsigned int\000"
- 1233      676E6564 
- 1233      20696E74 
- 1233      00
- 1234              	.LASF19:
- 1235 012b 6C6F6342 		.ascii	"locBufSize\000"
- 1235      75665369 
- 1235      7A6500
- 1236              	.LASF23:
- 1237 0136 6669666F 		.ascii	"fifoIndex\000"
- 1237      496E6465 
- 1237      7800
- 1238              	.LASF7:
- 1239 0140 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1239      206C6F6E 
- 1239      6720756E 
- 1239      7369676E 
- 1239      65642069 
- 1240              	.LASF16:
- 1241 0157 63796973 		.ascii	"cyisraddress\000"
- 1241      72616464 
- 1241      72657373 
- 1241      00
- 1242              	.LASF40:
- 1243 0164 455A4932 		.ascii	"EZI2C_1_EZI2C_STRETCH_ISR\000"
- 1243      435F315F 
- 1243      455A4932 
- 1243      435F5354 
- 1243      52455443 
- 1244              	.LASF37:
- 1245 017e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1245      43313120 
- 1245      352E342E 
- 1245      31203230 
- 1245      31363036 
- 1246 01b1 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
- 1246      20726576 
- 1246      6973696F 
- 1246      6E203233 
- 1246      37373135 
- 1247 01e4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1247      66756E63 
- 1247      74696F6E 
- 1247      2D736563 
- 1247      74696F6E 
- 1248              	.LASF18:
- 1249 020c 73697A65 		.ascii	"sizetype\000"
- 1249      74797065 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 34
+ 1224              	.LASF9:
+ 1225 014c 75696E74 		.ascii	"uint8\000"
+ 1225      3800
+ 1226              	.LASF13:
+ 1227 0152 646F7562 		.ascii	"double\000"
+ 1227      6C6500
+ 1228              	.LASF28:
+ 1229 0159 455A4932 		.ascii	"EZI2C_1_curStatus\000"
+ 1229      435F315F 
+ 1229      63757253 
+ 1229      74617475 
+ 1229      7300
+ 1230              	.LASF32:
+ 1231 016b 455A4932 		.ascii	"EZI2C_1_protectBuf1\000"
+ 1231      435F315F 
+ 1231      70726F74 
+ 1231      65637442 
+ 1231      75663100 
+ 1232              	.LASF10:
+ 1233 017f 75696E74 		.ascii	"uint16\000"
+ 1233      313600
+ 1234              	.LASF11:
+ 1235 0186 75696E74 		.ascii	"uint32\000"
+ 1235      333200
+ 1236              	.LASF8:
+ 1237 018d 756E7369 		.ascii	"unsigned int\000"
+ 1237      676E6564 
+ 1237      20696E74 
+ 1237      00
+ 1238              	.LASF19:
+ 1239 019a 6C6F6342 		.ascii	"locBufSize\000"
+ 1239      75665369 
+ 1239      7A6500
+ 1240              	.LASF23:
+ 1241 01a5 6669666F 		.ascii	"fifoIndex\000"
+ 1241      496E6465 
+ 1241      7800
+ 1242              	.LASF7:
+ 1243 01af 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1243      206C6F6E 
+ 1243      6720756E 
+ 1243      7369676E 
+ 1243      65642069 
+ 1244              	.LASF16:
+ 1245 01c6 63796973 		.ascii	"cyisraddress\000"
+ 1245      72616464 
+ 1245      72657373 
+ 1245      00
+ 1246              	.LASF40:
+ 1247 01d3 455A4932 		.ascii	"EZI2C_1_EZI2C_STRETCH_ISR\000"
+ 1247      435F315F 
+ 1247      455A4932 
+ 1247      435F5354 
+ 1247      52455443 
+ 1248              	.LASF37:
+ 1249 01ed 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1249      43313120 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 34
 
 
- 1249      00
- 1250              	.LASF6:
- 1251 0215 6C6F6E67 		.ascii	"long long int\000"
- 1251      206C6F6E 
- 1251      6720696E 
- 1251      7400
- 1252              	.LASF14:
- 1253 0223 63686172 		.ascii	"char\000"
+ 1249      352E342E 
+ 1249      31203230 
+ 1249      31363036 
+ 1250 0220 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 1250      20726576 
+ 1250      6973696F 
+ 1250      6E203233 
+ 1250      37373135 
+ 1251 0253 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1251      66756E63 
+ 1251      74696F6E 
+ 1251      2D736563 
+ 1251      74696F6E 
+ 1252              	.LASF18:
+ 1253 027b 73697A65 		.ascii	"sizetype\000"
+ 1253      74797065 
  1253      00
- 1254              	.LASF26:
- 1255 0228 6C6F6349 		.ascii	"locIntrSlave\000"
- 1255      6E747253 
- 1255      6C617665 
- 1255      00
- 1256              	.LASF30:
- 1257 0235 455A4932 		.ascii	"EZI2C_1_dataBuffer1\000"
- 1257      435F315F 
- 1257      64617461 
- 1257      42756666 
- 1257      65723100 
- 1258              	.LASF29:
- 1259 0249 455A4932 		.ascii	"EZI2C_1_fsmState\000"
- 1259      435F315F 
- 1259      66736D53 
- 1259      74617465 
+ 1254              	.LASF6:
+ 1255 0284 6C6F6E67 		.ascii	"long long int\000"
+ 1255      206C6F6E 
+ 1255      6720696E 
+ 1255      7400
+ 1256              	.LASF14:
+ 1257 0292 63686172 		.ascii	"char\000"
+ 1257      00
+ 1258              	.LASF26:
+ 1259 0297 6C6F6349 		.ascii	"locIntrSlave\000"
+ 1259      6E747253 
+ 1259      6C617665 
  1259      00
- 1260              	.LASF39:
- 1261 025a 433A5C55 		.ascii	"C:\\Users\\noyce\\home\\Research\\illumina\\PSoC\\L"
- 1261      73657273 
- 1261      5C6E6F79 
- 1261      63655C68 
- 1261      6F6D655C 
- 1262 0286 61796F75 		.ascii	"ayout 2_14 Device Selector\\Design01.cydsn\000"
- 1262      7420325F 
- 1262      31342044 
- 1262      65766963 
- 1262      65205365 
- 1263              	.LASF2:
- 1264 02b0 73686F72 		.ascii	"short int\000"
- 1264      7420696E 
- 1264      7400
- 1265              	.LASF34:
- 1266 02ba 455A4932 		.ascii	"EZI2C_1_indexBuf1\000"
- 1266      435F315F 
- 1266      696E6465 
- 1266      78427566 
- 1266      3100
- 1267              	.LASF25:
- 1268 02cc 6C6F6349 		.ascii	"locIntrCause\000"
- 1268      6E747243 
- 1268      61757365 
- 1268      00
- 1269              	.LASF4:
- 1270 02d9 6C6F6E67 		.ascii	"long int\000"
- 1270      20696E74 
- 1270      00
- 1271              	.LASF17:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccjt35l3.s 			page 35
+ 1260              	.LASF30:
+ 1261 02a4 455A4932 		.ascii	"EZI2C_1_dataBuffer1\000"
+ 1261      435F315F 
+ 1261      64617461 
+ 1261      42756666 
+ 1261      65723100 
+ 1262              	.LASF29:
+ 1263 02b8 455A4932 		.ascii	"EZI2C_1_fsmState\000"
+ 1263      435F315F 
+ 1263      66736D53 
+ 1263      74617465 
+ 1263      00
+ 1264              	.LASF2:
+ 1265 02c9 73686F72 		.ascii	"short int\000"
+ 1265      7420696E 
+ 1265      7400
+ 1266              	.LASF34:
+ 1267 02d3 455A4932 		.ascii	"EZI2C_1_indexBuf1\000"
+ 1267      435F315F 
+ 1267      696E6465 
+ 1267      78427566 
+ 1267      3100
+ 1268              	.LASF25:
+ 1269 02e5 6C6F6349 		.ascii	"locIntrCause\000"
+ 1269      6E747243 
+ 1269      61757365 
+ 1269      00
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccWV6Eaf.s 			page 35
 
 
- 1272 02e2 6C6F6E67 		.ascii	"long double\000"
- 1272      20646F75 
- 1272      626C6500 
- 1273              	.LASF0:
- 1274 02ee 7369676E 		.ascii	"signed char\000"
- 1274      65642063 
- 1274      68617200 
- 1275              	.LASF24:
- 1276 02fa 6C6F6342 		.ascii	"locByte\000"
- 1276      79746500 
- 1277              	.LASF33:
- 1278 0302 455A4932 		.ascii	"EZI2C_1_offsetBuf1\000"
- 1278      435F315F 
- 1278      6F666673 
- 1278      65744275 
- 1278      663100
- 1279              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1270              	.LASF4:
+ 1271 02f2 6C6F6E67 		.ascii	"long int\000"
+ 1271      20696E74 
+ 1271      00
+ 1272              	.LASF17:
+ 1273 02fb 6C6F6E67 		.ascii	"long double\000"
+ 1273      20646F75 
+ 1273      626C6500 
+ 1274              	.LASF0:
+ 1275 0307 7369676E 		.ascii	"signed char\000"
+ 1275      65642063 
+ 1275      68617200 
+ 1276              	.LASF24:
+ 1277 0313 6C6F6342 		.ascii	"locByte\000"
+ 1277      79746500 
+ 1278              	.LASF33:
+ 1279 031b 455A4932 		.ascii	"EZI2C_1_offsetBuf1\000"
+ 1279      435F315F 
+ 1279      6F666673 
+ 1279      65744275 
+ 1279      663100
+ 1280              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

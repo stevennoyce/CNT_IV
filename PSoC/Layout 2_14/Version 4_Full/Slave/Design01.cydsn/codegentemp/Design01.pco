@@ -1,5 +1,5 @@
 # Design01
-# 2017-09-22 21:23:07Z
+# 2018-08-30 13:24:53Z
 
 # IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
 dont_use_io iocell 3 2
@@ -46,3 +46,4 @@ set_location "\ADC_SAR_Seq_1:IRQ\" interrupt -1 -1 14
 set_location "\ADC_SAR_Seq_1:cy_psoc4_sar\" p4sarcell -1 -1 0
 set_location "\EZI2C_1:SCB_IRQ\" interrupt -1 -1 11
 set_location "\EZI2C_1:SCB\" m0s8scbcell -1 -1 1
+set_location "\Opamp_1:cy_psoc4_abuf\" p4abufcell -1 -1 0

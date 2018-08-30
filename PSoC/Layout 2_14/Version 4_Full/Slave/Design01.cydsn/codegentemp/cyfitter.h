@@ -309,6 +309,26 @@
 #define EZI2C_1_sda__PS CYREG_PRT3_PS
 #define EZI2C_1_sda__SHIFT 1u
 
+/* Opamp_1 */
+#define Opamp_1_cy_psoc4_abuf__COMP_STAT CYREG_CTBM_COMP_STAT
+#define Opamp_1_cy_psoc4_abuf__COMP_STAT_SHIFT 0u
+#define Opamp_1_cy_psoc4_abuf__CTBM_CTB_CTRL CYREG_CTBM_CTB_CTRL
+#define Opamp_1_cy_psoc4_abuf__INTR CYREG_CTBM_INTR
+#define Opamp_1_cy_psoc4_abuf__INTR_MASK CYREG_CTBM_INTR_MASK
+#define Opamp_1_cy_psoc4_abuf__INTR_MASK_SHIFT 0u
+#define Opamp_1_cy_psoc4_abuf__INTR_MASKED CYREG_CTBM_INTR_MASKED
+#define Opamp_1_cy_psoc4_abuf__INTR_MASKED_SHIFT 0u
+#define Opamp_1_cy_psoc4_abuf__INTR_SET CYREG_CTBM_INTR_SET
+#define Opamp_1_cy_psoc4_abuf__INTR_SET_SHIFT 0u
+#define Opamp_1_cy_psoc4_abuf__INTR_SHIFT 0u
+#define Opamp_1_cy_psoc4_abuf__OA_COMP_TRIM CYREG_CTBM_OA0_COMP_TRIM
+#define Opamp_1_cy_psoc4_abuf__OA_NUMBER 0u
+#define Opamp_1_cy_psoc4_abuf__OA_OFFSET_TRIM CYREG_CTBM_OA0_OFFSET_TRIM
+#define Opamp_1_cy_psoc4_abuf__OA_RES_CTRL CYREG_CTBM_OA_RES0_CTRL
+#define Opamp_1_cy_psoc4_abuf__OA_SLOPE_OFFSET_TRIM CYREG_CTBM_OA0_SLOPE_OFFSET_TRIM
+#define Opamp_1_cy_psoc4_abuf__OA_SW CYREG_CTBM_OA0_SW
+#define Opamp_1_cy_psoc4_abuf__OA_SW_CLEAR CYREG_CTBM_OA0_SW_CLEAR
+
 /* Pin_1 */
 #define Pin_1__0__DM__MASK 0x07u
 #define Pin_1__0__DM__SHIFT 0u
@@ -319,9 +339,6 @@
 #define Pin_1__0__INTCFG CYREG_PRT1_INTCFG
 #define Pin_1__0__INTSTAT CYREG_PRT1_INTSTAT
 #define Pin_1__0__MASK 0x01u
-#define Pin_1__0__OUT_SEL CYREG_UDB_PA1_CFG10
-#define Pin_1__0__OUT_SEL_SHIFT 0u
-#define Pin_1__0__OUT_SEL_VAL 2u
 #define Pin_1__0__PA__CFG0 CYREG_UDB_PA1_CFG0
 #define Pin_1__0__PA__CFG1 CYREG_UDB_PA1_CFG1
 #define Pin_1__0__PA__CFG10 CYREG_UDB_PA1_CFG10
@@ -375,6 +392,9 @@
 #define Pin_10__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_10__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_10__0__MASK 0x02u
+#define Pin_10__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_10__0__OUT_SEL_SHIFT 2u
+#define Pin_10__0__OUT_SEL_VAL 0u
 #define Pin_10__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_10__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_10__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -428,6 +448,9 @@
 #define Pin_11__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_11__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_11__0__MASK 0x04u
+#define Pin_11__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_11__0__OUT_SEL_SHIFT 4u
+#define Pin_11__0__OUT_SEL_VAL 0u
 #define Pin_11__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_11__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_11__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -481,6 +504,9 @@
 #define Pin_12__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_12__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_12__0__MASK 0x08u
+#define Pin_12__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_12__0__OUT_SEL_SHIFT 6u
+#define Pin_12__0__OUT_SEL_VAL 0u
 #define Pin_12__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_12__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_12__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -534,6 +560,9 @@
 #define Pin_13__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_13__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_13__0__MASK 0x10u
+#define Pin_13__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_13__0__OUT_SEL_SHIFT 8u
+#define Pin_13__0__OUT_SEL_VAL 2u
 #define Pin_13__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_13__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_13__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -587,6 +616,9 @@
 #define Pin_14__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_14__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_14__0__MASK 0x20u
+#define Pin_14__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_14__0__OUT_SEL_SHIFT 10u
+#define Pin_14__0__OUT_SEL_VAL 2u
 #define Pin_14__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_14__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_14__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -640,6 +672,9 @@
 #define Pin_15__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_15__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_15__0__MASK 0x40u
+#define Pin_15__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_15__0__OUT_SEL_SHIFT 12u
+#define Pin_15__0__OUT_SEL_VAL 2u
 #define Pin_15__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_15__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_15__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -693,6 +728,9 @@
 #define Pin_16__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_16__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_16__0__MASK 0x80u
+#define Pin_16__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_16__0__OUT_SEL_SHIFT 14u
+#define Pin_16__0__OUT_SEL_VAL 2u
 #define Pin_16__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_16__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_16__0__PA__CFG10 CYREG_UDB_PA2_CFG10
@@ -1710,9 +1748,6 @@
 #define Pin_7__0__INTCFG CYREG_PRT1_INTCFG
 #define Pin_7__0__INTSTAT CYREG_PRT1_INTSTAT
 #define Pin_7__0__MASK 0x40u
-#define Pin_7__0__OUT_SEL CYREG_UDB_PA1_CFG10
-#define Pin_7__0__OUT_SEL_SHIFT 12u
-#define Pin_7__0__OUT_SEL_VAL 2u
 #define Pin_7__0__PA__CFG0 CYREG_UDB_PA1_CFG0
 #define Pin_7__0__PA__CFG1 CYREG_UDB_PA1_CFG1
 #define Pin_7__0__PA__CFG10 CYREG_UDB_PA1_CFG10
@@ -1826,6 +1861,9 @@
 #define Pin_9__0__INTCFG CYREG_PRT2_INTCFG
 #define Pin_9__0__INTSTAT CYREG_PRT2_INTSTAT
 #define Pin_9__0__MASK 0x01u
+#define Pin_9__0__OUT_SEL CYREG_UDB_PA2_CFG10
+#define Pin_9__0__OUT_SEL_SHIFT 0u
+#define Pin_9__0__OUT_SEL_VAL 0u
 #define Pin_9__0__PA__CFG0 CYREG_UDB_PA2_CFG0
 #define Pin_9__0__PA__CFG1 CYREG_UDB_PA2_CFG1
 #define Pin_9__0__PA__CFG10 CYREG_UDB_PA2_CFG10

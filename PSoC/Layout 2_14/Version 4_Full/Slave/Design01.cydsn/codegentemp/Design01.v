@@ -1,6 +1,6 @@
 // ======================================================================
 // Design01.v generated from TopDesign.cysch
-// 09/22/2017 at 17:22
+// 08/30/2018 at 09:24
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1043,9 +1043,55 @@ module SCB_P4_v3_20_1 (
 
 endmodule
 
+// OpAmp_P4_v1_20(Compensation=3, DeepSleepSupport=false, Mode=1, OutputCurrent=0, Power=2, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=OpAmp_P4_v1_20, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Opamp_1, CY_INSTANCE_SHORT_NAME=Opamp_1, CY_MAJOR_VERSION=1, CY_MINOR_VERSION=20, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.1 Update 1, INSTANCE_NAME=Opamp_1, )
+module OpAmp_P4_v1_20_2 (
+    Vplus,
+    Vout,
+    Vminus);
+    inout       Vplus;
+    electrical  Vplus;
+    inout       Vout;
+    electrical  Vout;
+    inout       Vminus;
+    electrical  Vminus;
+
+
+          wire  Net_12;
+    electrical  Net_29;
+    electrical  Net_19;
+    electrical  Net_18;
+    electrical  Net_9;
+
+    cy_psoc4_abuf_v1_0 cy_psoc4_abuf (
+        .vplus(Vplus),
+        .vminus(Net_9),
+        .vout1(Net_18),
+        .vout10(Net_19),
+        .rs_bot(Net_29),
+        .cmpout(Net_12));
+    defparam cy_psoc4_abuf.deepsleep_available = 0;
+    defparam cy_psoc4_abuf.has_resistor = 0;
+    defparam cy_psoc4_abuf.needs_dsab = 0;
+
+	// cy_analog_virtualmux_1 (cy_analog_virtualmux_v1_0)
+	cy_connect_v1_0 cy_analog_virtualmux_1_connect(Net_9, Vout);
+	defparam cy_analog_virtualmux_1_connect.sig_width = 1;
+
+	// cy_analog_virtualmux_2 (cy_analog_virtualmux_v1_0)
+	cy_connect_v1_0 cy_analog_virtualmux_2_connect(Vout, Net_18);
+	defparam cy_analog_virtualmux_2_connect.sig_width = 1;
+
+    cy_analog_noconnect_v1_0 cy_analog_noconnect_1 (
+        .noconnect(Net_29));
+
+
+
+endmodule
+
 // top
 module top ;
 
+    electrical  Net_456;
           wire  Net_453;
           wire  Net_452;
           wire  Net_451;
@@ -1105,6 +1151,7 @@ module top ;
     electrical  Net_217;
     electrical  Net_216;
     electrical  Net_342;
+    electrical  Net_454;
 
 	wire [0:0] tmpOE__Pin_1_net;
 	wire [0:0] tmpFB_0__Pin_1_net;
@@ -3282,7 +3329,7 @@ module top ;
             Net_217,
             Net_216
             }),
-        .vout(Net_342)
+        .vout(Net_454)
         );
     
     defparam AMux_1.muxin_width = 34;
@@ -3312,6 +3359,11 @@ module top ;
         .m_ss3(Net_451),
         .s_miso(Net_452),
         .rx_in(1'b0));
+
+    OpAmp_P4_v1_20_2 Opamp_1 (
+        .Vplus(Net_454),
+        .Vout(Net_342),
+        .Vminus(Net_456));
 
 
 

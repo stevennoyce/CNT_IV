@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
   29:Generated_Source\PSoC4/CyLFClk.c ****     static volatile uint16 defaultIloTrimRegValue = CY_SYS_CLK_ILO_TRIM_DEFAULT_VALUE;
   30:Generated_Source\PSoC4/CyLFClk.c **** #endif /* (CY_IP_SRSSV2 && (!CY_IP_CPUSS)) */
   31:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 2
 
 
   32:Generated_Source\PSoC4/CyLFClk.c **** #if(CY_IP_SRSSV2)
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
   86:Generated_Source\PSoC4/CyLFClk.c **** }
   87:Generated_Source\PSoC4/CyLFClk.c **** 
   88:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 3
 
 
   89:Generated_Source\PSoC4/CyLFClk.c **** /*******************************************************************************
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  143:Generated_Source\PSoC4/CyLFClk.c **** }
  144:Generated_Source\PSoC4/CyLFClk.c **** 
  145:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 4
 
 
  146:Generated_Source\PSoC4/CyLFClk.c **** /******************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  200:Generated_Source\PSoC4/CyLFClk.c **** ******************************************************************************/
  201:Generated_Source\PSoC4/CyLFClk.c **** void CySysClkIloStopMeasurement(void)
  202:Generated_Source\PSoC4/CyLFClk.c **** {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 5
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 5
 
 
  203:Generated_Source\PSoC4/CyLFClk.c ****     /* Set default configurations in 11...8 DFT register bits to zero */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  257:Generated_Source\PSoC4/CyLFClk.c **** *
  258:Generated_Source\PSoC4/CyLFClk.c **** * \return CYRET_INVALID_STATE - Indicates that measurement not started. 
  259:Generated_Source\PSoC4/CyLFClk.c **** * The user should call CySysClkIloStartMeasurement() API before calling 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 6
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 6
 
 
  260:Generated_Source\PSoC4/CyLFClk.c **** * this API.
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  314:Generated_Source\PSoC4/CyLFClk.c ****                             iloCompensatedCycles = (((CY_SYS_CNT_REG2_REG * cydelayFreqHz) / (cydel
  315:Generated_Source\PSoC4/CyLFClk.c ****                                                    CY_SYS_CLK_SYS_CLK_DEVIDER)) / CY_SYS_CLK_ILO_FR
  316:Generated_Source\PSoC4/CyLFClk.c ****                                                    (desiredDelayInCounts / CY_SYS_CLK_ILO_FREQ_3LSB
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 7
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 7
 
 
  317:Generated_Source\PSoC4/CyLFClk.c ****                         }
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  371:Generated_Source\PSoC4/CyLFClk.c ****     {
   27              		.loc 1 371 0
   28              		.cfi_startproc
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 8
 
 
   29              		@ args = 0, pretend = 0, frame = 0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  395:Generated_Source\PSoC4/CyLFClk.c **** *
  396:Generated_Source\PSoC4/CyLFClk.c **** * The CySysClkIloStartMeasurement() API should be called prior to calling this 
  397:Generated_Source\PSoC4/CyLFClk.c **** * API. Otherwise it will return CYRET_INVALID_STATE as the measurement was not 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 9
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 9
 
 
  398:Generated_Source\PSoC4/CyLFClk.c **** * started.
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  452:Generated_Source\PSoC4/CyLFClk.c ****     uint32 waitUntilCntr1Stops;
  453:Generated_Source\PSoC4/CyLFClk.c ****     static uint32 trimRunningStatus = CY_SYS_CLK_TRIM_OR_COMP_FINISHED;
  454:Generated_Source\PSoC4/CyLFClk.c ****     uint32 checkStatus;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 10
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 10
 
 
  455:Generated_Source\PSoC4/CyLFClk.c ****     cystatus returnStatus;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  509:Generated_Source\PSoC4/CyLFClk.c ****             if (CY_SYS_CLK_TRIM_OR_COMP_FINISHED != trimRunningStatus)
  510:Generated_Source\PSoC4/CyLFClk.c ****             {
  511:Generated_Source\PSoC4/CyLFClk.c ****                 /* Checking if the counter CNTR 1 finished down-counting */
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 11
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 11
 
 
  512:Generated_Source\PSoC4/CyLFClk.c ****                 if(0u != (CY_SYS_CNT_REG1_REG & CY_SYS_CLK_ILO_CALIBR_COMPLETE_MASK))
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  566:Generated_Source\PSoC4/CyLFClk.c **** * frequency measuring.
  567:Generated_Source\PSoC4/CyLFClk.c **** *
  568:Generated_Source\PSoC4/CyLFClk.c **** * \endinternal
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 12
 
 
  569:Generated_Source\PSoC4/CyLFClk.c **** *
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  623:Generated_Source\PSoC4/CyLFClk.c ****     else
  624:Generated_Source\PSoC4/CyLFClk.c ****     {
  625:Generated_Source\PSoC4/CyLFClk.c ****         errorRangeStatus = CYRET_INVALID_STATE;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 13
 
 
  626:Generated_Source\PSoC4/CyLFClk.c ****     }
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  680:Generated_Source\PSoC4/CyLFClk.c ****     * CY_SYS_CLK_LFCLK_SRC_WCO Low Frequency Watch Crystal Oscillator (WCO)
  681:Generated_Source\PSoC4/CyLFClk.c ****     *
  682:Generated_Source\PSoC4/CyLFClk.c ****     * \endinternal
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 14
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 14
 
 
  683:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  737:Generated_Source\PSoC4/CyLFClk.c **** 
  738:Generated_Source\PSoC4/CyLFClk.c ****         if (CySysClkGetLfclkSource() != source)
  739:Generated_Source\PSoC4/CyLFClk.c ****         {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 15
 
 
  740:Generated_Source\PSoC4/CyLFClk.c ****             interruptState = CyEnterCriticalSection();
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  794:Generated_Source\PSoC4/CyLFClk.c **** 
  795:Generated_Source\PSoC4/CyLFClk.c ****         if (0u != CySysClkWcoEnabled())
  796:Generated_Source\PSoC4/CyLFClk.c ****         {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 16
 
 
  797:Generated_Source\PSoC4/CyLFClk.c ****             #if (CY_IP_SRSSV2)
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  851:Generated_Source\PSoC4/CyLFClk.c ****     uint32 CySysClkWcoSetPowerMode(uint32 mode)
  852:Generated_Source\PSoC4/CyLFClk.c ****     {
  853:Generated_Source\PSoC4/CyLFClk.c ****         uint32 powerModeStatus;
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 17
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 17
 
 
  854:Generated_Source\PSoC4/CyLFClk.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  908:Generated_Source\PSoC4/CyLFClk.c ****     * crystal period. Also external clock source accuracy should be higher 
  909:Generated_Source\PSoC4/CyLFClk.c ****     * or equal to WCO external crystal accuracy.
  910:Generated_Source\PSoC4/CyLFClk.c ****     *
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 18
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 18
 
 
  911:Generated_Source\PSoC4/CyLFClk.c ****     * \param clockSel
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  965:Generated_Source\PSoC4/CyLFClk.c ****     *
  966:Generated_Source\PSoC4/CyLFClk.c ****     * \return 1 - WDT is locked, and 0 - WDT is unlocked.
  967:Generated_Source\PSoC4/CyLFClk.c ****     * \endinternal
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 19
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 19
 
 
  968:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  105              		@ sp needed
  106 000c 7047     		bx	lr
  107              	.L12:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 20
 
 
  108 000e C046     		.align	2
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  158              		.section	.text.CySysClkIloStopMeasurement,"ax",%progbits
  159              		.align	2
  160              		.global	CySysClkIloStopMeasurement
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 21
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 21
 
 
  161              		.code	16
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  210              		.loc 1 275 0
  211 0006 324B     		ldr	r3, .L31
  212 0008 1A68     		ldr	r2, [r3]
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 22
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 22
 
 
  213 000a 324B     		ldr	r3, .L31+4
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  257 004a 0ED9     		bls	.L22
  258              	.LVL3:
  297:Generated_Source\PSoC4/CyLFClk.c ****                                 CY_SYS_CLK_ILO_FREQ_2MSB) * (desiredDelayInCounts / CY_SYS_CLK_ILO_
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 23
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 23
 
 
  259              		.loc 1 297 0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  306:Generated_Source\PSoC4/CyLFClk.c ****                                                      desiredDelayInCounts) / CY_SYS_CLK_ILO_DESIRED
  307              		.loc 1 306 0
  308 008c 6043     		muls	r0, r4
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 24
 
 
  305:Generated_Source\PSoC4/CyLFClk.c ****                                                      (cydelayFreqHz >> CY_SYS_CLK_SYS_CLK_DEVIDER))
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  356 00be 06E0     		b	.L20
  357              	.LVL28:
  358              	.L27:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 25
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 25
 
 
  359 00c0 1120     		movs	r0, #17
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  949:Generated_Source\PSoC4/CyLFClk.c ****         uint8 interruptState;
  410              		.loc 1 949 0
  411              		.cfi_startproc
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 26
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 26
 
 
  412              		@ args = 0, pretend = 0, frame = 0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  451              		@ args = 0, pretend = 0, frame = 0
  452              		@ frame_needed = 0, uses_anonymous_args = 0
  453 0000 10B5     		push	{r4, lr}
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 27
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 27
 
 
  454              		.cfi_def_cfa_offset 8
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  496              	CySysWdtGetEnabledStatus:
  497              	.LFB9:
  997:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 28
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 28
 
 
  998:Generated_Source\PSoC4/CyLFClk.c **** 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  528 001c 10BD     		pop	{r4, pc}
  529              	.L42:
  530 001e C046     		.align	2
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 29
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 29
 
 
  531              	.L41:
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1050:Generated_Source\PSoC4/CyLFClk.c **** 
 1051:Generated_Source\PSoC4/CyLFClk.c ****         CYASSERT(counterNum < CY_SYS_WDT_COUNTERS_MAX);
  557              		.loc 1 1051 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 30
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 30
 
 
  558 0006 0228     		cmp	r0, #2
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  602              	.LFE10:
  603              		.size	CySysWdtSetMode, .-CySysWdtSetMode
  604              		.section	.text.CySysClkLfclkPosedgeRestore,"ax",%progbits
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 31
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 31
 
 
  605              		.align	2
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1109:Generated_Source\PSoC4/CyLFClk.c ****                  (counterNum == CY_SYS_WDT_COUNTER1));
 1110:Generated_Source\PSoC4/CyLFClk.c **** 
 1111:Generated_Source\PSoC4/CyLFClk.c ****         if(0u == CySysWdtGetEnabledStatus(counterNum))
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 32
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 32
 
 
 1112:Generated_Source\PSoC4/CyLFClk.c ****         {
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1166:Generated_Source\PSoC4/CyLFClk.c ****     * and control (WDT_CONTROL) registers. This means that all WDT functions that
 1167:Generated_Source\PSoC4/CyLFClk.c ****     * contain 'write' in the name (with the exception of CySysWdtSetMatch()
 1168:Generated_Source\PSoC4/CyLFClk.c ****     * function) are illegal to call if WDT is enabled.
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 33
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 33
 
 
 1169:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1223:Generated_Source\PSoC4/CyLFClk.c ****     * CY_SYS_WDT_COUNTER2_MASK - The mask for counter 2 to disable.
 1224:Generated_Source\PSoC4/CyLFClk.c ****     *
 1225:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 34
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 34
 
 
 1226:Generated_Source\PSoC4/CyLFClk.c ****     void CySysWdtDisable(uint32 counterMask)
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1280:Generated_Source\PSoC4/CyLFClk.c ****     * counter is enabled, call CySysWdtDisable() function with the corresponding
 1281:Generated_Source\PSoC4/CyLFClk.c ****     * parameter to disable the specified counter and wait for it to stop. This may
 1282:Generated_Source\PSoC4/CyLFClk.c ****     * take up to 3 LFCLK cycles.
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 35
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 35
 
 
 1283:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1337:Generated_Source\PSoC4/CyLFClk.c ****     {
 1338:Generated_Source\PSoC4/CyLFClk.c ****         uint32 regValue;
 1339:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 36
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 36
 
 
 1340:Generated_Source\PSoC4/CyLFClk.c ****         CYASSERT((counterNum == CY_SYS_WDT_COUNTER0) ||
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1394:Generated_Source\PSoC4/CyLFClk.c ****     *
 1395:Generated_Source\PSoC4/CyLFClk.c ****     * \return The bit that is monitored (range of 0 to 31)
 1396:Generated_Source\PSoC4/CyLFClk.c ****     *
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 37
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 37
 
 
 1397:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1451:Generated_Source\PSoC4/CyLFClk.c ****                 regValue = (CY_SYS_WDT_CTRLOW_REG >> CY_SYS_WDT_CNT_MATCH_SHIFT) & CY_SYS_WDT_LOWER
 1452:Generated_Source\PSoC4/CyLFClk.c ****             break;
 1453:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 38
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 38
 
 
 1454:Generated_Source\PSoC4/CyLFClk.c ****             /* WDT Counter 2 */
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1508:Generated_Source\PSoC4/CyLFClk.c ****     *
 1509:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
 1510:Generated_Source\PSoC4/CyLFClk.c ****     void CySysWdtClearInterrupt(uint32 counterMask)
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 39
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 39
 
 
 1511:Generated_Source\PSoC4/CyLFClk.c ****     {
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1565:Generated_Source\PSoC4/CyLFClk.c ****     * The LFCLK source must be enabled. Otherwise, the function will never exit.
 1566:Generated_Source\PSoC4/CyLFClk.c ****     *
 1567:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 40
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 40
 
 
 1568:Generated_Source\PSoC4/CyLFClk.c ****     void CySysWdtResetCounters(uint32 countersMask)
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1622:Generated_Source\PSoC4/CyLFClk.c ****     *
 1623:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
 1624:Generated_Source\PSoC4/CyLFClk.c ****     cyWdtCallback CySysWdtGetInterruptCallback(uint32 counterNum)
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 41
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 41
 
 
 1625:Generated_Source\PSoC4/CyLFClk.c ****     {
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1679:Generated_Source\PSoC4/CyLFClk.c ****         {
 1680:Generated_Source\PSoC4/CyLFClk.c ****             wdtIsrMask &= ~counterIntMaskTbl[counterNum];
 1681:Generated_Source\PSoC4/CyLFClk.c ****         }
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 42
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 42
 
 
 1682:Generated_Source\PSoC4/CyLFClk.c ****         else
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1736:Generated_Source\PSoC4/CyLFClk.c ****             CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER1_INT);
 1737:Generated_Source\PSoC4/CyLFClk.c ****         }
 1738:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 43
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 43
 
 
 1739:Generated_Source\PSoC4/CyLFClk.c ****         if(0u != (CY_SYS_WDT_COUNTER2_INT & CY_SYS_WDT_CONTROL_REG))
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1793:Generated_Source\PSoC4/CyLFClk.c ****         {
 1794:Generated_Source\PSoC4/CyLFClk.c ****             if(CY_SYS_WDT_MODE_INT_RESET == CySysWdtGetMode(counterNum))
 1795:Generated_Source\PSoC4/CyLFClk.c ****             {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 44
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 44
 
 
 1796:Generated_Source\PSoC4/CyLFClk.c ****                 CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER1_INT);
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1850:Generated_Source\PSoC4/CyLFClk.c ****         {
 1851:Generated_Source\PSoC4/CyLFClk.c ****             lfclkPosedgeEnabledWdtCounter = CY_SYS_WDT_COUNTER1;
 1852:Generated_Source\PSoC4/CyLFClk.c ****         }
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 45
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 45
 
 
 1853:Generated_Source\PSoC4/CyLFClk.c ****         else if (0u != CySysWdtGetEnabledStatus(CY_SYS_WDT_COUNTER2))
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  621 0004 5B68     		ldr	r3, [r3, #4]
  622 0006 002B     		cmp	r3, #0
  623 0008 0BD0     		beq	.L48
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 46
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 46
 
 
 1897:Generated_Source\PSoC4/CyLFClk.c ****         {
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  669              	.LVL56:
  670 0006 DB00     		lsls	r3, r3, #3
  671              	.LVL57:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 47
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 47
 
 
  672 0008 D840     		lsrs	r0, r0, r3
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1113:Generated_Source\PSoC4/CyLFClk.c ****                                      ((counterNum * CY_SYS_WDT_CNT_SHIFT) + CY_SYS_WDT_CNT_MATCH_CL
  721              		.loc 1 1113 0
  722 001a 0549     		ldr	r1, .L58
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 48
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 48
 
 
  723 001c 0B68     		ldr	r3, [r1]
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  770              		.loc 1 1139 0
  771 0004 0128     		cmp	r0, #1
  772 0006 02D9     		bls	.L61
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 49
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 49
 
 
 1139:Generated_Source\PSoC4/CyLFClk.c ****                  (counterNum == CY_SYS_WDT_COUNTER1));
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  820              	.LVL72:
 1184:Generated_Source\PSoC4/CyLFClk.c **** 
  821              		.loc 1 1184 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 50
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 50
 
 
  822 0008 0C4A     		ldr	r2, .L71
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  869              		.size	CySysWdtEnable, .-CySysWdtEnable
  870              		.section	.text.CySysWdtDisable,"ax",%progbits
  871              		.align	2
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 51
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 51
 
 
  872              		.global	CySysWdtDisable
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  919              	.L77:
 1248:Generated_Source\PSoC4/CyLFClk.c ****             {
  920              		.loc 1 1248 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 52
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 52
 
 
  921 0030 E303     		lsls	r3, r4, #15
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  970 000e FFF7FEFF 		bl	CySysWdtGetEnabledStatus
  971              	.LVL86:
 1290:Generated_Source\PSoC4/CyLFClk.c ****                             CySysWdtGetEnabledStatus(CY_SYS_WDT_COUNTER1) |
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 53
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 53
 
 
  972              		.loc 1 1290 0
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1017              		.loc 1 1317 0
  1018              		.cfi_startproc
  1019              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 54
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 54
 
 
  1020              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1068              		.loc 1 1344 0 is_stmt 1
  1069 0010 C920     		movs	r0, #201
  1070 0012 FFF7FEFF 		bl	CyDelayUs
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 55
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 55
 
 
  1071              	.LVL96:
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1119              		.cfi_offset 14, -4
  1120 0002 0400     		movs	r4, r0
 1379:Generated_Source\PSoC4/CyLFClk.c ****         {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 56
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 56
 
 
  1121              		.loc 1 1379 0
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1169              		.cfi_startproc
  1170              		@ args = 0, pretend = 0, frame = 0
  1171              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 57
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 57
 
 
  1172              		@ link register save eliminated.
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1219              		.loc 1 1422 0
  1220 0012 2401     		lsls	r4, r4, #4
  1221              	.LVL113:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 58
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 58
 
 
 1421:Generated_Source\PSoC4/CyLFClk.c ****                                             (counterNum * CY_SYS_WDT_CNT_MATCH_SHIFT)) & CY_SYS_WDT
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1270              		.loc 1 1447 0
  1271 0018 0AE0     		b	.L109
  1272              	.LVL118:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 59
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 59
 
 
  1273              	.L106:
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1319              		.loc 1 1841 0
  1320              		.cfi_startproc
  1321              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 60
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 60
 
 
  1322              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1368 003e 0023     		movs	r3, #0
  1369 0040 E360     		str	r3, [r4, #12]
 1863:Generated_Source\PSoC4/CyLFClk.c ****             CySysWdtSetMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_NONE);
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 61
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 61
 
 
  1370              		.loc 1 1863 0
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  109:Generated_Source\PSoC4/CyLFClk.c ****     #if(CY_IP_SRSSV2)
  1419              		.loc 1 109 0
  1420              		.cfi_startproc
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 62
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 62
 
 
  1421              		@ args = 0, pretend = 0, frame = 0
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1467              	.LFE1:
  1468              		.size	CySysClkIloStop, .-CySysClkIloStop
  1469              		.section	.text.CySysWdtGetInterruptSource,"ax",%progbits
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 63
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 63
 
 
  1470              		.align	2
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1519 0004 FFF7FEFF 		bl	CyEnterCriticalSection
  1520              	.LVL145:
  1521 0008 0400     		movs	r4, r0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 64
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 64
 
 
  1522              	.LVL146:
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1547:Generated_Source\PSoC4/CyLFClk.c **** 
  1566              		.loc 1 1547 0
  1567              		@ sp needed
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 65
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 65
 
 
  1568              	.LVL156:
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1618              		.size	CySysWdtResetCounters, .-CySysWdtResetCounters
  1619              		.section	.text.CySysWdtSetInterruptCallback,"ax",%progbits
  1620              		.align	2
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 66
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 66
 
 
  1621              		.global	CySysWdtSetInterruptCallback
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1668              		.cfi_endproc
  1669              	.LFE26:
  1670              		.size	CySysWdtSetInterruptCallback, .-CySysWdtSetInterruptCallback
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 67
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 67
 
 
  1671              		.section	.text.CySysWdtGetInterruptCallback,"ax",%progbits
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1719              	.LFE27:
  1720              		.size	CySysWdtGetInterruptCallback, .-CySysWdtGetInterruptCallback
  1721              		.section	.text.CySysWdtEnableCounterIsr,"ax",%progbits
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 68
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 68
 
 
  1722              		.align	2
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1770 0028 00000000 		.word	.LANCHOR1
  1771 002c 00000000 		.word	.LANCHOR0
  1772 0030 00000000 		.word	.LANCHOR2
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 69
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 69
 
 
  1773              		.cfi_endproc
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1822              		.cfi_endproc
  1823              	.LFE29:
  1824              		.size	CySysWdtDisableCounterIsr, .-CySysWdtDisableCounterIsr
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 70
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 70
 
 
  1825              		.section	.text.CySysWdtIsr,"ax",%progbits
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1722:Generated_Source\PSoC4/CyLFClk.c ****         }
  1872              		.loc 1 1722 0
  1873 0030 0420     		movs	r0, #4
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 71
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 71
 
 
  1874 0032 FFF7FEFF 		bl	CySysWdtClearInterrupt
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1920 0076 0CD5     		bpl	.L158
 1741:Generated_Source\PSoC4/CyLFClk.c ****             {
  1921              		.loc 1 1741 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 72
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 72
 
 
  1922 0078 074B     		ldr	r3, .L165+4
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  1971 0002 041E     		subs	r4, r0, #0
 1776:Generated_Source\PSoC4/CyLFClk.c ****         {
  1972              		.loc 1 1776 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 73
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 73
 
 
  1973 0004 13D1     		bne	.L168
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2018 0044 2000     		movs	r0, r4
  2019 0046 FFF7FEFF 		bl	CySysWdtGetMode
  2020              	.LVL200:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 74
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 74
 
 
  2021 004a 0228     		cmp	r0, #2
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1927:Generated_Source\PSoC4/CyLFClk.c ****     *
 1928:Generated_Source\PSoC4/CyLFClk.c ****     * \brief
 1929:Generated_Source\PSoC4/CyLFClk.c ****     * Enables watchdog timer reset generation.
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 75
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 75
 
 
 1930:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 1984:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
 1985:Generated_Source\PSoC4/CyLFClk.c ****     uint32 CySysWdtGetMatch(void)
 1986:Generated_Source\PSoC4/CyLFClk.c ****     {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 76
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 76
 
 
 1987:Generated_Source\PSoC4/CyLFClk.c ****         return (CY_SYS_WDT_MATCH_REG & CY_SYS_WDT_MATCH_MASK);
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2041:Generated_Source\PSoC4/CyLFClk.c ****     }
 2042:Generated_Source\PSoC4/CyLFClk.c **** 
 2043:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 77
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 77
 
 
 2044:Generated_Source\PSoC4/CyLFClk.c ****     /*******************************************************************************
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2098:Generated_Source\PSoC4/CyLFClk.c ****     * \param function The pointer to the callback function.
 2099:Generated_Source\PSoC4/CyLFClk.c ****     *
 2100:Generated_Source\PSoC4/CyLFClk.c ****     * \return The pointer to a previous callback function.
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 78
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 78
 
 
 2101:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2155:Generated_Source\PSoC4/CyLFClk.c ****         CySysWdtClearInterrupt();
 2156:Generated_Source\PSoC4/CyLFClk.c ****     }
 2157:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 79
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 79
 
 
 2158:Generated_Source\PSoC4/CyLFClk.c **** #endif /* (CY_IP_SRSSV2) */
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2212:Generated_Source\PSoC4/CyLFClk.c **** 
 2213:Generated_Source\PSoC4/CyLFClk.c ****         if (CySysClkGetTimerSource() != source)
 2214:Generated_Source\PSoC4/CyLFClk.c ****         {
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 80
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 80
 
 
 2215:Generated_Source\PSoC4/CyLFClk.c **** 
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2269:Generated_Source\PSoC4/CyLFClk.c ****     *
 2270:Generated_Source\PSoC4/CyLFClk.c ****     * \param mode
 2271:Generated_Source\PSoC4/CyLFClk.c ****     *  CY_SYS_TIMER_MODE_NONE - Free running.<br>
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 81
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 81
 
 
 2272:Generated_Source\PSoC4/CyLFClk.c ****     * CY_SYS_TIMER_MODE_INT - The interrupt generated on match for counter 0
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2326:Generated_Source\PSoC4/CyLFClk.c ****     *
 2327:Generated_Source\PSoC4/CyLFClk.c ****     * \param counterNum
 2328:Generated_Source\PSoC4/CyLFClk.c ****     * Valid range [0-1]. The number of the Timer counter. The match values are not
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 82
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 82
 
 
 2329:Generated_Source\PSoC4/CyLFClk.c ****     * supported by counter 2.
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2383:Generated_Source\PSoC4/CyLFClk.c ****     /*******************************************************************************
 2384:Generated_Source\PSoC4/CyLFClk.c ****     * Function Name: CySysTimerEnable
 2385:Generated_Source\PSoC4/CyLFClk.c ****     ****************************************************************************//**
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 83
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 83
 
 
 2386:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2440:Generated_Source\PSoC4/CyLFClk.c ****     ****************************************************************************//**
 2441:Generated_Source\PSoC4/CyLFClk.c ****     *
 2442:Generated_Source\PSoC4/CyLFClk.c ****     * \brief Disables the specified DeepSleep Timer counters.
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 84
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 84
 
 
 2443:Generated_Source\PSoC4/CyLFClk.c ****     *
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2497:Generated_Source\PSoC4/CyLFClk.c ****     *
 2498:Generated_Source\PSoC4/CyLFClk.c ****     * If only one cascade mask is specified, the second cascade is disabled.
 2499:Generated_Source\PSoC4/CyLFClk.c ****     * To set both cascade modes, two defines should be ORed:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 85
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 85
 
 
 2500:Generated_Source\PSoC4/CyLFClk.c ****     * (CY_SYS_TIMER_CASCADE_01 | CY_SYS_TIMER_CASCADE_12).
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2554:Generated_Source\PSoC4/CyLFClk.c ****     * \brief Configures the Timer counter match comparison value.
 2555:Generated_Source\PSoC4/CyLFClk.c ****     *
 2556:Generated_Source\PSoC4/CyLFClk.c ****     * \param counterNum Valid range [0-1]. The number of the Timer counter. The 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 86
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 86
 
 
 2557:Generated_Source\PSoC4/CyLFClk.c ****     * match values are not supported by counter 2.
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2611:Generated_Source\PSoC4/CyLFClk.c ****         }
 2612:Generated_Source\PSoC4/CyLFClk.c ****     }
 2613:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 87
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 87
 
 
 2614:Generated_Source\PSoC4/CyLFClk.c **** 
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2668:Generated_Source\PSoC4/CyLFClk.c ****         switch(counterNum)
 2669:Generated_Source\PSoC4/CyLFClk.c ****         {
 2670:Generated_Source\PSoC4/CyLFClk.c ****             /* Timer Counter 0 */
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 88
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 88
 
 
 2671:Generated_Source\PSoC4/CyLFClk.c ****             case 0u:
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2725:Generated_Source\PSoC4/CyLFClk.c ****     * CY_SYS_TIMER1_INT - Clear counter 1<br>
 2726:Generated_Source\PSoC4/CyLFClk.c ****     * CY_SYS_TIMER2_INT - Clear counter 2
 2727:Generated_Source\PSoC4/CyLFClk.c ****     *
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 89
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 89
 
 
 2728:Generated_Source\PSoC4/CyLFClk.c ****     *******************************************************************************/
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2782:Generated_Source\PSoC4/CyLFClk.c ****         return((cyTimerCallback)prevCallback);
 2783:Generated_Source\PSoC4/CyLFClk.c ****     }
 2784:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 90
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 90
 
 
 2785:Generated_Source\PSoC4/CyLFClk.c **** 
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2839:Generated_Source\PSoC4/CyLFClk.c ****         }
 2840:Generated_Source\PSoC4/CyLFClk.c ****     }
 2841:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 91
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 91
 
 
 2842:Generated_Source\PSoC4/CyLFClk.c **** 
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2896:Generated_Source\PSoC4/CyLFClk.c ****         }
 2897:Generated_Source\PSoC4/CyLFClk.c **** 
 2898:Generated_Source\PSoC4/CyLFClk.c ****         if(0u != (CY_SYS_TIMER1_INT & CY_SYS_WCO_WDT_CONTROL_REG))
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 92
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 92
 
 
 2899:Generated_Source\PSoC4/CyLFClk.c ****         {
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 2953:Generated_Source\PSoC4/CyLFClk.c **** #endif /* (CY_IP_SRSSLT && CY_IP_WCO && CY_IP_WCO_WDT_EN) */
 2954:Generated_Source\PSoC4/CyLFClk.c **** 
 2955:Generated_Source\PSoC4/CyLFClk.c **** 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 93
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 93
 
 
 2956:Generated_Source\PSoC4/CyLFClk.c **** #if(CY_IP_SRSSV2 || (CY_IP_WCO_WDT_EN && CY_IP_SRSSLT))
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 3010:Generated_Source\PSoC4/CyLFClk.c ****     *
 3011:Generated_Source\PSoC4/CyLFClk.c ****     * - Call the CySysWdtSetInterruptCallback() for WDT or 
 3012:Generated_Source\PSoC4/CyLFClk.c ****     * CySysTimerSetIsrCallback() for DeepSleep Timer function to register 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 94
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 94
 
 
 3013:Generated_Source\PSoC4/CyLFClk.c ****     * the callback function for the corresponding WDT or DeepSleep Timer counter.
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 3067:Generated_Source\PSoC4/CyLFClk.c **** 
 3068:Generated_Source\PSoC4/CyLFClk.c ****     /*******************************************************************************
 3069:Generated_Source\PSoC4/CyLFClk.c ****     * Function Name: CySysTimerDelayUntilMatch
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 95
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 95
 
 
 3070:Generated_Source\PSoC4/CyLFClk.c ****     ****************************************************************************//**
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 3124:Generated_Source\PSoC4/CyLFClk.c ****     *
 3125:Generated_Source\PSoC4/CyLFClk.c ****     * This can be configured in two ways:
 3126:Generated_Source\PSoC4/CyLFClk.c ****     * - Through the DWR page. Open the "Clocks" tab, click the "Edit Clocks..."
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 96
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 96
 
 
 3127:Generated_Source\PSoC4/CyLFClk.c ****     * button, in the "Configure System Clocks" window click on the
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2064 0008 0128     		cmp	r0, #1
  2065 000a 23D8     		bhi	.L173
  2066              		.loc 1 3165 0 is_stmt 0 discriminator 1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 97
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 97
 
 
  2067 000c FFF7FEFF 		bl	CySysWdtGetClearOnMatch
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2103              		.loc 1 3183 0
  2104 003a 2900     		movs	r1, r5
  2105 003c 2000     		movs	r0, r4
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 98
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 98
 
 
  2106 003e FFF7FEFF 		bl	CySysWdtSetMatch
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 3218:Generated_Source\PSoC4/CyLFClk.c ****                 timerIsrMask |= tmpValue;
 3219:Generated_Source\PSoC4/CyLFClk.c ****             }
 3220:Generated_Source\PSoC4/CyLFClk.c ****         }
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 99
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 99
 
 
 3221:Generated_Source\PSoC4/CyLFClk.c ****         else
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
 3037:Generated_Source\PSoC4/CyLFClk.c ****                                                                 (delay <= CY_SYS_UINT16_MAX_VAL))
  2171              		.loc 1 3037 0 discriminator 2
  2172 0014 084B     		ldr	r3, .L183
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 100
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 100
 
 
  2173 0016 9D42     		cmp	r5, r3
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2222              		.size	wdtIsrMask, 4
  2223              	wdtIsrMask:
  2224 0000 04040400 		.word	263172
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 101
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 101
 
 
  2225              		.bss
@@ -6044,42 +6044,42 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2263 000b 01       		.uleb128 0x1
  2264 000c A9000000 		.4byte	.LASF98
  2265 0010 0C       		.byte	0xc
- 2266 0011 09060000 		.4byte	.LASF99
- 2267 0015 87010000 		.4byte	.LASF100
+ 2266 0011 B3050000 		.4byte	.LASF99
+ 2267 0015 B9060000 		.4byte	.LASF100
  2268 0019 00000000 		.4byte	.Ldebug_ranges0+0
  2269 001d 00000000 		.4byte	0
  2270 0021 00000000 		.4byte	.Ldebug_line0
  2271 0025 02       		.uleb128 0x2
  2272 0026 04       		.byte	0x4
  2273 0027 07       		.byte	0x7
- 2274 0028 46030000 		.4byte	.LASF0
+ 2274 0028 F0020000 		.4byte	.LASF0
  2275 002c 02       		.uleb128 0x2
  2276 002d 01       		.byte	0x1
  2277 002e 06       		.byte	0x6
  2278 002f 7B010000 		.4byte	.LASF1
  2279 0033 02       		.uleb128 0x2
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 102
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 102
 
 
  2280 0034 01       		.byte	0x1
  2281 0035 08       		.byte	0x8
- 2282 0036 51050000 		.4byte	.LASF2
+ 2282 0036 FB040000 		.4byte	.LASF2
  2283 003a 02       		.uleb128 0x2
  2284 003b 02       		.byte	0x2
  2285 003c 05       		.byte	0x5
- 2286 003d 9B050000 		.4byte	.LASF3
+ 2286 003d 45050000 		.4byte	.LASF3
  2287 0041 02       		.uleb128 0x2
  2288 0042 02       		.byte	0x2
  2289 0043 07       		.byte	0x7
- 2290 0044 D8030000 		.4byte	.LASF4
+ 2290 0044 82030000 		.4byte	.LASF4
  2291 0048 02       		.uleb128 0x2
  2292 0049 04       		.byte	0x4
  2293 004a 05       		.byte	0x5
- 2294 004b 2C020000 		.4byte	.LASF5
+ 2294 004b D6010000 		.4byte	.LASF5
  2295 004f 02       		.uleb128 0x2
  2296 0050 04       		.byte	0x4
  2297 0051 07       		.byte	0x7
- 2298 0052 77030000 		.4byte	.LASF6
+ 2298 0052 21030000 		.4byte	.LASF6
  2299 0056 02       		.uleb128 0x2
  2300 0057 08       		.byte	0x8
  2301 0058 05       		.byte	0x5
@@ -6093,7 +6093,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2309 0066 05       		.byte	0x5
  2310 0067 696E7400 		.ascii	"int\000"
  2311 006b 04       		.uleb128 0x4
- 2312 006c 3E020000 		.4byte	.LASF9
+ 2312 006c E8010000 		.4byte	.LASF9
  2313 0070 02       		.byte	0x2
  2314 0071 D201     		.2byte	0x1d2
  2315 0073 33000000 		.4byte	0x33
@@ -6103,32 +6103,32 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2319 007d D301     		.2byte	0x1d3
  2320 007f 41000000 		.4byte	0x41
  2321 0083 04       		.uleb128 0x4
- 2322 0084 96020000 		.4byte	.LASF11
+ 2322 0084 40020000 		.4byte	.LASF11
  2323 0088 02       		.byte	0x2
  2324 0089 D401     		.2byte	0x1d4
  2325 008b 4F000000 		.4byte	0x4f
  2326 008f 02       		.uleb128 0x2
  2327 0090 04       		.byte	0x4
  2328 0091 04       		.byte	0x4
- 2329 0092 0B050000 		.4byte	.LASF12
+ 2329 0092 B5040000 		.4byte	.LASF12
  2330 0096 02       		.uleb128 0x2
  2331 0097 08       		.byte	0x8
  2332 0098 04       		.byte	0x4
- 2333 0099 4B020000 		.4byte	.LASF13
+ 2333 0099 F5010000 		.4byte	.LASF13
  2334 009d 02       		.uleb128 0x2
  2335 009e 01       		.byte	0x1
  2336 009f 08       		.byte	0x8
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 103
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 103
 
 
- 2337 00a0 44060000 		.4byte	.LASF14
+ 2337 00a0 EE050000 		.4byte	.LASF14
  2338 00a4 04       		.uleb128 0x4
- 2339 00a5 06070000 		.4byte	.LASF15
+ 2339 00a5 B0060000 		.4byte	.LASF15
  2340 00a9 02       		.byte	0x2
  2341 00aa 7402     		.2byte	0x274
  2342 00ac 4F000000 		.4byte	0x4f
  2343 00b0 04       		.uleb128 0x4
- 2344 00b1 53040000 		.4byte	.LASF16
+ 2344 00b1 FD030000 		.4byte	.LASF16
  2345 00b5 02       		.byte	0x2
  2346 00b6 7E02     		.2byte	0x27e
  2347 00b8 BC000000 		.4byte	0xbc
@@ -6145,32 +6145,32 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2358 00cf 1A       		.byte	0x1a
  2359 00d0 E1000000 		.4byte	0xe1
  2360 00d4 09       		.uleb128 0x9
- 2361 00d5 B2040000 		.4byte	.LASF17
+ 2361 00d5 5C040000 		.4byte	.LASF17
  2362 00d9 00       		.byte	0
  2363 00da 09       		.uleb128 0x9
- 2364 00db 3A070000 		.4byte	.LASF18
+ 2364 00db 53070000 		.4byte	.LASF18
  2365 00df 01       		.byte	0x1
  2366 00e0 00       		.byte	0
  2367 00e1 0A       		.uleb128 0xa
- 2368 00e2 0B020000 		.4byte	.LASF19
+ 2368 00e2 B5010000 		.4byte	.LASF19
  2369 00e6 03       		.byte	0x3
  2370 00e7 1D       		.byte	0x1d
  2371 00e8 C8000000 		.4byte	0xc8
  2372 00ec 0A       		.uleb128 0xa
- 2373 00ed F3010000 		.4byte	.LASF20
+ 2373 00ed 9D010000 		.4byte	.LASF20
  2374 00f1 03       		.byte	0x3
  2375 00f2 58       		.byte	0x58
  2376 00f3 C1000000 		.4byte	0xc1
  2377 00f7 02       		.uleb128 0x2
  2378 00f8 08       		.byte	0x8
  2379 00f9 04       		.byte	0x4
- 2380 00fa 8F040000 		.4byte	.LASF21
+ 2380 00fa 39040000 		.4byte	.LASF21
  2381 00fe 02       		.uleb128 0x2
  2382 00ff 04       		.byte	0x4
  2383 0100 07       		.byte	0x7
- 2384 0101 86040000 		.4byte	.LASF22
+ 2384 0101 30040000 		.4byte	.LASF22
  2385 0105 0B       		.uleb128 0xb
- 2386 0106 DB050000 		.4byte	.LASF23
+ 2386 0106 85050000 		.4byte	.LASF23
  2387 010a 01       		.byte	0x1
  2388 010b 7201     		.2byte	0x172
  2389 010d 83000000 		.4byte	0x83
@@ -6178,11 +6178,11 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2391 0115 14000000 		.4byte	.LFE5-.LFB5
  2392 0119 01       		.uleb128 0x1
  2393 011a 9C       		.byte	0x9c
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 104
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 104
 
 
  2394 011b 0B       		.uleb128 0xb
- 2395 011c 3B050000 		.4byte	.LASF24
+ 2395 011c E5040000 		.4byte	.LASF24
  2396 0120 01       		.byte	0x1
  2397 0121 C903     		.2byte	0x3c9
  2398 0123 83000000 		.4byte	0x83
@@ -6191,7 +6191,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2401 012f 01       		.uleb128 0x1
  2402 0130 9C       		.byte	0x9c
  2403 0131 0C       		.uleb128 0xc
- 2404 0132 2D040000 		.4byte	.LASF25
+ 2404 0132 D7030000 		.4byte	.LASF25
  2405 0136 01       		.byte	0x1
  2406 0137 53       		.byte	0x53
  2407 0138 00000000 		.4byte	.LFB0
@@ -6199,7 +6199,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2409 0140 01       		.uleb128 0x1
  2410 0141 9C       		.byte	0x9c
  2411 0142 0C       		.uleb128 0xc
- 2412 0143 BF050000 		.4byte	.LASF26
+ 2412 0143 69050000 		.4byte	.LASF26
  2413 0147 01       		.byte	0x1
  2414 0148 A8       		.byte	0xa8
  2415 0149 00000000 		.4byte	.LFB2
@@ -6207,7 +6207,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2417 0151 01       		.uleb128 0x1
  2418 0152 9C       		.byte	0x9c
  2419 0153 0C       		.uleb128 0xc
- 2420 0154 9D020000 		.4byte	.LASF27
+ 2420 0154 47020000 		.4byte	.LASF27
  2421 0158 01       		.byte	0x1
  2422 0159 C9       		.byte	0xc9
  2423 015a 00000000 		.4byte	.LFB3
@@ -6215,7 +6215,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2425 0162 01       		.uleb128 0x1
  2426 0163 9C       		.byte	0x9c
  2427 0164 0D       		.uleb128 0xd
- 2428 0165 24070000 		.4byte	.LASF38
+ 2428 0165 3D070000 		.4byte	.LASF38
  2429 0169 01       		.byte	0x1
  2430 016a 0B01     		.2byte	0x10b
  2431 016c A4000000 		.4byte	0xa4
@@ -6225,20 +6225,20 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2435 0179 9C       		.byte	0x9c
  2436 017a F1010000 		.4byte	0x1f1
  2437 017e 0E       		.uleb128 0xe
- 2438 017f 6A030000 		.4byte	.LASF28
+ 2438 017f 14030000 		.4byte	.LASF28
  2439 0183 01       		.byte	0x1
  2440 0184 0B01     		.2byte	0x10b
  2441 0186 83000000 		.4byte	0x83
  2442 018a 00000000 		.4byte	.LLST0
  2443 018e 0E       		.uleb128 0xe
- 2444 018f 52020000 		.4byte	.LASF29
+ 2444 018f FC010000 		.4byte	.LASF29
  2445 0193 01       		.byte	0x1
  2446 0194 0B01     		.2byte	0x10b
  2447 0196 F1010000 		.4byte	0x1f1
  2448 019a F5000000 		.4byte	.LLST1
  2449 019e 0F       		.uleb128 0xf
- 2450 019f 74020000 		.4byte	.LASF30
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 105
+ 2450 019f 1E020000 		.4byte	.LASF30
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 105
 
 
  2451 01a3 01       		.byte	0x1
@@ -6246,13 +6246,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2453 01a6 83000000 		.4byte	0x83
  2454 01aa 4D010000 		.4byte	.LLST2
  2455 01ae 0F       		.uleb128 0xf
- 2456 01af AD060000 		.4byte	.LASF31
+ 2456 01af 57060000 		.4byte	.LASF31
  2457 01b3 01       		.byte	0x1
  2458 01b4 0E01     		.2byte	0x10e
  2459 01b6 83000000 		.4byte	0x83
  2460 01ba 77010000 		.4byte	.LLST3
  2461 01be 10       		.uleb128 0x10
- 2462 01bf 5F050000 		.4byte	.LASF32
+ 2462 01bf 09050000 		.4byte	.LASF32
  2463 01c3 01       		.byte	0x1
  2464 01c4 0F01     		.2byte	0x10f
  2465 01c6 83000000 		.4byte	0x83
@@ -6260,13 +6260,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2467 01cb 03       		.byte	0x3
  2468 01cc 00000000 		.4byte	compensateRunningStatus.4836
  2469 01d0 0F       		.uleb128 0xf
- 2470 01d1 C4040000 		.4byte	.LASF33
+ 2470 01d1 6E040000 		.4byte	.LASF33
  2471 01d5 01       		.byte	0x1
  2472 01d6 1001     		.2byte	0x110
  2473 01d8 83000000 		.4byte	0x83
  2474 01dc BF010000 		.4byte	.LLST4
  2475 01e0 0F       		.uleb128 0xf
- 2476 01e1 79040000 		.4byte	.LASF34
+ 2476 01e1 23040000 		.4byte	.LASF34
  2477 01e5 01       		.byte	0x1
  2478 01e6 1101     		.2byte	0x111
  2479 01e8 A4000000 		.4byte	0xa4
@@ -6276,7 +6276,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2483 01f2 04       		.byte	0x4
  2484 01f3 83000000 		.4byte	0x83
  2485 01f7 11       		.uleb128 0x11
- 2486 01f8 E6010000 		.4byte	.LASF36
+ 2486 01f8 90010000 		.4byte	.LASF36
  2487 01fc 01       		.byte	0x1
  2488 01fd B403     		.2byte	0x3b4
  2489 01ff 00000000 		.4byte	.LFB6
@@ -6285,7 +6285,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2492 0208 9C       		.byte	0x9c
  2493 0209 30020000 		.4byte	0x230
  2494 020d 0F       		.uleb128 0xf
- 2495 020e 89030000 		.4byte	.LASF35
+ 2495 020e 33030000 		.4byte	.LASF35
  2496 0212 01       		.byte	0x1
  2497 0213 B603     		.2byte	0x3b6
  2498 0215 6B000000 		.4byte	0x6b
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2505 022b DC0C0000 		.4byte	0xcdc
  2506 022f 00       		.byte	0
  2507 0230 11       		.uleb128 0x11
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 106
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 106
 
 
  2508 0231 50000000 		.4byte	.LASF37
@@ -6310,7 +6310,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2514 0241 9C       		.byte	0x9c
  2515 0242 69020000 		.4byte	0x269
  2516 0246 0F       		.uleb128 0xf
- 2517 0247 89030000 		.4byte	.LASF35
+ 2517 0247 33030000 		.4byte	.LASF35
  2518 024b 01       		.byte	0x1
  2519 024c D903     		.2byte	0x3d9
  2520 024e 6B000000 		.4byte	0x6b
@@ -6323,7 +6323,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2527 0264 DC0C0000 		.4byte	0xcdc
  2528 0268 00       		.byte	0
  2529 0269 13       		.uleb128 0x13
- 2530 026a EB030000 		.4byte	.LASF39
+ 2530 026a 95030000 		.4byte	.LASF39
  2531 026e 01       		.byte	0x1
  2532 026f F903     		.2byte	0x3f9
  2533 0271 83000000 		.4byte	0x83
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2562 02b4 9C       		.byte	0x9c
  2563 02b5 0D030000 		.4byte	0x30d
  2564 02b9 0E       		.uleb128 0xe
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 107
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 107
 
 
  2565 02ba 71000000 		.4byte	.LASF40
@@ -6367,13 +6367,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2568 02c1 83000000 		.4byte	0x83
  2569 02c5 5A020000 		.4byte	.LLST9
  2570 02c9 0E       		.uleb128 0xe
- 2571 02ca 49060000 		.4byte	.LASF42
+ 2571 02ca F3050000 		.4byte	.LASF42
  2572 02ce 01       		.byte	0x1
  2573 02cf 1704     		.2byte	0x417
  2574 02d1 83000000 		.4byte	0x83
  2575 02d5 86020000 		.4byte	.LLST10
  2576 02d9 0F       		.uleb128 0xf
- 2577 02da C2060000 		.4byte	.LASF43
+ 2577 02da 6C060000 		.4byte	.LASF43
  2578 02de 01       		.byte	0x1
  2579 02df 1904     		.2byte	0x419
  2580 02e1 83000000 		.4byte	0x83
@@ -6400,7 +6400,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2601 030b 00       		.byte	0
  2602 030c 00       		.byte	0
  2603 030d 17       		.uleb128 0x17
- 2604 030e A3030000 		.4byte	.LASF63
+ 2604 030e 4D030000 		.4byte	.LASF63
  2605 0312 01       		.byte	0x1
  2606 0313 6607     		.2byte	0x766
  2607 0315 00000000 		.4byte	.LFB33
@@ -6418,11 +6418,11 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2619 0330 30       		.byte	0x30
  2620 0331 00       		.byte	0
  2621 0332 00       		.byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 108
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 108
 
 
  2622 0333 13       		.uleb128 0x13
- 2623 0334 9D060000 		.4byte	.LASF44
+ 2623 0334 47060000 		.4byte	.LASF44
  2624 0338 01       		.byte	0x1
  2625 0339 3304     		.2byte	0x433
  2626 033b 83000000 		.4byte	0x83
@@ -6439,7 +6439,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2637 0359 D0020000 		.4byte	.LLST12
  2638 035d 00       		.byte	0
  2639 035e 11       		.uleb128 0x11
- 2640 035f 72060000 		.4byte	.LASF45
+ 2640 035f 1C060000 		.4byte	.LASF45
  2641 0363 01       		.byte	0x1
  2642 0364 5004     		.2byte	0x450
  2643 0366 00000000 		.4byte	.LFB12
@@ -6454,13 +6454,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2652 037c 83000000 		.4byte	0x83
  2653 0380 FC020000 		.4byte	.LLST13
  2654 0384 0E       		.uleb128 0xe
- 2655 0385 44020000 		.4byte	.LASF46
+ 2655 0385 EE010000 		.4byte	.LASF46
  2656 0389 01       		.byte	0x1
  2657 038a 5004     		.2byte	0x450
  2658 038c 83000000 		.4byte	0x83
  2659 0390 28030000 		.4byte	.LLST14
  2660 0394 0F       		.uleb128 0xf
- 2661 0395 C2060000 		.4byte	.LASF43
+ 2661 0395 6C060000 		.4byte	.LASF43
  2662 0399 01       		.byte	0x1
  2663 039a 5204     		.2byte	0x452
  2664 039c 83000000 		.4byte	0x83
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2676 03b7 14       		.uleb128 0x14
  2677 03b8 16000000 		.4byte	.LVL61
  2678 03bc 69020000 		.4byte	0x269
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 109
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 109
 
 
  2679 03c0 15       		.uleb128 0x15
@@ -6490,7 +6490,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2685 03c6 00       		.byte	0
  2686 03c7 00       		.byte	0
  2687 03c8 13       		.uleb128 0x13
- 2688 03c9 2E030000 		.4byte	.LASF47
+ 2688 03c9 D8020000 		.4byte	.LASF47
  2689 03cd 01       		.byte	0x1
  2690 03ce 7104     		.2byte	0x471
  2691 03d0 83000000 		.4byte	0x83
@@ -6516,7 +6516,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2711 0400 00       		.byte	0
  2712 0401 00       		.byte	0
  2713 0402 11       		.uleb128 0x11
- 2714 0403 F6020000 		.4byte	.LASF48
+ 2714 0403 A0020000 		.4byte	.LASF48
  2715 0407 01       		.byte	0x1
  2716 0408 9A04     		.2byte	0x49a
  2717 040a 00000000 		.4byte	.LFB14
@@ -6525,7 +6525,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2720 0413 9C       		.byte	0x9c
  2721 0414 67040000 		.4byte	0x467
  2722 0418 0E       		.uleb128 0xe
- 2723 0419 22030000 		.4byte	.LASF49
+ 2723 0419 CC020000 		.4byte	.LASF49
  2724 041d 01       		.byte	0x1
  2725 041e 9A04     		.2byte	0x49a
  2726 0420 83000000 		.4byte	0x83
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2733 0436 69020000 		.4byte	0x269
  2734 043a 44040000 		.4byte	0x444
  2735 043e 15       		.uleb128 0x15
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 110
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 110
 
 
  2736 043f 01       		.uleb128 0x1
@@ -6567,7 +6567,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2759 0465 00       		.byte	0
  2760 0466 00       		.byte	0
  2761 0467 11       		.uleb128 0x11
- 2762 0468 AF050000 		.4byte	.LASF50
+ 2762 0468 59050000 		.4byte	.LASF50
  2763 046c 01       		.byte	0x1
  2764 046d CA04     		.2byte	0x4ca
  2765 046f 00000000 		.4byte	.LFB15
@@ -6576,7 +6576,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2768 0478 9C       		.byte	0x9c
  2769 0479 CC040000 		.4byte	0x4cc
  2770 047d 0E       		.uleb128 0xe
- 2771 047e 22030000 		.4byte	.LASF49
+ 2771 047e CC020000 		.4byte	.LASF49
  2772 0482 01       		.byte	0x1
  2773 0483 CA04     		.2byte	0x4ca
  2774 0485 83000000 		.4byte	0x83
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2790 04aa 2C000000 		.4byte	.LVL80
  2791 04ae 69020000 		.4byte	0x269
  2792 04b2 BC040000 		.4byte	0x4bc
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 111
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 111
 
 
  2793 04b6 15       		.uleb128 0x15
@@ -6618,7 +6618,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2807 04ca 00       		.byte	0
  2808 04cb 00       		.byte	0
  2809 04cc 11       		.uleb128 0x11
- 2810 04cd 8A060000 		.4byte	.LASF51
+ 2810 04cd 34060000 		.4byte	.LASF51
  2811 04d1 01       		.byte	0x1
  2812 04d2 0505     		.2byte	0x505
  2813 04d4 00000000 		.4byte	.LFB16
@@ -6627,19 +6627,19 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2816 04dd 9C       		.byte	0x9c
  2817 04de 46050000 		.4byte	0x546
  2818 04e2 0E       		.uleb128 0xe
- 2819 04e3 FA060000 		.4byte	.LASF52
+ 2819 04e3 A4060000 		.4byte	.LASF52
  2820 04e7 01       		.byte	0x1
  2821 04e8 0505     		.2byte	0x505
  2822 04ea 83000000 		.4byte	0x83
  2823 04ee F6030000 		.4byte	.LLST19
  2824 04f2 0F       		.uleb128 0xf
- 2825 04f3 C2060000 		.4byte	.LASF43
+ 2825 04f3 6C060000 		.4byte	.LASF43
  2826 04f7 01       		.byte	0x1
  2827 04f8 0705     		.2byte	0x507
  2828 04fa 83000000 		.4byte	0x83
  2829 04fe 22040000 		.4byte	.LLST20
  2830 0502 10       		.uleb128 0x10
- 2831 0503 D6020000 		.4byte	.LASF53
+ 2831 0503 80020000 		.4byte	.LASF53
  2832 0507 01       		.byte	0x1
  2833 0508 0805     		.2byte	0x508
  2834 050a 83000000 		.4byte	0x83
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2847 0523 16       		.uleb128 0x16
  2848 0524 12000000 		.4byte	.LVL86
  2849 0528 69020000 		.4byte	0x269
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 112
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 112
 
 
  2850 052c 36050000 		.4byte	0x536
@@ -6688,7 +6688,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2874 055a 01       		.uleb128 0x1
  2875 055b 9C       		.byte	0x9c
  2876 055c 11       		.uleb128 0x11
- 2877 055d C5020000 		.4byte	.LASF54
+ 2877 055d 6F020000 		.4byte	.LASF54
  2878 0561 01       		.byte	0x1
  2879 0562 3805     		.2byte	0x538
  2880 0564 00000000 		.4byte	.LFB18
@@ -6703,13 +6703,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2889 057a 83000000 		.4byte	0x83
  2890 057e 4B040000 		.4byte	.LLST21
  2891 0582 0E       		.uleb128 0xe
- 2892 0583 AC040000 		.4byte	.LASF55
+ 2892 0583 56040000 		.4byte	.LASF55
  2893 0587 01       		.byte	0x1
  2894 0588 3805     		.2byte	0x538
  2895 058a 83000000 		.4byte	0x83
  2896 058e 77040000 		.4byte	.LLST22
  2897 0592 0F       		.uleb128 0xf
- 2898 0593 35020000 		.4byte	.LASF56
+ 2898 0593 DF010000 		.4byte	.LASF56
  2899 0597 01       		.byte	0x1
  2900 0598 3A05     		.2byte	0x53a
  2901 059a 83000000 		.4byte	0x83
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2904 05a3 10000000 		.4byte	.LVL95
  2905 05a7 E70C0000 		.4byte	0xce7
  2906 05ab B5050000 		.4byte	0x5b5
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 113
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 113
 
 
  2907 05af 15       		.uleb128 0x15
@@ -6750,7 +6750,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2933 05d8 00       		.byte	0
  2934 05d9 00       		.byte	0
  2935 05da 11       		.uleb128 0x11
- 2936 05db 3E040000 		.4byte	.LASF57
+ 2936 05db E8030000 		.4byte	.LASF57
  2937 05df 01       		.byte	0x1
  2938 05e0 5F05     		.2byte	0x55f
  2939 05e2 00000000 		.4byte	.LFB19
@@ -6759,13 +6759,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2942 05eb 9C       		.byte	0x9c
  2943 05ec 20060000 		.4byte	0x620
  2944 05f0 0E       		.uleb128 0xe
- 2945 05f1 27020000 		.4byte	.LASF58
+ 2945 05f1 D1010000 		.4byte	.LASF58
  2946 05f5 01       		.byte	0x1
  2947 05f6 5F05     		.2byte	0x55f
  2948 05f8 83000000 		.4byte	0x83
  2949 05fc B6040000 		.4byte	.LLST24
  2950 0600 0F       		.uleb128 0xf
- 2951 0601 C2060000 		.4byte	.LASF43
+ 2951 0601 6C060000 		.4byte	.LASF43
  2952 0605 01       		.byte	0x1
  2953 0606 6105     		.2byte	0x561
  2954 0608 83000000 		.4byte	0x83
@@ -6778,13 +6778,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2961 061b 50       		.byte	0x50
  2962 061c 01       		.uleb128 0x1
  2963 061d 32       		.byte	0x32
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 114
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 114
 
 
  2964 061e 00       		.byte	0
  2965 061f 00       		.byte	0
  2966 0620 18       		.uleb128 0x18
- 2967 0621 0F070000 		.4byte	.LASF60
+ 2967 0621 28070000 		.4byte	.LASF60
  2968 0625 01       		.byte	0x1
  2969 0626 7605     		.2byte	0x576
  2970 0628 83000000 		.4byte	0x83
@@ -6793,7 +6793,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2973 0634 01       		.uleb128 0x1
  2974 0635 9C       		.byte	0x9c
  2975 0636 13       		.uleb128 0x13
- 2976 0637 9B040000 		.4byte	.LASF61
+ 2976 0637 45040000 		.4byte	.LASF61
  2977 063b 01       		.byte	0x1
  2978 063c 8805     		.2byte	0x588
  2979 063e 83000000 		.4byte	0x83
@@ -6819,7 +6819,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  2999 066e 00       		.byte	0
  3000 066f 00       		.byte	0
  3001 0670 13       		.uleb128 0x13
- 3002 0671 4E060000 		.4byte	.LASF62
+ 3002 0671 F8050000 		.4byte	.LASF62
  3003 0675 01       		.byte	0x1
  3004 0676 9E05     		.2byte	0x59e
  3005 0678 83000000 		.4byte	0x83
@@ -6835,10 +6835,10 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3015 0692 83000000 		.4byte	0x83
  3016 0696 37050000 		.4byte	.LLST27
  3017 069a 0F       		.uleb128 0xf
- 3018 069b 35020000 		.4byte	.LASF56
+ 3018 069b DF010000 		.4byte	.LASF56
  3019 069f 01       		.byte	0x1
  3020 06a0 A005     		.2byte	0x5a0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 115
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 115
 
 
  3021 06a2 83000000 		.4byte	0x83
@@ -6863,13 +6863,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3040 06cb 9C       		.byte	0x9c
  3041 06cc 7C070000 		.4byte	0x77c
  3042 06d0 0F       		.uleb128 0xf
- 3043 06d1 53030000 		.4byte	.LASF65
+ 3043 06d1 FD020000 		.4byte	.LASF65
  3044 06d5 01       		.byte	0x1
  3045 06d6 3207     		.2byte	0x732
  3046 06d8 83000000 		.4byte	0x83
  3047 06dc 07060000 		.4byte	.LLST29
  3048 06e0 10       		.uleb128 0x10
- 3049 06e1 77050000 		.4byte	.LASF66
+ 3049 06e1 21050000 		.4byte	.LASF66
  3050 06e5 01       		.byte	0x1
  3051 06e6 3307     		.2byte	0x733
  3052 06e8 83000000 		.4byte	0x83
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3075 0717 00       		.byte	0
  3076 0718 16       		.uleb128 0x16
  3077 0719 2C000000 		.4byte	.LVL129
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 116
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 116
 
 
  3078 071d 69020000 		.4byte	0x269
@@ -6952,19 +6952,19 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3126 0777 70060000 		.4byte	0x670
  3127 077b 00       		.byte	0
  3128 077c 19       		.uleb128 0x19
- 3129 077d 64020000 		.4byte	.LASF67
+ 3129 077d 0E020000 		.4byte	.LASF67
  3130 0781 01       		.byte	0x1
  3131 0782 6C       		.byte	0x6c
  3132 0783 00000000 		.4byte	.LFB1
  3133 0787 38000000 		.4byte	.LFE1-.LFB1
  3134 078b 01       		.uleb128 0x1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 117
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 117
 
 
  3135 078c 9C       		.byte	0x9c
  3136 078d DE070000 		.4byte	0x7de
  3137 0791 1A       		.uleb128 0x1a
- 3138 0792 89030000 		.4byte	.LASF35
+ 3138 0792 33030000 		.4byte	.LASF35
  3139 0796 01       		.byte	0x1
  3140 0797 6F       		.byte	0x6f
  3141 0798 6B000000 		.4byte	0x6b
@@ -6996,7 +6996,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3167 07dc 00       		.byte	0
  3168 07dd 00       		.byte	0
  3169 07de 18       		.uleb128 0x18
- 3170 07df EE050000 		.4byte	.LASF68
+ 3170 07df 98050000 		.4byte	.LASF68
  3171 07e3 01       		.byte	0x1
  3172 07e4 C905     		.2byte	0x5c9
  3173 07e6 83000000 		.4byte	0x83
@@ -7005,7 +7005,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3176 07f2 01       		.uleb128 0x1
  3177 07f3 9C       		.byte	0x9c
  3178 07f4 11       		.uleb128 0x11
- 3179 07f5 F4040000 		.4byte	.LASF69
+ 3179 07f5 9E040000 		.4byte	.LASF69
  3180 07f9 01       		.byte	0x1
  3181 07fa E605     		.2byte	0x5e6
  3182 07fc 00000000 		.4byte	.LFB24
@@ -7014,22 +7014,22 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3185 0805 9C       		.byte	0x9c
  3186 0806 6F080000 		.4byte	0x86f
  3187 080a 0E       		.uleb128 0xe
- 3188 080b 22030000 		.4byte	.LASF49
+ 3188 080b CC020000 		.4byte	.LASF49
  3189 080f 01       		.byte	0x1
  3190 0810 E605     		.2byte	0x5e6
  3191 0812 83000000 		.4byte	0x83
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 118
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 118
 
 
  3192 0816 2D060000 		.4byte	.LLST31
  3193 081a 0F       		.uleb128 0xf
- 3194 081b 89030000 		.4byte	.LASF35
+ 3194 081b 33030000 		.4byte	.LASF35
  3195 081f 01       		.byte	0x1
  3196 0820 E805     		.2byte	0x5e8
  3197 0822 6B000000 		.4byte	0x6b
  3198 0826 6A060000 		.4byte	.LLST32
  3199 082a 0F       		.uleb128 0xf
- 3200 082b D1060000 		.4byte	.LASF70
+ 3200 082b 7B060000 		.4byte	.LASF70
  3201 082f 01       		.byte	0x1
  3202 0830 E905     		.2byte	0x5e9
  3203 0832 83000000 		.4byte	0x83
@@ -7058,7 +7058,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3226 086d 00       		.byte	0
  3227 086e 00       		.byte	0
  3228 086f 11       		.uleb128 0x11
- 3229 0870 DE040000 		.4byte	.LASF71
+ 3229 0870 88040000 		.4byte	.LASF71
  3230 0874 01       		.byte	0x1
  3231 0875 2006     		.2byte	0x620
  3232 0877 00000000 		.4byte	.LFB25
@@ -7067,18 +7067,18 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3235 0880 9C       		.byte	0x9c
  3236 0881 96080000 		.4byte	0x896
  3237 0885 0E       		.uleb128 0xe
- 3238 0886 89020000 		.4byte	.LASF72
+ 3238 0886 33020000 		.4byte	.LASF72
  3239 088a 01       		.byte	0x1
  3240 088b 2006     		.2byte	0x620
  3241 088d 83000000 		.4byte	0x83
  3242 0891 9C060000 		.4byte	.LLST34
  3243 0895 00       		.byte	0
  3244 0896 13       		.uleb128 0x13
- 3245 0897 05030000 		.4byte	.LASF73
+ 3245 0897 AF020000 		.4byte	.LASF73
  3246 089b 01       		.byte	0x1
  3247 089c 3A06     		.2byte	0x63a
  3248 089e EC000000 		.4byte	0xec
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 119
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 119
 
 
  3249 08a2 00000000 		.4byte	.LFB26
@@ -7093,13 +7093,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3258 08b8 83000000 		.4byte	0x83
  3259 08bc BD060000 		.4byte	.LLST35
  3260 08c0 0E       		.uleb128 0xe
- 3261 08c1 DD010000 		.4byte	.LASF74
+ 3261 08c1 87010000 		.4byte	.LASF74
  3262 08c5 01       		.byte	0x1
  3263 08c6 3A06     		.2byte	0x63a
  3264 08c8 EC000000 		.4byte	0xec
  3265 08cc F7060000 		.4byte	.LLST36
  3266 08d0 0F       		.uleb128 0xf
- 3267 08d1 B8020000 		.4byte	.LASF75
+ 3267 08d1 62020000 		.4byte	.LASF75
  3268 08d5 01       		.byte	0x1
  3269 08d6 3C06     		.2byte	0x63c
  3270 08d8 EC000000 		.4byte	0xec
@@ -7115,7 +7115,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3280 08ee 00       		.byte	0
  3281 08ef 00       		.byte	0
  3282 08f0 13       		.uleb128 0x13
- 3283 08f1 04040000 		.4byte	.LASF76
+ 3283 08f1 AE030000 		.4byte	.LASF76
  3284 08f5 01       		.byte	0x1
  3285 08f6 5806     		.2byte	0x658
  3286 08f8 EC000000 		.4byte	0xec
@@ -7131,14 +7131,14 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3296 0912 83000000 		.4byte	0x83
  3297 0916 4E070000 		.4byte	.LLST38
  3298 091a 0F       		.uleb128 0xf
- 3299 091b 5E030000 		.4byte	.LASF77
+ 3299 091b 08030000 		.4byte	.LASF77
  3300 091f 01       		.byte	0x1
  3301 0920 5A06     		.2byte	0x65a
  3302 0922 EC000000 		.4byte	0xec
  3303 0926 88070000 		.4byte	.LLST39
  3304 092a 14       		.uleb128 0x14
  3305 092b 16000000 		.4byte	.LVL173
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 120
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 120
 
 
  3306 092f E70C0000 		.4byte	0xce7
@@ -7150,7 +7150,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3312 0938 00       		.byte	0
  3313 0939 00       		.byte	0
  3314 093a 11       		.uleb128 0x11
- 3315 093b BF030000 		.4byte	.LASF78
+ 3315 093b 69030000 		.4byte	.LASF78
  3316 093f 01       		.byte	0x1
  3317 0940 7506     		.2byte	0x675
  3318 0942 00000000 		.4byte	.LFB28
@@ -7175,7 +7175,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3337 096e 00       		.byte	0
  3338 096f 00       		.byte	0
  3339 0970 11       		.uleb128 0x11
- 3340 0971 2A060000 		.4byte	.LASF79
+ 3340 0971 D4050000 		.4byte	.LASF79
  3341 0975 01       		.byte	0x1
  3342 0976 8C06     		.2byte	0x68c
  3343 0978 00000000 		.4byte	.LFB29
@@ -7198,12 +7198,12 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3360 09a2 01       		.uleb128 0x1
  3361 09a3 30       		.byte	0x30
  3362 09a4 00       		.byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 121
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 121
 
 
  3363 09a5 00       		.byte	0
  3364 09a6 1B       		.uleb128 0x1b
- 3365 09a7 21040000 		.4byte	.LASF80
+ 3365 09a7 CB030000 		.4byte	.LASF80
  3366 09ab 01       		.byte	0x1
  3367 09ac AD06     		.2byte	0x6ad
  3368 09ae 00000000 		.4byte	.LFB30
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3417 0a11 01       		.byte	0x1
  3418 0a12 EE06     		.2byte	0x6ee
  3419 0a14 83000000 		.4byte	0x83
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 122
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 122
 
 
  3420 0a18 32080000 		.4byte	.LLST42
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3474 0a88 4A000000 		.4byte	.LVL200
  3475 0a8c 33030000 		.4byte	0x333
  3476 0a90 9B0A0000 		.4byte	0xa9b
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 123
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 123
 
 
  3477 0a94 15       		.uleb128 0x15
@@ -7351,7 +7351,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3504 0ac0 00       		.byte	0
  3505 0ac1 00       		.byte	0
  3506 0ac2 11       		.uleb128 0x11
- 3507 0ac3 11050000 		.4byte	.LASF82
+ 3507 0ac3 BB040000 		.4byte	.LASF82
  3508 0ac7 01       		.byte	0x1
  3509 0ac8 580C     		.2byte	0xc58
  3510 0aca 00000000 		.4byte	.LFB35
@@ -7366,22 +7366,22 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3519 0ae0 83000000 		.4byte	0x83
  3520 0ae4 74080000 		.4byte	.LLST43
  3521 0ae8 0E       		.uleb128 0xe
- 3522 0ae9 A5050000 		.4byte	.LASF83
+ 3522 0ae9 4F050000 		.4byte	.LASF83
  3523 0aed 01       		.byte	0x1
  3524 0aee 580C     		.2byte	0xc58
  3525 0af0 E1000000 		.4byte	0xe1
  3526 0af4 A0080000 		.4byte	.LLST44
  3527 0af8 0E       		.uleb128 0xe
- 3528 0af9 AC040000 		.4byte	.LASF55
+ 3528 0af9 56040000 		.4byte	.LASF55
  3529 0afd 01       		.byte	0x1
  3530 0afe 580C     		.2byte	0xc58
  3531 0b00 83000000 		.4byte	0x83
  3532 0b04 C1080000 		.4byte	.LLST45
  3533 0b08 0F       		.uleb128 0xf
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 124
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 124
 
 
- 3534 0b09 70040000 		.4byte	.LASF84
+ 3534 0b09 1A040000 		.4byte	.LASF84
  3535 0b0d 01       		.byte	0x1
  3536 0b0e 5A0C     		.2byte	0xc5a
  3537 0b10 83000000 		.4byte	0x83
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3588 0b6d 00       		.byte	0
  3589 0b6e 14       		.uleb128 0x14
  3590 0b6f 5A000000 		.4byte	.LVL213
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 125
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 125
 
 
  3591 0b73 E70C0000 		.4byte	0xce7
@@ -7450,7 +7450,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3597 0b7c 00       		.byte	0
  3598 0b7d 00       		.byte	0
  3599 0b7e 11       		.uleb128 0x11
- 3600 0b7f 2B050000 		.4byte	.LASF85
+ 3600 0b7f D5040000 		.4byte	.LASF85
  3601 0b83 01       		.byte	0x1
  3602 0b84 D70B     		.2byte	0xbd7
  3603 0b86 00000000 		.4byte	.LFB34
@@ -7465,25 +7465,25 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3612 0b9c 83000000 		.4byte	0x83
  3613 0ba0 16090000 		.4byte	.LLST47
  3614 0ba4 0E       		.uleb128 0xe
- 3615 0ba5 A5050000 		.4byte	.LASF83
+ 3615 0ba5 4F050000 		.4byte	.LASF83
  3616 0ba9 01       		.byte	0x1
  3617 0baa D70B     		.2byte	0xbd7
  3618 0bac E1000000 		.4byte	0xe1
  3619 0bb0 42090000 		.4byte	.LLST48
  3620 0bb4 0E       		.uleb128 0xe
- 3621 0bb5 95050000 		.4byte	.LASF86
+ 3621 0bb5 3F050000 		.4byte	.LASF86
  3622 0bb9 01       		.byte	0x1
  3623 0bba D70B     		.2byte	0xbd7
  3624 0bbc 83000000 		.4byte	0x83
  3625 0bc0 63090000 		.4byte	.LLST49
  3626 0bc4 0F       		.uleb128 0xf
- 3627 0bc5 35020000 		.4byte	.LASF56
+ 3627 0bc5 DF010000 		.4byte	.LASF56
  3628 0bc9 01       		.byte	0x1
  3629 0bca D90B     		.2byte	0xbd9
  3630 0bcc 83000000 		.4byte	0x83
  3631 0bd0 8F090000 		.4byte	.LLST50
  3632 0bd4 0F       		.uleb128 0xf
- 3633 0bd5 98030000 		.4byte	.LASF87
+ 3633 0bd5 42030000 		.4byte	.LASF87
  3634 0bd9 01       		.byte	0x1
  3635 0bda DA0B     		.2byte	0xbda
  3636 0bdc 83000000 		.4byte	0x83
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3645 0bf4 02       		.uleb128 0x2
  3646 0bf5 74       		.byte	0x74
  3647 0bf6 00       		.sleb128 0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 126
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 126
 
 
  3648 0bf7 00       		.byte	0
@@ -7549,7 +7549,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3693 0c42 03       		.byte	0x3
  3694 0c43 04000000 		.4byte	lfclkPosedgeWdtCounter0Enabled
  3695 0c47 1C       		.uleb128 0x1c
- 3696 0c48 DE060000 		.4byte	.LASF89
+ 3696 0c48 88060000 		.4byte	.LASF89
  3697 0c4c 01       		.byte	0x1
  3698 0c4d 23       		.byte	0x23
  3699 0c4e 83000000 		.4byte	0x83
@@ -7557,8 +7557,8 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3701 0c53 03       		.byte	0x3
  3702 0c54 08000000 		.4byte	lfclkPosedgeWdtCounter0Mode
  3703 0c58 1C       		.uleb128 0x1c
- 3704 0c59 5F060000 		.4byte	.LASF90
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 127
+ 3704 0c59 09060000 		.4byte	.LASF90
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 127
 
 
  3705 0c5d 01       		.byte	0x1
@@ -7568,7 +7568,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3709 0c64 03       		.byte	0x3
  3710 0c65 1C000000 		.4byte	disableServicedIsr
  3711 0c69 1C       		.uleb128 0x1c
- 3712 0c6a EB020000 		.4byte	.LASF91
+ 3712 0c6a 95020000 		.4byte	.LASF91
  3713 0c6e 01       		.byte	0x1
  3714 0c6f 26       		.byte	0x26
  3715 0c70 BC000000 		.4byte	0xbc
@@ -7610,15 +7610,15 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3751 0cc1 03       		.byte	0x3
  3752 0cc2 10000000 		.4byte	cySysWdtCallback
  3753 0cc6 20       		.uleb128 0x20
- 3754 0cc7 D0040000 		.4byte	.LASF101
+ 3754 0cc7 7A040000 		.4byte	.LASF101
  3755 0ccb 04       		.byte	0x4
  3756 0ccc D4       		.byte	0xd4
  3757 0ccd 83000000 		.4byte	0x83
  3758 0cd1 21       		.uleb128 0x21
- 3759 0cd2 59040000 		.4byte	.LASF94
- 3760 0cd6 59040000 		.4byte	.LASF94
+ 3759 0cd2 03040000 		.4byte	.LASF94
+ 3760 0cd6 03040000 		.4byte	.LASF94
  3761 0cda 04       		.byte	0x4
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 128
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 128
 
 
  3762 0cdb E5       		.byte	0xe5
@@ -7628,13 +7628,13 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3766 0ce5 04       		.byte	0x4
  3767 0ce6 E6       		.byte	0xe6
  3768 0ce7 21       		.uleb128 0x21
- 3769 0ce8 4A050000 		.4byte	.LASF96
- 3770 0cec 4A050000 		.4byte	.LASF96
+ 3769 0ce8 F4040000 		.4byte	.LASF96
+ 3770 0cec F4040000 		.4byte	.LASF96
  3771 0cf0 04       		.byte	0x4
  3772 0cf1 E7       		.byte	0xe7
  3773 0cf2 21       		.uleb128 0x21
- 3774 0cf3 01020000 		.4byte	.LASF97
- 3775 0cf7 01020000 		.4byte	.LASF97
+ 3774 0cf3 AB010000 		.4byte	.LASF97
+ 3775 0cf7 AB010000 		.4byte	.LASF97
  3776 0cfb 04       		.byte	0x4
  3777 0cfc DA       		.byte	0xda
  3778 0cfd 00       		.byte	0
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3816 0023 3E       		.uleb128 0x3e
  3817 0024 0B       		.uleb128 0xb
  3818 0025 03       		.uleb128 0x3
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 129
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 129
 
 
  3819 0026 08       		.uleb128 0x8
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3873 005c 09       		.uleb128 0x9
  3874 005d 28       		.uleb128 0x28
  3875 005e 00       		.byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 130
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 130
 
 
  3876 005f 03       		.uleb128 0x3
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3930 0096 19       		.uleb128 0x19
  3931 0097 11       		.uleb128 0x11
  3932 0098 01       		.uleb128 0x1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 131
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 131
 
 
  3933 0099 12       		.uleb128 0x12
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  3987 00d1 0E       		.uleb128 0xe
  3988 00d2 3A       		.uleb128 0x3a
  3989 00d3 0B       		.uleb128 0xb
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 132
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 132
 
 
  3990 00d4 3B       		.uleb128 0x3b
@@ -7918,7 +7918,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4044 010d 13       		.uleb128 0x13
  4045 010e 00       		.byte	0
  4046 010f 00       		.byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 133
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 133
 
 
  4047 0110 13       		.uleb128 0x13
@@ -7978,7 +7978,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4101 014e 00       		.byte	0
  4102 014f 00       		.byte	0
  4103 0150 17       		.uleb128 0x17
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 134
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 134
 
 
  4104 0151 2E       		.uleb128 0x2e
@@ -8038,7 +8038,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4158 0189 3A       		.uleb128 0x3a
  4159 018a 0B       		.uleb128 0xb
  4160 018b 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 135
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 135
 
 
  4161 018c 0B       		.uleb128 0xb
@@ -8098,7 +8098,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4215 01c4 00       		.byte	0
  4216 01c5 1C       		.uleb128 0x1c
  4217 01c6 34       		.uleb128 0x34
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 136
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 136
 
 
  4218 01c7 00       		.byte	0
@@ -8158,7 +8158,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4272 01fd 00       		.byte	0
  4273 01fe 21       		.uleb128 0x21
  4274 01ff 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 137
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 137
 
 
  4275 0200 00       		.byte	0
@@ -8218,7 +8218,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4329 005b B6000000 		.4byte	.LVL23
  4330 005f B8000000 		.4byte	.LVL24
  4331 0063 0100     		.2byte	0x1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 138
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 138
 
 
  4332 0065 54       		.byte	0x54
@@ -8278,7 +8278,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4386              	.LLST1:
  4387 00f5 00000000 		.4byte	.LVL0
  4388 00f9 54000000 		.4byte	.LVL5
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 139
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 139
 
 
  4389 00fd 0100     		.2byte	0x1
@@ -8338,7 +8338,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4443 0184 25       		.uleb128 0x25
  4444 0185 4F       		.byte	0x4f
  4445 0186 F7       		.byte	0xf7
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 140
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 140
 
 
  4446 0187 25       		.uleb128 0x25
@@ -8398,7 +8398,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4500 01ff 50       		.byte	0x50
  4501 0200 00000000 		.4byte	0
  4502 0204 00000000 		.4byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 141
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 141
 
 
  4503              	.LLST6:
@@ -8458,7 +8458,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4557 0290 51       		.byte	0x51
  4558 0291 0F000000 		.4byte	.LVL47-1
  4559 0295 2A000000 		.4byte	.LVL51
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 142
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 142
 
 
  4560 0299 0100     		.2byte	0x1
@@ -8518,7 +8518,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4614 031e 50       		.byte	0x50
  4615 031f 9F       		.byte	0x9f
  4616 0320 00000000 		.4byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 143
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 143
 
 
  4617 0324 00000000 		.4byte	0
@@ -8578,7 +8578,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4671 03ad 3A000000 		.4byte	.LVL76
  4672 03b1 0100     		.2byte	0x1
  4673 03b3 54       		.byte	0x54
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 144
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 144
 
 
  4674 03b4 3A000000 		.4byte	.LVL76
@@ -8638,7 +8638,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4728 0438 28000000 		.4byte	.LVL91
  4729 043c 2A000000 		.4byte	.LVL92
  4730 0440 0100     		.2byte	0x1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 145
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 145
 
 
  4731 0442 55       		.byte	0x55
@@ -8698,7 +8698,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4785 04cb 54       		.byte	0x54
  4786 04cc 24000000 		.4byte	.LVL109
  4787 04d0 30000000 		.4byte	.LFE19
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 146
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 146
 
 
  4788 04d4 0400     		.2byte	0x4
@@ -8758,7 +8758,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4842 0558 0100     		.2byte	0x1
  4843 055a 50       		.byte	0x50
  4844 055b 1E000000 		.4byte	.LVL119
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 147
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 147
 
 
  4845 055f 22000000 		.4byte	.LVL121
@@ -8818,7 +8818,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4899 05dd 26000000 		.4byte	.LVL122
  4900 05e1 28000000 		.4byte	.LVL123
  4901 05e5 0100     		.2byte	0x1
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 148
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 148
 
 
  4902 05e7 50       		.byte	0x50
@@ -8878,7 +8878,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  4956 0672 0100     		.2byte	0x1
  4957 0674 54       		.byte	0x54
  4958 0675 00000000 		.4byte	0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 149
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 149
 
 
  4959 0679 00000000 		.4byte	0
@@ -8938,7 +8938,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5013 06fb 17000000 		.4byte	.LVL165-1
  5014 06ff 0100     		.2byte	0x1
  5015 0701 51       		.byte	0x51
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 150
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 150
 
 
  5016 0702 17000000 		.4byte	.LVL165-1
@@ -8998,7 +8998,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5070 0784 00000000 		.4byte	0
  5071              	.LLST39:
  5072 0788 02000000 		.4byte	.LVL168
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 151
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 151
 
 
  5073 078c 0E000000 		.4byte	.LVL170
@@ -9058,7 +9058,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5127 080f 50       		.byte	0x50
  5128 0810 9F       		.byte	0x9f
  5129 0811 16000000 		.4byte	.LVL182
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 152
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 152
 
 
  5130 0815 18000000 		.4byte	.LVL183
@@ -9118,7 +9118,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5184 0898 00000000 		.4byte	0
  5185 089c 00000000 		.4byte	0
  5186              	.LLST44:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 153
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 153
 
 
  5187 08a0 00000000 		.4byte	.LVL204
@@ -9178,7 +9178,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5241 092b 54       		.byte	0x54
  5242 092c 36000000 		.4byte	.LVL223
  5243 0930 3C000000 		.4byte	.LFE34
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 154
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 154
 
 
  5244 0934 0400     		.2byte	0x4
@@ -9238,7 +9238,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5298 0000 34010000 		.4byte	0x134
  5299 0004 0200     		.2byte	0x2
  5300 0006 00000000 		.4byte	.Ldebug_info0
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 155
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 155
 
 
  5301 000a 04       		.byte	0x4
@@ -9298,7 +9298,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5355 00d8 00000000 		.4byte	.LFB23
  5356 00dc 14000000 		.4byte	.LFE23-.LFB23
  5357 00e0 00000000 		.4byte	.LFB24
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 156
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 156
 
 
  5358 00e4 4C000000 		.4byte	.LFE24-.LFB24
@@ -9358,7 +9358,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5412 007c 44000000 		.4byte	.LFE15
  5413 0080 00000000 		.4byte	.LFB16
  5414 0084 34000000 		.4byte	.LFE16
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 157
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 157
 
 
  5415 0088 00000000 		.4byte	.LFB17
@@ -9418,7 +9418,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5461      616C5365 
  5461      6374696F 
  5462              	.LASF92:
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 158
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 158
 
 
  5463 001d 636F756E 		.ascii	"counterIntMaskTbl\000"
@@ -9478,7 +9478,7 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5481 010f 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  5481      66756E63 
  5481      74696F6E 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 159
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 159
 
 
  5481      2D736563 
@@ -9504,465 +9504,470 @@ ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 1
  5489 017b 7369676E 		.ascii	"signed char\000"
  5489      65642063 
  5489      68617200 
- 5490              	.LASF100:
- 5491 0187 433A5C55 		.ascii	"C:\\Users\\noyce\\home\\Research\\illumina\\PSoC\\L"
- 5491      73657273 
- 5491      5C6E6F79 
- 5491      63655C68 
- 5491      6F6D655C 
- 5492 01b3 61796F75 		.ascii	"ayout 2_14 Device Selector\\Design01.cydsn\000"
- 5492      7420325F 
- 5492      31342044 
- 5492      65766963 
- 5492      65205365 
- 5493              	.LASF74:
- 5494 01dd 66756E63 		.ascii	"function\000"
- 5494      74696F6E 
- 5494      00
- 5495              	.LASF36:
- 5496 01e6 43795379 		.ascii	"CySysWdtLock\000"
- 5496      73576474 
- 5496      4C6F636B 
- 5496      00
- 5497              	.LASF20:
- 5498 01f3 63795764 		.ascii	"cyWdtCallback\000"
- 5498      7443616C 
- 5498      6C626163 
- 5498      6B00
- 5499              	.LASF97:
- 5500 0201 43794465 		.ascii	"CyDelayUs\000"
- 5500      6C617955 
- 5500      7300
- 5501              	.LASF19:
- 5502 020b 63795F73 		.ascii	"cy_sys_timer_delaytype_enum\000"
- 5502      79735F74 
- 5502      696D6572 
- 5502      5F64656C 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 160
+ 5490              	.LASF74:
+ 5491 0187 66756E63 		.ascii	"function\000"
+ 5491      74696F6E 
+ 5491      00
+ 5492              	.LASF36:
+ 5493 0190 43795379 		.ascii	"CySysWdtLock\000"
+ 5493      73576474 
+ 5493      4C6F636B 
+ 5493      00
+ 5494              	.LASF20:
+ 5495 019d 63795764 		.ascii	"cyWdtCallback\000"
+ 5495      7443616C 
+ 5495      6C626163 
+ 5495      6B00
+ 5496              	.LASF97:
+ 5497 01ab 43794465 		.ascii	"CyDelayUs\000"
+ 5497      6C617955 
+ 5497      7300
+ 5498              	.LASF19:
+ 5499 01b5 63795F73 		.ascii	"cy_sys_timer_delaytype_enum\000"
+ 5499      79735F74 
+ 5499      696D6572 
+ 5499      5F64656C 
+ 5499      61797479 
+ 5500              	.LASF58:
+ 5501 01d1 62697473 		.ascii	"bits\000"
+ 5501      00
+ 5502              	.LASF5:
+ 5503 01d6 6C6F6E67 		.ascii	"long int\000"
+ 5503      20696E74 
+ 5503      00
+ 5504              	.LASF56:
+ 5505 01df 72656756 		.ascii	"regValue\000"
+ 5505      616C7565 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 160
 
 
- 5502      61797479 
- 5503              	.LASF58:
- 5504 0227 62697473 		.ascii	"bits\000"
- 5504      00
- 5505              	.LASF5:
- 5506 022c 6C6F6E67 		.ascii	"long int\000"
- 5506      20696E74 
- 5506      00
- 5507              	.LASF56:
- 5508 0235 72656756 		.ascii	"regValue\000"
- 5508      616C7565 
- 5508      00
- 5509              	.LASF9:
- 5510 023e 75696E74 		.ascii	"uint8\000"
- 5510      3800
- 5511              	.LASF46:
- 5512 0244 656E6162 		.ascii	"enable\000"
- 5512      6C6500
- 5513              	.LASF13:
- 5514 024b 646F7562 		.ascii	"double\000"
- 5514      6C6500
- 5515              	.LASF29:
- 5516 0252 636F6D70 		.ascii	"compensatedCycles\000"
- 5516      656E7361 
- 5516      74656443 
- 5516      79636C65 
- 5516      7300
- 5517              	.LASF67:
- 5518 0264 43795379 		.ascii	"CySysClkIloStop\000"
- 5518      73436C6B 
- 5518      496C6F53 
- 5518      746F7000 
- 5519              	.LASF30:
- 5520 0274 696C6F43 		.ascii	"iloCompensatedCycles\000"
- 5520      6F6D7065 
- 5520      6E736174 
- 5520      65644379 
- 5520      636C6573 
- 5521              	.LASF72:
- 5522 0289 636F756E 		.ascii	"countersMask\000"
- 5522      74657273 
- 5522      4D61736B 
- 5522      00
- 5523              	.LASF11:
- 5524 0296 75696E74 		.ascii	"uint32\000"
- 5524      333200
- 5525              	.LASF27:
- 5526 029d 43795379 		.ascii	"CySysClkIloStopMeasurement\000"
- 5526      73436C6B 
- 5526      496C6F53 
- 5526      746F704D 
- 5526      65617375 
- 5527              	.LASF75:
- 5528 02b8 70726576 		.ascii	"prevCallback\000"
- 5528      43616C6C 
- 5528      6261636B 
- 5528      00
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 161
+ 5505      00
+ 5506              	.LASF9:
+ 5507 01e8 75696E74 		.ascii	"uint8\000"
+ 5507      3800
+ 5508              	.LASF46:
+ 5509 01ee 656E6162 		.ascii	"enable\000"
+ 5509      6C6500
+ 5510              	.LASF13:
+ 5511 01f5 646F7562 		.ascii	"double\000"
+ 5511      6C6500
+ 5512              	.LASF29:
+ 5513 01fc 636F6D70 		.ascii	"compensatedCycles\000"
+ 5513      656E7361 
+ 5513      74656443 
+ 5513      79636C65 
+ 5513      7300
+ 5514              	.LASF67:
+ 5515 020e 43795379 		.ascii	"CySysClkIloStop\000"
+ 5515      73436C6B 
+ 5515      496C6F53 
+ 5515      746F7000 
+ 5516              	.LASF30:
+ 5517 021e 696C6F43 		.ascii	"iloCompensatedCycles\000"
+ 5517      6F6D7065 
+ 5517      6E736174 
+ 5517      65644379 
+ 5517      636C6573 
+ 5518              	.LASF72:
+ 5519 0233 636F756E 		.ascii	"countersMask\000"
+ 5519      74657273 
+ 5519      4D61736B 
+ 5519      00
+ 5520              	.LASF11:
+ 5521 0240 75696E74 		.ascii	"uint32\000"
+ 5521      333200
+ 5522              	.LASF27:
+ 5523 0247 43795379 		.ascii	"CySysClkIloStopMeasurement\000"
+ 5523      73436C6B 
+ 5523      496C6F53 
+ 5523      746F704D 
+ 5523      65617375 
+ 5524              	.LASF75:
+ 5525 0262 70726576 		.ascii	"prevCallback\000"
+ 5525      43616C6C 
+ 5525      6261636B 
+ 5525      00
+ 5526              	.LASF54:
+ 5527 026f 43795379 		.ascii	"CySysWdtSetMatch\000"
+ 5527      73576474 
+ 5527      5365744D 
+ 5527      61746368 
+ 5527      00
+ 5528              	.LASF53:
+ 5529 0280 636F756E 		.ascii	"countersEnableStatus\000"
+ 5529      74657273 
+ 5529      456E6162 
+ 5529      6C655374 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 161
 
 
- 5529              	.LASF54:
- 5530 02c5 43795379 		.ascii	"CySysWdtSetMatch\000"
- 5530      73576474 
- 5530      5365744D 
- 5530      61746368 
- 5530      00
- 5531              	.LASF53:
- 5532 02d6 636F756E 		.ascii	"countersEnableStatus\000"
- 5532      74657273 
- 5532      456E6162 
- 5532      6C655374 
- 5532      61747573 
- 5533              	.LASF91:
- 5534 02eb 77647449 		.ascii	"wdtIsrMask\000"
- 5534      73724D61 
- 5534      736B00
- 5535              	.LASF48:
- 5536 02f6 43795379 		.ascii	"CySysWdtEnable\000"
- 5536      73576474 
- 5536      456E6162 
- 5536      6C6500
- 5537              	.LASF73:
- 5538 0305 43795379 		.ascii	"CySysWdtSetInterruptCallback\000"
- 5538      73576474 
- 5538      53657449 
- 5538      6E746572 
- 5538      72757074 
- 5539              	.LASF49:
- 5540 0322 636F756E 		.ascii	"counterMask\000"
- 5540      7465724D 
- 5540      61736B00 
- 5541              	.LASF47:
- 5542 032e 43795379 		.ascii	"CySysWdtGetClearOnMatch\000"
- 5542      73576474 
- 5542      47657443 
- 5542      6C656172 
- 5542      4F6E4D61 
- 5543              	.LASF0:
- 5544 0346 756E7369 		.ascii	"unsigned int\000"
- 5544      676E6564 
- 5544      20696E74 
- 5544      00
- 5545              	.LASF65:
- 5546 0353 66697273 		.ascii	"firstCount\000"
- 5546      74436F75 
- 5546      6E7400
- 5547              	.LASF77:
- 5548 035e 72657443 		.ascii	"retCallback\000"
- 5548      616C6C62 
- 5548      61636B00 
- 5549              	.LASF28:
- 5550 036a 64657369 		.ascii	"desiredDelay\000"
- 5550      72656444 
- 5550      656C6179 
- 5550      00
- 5551              	.LASF6:
- 5552 0377 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 162
+ 5529      61747573 
+ 5530              	.LASF91:
+ 5531 0295 77647449 		.ascii	"wdtIsrMask\000"
+ 5531      73724D61 
+ 5531      736B00
+ 5532              	.LASF48:
+ 5533 02a0 43795379 		.ascii	"CySysWdtEnable\000"
+ 5533      73576474 
+ 5533      456E6162 
+ 5533      6C6500
+ 5534              	.LASF73:
+ 5535 02af 43795379 		.ascii	"CySysWdtSetInterruptCallback\000"
+ 5535      73576474 
+ 5535      53657449 
+ 5535      6E746572 
+ 5535      72757074 
+ 5536              	.LASF49:
+ 5537 02cc 636F756E 		.ascii	"counterMask\000"
+ 5537      7465724D 
+ 5537      61736B00 
+ 5538              	.LASF47:
+ 5539 02d8 43795379 		.ascii	"CySysWdtGetClearOnMatch\000"
+ 5539      73576474 
+ 5539      47657443 
+ 5539      6C656172 
+ 5539      4F6E4D61 
+ 5540              	.LASF0:
+ 5541 02f0 756E7369 		.ascii	"unsigned int\000"
+ 5541      676E6564 
+ 5541      20696E74 
+ 5541      00
+ 5542              	.LASF65:
+ 5543 02fd 66697273 		.ascii	"firstCount\000"
+ 5543      74436F75 
+ 5543      6E7400
+ 5544              	.LASF77:
+ 5545 0308 72657443 		.ascii	"retCallback\000"
+ 5545      616C6C62 
+ 5545      61636B00 
+ 5546              	.LASF28:
+ 5547 0314 64657369 		.ascii	"desiredDelay\000"
+ 5547      72656444 
+ 5547      656C6179 
+ 5547      00
+ 5548              	.LASF6:
+ 5549 0321 6C6F6E67 		.ascii	"long unsigned int\000"
+ 5549      20756E73 
+ 5549      69676E65 
+ 5549      6420696E 
+ 5549      7400
+ 5550              	.LASF35:
+ 5551 0333 696E7465 		.ascii	"interruptState\000"
+ 5551      72727570 
+ 5551      74537461 
+ 5551      746500
+ 5552              	.LASF87:
+ 5553 0342 6D617463 		.ascii	"matchValue\000"
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 162
 
 
- 5552      20756E73 
- 5552      69676E65 
- 5552      6420696E 
- 5552      7400
- 5553              	.LASF35:
- 5554 0389 696E7465 		.ascii	"interruptState\000"
- 5554      72727570 
- 5554      74537461 
- 5554      746500
- 5555              	.LASF87:
- 5556 0398 6D617463 		.ascii	"matchValue\000"
- 5556      6856616C 
- 5556      756500
- 5557              	.LASF63:
- 5558 03a3 43795379 		.ascii	"CySysClkLfclkPosedgeRestore\000"
- 5558      73436C6B 
- 5558      4C66636C 
- 5558      6B506F73 
- 5558      65646765 
- 5559              	.LASF78:
- 5560 03bf 43795379 		.ascii	"CySysWdtEnableCounterIsr\000"
- 5560      73576474 
- 5560      456E6162 
- 5560      6C65436F 
- 5560      756E7465 
- 5561              	.LASF4:
- 5562 03d8 73686F72 		.ascii	"short unsigned int\000"
- 5562      7420756E 
- 5562      7369676E 
- 5562      65642069 
- 5562      6E7400
- 5563              	.LASF39:
- 5564 03eb 43795379 		.ascii	"CySysWdtGetEnabledStatus\000"
- 5564      73576474 
- 5564      47657445 
- 5564      6E61626C 
- 5564      65645374 
- 5565              	.LASF76:
- 5566 0404 43795379 		.ascii	"CySysWdtGetInterruptCallback\000"
- 5566      73576474 
- 5566      47657449 
- 5566      6E746572 
- 5566      72757074 
- 5567              	.LASF80:
- 5568 0421 43795379 		.ascii	"CySysWdtIsr\000"
- 5568      73576474 
- 5568      49737200 
- 5569              	.LASF25:
- 5570 042d 43795379 		.ascii	"CySysClkIloStart\000"
- 5570      73436C6B 
- 5570      496C6F53 
- 5570      74617274 
- 5570      00
- 5571              	.LASF57:
- 5572 043e 43795379 		.ascii	"CySysWdtSetToggleBit\000"
- 5572      73576474 
- 5572      53657454 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 163
+ 5553      6856616C 
+ 5553      756500
+ 5554              	.LASF63:
+ 5555 034d 43795379 		.ascii	"CySysClkLfclkPosedgeRestore\000"
+ 5555      73436C6B 
+ 5555      4C66636C 
+ 5555      6B506F73 
+ 5555      65646765 
+ 5556              	.LASF78:
+ 5557 0369 43795379 		.ascii	"CySysWdtEnableCounterIsr\000"
+ 5557      73576474 
+ 5557      456E6162 
+ 5557      6C65436F 
+ 5557      756E7465 
+ 5558              	.LASF4:
+ 5559 0382 73686F72 		.ascii	"short unsigned int\000"
+ 5559      7420756E 
+ 5559      7369676E 
+ 5559      65642069 
+ 5559      6E7400
+ 5560              	.LASF39:
+ 5561 0395 43795379 		.ascii	"CySysWdtGetEnabledStatus\000"
+ 5561      73576474 
+ 5561      47657445 
+ 5561      6E61626C 
+ 5561      65645374 
+ 5562              	.LASF76:
+ 5563 03ae 43795379 		.ascii	"CySysWdtGetInterruptCallback\000"
+ 5563      73576474 
+ 5563      47657449 
+ 5563      6E746572 
+ 5563      72757074 
+ 5564              	.LASF80:
+ 5565 03cb 43795379 		.ascii	"CySysWdtIsr\000"
+ 5565      73576474 
+ 5565      49737200 
+ 5566              	.LASF25:
+ 5567 03d7 43795379 		.ascii	"CySysClkIloStart\000"
+ 5567      73436C6B 
+ 5567      496C6F53 
+ 5567      74617274 
+ 5567      00
+ 5568              	.LASF57:
+ 5569 03e8 43795379 		.ascii	"CySysWdtSetToggleBit\000"
+ 5569      73576474 
+ 5569      53657454 
+ 5569      6F67676C 
+ 5569      65426974 
+ 5570              	.LASF16:
+ 5571 03fd 72656733 		.ascii	"reg32\000"
+ 5571      3200
+ 5572              	.LASF94:
+ 5573 0403 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 5573      74657243 
+ 5573      72697469 
+ 5573      63616C53 
+ 5573      65637469 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 163
 
 
- 5572      6F67676C 
- 5572      65426974 
- 5573              	.LASF16:
- 5574 0453 72656733 		.ascii	"reg32\000"
- 5574      3200
- 5575              	.LASF94:
- 5576 0459 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 5576      74657243 
- 5576      72697469 
- 5576      63616C53 
- 5576      65637469 
- 5577              	.LASF84:
- 5578 0470 746D7056 		.ascii	"tmpValue\000"
- 5578      616C7565 
- 5578      00
- 5579              	.LASF34:
- 5580 0479 72657475 		.ascii	"returnStatus\000"
- 5580      726E5374 
- 5580      61747573 
- 5580      00
- 5581              	.LASF22:
- 5582 0486 73697A65 		.ascii	"sizetype\000"
- 5582      74797065 
- 5582      00
- 5583              	.LASF21:
- 5584 048f 6C6F6E67 		.ascii	"long double\000"
- 5584      20646F75 
- 5584      626C6500 
- 5585              	.LASF61:
- 5586 049b 43795379 		.ascii	"CySysWdtGetMatch\000"
- 5586      73576474 
- 5586      4765744D 
- 5586      61746368 
- 5586      00
- 5587              	.LASF55:
- 5588 04ac 6D617463 		.ascii	"match\000"
- 5588      6800
- 5589              	.LASF17:
- 5590 04b2 43595F53 		.ascii	"CY_SYS_TIMER_WAIT\000"
- 5590      59535F54 
- 5590      494D4552 
- 5590      5F574149 
- 5590      5400
- 5591              	.LASF33:
- 5592 04c4 63686563 		.ascii	"checkStatus\000"
- 5592      6B537461 
- 5592      74757300 
- 5593              	.LASF101:
- 5594 04d0 63796465 		.ascii	"cydelayFreqHz\000"
- 5594      6C617946 
- 5594      72657148 
- 5594      7A00
- 5595              	.LASF71:
- 5596 04de 43795379 		.ascii	"CySysWdtResetCounters\000"
- 5596      73576474 
- 5596      52657365 
- 5596      74436F75 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 164
+ 5574              	.LASF84:
+ 5575 041a 746D7056 		.ascii	"tmpValue\000"
+ 5575      616C7565 
+ 5575      00
+ 5576              	.LASF34:
+ 5577 0423 72657475 		.ascii	"returnStatus\000"
+ 5577      726E5374 
+ 5577      61747573 
+ 5577      00
+ 5578              	.LASF22:
+ 5579 0430 73697A65 		.ascii	"sizetype\000"
+ 5579      74797065 
+ 5579      00
+ 5580              	.LASF21:
+ 5581 0439 6C6F6E67 		.ascii	"long double\000"
+ 5581      20646F75 
+ 5581      626C6500 
+ 5582              	.LASF61:
+ 5583 0445 43795379 		.ascii	"CySysWdtGetMatch\000"
+ 5583      73576474 
+ 5583      4765744D 
+ 5583      61746368 
+ 5583      00
+ 5584              	.LASF55:
+ 5585 0456 6D617463 		.ascii	"match\000"
+ 5585      6800
+ 5586              	.LASF17:
+ 5587 045c 43595F53 		.ascii	"CY_SYS_TIMER_WAIT\000"
+ 5587      59535F54 
+ 5587      494D4552 
+ 5587      5F574149 
+ 5587      5400
+ 5588              	.LASF33:
+ 5589 046e 63686563 		.ascii	"checkStatus\000"
+ 5589      6B537461 
+ 5589      74757300 
+ 5590              	.LASF101:
+ 5591 047a 63796465 		.ascii	"cydelayFreqHz\000"
+ 5591      6C617946 
+ 5591      72657148 
+ 5591      7A00
+ 5592              	.LASF71:
+ 5593 0488 43795379 		.ascii	"CySysWdtResetCounters\000"
+ 5593      73576474 
+ 5593      52657365 
+ 5593      74436F75 
+ 5593      6E746572 
+ 5594              	.LASF69:
+ 5595 049e 43795379 		.ascii	"CySysWdtClearInterrupt\000"
+ 5595      73576474 
+ 5595      436C6561 
+ 5595      72496E74 
+ 5595      65727275 
+ 5596              	.LASF12:
+ 5597 04b5 666C6F61 		.ascii	"float\000"
+ 5597      7400
+ 5598              	.LASF82:
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 164
 
 
- 5596      6E746572 
- 5597              	.LASF69:
- 5598 04f4 43795379 		.ascii	"CySysWdtClearInterrupt\000"
- 5598      73576474 
- 5598      436C6561 
- 5598      72496E74 
- 5598      65727275 
- 5599              	.LASF12:
- 5600 050b 666C6F61 		.ascii	"float\000"
- 5600      7400
- 5601              	.LASF82:
- 5602 0511 43795379 		.ascii	"CySysTimerDelayUntilMatch\000"
- 5602      7354696D 
- 5602      65724465 
- 5602      6C617955 
- 5602      6E74696C 
- 5603              	.LASF85:
- 5604 052b 43795379 		.ascii	"CySysTimerDelay\000"
- 5604      7354696D 
- 5604      65724465 
- 5604      6C617900 
- 5605              	.LASF24:
- 5606 053b 43795379 		.ascii	"CySysWdtLocked\000"
- 5606      73576474 
- 5606      4C6F636B 
- 5606      656400
- 5607              	.LASF96:
- 5608 054a 43794861 		.ascii	"CyHalt\000"
- 5608      6C7400
- 5609              	.LASF2:
- 5610 0551 756E7369 		.ascii	"unsigned char\000"
- 5610      676E6564 
- 5610      20636861 
- 5610      7200
- 5611              	.LASF32:
- 5612 055f 636F6D70 		.ascii	"compensateRunningStatus\000"
- 5612      656E7361 
- 5612      74655275 
- 5612      6E6E696E 
- 5612      67537461 
- 5613              	.LASF66:
- 5614 0577 6C66636C 		.ascii	"lfclkPosedgeEnabledWdtCounter\000"
- 5614      6B506F73 
- 5614      65646765 
- 5614      456E6162 
- 5614      6C656457 
- 5615              	.LASF86:
- 5616 0595 64656C61 		.ascii	"delay\000"
- 5616      7900
- 5617              	.LASF3:
- 5618 059b 73686F72 		.ascii	"short int\000"
- 5618      7420696E 
- 5618      7400
- 5619              	.LASF83:
- 5620 05a5 64656C61 		.ascii	"delayType\000"
- 5620      79547970 
- 5620      6500
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 165
+ 5599 04bb 43795379 		.ascii	"CySysTimerDelayUntilMatch\000"
+ 5599      7354696D 
+ 5599      65724465 
+ 5599      6C617955 
+ 5599      6E74696C 
+ 5600              	.LASF85:
+ 5601 04d5 43795379 		.ascii	"CySysTimerDelay\000"
+ 5601      7354696D 
+ 5601      65724465 
+ 5601      6C617900 
+ 5602              	.LASF24:
+ 5603 04e5 43795379 		.ascii	"CySysWdtLocked\000"
+ 5603      73576474 
+ 5603      4C6F636B 
+ 5603      656400
+ 5604              	.LASF96:
+ 5605 04f4 43794861 		.ascii	"CyHalt\000"
+ 5605      6C7400
+ 5606              	.LASF2:
+ 5607 04fb 756E7369 		.ascii	"unsigned char\000"
+ 5607      676E6564 
+ 5607      20636861 
+ 5607      7200
+ 5608              	.LASF32:
+ 5609 0509 636F6D70 		.ascii	"compensateRunningStatus\000"
+ 5609      656E7361 
+ 5609      74655275 
+ 5609      6E6E696E 
+ 5609      67537461 
+ 5610              	.LASF66:
+ 5611 0521 6C66636C 		.ascii	"lfclkPosedgeEnabledWdtCounter\000"
+ 5611      6B506F73 
+ 5611      65646765 
+ 5611      456E6162 
+ 5611      6C656457 
+ 5612              	.LASF86:
+ 5613 053f 64656C61 		.ascii	"delay\000"
+ 5613      7900
+ 5614              	.LASF3:
+ 5615 0545 73686F72 		.ascii	"short int\000"
+ 5615      7420696E 
+ 5615      7400
+ 5616              	.LASF83:
+ 5617 054f 64656C61 		.ascii	"delayType\000"
+ 5617      79547970 
+ 5617      6500
+ 5618              	.LASF50:
+ 5619 0559 43795379 		.ascii	"CySysWdtDisable\000"
+ 5619      73576474 
+ 5619      44697361 
+ 5619      626C6500 
+ 5620              	.LASF26:
+ 5621 0569 43795379 		.ascii	"CySysClkIloStartMeasurement\000"
+ 5621      73436C6B 
+ 5621      496C6F53 
+ 5621      74617274 
+ 5621      4D656173 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 165
 
 
- 5621              	.LASF50:
- 5622 05af 43795379 		.ascii	"CySysWdtDisable\000"
- 5622      73576474 
- 5622      44697361 
- 5622      626C6500 
- 5623              	.LASF26:
- 5624 05bf 43795379 		.ascii	"CySysClkIloStartMeasurement\000"
- 5624      73436C6B 
- 5624      496C6F53 
- 5624      74617274 
- 5624      4D656173 
- 5625              	.LASF23:
- 5626 05db 43795379 		.ascii	"CySysClkIloEnabled\000"
- 5626      73436C6B 
- 5626      496C6F45 
- 5626      6E61626C 
- 5626      656400
- 5627              	.LASF68:
- 5628 05ee 43795379 		.ascii	"CySysWdtGetInterruptSource\000"
- 5628      73576474 
- 5628      47657449 
- 5628      6E746572 
- 5628      72757074 
- 5629              	.LASF99:
- 5630 0609 47656E65 		.ascii	"Generated_Source\\PSoC4\\CyLFClk.c\000"
- 5630      72617465 
- 5630      645F536F 
- 5630      75726365 
- 5630      5C50536F 
- 5631              	.LASF79:
- 5632 062a 43795379 		.ascii	"CySysWdtDisableCounterIsr\000"
- 5632      73576474 
- 5632      44697361 
- 5632      626C6543 
- 5632      6F756E74 
- 5633              	.LASF14:
- 5634 0644 63686172 		.ascii	"char\000"
- 5634      00
- 5635              	.LASF42:
- 5636 0649 6D6F6465 		.ascii	"mode\000"
- 5636      00
- 5637              	.LASF62:
- 5638 064e 43795379 		.ascii	"CySysWdtGetCount\000"
- 5638      73576474 
- 5638      47657443 
- 5638      6F756E74 
- 5638      00
- 5639              	.LASF90:
- 5640 065f 64697361 		.ascii	"disableServicedIsr\000"
- 5640      626C6553 
- 5640      65727669 
- 5640      63656449 
- 5640      737200
- 5641              	.LASF45:
- 5642 0672 43795379 		.ascii	"CySysWdtSetClearOnMatch\000"
- 5642      73576474 
- 5642      53657443 
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 166
+ 5622              	.LASF23:
+ 5623 0585 43795379 		.ascii	"CySysClkIloEnabled\000"
+ 5623      73436C6B 
+ 5623      496C6F45 
+ 5623      6E61626C 
+ 5623      656400
+ 5624              	.LASF68:
+ 5625 0598 43795379 		.ascii	"CySysWdtGetInterruptSource\000"
+ 5625      73576474 
+ 5625      47657449 
+ 5625      6E746572 
+ 5625      72757074 
+ 5626              	.LASF99:
+ 5627 05b3 47656E65 		.ascii	"Generated_Source\\PSoC4\\CyLFClk.c\000"
+ 5627      72617465 
+ 5627      645F536F 
+ 5627      75726365 
+ 5627      5C50536F 
+ 5628              	.LASF79:
+ 5629 05d4 43795379 		.ascii	"CySysWdtDisableCounterIsr\000"
+ 5629      73576474 
+ 5629      44697361 
+ 5629      626C6543 
+ 5629      6F756E74 
+ 5630              	.LASF14:
+ 5631 05ee 63686172 		.ascii	"char\000"
+ 5631      00
+ 5632              	.LASF42:
+ 5633 05f3 6D6F6465 		.ascii	"mode\000"
+ 5633      00
+ 5634              	.LASF62:
+ 5635 05f8 43795379 		.ascii	"CySysWdtGetCount\000"
+ 5635      73576474 
+ 5635      47657443 
+ 5635      6F756E74 
+ 5635      00
+ 5636              	.LASF90:
+ 5637 0609 64697361 		.ascii	"disableServicedIsr\000"
+ 5637      626C6553 
+ 5637      65727669 
+ 5637      63656449 
+ 5637      737200
+ 5638              	.LASF45:
+ 5639 061c 43795379 		.ascii	"CySysWdtSetClearOnMatch\000"
+ 5639      73576474 
+ 5639      53657443 
+ 5639      6C656172 
+ 5639      4F6E4D61 
+ 5640              	.LASF51:
+ 5641 0634 43795379 		.ascii	"CySysWdtSetCascade\000"
+ 5641      73576474 
+ 5641      53657443 
+ 5641      61736361 
+ 5641      646500
+ 5642              	.LASF44:
+ 5643 0647 43795379 		.ascii	"CySysWdtGetMode\000"
+ 5643      73576474 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 166
 
 
- 5642      6C656172 
- 5642      4F6E4D61 
- 5643              	.LASF51:
- 5644 068a 43795379 		.ascii	"CySysWdtSetCascade\000"
- 5644      73576474 
- 5644      53657443 
- 5644      61736361 
- 5644      646500
- 5645              	.LASF44:
- 5646 069d 43795379 		.ascii	"CySysWdtGetMode\000"
- 5646      73576474 
- 5646      4765744D 
- 5646      6F646500 
- 5647              	.LASF31:
- 5648 06ad 64657369 		.ascii	"desiredDelayInCounts\000"
- 5648      72656444 
- 5648      656C6179 
- 5648      496E436F 
- 5648      756E7473 
- 5649              	.LASF43:
- 5650 06c2 636F6E66 		.ascii	"configRegValue\000"
- 5650      69675265 
- 5650      6756616C 
- 5650      756500
- 5651              	.LASF70:
- 5652 06d1 7764744C 		.ascii	"wdtLockState\000"
- 5652      6F636B53 
- 5652      74617465 
- 5652      00
- 5653              	.LASF89:
- 5654 06de 6C66636C 		.ascii	"lfclkPosedgeWdtCounter0Mode\000"
- 5654      6B506F73 
- 5654      65646765 
- 5654      57647443 
- 5654      6F756E74 
- 5655              	.LASF52:
- 5656 06fa 63617363 		.ascii	"cascadeMask\000"
- 5656      6164654D 
- 5656      61736B00 
- 5657              	.LASF15:
- 5658 0706 63797374 		.ascii	"cystatus\000"
- 5658      61747573 
- 5658      00
- 5659              	.LASF60:
- 5660 070f 43795379 		.ascii	"CySysWdtGetToggleBit\000"
- 5660      73576474 
- 5660      47657454 
- 5660      6F67676C 
- 5660      65426974 
- 5661              	.LASF38:
- 5662 0724 43795379 		.ascii	"CySysClkIloCompensate\000"
- 5662      73436C6B 
- 5662      496C6F43 
- 5662      6F6D7065 
- 5662      6E736174 
- 5663              	.LASF18:
- 5664 073a 43595F53 		.ascii	"CY_SYS_TIMER_INTERRUPT\000"
-ARM GAS  C:\Users\noyce\AppData\Local\Temp\ccBMTGdi.s 			page 167
+ 5643      4765744D 
+ 5643      6F646500 
+ 5644              	.LASF31:
+ 5645 0657 64657369 		.ascii	"desiredDelayInCounts\000"
+ 5645      72656444 
+ 5645      656C6179 
+ 5645      496E436F 
+ 5645      756E7473 
+ 5646              	.LASF43:
+ 5647 066c 636F6E66 		.ascii	"configRegValue\000"
+ 5647      69675265 
+ 5647      6756616C 
+ 5647      756500
+ 5648              	.LASF70:
+ 5649 067b 7764744C 		.ascii	"wdtLockState\000"
+ 5649      6F636B53 
+ 5649      74617465 
+ 5649      00
+ 5650              	.LASF89:
+ 5651 0688 6C66636C 		.ascii	"lfclkPosedgeWdtCounter0Mode\000"
+ 5651      6B506F73 
+ 5651      65646765 
+ 5651      57647443 
+ 5651      6F756E74 
+ 5652              	.LASF52:
+ 5653 06a4 63617363 		.ascii	"cascadeMask\000"
+ 5653      6164654D 
+ 5653      61736B00 
+ 5654              	.LASF15:
+ 5655 06b0 63797374 		.ascii	"cystatus\000"
+ 5655      61747573 
+ 5655      00
+ 5656              	.LASF100:
+ 5657 06b9 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 5657      73657273 
+ 5657      5C467261 
+ 5657      6E6B6C69 
+ 5657      6E4C6162 
+ 5658 06e8 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Sla"
+ 5658      434E545F 
+ 5658      49565C50 
+ 5658      536F435C 
+ 5658      4C61796F 
+ 5659 0716 76655C44 		.ascii	"ve\\Design01.cydsn\000"
+ 5659      65736967 
+ 5659      6E30312E 
+ 5659      63796473 
+ 5659      6E00
+ 5660              	.LASF60:
+ 5661 0728 43795379 		.ascii	"CySysWdtGetToggleBit\000"
+ 5661      73576474 
+ 5661      47657454 
+ 5661      6F67676C 
+ 5661      65426974 
+ 5662              	.LASF38:
+ 5663 073d 43795379 		.ascii	"CySysClkIloCompensate\000"
+ 5663      73436C6B 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\cc2Bmw2L.s 			page 167
 
 
- 5664      59535F54 
- 5664      494D4552 
- 5664      5F494E54 
- 5664      45525255 
- 5665              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 5663      496C6F43 
+ 5663      6F6D7065 
+ 5663      6E736174 
+ 5664              	.LASF18:
+ 5665 0753 43595F53 		.ascii	"CY_SYS_TIMER_INTERRUPT\000"
+ 5665      59535F54 
+ 5665      494D4552 
+ 5665      5F494E54 
+ 5665      45525255 
+ 5666              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

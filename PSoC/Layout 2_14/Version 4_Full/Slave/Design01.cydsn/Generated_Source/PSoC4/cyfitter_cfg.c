@@ -150,7 +150,7 @@ static void CyClockStartupError(uint8 errorCode)
 }
 #endif
 
-#define CY_CFG_BASE_ADDR_COUNT 6u
+#define CY_CFG_BASE_ADDR_COUNT 7u
 CYPACKED typedef struct
 {
 	uint8 offset;
@@ -268,7 +268,8 @@ static void ClockSetup(void)
 static void AnalogSetDefault(void);
 static void AnalogSetDefault(void)
 {
-	CY_SET_XTND_REG32((void CYFAR *)CYREG_SAR_MUX_SWITCH0, 0x00040000u);
+	CY_SET_XTND_REG32((void CYFAR *)CYREG_CTBM_OA0_SW, 0x00044001u);
+	CY_SET_XTND_REG32((void CYFAR *)CYREG_SAR_MUX_SWITCH0, 0x00400000u);
 	SetAnalogRoutingPumps(1);
 }
 
@@ -322,7 +323,7 @@ void AMux_1_Set(uint8 channel)
 {
 	switch (channel) {
 		case 0u:
-			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) | 0x06u));
+			CY_SET_REG32((void CYXDATA *)CYREG_CTBM_OA0_SW, (0x04u));
 			break;
 		case 1u:
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) | 0x60u));
@@ -340,34 +341,34 @@ void AMux_1_Set(uint8 channel)
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) | 0x600000u));
 			break;
 		case 6u:
-			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) | 0x6000000u));
+			CY_SET_REG32((void CYXDATA *)CYREG_CTBM_OA0_SW, (0x08u));
 			break;
 		case 7u:
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) | 0x60000000u));
 			break;
 		case 8u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x01u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x06u));
 			break;
 		case 9u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x02u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x60u));
 			break;
 		case 10u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x04u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x600u));
 			break;
 		case 11u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x08u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x6000u));
 			break;
 		case 12u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x10u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x60000u));
 			break;
 		case 13u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x20u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x600000u));
 			break;
 		case 14u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x40u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x6000000u));
 			break;
 		case 15u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH0, (0x80u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) | 0x60000000u));
 			break;
 		case 18u:
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL3, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL3) | 0x60000u));
@@ -428,7 +429,7 @@ void AMux_1_Unset(uint8 channel)
 {
 	switch (channel) {
 		case 0u:
-			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) & 0xfffffff9u));
+			CY_SET_REG32((void CYXDATA *)CYREG_CTBM_OA0_SW_CLEAR, (0x04u));
 			break;
 		case 1u:
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) & 0xffffff9fu));
@@ -446,34 +447,34 @@ void AMux_1_Unset(uint8 channel)
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) & 0xff9fffffu));
 			break;
 		case 6u:
-			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) & 0xf9ffffffu));
+			CY_SET_REG32((void CYXDATA *)CYREG_CTBM_OA0_SW_CLEAR, (0x08u));
 			break;
 		case 7u:
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL1) & 0x9fffffffu));
 			break;
 		case 8u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x01u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xfffffff9u));
 			break;
 		case 9u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x02u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xffffff9fu));
 			break;
 		case 10u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x04u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xfffff9ffu));
 			break;
 		case 11u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x08u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xffff9fffu));
 			break;
 		case 12u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x10u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xfff9ffffu));
 			break;
 		case 13u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x20u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xff9fffffu));
 			break;
 		case 14u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x40u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0xf9ffffffu));
 			break;
 		case 15u:
-			CY_SET_REG32((void CYXDATA *)CYREG_SAR_MUX_SWITCH_CLEAR0, (0x80u));
+			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL2) & 0x9fffffffu));
 			break;
 		case 18u:
 			CY_SET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL3, (CY_GET_REG32((void CYXDATA *)CYREG_HSIOM_PORT_SEL3) & 0xfff9ffffu));
@@ -547,7 +548,8 @@ void cyfitter_cfg(void)
 			0x400F3303u, /* Base address: 0x400F3300 Count: 3 */
 			0x400F4006u, /* Base address: 0x400F4000 Count: 6 */
 			0x400F4109u, /* Base address: 0x400F4100 Count: 9 */
-			0x400F4305u, /* Base address: 0x400F4300 Count: 5 */
+			0x400F4204u, /* Base address: 0x400F4200 Count: 4 */
+			0x400F4306u, /* Base address: 0x400F4300 Count: 6 */
 		};
 
 		static const cy_cfg_addrvalue_t CYCODE cy_cfg_data_table[] = {
@@ -580,8 +582,13 @@ void cyfitter_cfg(void)
 			{0xD4u, 0x80u},
 			{0xD8u, 0x40u},
 			{0xEEu, 0xC0u},
+			{0x50u, 0x40u},
+			{0x61u, 0x02u},
+			{0xD4u, 0x04u},
+			{0xD8u, 0x02u},
 			{0x61u, 0x02u},
 			{0xA1u, 0x02u},
+			{0xB4u, 0x40u},
 			{0xB5u, 0x02u},
 			{0xD8u, 0x02u},
 			{0xECu, 0x08u},
@@ -620,10 +627,11 @@ void cyfitter_cfg(void)
 
 		/* UDB_PA_1 Starting address: CYDEV_UDB_PA1_BASE */
 		CY_SET_REG32((void *)(CYDEV_UDB_PA1_BASE), 0x00990000u);
-		CY_SET_REG32((void *)(CYREG_UDB_PA1_CFG8), 0xAAAA0000u);
+		CY_SET_REG32((void *)(CYREG_UDB_PA1_CFG8), 0x8AA80000u);
 
 		/* UDB_PA_2 Starting address: CYDEV_UDB_PA2_BASE */
 		CY_SET_REG32((void *)(CYDEV_UDB_PA2_BASE), 0x00990000u);
+		CY_SET_REG32((void *)(CYREG_UDB_PA2_CFG8), 0xAA000000u);
 
 		/* UDB_PA_3 Starting address: CYDEV_UDB_PA3_BASE */
 		CY_SET_REG32((void *)(CYDEV_UDB_PA3_BASE), 0x00990000u);
