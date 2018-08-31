@@ -4,9 +4,7 @@ import sys
 import platform
 import time
 
-from utilities import DataLoggerUtility as dlu
 import launcher
-import defaults
 
 if __name__ == '__main__':
 	os.chdir(sys.path[0])
@@ -88,12 +86,11 @@ def main():
 
 	if(choice.isdigit()):
 		choice = int(choice)
-
-		additional_parameters = default_additional_parameters.copy()
 		if(choice == 0):
 			return
-		else:
-			additional_parameters['runType'] = runTypes[choice]
+
+		additional_parameters = default_additional_parameters.copy()
+		additional_parameters['runType'] = runTypes[choice]
 
 		# Allow user to confirm the parameters before continuing
 		confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults, plus these additional parameters? (y/n): '))
@@ -105,20 +102,8 @@ def main():
 	else:
 		# File must end in '.json'
 		file = choice if(choice[-5:] == '.json') else (choice + '.json')
-		schedule_index = 0
-
-		print('Opening schedule file: ' + file)
-
-		while( schedule_index < len(dlu.loadJSON(directory='', loadFileName=file)) ):
-			print('Loading line #' + str(schedule_index+1) + ' in schedule file ' + file)
-			parameter_list = dlu.loadJSON(directory='', loadFileName=file)
-
-			print('Launching job #' + str(schedule_index+1) + ' of ' + str(len(parameter_list)) + ' in schedule file ' + file)
-			print('Schedule contains ' + str(len(parameter_list) - schedule_index - 1) + ' other incomplete jobs.')
-			additional_parameters = parameter_list[schedule_index].copy()
-			launcher.run(additional_parameters)
-
-			schedule_index += 1
+		
+		launcher.run_file(file)
 		
 
 
