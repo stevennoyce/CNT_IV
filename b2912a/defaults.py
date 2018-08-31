@@ -85,20 +85,20 @@ default_parameters = {
 			'gateVoltageSetPoint': 0,
 			'complianceCurrent': 1e-6,
 			'complianceVoltage': 10,
-			'deviceMeasurementSpeed': 600
+			'deviceMeasurementSpeed': 60
 		}
 	},
 	'Results':{
-
+		
 	},
 	'Computed':{
-	
+		
 	},
 	'SensorData':{
-
+		
 	},
 	'Identifiers':{
-
+		
 	},
 	'MeasurementSystem':{
 		'systemType': ['single', 'standalone', 'double'][0],

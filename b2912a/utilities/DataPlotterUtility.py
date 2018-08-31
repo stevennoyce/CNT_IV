@@ -235,6 +235,14 @@ plot_parameters = {
 		'figsize':(5,4),
 		'xlabel':'Time',
 		'ylabel':'Current'
+	},
+	'AFMdeviationsVsX':{
+		'figsize':(5,4),
+		'colorMap':'plasma'
+	},
+	'AFMdeviationsVsXY':{
+		'figsize':(5,4),
+		'colorMap':'plasma'
 	}
 }
 
@@ -266,9 +274,13 @@ def makeDevicePlot(plotType, deviceHistory, identifiers, mode_parameters=None):
 		fig, axes = plotOnAndOffCurrentHistory(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
 	elif(plotType == 'AFMSignalsOverTime'):
 		fig, axes = plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'AFMdeviationsVsX'):
+		fig, axes = plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
+	elif(plotType == 'AFMdeviationsVsXY'):
+		fig, axes = plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=updated_mode_parameters)
 	else:
 		raise NotImplementedError('Unrecognized "plotType": ' + str(plotType))
-			
+	
 	return fig, axes
 
 def makeChipPlot(plotType, identifiers=None, chipIndexes=None, firstRunChipHistory=None, recentRunChipHistory=None, mode_parameters=None):	
@@ -736,7 +748,78 @@ def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
 	# Add Legend and save figure
 	# addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))
 	adjustAndSaveFigure(fig, 'FullSubthresholdCurves', mode_parameters)
+	
+	return (fig, ax)
 
+def plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=None):
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'AFMdeviationsVsX', figsizeOverride=mode_parameters['figureSizeOverride'])
+	if(not mode_parameters['publication_mode']):
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
+	
+	# Build Color Map and Color Bar
+	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
+	
+	colorMap = colorsFromMap(plot_parameters['AFMdeviationsVsX']['colorMap'], 0, 0.87, len(deviceHistory))
+	colors = colorMap['colors']
+	
+	# Plot
+	for i in range(len(deviceHistory)):
+		current = np.array(deviceHistory[i]['Results']['id_data'])
+		currentLinearFit = np.polyval(np.polyfit(range(len(current)), current, 1), range(len(current)))
+		currentLinearized = current - currentLinearFit
+		currentLinearized = currentLinearized - min(currentLinearized)
+		
+		line = ax.plot(deviceHistory[i]['Results']['smu2_v2_data'], current, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.5)
+		
+		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			# setLabel(line, mode_parameters['legendLabels'][i])
+	
+	ax.set_ylabel('$I_D$ [A]')
+	ax.set_xlabel('X Voltage [V]')
+	
+	# Add Legend and save figure
+	# addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))
+	adjustAndSaveFigure(fig, 'AFMdeviationsVsX', mode_parameters)
+	
+	return (fig, ax)
+
+def plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=None):
+	# Init Figure
+	fig, ax = initFigure(1, 1, 'AFMdeviationsVsXY', figsizeOverride=mode_parameters['figureSizeOverride'])
+	if(not mode_parameters['publication_mode']):
+		ax.set_title(getTestLabel(deviceHistory, identifiers))
+	
+	# Build Color Map and Color Bar
+	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
+	
+	colorMap = colorsFromMap(plot_parameters['AFMdeviationsVsXY']['colorMap'], 0, 0.87, len(deviceHistory))
+	colors = colorMap['colors']
+	
+	# Plot
+	for i in range(len(deviceHistory)):
+		current = np.array(deviceHistory[i]['Results']['id_data'])
+		currentLinearFit = np.polyval(np.polyfit(range(len(current)), current, 1), range(len(current)))
+		currentLinearized = current - currentLinearFit
+		currentLinearized = currentLinearized - min(currentLinearized)
+		
+		Vxs = deviceHistory[i]['Results']['smu2_v2_data']
+		Vys = deviceHistory[i]['Results']['smu2_v1_data']
+		
+		c, a, b = zip(*sorted(zip(current, Vxs, Vys), reverse=True))
+		line = ax.scatter(a, b, c=c, cmap='viridis')
+		# fig.colorbar()
+		
+		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+			# setLabel(line, mode_parameters['legendLabels'][i])
+	
+	ax.set_ylabel('Y Voltage [V]')
+	ax.set_xlabel('X Voltage [V]')
+	
+	# Add Legend and save figure
+	# addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))
+	adjustAndSaveFigure(fig, 'AFMdeviationsVsXY', mode_parameters)
+	
 	return (fig, ax)
 
 def plotChipHistogram(chipIndexes, mode_parameters=None):

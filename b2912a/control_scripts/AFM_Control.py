@@ -44,11 +44,11 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	smu_secondary = smu_systems['secondarySMU']
 	
 	# Set SMU source modes
-	smu_device.setChannel1SourceMode("voltage")
-	smu_device.setChannel2SourceMode("voltage")
+	# smu_device.setChannel1SourceMode("voltage")
+	# smu_device.setChannel2SourceMode("voltage")
 	
-	smu_secondary.setChannel1SourceMode("current")
-	smu_secondary.setChannel2SourceMode("current")
+	# smu_secondary.setChannel1SourceMode("current")
+	# smu_secondary.setChannel2SourceMode("current")
 	
 	# Set SMU NPLC
 	smu_device.setNPLC(1)
@@ -56,10 +56,10 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	
 	# Set SMU compliance
 	smu_device.setComplianceCurrent(afm_parameters['complianceCurrent'])
-	smu_device.setComplianceVoltage(afm_parameters['complianceVoltage'])
+	# smu_device.setComplianceVoltage(afm_parameters['complianceVoltage'])
 	
-	smu_device.setComplianceCurrent(afm_parameters['complianceCurrent'])	
-	smu_device.setComplianceVoltage(afm_parameters['complianceVoltage'])
+	# smu_secondary.setComplianceCurrent(afm_parameters['complianceCurrent'])	
+	smu_secondary.setComplianceVoltage(afm_parameters['complianceVoltage'])
 	
 	# Apply Vgs and Vds to the device
 	smu_device.rampDrainVoltageTo(afm_parameters['drainVoltageSetPoint'])
@@ -71,6 +71,8 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	input('Press enter to begin the measurement...')
 	
 	for line in range(afm_parameters['lines']):
+		print('Line {} of {}'.format(line, afm_parameters['lines']))
+		
 		lineStartTime = time.time()
 		traceTime = (1/afm_parameters['scanRate'])/2
 		passTime = 2*traceTime
@@ -122,8 +124,8 @@ def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, poin
 	smu2_i2_data = []
 	smu2_timestamps = []
 	
-	vgs = afm_parameters['drainVoltageSetPoint']
-	vds = afm_parameters['gateVoltageSetPoint']
+	vds = afm_parameters['drainVoltageSetPoint']
+	vgs = afm_parameters['gateVoltageSetPoint']
 	interval = 1/afm_parameters['deviceMeasurementSpeed']
 	
 	# Take measurements

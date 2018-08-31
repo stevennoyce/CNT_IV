@@ -38,12 +38,20 @@ smu_system_configurations = {
 		'deviceSMU':{
 			'uniqueID': 'USB0::0x0957::0x8E18::MY51141244::INSTR',
 			'type': 'B2912A',
-			'settings': {}
+			'settings': {
+				'reset': False,
+				'channel1SourceMode': 'voltage',
+				'channel2SourceMode': 'voltage'
+			}
 		},
 		'secondarySMU':{
 			'uniqueID': 'USB0::0x0957::0x8E18::MY51141241::INSTR',
 			'type': 'B2912A',
-			'settings': {}
+			'settings': {
+				'reset': False,
+				'channel1SourceMode': 'current',
+				'channel2SourceMode': 'current'
+			}
 		}
 	}
 }
@@ -58,7 +66,7 @@ def getConnectionToVisaResource(uniqueIdentifier='', system_settings=None, defau
 	instance = rm.open_resource(uniqueIdentifier)
 	instance.timeout = smuTimeout
 	print(instance.query('*IDN?'))
-	return B2912A(instance, uniqueIdentifier, defaultComplianceCurrent)
+	return B2912A(instance, uniqueIdentifier, defaultComplianceCurrent, system_settings)
 
 def getConnectionToPCB(pcb_port='', system_settings=None):
 	if(pcb_port == ''):
@@ -192,15 +200,19 @@ class B2912A(SourceMeasureUnit):
 	nplc = 1
 	source1_mode = 'voltage'
 	source2_mode = 'voltage'
+	system_settings = {}
 	
-	def __init__(self, visa_instance, visa_id, defaultComplianceCurrent):
+	def __init__(self, visa_instance, visa_id, defaultComplianceCurrent, system_settings):
 		self.smu = visa_instance
 		self.system_id = visa_id
+		self.system_settings = system_settings
 		self.initialize()
 		self.setComplianceCurrent(defaultComplianceCurrent)
 	
 	def initialize(self):
-		self.smu.write("*RST") # Reset
+		if 'reset' in self.system_settings and self.system_settings['reset']:
+			self.smu.write("*RST") # Reset
+		
 		self.smu.write(':system:lfrequency 60')
 		
 		self.smu.write(':sense1:curr:range:auto ON')
@@ -209,11 +221,15 @@ class B2912A(SourceMeasureUnit):
 		self.smu.write(':sense2:curr:range:auto ON')
 		self.smu.write(':sense2:curr:range:auto:llim 1e-8')
 		
-		self.smu.write(":source1:function:mode voltage")
-		self.smu.write(":source2:function:mode voltage")
-		
-		self.smu.write(":source1:voltage 0.0")
-		self.smu.write(":source2:voltage 0.0")
+		if 'channel1SourceMode' not in self.system_settings:
+			self.smu.write(":source1:function:mode voltage")
+			self.smu.write(":source2:function:mode voltage")
+			
+			self.smu.write(":source1:voltage 0.0")
+			self.smu.write(":source2:voltage 0.0")
+		else:
+			self.setChannel1SourceMode(self.system_settings['channel1SourceMode'])
+			self.setChannel2SourceMode(self.system_settings['channel2SourceMode'])
 		
 		self.smu.write(":sense1:curr:nplc 1")
 		self.smu.write(":sense2:curr:nplc 1")
@@ -314,6 +330,7 @@ class B2912A(SourceMeasureUnit):
 			self.smu.write(":trig2:count {}".format(points))
 			timeToTakeMeasurements = (triggerInterval*points)
 		
+		self.smu.write("*WAI")
 		self.smu.write(":init (@1:2)")
 		self.smu.write("*WAI")
 		
