@@ -735,8 +735,8 @@ def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
 		ax2.set_prop_cycle(None)
 		line = ax.plot(np.array(deviceHistory[i]['Results']['timestamps_device']) - startTime, deviceHistory[i]['Results']['id_data'])
 		ax2.plot([])
-		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v1_data'])
-		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v2_data'])
+		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v1_data'], alpha=0.8)
+		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v2_data'], alpha=0.8)
 		
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			# setLabel(line, mode_parameters['legendLabels'][i])
@@ -768,9 +768,9 @@ def plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=None):
 		current = np.array(deviceHistory[i]['Results']['id_data'])
 		currentLinearFit = np.polyval(np.polyfit(range(len(current)), current, 1), range(len(current)))
 		currentLinearized = current - currentLinearFit
-		currentLinearized = currentLinearized - min(currentLinearized)
+		currentLinearized = currentLinearized - max(currentLinearized)
 		
-		line = ax.plot(deviceHistory[i]['Results']['smu2_v2_data'], current, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.5)
+		line = ax.plot(deviceHistory[i]['Results']['smu2_v2_data'], currentLinearized, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.4)
 		
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			# setLabel(line, mode_parameters['legendLabels'][i])
@@ -801,13 +801,13 @@ def plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=None):
 		current = np.array(deviceHistory[i]['Results']['id_data'])
 		currentLinearFit = np.polyval(np.polyfit(range(len(current)), current, 1), range(len(current)))
 		currentLinearized = current - currentLinearFit
-		currentLinearized = currentLinearized - min(currentLinearized)
+		currentLinearized = currentLinearized - max(currentLinearized)
 		
 		Vxs = deviceHistory[i]['Results']['smu2_v2_data']
 		Vys = deviceHistory[i]['Results']['smu2_v1_data']
 		
-		c, a, b = zip(*sorted(zip(current, Vxs, Vys), reverse=True))
-		line = ax.scatter(a, b, c=c, cmap='viridis')
+		c, a, b = zip(*sorted(zip(currentLinearized, Vxs, Vys), reverse=True))
+		line = ax.scatter(a, b, c=c, cmap='viridis', alpha=0.4)
 		# fig.colorbar()
 		
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):

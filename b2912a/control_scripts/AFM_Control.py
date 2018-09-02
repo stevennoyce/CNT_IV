@@ -1,6 +1,7 @@
 # === Imports ===
 import time
 import numpy as np
+import threading
 
 from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
@@ -68,10 +69,40 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	smu_device.takeMeasurement()
 	smu_secondary.takeMeasurement()
 	
-	input('Press enter to begin the measurement...')
+	# input('Press enter to begin the measurement...')
+	
+	# for line in range(afm_parameters['lines']):
+	# 	print('Line {} of {}'.format(line, afm_parameters['lines']))
+		
+	# 	lineStartTime = time.time()
+	# 	traceTime = (1/afm_parameters['scanRate'])/2
+	# 	passTime = 2*traceTime
+	# 	lineTime = 2*traceTime
+	# 	if afm_parameters['napOn']:
+	# 		lineTime = lineTime*2
+		
+	# 	passPoints = afm_parameters['deviceMeasurementSpeed']*passTime
+		
+	# 	results = runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, passPoints)
+		
+	# 	# Add important metrics from the run to the parameters for easy access later in ParametersHistory
+	# 	parameters['Computed'] = results['Computed']
+		
+	# 	# Copy parameters and add in the test results
+	# 	jsonData = dict(parameters)
+	# 	jsonData['Results'] = results['Raw']
+		
+	# 	# Save results as a JSON object
+	# 	if(isSavingResults):
+	# 		print('Saving JSON: ' + str(dlu.getDeviceDirectory(parameters)))
+	# 		dlu.saveJSON(dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData)
+		
+	# 	elapsedTime = time.time() - lineStartTime
+	# 	print('Time elapsed is {}, lineTime is {}'.format(elapsedTime, lineTime))
+	# 	time.sleep(max(lineTime - elapsedTime, 0))
 	
 	for line in range(afm_parameters['lines']):
-		print('Line {} of {}'.format(line, afm_parameters['lines']))
+		print('Starting line {} of {}'.format(line+1, afm_parameters['lines']))
 		
 		lineStartTime = time.time()
 		traceTime = (1/afm_parameters['scanRate'])/2
@@ -94,12 +125,16 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 		# Save results as a JSON object
 		if(isSavingResults):
 			print('Saving JSON: ' + str(dlu.getDeviceDirectory(parameters)))
-			dlu.saveJSON(dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData)
+			# _thread.start_new_thread(dlu.saveJSON, (dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData))
+			threading.Thread(target=dlu.saveJSON,
+				args=(dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData)
+			).start()
+			# dlu.saveJSON(dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData)
 		
 		elapsedTime = time.time() - lineStartTime
 		print('Time elapsed is {}, lineTime is {}'.format(elapsedTime, lineTime))
-		time.sleep(max(lineTime - elapsedTime, 0))
-	
+		# time.sleep(max(lineTime - elapsedTime, 0))
+
 
 def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, points):
 	# Get shorthand name to easily refer to configuration parameters
