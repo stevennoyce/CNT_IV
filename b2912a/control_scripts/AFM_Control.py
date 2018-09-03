@@ -101,10 +101,11 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	# 	print('Time elapsed is {}, lineTime is {}'.format(elapsedTime, lineTime))
 	# 	time.sleep(max(lineTime - elapsedTime, 0))
 	
+	runStartTime = time.time()
+	
 	for line in range(afm_parameters['lines']):
 		print('Starting line {} of {}'.format(line+1, afm_parameters['lines']))
 		
-		lineStartTime = time.time()
 		traceTime = (1/afm_parameters['scanRate'])/2
 		passTime = 2*traceTime
 		lineTime = 2*traceTime
@@ -113,6 +114,7 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 		
 		passPoints = afm_parameters['deviceMeasurementSpeed']*passTime
 		
+		lineStartTime = time.time()
 		results = runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, passPoints)
 		
 		# Add important metrics from the run to the parameters for easy access later in ParametersHistory
@@ -131,9 +133,10 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 			).start()
 			# dlu.saveJSON(dlu.getDeviceDirectory(parameters), afm_parameters['saveFileName'], jsonData)
 		
-		elapsedTime = time.time() - lineStartTime
-		print('Time elapsed is {}, lineTime is {}'.format(elapsedTime, lineTime))
-		# time.sleep(max(lineTime - elapsedTime, 0))
+		elapsedRunTime = time.time() - runStartTime
+		elapsedLineTime = elapsedRunTime - line*lineTime
+		print('Time elapsed is {}, lineTime is {}'.format(elapsedLineTime, lineTime))
+		time.sleep(max(lineTime - elapsedLineTime, 0))
 
 
 def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, points):
@@ -165,26 +168,30 @@ def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, poin
 	
 	# Take measurements
 	sleep_time1 = smu_device.startSweep(vds, vds, vgs, vgs, points, triggerInterval=interval)
+	startTime1 = time.time()
 	sleep_time2 = smu_secondary.startSweep(0, 0, 0, 0, points, triggerInterval=interval)
+	startTime2 = time.time()
 	
-	#time.sleep(0)
+	time.sleep(0.5*min(sleep_time1 - (startTime2 - startTime1), sleep_time2))
 	
 	results_device = smu_device.endSweep()
 	results_secondary = smu_secondary.endSweep()
+	
+	print('Difference in start times is {} s'.format(startTime2 - startTime1))
 	
 	# Pick the data to save
 	vds_data = results_device['Vds_data']
 	id_data = results_device['Id_data']
 	vgs_data = results_device['Vgs_data']
 	ig_data = results_device['Ig_data']
-	timestamps_device = [lineStartTime + t for t in results_device['timestamps']]
+	timestamps_device = [startTime1 + t for t in results_device['timestamps']]
 	
 	smu2_v1_data = results_secondary['Vds_data']
 	smu2_i1_data = results_secondary['Id_data']
 	smu2_v2_data = results_secondary['Vgs_data']
 	smu2_i2_data = results_secondary['Ig_data']
-	timestamps_smu2 = [lineStartTime + t for t in results_secondary['timestamps']]
-
+	timestamps_smu2 = [startTime2 + t for t in results_secondary['timestamps']]
+	
 	return {
 		'Raw':{
 			'vds_data':vds_data,
