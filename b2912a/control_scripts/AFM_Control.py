@@ -101,21 +101,28 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	# 	print('Time elapsed is {}, lineTime is {}'.format(elapsedTime, lineTime))
 	# 	time.sleep(max(lineTime - elapsedTime, 0))
 	
+	passTime = 1/afm_parameters['scanRate']
+	traceTime = passTime/2
+	lineTime = 2*traceTime
+	if afm_parameters['napOn']:
+		lineTime = lineTime*2
+	
+	passPoints = afm_parameters['deviceMeasurementSpeed']*passTime
+	
+	vds = afm_parameters['drainVoltageSetPoint']
+	vgs = afm_parameters['gateVoltageSetPoint']
+	interval = 1/afm_parameters['deviceMeasurementSpeed']
+	
+	sleep_time1 = smu_device.setupSweep(vds, vds, vgs, vgs, passPoints, triggerInterval=interval)
+	sleep_time2 = smu_secondary.setupSweep(0, 0, 0, 0, passPoints, triggerInterval=interval)
+	
 	runStartTime = time.time()
 	
 	for line in range(afm_parameters['lines']):
 		print('Starting line {} of {}'.format(line+1, afm_parameters['lines']))
 		
-		traceTime = (1/afm_parameters['scanRate'])/2
-		passTime = 2*traceTime
-		lineTime = 2*traceTime
-		if afm_parameters['napOn']:
-			lineTime = lineTime*2
-		
-		passPoints = afm_parameters['deviceMeasurementSpeed']*passTime
-		
 		lineStartTime = time.time()
-		results = runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, passPoints)
+		results = runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, sleep_time1, sleep_time2)
 		
 		# Add important metrics from the run to the parameters for easy access later in ParametersHistory
 		parameters['Computed'] = results['Computed']
@@ -137,9 +144,11 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 		elapsedLineTime = elapsedRunTime - line*lineTime
 		print('Time elapsed is {}, lineTime is {}'.format(elapsedLineTime, lineTime))
 		time.sleep(max(lineTime - elapsedLineTime, 0))
+	
+	smu_device.turnChannelsOff()
 
 
-def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, points):
+def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, sleep_time1, sleep_time2):
 	# Get shorthand name to easily refer to configuration parameters
 	afm_parameters = parameters['runConfigs']['AFMControl']
 	
@@ -162,14 +171,10 @@ def runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, poin
 	smu2_i2_data = []
 	smu2_timestamps = []
 	
-	vds = afm_parameters['drainVoltageSetPoint']
-	vgs = afm_parameters['gateVoltageSetPoint']
-	interval = 1/afm_parameters['deviceMeasurementSpeed']
-	
 	# Take measurements
-	sleep_time1 = smu_device.startSweep(vds, vds, vgs, vgs, points, triggerInterval=interval)
+	smu_device.initSweep()
 	startTime1 = time.time()
-	sleep_time2 = smu_secondary.startSweep(0, 0, 0, 0, points, triggerInterval=interval)
+	smu_secondary.initSweep()
 	startTime2 = time.time()
 	
 	time.sleep(0.5*min(sleep_time1 - (startTime2 - startTime1), sleep_time2))

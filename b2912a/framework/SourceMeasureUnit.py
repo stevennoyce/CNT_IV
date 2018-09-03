@@ -302,7 +302,7 @@ class B2912A(SourceMeasureUnit):
 			'I_g':  data[7]
 		}
 	
-	def startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
+	def setupSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
 		points = int(points)
 		
 		self.smu.write(":source1:{}:mode sweep".format(self.source1_mode))
@@ -331,8 +331,18 @@ class B2912A(SourceMeasureUnit):
 			timeToTakeMeasurements = (triggerInterval*points)
 		
 		self.smu.write("*WAI")
+		
+		return timeToTakeMeasurements
+	
+	def initSweep(self):
 		self.smu.write(":init (@1:2)")
 		self.smu.write("*WAI")
+	
+	def startSweep(self, src1start, src1stop, src2start, src2stop, points, triggerInterval=None):
+		timeToTakeMeasurements = self.setupSweep(src1start, src1stop, src2start, src2stop, points, triggerInterval=triggerInterval)
+		
+		self.smu.write("*WAI")
+		self.initSweep()
 		
 		return timeToTakeMeasurements
 	
