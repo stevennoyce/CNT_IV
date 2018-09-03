@@ -770,7 +770,7 @@ def plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=None):
 		currentLinearized = current - currentLinearFit
 		currentLinearized = currentLinearized - max(currentLinearized)
 		
-		line = ax.plot(deviceHistory[i]['Results']['smu2_v2_data'], currentLinearized, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.4)
+		line = ax.plot(deviceHistory[i]['Results']['smu2_v2_data'], currentLinearized, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.2)
 		
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			# setLabel(line, mode_parameters['legendLabels'][i])
@@ -796,6 +796,10 @@ def plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=None):
 	colorMap = colorsFromMap(plot_parameters['AFMdeviationsVsXY']['colorMap'], 0, 0.87, len(deviceHistory))
 	colors = colorMap['colors']
 	
+	Vxs = []
+	Vys = []
+	currents = []
+	
 	# Plot
 	for i in range(len(deviceHistory)):
 		current = np.array(deviceHistory[i]['Results']['id_data'])
@@ -803,15 +807,16 @@ def plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=None):
 		currentLinearized = current - currentLinearFit
 		currentLinearized = currentLinearized - max(currentLinearized)
 		
-		Vxs = deviceHistory[i]['Results']['smu2_v2_data']
-		Vys = deviceHistory[i]['Results']['smu2_v1_data']
-		
-		c, a, b = zip(*sorted(zip(currentLinearized, Vxs, Vys), reverse=True))
-		line = ax.scatter(a, b, c=c, cmap='viridis', alpha=0.4)
-		# fig.colorbar()
-		
-		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
-			# setLabel(line, mode_parameters['legendLabels'][i])
+		Vxs.extend(deviceHistory[i]['Results']['smu2_v2_data'])
+		Vys.extend(deviceHistory[i]['Results']['smu2_v1_data'])
+		currents.extend(currentLinearized)
+	
+	c, a, b = zip(*sorted(zip(currents, Vxs, Vys), reverse=True))
+	line = ax.scatter(a, b, c=c, cmap=plot_parameters['AFMdeviationsVsXY']['colorMap'], alpha=0.4)
+	# fig.colorbar()
+	
+	# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
+		# setLabel(line, mode_parameters['legendLabels'][i])
 	
 	ax.set_ylabel('Y Voltage [V]')
 	ax.set_xlabel('X Voltage [V]')
