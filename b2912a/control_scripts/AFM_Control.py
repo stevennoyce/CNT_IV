@@ -6,7 +6,67 @@ import threading
 from control_scripts import Device_History as deviceHistoryScript
 from utilities import DataLoggerUtility as dlu
 
+import scipy.optimize
+import math
 
+def triangleSine(x):
+	coefficients = [(-1)**i*(2*i+1)**(-2)*np.sin((2*i+1)*x) for i in range(15)]
+	wave = np.sum(coefficients, axis=0)
+	return wave/np.max(wave)
+
+def triangleSinWave(times, amplitude, period, phase, offset):
+	return offset + amplitude*triangleSine(2*np.pi*(times - phase)/period)
+
+def triangleCosWave(times, amplitude, period, phase, offset):
+	return triangleSinWave(times, amplitude, period, phase - period/4, offset)
+
+def fitTriangleWave(times, values):
+	parameterNames = ['amplitude', 'period', 'phase', 'offset']
+	
+	values = np.array(values)
+	minTime = np.min(times)
+	times = np.array(times) - minTime
+	
+	slopes = np.abs(values[1:]-values[0:-1])/((max(times)-min(times))/len(times))
+	slope = np.median(slopes)
+	
+	guesses = {}
+	optParams = {}
+	
+	guesses['amplitude'] = (np.max(values) - np.min(values))/2
+	guesses['period'] = np.max(times)/2
+	guesses['period'] = 4*guesses['amplitude']/slope
+	guesses['offset'] = np.mean(values)
+	guesses['phase'] = (1-(values[0] - np.min(values))/(guesses['amplitude']*2))/(guesses['period']/2)
+	
+	if values[1] < values[0]:
+		# guesses['phase'] = guesses['period'] - guesses['phase'] # Use this for always positive phase
+		guesses['phase'] *= -1 # Use this for smallest phase, positive or negative
+	
+	optParamVals, optParamCov = scipy.optimize.curve_fit(triangleCosWave, times, values,
+		p0 = [guesses[parameterName] for parameterName in parameterNames])
+	
+	for parameterName, value in zip(parameterNames, optParamVals):
+		optParams[parameterName] = value
+	
+	return optParams
+
+def getStartTime(timestamps, Vxs):
+	fitParams = fitTriangleWave(timestamps, values)
+	
+	periodsMeasured = (max(timestamps) - min(timestamps))/fitParams['period']
+	passesMeasured = periodsMeasured
+	passTime = fitParams['period']
+	linesMeasured = passesMeasured/2 # Divide by 2 if nap enabled
+	lineTime = 2*passTime # Multiply by 2 if nap enabled
+	
+	startTime = min(timestamps) + fitParams['phase']
+	startTime += lineTime*2*math.ceil(linesMeasured)
+	
+	return startTime
+
+def sleepUntil(startTime):
+	time.sleep(startTime - time.time())
 
 # === Main ===
 def run(parameters, smu_systems, isSavingResults=True, isPlottingResults=False):
@@ -116,7 +176,11 @@ def runAFM(parameters, smu_systems, isSavingResults, isPlottingResults):
 	sleep_time1 = smu_device.setupSweep(vds, vds, vgs, vgs, passPoints, triggerInterval=interval)
 	sleep_time2 = smu_secondary.setupSweep(0, 0, 0, 0, passPoints, triggerInterval=interval)
 	
-	runStartTime = time.time()
+	
+	results = runAFMline(parameters, smu_systems, isSavingResults, isPlottingResults, sleep_time1, sleep_time2)
+	
+	runStartTime = getStartTime(results['timestamps_smu2'], results['smu2_v2_data'])
+	sleepUntil(runStartTime)
 	
 	for line in range(afm_parameters['lines']):
 		print('Starting line {} of {}'.format(line+1, afm_parameters['lines']))

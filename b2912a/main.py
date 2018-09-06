@@ -78,6 +78,22 @@ default_additional_parameters = {
 }
 
 
+import requests
+import json
+ 
+def send_notification_via_pushbullet(title, body):
+	url = 'https://api.pushbullet.com/v2/pushes'
+	access_token = 'o.jc84248QDFZCW8QJWu9DXpzaLbdwhoD7'
+	data_send = {"type": "note", "title": title, "body": body}
+	headers = {'Authorization': 'Bearer ' + access_token, 'Content-Type': 'application/json'}
+ 	
+	resp = requests.post(url, data=json.dumps(data_send), headers=headers)
+	
+	if resp.status_code != 200:
+		print('Pushbullet Notification Failed')
+	else:
+		print('Pushbullet Notification Succeeded')
+
 
 # === Main ===
 def main():
@@ -88,7 +104,7 @@ def main():
 		choice = int(choice)
 		if(choice == 0):
 			return
-
+		
 		additional_parameters = default_additional_parameters.copy()
 		additional_parameters['runType'] = runTypes[choice]
 
@@ -104,6 +120,8 @@ def main():
 		file = choice if(choice[-5:] == '.json') else (choice + '.json')
 		
 		launcher.run_file(file)
+	
+	send_notification_via_pushbullet('Completed Main', 'Script has finished')
 		
 
 
@@ -149,4 +167,4 @@ def devicesInRange(startContact, endContact, skip=True):
 
 
 if(__name__ == '__main__'):
-    main()
+	main()

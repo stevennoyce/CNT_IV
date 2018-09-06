@@ -115,7 +115,7 @@ def runAction(parameters, schedule_parameters, smu_systems, arduino_instance):
 
 		print('ERROR: Exception raised during the experiment.')
 		raise
-
+	
 	for smu_name, smu_instance in smu_systems.items():
 		smu_instance.rampDownVoltages()
 	parameters['endIndexes'] = dlu.loadJSONIndex(dlu.getDeviceDirectory(parameters))

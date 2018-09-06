@@ -733,7 +733,7 @@ def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
 	for i in range(len(deviceHistory)):
 		ax.set_prop_cycle(None)
 		ax2.set_prop_cycle(None)
-		line = ax.plot(np.array(deviceHistory[i]['Results']['timestamps_device']) - startTime, deviceHistory[i]['Results']['id_data'])
+		line = ax.plot(np.array(deviceHistory[i]['Results']['timestamps_device']) - startTime, np.array(deviceHistory[i]['Results']['id_data'])*1e9)
 		ax2.plot([])
 		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v1_data'], alpha=0.8)
 		line = ax2.plot(np.array(deviceHistory[i]['Results']['timestamps_smu2']) - startTime, deviceHistory[i]['Results']['smu2_v2_data'], alpha=0.8)
@@ -741,7 +741,7 @@ def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			# setLabel(line, mode_parameters['legendLabels'][i])
 	
-	ax.set_ylabel('$I_D$ [A]')
+	ax.set_ylabel('$I_D$ [nA]')
 	ax.set_xlabel('Time [s]')
 	ax2.set_ylabel('AFM Voltages [V]', rotation=-90, va='bottom', labelpad=5)
 	
@@ -770,13 +770,17 @@ def plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=None):
 		currentLinearized = current - currentLinearFit
 		currentLinearized = currentLinearized - max(currentLinearized)
 		
-		line = ax.plot(deviceHistory[i]['Results']['smu2_v2_data'], currentLinearized, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.2)
+		Vxs = np.array(deviceHistory[i]['Results']['smu2_v2_data'])
+		Xs = -Vxs/0.157
+		Xs = Xs - np.min(Xs)
+		
+		line = ax.plot(Xs, currentLinearized*1e9, color=colors[i], alpha=0.01+(1.0/(len(deviceHistory)+1))**0.2)
 		
 		# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 			# setLabel(line, mode_parameters['legendLabels'][i])
 	
-	ax.set_ylabel('$I_D$ [A]')
-	ax.set_xlabel('X Voltage [V]')
+	ax.set_ylabel('$I_D$ [nA]')
+	ax.set_xlabel('X Position [$\mu$m]')
 	
 	# Add Legend and save figure
 	# addLegend(ax, loc=mode_parameters['legendLoc'], title=getLegendTitle(deviceHistory, identifiers, 'SubthresholdCurve', 'runConfigs', 'GateSweep', mode_parameters, includeVdsSweep=True, includeSubthresholdSwing=False))
@@ -811,9 +815,18 @@ def plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=None):
 		Vys.extend(deviceHistory[i]['Results']['smu2_v1_data'])
 		currents.extend(currentLinearized)
 	
-	c, a, b = zip(*sorted(zip(currents, Vxs, Vys), reverse=True))
-	line = ax.scatter(a, b, c=c, cmap=plot_parameters['AFMdeviationsVsXY']['colorMap'], alpha=0.4)
-	# fig.colorbar()
+	Xs = -np.array(Vxs)/0.157
+	Ys = np.array(Vys)/0.138
+	
+	Xs = Xs - np.min(Xs)
+	Ys = Ys - np.min(Ys)
+	
+	c, a, b = zip(*sorted(zip(np.array(currents)*1e9, Xs, Ys), reverse=True))
+	line = ax.scatter(a, b, c=c, cmap=plot_parameters['AFMdeviationsVsXY']['colorMap'], alpha=0.6)
+	# line = ax.scatter(Xs, Ys, c=np.array(currents)*1e9, cmap=plot_parameters['AFMdeviationsVsXY']['colorMap'], alpha=0.6)
+	cbar = fig.colorbar(line, pad=0.015, aspect=50)
+	cbar.set_label('Drain Current [nA]', rotation=270, labelpad=11)
+	cbar.solids.set(alpha=1)
 	
 	# if(len(deviceHistory) == len(mode_parameters['legendLabels'])):
 		# setLabel(line, mode_parameters['legendLabels'][i])
