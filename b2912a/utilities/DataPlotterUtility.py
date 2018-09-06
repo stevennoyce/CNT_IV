@@ -723,10 +723,7 @@ def plotAFMSignalsOverTime(deviceHistory, identifiers, mode_parameters=None):
 	if(not mode_parameters['publication_mode']):
 		ax.set_title(getTestLabel(deviceHistory, identifiers))
 	
-	# Build Color Map and Color Bar
-	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
-	
-	ax2 = plt.twinx()
+	ax2 = ax.twinx()
 	startTime = min(deviceHistory[0]['Results']['timestamps_device'])
 	
 	# Plot
@@ -757,11 +754,8 @@ def plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=None):
 	if(not mode_parameters['publication_mode']):
 		ax.set_title(getTestLabel(deviceHistory, identifiers))
 	
-	# Build Color Map and Color Bar
-	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
-	
-	colorMap = colorsFromMap(plot_parameters['AFMdeviationsVsX']['colorMap'], 0, 0.87, len(deviceHistory))
-	colors = colorMap['colors']
+	# Build Color Map
+	colors = colorsFromMap(plot_parameters['AFMdeviationsVsX']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
 	
 	# Plot
 	for i in range(len(deviceHistory)):
@@ -794,11 +788,8 @@ def plotAFMdeviationsVsXY(deviceHistory, identifiers, mode_parameters=None):
 	if(not mode_parameters['publication_mode']):
 		ax.set_title(getTestLabel(deviceHistory, identifiers))
 	
-	# Build Color Map and Color Bar
-	totalTime = timeWithUnits(deviceHistory[-1]['Results']['timestamps_device'][0] - deviceHistory[0]['Results']['timestamps_device'][-1])
-	
-	colorMap = colorsFromMap(plot_parameters['AFMdeviationsVsXY']['colorMap'], 0, 0.87, len(deviceHistory))
-	colors = colorMap['colors']
+	# Build Color Map and Color Bar	
+	colors = colorsFromMap(plot_parameters['AFMdeviationsVsXY']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
 	
 	Vxs = []
 	Vys = []
