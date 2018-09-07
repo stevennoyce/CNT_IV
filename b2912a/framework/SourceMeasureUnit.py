@@ -213,6 +213,8 @@ class B2912A(SourceMeasureUnit):
 		if 'reset' in self.system_settings and self.system_settings['reset']:
 			self.smu.write("*RST") # Reset
 		
+		self.smu.write(':form:data ASC')
+		
 		self.smu.write(':system:lfrequency 60')
 		
 		self.smu.write(':sense1:curr:range:auto ON')
