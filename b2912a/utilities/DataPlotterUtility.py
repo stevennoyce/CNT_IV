@@ -1096,7 +1096,7 @@ def adjustAndSaveFigure(figure, plotType, mode_parameters, subplotWidthPad=0, su
 	# figure.set_size_inches(2.2,1.6) # Static Bias
 	# figure.set_size_inches(1.4,1.6) # Subthreshold Curve
 	# figure.set_size_inches(2.2,1.7) # On/Off-Current	
-	figure.align_labels()
+	# figure.align_labels()
 	figure.tight_layout()
 	plt.subplots_adjust(wspace=subplotWidthPad, hspace=subplotHeightPad)
 	pngDPI = (300) if(mode_parameters['publication_mode']) else (mode_parameters['default_png_dpi'])
