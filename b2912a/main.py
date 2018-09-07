@@ -97,9 +97,12 @@ def send_notification_via_pushbullet(title, body):
 
 # === Main ===
 def main():
-	# Get user's action selection
-	choice = selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): ')
-
+	if len(sys.argv) > 1:
+		choice = sys.argv[1]
+	else:
+		# Get user's action selection
+		choice = selectFromDictionary('Actions: ', runTypes, 'Choose an action (0,1,2,...): ')
+	
 	if(choice.isdigit()):
 		choice = int(choice)
 		if(choice == 0):
@@ -112,9 +115,9 @@ def main():
 		confirmation = str(selectFromDictionary('Parameters: ', additional_parameters, 'Do you want to run with defaults, plus these additional parameters? (y/n): '))
 		if(confirmation != 'y'):
 			return
-
+		
 		launcher.run(additional_parameters)
-
+	
 	else:
 		# File must end in '.json'
 		file = choice if(choice[-5:] == '.json') else (choice + '.json')
@@ -122,7 +125,7 @@ def main():
 		launcher.run_file(file)
 	
 	send_notification_via_pushbullet('Completed Main', 'Script has finished')
-		
+
 
 
 # === User Interface ===
