@@ -1,5 +1,6 @@
 from utilities import DataLoggerUtility as dlu
 from utilities import DataPlotterUtility as dpu
+import defaults
 
 # Chip Specifier
 waferID = 'C139'
@@ -10,107 +11,6 @@ deviceID = '1'
 Transconductance_Lower_Bound = 0
 Transconductance_Upper_Bound = 18
 
-# Parameters matching main code
-default_parameters = {
-	'ParametersFormatVersion': 3,
-	'GateSweep':{
-		'saveFileName': 'GateSweep',
-		'isFastSweep': False,
-		'isAlternatingSweep': False,
-		'pulsedMeasurementOnTime': 0,
-		'pulsedMeasurementOffTime': 0,
-		'stepsInVGSPerDirection': 50,
-		'pointsPerVGS': 1,
-		'complianceCurrent':	100e-6,
-		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageMinimum':	-20,
-		'gateVoltageMaximum': 	20
-	},
-	'BurnOut':{
-		'saveFileName': 'BurnOut',
-		'pointsPerRamp': 50,
-		'pointsPerHold': 50,
-		'complianceCurrent':	2e-3,
-		'thresholdProportion':	0.8,
-		'minimumAppliedDrainVoltage': 1.2,
-		'gateVoltageSetPoint':	15.0,
-		'drainVoltageMaxPoint':	10,
-		'drainVoltagePlateaus': 10
-	},
-	'AutoBurnOut':{
-		'targetOnOffRatio': 300,
-		'limitBurnOutsAllowed': 8,
-		'limitOnOffRatioDegradation': 0.7
-	},
-	'StaticBias':{
-		'saveFileName': 'StaticBias',
-		'totalBiasTime': 6*60*60,
-		'measurementTime': 10,
-		'complianceCurrent': 100e-6,
-		'delayBeforeApplyingVoltage': 0,
-		'delayBeforeMeasurementsBegin': 0,
-		'gateVoltageSetPoint': 	15,
-		'drainVoltageSetPoint':	-0.5,
-		'gateVoltageWhenDone':  0,
-		'drainVoltageWhenDone': 0
-	},
-	'AutoGateSweep':{
-		'numberOfSweeps': 5,
-		'applyStaticBiasBetweenSweeps': False,
-		'usePreciseTimeBetweenSweepStarts': False,
-		'timeBetweenSweepStarts': 5*60
-	},
-	'AutoStaticBias':{
-		'numberOfStaticBiases': 31,
-		'applyGateSweepBetweenBiases': True,
-		'firstDelayBeforeMeasurementsBegin': 0,
-		'numberOfBiasesBetweenIncrements': 1,
-		'incrementStaticGateVoltage': -1,
-		'incrementStaticDrainVoltage': 0,
-		'incrementGateVoltageWhenDone': 0,
-		'incrementDrainVoltageWhenDone': 0,
-		'incrementDelayBeforeReapplyingVoltage': 0,
-		'shuffleDelaysBeforeReapplyingVoltage': False
-	},
-	'DeviceHistory':{
-		'showFiguresGenerated': True,
-		'saveFiguresGenerated': True,
-		'postFiguresGenerated': False,
-		'plotGateSweeps': True,
-		'plotBurnOuts':   False,
-		'plotStaticBias': True,
-		'specificPlotToCreate': '',
-		'figureSizeOverride': None,
-		'excludeDataBeforeJSONIndex': 0,
-		'excludeDataAfterJSONIndex':  float('inf'),
-		'excludeDataBeforeJSONExperimentNumber': 26,
-		'excludeDataAfterJSONExperimentNumber':  28,
-		'gateSweepDirection': ['both','forward','reverse'][0],
-		'showOnlySuccessfulBurns': False,
-		'timescale': ['','seconds','minutes','hours','days','weeks'][0],
-		'plotInRealTime': True,
-		'includeBiasVoltageSubplot': True
-	},
-	'ChipHistory':{
-		
-	},
-	'Results':{
-
-	},
-	'SensorData':{
-
-	},
-	'MeasurementSystem':['B2912A','PCB2v14'][0],
-	'waferID':waferID,
-	'chipID':chipID,
-	'deviceID':deviceID,
-	'deviceRange':[],#devicesInRange(2,32,skip=False),
-	'dataFolder':'data/',
-	'plotsFolder':'CurrentPlots/',
-	'postFigures':	True,
-	'NPLC':1
-}
-
 # Read data from file
 allData = dlu.loadJSON('data/' + waferID + '/' + chipID + '/' + deviceID + '/', 'GateSweep.json')
 
@@ -118,7 +18,7 @@ allData = dlu.loadJSON('data/' + waferID + '/' + chipID + '/' + deviceID + '/', 
 output = ['gm, VT\n']
 for run_num in range(0, len(allData)):
 	jsonData = allData[run_num]
-	parameters = dict(default_parameters)
+	parameters = dict(defaults.default_parameters)
 	id_data = jsonData['Results']['id_data'][0]
 	vgs_data = jsonData['Results']['vgs_data'][0]
 	fit = dpu.linearFit(vgs_data[Transconductance_Lower_Bound:Transconductance_Upper_Bound], id_data[Transconductance_Lower_Bound:Transconductance_Upper_Bound]);
