@@ -1,1 +1,0 @@
-{"wafer_description":"A wafer with printed CNT devices.", "gate_type":"substrate", "gate_oxide":"SiO2", "gate_oxide_thickness_nm":25, "channel_material":"printed CNT", "channel_width_nm":0, "contact_metal":"paladium", "contact_length":0, "channel_length_nm": {"1-2":0, "2-3": 0, "3-4":0}}

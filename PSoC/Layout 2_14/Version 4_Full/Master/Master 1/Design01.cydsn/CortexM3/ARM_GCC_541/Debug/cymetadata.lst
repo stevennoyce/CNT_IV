@@ -1,0 +1,2974 @@
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 2340
+  28              	cy_meta_configecc:
+  29 0000 01       		.byte	1
+  30 0001 45       		.byte	69
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 02       		.byte	2
+  34 0005 4F       		.byte	79
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 01       		.byte	1
+  38 0009 52       		.byte	82
+  39 000a 00       		.byte	0
+  40 000b 40       		.byte	64
+  41 000c 02       		.byte	2
+  42 000d 5B       		.byte	91
+  43 000e 00       		.byte	0
+  44 000f 40       		.byte	64
+  45 0010 04       		.byte	4
+  46 0011 64       		.byte	100
+  47 0012 00       		.byte	0
+  48 0013 40       		.byte	64
+  49 0014 02       		.byte	2
+  50 0015 65       		.byte	101
+  51 0016 00       		.byte	0
+  52 0017 40       		.byte	64
+  53 0018 04       		.byte	4
+  54 0019 00       		.byte	0
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 04       		.byte	4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 2
+
+
+  58 001d 01       		.byte	1
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 01       		.byte	1
+  62 0021 03       		.byte	3
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 01       		.byte	1
+  66 0025 05       		.byte	5
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 01       		.byte	1
+  70 0029 07       		.byte	7
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 4A       		.byte	74
+  74 002d 08       		.byte	8
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 47       		.byte	71
+  78 0031 09       		.byte	9
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 63       		.byte	99
+  82 0035 0A       		.byte	10
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 42       		.byte	66
+  86 0039 0B       		.byte	11
+  87 003a 01       		.byte	1
+  88 003b 40       		.byte	64
+  89 003c 20       		.byte	32
+  90 003d 0C       		.byte	12
+  91 003e 01       		.byte	1
+  92 003f 40       		.byte	64
+  93 0040 42       		.byte	66
+  94 0041 0D       		.byte	13
+  95 0042 01       		.byte	1
+  96 0043 40       		.byte	64
+  97 0044 53       		.byte	83
+  98 0045 0E       		.byte	14
+  99 0046 01       		.byte	1
+ 100 0047 40       		.byte	64
+ 101 0048 31       		.byte	49
+ 102 0049 0F       		.byte	15
+ 103 004a 01       		.byte	1
+ 104 004b 40       		.byte	64
+ 105 004c 02       		.byte	2
+ 106 004d 15       		.byte	21
+ 107 004e 01       		.byte	1
+ 108 004f 40       		.byte	64
+ 109 0050 01       		.byte	1
+ 110 0051 17       		.byte	23
+ 111 0052 01       		.byte	1
+ 112 0053 40       		.byte	64
+ 113 0054 4A       		.byte	74
+ 114 0055 18       		.byte	24
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 3
+
+
+ 115 0056 01       		.byte	1
+ 116 0057 40       		.byte	64
+ 117 0058 48       		.byte	72
+ 118 0059 19       		.byte	25
+ 119 005a 01       		.byte	1
+ 120 005b 40       		.byte	64
+ 121 005c 6A       		.byte	106
+ 122 005d 1A       		.byte	26
+ 123 005e 01       		.byte	1
+ 124 005f 40       		.byte	64
+ 125 0060 4A       		.byte	74
+ 126 0061 1B       		.byte	27
+ 127 0062 01       		.byte	1
+ 128 0063 40       		.byte	64
+ 129 0064 09       		.byte	9
+ 130 0065 40       		.byte	64
+ 131 0066 01       		.byte	1
+ 132 0067 40       		.byte	64
+ 133 0068 08       		.byte	8
+ 134 0069 41       		.byte	65
+ 135 006a 01       		.byte	1
+ 136 006b 40       		.byte	64
+ 137 006c 08       		.byte	8
+ 138 006d 42       		.byte	66
+ 139 006e 01       		.byte	1
+ 140 006f 40       		.byte	64
+ 141 0070 04       		.byte	4
+ 142 0071 43       		.byte	67
+ 143 0072 01       		.byte	1
+ 144 0073 40       		.byte	64
+ 145 0074 09       		.byte	9
+ 146 0075 44       		.byte	68
+ 147 0076 01       		.byte	1
+ 148 0077 40       		.byte	64
+ 149 0078 08       		.byte	8
+ 150 0079 45       		.byte	69
+ 151 007a 01       		.byte	1
+ 152 007b 40       		.byte	64
+ 153 007c 06       		.byte	6
+ 154 007d 46       		.byte	70
+ 155 007e 01       		.byte	1
+ 156 007f 40       		.byte	64
+ 157 0080 07       		.byte	7
+ 158 0081 47       		.byte	71
+ 159 0082 01       		.byte	1
+ 160 0083 40       		.byte	64
+ 161 0084 05       		.byte	5
+ 162 0085 48       		.byte	72
+ 163 0086 01       		.byte	1
+ 164 0087 40       		.byte	64
+ 165 0088 03       		.byte	3
+ 166 0089 49       		.byte	73
+ 167 008a 01       		.byte	1
+ 168 008b 40       		.byte	64
+ 169 008c 04       		.byte	4
+ 170 008d 4C       		.byte	76
+ 171 008e 01       		.byte	1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 4
+
+
+ 172 008f 40       		.byte	64
+ 173 0090 0A       		.byte	10
+ 174 0091 4D       		.byte	77
+ 175 0092 01       		.byte	1
+ 176 0093 40       		.byte	64
+ 177 0094 0A       		.byte	10
+ 178 0095 50       		.byte	80
+ 179 0096 01       		.byte	1
+ 180 0097 40       		.byte	64
+ 181 0098 02       		.byte	2
+ 182 0099 51       		.byte	81
+ 183 009a 01       		.byte	1
+ 184 009b 40       		.byte	64
+ 185 009c 7E       		.byte	126
+ 186 009d 02       		.byte	2
+ 187 009e 01       		.byte	1
+ 188 009f 80       		.byte	-128
+ 189 00a0 0A       		.byte	10
+ 190 00a1 4B       		.byte	75
+ 191 00a2 7C       		.byte	124
+ 192 00a3 40       		.byte	64
+ 193 00a4 27       		.byte	39
+ 194 00a5 21       		.byte	33
+ 195 00a6 2F       		.byte	47
+ 196 00a7 42       		.byte	66
+ 197 00a8 2D       		.byte	45
+ 198 00a9 04       		.byte	4
+ 199 00aa 2F       		.byte	47
+ 200 00ab 0F       		.byte	15
+ 201 00ac 3F       		.byte	63
+ 202 00ad 08       		.byte	8
+ 203 00ae 8C       		.byte	-116
+ 204 00af 38       		.byte	56
+ 205 00b0 88       		.byte	-120
+ 206 00b1 72       		.byte	114
+ 207 00b2 8B       		.byte	-117
+ 208 00b3 0F       		.byte	15
+ 209 00b4 B8       		.byte	-72
+ 210 00b5 02       		.byte	2
+ 211 00b6 BE       		.byte	-66
+ 212 00b7 01       		.byte	1
+ 213 00b8 D8       		.byte	-40
+ 214 00b9 04       		.byte	4
+ 215 00ba DF       		.byte	-33
+ 216 00bb 01       		.byte	1
+ 217 00bc 1D       		.byte	29
+ 218 00bd 01       		.byte	1
+ 219 00be 81       		.byte	-127
+ 220 00bf 01       		.byte	1
+ 221 00c0 E0       		.byte	-32
+ 222 00c1 04       		.byte	4
+ 223 00c2 E2       		.byte	-30
+ 224 00c3 02       		.byte	2
+ 225 00c4 E2       		.byte	-30
+ 226 00c5 20       		.byte	32
+ 227 00c6 E2       		.byte	-30
+ 228 00c7 08       		.byte	8
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 5
+
+
+ 229 00c8 EE       		.byte	-18
+ 230 00c9 04       		.byte	4
+ 231 00ca 01       		.byte	1
+ 232 00cb 80       		.byte	-128
+ 233 00cc 02       		.byte	2
+ 234 00cd 01       		.byte	1
+ 235 00ce 04       		.byte	4
+ 236 00cf 1A       		.byte	26
+ 237 00d0 05       		.byte	5
+ 238 00d1 04       		.byte	4
+ 239 00d2 06       		.byte	6
+ 240 00d3 60       		.byte	96
+ 241 00d4 08       		.byte	8
+ 242 00d5 A5       		.byte	-91
+ 243 00d6 09       		.byte	9
+ 244 00d7 F2       		.byte	-14
+ 245 00d8 0A       		.byte	10
+ 246 00d9 4A       		.byte	74
+ 247 00da 0B       		.byte	11
+ 248 00db 0C       		.byte	12
+ 249 00dc 0D       		.byte	13
+ 250 00dd 08       		.byte	8
+ 251 00de 0E       		.byte	14
+ 252 00df B5       		.byte	-75
+ 253 00e0 10       		.byte	16
+ 254 00e1 02       		.byte	2
+ 255 00e2 11       		.byte	17
+ 256 00e3 8C       		.byte	-116
+ 257 00e4 13       		.byte	19
+ 258 00e5 32       		.byte	50
+ 259 00e6 14       		.byte	20
+ 260 00e7 FF       		.byte	-1
+ 261 00e8 15       		.byte	21
+ 262 00e9 9C       		.byte	-100
+ 263 00ea 17       		.byte	23
+ 264 00eb 42       		.byte	66
+ 265 00ec 19       		.byte	25
+ 266 00ed 0C       		.byte	12
+ 267 00ee 1A       		.byte	26
+ 268 00ef 02       		.byte	2
+ 269 00f0 1D       		.byte	29
+ 270 00f1 FE       		.byte	-2
+ 271 00f2 1E       		.byte	30
+ 272 00f3 04       		.byte	4
+ 273 00f4 20       		.byte	32
+ 274 00f5 CC       		.byte	-52
+ 275 00f6 22       		.byte	34
+ 276 00f7 13       		.byte	19
+ 277 00f8 23       		.byte	35
+ 278 00f9 01       		.byte	1
+ 279 00fa 24       		.byte	36
+ 280 00fb 04       		.byte	4
+ 281 00fc 27       		.byte	39
+ 282 00fd 01       		.byte	1
+ 283 00fe 28       		.byte	40
+ 284 00ff 4D       		.byte	77
+ 285 0100 2A       		.byte	42
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 6
+
+
+ 286 0101 92       		.byte	-110
+ 287 0102 2B       		.byte	43
+ 288 0103 72       		.byte	114
+ 289 0104 2C       		.byte	44
+ 290 0105 A9       		.byte	-87
+ 291 0106 2E       		.byte	46
+ 292 0107 54       		.byte	84
+ 293 0108 2F       		.byte	47
+ 294 0109 80       		.byte	-128
+ 295 010a 31       		.byte	49
+ 296 010b 0E       		.byte	14
+ 297 010c 33       		.byte	51
+ 298 010d EC       		.byte	-20
+ 299 010e 34       		.byte	52
+ 300 010f FF       		.byte	-1
+ 301 0110 35       		.byte	53
+ 302 0111 01       		.byte	1
+ 303 0112 37       		.byte	55
+ 304 0113 1C       		.byte	28
+ 305 0114 3B       		.byte	59
+ 306 0115 0A       		.byte	10
+ 307 0116 3E       		.byte	62
+ 308 0117 10       		.byte	16
+ 309 0118 3F       		.byte	63
+ 310 0119 10       		.byte	16
+ 311 011a 52       		.byte	82
+ 312 011b F6       		.byte	-10
+ 313 011c 58       		.byte	88
+ 314 011d 04       		.byte	4
+ 315 011e 59       		.byte	89
+ 316 011f 04       		.byte	4
+ 317 0120 5B       		.byte	91
+ 318 0121 04       		.byte	4
+ 319 0122 5C       		.byte	92
+ 320 0123 20       		.byte	32
+ 321 0124 5D       		.byte	93
+ 322 0125 10       		.byte	16
+ 323 0126 5F       		.byte	95
+ 324 0127 01       		.byte	1
+ 325 0128 80       		.byte	-128
+ 326 0129 0D       		.byte	13
+ 327 012a 84       		.byte	-124
+ 328 012b 3D       		.byte	61
+ 329 012c 86       		.byte	-122
+ 330 012d C2       		.byte	-62
+ 331 012e 88       		.byte	-120
+ 332 012f 04       		.byte	4
+ 333 0130 8A       		.byte	-118
+ 334 0131 E0       		.byte	-32
+ 335 0132 8E       		.byte	-114
+ 336 0133 FF       		.byte	-1
+ 337 0134 90       		.byte	-112
+ 338 0135 5D       		.byte	93
+ 339 0136 92       		.byte	-110
+ 340 0137 A2       		.byte	-94
+ 341 0138 93       		.byte	-109
+ 342 0139 01       		.byte	1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 7
+
+
+ 343 013a 94       		.byte	-108
+ 344 013b E2       		.byte	-30
+ 345 013c 95       		.byte	-107
+ 346 013d 01       		.byte	1
+ 347 013e 98       		.byte	-104
+ 348 013f 92       		.byte	-110
+ 349 0140 9A       		.byte	-102
+ 350 0141 60       		.byte	96
+ 351 0142 9C       		.byte	-100
+ 352 0143 40       		.byte	64
+ 353 0144 9E       		.byte	-98
+ 354 0145 1D       		.byte	29
+ 355 0146 A2       		.byte	-94
+ 356 0147 02       		.byte	2
+ 357 0148 A4       		.byte	-92
+ 358 0149 01       		.byte	1
+ 359 014a A8       		.byte	-88
+ 360 014b 01       		.byte	1
+ 361 014c A9       		.byte	-87
+ 362 014d 01       		.byte	1
+ 363 014e AE       		.byte	-82
+ 364 014f 08       		.byte	8
+ 365 0150 B1       		.byte	-79
+ 366 0151 01       		.byte	1
+ 367 0152 B2       		.byte	-78
+ 368 0153 FF       		.byte	-1
+ 369 0154 BE       		.byte	-66
+ 370 0155 04       		.byte	4
+ 371 0156 D8       		.byte	-40
+ 372 0157 04       		.byte	4
+ 373 0158 D9       		.byte	-39
+ 374 0159 04       		.byte	4
+ 375 015a DC       		.byte	-36
+ 376 015b 10       		.byte	16
+ 377 015c DF       		.byte	-33
+ 378 015d 01       		.byte	1
+ 379 015e 00       		.byte	0
+ 380 015f 08       		.byte	8
+ 381 0160 01       		.byte	1
+ 382 0161 10       		.byte	16
+ 383 0162 02       		.byte	2
+ 384 0163 40       		.byte	64
+ 385 0164 03       		.byte	3
+ 386 0165 15       		.byte	21
+ 387 0166 05       		.byte	5
+ 388 0167 01       		.byte	1
+ 389 0168 07       		.byte	7
+ 390 0169 15       		.byte	21
+ 391 016a 08       		.byte	8
+ 392 016b A6       		.byte	-90
+ 393 016c 0A       		.byte	10
+ 394 016d 50       		.byte	80
+ 395 016e 0C       		.byte	12
+ 396 016f 80       		.byte	-128
+ 397 0170 0E       		.byte	14
+ 398 0171 18       		.byte	24
+ 399 0172 0F       		.byte	15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 8
+
+
+ 400 0173 40       		.byte	64
+ 401 0174 10       		.byte	16
+ 402 0175 88       		.byte	-120
+ 403 0176 12       		.byte	18
+ 404 0177 02       		.byte	2
+ 405 0178 13       		.byte	19
+ 406 0179 08       		.byte	8
+ 407 017a 14       		.byte	20
+ 408 017b 42       		.byte	66
+ 409 017c 16       		.byte	22
+ 410 017d 04       		.byte	4
+ 411 017e 17       		.byte	23
+ 412 017f 0A       		.byte	10
+ 413 0180 1B       		.byte	27
+ 414 0181 08       		.byte	8
+ 415 0182 1E       		.byte	30
+ 416 0183 04       		.byte	4
+ 417 0184 22       		.byte	34
+ 418 0185 03       		.byte	3
+ 419 0186 23       		.byte	35
+ 420 0187 40       		.byte	64
+ 421 0188 24       		.byte	36
+ 422 0189 02       		.byte	2
+ 423 018a 25       		.byte	37
+ 424 018b 08       		.byte	8
+ 425 018c 26       		.byte	38
+ 426 018d 59       		.byte	89
+ 427 018e 28       		.byte	40
+ 428 018f 04       		.byte	4
+ 429 0190 2A       		.byte	42
+ 430 0191 04       		.byte	4
+ 431 0192 2B       		.byte	43
+ 432 0193 10       		.byte	16
+ 433 0194 2D       		.byte	45
+ 434 0195 04       		.byte	4
+ 435 0196 2F       		.byte	47
+ 436 0197 46       		.byte	70
+ 437 0198 32       		.byte	50
+ 438 0199 05       		.byte	5
+ 439 019a 36       		.byte	54
+ 440 019b 09       		.byte	9
+ 441 019c 37       		.byte	55
+ 442 019d 60       		.byte	96
+ 443 019e 3C       		.byte	60
+ 444 019f 90       		.byte	-112
+ 445 01a0 3E       		.byte	62
+ 446 01a1 0A       		.byte	10
+ 447 01a2 48       		.byte	72
+ 448 01a3 08       		.byte	8
+ 449 01a4 4A       		.byte	74
+ 450 01a5 04       		.byte	4
+ 451 01a6 6C       		.byte	108
+ 452 01a7 04       		.byte	4
+ 453 01a8 6F       		.byte	111
+ 454 01a9 20       		.byte	32
+ 455 01aa 74       		.byte	116
+ 456 01ab 88       		.byte	-120
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 9
+
+
+ 457 01ac 75       		.byte	117
+ 458 01ad 51       		.byte	81
+ 459 01ae 77       		.byte	119
+ 460 01af 08       		.byte	8
+ 461 01b0 79       		.byte	121
+ 462 01b1 10       		.byte	16
+ 463 01b2 7B       		.byte	123
+ 464 01b3 04       		.byte	4
+ 465 01b4 90       		.byte	-112
+ 466 01b5 80       		.byte	-128
+ 467 01b6 92       		.byte	-110
+ 468 01b7 58       		.byte	88
+ 469 01b8 94       		.byte	-108
+ 470 01b9 08       		.byte	8
+ 471 01ba 95       		.byte	-107
+ 472 01bb 11       		.byte	17
+ 473 01bc 96       		.byte	-106
+ 474 01bd 82       		.byte	-126
+ 475 01be 97       		.byte	-105
+ 476 01bf 10       		.byte	16
+ 477 01c0 98       		.byte	-104
+ 478 01c1 A0       		.byte	-96
+ 479 01c2 9A       		.byte	-102
+ 480 01c3 51       		.byte	81
+ 481 01c4 9B       		.byte	-101
+ 482 01c5 13       		.byte	19
+ 483 01c6 9D       		.byte	-99
+ 484 01c7 50       		.byte	80
+ 485 01c8 9E       		.byte	-98
+ 486 01c9 80       		.byte	-128
+ 487 01ca 9F       		.byte	-97
+ 488 01cb 04       		.byte	4
+ 489 01cc A4       		.byte	-92
+ 490 01cd 08       		.byte	8
+ 491 01ce A5       		.byte	-91
+ 492 01cf 14       		.byte	20
+ 493 01d0 A6       		.byte	-90
+ 494 01d1 52       		.byte	82
+ 495 01d2 A7       		.byte	-89
+ 496 01d3 34       		.byte	52
+ 497 01d4 B2       		.byte	-78
+ 498 01d5 10       		.byte	16
+ 499 01d6 B3       		.byte	-77
+ 500 01d7 16       		.byte	22
+ 501 01d8 B4       		.byte	-76
+ 502 01d9 A1       		.byte	-95
+ 503 01da B6       		.byte	-74
+ 504 01db 08       		.byte	8
+ 505 01dc B7       		.byte	-73
+ 506 01dd 10       		.byte	16
+ 507 01de C0       		.byte	-64
+ 508 01df FF       		.byte	-1
+ 509 01e0 C2       		.byte	-62
+ 510 01e1 FF       		.byte	-1
+ 511 01e2 C4       		.byte	-60
+ 512 01e3 FF       		.byte	-1
+ 513 01e4 CA       		.byte	-54
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 10
+
+
+ 514 01e5 F4       		.byte	-12
+ 515 01e6 CC       		.byte	-52
+ 516 01e7 F3       		.byte	-13
+ 517 01e8 CE       		.byte	-50
+ 518 01e9 F0       		.byte	-16
+ 519 01ea EE       		.byte	-18
+ 520 01eb 04       		.byte	4
+ 521 01ec 00       		.byte	0
+ 522 01ed 40       		.byte	64
+ 523 01ee 01       		.byte	1
+ 524 01ef 08       		.byte	8
+ 525 01f0 02       		.byte	2
+ 526 01f1 0B       		.byte	11
+ 527 01f2 03       		.byte	3
+ 528 01f3 07       		.byte	7
+ 529 01f4 04       		.byte	4
+ 530 01f5 4F       		.byte	79
+ 531 01f6 05       		.byte	5
+ 532 01f7 05       		.byte	5
+ 533 01f8 07       		.byte	7
+ 534 01f9 78       		.byte	120
+ 535 01fa 08       		.byte	8
+ 536 01fb 01       		.byte	1
+ 537 01fc 09       		.byte	9
+ 538 01fd 10       		.byte	16
+ 539 01fe 0B       		.byte	11
+ 540 01ff 07       		.byte	7
+ 541 0200 0C       		.byte	12
+ 542 0201 90       		.byte	-112
+ 543 0202 0D       		.byte	13
+ 544 0203 40       		.byte	64
+ 545 0204 0E       		.byte	14
+ 546 0205 0B       		.byte	11
+ 547 0206 0F       		.byte	15
+ 548 0207 07       		.byte	7
+ 549 0208 10       		.byte	16
+ 550 0209 40       		.byte	64
+ 551 020a 11       		.byte	17
+ 552 020b 03       		.byte	3
+ 553 020c 12       		.byte	18
+ 554 020d 14       		.byte	20
+ 555 020e 14       		.byte	20
+ 556 020f 1F       		.byte	31
+ 557 0210 15       		.byte	21
+ 558 0211 01       		.byte	1
+ 559 0212 19       		.byte	25
+ 560 0213 22       		.byte	34
+ 561 0214 1A       		.byte	26
+ 562 0215 01       		.byte	1
+ 563 0216 1B       		.byte	27
+ 564 0217 05       		.byte	5
+ 565 0218 1C       		.byte	28
+ 566 0219 48       		.byte	72
+ 567 021a 1D       		.byte	29
+ 568 021b 03       		.byte	3
+ 569 021c 1E       		.byte	30
+ 570 021d 02       		.byte	2
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 11
+
+
+ 571 021e 20       		.byte	32
+ 572 021f 03       		.byte	3
+ 573 0220 21       		.byte	33
+ 574 0221 7F       		.byte	127
+ 575 0222 22       		.byte	34
+ 576 0223 20       		.byte	32
+ 577 0224 24       		.byte	36
+ 578 0225 42       		.byte	66
+ 579 0226 25       		.byte	37
+ 580 0227 01       		.byte	1
+ 581 0228 26       		.byte	38
+ 582 0229 09       		.byte	9
+ 583 022a 28       		.byte	40
+ 584 022b 01       		.byte	1
+ 585 022c 29       		.byte	41
+ 586 022d 01       		.byte	1
+ 587 022e 2C       		.byte	44
+ 588 022f 03       		.byte	3
+ 589 0230 2D       		.byte	45
+ 590 0231 3A       		.byte	58
+ 591 0232 2F       		.byte	47
+ 592 0233 04       		.byte	4
+ 593 0234 30       		.byte	48
+ 594 0235 1F       		.byte	31
+ 595 0236 34       		.byte	52
+ 596 0237 E0       		.byte	-32
+ 597 0238 37       		.byte	55
+ 598 0239 7F       		.byte	127
+ 599 023a 38       		.byte	56
+ 600 023b 20       		.byte	32
+ 601 023c 3E       		.byte	62
+ 602 023d 10       		.byte	16
+ 603 023e 3F       		.byte	63
+ 604 023f 40       		.byte	64
+ 605 0240 58       		.byte	88
+ 606 0241 04       		.byte	4
+ 607 0242 59       		.byte	89
+ 608 0243 04       		.byte	4
+ 609 0244 5C       		.byte	92
+ 610 0245 01       		.byte	1
+ 611 0246 5F       		.byte	95
+ 612 0247 01       		.byte	1
+ 613 0248 80       		.byte	-128
+ 614 0249 06       		.byte	6
+ 615 024a 82       		.byte	-126
+ 616 024b 01       		.byte	1
+ 617 024c 84       		.byte	-124
+ 618 024d 10       		.byte	16
+ 619 024e 85       		.byte	-123
+ 620 024f 40       		.byte	64
+ 621 0250 87       		.byte	-121
+ 622 0251 13       		.byte	19
+ 623 0252 88       		.byte	-120
+ 624 0253 02       		.byte	2
+ 625 0254 89       		.byte	-119
+ 626 0255 2A       		.byte	42
+ 627 0256 8A       		.byte	-118
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 12
+
+
+ 628 0257 05       		.byte	5
+ 629 0258 8B       		.byte	-117
+ 630 0259 54       		.byte	84
+ 631 025a 8C       		.byte	-116
+ 632 025b 01       		.byte	1
+ 633 025c 8D       		.byte	-115
+ 634 025d 33       		.byte	51
+ 635 025e 8E       		.byte	-114
+ 636 025f 0E       		.byte	14
+ 637 0260 8F       		.byte	-113
+ 638 0261 0C       		.byte	12
+ 639 0262 91       		.byte	-111
+ 640 0263 80       		.byte	-128
+ 641 0264 93       		.byte	-109
+ 642 0265 56       		.byte	86
+ 643 0266 99       		.byte	-103
+ 644 0267 0E       		.byte	14
+ 645 0268 9B       		.byte	-101
+ 646 0269 30       		.byte	48
+ 647 026a 9C       		.byte	-100
+ 648 026b 07       		.byte	7
+ 649 026c 9F       		.byte	-97
+ 650 026d 01       		.byte	1
+ 651 026e A0       		.byte	-96
+ 652 026f 03       		.byte	3
+ 653 0270 A1       		.byte	-95
+ 654 0271 FF       		.byte	-1
+ 655 0272 A2       		.byte	-94
+ 656 0273 04       		.byte	4
+ 657 0274 A5       		.byte	-91
+ 658 0275 46       		.byte	70
+ 659 0276 A7       		.byte	-89
+ 660 0277 A9       		.byte	-87
+ 661 0278 A8       		.byte	-88
+ 662 0279 07       		.byte	7
+ 663 027a AC       		.byte	-84
+ 664 027b 01       		.byte	1
+ 665 027c AE       		.byte	-82
+ 666 027d 08       		.byte	8
+ 667 027e B0       		.byte	-80
+ 668 027f 0F       		.byte	15
+ 669 0280 B2       		.byte	-78
+ 670 0281 10       		.byte	16
+ 671 0282 B6       		.byte	-74
+ 672 0283 10       		.byte	16
+ 673 0284 B7       		.byte	-73
+ 674 0285 FF       		.byte	-1
+ 675 0286 BA       		.byte	-70
+ 676 0287 02       		.byte	2
+ 677 0288 C0       		.byte	-64
+ 678 0289 26       		.byte	38
+ 679 028a C1       		.byte	-63
+ 680 028b 03       		.byte	3
+ 681 028c C5       		.byte	-59
+ 682 028d E0       		.byte	-32
+ 683 028e C6       		.byte	-58
+ 684 028f B0       		.byte	-80
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 13
+
+
+ 685 0290 C7       		.byte	-57
+ 686 0291 C0       		.byte	-64
+ 687 0292 C8       		.byte	-56
+ 688 0293 2A       		.byte	42
+ 689 0294 C9       		.byte	-55
+ 690 0295 FF       		.byte	-1
+ 691 0296 CA       		.byte	-54
+ 692 0297 FF       		.byte	-1
+ 693 0298 CB       		.byte	-53
+ 694 0299 FF       		.byte	-1
+ 695 029a CE       		.byte	-50
+ 696 029b F0       		.byte	-16
+ 697 029c CF       		.byte	-49
+ 698 029d 44       		.byte	68
+ 699 029e D0       		.byte	-48
+ 700 029f 0C       		.byte	12
+ 701 02a0 D8       		.byte	-40
+ 702 02a1 04       		.byte	4
+ 703 02a2 D9       		.byte	-39
+ 704 02a3 04       		.byte	4
+ 705 02a4 DA       		.byte	-38
+ 706 02a5 04       		.byte	4
+ 707 02a6 DC       		.byte	-36
+ 708 02a7 11       		.byte	17
+ 709 02a8 DD       		.byte	-35
+ 710 02a9 02       		.byte	2
+ 711 02aa DF       		.byte	-33
+ 712 02ab 01       		.byte	1
+ 713 02ac E6       		.byte	-26
+ 714 02ad C0       		.byte	-64
+ 715 02ae EA       		.byte	-22
+ 716 02af 40       		.byte	64
+ 717 02b0 EB       		.byte	-21
+ 718 02b1 02       		.byte	2
+ 719 02b2 00       		.byte	0
+ 720 02b3 80       		.byte	-128
+ 721 02b4 01       		.byte	1
+ 722 02b5 64       		.byte	100
+ 723 02b6 03       		.byte	3
+ 724 02b7 51       		.byte	81
+ 725 02b8 04       		.byte	4
+ 726 02b9 4A       		.byte	74
+ 727 02ba 07       		.byte	7
+ 728 02bb 44       		.byte	68
+ 729 02bc 08       		.byte	8
+ 730 02bd 90       		.byte	-112
+ 731 02be 0A       		.byte	10
+ 732 02bf 50       		.byte	80
+ 733 02c0 0B       		.byte	11
+ 734 02c1 82       		.byte	-126
+ 735 02c2 0F       		.byte	15
+ 736 02c3 02       		.byte	2
+ 737 02c4 10       		.byte	16
+ 738 02c5 88       		.byte	-120
+ 739 02c6 12       		.byte	18
+ 740 02c7 62       		.byte	98
+ 741 02c8 14       		.byte	20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 14
+
+
+ 742 02c9 80       		.byte	-128
+ 743 02ca 16       		.byte	22
+ 744 02cb 02       		.byte	2
+ 745 02cc 17       		.byte	23
+ 746 02cd 10       		.byte	16
+ 747 02ce 18       		.byte	24
+ 748 02cf 04       		.byte	4
+ 749 02d0 1A       		.byte	26
+ 750 02d1 48       		.byte	72
+ 751 02d2 1B       		.byte	27
+ 752 02d3 01       		.byte	1
+ 753 02d4 1C       		.byte	28
+ 754 02d5 40       		.byte	64
+ 755 02d6 1D       		.byte	29
+ 756 02d7 04       		.byte	4
+ 757 02d8 1E       		.byte	30
+ 758 02d9 10       		.byte	16
+ 759 02da 1F       		.byte	31
+ 760 02db 80       		.byte	-128
+ 761 02dc 22       		.byte	34
+ 762 02dd 80       		.byte	-128
+ 763 02de 24       		.byte	36
+ 764 02df 02       		.byte	2
+ 765 02e0 27       		.byte	39
+ 766 02e1 02       		.byte	2
+ 767 02e2 28       		.byte	40
+ 768 02e3 10       		.byte	16
+ 769 02e4 29       		.byte	41
+ 770 02e5 30       		.byte	48
+ 771 02e6 2A       		.byte	42
+ 772 02e7 02       		.byte	2
+ 773 02e8 2B       		.byte	43
+ 774 02e9 A1       		.byte	-95
+ 775 02ea 2F       		.byte	47
+ 776 02eb 90       		.byte	-112
+ 777 02ec 30       		.byte	48
+ 778 02ed C8       		.byte	-56
+ 779 02ee 32       		.byte	50
+ 780 02ef 21       		.byte	33
+ 781 02f0 34       		.byte	52
+ 782 02f1 40       		.byte	64
+ 783 02f2 37       		.byte	55
+ 784 02f3 11       		.byte	17
+ 785 02f4 39       		.byte	57
+ 786 02f5 44       		.byte	68
+ 787 02f6 3B       		.byte	59
+ 788 02f7 22       		.byte	34
+ 789 02f8 3D       		.byte	61
+ 790 02f9 10       		.byte	16
+ 791 02fa 3E       		.byte	62
+ 792 02fb 48       		.byte	72
+ 793 02fc 45       		.byte	69
+ 794 02fd 14       		.byte	20
+ 795 02fe 4C       		.byte	76
+ 796 02ff 40       		.byte	64
+ 797 0300 4F       		.byte	79
+ 798 0301 10       		.byte	16
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 15
+
+
+ 799 0302 56       		.byte	86
+ 800 0303 11       		.byte	17
+ 801 0304 62       		.byte	98
+ 802 0305 20       		.byte	32
+ 803 0306 63       		.byte	99
+ 804 0307 08       		.byte	8
+ 805 0308 8C       		.byte	-116
+ 806 0309 48       		.byte	72
+ 807 030a 94       		.byte	-108
+ 808 030b 06       		.byte	6
+ 809 030c 95       		.byte	-107
+ 810 030d 01       		.byte	1
+ 811 030e 96       		.byte	-106
+ 812 030f 92       		.byte	-110
+ 813 0310 97       		.byte	-105
+ 814 0311 88       		.byte	-120
+ 815 0312 9B       		.byte	-101
+ 816 0313 10       		.byte	16
+ 817 0314 9C       		.byte	-100
+ 818 0315 88       		.byte	-120
+ 819 0316 9D       		.byte	-99
+ 820 0317 44       		.byte	68
+ 821 0318 9E       		.byte	-98
+ 822 0319 80       		.byte	-128
+ 823 031a 9F       		.byte	-97
+ 824 031b 40       		.byte	64
+ 825 031c A0       		.byte	-96
+ 826 031d C0       		.byte	-64
+ 827 031e A6       		.byte	-90
+ 828 031f C0       		.byte	-64
+ 829 0320 A7       		.byte	-89
+ 830 0321 15       		.byte	21
+ 831 0322 B7       		.byte	-73
+ 832 0323 48       		.byte	72
+ 833 0324 C0       		.byte	-64
+ 834 0325 FF       		.byte	-1
+ 835 0326 C2       		.byte	-62
+ 836 0327 8F       		.byte	-113
+ 837 0328 C4       		.byte	-60
+ 838 0329 DF       		.byte	-33
+ 839 032a CA       		.byte	-54
+ 840 032b CF       		.byte	-49
+ 841 032c CC       		.byte	-52
+ 842 032d BF       		.byte	-65
+ 843 032e CE       		.byte	-50
+ 844 032f 7F       		.byte	127
+ 845 0330 D0       		.byte	-48
+ 846 0331 60       		.byte	96
+ 847 0332 D2       		.byte	-46
+ 848 0333 20       		.byte	32
+ 849 0334 E2       		.byte	-30
+ 850 0335 08       		.byte	8
+ 851 0336 01       		.byte	1
+ 852 0337 50       		.byte	80
+ 853 0338 02       		.byte	2
+ 854 0339 01       		.byte	1
+ 855 033a 03       		.byte	3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 16
+
+
+ 856 033b 02       		.byte	2
+ 857 033c 05       		.byte	5
+ 858 033d 40       		.byte	64
+ 859 033e 07       		.byte	7
+ 860 033f 08       		.byte	8
+ 861 0340 09       		.byte	9
+ 862 0341 40       		.byte	64
+ 863 0342 0B       		.byte	11
+ 864 0343 14       		.byte	20
+ 865 0344 0D       		.byte	13
+ 866 0345 0F       		.byte	15
+ 867 0346 12       		.byte	18
+ 868 0347 01       		.byte	1
+ 869 0348 13       		.byte	19
+ 870 0349 20       		.byte	32
+ 871 034a 15       		.byte	21
+ 872 034b 80       		.byte	-128
+ 873 034c 19       		.byte	25
+ 874 034d 50       		.byte	80
+ 875 034e 1B       		.byte	27
+ 876 034f 01       		.byte	1
+ 877 0350 1D       		.byte	29
+ 878 0351 40       		.byte	64
+ 879 0352 1F       		.byte	31
+ 880 0353 18       		.byte	24
+ 881 0354 23       		.byte	35
+ 882 0355 40       		.byte	64
+ 883 0356 29       		.byte	41
+ 884 0357 3F       		.byte	63
+ 885 0358 2D       		.byte	45
+ 886 0359 04       		.byte	4
+ 887 035a 2F       		.byte	47
+ 888 035b 08       		.byte	8
+ 889 035c 30       		.byte	48
+ 890 035d 01       		.byte	1
+ 891 035e 35       		.byte	53
+ 892 035f 3F       		.byte	63
+ 893 0360 37       		.byte	55
+ 894 0361 C0       		.byte	-64
+ 895 0362 39       		.byte	57
+ 896 0363 A0       		.byte	-96
+ 897 0364 3E       		.byte	62
+ 898 0365 01       		.byte	1
+ 899 0366 3F       		.byte	63
+ 900 0367 40       		.byte	64
+ 901 0368 54       		.byte	84
+ 902 0369 18       		.byte	24
+ 903 036a 58       		.byte	88
+ 904 036b 04       		.byte	4
+ 905 036c 59       		.byte	89
+ 906 036d 04       		.byte	4
+ 907 036e 5B       		.byte	91
+ 908 036f 04       		.byte	4
+ 909 0370 5C       		.byte	92
+ 910 0371 10       		.byte	16
+ 911 0372 5D       		.byte	93
+ 912 0373 20       		.byte	32
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 17
+
+
+ 913 0374 5F       		.byte	95
+ 914 0375 01       		.byte	1
+ 915 0376 00       		.byte	0
+ 916 0377 84       		.byte	-124
+ 917 0378 03       		.byte	3
+ 918 0379 42       		.byte	66
+ 919 037a 06       		.byte	6
+ 920 037b 80       		.byte	-128
+ 921 037c 07       		.byte	7
+ 922 037d 30       		.byte	48
+ 923 037e 08       		.byte	8
+ 924 037f 80       		.byte	-128
+ 925 0380 0A       		.byte	10
+ 926 0381 54       		.byte	84
+ 927 0382 0E       		.byte	14
+ 928 0383 80       		.byte	-128
+ 929 0384 10       		.byte	16
+ 930 0385 08       		.byte	8
+ 931 0386 11       		.byte	17
+ 932 0387 46       		.byte	70
+ 933 0388 19       		.byte	25
+ 934 0389 11       		.byte	17
+ 935 038a 1A       		.byte	26
+ 936 038b 44       		.byte	68
+ 937 038c 1B       		.byte	27
+ 938 038d 80       		.byte	-128
+ 939 038e 1F       		.byte	31
+ 940 038f 01       		.byte	1
+ 941 0390 21       		.byte	33
+ 942 0391 A4       		.byte	-92
+ 943 0392 23       		.byte	35
+ 944 0393 20       		.byte	32
+ 945 0394 27       		.byte	39
+ 946 0395 05       		.byte	5
+ 947 0396 29       		.byte	41
+ 948 0397 40       		.byte	64
+ 949 0398 2B       		.byte	43
+ 950 0399 94       		.byte	-108
+ 951 039a 2C       		.byte	44
+ 952 039b 80       		.byte	-128
+ 953 039c 2D       		.byte	45
+ 954 039d 10       		.byte	16
+ 955 039e 2E       		.byte	46
+ 956 039f 10       		.byte	16
+ 957 03a0 2F       		.byte	47
+ 958 03a1 02       		.byte	2
+ 959 03a2 31       		.byte	49
+ 960 03a3 20       		.byte	32
+ 961 03a4 32       		.byte	50
+ 962 03a5 81       		.byte	-127
+ 963 03a6 33       		.byte	51
+ 964 03a7 08       		.byte	8
+ 965 03a8 36       		.byte	54
+ 966 03a9 09       		.byte	9
+ 967 03aa 37       		.byte	55
+ 968 03ab 60       		.byte	96
+ 969 03ac 39       		.byte	57
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 18
+
+
+ 970 03ad 1C       		.byte	28
+ 971 03ae 3B       		.byte	59
+ 972 03af 81       		.byte	-127
+ 973 03b0 3D       		.byte	61
+ 974 03b1 02       		.byte	2
+ 975 03b2 3F       		.byte	63
+ 976 03b3 AA       		.byte	-86
+ 977 03b4 40       		.byte	64
+ 978 03b5 04       		.byte	4
+ 979 03b6 48       		.byte	72
+ 980 03b7 05       		.byte	5
+ 981 03b8 4B       		.byte	75
+ 982 03b9 01       		.byte	1
+ 983 03ba 50       		.byte	80
+ 984 03bb 80       		.byte	-128
+ 985 03bc 5D       		.byte	93
+ 986 03bd 01       		.byte	1
+ 987 03be 67       		.byte	103
+ 988 03bf 0A       		.byte	10
+ 989 03c0 85       		.byte	-123
+ 990 03c1 20       		.byte	32
+ 991 03c2 8D       		.byte	-115
+ 992 03c3 40       		.byte	64
+ 993 03c4 8F       		.byte	-113
+ 994 03c5 04       		.byte	4
+ 995 03c6 94       		.byte	-108
+ 996 03c7 02       		.byte	2
+ 997 03c8 96       		.byte	-106
+ 998 03c9 80       		.byte	-128
+ 999 03ca 9C       		.byte	-100
+ 1000 03cb 08       		.byte	8
+ 1001 03cc 9D       		.byte	-99
+ 1002 03cd 15       		.byte	21
+ 1003 03ce 9F       		.byte	-97
+ 1004 03cf 25       		.byte	37
+ 1005 03d0 A0       		.byte	-96
+ 1006 03d1 4D       		.byte	77
+ 1007 03d2 A2       		.byte	-94
+ 1008 03d3 09       		.byte	9
+ 1009 03d4 A3       		.byte	-93
+ 1010 03d5 40       		.byte	64
+ 1011 03d6 A5       		.byte	-91
+ 1012 03d7 80       		.byte	-128
+ 1013 03d8 A7       		.byte	-89
+ 1014 03d9 15       		.byte	21
+ 1015 03da AB       		.byte	-85
+ 1016 03db 04       		.byte	4
+ 1017 03dc B0       		.byte	-80
+ 1018 03dd 08       		.byte	8
+ 1019 03de B1       		.byte	-79
+ 1020 03df 80       		.byte	-128
+ 1021 03e0 C0       		.byte	-64
+ 1022 03e1 1D       		.byte	29
+ 1023 03e2 C2       		.byte	-62
+ 1024 03e3 1F       		.byte	31
+ 1025 03e4 C4       		.byte	-60
+ 1026 03e5 0F       		.byte	15
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 19
+
+
+ 1027 03e6 CA       		.byte	-54
+ 1028 03e7 BF       		.byte	-65
+ 1029 03e8 CC       		.byte	-52
+ 1030 03e9 FF       		.byte	-1
+ 1031 03ea CE       		.byte	-50
+ 1032 03eb FF       		.byte	-1
+ 1033 03ec D0       		.byte	-48
+ 1034 03ed 04       		.byte	4
+ 1035 03ee D2       		.byte	-46
+ 1036 03ef 0C       		.byte	12
+ 1037 03f0 D6       		.byte	-42
+ 1038 03f1 80       		.byte	-128
+ 1039 03f2 D8       		.byte	-40
+ 1040 03f3 30       		.byte	48
+ 1041 03f4 E0       		.byte	-32
+ 1042 03f5 08       		.byte	8
+ 1043 03f6 E2       		.byte	-30
+ 1044 03f7 20       		.byte	32
+ 1045 03f8 E8       		.byte	-24
+ 1046 03f9 01       		.byte	1
+ 1047 03fa 00       		.byte	0
+ 1048 03fb 12       		.byte	18
+ 1049 03fc 02       		.byte	2
+ 1050 03fd 01       		.byte	1
+ 1051 03fe 04       		.byte	4
+ 1052 03ff 01       		.byte	1
+ 1053 0400 06       		.byte	6
+ 1054 0401 04       		.byte	4
+ 1055 0402 0C       		.byte	12
+ 1056 0403 01       		.byte	1
+ 1057 0404 0E       		.byte	14
+ 1058 0405 32       		.byte	50
+ 1059 0406 12       		.byte	18
+ 1060 0407 13       		.byte	19
+ 1061 0408 14       		.byte	20
+ 1062 0409 01       		.byte	1
+ 1063 040a 16       		.byte	22
+ 1064 040b 06       		.byte	6
+ 1065 040c 17       		.byte	23
+ 1066 040d 01       		.byte	1
+ 1067 040e 1F       		.byte	31
+ 1068 040f 02       		.byte	2
+ 1069 0410 22       		.byte	34
+ 1070 0411 08       		.byte	8
+ 1071 0412 26       		.byte	38
+ 1072 0413 13       		.byte	19
+ 1073 0414 2A       		.byte	42
+ 1074 0415 13       		.byte	19
+ 1075 0416 30       		.byte	48
+ 1076 0417 08       		.byte	8
+ 1077 0418 32       		.byte	50
+ 1078 0419 07       		.byte	7
+ 1079 041a 33       		.byte	51
+ 1080 041b 02       		.byte	2
+ 1081 041c 34       		.byte	52
+ 1082 041d 10       		.byte	16
+ 1083 041e 36       		.byte	54
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 20
+
+
+ 1084 041f 20       		.byte	32
+ 1085 0420 37       		.byte	55
+ 1086 0421 01       		.byte	1
+ 1087 0422 3A       		.byte	58
+ 1088 0423 08       		.byte	8
+ 1089 0424 3E       		.byte	62
+ 1090 0425 10       		.byte	16
+ 1091 0426 54       		.byte	84
+ 1092 0427 20       		.byte	32
+ 1093 0428 56       		.byte	86
+ 1094 0429 04       		.byte	4
+ 1095 042a 58       		.byte	88
+ 1096 042b 04       		.byte	4
+ 1097 042c 59       		.byte	89
+ 1098 042d 04       		.byte	4
+ 1099 042e 5B       		.byte	91
+ 1100 042f 04       		.byte	4
+ 1101 0430 5C       		.byte	92
+ 1102 0431 11       		.byte	17
+ 1103 0432 5D       		.byte	93
+ 1104 0433 10       		.byte	16
+ 1105 0434 5F       		.byte	95
+ 1106 0435 01       		.byte	1
+ 1107 0436 82       		.byte	-126
+ 1108 0437 08       		.byte	8
+ 1109 0438 84       		.byte	-124
+ 1110 0439 80       		.byte	-128
+ 1111 043a 8A       		.byte	-118
+ 1112 043b 0F       		.byte	15
+ 1113 043c 8C       		.byte	-116
+ 1114 043d 90       		.byte	-112
+ 1115 043e 90       		.byte	-112
+ 1116 043f 0F       		.byte	15
+ 1117 0440 95       		.byte	-107
+ 1118 0441 04       		.byte	4
+ 1119 0442 96       		.byte	-106
+ 1120 0443 04       		.byte	4
+ 1121 0444 97       		.byte	-105
+ 1122 0445 08       		.byte	8
+ 1123 0446 9A       		.byte	-102
+ 1124 0447 08       		.byte	8
+ 1125 0448 9B       		.byte	-101
+ 1126 0449 02       		.byte	2
+ 1127 044a 9C       		.byte	-100
+ 1128 044b 20       		.byte	32
+ 1129 044c 9E       		.byte	-98
+ 1130 044d 42       		.byte	66
+ 1131 044e A0       		.byte	-96
+ 1132 044f 90       		.byte	-112
+ 1133 0450 A4       		.byte	-92
+ 1134 0451 0F       		.byte	15
+ 1135 0452 A8       		.byte	-88
+ 1136 0453 20       		.byte	32
+ 1137 0454 AA       		.byte	-86
+ 1138 0455 41       		.byte	65
+ 1139 0456 AD       		.byte	-83
+ 1140 0457 04       		.byte	4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 21
+
+
+ 1141 0458 AE       		.byte	-82
+ 1142 0459 0F       		.byte	15
+ 1143 045a AF       		.byte	-81
+ 1144 045b 09       		.byte	9
+ 1145 045c B0       		.byte	-80
+ 1146 045d 80       		.byte	-128
+ 1147 045e B1       		.byte	-79
+ 1148 045f 02       		.byte	2
+ 1149 0460 B2       		.byte	-78
+ 1150 0461 10       		.byte	16
+ 1151 0462 B3       		.byte	-77
+ 1152 0463 0C       		.byte	12
+ 1153 0464 B4       		.byte	-76
+ 1154 0465 70       		.byte	112
+ 1155 0466 B5       		.byte	-75
+ 1156 0467 01       		.byte	1
+ 1157 0468 B6       		.byte	-74
+ 1158 0469 0F       		.byte	15
+ 1159 046a B8       		.byte	-72
+ 1160 046b 2A       		.byte	42
+ 1161 046c BE       		.byte	-66
+ 1162 046d 54       		.byte	84
+ 1163 046e C0       		.byte	-64
+ 1164 046f 34       		.byte	52
+ 1165 0470 C5       		.byte	-59
+ 1166 0471 20       		.byte	32
+ 1167 0472 C6       		.byte	-58
+ 1168 0473 05       		.byte	5
+ 1169 0474 C8       		.byte	-56
+ 1170 0475 06       		.byte	6
+ 1171 0476 C9       		.byte	-55
+ 1172 0477 FF       		.byte	-1
+ 1173 0478 CA       		.byte	-54
+ 1174 0479 FF       		.byte	-1
+ 1175 047a CB       		.byte	-53
+ 1176 047b FF       		.byte	-1
+ 1177 047c CC       		.byte	-52
+ 1178 047d 42       		.byte	66
+ 1179 047e CD       		.byte	-51
+ 1180 047f A0       		.byte	-96
+ 1181 0480 CE       		.byte	-50
+ 1182 0481 70       		.byte	112
+ 1183 0482 D0       		.byte	-48
+ 1184 0483 08       		.byte	8
+ 1185 0484 D1       		.byte	-47
+ 1186 0485 10       		.byte	16
+ 1187 0486 D8       		.byte	-40
+ 1188 0487 04       		.byte	4
+ 1189 0488 D9       		.byte	-39
+ 1190 0489 04       		.byte	4
+ 1191 048a DA       		.byte	-38
+ 1192 048b 04       		.byte	4
+ 1193 048c DC       		.byte	-36
+ 1194 048d 11       		.byte	17
+ 1195 048e DD       		.byte	-35
+ 1196 048f 01       		.byte	1
+ 1197 0490 DF       		.byte	-33
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 22
+
+
+ 1198 0491 01       		.byte	1
+ 1199 0492 E1       		.byte	-31
+ 1200 0493 48       		.byte	72
+ 1201 0494 E2       		.byte	-30
+ 1202 0495 40       		.byte	64
+ 1203 0496 E3       		.byte	-29
+ 1204 0497 48       		.byte	72
+ 1205 0498 E4       		.byte	-28
+ 1206 0499 80       		.byte	-128
+ 1207 049a E5       		.byte	-27
+ 1208 049b 48       		.byte	72
+ 1209 049c E6       		.byte	-26
+ 1210 049d 80       		.byte	-128
+ 1211 049e E7       		.byte	-25
+ 1212 049f 48       		.byte	72
+ 1213 04a0 01       		.byte	1
+ 1214 04a1 08       		.byte	8
+ 1215 04a2 03       		.byte	3
+ 1216 04a3 82       		.byte	-126
+ 1217 04a4 04       		.byte	4
+ 1218 04a5 02       		.byte	2
+ 1219 04a6 05       		.byte	5
+ 1220 04a7 4C       		.byte	76
+ 1221 04a8 07       		.byte	7
+ 1222 04a9 04       		.byte	4
+ 1223 04aa 09       		.byte	9
+ 1224 04ab 01       		.byte	1
+ 1225 04ac 0A       		.byte	10
+ 1226 04ad 20       		.byte	32
+ 1227 04ae 0E       		.byte	14
+ 1228 04af 40       		.byte	64
+ 1229 04b0 0F       		.byte	15
+ 1230 04b1 2A       		.byte	42
+ 1231 04b2 12       		.byte	18
+ 1232 04b3 80       		.byte	-128
+ 1233 04b4 13       		.byte	19
+ 1234 04b5 18       		.byte	24
+ 1235 04b6 15       		.byte	21
+ 1236 04b7 01       		.byte	1
+ 1237 04b8 17       		.byte	23
+ 1238 04b9 68       		.byte	104
+ 1239 04ba 18       		.byte	24
+ 1240 04bb 04       		.byte	4
+ 1241 04bc 1A       		.byte	26
+ 1242 04bd 20       		.byte	32
+ 1243 04be 1B       		.byte	27
+ 1244 04bf 82       		.byte	-126
+ 1245 04c0 1C       		.byte	28
+ 1246 04c1 88       		.byte	-120
+ 1247 04c2 1D       		.byte	29
+ 1248 04c3 48       		.byte	72
+ 1249 04c4 1E       		.byte	30
+ 1250 04c5 42       		.byte	66
+ 1251 04c6 20       		.byte	32
+ 1252 04c7 02       		.byte	2
+ 1253 04c8 22       		.byte	34
+ 1254 04c9 80       		.byte	-128
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 23
+
+
+ 1255 04ca 23       		.byte	35
+ 1256 04cb 10       		.byte	16
+ 1257 04cc 25       		.byte	37
+ 1258 04cd 01       		.byte	1
+ 1259 04ce 26       		.byte	38
+ 1260 04cf 18       		.byte	24
+ 1261 04d0 27       		.byte	39
+ 1262 04d1 48       		.byte	72
+ 1263 04d2 2D       		.byte	45
+ 1264 04d3 80       		.byte	-128
+ 1265 04d4 30       		.byte	48
+ 1266 04d5 08       		.byte	8
+ 1267 04d6 33       		.byte	51
+ 1268 04d7 40       		.byte	64
+ 1269 04d8 36       		.byte	54
+ 1270 04d9 10       		.byte	16
+ 1271 04da 37       		.byte	55
+ 1272 04db 04       		.byte	4
+ 1273 04dc 45       		.byte	69
+ 1274 04dd 08       		.byte	8
+ 1275 04de 47       		.byte	71
+ 1276 04df 01       		.byte	1
+ 1277 04e0 4D       		.byte	77
+ 1278 04e1 01       		.byte	1
+ 1279 04e2 57       		.byte	87
+ 1280 04e3 40       		.byte	64
+ 1281 04e4 58       		.byte	88
+ 1282 04e5 08       		.byte	8
+ 1283 04e6 59       		.byte	89
+ 1284 04e7 11       		.byte	17
+ 1285 04e8 5A       		.byte	90
+ 1286 04e9 80       		.byte	-128
+ 1287 04ea 60       		.byte	96
+ 1288 04eb 04       		.byte	4
+ 1289 04ec 61       		.byte	97
+ 1290 04ed 82       		.byte	-126
+ 1291 04ee 85       		.byte	-123
+ 1292 04ef 02       		.byte	2
+ 1293 04f0 C0       		.byte	-64
+ 1294 04f1 FD       		.byte	-3
+ 1295 04f2 C2       		.byte	-62
+ 1296 04f3 FC       		.byte	-4
+ 1297 04f4 C4       		.byte	-60
+ 1298 04f5 FE       		.byte	-2
+ 1299 04f6 CA       		.byte	-54
+ 1300 04f7 10       		.byte	16
+ 1301 04f8 CC       		.byte	-52
+ 1302 04f9 6A       		.byte	106
+ 1303 04fa D0       		.byte	-48
+ 1304 04fb C0       		.byte	-64
+ 1305 04fc D6       		.byte	-42
+ 1306 04fd 0F       		.byte	15
+ 1307 04fe D8       		.byte	-40
+ 1308 04ff 0D       		.byte	13
+ 1309 0500 E0       		.byte	-32
+ 1310 0501 04       		.byte	4
+ 1311 0502 EC       		.byte	-20
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 24
+
+
+ 1312 0503 10       		.byte	16
+ 1313 0504 EE       		.byte	-18
+ 1314 0505 08       		.byte	8
+ 1315 0506 EE       		.byte	-18
+ 1316 0507 04       		.byte	4
+ 1317 0508 00       		.byte	0
+ 1318 0509 06       		.byte	6
+ 1319 050a 01       		.byte	1
+ 1320 050b 05       		.byte	5
+ 1321 050c 05       		.byte	5
+ 1322 050d 10       		.byte	16
+ 1323 050e 08       		.byte	8
+ 1324 050f 06       		.byte	6
+ 1325 0510 09       		.byte	9
+ 1326 0511 30       		.byte	48
+ 1327 0512 0C       		.byte	12
+ 1328 0513 08       		.byte	8
+ 1329 0514 0D       		.byte	13
+ 1330 0515 3F       		.byte	63
+ 1331 0516 10       		.byte	16
+ 1332 0517 01       		.byte	1
+ 1333 0518 11       		.byte	17
+ 1334 0519 3C       		.byte	60
+ 1335 051a 13       		.byte	19
+ 1336 051b 03       		.byte	3
+ 1337 051c 14       		.byte	20
+ 1338 051d 04       		.byte	4
+ 1339 051e 15       		.byte	21
+ 1340 051f 0F       		.byte	15
+ 1341 0520 16       		.byte	22
+ 1342 0521 02       		.byte	2
+ 1343 0522 17       		.byte	23
+ 1344 0523 30       		.byte	48
+ 1345 0524 18       		.byte	24
+ 1346 0525 01       		.byte	1
+ 1347 0526 19       		.byte	25
+ 1348 0527 0A       		.byte	10
+ 1349 0528 1C       		.byte	28
+ 1350 0529 04       		.byte	4
+ 1351 052a 1D       		.byte	29
+ 1352 052b 20       		.byte	32
+ 1353 052c 1E       		.byte	30
+ 1354 052d 02       		.byte	2
+ 1355 052e 24       		.byte	36
+ 1356 052f 01       		.byte	1
+ 1357 0530 25       		.byte	37
+ 1358 0531 0F       		.byte	15
+ 1359 0532 2B       		.byte	43
+ 1360 0533 0F       		.byte	15
+ 1361 0534 2D       		.byte	45
+ 1362 0535 30       		.byte	48
+ 1363 0536 2F       		.byte	47
+ 1364 0537 0F       		.byte	15
+ 1365 0538 30       		.byte	48
+ 1366 0539 04       		.byte	4
+ 1367 053a 32       		.byte	50
+ 1368 053b 01       		.byte	1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 25
+
+
+ 1369 053c 33       		.byte	51
+ 1370 053d 3C       		.byte	60
+ 1371 053e 34       		.byte	52
+ 1372 053f 08       		.byte	8
+ 1373 0540 36       		.byte	54
+ 1374 0541 02       		.byte	2
+ 1375 0542 37       		.byte	55
+ 1376 0543 03       		.byte	3
+ 1377 0544 38       		.byte	56
+ 1378 0545 80       		.byte	-128
+ 1379 0546 3B       		.byte	59
+ 1380 0547 0A       		.byte	10
+ 1381 0548 3E       		.byte	62
+ 1382 0549 11       		.byte	17
+ 1383 054a 56       		.byte	86
+ 1384 054b 02       		.byte	2
+ 1385 054c 57       		.byte	87
+ 1386 054d 10       		.byte	16
+ 1387 054e 58       		.byte	88
+ 1388 054f 04       		.byte	4
+ 1389 0550 59       		.byte	89
+ 1390 0551 04       		.byte	4
+ 1391 0552 5B       		.byte	91
+ 1392 0553 04       		.byte	4
+ 1393 0554 5C       		.byte	92
+ 1394 0555 22       		.byte	34
+ 1395 0556 5D       		.byte	93
+ 1396 0557 20       		.byte	32
+ 1397 0558 5F       		.byte	95
+ 1398 0559 01       		.byte	1
+ 1399 055a 80       		.byte	-128
+ 1400 055b 01       		.byte	1
+ 1401 055c 82       		.byte	-126
+ 1402 055d 02       		.byte	2
+ 1403 055e 84       		.byte	-124
+ 1404 055f 06       		.byte	6
+ 1405 0560 86       		.byte	-122
+ 1406 0561 20       		.byte	32
+ 1407 0562 8A       		.byte	-118
+ 1408 0563 80       		.byte	-128
+ 1409 0564 8C       		.byte	-116
+ 1410 0565 08       		.byte	8
+ 1411 0566 8E       		.byte	-114
+ 1412 0567 25       		.byte	37
+ 1413 0568 90       		.byte	-112
+ 1414 0569 01       		.byte	1
+ 1415 056a 92       		.byte	-110
+ 1416 056b 24       		.byte	36
+ 1417 056c 93       		.byte	-109
+ 1418 056d 01       		.byte	1
+ 1419 056e 94       		.byte	-108
+ 1420 056f 05       		.byte	5
+ 1421 0570 95       		.byte	-107
+ 1422 0571 03       		.byte	3
+ 1423 0572 96       		.byte	-106
+ 1424 0573 0A       		.byte	10
+ 1425 0574 99       		.byte	-103
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 26
+
+
+ 1426 0575 02       		.byte	2
+ 1427 0576 9A       		.byte	-102
+ 1428 0577 10       		.byte	16
+ 1429 0578 9E       		.byte	-98
+ 1430 0579 62       		.byte	98
+ 1431 057a A0       		.byte	-96
+ 1432 057b 01       		.byte	1
+ 1433 057c A2       		.byte	-94
+ 1434 057d 02       		.byte	2
+ 1435 057e A3       		.byte	-93
+ 1436 057f 02       		.byte	2
+ 1437 0580 A7       		.byte	-89
+ 1438 0581 02       		.byte	2
+ 1439 0582 A8       		.byte	-88
+ 1440 0583 0F       		.byte	15
+ 1441 0584 A9       		.byte	-87
+ 1442 0585 03       		.byte	3
+ 1443 0586 AA       		.byte	-86
+ 1444 0587 40       		.byte	64
+ 1445 0588 AD       		.byte	-83
+ 1446 0589 02       		.byte	2
+ 1447 058a B1       		.byte	-79
+ 1448 058b 03       		.byte	3
+ 1449 058c B2       		.byte	-78
+ 1450 058d 1F       		.byte	31
+ 1451 058e B4       		.byte	-76
+ 1452 058f E0       		.byte	-32
+ 1453 0590 B7       		.byte	-73
+ 1454 0591 03       		.byte	3
+ 1455 0592 BA       		.byte	-70
+ 1456 0593 20       		.byte	32
+ 1457 0594 D8       		.byte	-40
+ 1458 0595 04       		.byte	4
+ 1459 0596 D9       		.byte	-39
+ 1460 0597 04       		.byte	4
+ 1461 0598 DC       		.byte	-36
+ 1462 0599 11       		.byte	17
+ 1463 059a DF       		.byte	-33
+ 1464 059b 01       		.byte	1
+ 1465 059c 00       		.byte	0
+ 1466 059d 08       		.byte	8
+ 1467 059e 02       		.byte	2
+ 1468 059f 60       		.byte	96
+ 1469 05a0 03       		.byte	3
+ 1470 05a1 09       		.byte	9
+ 1471 05a2 04       		.byte	4
+ 1472 05a3 90       		.byte	-112
+ 1473 05a4 05       		.byte	5
+ 1474 05a5 04       		.byte	4
+ 1475 05a6 07       		.byte	7
+ 1476 05a7 52       		.byte	82
+ 1477 05a8 08       		.byte	8
+ 1478 05a9 82       		.byte	-126
+ 1479 05aa 0A       		.byte	10
+ 1480 05ab 14       		.byte	20
+ 1481 05ac 0C       		.byte	12
+ 1482 05ad 22       		.byte	34
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 27
+
+
+ 1483 05ae 0D       		.byte	13
+ 1484 05af 08       		.byte	8
+ 1485 05b0 0E       		.byte	14
+ 1486 05b1 02       		.byte	2
+ 1487 05b2 10       		.byte	16
+ 1488 05b3 44       		.byte	68
+ 1489 05b4 17       		.byte	23
+ 1490 05b5 04       		.byte	4
+ 1491 05b6 1A       		.byte	26
+ 1492 05b7 10       		.byte	16
+ 1493 05b8 1B       		.byte	27
+ 1494 05b9 14       		.byte	20
+ 1495 05ba 1D       		.byte	29
+ 1496 05bb 04       		.byte	4
+ 1497 05bc 1E       		.byte	30
+ 1498 05bd 88       		.byte	-120
+ 1499 05be 1F       		.byte	31
+ 1500 05bf 44       		.byte	68
+ 1501 05c0 21       		.byte	33
+ 1502 05c1 02       		.byte	2
+ 1503 05c2 22       		.byte	34
+ 1504 05c3 40       		.byte	64
+ 1505 05c4 24       		.byte	36
+ 1506 05c5 50       		.byte	80
+ 1507 05c6 25       		.byte	37
+ 1508 05c7 01       		.byte	1
+ 1509 05c8 26       		.byte	38
+ 1510 05c9 88       		.byte	-120
+ 1511 05ca 27       		.byte	39
+ 1512 05cb 40       		.byte	64
+ 1513 05cc 28       		.byte	40
+ 1514 05cd 46       		.byte	70
+ 1515 05ce 2B       		.byte	43
+ 1516 05cf 10       		.byte	16
+ 1517 05d0 2C       		.byte	44
+ 1518 05d1 01       		.byte	1
+ 1519 05d2 2F       		.byte	47
+ 1520 05d3 14       		.byte	20
+ 1521 05d4 31       		.byte	49
+ 1522 05d5 02       		.byte	2
+ 1523 05d6 32       		.byte	50
+ 1524 05d7 24       		.byte	36
+ 1525 05d8 35       		.byte	53
+ 1526 05d9 40       		.byte	64
+ 1527 05da 36       		.byte	54
+ 1528 05db 19       		.byte	25
+ 1529 05dc 3C       		.byte	60
+ 1530 05dd 40       		.byte	64
+ 1531 05de 3E       		.byte	62
+ 1532 05df 2A       		.byte	42
+ 1533 05e0 5E       		.byte	94
+ 1534 05e1 80       		.byte	-128
+ 1535 05e2 6C       		.byte	108
+ 1536 05e3 22       		.byte	34
+ 1537 05e4 6D       		.byte	109
+ 1538 05e5 10       		.byte	16
+ 1539 05e6 6F       		.byte	111
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 28
+
+
+ 1540 05e7 04       		.byte	4
+ 1541 05e8 74       		.byte	116
+ 1542 05e9 40       		.byte	64
+ 1543 05ea 75       		.byte	117
+ 1544 05eb 40       		.byte	64
+ 1545 05ec 76       		.byte	118
+ 1546 05ed 28       		.byte	40
+ 1547 05ee 77       		.byte	119
+ 1548 05ef 20       		.byte	32
+ 1549 05f0 79       		.byte	121
+ 1550 05f1 01       		.byte	1
+ 1551 05f2 7A       		.byte	122
+ 1552 05f3 80       		.byte	-128
+ 1553 05f4 88       		.byte	-120
+ 1554 05f5 01       		.byte	1
+ 1555 05f6 89       		.byte	-119
+ 1556 05f7 08       		.byte	8
+ 1557 05f8 90       		.byte	-112
+ 1558 05f9 82       		.byte	-126
+ 1559 05fa 92       		.byte	-110
+ 1560 05fb 0C       		.byte	12
+ 1561 05fc 94       		.byte	-108
+ 1562 05fd 10       		.byte	16
+ 1563 05fe 95       		.byte	-107
+ 1564 05ff 05       		.byte	5
+ 1565 0600 96       		.byte	-106
+ 1566 0601 80       		.byte	-128
+ 1567 0602 97       		.byte	-105
+ 1568 0603 98       		.byte	-104
+ 1569 0604 98       		.byte	-104
+ 1570 0605 C6       		.byte	-58
+ 1571 0606 9A       		.byte	-102
+ 1572 0607 51       		.byte	81
+ 1573 0608 9B       		.byte	-101
+ 1574 0609 01       		.byte	1
+ 1575 060a 9E       		.byte	-98
+ 1576 060b 8A       		.byte	-118
+ 1577 060c 9F       		.byte	-97
+ 1578 060d 60       		.byte	96
+ 1579 060e A0       		.byte	-96
+ 1580 060f 04       		.byte	4
+ 1581 0610 A1       		.byte	-95
+ 1582 0611 08       		.byte	8
+ 1583 0612 A2       		.byte	-94
+ 1584 0613 01       		.byte	1
+ 1585 0614 A3       		.byte	-93
+ 1586 0615 08       		.byte	8
+ 1587 0616 A4       		.byte	-92
+ 1588 0617 40       		.byte	64
+ 1589 0618 A5       		.byte	-91
+ 1590 0619 14       		.byte	20
+ 1591 061a A7       		.byte	-89
+ 1592 061b 16       		.byte	22
+ 1593 061c C0       		.byte	-64
+ 1594 061d DF       		.byte	-33
+ 1595 061e C2       		.byte	-62
+ 1596 061f FF       		.byte	-1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 29
+
+
+ 1597 0620 C4       		.byte	-60
+ 1598 0621 2A       		.byte	42
+ 1599 0622 CA       		.byte	-54
+ 1600 0623 7F       		.byte	127
+ 1601 0624 CC       		.byte	-52
+ 1602 0625 F7       		.byte	-9
+ 1603 0626 CE       		.byte	-50
+ 1604 0627 F0       		.byte	-16
+ 1605 0628 D6       		.byte	-42
+ 1606 0629 10       		.byte	16
+ 1607 062a EE       		.byte	-18
+ 1608 062b 04       		.byte	4
+ 1609 062c 05       		.byte	5
+ 1610 062d 20       		.byte	32
+ 1611 062e 07       		.byte	7
+ 1612 062f 18       		.byte	24
+ 1613 0630 09       		.byte	9
+ 1614 0631 28       		.byte	40
+ 1615 0632 0E       		.byte	14
+ 1616 0633 04       		.byte	4
+ 1617 0634 11       		.byte	17
+ 1618 0635 01       		.byte	1
+ 1619 0636 13       		.byte	19
+ 1620 0637 06       		.byte	6
+ 1621 0638 15       		.byte	21
+ 1622 0639 18       		.byte	24
+ 1623 063a 17       		.byte	23
+ 1624 063b 22       		.byte	34
+ 1625 063c 18       		.byte	24
+ 1626 063d 1D       		.byte	29
+ 1627 063e 1C       		.byte	28
+ 1628 063f 10       		.byte	16
+ 1629 0640 1D       		.byte	29
+ 1630 0641 20       		.byte	32
+ 1631 0642 1E       		.byte	30
+ 1632 0643 05       		.byte	5
+ 1633 0644 21       		.byte	33
+ 1634 0645 38       		.byte	56
+ 1635 0646 23       		.byte	35
+ 1636 0647 04       		.byte	4
+ 1637 0648 24       		.byte	36
+ 1638 0649 1D       		.byte	29
+ 1639 064a 25       		.byte	37
+ 1640 064b 12       		.byte	18
+ 1641 064c 27       		.byte	39
+ 1642 064d 20       		.byte	32
+ 1643 064e 28       		.byte	40
+ 1644 064f 02       		.byte	2
+ 1645 0650 2A       		.byte	42
+ 1646 0651 0C       		.byte	12
+ 1647 0652 30       		.byte	48
+ 1648 0653 18       		.byte	24
+ 1649 0654 31       		.byte	49
+ 1650 0655 3E       		.byte	62
+ 1651 0656 32       		.byte	50
+ 1652 0657 03       		.byte	3
+ 1653 0658 34       		.byte	52
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 30
+
+
+ 1654 0659 04       		.byte	4
+ 1655 065a 35       		.byte	53
+ 1656 065b 01       		.byte	1
+ 1657 065c 38       		.byte	56
+ 1658 065d 0A       		.byte	10
+ 1659 065e 3E       		.byte	62
+ 1660 065f 11       		.byte	17
+ 1661 0660 3F       		.byte	63
+ 1662 0661 10       		.byte	16
+ 1663 0662 40       		.byte	64
+ 1664 0663 04       		.byte	4
+ 1665 0664 46       		.byte	70
+ 1666 0665 04       		.byte	4
+ 1667 0666 49       		.byte	73
+ 1668 0667 FF       		.byte	-1
+ 1669 0668 4A       		.byte	74
+ 1670 0669 07       		.byte	7
+ 1671 066a 4B       		.byte	75
+ 1672 066b FF       		.byte	-1
+ 1673 066c 4C       		.byte	76
+ 1674 066d 40       		.byte	64
+ 1675 066e 4D       		.byte	77
+ 1676 066f 20       		.byte	32
+ 1677 0670 4E       		.byte	78
+ 1678 0671 F0       		.byte	-16
+ 1679 0672 4F       		.byte	79
+ 1680 0673 05       		.byte	5
+ 1681 0674 50       		.byte	80
+ 1682 0675 08       		.byte	8
+ 1683 0676 58       		.byte	88
+ 1684 0677 04       		.byte	4
+ 1685 0678 59       		.byte	89
+ 1686 0679 04       		.byte	4
+ 1687 067a 5A       		.byte	90
+ 1688 067b 04       		.byte	4
+ 1689 067c 5C       		.byte	92
+ 1690 067d 22       		.byte	34
+ 1691 067e 5D       		.byte	93
+ 1692 067f 02       		.byte	2
+ 1693 0680 5F       		.byte	95
+ 1694 0681 01       		.byte	1
+ 1695 0682 60       		.byte	96
+ 1696 0683 40       		.byte	64
+ 1697 0684 61       		.byte	97
+ 1698 0685 A8       		.byte	-88
+ 1699 0686 62       		.byte	98
+ 1700 0687 40       		.byte	64
+ 1701 0688 63       		.byte	99
+ 1702 0689 20       		.byte	32
+ 1703 068a 85       		.byte	-123
+ 1704 068b 61       		.byte	97
+ 1705 068c 87       		.byte	-121
+ 1706 068d 8E       		.byte	-114
+ 1707 068e 88       		.byte	-120
+ 1708 068f 04       		.byte	4
+ 1709 0690 89       		.byte	-119
+ 1710 0691 61       		.byte	97
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 31
+
+
+ 1711 0692 8A       		.byte	-118
+ 1712 0693 58       		.byte	88
+ 1713 0694 8B       		.byte	-117
+ 1714 0695 96       		.byte	-106
+ 1715 0696 8D       		.byte	-115
+ 1716 0697 60       		.byte	96
+ 1717 0698 8F       		.byte	-113
+ 1718 0699 80       		.byte	-128
+ 1719 069a 91       		.byte	-111
+ 1720 069b 5C       		.byte	92
+ 1721 069c 93       		.byte	-109
+ 1722 069d 83       		.byte	-125
+ 1723 069e 94       		.byte	-108
+ 1724 069f 12       		.byte	18
+ 1725 06a0 96       		.byte	-106
+ 1726 06a1 85       		.byte	-123
+ 1727 06a2 98       		.byte	-104
+ 1728 06a3 1F       		.byte	31
+ 1729 06a4 A3       		.byte	-93
+ 1730 06a5 08       		.byte	8
+ 1731 06a6 A7       		.byte	-89
+ 1732 06a7 1C       		.byte	28
+ 1733 06a8 A8       		.byte	-88
+ 1734 06a9 1F       		.byte	31
+ 1735 06aa AB       		.byte	-85
+ 1736 06ab A3       		.byte	-93
+ 1737 06ac AC       		.byte	-84
+ 1738 06ad 09       		.byte	9
+ 1739 06ae AE       		.byte	-82
+ 1740 06af A6       		.byte	-90
+ 1741 06b0 B0       		.byte	-80
+ 1742 06b1 20       		.byte	32
+ 1743 06b2 B2       		.byte	-78
+ 1744 06b3 03       		.byte	3
+ 1745 06b4 B3       		.byte	-77
+ 1746 06b5 1A       		.byte	26
+ 1747 06b6 B4       		.byte	-76
+ 1748 06b7 1C       		.byte	28
+ 1749 06b8 B5       		.byte	-75
+ 1750 06b9 F0       		.byte	-16
+ 1751 06ba B6       		.byte	-74
+ 1752 06bb C0       		.byte	-64
+ 1753 06bc B7       		.byte	-73
+ 1754 06bd 0F       		.byte	15
+ 1755 06be BB       		.byte	-69
+ 1756 06bf A8       		.byte	-88
+ 1757 06c0 BE       		.byte	-66
+ 1758 06c1 40       		.byte	64
+ 1759 06c2 C0       		.byte	-64
+ 1760 06c3 62       		.byte	98
+ 1761 06c4 C1       		.byte	-63
+ 1762 06c5 04       		.byte	4
+ 1763 06c6 C2       		.byte	-62
+ 1764 06c7 05       		.byte	5
+ 1765 06c8 C4       		.byte	-60
+ 1766 06c9 01       		.byte	1
+ 1767 06ca C5       		.byte	-59
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 32
+
+
+ 1768 06cb 0E       		.byte	14
+ 1769 06cc C6       		.byte	-58
+ 1770 06cd 0C       		.byte	12
+ 1771 06ce C8       		.byte	-56
+ 1772 06cf 05       		.byte	5
+ 1773 06d0 C9       		.byte	-55
+ 1774 06d1 FF       		.byte	-1
+ 1775 06d2 CA       		.byte	-54
+ 1776 06d3 FF       		.byte	-1
+ 1777 06d4 CB       		.byte	-53
+ 1778 06d5 FF       		.byte	-1
+ 1779 06d6 CC       		.byte	-52
+ 1780 06d7 62       		.byte	98
+ 1781 06d8 CD       		.byte	-51
+ 1782 06d9 A0       		.byte	-96
+ 1783 06da CE       		.byte	-50
+ 1784 06db F0       		.byte	-16
+ 1785 06dc CF       		.byte	-49
+ 1786 06dd 41       		.byte	65
+ 1787 06de D0       		.byte	-48
+ 1788 06df 0C       		.byte	12
+ 1789 06e0 D4       		.byte	-44
+ 1790 06e1 01       		.byte	1
+ 1791 06e2 D8       		.byte	-40
+ 1792 06e3 04       		.byte	4
+ 1793 06e4 D9       		.byte	-39
+ 1794 06e5 04       		.byte	4
+ 1795 06e6 DA       		.byte	-38
+ 1796 06e7 04       		.byte	4
+ 1797 06e8 DB       		.byte	-37
+ 1798 06e9 04       		.byte	4
+ 1799 06ea DC       		.byte	-36
+ 1800 06eb 22       		.byte	34
+ 1801 06ec DD       		.byte	-35
+ 1802 06ed 22       		.byte	34
+ 1803 06ee DF       		.byte	-33
+ 1804 06ef 01       		.byte	1
+ 1805 06f0 E6       		.byte	-26
+ 1806 06f1 40       		.byte	64
+ 1807 06f2 E7       		.byte	-25
+ 1808 06f3 02       		.byte	2
+ 1809 06f4 E9       		.byte	-23
+ 1810 06f5 10       		.byte	16
+ 1811 06f6 EA       		.byte	-22
+ 1812 06f7 30       		.byte	48
+ 1813 06f8 EB       		.byte	-21
+ 1814 06f9 10       		.byte	16
+ 1815 06fa ED       		.byte	-19
+ 1816 06fb 10       		.byte	16
+ 1817 06fc EE       		.byte	-18
+ 1818 06fd 10       		.byte	16
+ 1819 06fe EF       		.byte	-17
+ 1820 06ff 12       		.byte	18
+ 1821 0700 00       		.byte	0
+ 1822 0701 80       		.byte	-128
+ 1823 0702 02       		.byte	2
+ 1824 0703 01       		.byte	1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 33
+
+
+ 1825 0704 05       		.byte	5
+ 1826 0705 10       		.byte	16
+ 1827 0706 08       		.byte	8
+ 1828 0707 40       		.byte	64
+ 1829 0708 09       		.byte	9
+ 1830 0709 50       		.byte	80
+ 1831 070a 0C       		.byte	12
+ 1832 070b 20       		.byte	32
+ 1833 070c 0E       		.byte	14
+ 1834 070d 10       		.byte	16
+ 1835 070e 10       		.byte	16
+ 1836 070f 08       		.byte	8
+ 1837 0710 11       		.byte	17
+ 1838 0711 08       		.byte	8
+ 1839 0712 13       		.byte	19
+ 1840 0713 10       		.byte	16
+ 1841 0714 15       		.byte	21
+ 1842 0715 10       		.byte	16
+ 1843 0716 16       		.byte	22
+ 1844 0717 02       		.byte	2
+ 1845 0718 18       		.byte	24
+ 1846 0719 48       		.byte	72
+ 1847 071a 19       		.byte	25
+ 1848 071b 08       		.byte	8
+ 1849 071c 1D       		.byte	29
+ 1850 071d 90       		.byte	-112
+ 1851 071e 1E       		.byte	30
+ 1852 071f 30       		.byte	48
+ 1853 0720 1F       		.byte	31
+ 1854 0721 12       		.byte	18
+ 1855 0722 21       		.byte	33
+ 1856 0723 02       		.byte	2
+ 1857 0724 23       		.byte	35
+ 1858 0725 04       		.byte	4
+ 1859 0726 24       		.byte	36
+ 1860 0727 04       		.byte	4
+ 1861 0728 25       		.byte	37
+ 1862 0729 5C       		.byte	92
+ 1863 072a 27       		.byte	39
+ 1864 072b 01       		.byte	1
+ 1865 072c 28       		.byte	40
+ 1866 072d 40       		.byte	64
+ 1867 072e 29       		.byte	41
+ 1868 072f 08       		.byte	8
+ 1869 0730 2C       		.byte	44
+ 1870 0731 88       		.byte	-120
+ 1871 0732 2D       		.byte	45
+ 1872 0733 08       		.byte	8
+ 1873 0734 30       		.byte	48
+ 1874 0735 80       		.byte	-128
+ 1875 0736 31       		.byte	49
+ 1876 0737 0A       		.byte	10
+ 1877 0738 37       		.byte	55
+ 1878 0739 01       		.byte	1
+ 1879 073a 38       		.byte	56
+ 1880 073b 04       		.byte	4
+ 1881 073c 3A       		.byte	58
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 34
+
+
+ 1882 073d 10       		.byte	16
+ 1883 073e 3C       		.byte	60
+ 1884 073f 80       		.byte	-128
+ 1885 0740 3D       		.byte	61
+ 1886 0741 28       		.byte	40
+ 1887 0742 40       		.byte	64
+ 1888 0743 40       		.byte	64
+ 1889 0744 45       		.byte	69
+ 1890 0745 81       		.byte	-127
+ 1891 0746 47       		.byte	71
+ 1892 0747 10       		.byte	16
+ 1893 0748 4C       		.byte	76
+ 1894 0749 01       		.byte	1
+ 1895 074a 4D       		.byte	77
+ 1896 074b 04       		.byte	4
+ 1897 074c 4E       		.byte	78
+ 1898 074d 08       		.byte	8
+ 1899 074e 50       		.byte	80
+ 1900 074f 88       		.byte	-120
+ 1901 0750 56       		.byte	86
+ 1902 0751 80       		.byte	-128
+ 1903 0752 5C       		.byte	92
+ 1904 0753 80       		.byte	-128
+ 1905 0754 5E       		.byte	94
+ 1906 0755 08       		.byte	8
+ 1907 0756 5F       		.byte	95
+ 1908 0757 22       		.byte	34
+ 1909 0758 87       		.byte	-121
+ 1910 0759 04       		.byte	4
+ 1911 075a 88       		.byte	-120
+ 1912 075b 40       		.byte	64
+ 1913 075c 8A       		.byte	-118
+ 1914 075d 02       		.byte	2
+ 1915 075e 8B       		.byte	-117
+ 1916 075f 20       		.byte	32
+ 1917 0760 8C       		.byte	-116
+ 1918 0761 84       		.byte	-124
+ 1919 0762 90       		.byte	-112
+ 1920 0763 02       		.byte	2
+ 1921 0764 91       		.byte	-111
+ 1922 0765 10       		.byte	16
+ 1923 0766 95       		.byte	-107
+ 1924 0767 04       		.byte	4
+ 1925 0768 97       		.byte	-105
+ 1926 0769 30       		.byte	48
+ 1927 076a 9A       		.byte	-102
+ 1928 076b 11       		.byte	17
+ 1929 076c 9B       		.byte	-101
+ 1930 076d 12       		.byte	18
+ 1931 076e 9E       		.byte	-98
+ 1932 076f 82       		.byte	-126
+ 1933 0770 A0       		.byte	-96
+ 1934 0771 20       		.byte	32
+ 1935 0772 A1       		.byte	-95
+ 1936 0773 01       		.byte	1
+ 1937 0774 A2       		.byte	-94
+ 1938 0775 0C       		.byte	12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 35
+
+
+ 1939 0776 A5       		.byte	-91
+ 1940 0777 14       		.byte	20
+ 1941 0778 A6       		.byte	-90
+ 1942 0779 10       		.byte	16
+ 1943 077a A7       		.byte	-89
+ 1944 077b 02       		.byte	2
+ 1945 077c C0       		.byte	-64
+ 1946 077d 41       		.byte	65
+ 1947 077e C2       		.byte	-62
+ 1948 077f 63       		.byte	99
+ 1949 0780 C4       		.byte	-60
+ 1950 0781 C6       		.byte	-58
+ 1951 0782 CA       		.byte	-54
+ 1952 0783 E3       		.byte	-29
+ 1953 0784 CC       		.byte	-52
+ 1954 0785 8B       		.byte	-117
+ 1955 0786 CE       		.byte	-50
+ 1956 0787 76       		.byte	118
+ 1957 0788 D0       		.byte	-48
+ 1958 0789 B1       		.byte	-79
+ 1959 078a D2       		.byte	-46
+ 1960 078b 30       		.byte	48
+ 1961 078c D6       		.byte	-42
+ 1962 078d F0       		.byte	-16
+ 1963 078e E0       		.byte	-32
+ 1964 078f 02       		.byte	2
+ 1965 0790 EC       		.byte	-20
+ 1966 0791 10       		.byte	16
+ 1967 0792 EE       		.byte	-18
+ 1968 0793 08       		.byte	8
+ 1969 0794 33       		.byte	51
+ 1970 0795 21       		.byte	33
+ 1971 0796 36       		.byte	54
+ 1972 0797 80       		.byte	-128
+ 1973 0798 37       		.byte	55
+ 1974 0799 02       		.byte	2
+ 1975 079a 3B       		.byte	59
+ 1976 079b 80       		.byte	-128
+ 1977 079c 83       		.byte	-125
+ 1978 079d 08       		.byte	8
+ 1979 079e 87       		.byte	-121
+ 1980 079f 01       		.byte	1
+ 1981 07a0 CC       		.byte	-52
+ 1982 07a1 F0       		.byte	-16
+ 1983 07a2 CE       		.byte	-50
+ 1984 07a3 10       		.byte	16
+ 1985 07a4 E2       		.byte	-30
+ 1986 07a5 60       		.byte	96
+ 1987 07a6 33       		.byte	51
+ 1988 07a7 80       		.byte	-128
+ 1989 07a8 8B       		.byte	-117
+ 1990 07a9 02       		.byte	2
+ 1991 07aa 97       		.byte	-105
+ 1992 07ab 80       		.byte	-128
+ 1993 07ac 9B       		.byte	-101
+ 1994 07ad 08       		.byte	8
+ 1995 07ae 9F       		.byte	-97
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 36
+
+
+ 1996 07af 02       		.byte	2
+ 1997 07b0 A6       		.byte	-90
+ 1998 07b1 80       		.byte	-128
+ 1999 07b2 A7       		.byte	-89
+ 2000 07b3 20       		.byte	32
+ 2001 07b4 CC       		.byte	-52
+ 2002 07b5 10       		.byte	16
+ 2003 07b6 5B       		.byte	91
+ 2004 07b7 08       		.byte	8
+ 2005 07b8 87       		.byte	-121
+ 2006 07b9 40       		.byte	64
+ 2007 07ba 97       		.byte	-105
+ 2008 07bb 80       		.byte	-128
+ 2009 07bc 9B       		.byte	-101
+ 2010 07bd 08       		.byte	8
+ 2011 07be A6       		.byte	-90
+ 2012 07bf 80       		.byte	-128
+ 2013 07c0 A7       		.byte	-89
+ 2014 07c1 A0       		.byte	-96
+ 2015 07c2 D6       		.byte	-42
+ 2016 07c3 40       		.byte	64
+ 2017 07c4 E2       		.byte	-30
+ 2018 07c5 10       		.byte	16
+ 2019 07c6 A6       		.byte	-90
+ 2020 07c7 80       		.byte	-128
+ 2021 07c8 A7       		.byte	-89
+ 2022 07c9 80       		.byte	-128
+ 2023 07ca AB       		.byte	-85
+ 2024 07cb 20       		.byte	32
+ 2025 07cc EE       		.byte	-18
+ 2026 07cd 20       		.byte	32
+ 2027 07ce 10       		.byte	16
+ 2028 07cf 80       		.byte	-128
+ 2029 07d0 16       		.byte	22
+ 2030 07d1 10       		.byte	16
+ 2031 07d2 70       		.byte	112
+ 2032 07d3 02       		.byte	2
+ 2033 07d4 76       		.byte	118
+ 2034 07d5 80       		.byte	-128
+ 2035 07d6 7E       		.byte	126
+ 2036 07d7 08       		.byte	8
+ 2037 07d8 82       		.byte	-126
+ 2038 07d9 08       		.byte	8
+ 2039 07da C4       		.byte	-60
+ 2040 07db 0C       		.byte	12
+ 2041 07dc DC       		.byte	-36
+ 2042 07dd 01       		.byte	1
+ 2043 07de DE       		.byte	-34
+ 2044 07df 05       		.byte	5
+ 2045 07e0 84       		.byte	-124
+ 2046 07e1 02       		.byte	2
+ 2047 07e2 88       		.byte	-120
+ 2048 07e3 02       		.byte	2
+ 2049 07e4 A4       		.byte	-92
+ 2050 07e5 02       		.byte	2
+ 2051 07e6 AA       		.byte	-86
+ 2052 07e7 80       		.byte	-128
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 37
+
+
+ 2053 07e8 B0       		.byte	-80
+ 2054 07e9 80       		.byte	-128
+ 2055 07ea B2       		.byte	-78
+ 2056 07eb 10       		.byte	16
+ 2057 07ec E2       		.byte	-30
+ 2058 07ed 04       		.byte	4
+ 2059 07ee EE       		.byte	-18
+ 2060 07ef 05       		.byte	5
+ 2061 07f0 1B       		.byte	27
+ 2062 07f1 04       		.byte	4
+ 2063 07f2 45       		.byte	69
+ 2064 07f3 08       		.byte	8
+ 2065 07f4 84       		.byte	-124
+ 2066 07f5 04       		.byte	4
+ 2067 07f6 9C       		.byte	-100
+ 2068 07f7 02       		.byte	2
+ 2069 07f8 C6       		.byte	-58
+ 2070 07f9 08       		.byte	8
+ 2071 07fa D0       		.byte	-48
+ 2072 07fb 01       		.byte	1
+ 2073 07fc 08       		.byte	8
+ 2074 07fd 02       		.byte	2
+ 2075 07fe 0B       		.byte	11
+ 2076 07ff 02       		.byte	2
+ 2077 0800 0C       		.byte	12
+ 2078 0801 04       		.byte	4
+ 2079 0802 9C       		.byte	-100
+ 2080 0803 06       		.byte	6
+ 2081 0804 A5       		.byte	-91
+ 2082 0805 08       		.byte	8
+ 2083 0806 AB       		.byte	-85
+ 2084 0807 04       		.byte	4
+ 2085 0808 C2       		.byte	-62
+ 2086 0809 0E       		.byte	14
+ 2087 080a 25       		.byte	37
+ 2088 080b 10       		.byte	16
+ 2089 080c A6       		.byte	-90
+ 2090 080d 80       		.byte	-128
+ 2091 080e AB       		.byte	-85
+ 2092 080f 80       		.byte	-128
+ 2093 0810 C8       		.byte	-56
+ 2094 0811 20       		.byte	32
+ 2095 0812 EE       		.byte	-18
+ 2096 0813 20       		.byte	32
+ 2097 0814 AE       		.byte	-82
+ 2098 0815 80       		.byte	-128
+ 2099 0816 B5       		.byte	-75
+ 2100 0817 10       		.byte	16
+ 2101 0818 EE       		.byte	-18
+ 2102 0819 10       		.byte	16
+ 2103 081a 1F       		.byte	31
+ 2104 081b 80       		.byte	-128
+ 2105 081c A5       		.byte	-91
+ 2106 081d 08       		.byte	8
+ 2107 081e AB       		.byte	-85
+ 2108 081f 01       		.byte	1
+ 2109 0820 C6       		.byte	-58
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 38
+
+
+ 2110 0821 01       		.byte	1
+ 2111 0822 14       		.byte	20
+ 2112 0823 40       		.byte	64
+ 2113 0824 70       		.byte	112
+ 2114 0825 08       		.byte	8
+ 2115 0826 84       		.byte	-124
+ 2116 0827 08       		.byte	8
+ 2117 0828 88       		.byte	-120
+ 2118 0829 40       		.byte	64
+ 2119 082a AF       		.byte	-81
+ 2120 082b 80       		.byte	-128
+ 2121 082c B5       		.byte	-75
+ 2122 082d 08       		.byte	8
+ 2123 082e C4       		.byte	-60
+ 2124 082f 04       		.byte	4
+ 2125 0830 DC       		.byte	-36
+ 2126 0831 01       		.byte	1
+ 2127 0832 E2       		.byte	-30
+ 2128 0833 01       		.byte	1
+ 2129 0834 EC       		.byte	-20
+ 2130 0835 08       		.byte	8
+ 2131 0836 00       		.byte	0
+ 2132 0837 06       		.byte	6
+ 2133 0838 01       		.byte	1
+ 2134 0839 01       		.byte	1
+ 2135 083a 0C       		.byte	12
+ 2136 083b 06       		.byte	6
+ 2137 083c 0D       		.byte	13
+ 2138 083d 01       		.byte	1
+ 2139 083e 0E       		.byte	14
+ 2140 083f 06       		.byte	6
+ 2141 0840 0F       		.byte	15
+ 2142 0841 01       		.byte	1
+ 2143 0842 10       		.byte	16
+ 2144 0843 06       		.byte	6
+ 2145 0844 11       		.byte	17
+ 2146 0845 01       		.byte	1
+ 2147 0846 1C       		.byte	28
+ 2148 0847 06       		.byte	6
+ 2149 0848 1D       		.byte	29
+ 2150 0849 01       		.byte	1
+ 2151 084a 00       		.byte	0
+ 2152 084b BF       		.byte	-65
+ 2153 084c 01       		.byte	1
+ 2154 084d 0A       		.byte	10
+ 2155 084e 00       		.byte	0
+ 2156 084f 00       		.byte	0
+ 2157 0850 10       		.byte	16
+ 2158 0851 40       		.byte	64
+ 2159 0852 00       		.byte	0
+ 2160 0853 00       		.byte	0
+ 2161 0854 B0       		.byte	-80
+ 2162 0855 00       		.byte	0
+ 2163 0856 00       		.byte	0
+ 2164 0857 00       		.byte	0
+ 2165 0858 34       		.byte	52
+ 2166 0859 04       		.byte	4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 39
+
+
+ 2167 085a 01       		.byte	1
+ 2168 085b 00       		.byte	0
+ 2169 085c 01       		.byte	1
+ 2170 085d 9C       		.byte	-100
+ 2171 085e 02       		.byte	2
+ 2172 085f 22       		.byte	34
+ 2173 0860 00       		.byte	0
+ 2174 0861 3F       		.byte	63
+ 2175 0862 00       		.byte	0
+ 2176 0863 00       		.byte	0
+ 2177 0864 80       		.byte	-128
+ 2178 0865 98       		.byte	-104
+ 2179 0866 30       		.byte	48
+ 2180 0867 06       		.byte	6
+ 2181 0868 01       		.byte	1
+ 2182 0869 06       		.byte	6
+ 2183 086a 0E       		.byte	14
+ 2184 086b 00       		.byte	0
+ 2185 086c 91       		.byte	-111
+ 2186 086d B2       		.byte	-78
+ 2187 086e 48       		.byte	72
+ 2188 086f 08       		.byte	8
+ 2189 0870 10       		.byte	16
+ 2190 0871 01       		.byte	1
+ 2191 0872 60       		.byte	96
+ 2192 0873 00       		.byte	0
+ 2193 0874 35       		.byte	53
+ 2194 0875 00       		.byte	0
+ 2195 0876 00       		.byte	0
+ 2196 0877 40       		.byte	64
+ 2197 0878 05       		.byte	5
+ 2198 0879 01       		.byte	1
+ 2199 087a 30       		.byte	48
+ 2200 087b 1E       		.byte	30
+ 2201 087c 05       		.byte	5
+ 2202 087d AA       		.byte	-86
+ 2203 087e 30       		.byte	48
+ 2204 087f 10       		.byte	16
+ 2205 0880 20       		.byte	32
+ 2206 0881 A2       		.byte	-94
+ 2207 0882 10       		.byte	16
+ 2208 0883 18       		.byte	24
+ 2209 0884 04       		.byte	4
+ 2210 0885 22       		.byte	34
+ 2211 0886 31       		.byte	49
+ 2212 0887 00       		.byte	0
+ 2213 0888 0F       		.byte	15
+ 2214 0889 00       		.byte	0
+ 2215 088a 00       		.byte	0
+ 2216 088b 60       		.byte	96
+ 2217 088c 70       		.byte	112
+ 2218 088d 1F       		.byte	31
+ 2219 088e 80       		.byte	-128
+ 2220 088f 80       		.byte	-128
+ 2221 0890 80       		.byte	-128
+ 2222 0891 A0       		.byte	-96
+ 2223 0892 22       		.byte	34
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 40
+
+
+ 2224 0893 00       		.byte	0
+ 2225 0894 00       		.byte	0
+ 2226 0895 00       		.byte	0
+ 2227 0896 00       		.byte	0
+ 2228 0897 40       		.byte	64
+ 2229 0898 26       		.byte	38
+ 2230 0899 00       		.byte	0
+ 2231 089a 00       		.byte	0
+ 2232 089b 00       		.byte	0
+ 2233 089c 05       		.byte	5
+ 2234 089d B0       		.byte	-80
+ 2235 089e 0D       		.byte	13
+ 2236 089f 00       		.byte	0
+ 2237 08a0 06       		.byte	6
+ 2238 08a1 FF       		.byte	-1
+ 2239 08a2 7F       		.byte	127
+ 2240 08a3 FF       		.byte	-1
+ 2241 08a4 42       		.byte	66
+ 2242 08a5 A0       		.byte	-96
+ 2243 08a6 70       		.byte	112
+ 2244 08a7 00       		.byte	0
+ 2245 08a8 0C       		.byte	12
+ 2246 08a9 00       		.byte	0
+ 2247 08aa 00       		.byte	0
+ 2248 08ab 00       		.byte	0
+ 2249 08ac 00       		.byte	0
+ 2250 08ad 00       		.byte	0
+ 2251 08ae 00       		.byte	0
+ 2252 08af 00       		.byte	0
+ 2253 08b0 04       		.byte	4
+ 2254 08b1 04       		.byte	4
+ 2255 08b2 04       		.byte	4
+ 2256 08b3 00       		.byte	0
+ 2257 08b4 11       		.byte	17
+ 2258 08b5 01       		.byte	1
+ 2259 08b6 00       		.byte	0
+ 2260 08b7 01       		.byte	1
+ 2261 08b8 00       		.byte	0
+ 2262 08b9 09       		.byte	9
+ 2263 08ba 40       		.byte	64
+ 2264 08bb 09       		.byte	9
+ 2265 08bc 30       		.byte	48
+ 2266 08bd 09       		.byte	9
+ 2267 08be 00       		.byte	0
+ 2268 08bf 00       		.byte	0
+ 2269 08c0 00       		.byte	0
+ 2270 08c1 00       		.byte	0
+ 2271 08c2 00       		.byte	0
+ 2272 08c3 00       		.byte	0
+ 2273 08c4 00       		.byte	0
+ 2274 08c5 00       		.byte	0
+ 2275 08c6 00       		.byte	0
+ 2276 08c7 00       		.byte	0
+ 2277 08c8 00       		.byte	0
+ 2278 08c9 00       		.byte	0
+ 2279 08ca 00       		.byte	0
+ 2280 08cb 00       		.byte	0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 41
+
+
+ 2281 08cc 00       		.byte	0
+ 2282 08cd 00       		.byte	0
+ 2283 08ce 00       		.byte	0
+ 2284 08cf 00       		.byte	0
+ 2285 08d0 00       		.byte	0
+ 2286 08d1 00       		.byte	0
+ 2287 08d2 00       		.byte	0
+ 2288 08d3 00       		.byte	0
+ 2289 08d4 00       		.byte	0
+ 2290 08d5 00       		.byte	0
+ 2291 08d6 00       		.byte	0
+ 2292 08d7 00       		.byte	0
+ 2293 08d8 70       		.byte	112
+ 2294 08d9 00       		.byte	0
+ 2295 08da 80       		.byte	-128
+ 2296 08db 40       		.byte	64
+ 2297 08dc 70       		.byte	112
+ 2298 08dd 00       		.byte	0
+ 2299 08de 70       		.byte	112
+ 2300 08df 00       		.byte	0
+ 2301 08e0 00       		.byte	0
+ 2302 08e1 00       		.byte	0
+ 2303 08e2 00       		.byte	0
+ 2304 08e3 00       		.byte	0
+ 2305 08e4 40       		.byte	64
+ 2306 08e5 00       		.byte	0
+ 2307 08e6 00       		.byte	0
+ 2308 08e7 00       		.byte	0
+ 2309 08e8 00       		.byte	0
+ 2310 08e9 00       		.byte	0
+ 2311 08ea 00       		.byte	0
+ 2312 08eb 00       		.byte	0
+ 2313 08ec C8       		.byte	-56
+ 2314 08ed 00       		.byte	0
+ 2315 08ee 00       		.byte	0
+ 2316 08ef 00       		.byte	0
+ 2317 08f0 00       		.byte	0
+ 2318 08f1 03       		.byte	3
+ 2319 08f2 03       		.byte	3
+ 2320 08f3 00       		.byte	0
+ 2321 08f4 00       		.byte	0
+ 2322 08f5 00       		.byte	0
+ 2323 08f6 A8       		.byte	-88
+ 2324 08f7 00       		.byte	0
+ 2325 08f8 00       		.byte	0
+ 2326 08f9 00       		.byte	0
+ 2327 08fa 00       		.byte	0
+ 2328 08fb 00       		.byte	0
+ 2329 08fc 00       		.byte	0
+ 2330 08fd 00       		.byte	0
+ 2331 08fe 02       		.byte	2
+ 2332 08ff 00       		.byte	0
+ 2333 0900 00       		.byte	0
+ 2334 0901 00       		.byte	0
+ 2335 0902 00       		.byte	0
+ 2336 0903 00       		.byte	0
+ 2337 0904 00       		.byte	0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 42
+
+
+ 2338 0905 00       		.byte	0
+ 2339 0906 01       		.byte	1
+ 2340 0907 00       		.byte	0
+ 2341 0908 00       		.byte	0
+ 2342 0909 00       		.byte	0
+ 2343 090a 00       		.byte	0
+ 2344 090b 00       		.byte	0
+ 2345 090c 00       		.byte	0
+ 2346 090d 00       		.byte	0
+ 2347 090e 10       		.byte	16
+ 2348 090f 00       		.byte	0
+ 2349 0910 00       		.byte	0
+ 2350 0911 00       		.byte	0
+ 2351 0912 00       		.byte	0
+ 2352 0913 00       		.byte	0
+ 2353 0914 00       		.byte	0
+ 2354 0915 00       		.byte	0
+ 2355 0916 08       		.byte	8
+ 2356 0917 00       		.byte	0
+ 2357 0918 07       		.byte	7
+ 2358 0919 00       		.byte	0
+ 2359 091a 18       		.byte	24
+ 2360 091b 01       		.byte	1
+ 2361 091c 0E       		.byte	14
+ 2362 091d 00       		.byte	0
+ 2363 091e 18       		.byte	24
+ 2364 091f 01       		.byte	1
+ 2365 0920 0E       		.byte	14
+ 2366 0921 00       		.byte	0
+ 2367 0922 18       		.byte	24
+ 2368 0923 01       		.byte	1
+ 2369              		.section	.cywolatch,"a",%progbits
+ 2370              		.align	2
+ 2371              		.type	cy_meta_wonvl, %object
+ 2372              		.size	cy_meta_wonvl, 4
+ 2373              	cy_meta_wonvl:
+ 2374 0000 BC       		.byte	-68
+ 2375 0001 90       		.byte	-112
+ 2376 0002 AC       		.byte	-84
+ 2377 0003 AF       		.byte	-81
+ 2378              		.section	.cycustnvl,"a",%progbits
+ 2379              		.align	2
+ 2380              		.type	cy_meta_custnvl, %object
+ 2381              		.size	cy_meta_custnvl, 4
+ 2382              	cy_meta_custnvl:
+ 2383 0000 00       		.byte	0
+ 2384 0001 00       		.byte	0
+ 2385 0002 40       		.byte	64
+ 2386 0003 05       		.byte	5
+ 2387              		.section	.cymeta,"a",%progbits
+ 2388              		.align	2
+ 2389              		.type	cy_metadata, %object
+ 2390              		.size	cy_metadata, 12
+ 2391              	cy_metadata:
+ 2392 0000 00       		.byte	0
+ 2393 0001 01       		.byte	1
+ 2394 0002 2E       		.byte	46
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 43
+
+
+ 2395 0003 12       		.byte	18
+ 2396 0004 00       		.byte	0
+ 2397 0005 69       		.byte	105
+ 2398 0006 00       		.byte	0
+ 2399 0007 01       		.byte	1
+ 2400 0008 00       		.byte	0
+ 2401 0009 00       		.byte	0
+ 2402 000a 00       		.byte	0
+ 2403 000b 00       		.byte	0
+ 2404              		.section	.cyflashprotect,"a",%progbits
+ 2405              		.align	2
+ 2406              		.type	cy_meta_flashprotect, %object
+ 2407              		.size	cy_meta_flashprotect, 256
+ 2408              	cy_meta_flashprotect:
+ 2409 0000 00000000 		.space	256
+ 2409      00000000 
+ 2409      00000000 
+ 2409      00000000 
+ 2409      00000000 
+ 2410              		.text
+ 2411              	.Letext0:
+ 2412              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 2413              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 2414              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 2415              		.section	.debug_info,"",%progbits
+ 2416              	.Ldebug_info0:
+ 2417 0000 35010000 		.4byte	0x135
+ 2418 0004 0400     		.2byte	0x4
+ 2419 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 2420 000a 04       		.byte	0x4
+ 2421 000b 01       		.uleb128 0x1
+ 2422 000c 24000000 		.4byte	.LASF17
+ 2423 0010 0C       		.byte	0xc
+ 2424 0011 F7010000 		.4byte	.LASF18
+ 2425 0015 7E010000 		.4byte	.LASF19
+ 2426 0019 00000000 		.4byte	.Ldebug_line0
+ 2427 001d 02       		.uleb128 0x2
+ 2428 001e 01       		.byte	0x1
+ 2429 001f 06       		.byte	0x6
+ 2430 0020 72010000 		.4byte	.LASF0
+ 2431 0024 03       		.uleb128 0x3
+ 2432 0025 00000000 		.4byte	.LASF9
+ 2433 0029 01       		.byte	0x1
+ 2434 002a 1D       		.byte	0x1d
+ 2435 002b 2F000000 		.4byte	0x2f
+ 2436 002f 02       		.uleb128 0x2
+ 2437 0030 01       		.byte	0x1
+ 2438 0031 08       		.byte	0x8
+ 2439 0032 16000000 		.4byte	.LASF1
+ 2440 0036 02       		.uleb128 0x2
+ 2441 0037 02       		.byte	0x2
+ 2442 0038 05       		.byte	0x5
+ 2443 0039 5F010000 		.4byte	.LASF2
+ 2444 003d 02       		.uleb128 0x2
+ 2445 003e 02       		.byte	0x2
+ 2446 003f 07       		.byte	0x7
+ 2447 0040 C4000000 		.4byte	.LASF3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 44
+
+
+ 2448 0044 02       		.uleb128 0x2
+ 2449 0045 04       		.byte	0x4
+ 2450 0046 05       		.byte	0x5
+ 2451 0047 69010000 		.4byte	.LASF4
+ 2452 004b 02       		.uleb128 0x2
+ 2453 004c 04       		.byte	0x4
+ 2454 004d 07       		.byte	0x7
+ 2455 004e B2000000 		.4byte	.LASF5
+ 2456 0052 02       		.uleb128 0x2
+ 2457 0053 08       		.byte	0x8
+ 2458 0054 05       		.byte	0x5
+ 2459 0055 51010000 		.4byte	.LASF6
+ 2460 0059 02       		.uleb128 0x2
+ 2461 005a 08       		.byte	0x8
+ 2462 005b 07       		.byte	0x7
+ 2463 005c 06010000 		.4byte	.LASF7
+ 2464 0060 04       		.uleb128 0x4
+ 2465 0061 04       		.byte	0x4
+ 2466 0062 05       		.byte	0x5
+ 2467 0063 696E7400 		.ascii	"int\000"
+ 2468 0067 02       		.uleb128 0x2
+ 2469 0068 04       		.byte	0x4
+ 2470 0069 07       		.byte	0x7
+ 2471 006a F9000000 		.4byte	.LASF8
+ 2472 006e 03       		.uleb128 0x3
+ 2473 006f 1D010000 		.4byte	.LASF10
+ 2474 0073 02       		.byte	0x2
+ 2475 0074 18       		.byte	0x18
+ 2476 0075 24000000 		.4byte	0x24
+ 2477 0079 05       		.uleb128 0x5
+ 2478 007a 91000000 		.4byte	0x91
+ 2479 007e 8A000000 		.4byte	0x8a
+ 2480 0082 06       		.uleb128 0x6
+ 2481 0083 8A000000 		.4byte	0x8a
+ 2482 0087 2309     		.2byte	0x923
+ 2483 0089 00       		.byte	0
+ 2484 008a 02       		.uleb128 0x2
+ 2485 008b 04       		.byte	0x4
+ 2486 008c 07       		.byte	0x7
+ 2487 008d 48010000 		.4byte	.LASF11
+ 2488 0091 07       		.uleb128 0x7
+ 2489 0092 6E000000 		.4byte	0x6e
+ 2490 0096 08       		.uleb128 0x8
+ 2491 0097 E7000000 		.4byte	.LASF12
+ 2492 009b 03       		.byte	0x3
+ 2493 009c 1F       		.byte	0x1f
+ 2494 009d A7000000 		.4byte	0xa7
+ 2495 00a1 05       		.uleb128 0x5
+ 2496 00a2 03       		.byte	0x3
+ 2497 00a3 00000000 		.4byte	cy_meta_configecc
+ 2498 00a7 07       		.uleb128 0x7
+ 2499 00a8 79000000 		.4byte	0x79
+ 2500 00ac 05       		.uleb128 0x5
+ 2501 00ad 91000000 		.4byte	0x91
+ 2502 00b1 BC000000 		.4byte	0xbc
+ 2503 00b5 09       		.uleb128 0x9
+ 2504 00b6 8A000000 		.4byte	0x8a
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 45
+
+
+ 2505 00ba 03       		.byte	0x3
+ 2506 00bb 00       		.byte	0
+ 2507 00bc 0A       		.uleb128 0xa
+ 2508 00bd D7000000 		.4byte	.LASF13
+ 2509 00c1 03       		.byte	0x3
+ 2510 00c2 5101     		.2byte	0x151
+ 2511 00c4 CE000000 		.4byte	0xce
+ 2512 00c8 05       		.uleb128 0x5
+ 2513 00c9 03       		.byte	0x3
+ 2514 00ca 00000000 		.4byte	cy_meta_custnvl
+ 2515 00ce 07       		.uleb128 0x7
+ 2516 00cf AC000000 		.4byte	0xac
+ 2517 00d3 0A       		.uleb128 0xa
+ 2518 00d4 3A010000 		.4byte	.LASF14
+ 2519 00d8 03       		.byte	0x3
+ 2520 00d9 5F01     		.2byte	0x15f
+ 2521 00db E5000000 		.4byte	0xe5
+ 2522 00df 05       		.uleb128 0x5
+ 2523 00e0 03       		.byte	0x3
+ 2524 00e1 00000000 		.4byte	cy_meta_wonvl
+ 2525 00e5 07       		.uleb128 0x7
+ 2526 00e6 AC000000 		.4byte	0xac
+ 2527 00ea 05       		.uleb128 0x5
+ 2528 00eb 91000000 		.4byte	0x91
+ 2529 00ef FA000000 		.4byte	0xfa
+ 2530 00f3 09       		.uleb128 0x9
+ 2531 00f4 8A000000 		.4byte	0x8a
+ 2532 00f8 FF       		.byte	0xff
+ 2533 00f9 00       		.byte	0
+ 2534 00fa 0A       		.uleb128 0xa
+ 2535 00fb 25010000 		.4byte	.LASF15
+ 2536 00ff 03       		.byte	0x3
+ 2537 0100 6D01     		.2byte	0x16d
+ 2538 0102 0C010000 		.4byte	0x10c
+ 2539 0106 05       		.uleb128 0x5
+ 2540 0107 03       		.byte	0x3
+ 2541 0108 00000000 		.4byte	cy_meta_flashprotect
+ 2542 010c 07       		.uleb128 0x7
+ 2543 010d EA000000 		.4byte	0xea
+ 2544 0111 05       		.uleb128 0x5
+ 2545 0112 91000000 		.4byte	0x91
+ 2546 0116 21010000 		.4byte	0x121
+ 2547 011a 09       		.uleb128 0x9
+ 2548 011b 8A000000 		.4byte	0x8a
+ 2549 011f 0B       		.byte	0xb
+ 2550 0120 00       		.byte	0
+ 2551 0121 0A       		.uleb128 0xa
+ 2552 0122 0A000000 		.4byte	.LASF16
+ 2553 0126 03       		.byte	0x3
+ 2554 0127 9A01     		.2byte	0x19a
+ 2555 0129 33010000 		.4byte	0x133
+ 2556 012d 05       		.uleb128 0x5
+ 2557 012e 03       		.byte	0x3
+ 2558 012f 00000000 		.4byte	cy_metadata
+ 2559 0133 07       		.uleb128 0x7
+ 2560 0134 11010000 		.4byte	0x111
+ 2561 0138 00       		.byte	0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 46
+
+
+ 2562              		.section	.debug_abbrev,"",%progbits
+ 2563              	.Ldebug_abbrev0:
+ 2564 0000 01       		.uleb128 0x1
+ 2565 0001 11       		.uleb128 0x11
+ 2566 0002 01       		.byte	0x1
+ 2567 0003 25       		.uleb128 0x25
+ 2568 0004 0E       		.uleb128 0xe
+ 2569 0005 13       		.uleb128 0x13
+ 2570 0006 0B       		.uleb128 0xb
+ 2571 0007 03       		.uleb128 0x3
+ 2572 0008 0E       		.uleb128 0xe
+ 2573 0009 1B       		.uleb128 0x1b
+ 2574 000a 0E       		.uleb128 0xe
+ 2575 000b 10       		.uleb128 0x10
+ 2576 000c 17       		.uleb128 0x17
+ 2577 000d 00       		.byte	0
+ 2578 000e 00       		.byte	0
+ 2579 000f 02       		.uleb128 0x2
+ 2580 0010 24       		.uleb128 0x24
+ 2581 0011 00       		.byte	0
+ 2582 0012 0B       		.uleb128 0xb
+ 2583 0013 0B       		.uleb128 0xb
+ 2584 0014 3E       		.uleb128 0x3e
+ 2585 0015 0B       		.uleb128 0xb
+ 2586 0016 03       		.uleb128 0x3
+ 2587 0017 0E       		.uleb128 0xe
+ 2588 0018 00       		.byte	0
+ 2589 0019 00       		.byte	0
+ 2590 001a 03       		.uleb128 0x3
+ 2591 001b 16       		.uleb128 0x16
+ 2592 001c 00       		.byte	0
+ 2593 001d 03       		.uleb128 0x3
+ 2594 001e 0E       		.uleb128 0xe
+ 2595 001f 3A       		.uleb128 0x3a
+ 2596 0020 0B       		.uleb128 0xb
+ 2597 0021 3B       		.uleb128 0x3b
+ 2598 0022 0B       		.uleb128 0xb
+ 2599 0023 49       		.uleb128 0x49
+ 2600 0024 13       		.uleb128 0x13
+ 2601 0025 00       		.byte	0
+ 2602 0026 00       		.byte	0
+ 2603 0027 04       		.uleb128 0x4
+ 2604 0028 24       		.uleb128 0x24
+ 2605 0029 00       		.byte	0
+ 2606 002a 0B       		.uleb128 0xb
+ 2607 002b 0B       		.uleb128 0xb
+ 2608 002c 3E       		.uleb128 0x3e
+ 2609 002d 0B       		.uleb128 0xb
+ 2610 002e 03       		.uleb128 0x3
+ 2611 002f 08       		.uleb128 0x8
+ 2612 0030 00       		.byte	0
+ 2613 0031 00       		.byte	0
+ 2614 0032 05       		.uleb128 0x5
+ 2615 0033 01       		.uleb128 0x1
+ 2616 0034 01       		.byte	0x1
+ 2617 0035 49       		.uleb128 0x49
+ 2618 0036 13       		.uleb128 0x13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 47
+
+
+ 2619 0037 01       		.uleb128 0x1
+ 2620 0038 13       		.uleb128 0x13
+ 2621 0039 00       		.byte	0
+ 2622 003a 00       		.byte	0
+ 2623 003b 06       		.uleb128 0x6
+ 2624 003c 21       		.uleb128 0x21
+ 2625 003d 00       		.byte	0
+ 2626 003e 49       		.uleb128 0x49
+ 2627 003f 13       		.uleb128 0x13
+ 2628 0040 2F       		.uleb128 0x2f
+ 2629 0041 05       		.uleb128 0x5
+ 2630 0042 00       		.byte	0
+ 2631 0043 00       		.byte	0
+ 2632 0044 07       		.uleb128 0x7
+ 2633 0045 26       		.uleb128 0x26
+ 2634 0046 00       		.byte	0
+ 2635 0047 49       		.uleb128 0x49
+ 2636 0048 13       		.uleb128 0x13
+ 2637 0049 00       		.byte	0
+ 2638 004a 00       		.byte	0
+ 2639 004b 08       		.uleb128 0x8
+ 2640 004c 34       		.uleb128 0x34
+ 2641 004d 00       		.byte	0
+ 2642 004e 03       		.uleb128 0x3
+ 2643 004f 0E       		.uleb128 0xe
+ 2644 0050 3A       		.uleb128 0x3a
+ 2645 0051 0B       		.uleb128 0xb
+ 2646 0052 3B       		.uleb128 0x3b
+ 2647 0053 0B       		.uleb128 0xb
+ 2648 0054 49       		.uleb128 0x49
+ 2649 0055 13       		.uleb128 0x13
+ 2650 0056 3F       		.uleb128 0x3f
+ 2651 0057 19       		.uleb128 0x19
+ 2652 0058 02       		.uleb128 0x2
+ 2653 0059 18       		.uleb128 0x18
+ 2654 005a 00       		.byte	0
+ 2655 005b 00       		.byte	0
+ 2656 005c 09       		.uleb128 0x9
+ 2657 005d 21       		.uleb128 0x21
+ 2658 005e 00       		.byte	0
+ 2659 005f 49       		.uleb128 0x49
+ 2660 0060 13       		.uleb128 0x13
+ 2661 0061 2F       		.uleb128 0x2f
+ 2662 0062 0B       		.uleb128 0xb
+ 2663 0063 00       		.byte	0
+ 2664 0064 00       		.byte	0
+ 2665 0065 0A       		.uleb128 0xa
+ 2666 0066 34       		.uleb128 0x34
+ 2667 0067 00       		.byte	0
+ 2668 0068 03       		.uleb128 0x3
+ 2669 0069 0E       		.uleb128 0xe
+ 2670 006a 3A       		.uleb128 0x3a
+ 2671 006b 0B       		.uleb128 0xb
+ 2672 006c 3B       		.uleb128 0x3b
+ 2673 006d 05       		.uleb128 0x5
+ 2674 006e 49       		.uleb128 0x49
+ 2675 006f 13       		.uleb128 0x13
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 48
+
+
+ 2676 0070 3F       		.uleb128 0x3f
+ 2677 0071 19       		.uleb128 0x19
+ 2678 0072 02       		.uleb128 0x2
+ 2679 0073 18       		.uleb128 0x18
+ 2680 0074 00       		.byte	0
+ 2681 0075 00       		.byte	0
+ 2682 0076 00       		.byte	0
+ 2683              		.section	.debug_aranges,"",%progbits
+ 2684 0000 14000000 		.4byte	0x14
+ 2685 0004 0200     		.2byte	0x2
+ 2686 0006 00000000 		.4byte	.Ldebug_info0
+ 2687 000a 04       		.byte	0x4
+ 2688 000b 00       		.byte	0
+ 2689 000c 0000     		.2byte	0
+ 2690 000e 0000     		.2byte	0
+ 2691 0010 00000000 		.4byte	0
+ 2692 0014 00000000 		.4byte	0
+ 2693              		.section	.debug_line,"",%progbits
+ 2694              	.Ldebug_line0:
+ 2695 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 2695      02003701 
+ 2695      00000201 
+ 2695      FB0E0D00 
+ 2695      01010101 
+ 2696              	.LASF9:
+ 2697 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 2697      6E74385F 
+ 2697      7400
+ 2698              	.LASF16:
+ 2699 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 2699      65746164 
+ 2699      61746100 
+ 2700              	.LASF1:
+ 2701 0016 756E7369 		.ascii	"unsigned char\000"
+ 2701      676E6564 
+ 2701      20636861 
+ 2701      7200
+ 2702              	.LASF17:
+ 2703 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2703      43313120 
+ 2703      352E342E 
+ 2703      31203230 
+ 2703      31363036 
+ 2704 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2704      20726576 
+ 2704      6973696F 
+ 2704      6E203233 
+ 2704      37373135 
+ 2705 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2705      66756E63 
+ 2705      74696F6E 
+ 2705      2D736563 
+ 2705      74696F6E 
+ 2706              	.LASF5:
+ 2707 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2707      20756E73 
+ 2707      69676E65 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 49
+
+
+ 2707      6420696E 
+ 2707      7400
+ 2708              	.LASF3:
+ 2709 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 2709      7420756E 
+ 2709      7369676E 
+ 2709      65642069 
+ 2709      6E7400
+ 2710              	.LASF13:
+ 2711 00d7 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 2711      6574615F 
+ 2711      63757374 
+ 2711      6E766C00 
+ 2712              	.LASF12:
+ 2713 00e7 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 2713      6574615F 
+ 2713      636F6E66 
+ 2713      69676563 
+ 2713      6300
+ 2714              	.LASF8:
+ 2715 00f9 756E7369 		.ascii	"unsigned int\000"
+ 2715      676E6564 
+ 2715      20696E74 
+ 2715      00
+ 2716              	.LASF7:
+ 2717 0106 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2717      206C6F6E 
+ 2717      6720756E 
+ 2717      7369676E 
+ 2717      65642069 
+ 2718              	.LASF10:
+ 2719 011d 75696E74 		.ascii	"uint8_t\000"
+ 2719      385F7400 
+ 2720              	.LASF15:
+ 2721 0125 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 2721      6574615F 
+ 2721      666C6173 
+ 2721      6870726F 
+ 2721      74656374 
+ 2722              	.LASF14:
+ 2723 013a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 2723      6574615F 
+ 2723      776F6E76 
+ 2723      6C00
+ 2724              	.LASF11:
+ 2725 0148 73697A65 		.ascii	"sizetype\000"
+ 2725      74797065 
+ 2725      00
+ 2726              	.LASF6:
+ 2727 0151 6C6F6E67 		.ascii	"long long int\000"
+ 2727      206C6F6E 
+ 2727      6720696E 
+ 2727      7400
+ 2728              	.LASF2:
+ 2729 015f 73686F72 		.ascii	"short int\000"
+ 2729      7420696E 
+ 2729      7400
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccgEDySv.s 			page 50
+
+
+ 2730              	.LASF4:
+ 2731 0169 6C6F6E67 		.ascii	"long int\000"
+ 2731      20696E74 
+ 2731      00
+ 2732              	.LASF0:
+ 2733 0172 7369676E 		.ascii	"signed char\000"
+ 2733      65642063 
+ 2733      68617200 
+ 2734              	.LASF19:
+ 2735 017e 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 2735      73657273 
+ 2735      5C467261 
+ 2735      6E6B6C69 
+ 2735      6E4C6162 
+ 2736 01ad 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Mas"
+ 2736      434E545F 
+ 2736      49565C50 
+ 2736      536F435C 
+ 2736      4C61796F 
+ 2737 01db 7465725C 		.ascii	"ter\\Master 1\\Design01.cydsn\000"
+ 2737      4D617374 
+ 2737      65722031 
+ 2737      5C446573 
+ 2737      69676E30 
+ 2738              	.LASF18:
+ 2739 01f7 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 2739      72617465 
+ 2739      645F536F 
+ 2739      75726365 
+ 2739      5C50536F 
+ 2740              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

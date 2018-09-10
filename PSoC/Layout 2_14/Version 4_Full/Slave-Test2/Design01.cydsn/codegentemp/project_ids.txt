@@ -1,0 +1,7 @@
+E:\Research\illumina\PSoC\Layout 2_14\Version 2\Slave-Test2\Design01.cydsn\Design01.cyprj|04c09f23-864a-4f1f-9f03-4c516d35527b
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|1c094739-e763-4f56-a7b8-d9297bef18da
+C:\Users\IEUser\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|10670bb2-0821-4e6b-959e-ee201c14618f
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|30d0cd57-9d4c-479a-a0fb-7e1232d5ddb0
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|f03f38ab-7226-440f-bd11-34919d945582
+C:\Program Files\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c7aa8f84-1802-4757-b67c-2a47b38dd837
+E:\Research\illumina\PSoC\Layout 2_14\Version 2\Slave-Test2\Proto Board Test 1.cydsn\Proto Board Test 1.cyprj|13a0657c-1339-4fee-b577-f983e62be2c6

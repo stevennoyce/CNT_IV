@@ -1022,7 +1022,7 @@ print(p)
 plt.plot(Vgss, Idss)
 model = np.maximum(0,np.log(np.abs(Vgss+5)))
 model -= min(model)+0.3
-plt.plot(Vgss, model*max(Idss)/max(model))
+# plt.plot(Vgss, model*max(Idss)/max(model))
 
 
 print('Simulation complete')

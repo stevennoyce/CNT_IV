@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Master\Design01">
+<ExpandedNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\TopDesign</v>
+<v>Master\Design01\Design01.cydwr</v>
+<v>Master\Design01\Design01.cydwr\Pins</v>
+<v>Master\Design01\Design01.cydwr\Analog</v>
+<v>Master\Design01\Design01.cydwr\Clocks</v>
+<v>Master\Design01\Design01.cydwr\Interrupts</v>
+<v>Master\Design01\Design01.cydwr\DMA</v>
+<v>Master\Design01\Design01.cydwr\System</v>
+<v>Master\Design01\Design01.cydwr\Directives</v>
+<v>Master\Design01\Design01.cydwr\Flash Security</v>
+<v>Master\Design01\Design01.cydwr\EEPROM</v>
+<v>Master\Design01\Header Files</v>
+<v>Master\Design01\Header Files\cyapicallbacks.h</v>
+<v>Master\Design01\Source Files</v>
+<v>Master\Design01\Source Files\main.c</v>
+<v>Master\Design01\Source Files\USBUART_Helpers.h</v>
+<v>Master\Design01\Generated_Source</v>
+<v>Master\Design01\Generated_Source\PSoC5</v>
+<v>Master\WithIG1\TopDesign</v>
+<v>Master\WithIG1\WithIG1.cydwr</v>
+<v>Master\WithIG1\WithIG1.cydwr\Pins</v>
+<v>Master\WithIG1\WithIG1.cydwr\Analog</v>
+<v>Master\WithIG1\WithIG1.cydwr\Clocks</v>
+<v>Master\WithIG1\WithIG1.cydwr\Interrupts</v>
+<v>Master\WithIG1\WithIG1.cydwr\DMA</v>
+<v>Master\WithIG1\WithIG1.cydwr\System</v>
+<v>Master\WithIG1\WithIG1.cydwr\Directives</v>
+<v>Master\WithIG1\WithIG1.cydwr\Flash Security</v>
+<v>Master\WithIG1\WithIG1.cydwr\EEPROM</v>
+<v>Master\WithIG1\Header Files</v>
+<v>Master\WithIG1\Header Files\cyapicallbacks.h</v>
+<v>Master\WithIG1\Source Files</v>
+<v>Master\WithIG1\Source Files\main.c</v>
+<v>Master\WithIG1\Source Files\USBUART_Helpers.h</v>
+<v>Master\WithIG1\Generated_Source</v>
+<v>Master\WithIG1\Generated_Source\PSoC5</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\TopDesign</v>
+<v>Master\Design01\Design01.cydwr</v>
+<v>Master\Design01\Design01.cydwr\Pins</v>
+<v>Master\Design01\Design01.cydwr\Analog</v>
+<v>Master\Design01\Design01.cydwr\Clocks</v>
+<v>Master\Design01\Design01.cydwr\Interrupts</v>
+<v>Master\Design01\Design01.cydwr\DMA</v>
+<v>Master\Design01\Design01.cydwr\System</v>
+<v>Master\Design01\Design01.cydwr\Directives</v>
+<v>Master\Design01\Design01.cydwr\Flash Security</v>
+<v>Master\Design01\Design01.cydwr\EEPROM</v>
+<v>Master\Design01\Header Files</v>
+<v>Master\Design01\Header Files\cyapicallbacks.h</v>
+<v>Master\Design01\Source Files</v>
+<v>Master\Design01\Source Files\main.c</v>
+<v>Master\Design01\Source Files\USBUART_Helpers.h</v>
+<v>Master\Design01\Generated_Source</v>
+<v>Master\Design01\Generated_Source\PSoC5</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1_Ext_CP_Clk</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1_IRQ</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_DelSig_1_theACLK</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_1</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_1_IRQ</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_1_theACLK</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_2</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_2_IRQ</v>
+<v>Master\Design01\Generated_Source\PSoC5\ADC_SAR_2_theACLK</v>
+<v>Master\Design01\Generated_Source\PSoC5\CommunicationInterrupt</v>
+<v>Master\Design01\Generated_Source\PSoC5\CommunicationTimer</v>
+<v>Master\Design01\Generated_Source\PSoC5\cy_boot</v>
+<v>Master\Design01\Generated_Source\PSoC5\DieTemp</v>
+<v>Master\Design01\Generated_Source\PSoC5\I2C_1</v>
+<v>Master\Design01\Generated_Source\PSoC5\I2C_1_IntClock</v>
+<v>Master\Design01\Generated_Source\PSoC5\Opamp_1</v>
+<v>Master\Design01\Generated_Source\PSoC5\Opamp_2</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_BackGate</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_I1_GND</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_I11</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_I12</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_LocalGates</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_SolutionGate</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_Vds</v>
+<v>Master\Design01\Generated_Source\PSoC5\Pin_Vss</v>
+<v>Master\Design01\Generated_Source\PSoC5\SCL_1</v>
+<v>Master\Design01\Generated_Source\PSoC5\SDA_1</v>
+<v>Master\Design01\Generated_Source\PSoC5\TIA_1</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\TopDesign</v>
+<v>Master\Design01\TopDesign\TopDesign.cysch</v>
+<v>Master\WithIG1</v>
+<v>Master\WithIG1\TopDesign</v>
+<v>Master\WithIG1\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\TopDesign</v>
+<v>Master\Design01\TopDesign\TopDesign.cysch</v>
+<v>Master\WithIG1</v>
+<v>Master\WithIG1\TopDesign</v>
+<v>Master\WithIG1\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\CortexM3</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_Ext_CP_Clk.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_IRQ.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_theACLK.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_IRQ.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_theACLK.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_IRQ.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_theACLK.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationInterrupt.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationTimer.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationTimer_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\DieTemp.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_BOOT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_IntClock.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_MASTER.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_SLAVE.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_BackGate.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I1_GND.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I11.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I12.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_LocalGates.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_SolutionGate.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Vds.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Vss.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\TIA_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\TIA_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_INT.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Ref.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Ref_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vds.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vds_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vgs.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vgs_PM.lst</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Design01.elf</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Design01.hex</v>
+<v>Master\Design01\CortexM3\ARM_GCC_541\Debug\Design01.map</v>
+<v>Master\Design01\Design01.gpdsc</v>
+<v>Master\Design01\Design01.rpt</v>
+<v>Master\Design01\Design01_timing.html</v>
+<v>Master\WithIG1</v>
+<v>Master\WithIG1\CortexM3</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_Ext_CP_Clk.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_INT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_IRQ.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_DelSig_1_theACLK.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_INT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_IRQ.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_theACLK.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_INT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_IRQ.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_2_theACLK.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationInterrupt.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationTimer.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CommunicationTimer_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\DieTemp.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_BOOT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_INT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_IntClock.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_MASTER.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\I2C_1_SLAVE.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_1_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Opamp_2_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_BackGate.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I1_GND.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I10.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I11.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I12.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_I9.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_LocalGates.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_SolutionGate.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Vds.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_Vss.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\SCL_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\SDA_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\TIA_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\TIA_1_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\TIA_2.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\TIA_2_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_BOOT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_INT.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_IntClock.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_1_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Ref.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Ref_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vds.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vds_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vgs.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC_Vgs_PM.lst</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\WithIG1.elf</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\WithIG1.hex</v>
+<v>Master\WithIG1\CortexM3\ARM_GCC_541\Debug\WithIG1.map</v>
+<v>Master\WithIG1\WithIG1.gpdsc</v>
+<v>Master\WithIG1\WithIG1.rpt</v>
+<v>Master\WithIG1\WithIG1_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\PSoC 5LP Architecture TRM</v>
+<v>Master\Design01\CY8C58LP Family Datasheet</v>
+<v>Master\Design01\System Reference Guides</v>
+<v>Master\Design01\System Reference Guides\cy_boot_v5_60</v>
+<v>Master\Design01\ADC_DelSig_v3_30.pdf</v>
+<v>Master\Design01\ADC_SAR_v3_10</v>
+<v>Master\Design01\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
+<v>Master\Design01\cy_clock_v2_20.pdf</v>
+<v>Master\Design01\cy_isr_v1_70.pdf</v>
+<v>Master\Design01\cy_pins_v2_20</v>
+<v>Master\Design01\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Master\Design01\DieTemp_v2_0.pdf</v>
+<v>Master\Design01\I2C_v3_50.pdf</v>
+<v>Master\Design01\OpAmp_v1_90</v>
+<v>Master\Design01\OpAmp_v1_90\OpAmp_v1_90.pdf</v>
+<v>Master\Design01\TIA_v2_0.pdf</v>
+<v>Master\Design01\Timer_v2_80.pdf</v>
+<v>Master\Design01\UART_v2_50.pdf</v>
+<v>Master\Design01\USBFS_v3_20.pdf</v>
+<v>Master\Design01\VDAC8_v1_90</v>
+<v>Master\Design01\VDAC8_v1_90\VDAC8_v1_90.pdf</v>
+<v>Master\Design01\ZeroTerminal.pdf</v>
+<v>Master\WithIG1</v>
+<v>Master\WithIG1\PSoC 5LP Architecture TRM</v>
+<v>Master\WithIG1\CY8C58LP Family Datasheet</v>
+<v>Master\WithIG1\System Reference Guides</v>
+<v>Master\WithIG1\System Reference Guides\cy_boot_v5_60</v>
+<v>Master\WithIG1\ADC_DelSig_v3_30.pdf</v>
+<v>Master\WithIG1\ADC_SAR_v3_10</v>
+<v>Master\WithIG1\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
+<v>Master\WithIG1\cy_clock_v2_20.pdf</v>
+<v>Master\WithIG1\cy_isr_v1_70.pdf</v>
+<v>Master\WithIG1\cy_pins_v2_20</v>
+<v>Master\WithIG1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Master\WithIG1\DieTemp_v2_0.pdf</v>
+<v>Master\WithIG1\I2C_v3_50.pdf</v>
+<v>Master\WithIG1\OpAmp_v1_90</v>
+<v>Master\WithIG1\OpAmp_v1_90\OpAmp_v1_90.pdf</v>
+<v>Master\WithIG1\TIA_v2_0</v>
+<v>Master\WithIG1\TIA_v2_0\TIA_v2_0.pdf</v>
+<v>Master\WithIG1\Timer_v2_80.pdf</v>
+<v>Master\WithIG1\UART_v2_50.pdf</v>
+<v>Master\WithIG1\USBFS_v3_20.pdf</v>
+<v>Master\WithIG1\VDAC8_v1_90</v>
+<v>Master\WithIG1\VDAC8_v1_90\VDAC8_v1_90.pdf</v>
+<v>Master\WithIG1\ZeroTerminal.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>Master</v>
+<v>Master\Design01</v>
+<v>Master\Design01\PSoC 5LP Architecture TRM</v>
+<v>Master\Design01\CY8C58LP Family Datasheet</v>
+<v>Master\Design01\System Reference Guides</v>
+<v>Master\Design01\System Reference Guides\cy_boot_v5_60</v>
+<v>Master\Design01\ADC_DelSig_v3_30.pdf</v>
+<v>Master\Design01\ADC_SAR_v3_10</v>
+<v>Master\Design01\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
+<v>Master\Design01\cy_clock_v2_20.pdf</v>
+<v>Master\Design01\cy_isr_v1_70.pdf</v>
+<v>Master\Design01\cy_pins_v2_20</v>
+<v>Master\Design01\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Master\Design01\DieTemp_v2_0.pdf</v>
+<v>Master\Design01\I2C_v3_50.pdf</v>
+<v>Master\Design01\OpAmp_v1_90</v>
+<v>Master\Design01\OpAmp_v1_90\OpAmp_v1_90.pdf</v>
+<v>Master\Design01\TIA_v2_0.pdf</v>
+<v>Master\Design01\Timer_v2_80.pdf</v>
+<v>Master\Design01\UART_v2_50.pdf</v>
+<v>Master\Design01\USBFS_v3_20.pdf</v>
+<v>Master\Design01\VDAC8_v1_90</v>
+<v>Master\Design01\VDAC8_v1_90\VDAC8_v1_90.pdf</v>
+<v>Master\Design01\ZeroTerminal.pdf</v>
+<v>Master\WithIG1</v>
+<v>Master\WithIG1\PSoC 5LP Architecture TRM</v>
+<v>Master\WithIG1\CY8C58LP Family Datasheet</v>
+<v>Master\WithIG1\System Reference Guides</v>
+<v>Master\WithIG1\System Reference Guides\cy_boot_v5_60</v>
+<v>Master\WithIG1\ADC_DelSig_v3_30.pdf</v>
+<v>Master\WithIG1\ADC_SAR_v3_10</v>
+<v>Master\WithIG1\ADC_SAR_v3_10\ADC_SAR_v3_10.pdf</v>
+<v>Master\WithIG1\cy_clock_v2_20.pdf</v>
+<v>Master\WithIG1\cy_isr_v1_70.pdf</v>
+<v>Master\WithIG1\cy_pins_v2_20</v>
+<v>Master\WithIG1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>Master\WithIG1\DieTemp_v2_0.pdf</v>
+<v>Master\WithIG1\I2C_v3_50.pdf</v>
+<v>Master\WithIG1\OpAmp_v1_90</v>
+<v>Master\WithIG1\OpAmp_v1_90\OpAmp_v1_90.pdf</v>
+<v>Master\WithIG1\TIA_v2_0</v>
+<v>Master\WithIG1\TIA_v2_0\TIA_v2_0.pdf</v>
+<v>Master\WithIG1\Timer_v2_80.pdf</v>
+<v>Master\WithIG1\UART_v2_50.pdf</v>
+<v>Master\WithIG1\USBFS_v3_20.pdf</v>
+<v>Master\WithIG1\VDAC8_v1_90</v>
+<v>Master\WithIG1\VDAC8_v1_90\VDAC8_v1_90.pdf</v>
+<v>Master\WithIG1\ZeroTerminal.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\WithIG1.cydsn\WithIG1.cydwr" />
+<name v=".\Design01.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Design01.cydsn\main.c" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1297, 712" SelectedTabbedMdiWindow="55c17134-3225-4d77-8c5f-9934e6e03e7b"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\WithIG1.cydsn\WithIG1.cydwr" Guid="5a589d97-02dd-43db-8f86-dc79d96fe37f" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="fa1ad35e-fc7e-4a60-ab0c-a652b93da960" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\main.c" Guid="55c17134-3225-4d77-8c5f-9934e6e03e7b" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

@@ -1,0 +1,978 @@
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB32:
+  27              		.file 1 "main.c"
+   1:main.c        **** #include "project.h"
+   2:main.c        **** 
+   3:main.c        **** #define SELECTOR_ID (2)
+   4:main.c        **** 
+   5:main.c        **** #define SELECTOR_COUNT (4u)
+   6:main.c        **** #define INTERMEDIATE_COUNT (4u)
+   7:main.c        **** #define CONTACT_COUNT (64u)
+   8:main.c        **** #define CONTACT_CONNECT_CODE (0xC0u)
+   9:main.c        **** #define CONTACT_DISCONNECT_CODE (0xD1u)
+  10:main.c        **** 
+  11:main.c        **** struct Selector_I2C_Struct {
+  12:main.c        **** 	struct {
+  13:main.c        **** 		uint8 subAddress;
+  14:main.c        **** 		uint8 data[126];
+  15:main.c        **** 	} write;
+  16:main.c        **** 	struct {
+  17:main.c        **** 		uint8 subAddress;
+  18:main.c        **** 		uint8 data[126];
+  19:main.c        **** 	} read;
+  20:main.c        **** 	uint8 busAddress;
+  21:main.c        **** };
+  22:main.c        **** 
+  23:main.c        **** int main(void) {
+  28              		.loc 1 23 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 256
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 30B5     		push	{r4, r5, lr}
+  33              		.cfi_def_cfa_offset 12
+  34              		.cfi_offset 4, -12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 2
+
+
+  35              		.cfi_offset 5, -8
+  36              		.cfi_offset 14, -4
+  37 0002 C1B0     		sub	sp, sp, #260
+  38              		.cfi_def_cfa_offset 272
+  24:main.c        **** 	CyGlobalIntEnable;
+  39              		.loc 1 24 0
+  40              		.syntax divided
+  41              	@ 24 "main.c" 1
+  42 0004 62B6     		CPSIE   i
+  43              	@ 0 "" 2
+  25:main.c        **** 	
+  26:main.c        **** 	struct Selector_I2C_Struct selector;
+  27:main.c        **** 	uint8 I2C_Bus_Addresses[SELECTOR_COUNT] = {0x66, 0x11, 0x44, 0x22};
+  28:main.c        **** 
+  29:main.c        **** 	// Start all hardware blocks
+  30:main.c        **** 	//AMux_1_Start(); //not required for a passive block
+  31:main.c        **** 	Opamp_1_Start();
+  44              		.loc 1 31 0
+  45              		.thumb
+  46              		.syntax unified
+  47 0006 FFF7FEFF 		bl	Opamp_1_Start
+  48              	.LVL0:
+  32:main.c        **** 	ADC_SAR_Seq_1_Start();
+  49              		.loc 1 32 0
+  50 000a FFF7FEFF 		bl	ADC_SAR_Seq_1_Start
+  51              	.LVL1:
+  33:main.c        **** 	
+  34:main.c        **** 	EZI2C_1_Start();
+  52              		.loc 1 34 0
+  53 000e FFF7FEFF 		bl	EZI2C_1_Start
+  54              	.LVL2:
+  35:main.c        **** 	EZI2C_1_EzI2CSetAddress1(I2C_Bus_Addresses[SELECTOR_ID]);
+  55              		.loc 1 35 0
+  56 0012 4420     		movs	r0, #68
+  57 0014 FFF7FEFF 		bl	EZI2C_1_EzI2CSetAddress1
+  58              	.LVL3:
+  36:main.c        **** 	EZI2C_1_EzI2CSetBuffer1(sizeof(selector), sizeof(selector), (uint8*) &selector);
+  59              		.loc 1 36 0
+  60 0018 6A46     		mov	r2, sp
+  61 001a FF21     		movs	r1, #255
+  62 001c FF20     		movs	r0, #255
+  63 001e FFF7FEFF 		bl	EZI2C_1_EzI2CSetBuffer1
+  64              	.LVL4:
+  65              	.L6:
+  66              	.LBB2:
+  37:main.c        **** 	
+  38:main.c        **** 	while(1) {
+  39:main.c        **** 		for (uint8 i = 0; i < sizeof(selector.write.data); i++) {
+  67              		.loc 1 39 0
+  68 0022 0024     		movs	r4, #0
+  69 0024 13E0     		b	.L2
+  70              	.LVL5:
+  71              	.L5:
+  40:main.c        **** 			if (i < AMux_1_CHANNELS) {
+  72              		.loc 1 40 0
+  73 0026 212C     		cmp	r4, #33
+  74 0028 0FD8     		bhi	.L3
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 3
+
+
+  41:main.c        **** 				if (selector.write.data[i] == CONTACT_CONNECT_CODE) {
+  75              		.loc 1 41 0
+  76 002a 2500     		movs	r5, r4
+  77 002c 2300     		movs	r3, r4
+  78 002e 6B44     		add	r3, r3, sp
+  79 0030 5B78     		ldrb	r3, [r3, #1]
+  80 0032 C02B     		cmp	r3, #192
+  81 0034 02D1     		bne	.L4
+  42:main.c        **** 					AMux_1_Connect(i);
+  82              		.loc 1 42 0
+  83 0036 2000     		movs	r0, r4
+  84 0038 FFF7FEFF 		bl	AMux_1_Set
+  85              	.LVL6:
+  86              	.L4:
+  43:main.c        **** 				}
+  44:main.c        **** 				
+  45:main.c        **** 				if (selector.write.data[i] == CONTACT_DISCONNECT_CODE) {
+  87              		.loc 1 45 0
+  88 003c 6D44     		add	r5, r5, sp
+  89 003e 6B78     		ldrb	r3, [r5, #1]
+  90 0040 D12B     		cmp	r3, #209
+  91 0042 02D1     		bne	.L3
+  46:main.c        **** 					AMux_1_Disconnect(i);
+  92              		.loc 1 46 0
+  93 0044 2000     		movs	r0, r4
+  94 0046 FFF7FEFF 		bl	AMux_1_Unset
+  95              	.LVL7:
+  96              	.L3:
+  39:main.c        **** 			if (i < AMux_1_CHANNELS) {
+  97              		.loc 1 39 0 discriminator 2
+  98 004a 0134     		adds	r4, r4, #1
+  99              	.LVL8:
+ 100 004c E4B2     		uxtb	r4, r4
+ 101              	.LVL9:
+ 102              	.L2:
+  39:main.c        **** 			if (i < AMux_1_CHANNELS) {
+ 103              		.loc 1 39 0 is_stmt 0 discriminator 1
+ 104 004e 7D2C     		cmp	r4, #125
+ 105 0050 E9D9     		bls	.L5
+ 106 0052 E6E7     		b	.L6
+ 107              	.LBE2:
+ 108              		.cfi_endproc
+ 109              	.LFE32:
+ 110              		.size	main, .-main
+ 111              		.text
+ 112              	.Letext0:
+ 113              		.file 2 "Generated_Source\\PSoC4/cyfitter_cfg.h"
+ 114              		.file 3 "Generated_Source\\PSoC4/Opamp_1.h"
+ 115              		.file 4 "Generated_Source\\PSoC4/ADC_SAR_Seq_1.h"
+ 116              		.file 5 "Generated_Source\\PSoC4/EZI2C_1.h"
+ 117              		.file 6 "Generated_Source\\PSoC4/EZI2C_1_EZI2C.h"
+ 118              		.file 7 "Generated_Source\\PSoC4/cytypes.h"
+ 119              		.section	.debug_info,"",%progbits
+ 120              	.Ldebug_info0:
+ 121 0000 35020000 		.4byte	0x235
+ 122 0004 0400     		.2byte	0x4
+ 123 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 4
+
+
+ 124 000a 04       		.byte	0x4
+ 125 000b 01       		.uleb128 0x1
+ 126 000c 50010000 		.4byte	.LASF27
+ 127 0010 0C       		.byte	0xc
+ 128 0011 03020000 		.4byte	.LASF28
+ 129 0015 4D000000 		.4byte	.LASF29
+ 130 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 131 001d 00000000 		.4byte	0
+ 132 0021 00000000 		.4byte	.Ldebug_line0
+ 133 0025 02       		.uleb128 0x2
+ 134 0026 01       		.byte	0x1
+ 135 0027 06       		.byte	0x6
+ 136 0028 63020000 		.4byte	.LASF0
+ 137 002c 02       		.uleb128 0x2
+ 138 002d 01       		.byte	0x1
+ 139 002e 08       		.byte	0x8
+ 140 002f D0000000 		.4byte	.LASF1
+ 141 0033 02       		.uleb128 0x2
+ 142 0034 02       		.byte	0x2
+ 143 0035 05       		.byte	0x5
+ 144 0036 21020000 		.4byte	.LASF2
+ 145 003a 02       		.uleb128 0x2
+ 146 003b 02       		.byte	0x2
+ 147 003c 07       		.byte	0x7
+ 148 003d 3A000000 		.4byte	.LASF3
+ 149 0041 02       		.uleb128 0x2
+ 150 0042 04       		.byte	0x4
+ 151 0043 05       		.byte	0x5
+ 152 0044 36020000 		.4byte	.LASF4
+ 153 0048 02       		.uleb128 0x2
+ 154 0049 04       		.byte	0x4
+ 155 004a 07       		.byte	0x7
+ 156 004b DE000000 		.4byte	.LASF5
+ 157 004f 02       		.uleb128 0x2
+ 158 0050 08       		.byte	0x8
+ 159 0051 05       		.byte	0x5
+ 160 0052 F5010000 		.4byte	.LASF6
+ 161 0056 02       		.uleb128 0x2
+ 162 0057 08       		.byte	0x8
+ 163 0058 07       		.byte	0x7
+ 164 0059 39010000 		.4byte	.LASF7
+ 165 005d 03       		.uleb128 0x3
+ 166 005e 04       		.byte	0x4
+ 167 005f 05       		.byte	0x5
+ 168 0060 696E7400 		.ascii	"int\000"
+ 169 0064 02       		.uleb128 0x2
+ 170 0065 04       		.byte	0x4
+ 171 0066 07       		.byte	0x7
+ 172 0067 2C010000 		.4byte	.LASF8
+ 173 006b 04       		.uleb128 0x4
+ 174 006c F0000000 		.4byte	.LASF30
+ 175 0070 07       		.byte	0x7
+ 176 0071 D201     		.2byte	0x1d2
+ 177 0073 2C000000 		.4byte	0x2c
+ 178 0077 02       		.uleb128 0x2
+ 179 0078 04       		.byte	0x4
+ 180 0079 04       		.byte	0x4
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 5
+
+
+ 181 007a C5000000 		.4byte	.LASF9
+ 182 007e 02       		.uleb128 0x2
+ 183 007f 08       		.byte	0x8
+ 184 0080 04       		.byte	0x4
+ 185 0081 10010000 		.4byte	.LASF10
+ 186 0085 02       		.uleb128 0x2
+ 187 0086 01       		.byte	0x1
+ 188 0087 08       		.byte	0x8
+ 189 0088 0A020000 		.4byte	.LASF11
+ 190 008c 02       		.uleb128 0x2
+ 191 008d 08       		.byte	0x8
+ 192 008e 04       		.byte	0x4
+ 193 008f 57020000 		.4byte	.LASF12
+ 194 0093 02       		.uleb128 0x2
+ 195 0094 04       		.byte	0x4
+ 196 0095 07       		.byte	0x7
+ 197 0096 DE010000 		.4byte	.LASF13
+ 198 009a 05       		.uleb128 0x5
+ 199 009b 7F       		.byte	0x7f
+ 200 009c 01       		.byte	0x1
+ 201 009d 0C       		.byte	0xc
+ 202 009e BB000000 		.4byte	0xbb
+ 203 00a2 06       		.uleb128 0x6
+ 204 00a3 21010000 		.4byte	.LASF14
+ 205 00a7 01       		.byte	0x1
+ 206 00a8 0D       		.byte	0xd
+ 207 00a9 6B000000 		.4byte	0x6b
+ 208 00ad 00       		.byte	0
+ 209 00ae 06       		.uleb128 0x6
+ 210 00af CB000000 		.4byte	.LASF15
+ 211 00b3 01       		.byte	0x1
+ 212 00b4 0E       		.byte	0xe
+ 213 00b5 BB000000 		.4byte	0xbb
+ 214 00b9 01       		.byte	0x1
+ 215 00ba 00       		.byte	0
+ 216 00bb 07       		.uleb128 0x7
+ 217 00bc 6B000000 		.4byte	0x6b
+ 218 00c0 CB000000 		.4byte	0xcb
+ 219 00c4 08       		.uleb128 0x8
+ 220 00c5 93000000 		.4byte	0x93
+ 221 00c9 7D       		.byte	0x7d
+ 222 00ca 00       		.byte	0
+ 223 00cb 05       		.uleb128 0x5
+ 224 00cc 7F       		.byte	0x7f
+ 225 00cd 01       		.byte	0x1
+ 226 00ce 10       		.byte	0x10
+ 227 00cf EC000000 		.4byte	0xec
+ 228 00d3 06       		.uleb128 0x6
+ 229 00d4 21010000 		.4byte	.LASF14
+ 230 00d8 01       		.byte	0x1
+ 231 00d9 11       		.byte	0x11
+ 232 00da 6B000000 		.4byte	0x6b
+ 233 00de 00       		.byte	0
+ 234 00df 06       		.uleb128 0x6
+ 235 00e0 CB000000 		.4byte	.LASF15
+ 236 00e4 01       		.byte	0x1
+ 237 00e5 12       		.byte	0x12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 6
+
+
+ 238 00e6 BB000000 		.4byte	0xbb
+ 239 00ea 01       		.byte	0x1
+ 240 00eb 00       		.byte	0
+ 241 00ec 09       		.uleb128 0x9
+ 242 00ed 18000000 		.4byte	.LASF31
+ 243 00f1 FF       		.byte	0xff
+ 244 00f2 01       		.byte	0x1
+ 245 00f3 0B       		.byte	0xb
+ 246 00f4 1D010000 		.4byte	0x11d
+ 247 00f8 06       		.uleb128 0x6
+ 248 00f9 F6000000 		.4byte	.LASF16
+ 249 00fd 01       		.byte	0x1
+ 250 00fe 0F       		.byte	0xf
+ 251 00ff 9A000000 		.4byte	0x9a
+ 252 0103 00       		.byte	0
+ 253 0104 06       		.uleb128 0x6
+ 254 0105 1C010000 		.4byte	.LASF17
+ 255 0109 01       		.byte	0x1
+ 256 010a 13       		.byte	0x13
+ 257 010b CB000000 		.4byte	0xcb
+ 258 010f 7F       		.byte	0x7f
+ 259 0110 06       		.uleb128 0x6
+ 260 0111 00000000 		.4byte	.LASF18
+ 261 0115 01       		.byte	0x1
+ 262 0116 14       		.byte	0x14
+ 263 0117 6B000000 		.4byte	0x6b
+ 264 011b FE       		.byte	0xfe
+ 265 011c 00       		.byte	0
+ 266 011d 0A       		.uleb128 0xa
+ 267 011e 17010000 		.4byte	.LASF32
+ 268 0122 01       		.byte	0x1
+ 269 0123 17       		.byte	0x17
+ 270 0124 5D000000 		.4byte	0x5d
+ 271 0128 00000000 		.4byte	.LFB32
+ 272 012c 54000000 		.4byte	.LFE32-.LFB32
+ 273 0130 01       		.uleb128 0x1
+ 274 0131 9C       		.byte	0x9c
+ 275 0132 DB010000 		.4byte	0x1db
+ 276 0136 0B       		.uleb128 0xb
+ 277 0137 BC000000 		.4byte	.LASF19
+ 278 013b 01       		.byte	0x1
+ 279 013c 1A       		.byte	0x1a
+ 280 013d EC000000 		.4byte	0xec
+ 281 0141 03       		.uleb128 0x3
+ 282 0142 91       		.byte	0x91
+ 283 0143 F07D     		.sleb128 -272
+ 284 0145 0C       		.uleb128 0xc
+ 285 0146 0F020000 		.4byte	.LASF33
+ 286 014a 01       		.byte	0x1
+ 287 014b 1B       		.byte	0x1b
+ 288 014c DB010000 		.4byte	0x1db
+ 289 0150 0D       		.uleb128 0xd
+ 290 0151 22000000 		.4byte	.LBB2
+ 291 0155 32000000 		.4byte	.LBE2-.LBB2
+ 292 0159 8F010000 		.4byte	0x18f
+ 293 015d 0E       		.uleb128 0xe
+ 294 015e 6900     		.ascii	"i\000"
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 7
+
+
+ 295 0160 01       		.byte	0x1
+ 296 0161 27       		.byte	0x27
+ 297 0162 6B000000 		.4byte	0x6b
+ 298 0166 00000000 		.4byte	.LLST0
+ 299 016a 0F       		.uleb128 0xf
+ 300 016b 3C000000 		.4byte	.LVL6
+ 301 016f EB010000 		.4byte	0x1eb
+ 302 0173 7E010000 		.4byte	0x17e
+ 303 0177 10       		.uleb128 0x10
+ 304 0178 01       		.uleb128 0x1
+ 305 0179 50       		.byte	0x50
+ 306 017a 02       		.uleb128 0x2
+ 307 017b 74       		.byte	0x74
+ 308 017c 00       		.sleb128 0
+ 309 017d 00       		.byte	0
+ 310 017e 11       		.uleb128 0x11
+ 311 017f 4A000000 		.4byte	.LVL7
+ 312 0183 F6010000 		.4byte	0x1f6
+ 313 0187 10       		.uleb128 0x10
+ 314 0188 01       		.uleb128 0x1
+ 315 0189 50       		.byte	0x50
+ 316 018a 02       		.uleb128 0x2
+ 317 018b 74       		.byte	0x74
+ 318 018c 00       		.sleb128 0
+ 319 018d 00       		.byte	0
+ 320 018e 00       		.byte	0
+ 321 018f 12       		.uleb128 0x12
+ 322 0190 0A000000 		.4byte	.LVL0
+ 323 0194 01020000 		.4byte	0x201
+ 324 0198 12       		.uleb128 0x12
+ 325 0199 0E000000 		.4byte	.LVL1
+ 326 019d 0C020000 		.4byte	0x20c
+ 327 01a1 12       		.uleb128 0x12
+ 328 01a2 12000000 		.4byte	.LVL2
+ 329 01a6 17020000 		.4byte	0x217
+ 330 01aa 0F       		.uleb128 0xf
+ 331 01ab 18000000 		.4byte	.LVL3
+ 332 01af 22020000 		.4byte	0x222
+ 333 01b3 BE010000 		.4byte	0x1be
+ 334 01b7 10       		.uleb128 0x10
+ 335 01b8 01       		.uleb128 0x1
+ 336 01b9 50       		.byte	0x50
+ 337 01ba 02       		.uleb128 0x2
+ 338 01bb 08       		.byte	0x8
+ 339 01bc 44       		.byte	0x44
+ 340 01bd 00       		.byte	0
+ 341 01be 11       		.uleb128 0x11
+ 342 01bf 22000000 		.4byte	.LVL4
+ 343 01c3 2D020000 		.4byte	0x22d
+ 344 01c7 10       		.uleb128 0x10
+ 345 01c8 01       		.uleb128 0x1
+ 346 01c9 50       		.byte	0x50
+ 347 01ca 02       		.uleb128 0x2
+ 348 01cb 08       		.byte	0x8
+ 349 01cc FF       		.byte	0xff
+ 350 01cd 10       		.uleb128 0x10
+ 351 01ce 01       		.uleb128 0x1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 8
+
+
+ 352 01cf 51       		.byte	0x51
+ 353 01d0 02       		.uleb128 0x2
+ 354 01d1 08       		.byte	0x8
+ 355 01d2 FF       		.byte	0xff
+ 356 01d3 10       		.uleb128 0x10
+ 357 01d4 01       		.uleb128 0x1
+ 358 01d5 52       		.byte	0x52
+ 359 01d6 02       		.uleb128 0x2
+ 360 01d7 7D       		.byte	0x7d
+ 361 01d8 00       		.sleb128 0
+ 362 01d9 00       		.byte	0
+ 363 01da 00       		.byte	0
+ 364 01db 07       		.uleb128 0x7
+ 365 01dc 6B000000 		.4byte	0x6b
+ 366 01e0 EB010000 		.4byte	0x1eb
+ 367 01e4 08       		.uleb128 0x8
+ 368 01e5 93000000 		.4byte	0x93
+ 369 01e9 03       		.byte	0x3
+ 370 01ea 00       		.byte	0
+ 371 01eb 13       		.uleb128 0x13
+ 372 01ec 2B020000 		.4byte	.LASF20
+ 373 01f0 2B020000 		.4byte	.LASF20
+ 374 01f4 02       		.byte	0x2
+ 375 01f5 1A       		.byte	0x1a
+ 376 01f6 13       		.uleb128 0x13
+ 377 01f7 0B000000 		.4byte	.LASF21
+ 378 01fb 0B000000 		.4byte	.LASF21
+ 379 01ff 02       		.byte	0x2
+ 380 0200 1B       		.byte	0x1b
+ 381 0201 13       		.uleb128 0x13
+ 382 0202 2C000000 		.4byte	.LASF22
+ 383 0206 2C000000 		.4byte	.LASF22
+ 384 020a 03       		.byte	0x3
+ 385 020b 29       		.byte	0x29
+ 386 020c 13       		.uleb128 0x13
+ 387 020d FC000000 		.4byte	.LASF23
+ 388 0211 FC000000 		.4byte	.LASF23
+ 389 0215 04       		.byte	0x4
+ 390 0216 99       		.byte	0x99
+ 391 0217 13       		.uleb128 0x13
+ 392 0218 E7010000 		.4byte	.LASF24
+ 393 021c E7010000 		.4byte	.LASF24
+ 394 0220 05       		.byte	0x5
+ 395 0221 6E       		.byte	0x6e
+ 396 0222 13       		.uleb128 0x13
+ 397 0223 6F020000 		.4byte	.LASF25
+ 398 0227 6F020000 		.4byte	.LASF25
+ 399 022b 06       		.byte	0x6
+ 400 022c A0       		.byte	0xa0
+ 401 022d 13       		.uleb128 0x13
+ 402 022e 3F020000 		.4byte	.LASF26
+ 403 0232 3F020000 		.4byte	.LASF26
+ 404 0236 06       		.byte	0x6
+ 405 0237 A2       		.byte	0xa2
+ 406 0238 00       		.byte	0
+ 407              		.section	.debug_abbrev,"",%progbits
+ 408              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 9
+
+
+ 409 0000 01       		.uleb128 0x1
+ 410 0001 11       		.uleb128 0x11
+ 411 0002 01       		.byte	0x1
+ 412 0003 25       		.uleb128 0x25
+ 413 0004 0E       		.uleb128 0xe
+ 414 0005 13       		.uleb128 0x13
+ 415 0006 0B       		.uleb128 0xb
+ 416 0007 03       		.uleb128 0x3
+ 417 0008 0E       		.uleb128 0xe
+ 418 0009 1B       		.uleb128 0x1b
+ 419 000a 0E       		.uleb128 0xe
+ 420 000b 55       		.uleb128 0x55
+ 421 000c 17       		.uleb128 0x17
+ 422 000d 11       		.uleb128 0x11
+ 423 000e 01       		.uleb128 0x1
+ 424 000f 10       		.uleb128 0x10
+ 425 0010 17       		.uleb128 0x17
+ 426 0011 00       		.byte	0
+ 427 0012 00       		.byte	0
+ 428 0013 02       		.uleb128 0x2
+ 429 0014 24       		.uleb128 0x24
+ 430 0015 00       		.byte	0
+ 431 0016 0B       		.uleb128 0xb
+ 432 0017 0B       		.uleb128 0xb
+ 433 0018 3E       		.uleb128 0x3e
+ 434 0019 0B       		.uleb128 0xb
+ 435 001a 03       		.uleb128 0x3
+ 436 001b 0E       		.uleb128 0xe
+ 437 001c 00       		.byte	0
+ 438 001d 00       		.byte	0
+ 439 001e 03       		.uleb128 0x3
+ 440 001f 24       		.uleb128 0x24
+ 441 0020 00       		.byte	0
+ 442 0021 0B       		.uleb128 0xb
+ 443 0022 0B       		.uleb128 0xb
+ 444 0023 3E       		.uleb128 0x3e
+ 445 0024 0B       		.uleb128 0xb
+ 446 0025 03       		.uleb128 0x3
+ 447 0026 08       		.uleb128 0x8
+ 448 0027 00       		.byte	0
+ 449 0028 00       		.byte	0
+ 450 0029 04       		.uleb128 0x4
+ 451 002a 16       		.uleb128 0x16
+ 452 002b 00       		.byte	0
+ 453 002c 03       		.uleb128 0x3
+ 454 002d 0E       		.uleb128 0xe
+ 455 002e 3A       		.uleb128 0x3a
+ 456 002f 0B       		.uleb128 0xb
+ 457 0030 3B       		.uleb128 0x3b
+ 458 0031 05       		.uleb128 0x5
+ 459 0032 49       		.uleb128 0x49
+ 460 0033 13       		.uleb128 0x13
+ 461 0034 00       		.byte	0
+ 462 0035 00       		.byte	0
+ 463 0036 05       		.uleb128 0x5
+ 464 0037 13       		.uleb128 0x13
+ 465 0038 01       		.byte	0x1
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 10
+
+
+ 466 0039 0B       		.uleb128 0xb
+ 467 003a 0B       		.uleb128 0xb
+ 468 003b 3A       		.uleb128 0x3a
+ 469 003c 0B       		.uleb128 0xb
+ 470 003d 3B       		.uleb128 0x3b
+ 471 003e 0B       		.uleb128 0xb
+ 472 003f 01       		.uleb128 0x1
+ 473 0040 13       		.uleb128 0x13
+ 474 0041 00       		.byte	0
+ 475 0042 00       		.byte	0
+ 476 0043 06       		.uleb128 0x6
+ 477 0044 0D       		.uleb128 0xd
+ 478 0045 00       		.byte	0
+ 479 0046 03       		.uleb128 0x3
+ 480 0047 0E       		.uleb128 0xe
+ 481 0048 3A       		.uleb128 0x3a
+ 482 0049 0B       		.uleb128 0xb
+ 483 004a 3B       		.uleb128 0x3b
+ 484 004b 0B       		.uleb128 0xb
+ 485 004c 49       		.uleb128 0x49
+ 486 004d 13       		.uleb128 0x13
+ 487 004e 38       		.uleb128 0x38
+ 488 004f 0B       		.uleb128 0xb
+ 489 0050 00       		.byte	0
+ 490 0051 00       		.byte	0
+ 491 0052 07       		.uleb128 0x7
+ 492 0053 01       		.uleb128 0x1
+ 493 0054 01       		.byte	0x1
+ 494 0055 49       		.uleb128 0x49
+ 495 0056 13       		.uleb128 0x13
+ 496 0057 01       		.uleb128 0x1
+ 497 0058 13       		.uleb128 0x13
+ 498 0059 00       		.byte	0
+ 499 005a 00       		.byte	0
+ 500 005b 08       		.uleb128 0x8
+ 501 005c 21       		.uleb128 0x21
+ 502 005d 00       		.byte	0
+ 503 005e 49       		.uleb128 0x49
+ 504 005f 13       		.uleb128 0x13
+ 505 0060 2F       		.uleb128 0x2f
+ 506 0061 0B       		.uleb128 0xb
+ 507 0062 00       		.byte	0
+ 508 0063 00       		.byte	0
+ 509 0064 09       		.uleb128 0x9
+ 510 0065 13       		.uleb128 0x13
+ 511 0066 01       		.byte	0x1
+ 512 0067 03       		.uleb128 0x3
+ 513 0068 0E       		.uleb128 0xe
+ 514 0069 0B       		.uleb128 0xb
+ 515 006a 0B       		.uleb128 0xb
+ 516 006b 3A       		.uleb128 0x3a
+ 517 006c 0B       		.uleb128 0xb
+ 518 006d 3B       		.uleb128 0x3b
+ 519 006e 0B       		.uleb128 0xb
+ 520 006f 01       		.uleb128 0x1
+ 521 0070 13       		.uleb128 0x13
+ 522 0071 00       		.byte	0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 11
+
+
+ 523 0072 00       		.byte	0
+ 524 0073 0A       		.uleb128 0xa
+ 525 0074 2E       		.uleb128 0x2e
+ 526 0075 01       		.byte	0x1
+ 527 0076 3F       		.uleb128 0x3f
+ 528 0077 19       		.uleb128 0x19
+ 529 0078 03       		.uleb128 0x3
+ 530 0079 0E       		.uleb128 0xe
+ 531 007a 3A       		.uleb128 0x3a
+ 532 007b 0B       		.uleb128 0xb
+ 533 007c 3B       		.uleb128 0x3b
+ 534 007d 0B       		.uleb128 0xb
+ 535 007e 27       		.uleb128 0x27
+ 536 007f 19       		.uleb128 0x19
+ 537 0080 49       		.uleb128 0x49
+ 538 0081 13       		.uleb128 0x13
+ 539 0082 8701     		.uleb128 0x87
+ 540 0084 19       		.uleb128 0x19
+ 541 0085 11       		.uleb128 0x11
+ 542 0086 01       		.uleb128 0x1
+ 543 0087 12       		.uleb128 0x12
+ 544 0088 06       		.uleb128 0x6
+ 545 0089 40       		.uleb128 0x40
+ 546 008a 18       		.uleb128 0x18
+ 547 008b 9742     		.uleb128 0x2117
+ 548 008d 19       		.uleb128 0x19
+ 549 008e 01       		.uleb128 0x1
+ 550 008f 13       		.uleb128 0x13
+ 551 0090 00       		.byte	0
+ 552 0091 00       		.byte	0
+ 553 0092 0B       		.uleb128 0xb
+ 554 0093 34       		.uleb128 0x34
+ 555 0094 00       		.byte	0
+ 556 0095 03       		.uleb128 0x3
+ 557 0096 0E       		.uleb128 0xe
+ 558 0097 3A       		.uleb128 0x3a
+ 559 0098 0B       		.uleb128 0xb
+ 560 0099 3B       		.uleb128 0x3b
+ 561 009a 0B       		.uleb128 0xb
+ 562 009b 49       		.uleb128 0x49
+ 563 009c 13       		.uleb128 0x13
+ 564 009d 02       		.uleb128 0x2
+ 565 009e 18       		.uleb128 0x18
+ 566 009f 00       		.byte	0
+ 567 00a0 00       		.byte	0
+ 568 00a1 0C       		.uleb128 0xc
+ 569 00a2 34       		.uleb128 0x34
+ 570 00a3 00       		.byte	0
+ 571 00a4 03       		.uleb128 0x3
+ 572 00a5 0E       		.uleb128 0xe
+ 573 00a6 3A       		.uleb128 0x3a
+ 574 00a7 0B       		.uleb128 0xb
+ 575 00a8 3B       		.uleb128 0x3b
+ 576 00a9 0B       		.uleb128 0xb
+ 577 00aa 49       		.uleb128 0x49
+ 578 00ab 13       		.uleb128 0x13
+ 579 00ac 00       		.byte	0
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 12
+
+
+ 580 00ad 00       		.byte	0
+ 581 00ae 0D       		.uleb128 0xd
+ 582 00af 0B       		.uleb128 0xb
+ 583 00b0 01       		.byte	0x1
+ 584 00b1 11       		.uleb128 0x11
+ 585 00b2 01       		.uleb128 0x1
+ 586 00b3 12       		.uleb128 0x12
+ 587 00b4 06       		.uleb128 0x6
+ 588 00b5 01       		.uleb128 0x1
+ 589 00b6 13       		.uleb128 0x13
+ 590 00b7 00       		.byte	0
+ 591 00b8 00       		.byte	0
+ 592 00b9 0E       		.uleb128 0xe
+ 593 00ba 34       		.uleb128 0x34
+ 594 00bb 00       		.byte	0
+ 595 00bc 03       		.uleb128 0x3
+ 596 00bd 08       		.uleb128 0x8
+ 597 00be 3A       		.uleb128 0x3a
+ 598 00bf 0B       		.uleb128 0xb
+ 599 00c0 3B       		.uleb128 0x3b
+ 600 00c1 0B       		.uleb128 0xb
+ 601 00c2 49       		.uleb128 0x49
+ 602 00c3 13       		.uleb128 0x13
+ 603 00c4 02       		.uleb128 0x2
+ 604 00c5 17       		.uleb128 0x17
+ 605 00c6 00       		.byte	0
+ 606 00c7 00       		.byte	0
+ 607 00c8 0F       		.uleb128 0xf
+ 608 00c9 898201   		.uleb128 0x4109
+ 609 00cc 01       		.byte	0x1
+ 610 00cd 11       		.uleb128 0x11
+ 611 00ce 01       		.uleb128 0x1
+ 612 00cf 31       		.uleb128 0x31
+ 613 00d0 13       		.uleb128 0x13
+ 614 00d1 01       		.uleb128 0x1
+ 615 00d2 13       		.uleb128 0x13
+ 616 00d3 00       		.byte	0
+ 617 00d4 00       		.byte	0
+ 618 00d5 10       		.uleb128 0x10
+ 619 00d6 8A8201   		.uleb128 0x410a
+ 620 00d9 00       		.byte	0
+ 621 00da 02       		.uleb128 0x2
+ 622 00db 18       		.uleb128 0x18
+ 623 00dc 9142     		.uleb128 0x2111
+ 624 00de 18       		.uleb128 0x18
+ 625 00df 00       		.byte	0
+ 626 00e0 00       		.byte	0
+ 627 00e1 11       		.uleb128 0x11
+ 628 00e2 898201   		.uleb128 0x4109
+ 629 00e5 01       		.byte	0x1
+ 630 00e6 11       		.uleb128 0x11
+ 631 00e7 01       		.uleb128 0x1
+ 632 00e8 31       		.uleb128 0x31
+ 633 00e9 13       		.uleb128 0x13
+ 634 00ea 00       		.byte	0
+ 635 00eb 00       		.byte	0
+ 636 00ec 12       		.uleb128 0x12
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 13
+
+
+ 637 00ed 898201   		.uleb128 0x4109
+ 638 00f0 00       		.byte	0
+ 639 00f1 11       		.uleb128 0x11
+ 640 00f2 01       		.uleb128 0x1
+ 641 00f3 31       		.uleb128 0x31
+ 642 00f4 13       		.uleb128 0x13
+ 643 00f5 00       		.byte	0
+ 644 00f6 00       		.byte	0
+ 645 00f7 13       		.uleb128 0x13
+ 646 00f8 2E       		.uleb128 0x2e
+ 647 00f9 00       		.byte	0
+ 648 00fa 3F       		.uleb128 0x3f
+ 649 00fb 19       		.uleb128 0x19
+ 650 00fc 3C       		.uleb128 0x3c
+ 651 00fd 19       		.uleb128 0x19
+ 652 00fe 6E       		.uleb128 0x6e
+ 653 00ff 0E       		.uleb128 0xe
+ 654 0100 03       		.uleb128 0x3
+ 655 0101 0E       		.uleb128 0xe
+ 656 0102 3A       		.uleb128 0x3a
+ 657 0103 0B       		.uleb128 0xb
+ 658 0104 3B       		.uleb128 0x3b
+ 659 0105 0B       		.uleb128 0xb
+ 660 0106 00       		.byte	0
+ 661 0107 00       		.byte	0
+ 662 0108 00       		.byte	0
+ 663              		.section	.debug_loc,"",%progbits
+ 664              	.Ldebug_loc0:
+ 665              	.LLST0:
+ 666 0000 22000000 		.4byte	.LVL4
+ 667 0004 26000000 		.4byte	.LVL5
+ 668 0008 0200     		.2byte	0x2
+ 669 000a 30       		.byte	0x30
+ 670 000b 9F       		.byte	0x9f
+ 671 000c 26000000 		.4byte	.LVL5
+ 672 0010 4C000000 		.4byte	.LVL8
+ 673 0014 0100     		.2byte	0x1
+ 674 0016 54       		.byte	0x54
+ 675 0017 4E000000 		.4byte	.LVL9
+ 676 001b 54000000 		.4byte	.LFE32
+ 677 001f 0100     		.2byte	0x1
+ 678 0021 54       		.byte	0x54
+ 679 0022 00000000 		.4byte	0
+ 680 0026 00000000 		.4byte	0
+ 681              		.section	.debug_aranges,"",%progbits
+ 682 0000 1C000000 		.4byte	0x1c
+ 683 0004 0200     		.2byte	0x2
+ 684 0006 00000000 		.4byte	.Ldebug_info0
+ 685 000a 04       		.byte	0x4
+ 686 000b 00       		.byte	0
+ 687 000c 0000     		.2byte	0
+ 688 000e 0000     		.2byte	0
+ 689 0010 00000000 		.4byte	.LFB32
+ 690 0014 54000000 		.4byte	.LFE32-.LFB32
+ 691 0018 00000000 		.4byte	0
+ 692 001c 00000000 		.4byte	0
+ 693              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 14
+
+
+ 694              	.Ldebug_ranges0:
+ 695 0000 00000000 		.4byte	.LFB32
+ 696 0004 54000000 		.4byte	.LFE32
+ 697 0008 00000000 		.4byte	0
+ 698 000c 00000000 		.4byte	0
+ 699              		.section	.debug_line,"",%progbits
+ 700              	.Ldebug_line0:
+ 701 0000 C1000000 		.section	.debug_str,"MS",%progbits,1
+ 701      02009300 
+ 701      00000201 
+ 701      FB0E0D00 
+ 701      01010101 
+ 702              	.LASF18:
+ 703 0000 62757341 		.ascii	"busAddress\000"
+ 703      64647265 
+ 703      737300
+ 704              	.LASF21:
+ 705 000b 414D7578 		.ascii	"AMux_1_Unset\000"
+ 705      5F315F55 
+ 705      6E736574 
+ 705      00
+ 706              	.LASF31:
+ 707 0018 53656C65 		.ascii	"Selector_I2C_Struct\000"
+ 707      63746F72 
+ 707      5F493243 
+ 707      5F537472 
+ 707      75637400 
+ 708              	.LASF22:
+ 709 002c 4F70616D 		.ascii	"Opamp_1_Start\000"
+ 709      705F315F 
+ 709      53746172 
+ 709      7400
+ 710              	.LASF3:
+ 711 003a 73686F72 		.ascii	"short unsigned int\000"
+ 711      7420756E 
+ 711      7369676E 
+ 711      65642069 
+ 711      6E7400
+ 712              	.LASF29:
+ 713 004d 433A5C55 		.ascii	"C:\\Users\\FranklinLab_PC_1\\Documents\\Python Scri"
+ 713      73657273 
+ 713      5C467261 
+ 713      6E6B6C69 
+ 713      6E4C6162 
+ 714 007c 7074735C 		.ascii	"pts\\CNT_IV\\PSoC\\Layout 2_14\\Version 4_Full\\Sla"
+ 714      434E545F 
+ 714      49565C50 
+ 714      536F435C 
+ 714      4C61796F 
+ 715 00aa 76655C44 		.ascii	"ve\\Design01.cydsn\000"
+ 715      65736967 
+ 715      6E30312E 
+ 715      63796473 
+ 715      6E00
+ 716              	.LASF19:
+ 717 00bc 73656C65 		.ascii	"selector\000"
+ 717      63746F72 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 15
+
+
+ 717      00
+ 718              	.LASF9:
+ 719 00c5 666C6F61 		.ascii	"float\000"
+ 719      7400
+ 720              	.LASF15:
+ 721 00cb 64617461 		.ascii	"data\000"
+ 721      00
+ 722              	.LASF1:
+ 723 00d0 756E7369 		.ascii	"unsigned char\000"
+ 723      676E6564 
+ 723      20636861 
+ 723      7200
+ 724              	.LASF5:
+ 725 00de 6C6F6E67 		.ascii	"long unsigned int\000"
+ 725      20756E73 
+ 725      69676E65 
+ 725      6420696E 
+ 725      7400
+ 726              	.LASF30:
+ 727 00f0 75696E74 		.ascii	"uint8\000"
+ 727      3800
+ 728              	.LASF16:
+ 729 00f6 77726974 		.ascii	"write\000"
+ 729      6500
+ 730              	.LASF23:
+ 731 00fc 4144435F 		.ascii	"ADC_SAR_Seq_1_Start\000"
+ 731      5341525F 
+ 731      5365715F 
+ 731      315F5374 
+ 731      61727400 
+ 732              	.LASF10:
+ 733 0110 646F7562 		.ascii	"double\000"
+ 733      6C6500
+ 734              	.LASF32:
+ 735 0117 6D61696E 		.ascii	"main\000"
+ 735      00
+ 736              	.LASF17:
+ 737 011c 72656164 		.ascii	"read\000"
+ 737      00
+ 738              	.LASF14:
+ 739 0121 73756241 		.ascii	"subAddress\000"
+ 739      64647265 
+ 739      737300
+ 740              	.LASF8:
+ 741 012c 756E7369 		.ascii	"unsigned int\000"
+ 741      676E6564 
+ 741      20696E74 
+ 741      00
+ 742              	.LASF7:
+ 743 0139 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 743      206C6F6E 
+ 743      6720756E 
+ 743      7369676E 
+ 743      65642069 
+ 744              	.LASF27:
+ 745 0150 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 745      43313120 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 16
+
+
+ 745      352E342E 
+ 745      31203230 
+ 745      31363036 
+ 746 0183 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0 -mthumb -g -O"
+ 746      20726576 
+ 746      6973696F 
+ 746      6E203233 
+ 746      37373135 
+ 747 01b6 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 747      66756E63 
+ 747      74696F6E 
+ 747      2D736563 
+ 747      74696F6E 
+ 748              	.LASF13:
+ 749 01de 73697A65 		.ascii	"sizetype\000"
+ 749      74797065 
+ 749      00
+ 750              	.LASF24:
+ 751 01e7 455A4932 		.ascii	"EZI2C_1_Start\000"
+ 751      435F315F 
+ 751      53746172 
+ 751      7400
+ 752              	.LASF6:
+ 753 01f5 6C6F6E67 		.ascii	"long long int\000"
+ 753      206C6F6E 
+ 753      6720696E 
+ 753      7400
+ 754              	.LASF28:
+ 755 0203 6D61696E 		.ascii	"main.c\000"
+ 755      2E6300
+ 756              	.LASF11:
+ 757 020a 63686172 		.ascii	"char\000"
+ 757      00
+ 758              	.LASF33:
+ 759 020f 4932435F 		.ascii	"I2C_Bus_Addresses\000"
+ 759      4275735F 
+ 759      41646472 
+ 759      65737365 
+ 759      7300
+ 760              	.LASF2:
+ 761 0221 73686F72 		.ascii	"short int\000"
+ 761      7420696E 
+ 761      7400
+ 762              	.LASF20:
+ 763 022b 414D7578 		.ascii	"AMux_1_Set\000"
+ 763      5F315F53 
+ 763      657400
+ 764              	.LASF4:
+ 765 0236 6C6F6E67 		.ascii	"long int\000"
+ 765      20696E74 
+ 765      00
+ 766              	.LASF26:
+ 767 023f 455A4932 		.ascii	"EZI2C_1_EzI2CSetBuffer1\000"
+ 767      435F315F 
+ 767      457A4932 
+ 767      43536574 
+ 767      42756666 
+ARM GAS  C:\Users\FRANKL~1\AppData\Local\Temp\ccAWSuqe.s 			page 17
+
+
+ 768              	.LASF12:
+ 769 0257 6C6F6E67 		.ascii	"long double\000"
+ 769      20646F75 
+ 769      626C6500 
+ 770              	.LASF0:
+ 771 0263 7369676E 		.ascii	"signed char\000"
+ 771      65642063 
+ 771      68617200 
+ 772              	.LASF25:
+ 773 026f 455A4932 		.ascii	"EZI2C_1_EzI2CSetAddress1\000"
+ 773      435F315F 
+ 773      457A4932 
+ 773      43536574 
+ 773      41646472 
+ 774              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

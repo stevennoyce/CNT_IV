@@ -1,0 +1,7 @@
+C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Slave\Design01.cydsn\Design01.cyprj|7018acb5-9046-4585-a760-208ddbd35326
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|ba368ce9-7b82-4feb-97e5-792dd2fb4441
+C:\Users\FranklinLab_PC_1\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|27152b77-373d-4e6f-bf90-740b980795da
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|6afa801a-9509-4704-9927-d70764d76aef
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|81110681-a7c1-4d76-84ea-7b6ce56fe0c5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|dcda3e7b-4f5f-4726-9739-67f467ee13a8
+C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Slave\Proto Board Test 1.cydsn\Proto Board Test 1.cyprj|cc24104a-4f2a-4946-b8bb-9a8e7d0a2779

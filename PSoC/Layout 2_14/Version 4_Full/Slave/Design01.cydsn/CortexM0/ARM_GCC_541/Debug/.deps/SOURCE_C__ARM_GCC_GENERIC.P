@@ -1,0 +1,182 @@
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/CortexM0/ARM_GCC_541/Debug/main.o : C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_1.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_1_IRQ.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_1_intClock.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/AMux_1.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/CyFlash.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/CyLib.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_BOOT.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_EZI2C.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_EZI2C_PVT.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_PINS.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_PVT.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_SCBCLK.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_SCB_IRQ.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_scl.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_scl_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_sda.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_sda_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Opamp_1.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_1.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_10.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_10_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_11.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_11_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_12.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_12_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_13.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_13_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_14.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_14_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_15.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_15_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_16.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_16_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_19.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_19_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_1_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_2.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_20.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_20_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_21.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_21_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_22.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_22_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_27.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_27_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_28.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_28_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_29.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_29_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_2_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_3.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_30.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_30_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_31.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_31_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_32.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_32_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_33.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_33_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_34.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_34_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_3_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_4.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_4_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_5.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_5_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_6.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_6_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_7.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_7_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_8.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_8_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_9.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_9_aliases.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cmsis_armcc.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cmsis_compiler.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cmsis_gcc.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/core_cm0.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cyPm.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cydisabledsheets.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cypins.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cytypes.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/project.h C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/main.c 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_1.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_1_IRQ.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_1_intClock.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/AMux_1.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_BOOT.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_EZI2C.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_EZI2C_PVT.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_PINS.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_PVT.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_SCBCLK.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_SCB_IRQ.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_scl.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_scl_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_sda.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/EZI2C_1_sda_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Opamp_1.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_1.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_10.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_10_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_11.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_11_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_12.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_12_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_13.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_13_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_14.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_14_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_15.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_15_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_16.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_16_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_19.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_19_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_1_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_2.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_20.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_20_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_21.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_21_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_22.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_22_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_27.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_27_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_28.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_28_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_29.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_29_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_2_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_3.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_30.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_30_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_31.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_31_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_32.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_32_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_33.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_33_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_34.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_34_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_3_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_4.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_4_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_5.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_5_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_6.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_6_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_7.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_7_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_8.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_8_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_9.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/Pin_9_aliases.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cmsis_armcc.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cmsis_compiler.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cmsis_gcc.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/core_cm0.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cydisabledsheets.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/Generated_Source/PSoC4/project.h : 
+
+C:/Users/FranklinLab_PC_1/Documents/Python\ Scripts/CNT_IV/PSoC/Layout\ 2_14/Version\ 4_Full/Slave/Design01.cydsn/main.c : 
+
