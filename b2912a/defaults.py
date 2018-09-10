@@ -56,7 +56,8 @@ default_parameters = {
 		'AutoGateSweep':{
 			'drainVoltageSetPoints': [-0.100, -0.010],
 			'sweepsPerVDS': 1,
-			'delayBetweenSweeps': 0
+			'delayBetweenSweeps': 0,
+			'timedSweepStarts': False
 		},
 		'AutoDrainSweep':{
 			'gateVoltageSetPoints': [-10.0, -5.0, 0],
@@ -160,8 +161,11 @@ default_parameters_description = {
 	},
 	'AutoGateSweep':{
 		'dependencies':['GateSweep'],
-		'numberOfSweeps': {'type':'int', 'units':'#'},
-		'applyStaticBiasBetweenSweeps': {'type':'bool'}
+		'sweepsPerVDS': {'type':'int', 'units':'#'},
+		'applyStaticBiasBetweenSweeps': {'type':'bool'},
+		'delayBetweenSweeps': {'type':'float', 'units':'s'},
+		'timedSweepStarts': {'type':'bool'}
+
 	},
 	'AutoStaticBias':{
 		'dependencies':['StaticBias','GateSweep'],
