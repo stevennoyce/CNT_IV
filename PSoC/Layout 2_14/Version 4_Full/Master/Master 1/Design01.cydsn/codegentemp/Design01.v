@@ -1,6 +1,6 @@
 // ======================================================================
 // Design01.v generated from TopDesign.cysch
-// 08/30/2018 at 10:10
+// 09/10/2018 at 17:57
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1607,7 +1607,7 @@ endmodule
 module top ;
 
     electrical  Net_258;
-    electrical  Net_251;
+    electrical  Net_267;
           wire  Net_250;
     electrical  Net_249;
           wire  Net_248;
@@ -1619,6 +1619,7 @@ module top ;
           wire  Net_151;
           wire  Net_150;
           wire  Net_149;
+    electrical  Net_275;
           wire  Net_148;
           wire  Net_147;
           wire  Net_146;
@@ -1652,6 +1653,7 @@ module top ;
           wire  Net_170;
           wire [7:0] Net_197;
           wire  Net_196;
+    electrical  Net_274;
           wire [7:0] Net_253;
           wire  Net_252;
           wire [7:0] Net_255;
@@ -1663,13 +1665,12 @@ module top ;
           wire  Net_139;
           wire  Net_123;
           wire  Net_122;
-    electrical  Net_176;
-    electrical  Net_256;
-    electrical  Net_25;
-    electrical  Net_177;
-    electrical  Net_186;
     electrical  Net_194;
     electrical  Net_189;
+    electrical  Net_256;
+    electrical  Net_262;
+    electrical  Net_177;
+    electrical  Net_186;
     electrical  Net_26;
           wire  Net_10;
     electrical  Net_167;
@@ -1690,7 +1691,7 @@ module top ;
         .mi(1'b0));
 
     TIA_v2_0_2 TIA_1 (
-        .Iin(Net_25),
+        .Iin(Net_262),
         .Vref(Net_26),
         .Vout(Net_177));
 
@@ -1925,7 +1926,7 @@ module top ;
 		 (.oe(tmpOE__Pin_Vss_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_Vss_net[0:0]}),
-		  .analog({Net_25}),
+		  .analog({Net_274}),
 		  .io({tmpIO_0__Pin_Vss_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_Vss_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_Vss_net[0:0]}),
@@ -2323,7 +2324,7 @@ module top ;
 
 
     ADC_SAR_v3_10_9 ADC_SAR_1 (
-        .vplus(Net_176),
+        .vplus(Net_275),
         .vminus(Net_167),
         .soc(1'b0),
         .eoc(Net_150),
@@ -2394,7 +2395,7 @@ module top ;
 		 (.oe(tmpOE__Pin_I12_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_I12_net[0:0]}),
-		  .analog({Net_176}),
+		  .analog({Net_26}),
 		  .io({tmpIO_0__Pin_I12_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_I12_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_I12_net[0:0]}),
@@ -2723,7 +2724,7 @@ module top ;
     OpAmp_v1_90_11 Opamp_1 (
         .Vplus(Net_189),
         .Vout(Net_194),
-        .Vminus(Net_251));
+        .Vminus(Net_267));
     defparam Opamp_1.Mode = 1;
 
     OpAmp_v1_90_12 Opamp_2 (

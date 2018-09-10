@@ -1042,7 +1042,7 @@ int main(void) {
 	
 	Current_Measurement_Sample_Count = 100;
 	
-	Calibrate_ADC_Offset(300);
+	//Calibrate_ADC_Offset(300);
 	TIA_Set_Resistor(TIA_Selected_Resistor);
 	
 	while (1) {

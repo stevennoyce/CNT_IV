@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Aug 30 10:10:30 2018
+--	Mon Sep 10 17:57:14 2018
 --
 
 USE cypress.cypress.all;
@@ -101,7 +101,7 @@ SIGNAL \ADC_DelSig_1:Net_252\ : bit;
 SIGNAL \ADC_DelSig_1:soc\ : bit;
 SIGNAL \ADC_DelSig_1:Net_268\ : bit;
 SIGNAL \ADC_DelSig_1:Net_270\ : bit;
-TERMINAL Net_25 : bit;
+TERMINAL Net_262 : bit;
 SIGNAL \TIA_1:Net_37\ : bit;
 SIGNAL \TIA_1:Net_52\ : bit;
 SIGNAL \TIA_1:Net_38\ : bit;
@@ -130,6 +130,7 @@ TERMINAL tmpSIOVREF__Pin_Vds_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_Vds_net_0 : bit;
 SIGNAL tmpOE__Pin_Vss_net_0 : bit;
 SIGNAL tmpFB_0__Pin_Vss_net_0 : bit;
+TERMINAL Net_274 : bit;
 SIGNAL tmpIO_0__Pin_Vss_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_Vss_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_Vss_net_0 : bit;
@@ -816,7 +817,7 @@ SIGNAL \ADC_SAR_1:Net_385\ : bit;
 SIGNAL \ADC_SAR_1:Net_381\ : bit;
 SIGNAL \ADC_SAR_1:Net_188\ : bit;
 SIGNAL \ADC_SAR_1:Net_221\ : bit;
-TERMINAL Net_176 : bit;
+TERMINAL Net_275 : bit;
 TERMINAL \ADC_SAR_1:Net_126\ : bit;
 TERMINAL \ADC_SAR_1:Net_215\ : bit;
 TERMINAL \ADC_SAR_1:Net_257\ : bit;
@@ -1514,7 +1515,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 \TIA_1:SC\:cy_psoc3_scblock_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vref=>Net_26,
-		vin=>Net_25,
+		vin=>Net_262,
 		aclk=>zero,
 		bst_clk=>zero,
 		clk_udb=>zero,
@@ -1750,7 +1751,7 @@ Pin_Vss:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_Vss_net_0),
-		analog=>Net_25,
+		analog=>Net_274,
 		io=>(tmpIO_0__Pin_Vss_net_0),
 		siovref=>(tmpSIOVREF__Pin_Vss_net_0),
 		annotation=>(open),
@@ -2626,7 +2627,7 @@ CommunicationInterrupt:cy_isr_v1_0
 		dig_domain_out=>\ADC_SAR_1:Net_381\);
 \ADC_SAR_1:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
-	PORT MAP(vplus=>Net_176,
+	PORT MAP(vplus=>Net_275,
 		vminus=>\ADC_SAR_1:Net_126\,
 		ext_pin=>\ADC_SAR_1:Net_215\,
 		vrefhi_out=>\ADC_SAR_1:Net_257\,
@@ -2729,7 +2730,7 @@ Pin_I12:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_I12_net_0),
-		analog=>Net_176,
+		analog=>Net_26,
 		io=>(tmpIO_0__Pin_I12_net_0),
 		siovref=>(tmpSIOVREF__Pin_I12_net_0),
 		annotation=>(open),

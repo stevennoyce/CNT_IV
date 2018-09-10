@@ -1,9 +1,10 @@
 -- Project:   Design01
--- Generated: 08/30/2018 10:10:34
+-- Generated: 09/10/2018 17:57:18
 -- PSoC Creator  4.1 Update 1
 
 ENTITY Design01 IS
     PORT(
+        Pin_Vss(0)_PAD : INOUT std_ulogic;
         SDA_1(0)_PAD : INOUT std_ulogic;
         SCL_1(0)_PAD : INOUT std_ulogic;
         Rx_UART(0)_PAD : IN std_ulogic;
@@ -294,10 +295,10 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE Location OF \USBUART:USB\ : LABEL IS "F(USB,0)";
     ATTRIBUTE Location OF \ADC_DelSig_1:DSM\ : LABEL IS "F(DSM,0)";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell17";
-    ATTRIBUTE Location OF \TIA_1:SC\ : LABEL IS "F(SC,2)";
+    ATTRIBUTE Location OF \TIA_1:SC\ : LABEL IS "F(SC,0)";
     ATTRIBUTE Location OF \VDAC_Vgs:viDAC8\ : LABEL IS "F(VIDAC,3)";
-    ATTRIBUTE Location OF \VDAC_Vds:viDAC8\ : LABEL IS "F(VIDAC,0)";
-    ATTRIBUTE Location OF \VDAC_Ref:viDAC8\ : LABEL IS "F(VIDAC,2)";
+    ATTRIBUTE Location OF \VDAC_Vds:viDAC8\ : LABEL IS "F(VIDAC,1)";
+    ATTRIBUTE Location OF \VDAC_Ref:viDAC8\ : LABEL IS "F(VIDAC,0)";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:SyncCtl:CtrlReg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:StsReg\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:Shifter:u0\ : LABEL IS "datapathcell1";
@@ -310,7 +311,7 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE Location OF \ADC_SAR_1:ADC_SAR\ : LABEL IS "F(SAR,0)";
     ATTRIBUTE Location OF \ADC_SAR_2:ADC_SAR\ : LABEL IS "F(SAR,1)";
     ATTRIBUTE Location OF \Opamp_1:ABuf\ : LABEL IS "F(OpAmp,2)";
-    ATTRIBUTE Location OF \Opamp_2:ABuf\ : LABEL IS "F(OpAmp,0)";
+    ATTRIBUTE Location OF \Opamp_2:ABuf\ : LABEL IS "F(OpAmp,3)";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:sda_in_reg\ : LABEL IS "macrocell18";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:m_state_4\ : LABEL IS "macrocell19";
     ATTRIBUTE lib_model OF \I2C_1:bI2C_UDB:m_state_3\ : LABEL IS "macrocell20";
@@ -342,7 +343,7 @@ ARCHITECTURE __DEFAULT__ OF Design01 IS
     ATTRIBUTE lib_model OF \UART_1:BUART:tx_bitclk\ : LABEL IS "macrocell46";
     ATTRIBUTE lib_model OF \UART_1:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell47";
     ATTRIBUTE lib_model OF Dedicated_Output : LABEL IS "iocell15";
-    ATTRIBUTE Location OF Dedicated_Output : LABEL IS "P0[1]";
+    ATTRIBUTE Location OF Dedicated_Output : LABEL IS "P3[7]";
     ATTRIBUTE lib_model OF Dedicated_Output_1 : LABEL IS "iocell16";
     ATTRIBUTE Location OF Dedicated_Output_1 : LABEL IS "P0[0]";
     ATTRIBUTE lib_model OF \UART_1:BUART:rx_state_0\ : LABEL IS "macrocell48";
@@ -1305,6 +1306,7 @@ BEGIN
         PORT MAP(
             pa_out => Pin_Vss(0)__PA,
             oe => open,
+            pad_in => Pin_Vss(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
