@@ -73,7 +73,9 @@ def run(parameters, smu_instance, arduino_instance, isSavingResults=True, isPlot
 	parameters['Computed'] = results['Computed']
 	
 	# Print the metrics
-	print('Standard Deviation: {:.4f}'.format(results['Computed']['id_std']))
+	print('Max current: {:.4f}'.format(results['Computed']['id_max']))
+	print('Min current: {:.4f}'.format(results['Computed']['id_min']))
+	print('Average noise: {:.4f}'.format(results['Computed']['avg_id_std']))
 
 	# Copy parameters and add in the test results
 	jsonData = dict(parameters)
@@ -149,8 +151,14 @@ def runStaticBias(smu_instance, arduino_instance, drainVoltageSetPoint, gateVolt
 		vgs_data.append(np.median(measurements['Vgs_data']))
 		ig_data.append(np.median(measurements['Ig_data']))
 		timestamps.append(timestamp)
-		id_normalized = np.array(measurements['Id_data']) - np.polyval(np.polyfit(range(len(measurements['Id_data'])), measurements['Id_data'], 1), np.array(measurements['Id_data']))
-		ig_normalized = np.array(measurements['Ig_data']) - np.polyval(np.polyfit(range(len(measurements['Ig_data'])), measurements['Ig_data'], 1), np.array(measurements['Ig_data']))
+		
+		# If multiple data points were collected in this measurementTime, save their standard deviation
+		id_normalized = measurements['Id_data']
+		if(len(measurements['Id_data']) >= 2):
+			id_normalized = np.array(measurements['Id_data']) - np.polyval(np.polyfit(range(len(measurements['Id_data'])), measurements['Id_data'], 1), np.array(measurements['Id_data']))
+		ig_normalized = measurements['Ig_data']	
+		if(len(measurements['Ig_data']) >= 2):
+			ig_normalized = np.array(measurements['Ig_data']) - np.polyval(np.polyfit(range(len(measurements['Ig_data'])), measurements['Ig_data'], 1), np.array(measurements['Ig_data']))			
 		id_std.append(np.std(id_normalized))
 		ig_std.append(np.std(ig_normalized))
 
