@@ -141,6 +141,17 @@ void Connect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
 	Update_Selector(intermediate);
 }
 
+void Disonnect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
+	channel--;
+	intermediate--;
+	
+	if (channel >= CHANNEL_COUNT) return;
+	if (intermediate >= INTERMEDIATE_COUNT) return;
+	
+	selectors[intermediate].write.data[channel] = CONTACT_DISCONNECT_CODE;
+	Update_Selector(intermediate);
+}
+
 void Connect_Contact_To_Intermediate(uint8 contact, uint8 intermediate) {
 	contact--;
 	intermediate--;
@@ -228,9 +239,25 @@ void Connect_Intermediate(uint8 intermediate) {
 	}
 }
 
+void Disconnect_Intermediate(uint8 intermediate) {
+	switch (intermediate) {
+		case 1: Disconnect_Channel_On_Intermediate(33, 1); break;
+		case 2: Disconnect_Channel_On_Intermediate(33, 2); break;
+		case 3: Disconnect_Channel_On_Intermediate(33, 3); break;
+		case 4: Disconnect_Channel_On_Intermediate(33, 4); break;
+		default: return;
+	}
+}
+
 void Connect_Intermediates() {
 	for (uint8 i = 1; i <= INTERMEDIATE_COUNT; i++) {
 		Connect_Intermediate(i);
+	}
+}
+
+void Disconnect_Intermediates() {
+	for (uint8 i = 1; i <= INTERMEDIATE_COUNT; i++) {
+		Disconnect_Intermediate(i);
 	}
 }
 
@@ -1195,6 +1222,15 @@ int main(void) {
 				sprintf(TransmitBuffer, "# Connected channel %u to %u\r\n", channel, intermediate);
 				sendTransmitBuffer();
 			} else 
+			if (strstr(ReceiveBuffer, "disconnect-c ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				uint8 channel = strtol(location, &location, 10);
+				uint8 intermediate = strtol(location, &location, 10);
+				Disconnect_Channel_On_Intermediate(channel, intermediate);
+				
+				sprintf(TransmitBuffer, "# Disconnected channel %u from %u\r\n", channel, intermediate);
+				sendTransmitBuffer();
+			} else 
 			if (strstr(ReceiveBuffer, "disconnect ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 contact = strtol(location, &location, 10);
@@ -1234,10 +1270,24 @@ int main(void) {
 				sprintf(TransmitBuffer, "# Connected intermediate %u\r\n", intermediate);
 				sendTransmitBuffer();
 			} else 
+			if (strstr(ReceiveBuffer, "disconnect-intermediate ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				uint8 intermediate = strtol(location, &location, 10);
+				Disconnect_Intermediate(intermediate);
+				
+				sprintf(TransmitBuffer, "# Disconnected intermediate %u\r\n", intermediate);
+				sendTransmitBuffer();
+			} else 
 			if (strstr(ReceiveBuffer, "connect-intermediates ") == &ReceiveBuffer[0]) {
 				Connect_Intermediates();
 				
 				sprintf(TransmitBuffer, "# Connected intermediates\r\n");
+				sendTransmitBuffer();
+			} else 
+			if (strstr(ReceiveBuffer, "disconnect-intermediates ") == &ReceiveBuffer[0]) {
+				Disconnect_Intermediates();
+				
+				sprintf(TransmitBuffer, "# Disconnected intermediates\r\n");
 				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "Set_Current_Measurement_Sample_Count ") == &ReceiveBuffer[0]) {
