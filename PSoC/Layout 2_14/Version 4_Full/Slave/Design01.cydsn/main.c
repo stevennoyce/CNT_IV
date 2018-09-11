@@ -1,6 +1,6 @@
 #include "project.h"
 
-#define SELECTOR_ID (0)
+#define SELECTOR_ID (3)
 
 #define SELECTOR_COUNT (4u)
 #define INTERMEDIATE_COUNT (4u)

@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Aug 30 09:24:52 2018
+--	Tue Sep 11 11:50:44 2018
 --
 
 USE cypress.cypress.all;
@@ -308,7 +308,7 @@ TERMINAL Net_270 : bit;
 TERMINAL Net_393 : bit;
 TERMINAL Net_233 : bit;
 TERMINAL Net_232 : bit;
-TERMINAL Net_454 : bit;
+TERMINAL Net_515 : bit;
 SIGNAL \EZI2C_1:Net_847\ : bit;
 SIGNAL \EZI2C_1:select_s_wire\ : bit;
 SIGNAL \EZI2C_1:rx_wire\ : bit;
@@ -2677,7 +2677,7 @@ AMux_1:cy_psoc3_amux_v1_0
 		one_active=>'0',
 		init_mux_sel=>"0000000000000000000000000000000000",
 		api_type=>0,
-		connect_mode=>1)
+		connect_mode=>2)
 	PORT MAP(muxin=>(Net_245, Net_244, Net_243, Net_242,
 			Net_241, Net_240, Net_239, Net_238,
 			Net_272, Net_271, Net_270, Net_393,
@@ -2688,7 +2688,7 @@ AMux_1:cy_psoc3_amux_v1_0
 			Net_221, Net_220, Net_219, Net_218,
 			Net_217, Net_216),
 		hw_ctrl_en=>(others => zero),
-		vout=>Net_454);
+		vout=>Net_515);
 \EZI2C_1:SCBCLK\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"7c22e3c5-da93-4267-9ea2-622856a53add/2dc2d7a8-ce2b-43c7-af4a-821c8cd73ccf",
@@ -2869,7 +2869,7 @@ AMux_1:cy_psoc3_amux_v1_0
 		needs_dsab=>'0',
 		deepsleep_available=>'0',
 		has_resistor=>'0')
-	PORT MAP(vplus=>Net_454,
+	PORT MAP(vplus=>Net_515,
 		vminus=>\Opamp_1:Net_9\,
 		vout1=>\Opamp_1:Net_18\,
 		rs_bot=>\Opamp_1:Net_29\,

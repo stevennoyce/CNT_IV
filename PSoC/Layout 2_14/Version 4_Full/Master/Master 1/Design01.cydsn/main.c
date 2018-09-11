@@ -141,7 +141,7 @@ void Connect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
 	Update_Selector(intermediate);
 }
 
-void Disonnect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
+void Disconnect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
 	channel--;
 	intermediate--;
 	
@@ -1069,7 +1069,7 @@ int main(void) {
 	
 	Current_Measurement_Sample_Count = 100;
 	
-	//Calibrate_ADC_Offset(300);
+	Calibrate_ADC_Offset(300);
 	TIA_Set_Resistor(TIA_Selected_Resistor);
 	
 	while (1) {

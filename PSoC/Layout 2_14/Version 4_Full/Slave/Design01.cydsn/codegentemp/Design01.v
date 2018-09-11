@@ -1,6 +1,6 @@
 // ======================================================================
 // Design01.v generated from TopDesign.cysch
-// 08/30/2018 at 09:24
+// 09/11/2018 at 11:50
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1122,8 +1122,6 @@ module top ;
           wire  Net_372;
           wire  Net_371;
     electrical  Net_370;
-    electrical  Net_245;
-    electrical  Net_244;
     electrical  Net_243;
     electrical  Net_242;
     electrical  Net_241;
@@ -1150,8 +1148,10 @@ module top ;
     electrical  Net_218;
     electrical  Net_217;
     electrical  Net_216;
+    electrical  Net_515;
+    electrical  Net_244;
+    electrical  Net_245;
     electrical  Net_342;
-    electrical  Net_454;
 
 	wire [0:0] tmpOE__Pin_1_net;
 	wire [0:0] tmpFB_0__Pin_1_net;
@@ -3329,13 +3329,13 @@ module top ;
             Net_217,
             Net_216
             }),
-        .vout(Net_454)
+        .vout(Net_515)
         );
     
     defparam AMux_1.muxin_width = 34;
     defparam AMux_1.init_mux_sel = 34'h0;
     defparam AMux_1.one_active = 0;
-    defparam AMux_1.connect_mode = 1;
+    defparam AMux_1.connect_mode = 2;
     
     // -- AMux AMux_1 end --
 
@@ -3361,7 +3361,7 @@ module top ;
         .rx_in(1'b0));
 
     OpAmp_P4_v1_20_2 Opamp_1 (
-        .Vplus(Net_454),
+        .Vplus(Net_515),
         .Vout(Net_342),
         .Vminus(Net_456));
 

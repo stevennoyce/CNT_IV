@@ -1,6 +1,6 @@
 // ======================================================================
 // Design01.v generated from TopDesign.cysch
-// 09/10/2018 at 17:57
+// 09/11/2018 at 11:48
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1607,7 +1607,7 @@ endmodule
 module top ;
 
     electrical  Net_258;
-    electrical  Net_267;
+    electrical  Net_281;
           wire  Net_250;
     electrical  Net_249;
           wire  Net_248;
@@ -1619,7 +1619,6 @@ module top ;
           wire  Net_151;
           wire  Net_150;
           wire  Net_149;
-    electrical  Net_275;
           wire  Net_148;
           wire  Net_147;
           wire  Net_146;
@@ -1653,7 +1652,6 @@ module top ;
           wire  Net_170;
           wire [7:0] Net_197;
           wire  Net_196;
-    electrical  Net_274;
           wire [7:0] Net_253;
           wire  Net_252;
           wire [7:0] Net_255;
@@ -1665,13 +1663,14 @@ module top ;
           wire  Net_139;
           wire  Net_123;
           wire  Net_122;
+    electrical  Net_284;
     electrical  Net_194;
     electrical  Net_189;
+    electrical  Net_275;
     electrical  Net_256;
     electrical  Net_262;
     electrical  Net_177;
-    electrical  Net_186;
-    electrical  Net_26;
+    electrical  Net_276;
           wire  Net_10;
     electrical  Net_167;
           wire  Net_12;
@@ -1683,7 +1682,7 @@ module top ;
 
     ADC_DelSig_v3_30_1 ADC_DelSig_1 (
         .vplus(Net_177),
-        .vminus(Net_26),
+        .vminus(Net_276),
         .soc(1'b1),
         .eoc(Net_140),
         .aclk(1'b0),
@@ -1692,13 +1691,13 @@ module top ;
 
     TIA_v2_0_2 TIA_1 (
         .Iin(Net_262),
-        .Vref(Net_26),
+        .Vref(Net_276),
         .Vout(Net_177));
 
     VDAC8_v1_90_3 VDAC_Vgs (
         .strobe(1'b0),
         .data(8'b00000000),
-        .vOut(Net_186));
+        .vOut(Net_284));
     defparam VDAC_Vgs.Data_Source = 0;
     defparam VDAC_Vgs.Initial_Value = 0;
     defparam VDAC_Vgs.Strobe_Mode = 0;
@@ -1766,7 +1765,7 @@ module top ;
 		 (.oe(tmpOE__Pin_SolutionGate_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_SolutionGate_net[0:0]}),
-		  .analog({Net_186}),
+		  .analog({Net_284}),
 		  .io({tmpIO_0__Pin_SolutionGate_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_SolutionGate_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_SolutionGate_net[0:0]}),
@@ -1926,7 +1925,7 @@ module top ;
 		 (.oe(tmpOE__Pin_Vss_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_Vss_net[0:0]}),
-		  .analog({Net_274}),
+		  .analog({Net_262}),
 		  .io({tmpIO_0__Pin_Vss_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_Vss_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_Vss_net[0:0]}),
@@ -2395,7 +2394,7 @@ module top ;
 		 (.oe(tmpOE__Pin_I12_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_I12_net[0:0]}),
-		  .analog({Net_26}),
+		  .analog({Net_275}),
 		  .io({tmpIO_0__Pin_I12_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_I12_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_I12_net[0:0]}),
@@ -2632,7 +2631,7 @@ module top ;
 		 (.oe(tmpOE__Pin_BackGate_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_BackGate_net[0:0]}),
-		  .analog({Net_186}),
+		  .analog({Net_284}),
 		  .io({tmpIO_0__Pin_BackGate_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_BackGate_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_BackGate_net[0:0]}),
@@ -2708,7 +2707,7 @@ module top ;
 		 (.oe(tmpOE__Pin_LocalGates_net),
 		  .y({1'b0}),
 		  .fb({tmpFB_0__Pin_LocalGates_net[0:0]}),
-		  .analog({Net_186}),
+		  .analog({Net_284}),
 		  .io({tmpIO_0__Pin_LocalGates_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_LocalGates_net),
 		  .interrupt({tmpINTERRUPT_0__Pin_LocalGates_net[0:0]}),
@@ -2724,12 +2723,12 @@ module top ;
     OpAmp_v1_90_11 Opamp_1 (
         .Vplus(Net_189),
         .Vout(Net_194),
-        .Vminus(Net_267));
+        .Vminus(Net_281));
     defparam Opamp_1.Mode = 1;
 
     OpAmp_v1_90_12 Opamp_2 (
         .Vplus(Net_256),
-        .Vout(Net_26),
+        .Vout(Net_276),
         .Vminus(Net_258));
     defparam Opamp_2.Mode = 1;
 

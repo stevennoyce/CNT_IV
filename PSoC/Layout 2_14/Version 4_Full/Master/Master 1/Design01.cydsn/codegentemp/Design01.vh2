@@ -2,7 +2,7 @@
 --	Conversion of Design01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Sep 10 17:57:14 2018
+--	Tue Sep 11 11:48:36 2018
 --
 
 USE cypress.cypress.all;
@@ -94,7 +94,7 @@ SIGNAL \ADC_DelSig_1:Net_245_0\ : bit;
 TERMINAL \ADC_DelSig_1:Net_352\ : bit;
 TERMINAL \ADC_DelSig_1:Net_257\ : bit;
 TERMINAL \ADC_DelSig_1:Net_249\ : bit;
-TERMINAL Net_26 : bit;
+TERMINAL Net_276 : bit;
 SIGNAL Net_140 : bit;
 SIGNAL \ADC_DelSig_1:Net_250\ : bit;
 SIGNAL \ADC_DelSig_1:Net_252\ : bit;
@@ -110,7 +110,7 @@ SIGNAL \TIA_1:Net_60\ : bit;
 SIGNAL \VDAC_Vgs:Net_83\ : bit;
 SIGNAL \VDAC_Vgs:Net_81\ : bit;
 SIGNAL \VDAC_Vgs:Net_82\ : bit;
-TERMINAL Net_186 : bit;
+TERMINAL Net_284 : bit;
 TERMINAL \VDAC_Vgs:Net_77\ : bit;
 SIGNAL tmpOE__Pin_SolutionGate_net_0 : bit;
 SIGNAL tmpFB_0__Pin_SolutionGate_net_0 : bit;
@@ -130,7 +130,6 @@ TERMINAL tmpSIOVREF__Pin_Vds_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_Vds_net_0 : bit;
 SIGNAL tmpOE__Pin_Vss_net_0 : bit;
 SIGNAL tmpFB_0__Pin_Vss_net_0 : bit;
-TERMINAL Net_274 : bit;
 SIGNAL tmpIO_0__Pin_Vss_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_Vss_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Pin_Vss_net_0 : bit;
@@ -1490,7 +1489,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
 	PORT MAP(signal1=>\ADC_DelSig_1:Net_520\,
-		signal2=>Net_26);
+		signal2=>Net_276);
 \ADC_DelSig_1:IRQ\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
@@ -1514,7 +1513,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 		interrupt=>Net_140);
 \TIA_1:SC\:cy_psoc3_scblock_v1_0
 	GENERIC MAP(cy_registers=>"")
-	PORT MAP(vref=>Net_26,
+	PORT MAP(vref=>Net_276,
 		vin=>Net_262,
 		aclk=>zero,
 		bst_clk=>zero,
@@ -1533,7 +1532,7 @@ Net_70D <= ((not \UART_1:BUART:reset_reg\ and \UART_1:BUART:tx_state_2\)
 			zero, zero, zero, zero),
 		strobe=>zero,
 		strobe_udb=>zero,
-		vout=>Net_186,
+		vout=>Net_284,
 		iout=>\VDAC_Vgs:Net_77\);
 \VDAC_Vgs:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\VDAC_Vgs:Net_77\);
@@ -1596,7 +1595,7 @@ Pin_SolutionGate:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_SolutionGate_net_0),
-		analog=>Net_186,
+		analog=>Net_284,
 		io=>(tmpIO_0__Pin_SolutionGate_net_0),
 		siovref=>(tmpSIOVREF__Pin_SolutionGate_net_0),
 		annotation=>(open),
@@ -1751,7 +1750,7 @@ Pin_Vss:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_Vss_net_0),
-		analog=>Net_274,
+		analog=>Net_262,
 		io=>(tmpIO_0__Pin_Vss_net_0),
 		siovref=>(tmpSIOVREF__Pin_Vss_net_0),
 		annotation=>(open),
@@ -2730,7 +2729,7 @@ Pin_I12:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_I12_net_0),
-		analog=>Net_26,
+		analog=>Net_275,
 		io=>(tmpIO_0__Pin_I12_net_0),
 		siovref=>(tmpSIOVREF__Pin_I12_net_0),
 		annotation=>(open),
@@ -3005,7 +3004,7 @@ Pin_BackGate:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_BackGate_net_0),
-		analog=>Net_186,
+		analog=>Net_284,
 		io=>(tmpIO_0__Pin_BackGate_net_0),
 		siovref=>(tmpSIOVREF__Pin_BackGate_net_0),
 		annotation=>(open),
@@ -3075,7 +3074,7 @@ Pin_LocalGates:cy_psoc3_pins_v1_10
 	PORT MAP(oe=>(one),
 		y=>(zero),
 		fb=>(tmpFB_0__Pin_LocalGates_net_0),
-		analog=>Net_186,
+		analog=>Net_284,
 		io=>(tmpIO_0__Pin_LocalGates_net_0),
 		siovref=>(tmpSIOVREF__Pin_LocalGates_net_0),
 		annotation=>(open),
@@ -3100,12 +3099,12 @@ Pin_LocalGates:cy_psoc3_pins_v1_10
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vplus=>Net_256,
 		vminus=>\Opamp_2:Net_29\,
-		vout=>Net_26);
+		vout=>Net_276);
 \Opamp_2:abuf_negInput_mux_connect\:cy_connect_v1_0
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
 	PORT MAP(signal1=>\Opamp_2:Net_29\,
-		signal2=>Net_26);
+		signal2=>Net_276);
 \I2C_1:bI2C_UDB:sda_in_reg\:cy_dff
 	PORT MAP(d=>\I2C_1:Net_1109_1\,
 		clk=>\I2C_1:bI2C_UDB:op_clk\,
