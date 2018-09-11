@@ -124,7 +124,10 @@ def main():
 		
 		launcher.run_file(file)
 	
-	send_notification_via_pushbullet('Completed Main', 'Script has finished')
+	send_notification_via_pushbullet(
+		'Completed Main at {}'.format(time.strftime('%I:%M %p on %a')), 
+		'Script has finished choice of: {}'.format(choice)
+	)
 
 
 
