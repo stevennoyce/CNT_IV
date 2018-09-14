@@ -432,16 +432,16 @@
 													Parameters
 												</v-toolbar-title>
 											</v-toolbar>
-											<v-select box class="ma-3" label="Run Type" v-model="runType" :items="Object.keys(parametersDescription)"></v-select>
 											
 											<v-list>
+												<v-select box class="ma-3" label="Run Type" v-model="parameters['runType']" :items="Object.keys(parametersDescription['runConfigs'])"></v-select>
 												<v-subheader>Identifiers</v-subheader>
 												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['Identifiers']" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
-													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"></v-switch>
-													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName"></v-text-field>
-													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName"></v-text-field>
-													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"></v-text-field>
-													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"></v-select>
+													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName" v-model="parameters['Identifiers'][settingName]"></v-switch>
+													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" v-model.number="parameters['Identifiers'][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" v-model.number="parameters['Identifiers'][settingName]"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName" v-model="parameters['Identifiers'][settingName]"></v-text-field>
+													<v-select v-if="settingDescription.type == 'choice'" :label="settingName"  v-model="parameters['Identifiers'][settingName]" :items="settingDescription.choices"></v-select>
 												</v-list-tile>
 												
 												<v-subheader>Measurement System</v-subheader>
@@ -469,23 +469,23 @@
 												</v-toolbar-title>
 											</v-toolbar>
 											<v-list>
-												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription[runType]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
+												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['runConfigs'][runType]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
 													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"
-														v-model="defaultParameters[runType][settingName]"></v-switch>
+														v-model="parameters['runConfigs'][runType][settingName]"></v-switch>
 													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model="defaultParameters[runType][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model="defaultParameters[runType][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
-														v-model="defaultParameters[runType][settingName]"></v-text-field>
+														v-model="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
-														v-model="defaultParameters[runType][settingName]"></v-select>
+														v-model="parameters['runConfigs'][runType][settingName]"></v-select>
 												</v-list-tile>
 											</v-list>
 										</v-card>
 									</v-flex>
 									
-									<v-flex xs12 sm6 md4 lg3 xl2 d-flex v-for="dependency in _.get(parametersDescription, [runType, 'dependencies'])">
+									<v-flex xs12 sm6 md4 lg3 xl2 d-flex v-for="dependency in _.get(parametersDescription, ['runConfigs', runType, 'dependencies'])">
 										<v-card ma-1 tile>
 											<v-toolbar dark class="blue-grey lighten-1">
 												<v-toolbar-title>
@@ -493,19 +493,32 @@
 												</v-toolbar-title>
 											</v-toolbar>
 											<v-list>
-												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription[dependency]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
+												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['runConfigs'][dependency]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
 													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"
-														v-model="defaultParameters[dependency][settingName]"></v-switch>
+														v-model="parameters['runConfigs'][dependency][settingName]"></v-switch>
 													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model="defaultParameters[dependency][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][dependency][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model="defaultParameters[dependency][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][dependency][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
-														v-model="defaultParameters[dependency][settingName]"></v-text-field>
+														v-model="parameters['runConfigs'][dependency][settingName]"></v-text-field>
 													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
-														v-model="defaultParameters[dependency][settingName]"></v-select>
+														v-model="parameters['runConfigs'][dependency][settingName]"></v-select>
 												</v-list-tile>
 											</v-list>
+										</v-card>
+									</v-flex>
+									
+									<v-flex xs12 sm6 md4 lg3 xl2 d-flex>
+										<v-card ma-1 tile>
+											<v-toolbar dark class="blue-grey lighten-1">
+												<v-toolbar-title>
+													Schedule File
+												</v-toolbar-title>
+											</v-toolbar>
+											<p>
+												{{ scheduleLine }}
+											</p>
 										</v-card>
 									</v-flex>
 									
@@ -542,6 +555,17 @@
 		}
 		
 		const get = path => object => path.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, object);
+		
+		function objectDeepDiff(object, base) {
+			function changes(object, base) {
+				return _.transform(object, function(result, value, key) {
+					if (!_.isEqual(value, base[key])) {
+						result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
+					}
+				});
+			}
+			return changes(object, base);
+		}
 		
 		Vue.component('zoomable-image', {
 			data: function() {
@@ -659,8 +683,8 @@
 				
 				possibleRunTypes: ['GateSweep', 'AutoGateSweep', 'StaticBias', 'AutoStaticBias'],
 				defaultParameters: {},
-				parametersDescription: {},
-				runType: ''
+				parameters: {},
+				parametersDescription: {}
 			},
 			methods: {
 				
@@ -836,6 +860,15 @@
 				plotSettings: function() {
 					return _.omitBy(this.setPlotSettings, (v,k) => ((this.defaultPlotSettings[k] == v) || v == '') );
 					// return this.setPlotSettings;
+				},
+				defaultRunConfigs: function() {
+					return this.defaultParameters['runConfigs'];
+				},
+				scheduleLine: function() {
+					return objectDeepDiff(this.parameters, this.defaultParameters);
+				},
+				runType: function() {
+					return this.parameters['runType'];
 				}
 			}
 		});
@@ -866,8 +899,11 @@
 		
 		app.getAll();
 		
-		$.getJSON("/default_parameters.json" + app.$data.cacheBust, response => {app.$data.defaultParameters = response}).fail(() => {console.log("Error getting default parameters")});
-		$.getJSON("/default_parameters_description.json" + app.$data.cacheBust, response => {app.$data.parametersDescription = response}).fail(() => {console.log("Error getting parameters description")});
+		$.getJSON("/defaultParameters.json" + app.$data.cacheBust, response => {
+			app.$data.defaultParameters = response;
+			app.$data.parameters = JSON.parse(JSON.stringify(response));
+		}).fail(() => {console.log("Error getting default parameters")});
+		$.getJSON("/parametersDescription.json" + app.$data.cacheBust, response => {app.$data.parametersDescription = response}).fail(() => {console.log("Error getting parameters description")});
 		
 	</script>
 </body>

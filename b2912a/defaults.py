@@ -1,5 +1,6 @@
 
 default_parameters = {
+	'runType': '', # Select from keys of runConfigs
 	'runConfigs':{
 		'GateSweep':{
 			'saveFileName': 'GateSweep',
@@ -114,74 +115,74 @@ default_parameters = {
 
 
 default_parameters_description = {
-	'GateSweep':{
-		'dependencies':[],
-		'saveFileName': {'type':'constant'},
-		'isFastSweep': {'type':'bool'},
-		'isAlternatingSweep': {'type':'bool'},
-		'pulsedMeasurementOnTime': {'type':'float', 'units':'s'},
-		'pulsedMeasurementOffTime': {'type':'float', 'units':'s'},
-		'stepsInVGSPerDirection': {'type':'int', 'units':'#'},
-		'pointsPerVGS': {'type':'int', 'units':'#'},
-		'complianceCurrent':	{'type':'float', 'units':'A'},
-		'drainVoltageSetPoint':	{'type':'float', 'units':'V'},
-		'gateVoltageMinimum': 	{'type':'float', 'units':'V'},
-		'gateVoltageMaximum': 	{'type':'float', 'units':'V'}
-	},
-	'BurnOut':{
-		'dependencies':[],
-		'saveFileName': 'BurnOut',
-		'pointsPerRamp': {'type':'int', 'units':'#'},
-		'pointsPerHold': {'type':'int', 'units':'#'},
-		'complianceCurrent':	{'type':'float', 'units':'V'},
-		'thresholdProportion':	{'type':'float', 'units':''},
-		'minimumAppliedDrainVoltage': {'type':'float', 'units':'V'},
-		'gateVoltageSetPoint':	{'type':'float', 'units':'V'},
-		'drainVoltageMaxPoint':	{'type':'float', 'units':'V'},
-		'drainVoltagePlateaus': {'type':'int', 'units':'#'}
-	},
-	'AutoBurnOut':{
-		'dependencies':['BurnOut'],
-		'targetOnOffRatio': {'type':'float', 'units':''},
-		'limitBurnOutsAllowed': {'type':'int', 'units':'#'},
-		'limitOnOffRatioDegradation': {'type':'float', 'units':'V'}
-	},
-	'StaticBias':{
-		'dependencies':[],
-		'saveFileName': 'StaticBias',
-		'totalBiasTime': {'type':'float', 'units':'s'},
-		'measurementTime': {'type':'float', 'units':'s'},
-		'complianceCurrent': {'type':'float', 'units':'A'},
-		'delayBeforeApplyingVoltage': {'type':'float', 'units':'s'},
-		'delayBeforeMeasurementsBegin': {'type':'float', 'units':'s'},
-		'gateVoltageSetPoint': 	{'type':'float', 'units':'V'},
-		'drainVoltageSetPoint':	{'type':'float', 'units':'V'},
-		'gateVoltageWhenDone':  {'type':'float', 'units':'V'},
-		'drainVoltageWhenDone': {'type':'float', 'units':'V'}
-	},
-	'AutoGateSweep':{
-		'dependencies':['GateSweep'],
-		'sweepsPerVDS': {'type':'int', 'units':'#'},
-		'applyStaticBiasBetweenSweeps': {'type':'bool'},
-		'delayBetweenSweeps': {'type':'float', 'units':'s'},
-		'timedSweepStarts': {'type':'bool'}
-
-	},
-	'AutoStaticBias':{
-		'dependencies':['StaticBias','GateSweep'],
-		'numberOfStaticBiases': {'type':'int', 'units':'#'},
-		'doInitialGateSweep': {'type':'bool'},
-		'applyGateSweepBetweenBiases': {'type':'bool'},
-		'turnChannelsOffBetweenBiases': {'type':'bool'},
-		'channelsOffTime': {'type':'float', 'units':'V'},
-		'firstDelayBeforeMeasurementsBegin': {'type':'float', 'units':'s'},
-		'numberOfBiasesBetweenIncrements': {'type':'int', 'units':'#'},
-		'incrementStaticGateVoltage': {'type':'float', 'units':'V'},
-		'incrementStaticDrainVoltage': {'type':'float', 'units':'V'},
-		'incrementGateVoltageWhenDone': {'type':'float', 'units':'V'},
-		'incrementDrainVoltageWhenDone': {'type':'float', 'units':'V'},
-		'incrementDelayBeforeReapplyingVoltage': {'type':'float', 'units':'s'},
-		'shuffleDelaysBeforeReapplyingVoltage': {'type':'bool'}
+	'runConfigs': {
+		'GateSweep':{
+			'dependencies':[],
+			'saveFileName': {'type':'constant'},
+			'isFastSweep': {'type':'bool'},
+			'isAlternatingSweep': {'type':'bool'},
+			'pulsedMeasurementOnTime': {'type':'float', 'units':'s'},
+			'pulsedMeasurementOffTime': {'type':'float', 'units':'s'},
+			'stepsInVGSPerDirection': {'type':'int', 'units':'#'},
+			'pointsPerVGS': {'type':'int', 'units':'#'},
+			'complianceCurrent':	{'type':'float', 'units':'A'},
+			'drainVoltageSetPoint':	{'type':'float', 'units':'V'},
+			'gateVoltageMinimum': 	{'type':'float', 'units':'V'},
+			'gateVoltageMaximum': 	{'type':'float', 'units':'V'}
+		},
+		'BurnOut':{
+			'dependencies':[],
+			'saveFileName': 'BurnOut',
+			'pointsPerRamp': {'type':'int', 'units':'#'},
+			'pointsPerHold': {'type':'int', 'units':'#'},
+			'complianceCurrent':	{'type':'float', 'units':'V'},
+			'thresholdProportion':	{'type':'float', 'units':''},
+			'minimumAppliedDrainVoltage': {'type':'float', 'units':'V'},
+			'gateVoltageSetPoint':	{'type':'float', 'units':'V'},
+			'drainVoltageMaxPoint':	{'type':'float', 'units':'V'},
+			'drainVoltagePlateaus': {'type':'int', 'units':'#'}
+		},
+		'AutoBurnOut':{
+			'dependencies':['BurnOut'],
+			'targetOnOffRatio': {'type':'float', 'units':''},
+			'limitBurnOutsAllowed': {'type':'int', 'units':'#'},
+			'limitOnOffRatioDegradation': {'type':'float', 'units':'V'}
+		},
+		'StaticBias':{
+			'dependencies':[],
+			'saveFileName': 'StaticBias',
+			'totalBiasTime': {'type':'float', 'units':'s'},
+			'measurementTime': {'type':'float', 'units':'s'},
+			'complianceCurrent': {'type':'float', 'units':'A'},
+			'delayBeforeMeasurementsBegin': {'type':'float', 'units':'s'},
+			'gateVoltageSetPoint': 	{'type':'float', 'units':'V'},
+			'drainVoltageSetPoint':	{'type':'float', 'units':'V'},
+			'gateVoltageWhenDone':  {'type':'float', 'units':'V'},
+			'drainVoltageWhenDone': {'type':'float', 'units':'V'}
+		},
+		'AutoGateSweep':{
+			'dependencies':['GateSweep'],
+			'sweepsPerVDS': {'type':'int', 'units':'#'},
+			'applyStaticBiasBetweenSweeps': {'type':'bool'},
+			'delayBetweenSweeps': {'type':'float', 'units':'s'},
+			'timedSweepStarts': {'type':'bool'}
+		},
+		'AutoStaticBias':{
+			'dependencies':['StaticBias','GateSweep'],
+			'numberOfStaticBiases': {'type':'int', 'units':'#'},
+			'doInitialGateSweep': {'type':'bool'},
+			'applyGateSweepBetweenBiases': {'type':'bool'},
+			'turnChannelsOffBetweenBiases': {'type':'bool'},
+			'channelsOffTime': {'type':'float', 'units':'V'},
+			'firstDelayBeforeMeasurementsBegin': {'type':'float', 'units':'s'},
+			'numberOfBiasesBetweenIncrements': {'type':'int', 'units':'#'},
+			'incrementStaticGateVoltage': {'type':'float', 'units':'V'},
+			'incrementStaticDrainVoltage': {'type':'float', 'units':'V'},
+			'incrementGateVoltageWhenDone': {'type':'float', 'units':'V'},
+			'incrementDrainVoltageWhenDone': {'type':'float', 'units':'V'},
+			'incrementDelayBeforeReapplyingVoltage': {'type':'float', 'units':'s'},
+			'shuffleDelaysBeforeReapplyingVoltage': {'type':'bool'}
+		}
 	},
 	'Identifiers':{
 		'user':{'type':'string'},
