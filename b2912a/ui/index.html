@@ -473,9 +473,9 @@
 													<v-switch v-if="settingDescription.type == 'bool'" :label="settingName"
 														v-model="parameters['runConfigs'][runType][settingName]"></v-switch>
 													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model="parameters['runConfigs'][runType][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model="parameters['runConfigs'][runType][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
 														v-model="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
@@ -555,6 +555,17 @@
 		}
 		
 		const get = path => object => path.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, object);
+		
+		function objectDeepDiff(object, base) {
+			function changes(object, base) {
+				return _.transform(object, function(result, value, key) {
+					if (!_.isEqual(value, base[key])) {
+						result[key] = (_.isObject(value) && _.isObject(base[key])) ? changes(value, base[key]) : value;
+					}
+				});
+			}
+			return changes(object, base);
+		}
 		
 		Vue.component('zoomable-image', {
 			data: function() {
@@ -855,7 +866,7 @@
 					return this.defaultParameters['runConfigs'];
 				},
 				scheduleLine: function() {
-					return _.omitBy(this.parameters, (v,k) => ((this.defaultParameters[k] == v) || v == '') );
+					return objectDeepDiff(this.parameters, this.defaultParameters);
 				}
 			}
 		});

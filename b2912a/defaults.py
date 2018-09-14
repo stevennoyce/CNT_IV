@@ -1,5 +1,6 @@
 
 default_parameters = {
+	'runType': '', # Select from keys of runConfigs
 	'runConfigs':{
 		'GateSweep':{
 			'saveFileName': 'GateSweep',
