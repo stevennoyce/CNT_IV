@@ -756,7 +756,7 @@ def plotAFMdeviationsVsX(deviceHistory, identifiers, mode_parameters=None):
 	
 	# Build Color Map
 	colors = colorsFromMap(plot_parameters['AFMdeviationsVsX']['colorMap'], 0, 0.87, len(deviceHistory))['colors']
-	
+	# E07_N is a sister device, E22N_10000 is another with 40nm device, 5 fin devices E33N E64N, Bigger cavity E27N and E27P 5 fin
 	# Plot
 	for i in range(len(deviceHistory)):
 		current = np.array(deviceHistory[i]['Results']['id_data'])
