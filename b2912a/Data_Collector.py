@@ -80,17 +80,17 @@ for key, value in allData.items():
 # Put transconductance and threshold voltages in table
 small_output = ["device, VT, gm\n"]
 for device in smallDevices:
-	if device in VT_vals and len(VT_vals) >= experiment_num:
+	if device in VT_vals and len(VT_vals[device]) >= experiment_num:
 		small_output.append(device + ", " + str(VT_vals[device][experiment_num - 1]) + ", " + str(gm_vals[device][experiment_num - 1]) + "\n")
 
 medium_output = ["device, VT, gm\n"]
 for device in mediumDevices:
-	if device in VT_vals and len(VT_vals) >= experiment_num:
+	if device in VT_vals and len(VT_vals[device]) >= experiment_num:
 		medium_output.append(device + ", " + str(VT_vals[device][experiment_num - 1]) + ", " + str(gm_vals[device][experiment_num - 1]) + "\n")
 
 large_output = ["device, VT, gm\n"]
 for device in largeDevices:
-	if device in VT_vals and len(VT_vals) >= experiment_num:
+	if device in VT_vals and len(VT_vals[device]) >= experiment_num:
 		large_output.append(device + ", " + str(VT_vals[device][experiment_num - 1]) + ", " + str(gm_vals[device][experiment_num - 1]) + "\n")
 
 # Output data as CSV files
