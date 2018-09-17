@@ -1057,6 +1057,7 @@ int main(void) {
 	Opamp_1_Start();
 	Opamp_2_Start();
 	
+	//Tell the ADC to begin sampling continuously
 	ADC_DelSig_1_StartConvert();
 	
 	CyDelay(1000);

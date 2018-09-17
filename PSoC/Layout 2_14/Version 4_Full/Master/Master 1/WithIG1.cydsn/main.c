@@ -334,7 +334,6 @@ void ADC_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount
 	
 	for (uint32 i = 1; i <= medianCount; i++) {
 		for (uint32 j = 0; j < medianArraySize; j++) {
-			ADC_DelSig_1_StartConvert();
 			while (!ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_RETURN_STATUS));
 			//int16 ADC_Result = ADC_DelSig_1_CountsTo_mVolts(ADC_DelSig_1_GetResult16());
 			medianArray[j] = ADC_DelSig_1_CountsTo_uVolts(ADC_DelSig_1_GetResult32());
@@ -1058,6 +1057,10 @@ int main(void) {
 	//Start the op-amp buffers
 	Opamp_1_Start();
 	Opamp_2_Start();
+	Opamp_3_Start();
+	
+	//Tell the ADC to begin sampling continuously
+	ADC_DelSig_1_StartConvert();
 	
 	CyDelay(1000);
 	
