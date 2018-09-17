@@ -368,7 +368,7 @@ void ADC_Adjust_Range(uint32 sampleCount) {
 }
 
 // Measure SAR1 ADC
-void SAR1_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount) {
+void SAR1_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount) {
 	int32 SAR_Result = 0;
 	int32 SAR_SD = 0;
 	
@@ -387,7 +387,7 @@ void SAR1_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount
 }
 
 // Measure SAR2 ADC
-void SAR2_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount) {
+void SAR2_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount) {
 	int32 SAR_Result = 0;
 	int32 SAR_SD = 0;
 	
@@ -768,10 +768,10 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 //	int32 SAR2_Average = 0;
 //	int32 SAR2_SD = 0;
 //
-//	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
-//	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
+//	SAR1_Measure_uV(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
+//	SAR2_Measure_uV(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
 //
-//	float SAR1 = SAR1_Average;
+//	float SAR1 = (1e-6) * SAR1_Average;
 //	float SAR2 = SAR2_Average;
 	
 	sprintf(TransmitBuffer, "[%e,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds());
@@ -1096,7 +1096,7 @@ int main(void) {
 			newData = 0;
 			
 			if (strstr(ReceiveBuffer, "measure ") == &ReceiveBuffer[0]) {
-				Measure(100, 10, 10);
+				Measure(100, 20, 20);
 			} else 
 			if (strstr(ReceiveBuffer, "measure-multiple ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");

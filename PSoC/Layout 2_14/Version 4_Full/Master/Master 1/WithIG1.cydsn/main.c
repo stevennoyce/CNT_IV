@@ -368,7 +368,7 @@ void ADC_Adjust_Range(uint32 sampleCount) {
 }
 
 // Measure SAR1 ADC
-void SAR1_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount) {
+void SAR1_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount) {
 	int32 SAR_Result = 0;
 	int32 SAR_SD = 0;
 	
@@ -387,7 +387,7 @@ void SAR1_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount
 }
 
 // Measure SAR2 ADC
-void SAR2_Measure_V(int32* average, int32* standardDeviation, uint32 sampleCount) {
+void SAR2_Measure_uV(int32* average, int32* standardDeviation, uint32 sampleCount) {
 	int32 SAR_Result = 0;
 	int32 SAR_SD = 0;
 	
@@ -768,13 +768,13 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 	int32 SAR2_Average = 0;
 	int32 SAR2_SD = 0;
 	
-	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
-	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
+	SAR1_Measure_uV(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
+	SAR2_Measure_uV(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
 	
-	float SAR1 = SAR1_Average;
-	float SAR2 = SAR2_Average;
+	float SAR1 = (1e-6/1e6) * SAR1_Average;
+	float SAR2 = (1e-6) * SAR2_Average;
 	
-	sprintf(TransmitBuffer, "[%e,%f,%f,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1, SAR2);
+	sprintf(TransmitBuffer, "[%e,%f,%f,%e]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1);
 	sendTransmitBuffer();
 }
 
@@ -1049,7 +1049,6 @@ int main(void) {
 	VDAC_Ref_Start();
 	ADC_DelSig_1_Start();
 	TIA_1_Start();
-	TIA_2_Start();
 	I2C_1_Start();
 	ADC_SAR_1_Start();
 	ADC_SAR_2_Start();
@@ -1058,6 +1057,7 @@ int main(void) {
 	Opamp_1_Start();
 	Opamp_2_Start();
 	Opamp_3_Start();
+	Opamp_4_Start();
 	
 	//Tell the ADC to begin sampling continuously
 	ADC_DelSig_1_StartConvert();
@@ -1098,7 +1098,7 @@ int main(void) {
 			newData = 0;
 			
 			if (strstr(ReceiveBuffer, "measure ") == &ReceiveBuffer[0]) {
-				Measure(100, 10, 10);
+				Measure(100, 20, 20);
 			} else 
 			if (strstr(ReceiveBuffer, "measure-multiple ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");

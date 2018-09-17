@@ -1446,9 +1446,9 @@ END GROUP
  .text.Disconnect_Intermediates
                 0x00000678       0x18 .\CortexM3\ARM_GCC_541\Debug\main.o
                 0x00000678                Disconnect_Intermediates
- .text.TIA_Set_Resistor
+ .text.TIA1_Set_Resistor
                 0x00000690       0x1c .\CortexM3\ARM_GCC_541\Debug\main.o
-                0x00000690                TIA_Set_Resistor
+                0x00000690                TIA1_Set_Resistor
  .text.ADC_Increase_Range
                 0x000006ac       0x18 .\CortexM3\ARM_GCC_541\Debug\main.o
                 0x000006ac                ADC_Increase_Range
@@ -2421,8 +2421,8 @@ END GROUP
  .data          0x1fff80cc       0x2c .\CortexM3\ARM_GCC_541\Debug\main.o
                 0x1fff80cc                usbuSendingEnabled
                 0x1fff80cd                uartSendingEnabled
-                0x1fff80d0                TIA_Resistor_Codes
-                0x1fff80d8                TIA_Resistor_Values
+                0x1fff80d0                TIA1_Resistor_Codes
+                0x1fff80d8                TIA1_Resistor_Values
  .data          0x1fff80f8        0x4 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
  .data          0x1fff80fc       0x10 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CyLib.o)
                 0x1fff80fc                cydelay_32k_ms
@@ -2460,8 +2460,8 @@ END GROUP
                 0x1fff81e5                G_Stop
                 0x1fff81e6                G_Break
                 0x1fff81e7                G_Pause
-                0x1fff81e8                TIA_Selected_Resistor
-                0x1fff81ec                TIA_Offsets_uV
+                0x1fff81e8                TIA1_Selected_Resistor
+                0x1fff81ec                TIA1_Offsets_uV
  .bss           0x1fff820c        0x2 .\CortexM3\ARM_GCC_541\Debug\Design01.a(UART_1.o)
                 0x1fff820c                UART_1_initVar
  .bss           0x1fff820e        0x1 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART.o)
@@ -2977,89 +2977,89 @@ END GROUP
  .debug_frame   0x00004260       0x20 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libnosys.a(read.o)
  .debug_frame   0x00004280       0x20 c:/program files (x86)/cypress/psoc creator/4.1/psoc creator/import/gnu/arm/5.4.1/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7-m\libnosys.a(write.o)
 
-.debug_str      0x00000000     0x4da0
+.debug_str      0x00000000     0x4da7
  *(.debug_str)
- .debug_str     0x00000000      0xf2d .\CortexM3\ARM_GCC_541\Debug\main.o
-                               0x101c (size before relaxing)
- .debug_str     0x00000f2d      0x19a .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
+ .debug_str     0x00000000      0xf34 .\CortexM3\ARM_GCC_541\Debug\main.o
+                               0x1023 (size before relaxing)
+ .debug_str     0x00000f34      0x19a .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o
                                 0x385 (size before relaxing)
- .debug_str     0x000010c7       0x7f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
+ .debug_str     0x000010ce       0x7f .\CortexM3\ARM_GCC_541\Debug\cymetadata.o
                                 0x21b (size before relaxing)
- .debug_str     0x00001146      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
+ .debug_str     0x0000114d      0x144 .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o
                                 0x341 (size before relaxing)
- .debug_str     0x0000128a      0x2ce .\CortexM3\ARM_GCC_541\Debug\Design01.a(UART_1.o)
+ .debug_str     0x00001291      0x2ce .\CortexM3\ARM_GCC_541\Debug\Design01.a(UART_1.o)
                                 0x4ea (size before relaxing)
- .debug_str     0x00001558      0x197 .\CortexM3\ARM_GCC_541\Debug\Design01.a(UART_1_IntClock.o)
+ .debug_str     0x0000155f      0x197 .\CortexM3\ARM_GCC_541\Debug\Design01.a(UART_1_IntClock.o)
                                 0x385 (size before relaxing)
- .debug_str     0x000016ef      0x807 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CyLib.o)
+ .debug_str     0x000016f6      0x807 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CyLib.o)
                                 0xa7e (size before relaxing)
- .debug_str     0x00001ef6      0x365 .\CortexM3\ARM_GCC_541\Debug\Design01.a(cyPm.o)
+ .debug_str     0x00001efd      0x365 .\CortexM3\ARM_GCC_541\Debug\Design01.a(cyPm.o)
                                 0x76a (size before relaxing)
- .debug_str     0x0000225b      0x3eb .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART.o)
+ .debug_str     0x00002262      0x3eb .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART.o)
                                 0x6a1 (size before relaxing)
- .debug_str     0x00002646      0x49d .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_cdc.o)
+ .debug_str     0x0000264d      0x49d .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_cdc.o)
                                 0x808 (size before relaxing)
- .debug_str     0x00002ae3      0x291 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_drv.o)
+ .debug_str     0x00002aea      0x291 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_drv.o)
                                 0x67f (size before relaxing)
- .debug_str     0x00002d74       0x80 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_episr.o)
+ .debug_str     0x00002d7b       0x80 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_episr.o)
                                 0x316 (size before relaxing)
- .debug_str     0x00002df4       0xd2 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_pm.o)
+ .debug_str     0x00002dfb       0xd2 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_pm.o)
                                 0x327 (size before relaxing)
- .debug_str     0x00002ec6      0x259 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_std.o)
+ .debug_str     0x00002ecd      0x259 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_std.o)
                                 0x7ee (size before relaxing)
- .debug_str     0x0000311f       0x25 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_vnd.o)
+ .debug_str     0x00003126       0x25 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_vnd.o)
                                 0x224 (size before relaxing)
- .debug_str     0x00003144       0xa4 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_Dp.o)
+ .debug_str     0x0000314b       0xa4 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_Dp.o)
                                 0x278 (size before relaxing)
- .debug_str     0x000031e8      0x436 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1.o)
+ .debug_str     0x000031ef      0x436 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1.o)
                                 0x758 (size before relaxing)
- .debug_str     0x0000361e       0x72 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1_INT.o)
+ .debug_str     0x00003625       0x72 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1_INT.o)
                                 0x224 (size before relaxing)
- .debug_str     0x00003690       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(TIA_1.o)
+ .debug_str     0x00003697       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(TIA_1.o)
                                 0x26c (size before relaxing)
- .debug_str     0x00003724       0x9a .\CortexM3\ARM_GCC_541\Debug\Design01.a(VDAC_Vgs.o)
+ .debug_str     0x0000372b       0x9a .\CortexM3\ARM_GCC_541\Debug\Design01.a(VDAC_Vgs.o)
                                 0x274 (size before relaxing)
- .debug_str     0x000037be       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(VDAC_Vds.o)
+ .debug_str     0x000037c5       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(VDAC_Vds.o)
                                 0x274 (size before relaxing)
- .debug_str     0x00003852      0x184 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1_Ext_CP_Clk.o)
+ .debug_str     0x00003859      0x184 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1_Ext_CP_Clk.o)
                                 0x3e5 (size before relaxing)
- .debug_str     0x000039d6      0x1bb .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1_theACLK.o)
+ .debug_str     0x000039dd      0x1bb .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_DelSig_1_theACLK.o)
                                 0x416 (size before relaxing)
- .debug_str     0x00003b91       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(VDAC_Ref.o)
+ .debug_str     0x00003b98       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(VDAC_Ref.o)
                                 0x274 (size before relaxing)
- .debug_str     0x00003c25       0x8c .\CortexM3\ARM_GCC_541\Debug\Design01.a(I2C_1.o)
+ .debug_str     0x00003c2c       0x8c .\CortexM3\ARM_GCC_541\Debug\Design01.a(I2C_1.o)
                                 0x2c3 (size before relaxing)
- .debug_str     0x00003cb1       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(I2C_1_INT.o)
+ .debug_str     0x00003cb8       0x94 .\CortexM3\ARM_GCC_541\Debug\Design01.a(I2C_1_INT.o)
                                 0x2ac (size before relaxing)
- .debug_str     0x00003d45      0x14c .\CortexM3\ARM_GCC_541\Debug\Design01.a(I2C_1_MASTER.o)
+ .debug_str     0x00003d4c      0x14c .\CortexM3\ARM_GCC_541\Debug\Design01.a(I2C_1_MASTER.o)
                                 0x409 (size before relaxing)
- .debug_str     0x00003e91      0x1eb .\CortexM3\ARM_GCC_541\Debug\Design01.a(CommunicationTimer.o)
+ .debug_str     0x00003e98      0x1eb .\CortexM3\ARM_GCC_541\Debug\Design01.a(CommunicationTimer.o)
                                 0x3fc (size before relaxing)
- .debug_str     0x0000407c      0x191 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CommunicationInterrupt.o)
+ .debug_str     0x00004083      0x191 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CommunicationInterrupt.o)
                                 0x3cb (size before relaxing)
- .debug_str     0x0000420d      0x1d0 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_1.o)
+ .debug_str     0x00004214      0x1d0 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_1.o)
                                 0x4fe (size before relaxing)
- .debug_str     0x000043dd       0x35 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_1_INT.o)
+ .debug_str     0x000043e4       0x35 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_1_INT.o)
                                 0x1d2 (size before relaxing)
- .debug_str     0x00004412      0x1b3 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_2.o)
+ .debug_str     0x00004419      0x1b3 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_2.o)
                                 0x4fe (size before relaxing)
- .debug_str     0x000045c5       0x35 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_2_INT.o)
+ .debug_str     0x000045cc       0x35 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_2_INT.o)
                                 0x1d2 (size before relaxing)
- .debug_str     0x000045fa      0x1b3 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_1_theACLK.o)
+ .debug_str     0x00004601      0x1b3 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_1_theACLK.o)
                                 0x3ec (size before relaxing)
- .debug_str     0x000047ad      0x1b3 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_2_theACLK.o)
+ .debug_str     0x000047b4      0x1b3 .\CortexM3\ARM_GCC_541\Debug\Design01.a(ADC_SAR_2_theACLK.o)
                                 0x3ec (size before relaxing)
- .debug_str     0x00004960       0x6b .\CortexM3\ARM_GCC_541\Debug\Design01.a(Opamp_1.o)
+ .debug_str     0x00004967       0x6b .\CortexM3\ARM_GCC_541\Debug\Design01.a(Opamp_1.o)
                                 0x23c (size before relaxing)
- .debug_str     0x000049cb       0x6b .\CortexM3\ARM_GCC_541\Debug\Design01.a(Opamp_2.o)
+ .debug_str     0x000049d2       0x6b .\CortexM3\ARM_GCC_541\Debug\Design01.a(Opamp_2.o)
                                 0x23c (size before relaxing)
- .debug_str     0x00004a36      0x195 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CyFlash.o)
+ .debug_str     0x00004a3d      0x195 .\CortexM3\ARM_GCC_541\Debug\Design01.a(CyFlash.o)
                                 0x3d8 (size before relaxing)
- .debug_str     0x00004bcb       0xac .\CortexM3\ARM_GCC_541\Debug\Design01.a(CySpc.o)
+ .debug_str     0x00004bd2       0xac .\CortexM3\ARM_GCC_541\Debug\Design01.a(CySpc.o)
                                 0x361 (size before relaxing)
- .debug_str     0x00004c77       0x25 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_cls.o)
+ .debug_str     0x00004c7e       0x25 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_cls.o)
                                 0x2e3 (size before relaxing)
- .debug_str     0x00004c9c      0x104 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_descr.o)
+ .debug_str     0x00004ca3      0x104 .\CortexM3\ARM_GCC_541\Debug\Design01.a(USBUART_descr.o)
                                 0x390 (size before relaxing)
 
 .debug_loc      0x00000000     0x66d2

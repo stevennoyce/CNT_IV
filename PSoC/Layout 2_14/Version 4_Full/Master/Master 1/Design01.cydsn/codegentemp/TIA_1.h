@@ -105,7 +105,7 @@ void TIA_1_Enable(void)                 ;
 ***************************************/
 
 #define TIA_1_INIT_POWER                 (2u)
-#define TIA_1_INIT_RES_FEEDBACK          (7u)
+#define TIA_1_INIT_RES_FEEDBACK          (0u)
 #define TIA_1_INIT_CAP_FEEDBACK          (3u)
 
 
