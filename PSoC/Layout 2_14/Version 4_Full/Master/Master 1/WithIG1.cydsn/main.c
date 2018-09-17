@@ -43,11 +43,11 @@ volatile char USBUART_Receive_Buffer[USBUART_BUFFER_SIZE];
 volatile uint8 USBUART_Rx_Position;
 
 enum TIA_resistor {R20K, R30K, R40K, R80K, R120K, R250K, R500K, R1000K};
-uint8 TIA_Selected_Resistor = R20K;
+uint8 TIA1_Selected_Resistor = R20K;
 
-uint8 TIA_Resistor_Codes[8] = {TIA_1_RES_FEEDBACK_20K, TIA_1_RES_FEEDBACK_30K, TIA_1_RES_FEEDBACK_40K, TIA_1_RES_FEEDBACK_80K, TIA_1_RES_FEEDBACK_120K, TIA_1_RES_FEEDBACK_250K, TIA_1_RES_FEEDBACK_500K, TIA_1_RES_FEEDBACK_1000K};
-float TIA_Resistor_Values[8] = {20e3, 30e3, 40e3, 80e3, 120e3, 250e3, 500e3, 1e6};
-int32 TIA_Offsets_uV[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+uint8 TIA1_Resistor_Codes[8] = {TIA_1_RES_FEEDBACK_20K, TIA_1_RES_FEEDBACK_30K, TIA_1_RES_FEEDBACK_40K, TIA_1_RES_FEEDBACK_80K, TIA_1_RES_FEEDBACK_120K, TIA_1_RES_FEEDBACK_250K, TIA_1_RES_FEEDBACK_500K, TIA_1_RES_FEEDBACK_1000K};
+float TIA1_Resistor_Values[8] = {20e3, 30e3, 40e3, 80e3, 120e3, 250e3, 500e3, 1e6};
+int32 TIA1_Offsets_uV[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 uint8 Compliance_Reached;
 int16 Vgs_Index_Goal_Relative;
@@ -261,34 +261,34 @@ void Disconnect_Intermediates() {
 	}
 }
 
-void TIA_Set_Resistor(uint8 resistor) {
-	TIA_Selected_Resistor = resistor;
-	TIA_1_SetResFB(TIA_Resistor_Codes[resistor]);
+void TIA1_Set_Resistor(uint8 resistor) {
+	TIA1_Selected_Resistor = resistor;
+	TIA_1_SetResFB(TIA1_Resistor_Codes[resistor]);
 }
 
 void ADC_Increase_Range() {
-	switch(TIA_Selected_Resistor) {
+	switch(TIA1_Selected_Resistor) {
 		case R20K: 	 break;
-		//case R30K: 	 TIA_Set_Resistor(R20K); break;
-		//case R40K:	 TIA_Set_Resistor(R30K); break;
-		//case R80K:	 TIA_Set_Resistor(R40K); break;
-		//case R120K:	 TIA_Set_Resistor(R80K); break;
-		//case R250K:	 TIA_Set_Resistor(R120K); break;
-		//case R500K:	 TIA_Set_Resistor(R250K); break;
-		case R1000K: TIA_Set_Resistor(R20K); break;
+		//case R30K: 	 TIA1_Set_Resistor(R20K); break;
+		//case R40K:	 TIA1_Set_Resistor(R30K); break;
+		//case R80K:	 TIA1_Set_Resistor(R40K); break;
+		//case R120K:	 TIA1_Set_Resistor(R80K); break;
+		//case R250K:	 TIA1_Set_Resistor(R120K); break;
+		//case R500K:	 TIA1_Set_Resistor(R250K); break;
+		case R1000K: TIA1_Set_Resistor(R20K); break;
 		default: return;
 	}
 }
 
 void ADC_Decrease_Range() {
-	switch(TIA_Selected_Resistor) {
-		case R20K: 	 TIA_Set_Resistor(R1000K); break;
-		//case R30K: 	 TIA_Set_Resistor(R40K); break;
-		//case R40K:	 TIA_Set_Resistor(R80K); break;
-		//case R80K:	 TIA_Set_Resistor(R120K); break;
-		//case R120K:	 TIA_Set_Resistor(R250K); break;
-		//case R250K:	 TIA_Set_Resistor(R500K); break;
-		//case R500K:	 TIA_Set_Resistor(R1000K); break;
+	switch(TIA1_Selected_Resistor) {
+		case R20K: 	 TIA1_Set_Resistor(R1000K); break;
+		//case R30K: 	 TIA1_Set_Resistor(R40K); break;
+		//case R40K:	 TIA1_Set_Resistor(R80K); break;
+		//case R80K:	 TIA1_Set_Resistor(R120K); break;
+		//case R120K:	 TIA1_Set_Resistor(R250K); break;
+		//case R250K:	 TIA1_Set_Resistor(R500K); break;
+		//case R500K:	 TIA1_Set_Resistor(R1000K); break;
 		case R1000K: break;
 		default: return;
 	}
@@ -421,9 +421,9 @@ void Measure_Current_Vss(float* currentAverageIn, float* currentStdDevIn, uint32
 	float currentAverage = 0;
 	float currentStdDev = 0;
 	
-	float TIA_Feedback_R = TIA_Resistor_Values[TIA_Selected_Resistor];
-	int32 TIA_Offset_uV = TIA_Offsets_uV[TIA_Selected_Resistor];
-	float unitConversion = -1.0e-6/TIA_Feedback_R;
+	float TIA1_Feedback_R = TIA1_Resistor_Values[TIA1_Selected_Resistor];
+	int32 TIA1_Offset_uV = TIA1_Offsets_uV[TIA1_Selected_Resistor];
+	float unitConversion = -1.0e-6/TIA1_Feedback_R;
 	
 	// Allow for the first measurement (normally not correct) to take place
 	ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 3);
@@ -433,7 +433,7 @@ void Measure_Current_Vss(float* currentAverageIn, float* currentStdDevIn, uint32
 		for (uint32 i = 1; i <= sampleCount; i++) {
 			ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, 1);
 			
-			currentNow = unitConversion * (ADC_Voltage + TIA_Offset_uV);
+			currentNow = unitConversion * (ADC_Voltage + TIA1_Offset_uV);
 			
 			currentStdDev += ((float)i-1.0)/(float)(i)*(currentNow - currentAverage)*(currentNow - currentAverage);
 			currentAverage += (currentNow - currentAverage)/(float)i;
@@ -448,8 +448,8 @@ void Measure_Current_Vss(float* currentAverageIn, float* currentStdDevIn, uint32
 	} else {
 		ADC_Measure_uV(&ADC_Voltage, &ADC_Voltage_SD, sampleCount);
 			
-		currentAverage = unitConversion * (ADC_Voltage + TIA_Offset_uV);
-		currentStdDev = unitConversion * (ADC_Voltage_SD + TIA_Offset_uV);
+		currentAverage = unitConversion * (ADC_Voltage + TIA1_Offset_uV);
+		currentStdDev = unitConversion * (ADC_Voltage_SD + TIA1_Offset_uV);
 	}
 	
 	*currentAverageIn = currentAverage;
@@ -728,7 +728,7 @@ void Zero_All_DACs() {
 }
 
 void Calibrate_ADC_Offset(uint32 sampleCount) {
-	uint8 current_range_resistor = TIA_Selected_Resistor;
+	uint8 current_range_resistor = TIA1_Selected_Resistor;
 	
 	// Zero the DACs
 	Set_Vds(0);
@@ -740,17 +740,17 @@ void Calibrate_ADC_Offset(uint32 sampleCount) {
 	
 	// Measure ADC offset voltages
 	for (uint8 i = R20K; i <= R1000K; i++) {
-		TIA_Set_Resistor(i);
+		TIA1_Set_Resistor(i);
 		// Take a few measurements to discard any problems with the initial measurements
 		ADC_Measure_uV(&voltage, &voltageSD, 3);
 		ADC_Measure_uV(&voltage, &voltageSD, sampleCount);
-		TIA_Offsets_uV[i] = -voltage;
-		sprintf(TransmitBuffer, "# Offset %e Ohm: %li uV\r\n", TIA_Resistor_Values[i], -voltage);
+		TIA1_Offsets_uV[i] = -voltage;
+		sprintf(TransmitBuffer, "# Offset %e Ohm: %li uV\r\n", TIA1_Resistor_Values[i], -voltage);
 		sendTransmitBuffer();
 	}
 	
 	// Reset TIA Resistor
-	TIA_Set_Resistor(current_range_resistor);
+	TIA1_Set_Resistor(current_range_resistor);
 	
 	sprintf(TransmitBuffer, "# Calibrated ADC Offsets\r\n");
 	sendTransmitBuffer();
@@ -1083,7 +1083,7 @@ int main(void) {
 	
 	//Calibrate Delta-Sigma ADC and set initial current range
 	Calibrate_ADC_Offset(300);
-	TIA_Set_Resistor(TIA_Selected_Resistor);
+	TIA1_Set_Resistor(TIA1_Selected_Resistor);
 	
 	Current_Measurement_Sample_Count = 100;
 	
