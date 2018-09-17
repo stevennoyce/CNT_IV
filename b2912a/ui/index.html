@@ -482,8 +482,10 @@
 														v-model="parameters['runConfigs'][runType][settingName]"></v-switch>
 													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
 														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
-													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model.number="parameters['runConfigs'][runType][settingName]" clearable clear-icon="settings_backup_restore" @click:clear.prevent="parameters['runConfigs'][runType][settingName] = 5"></v-text-field>
+													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName + ' ('+_.get(settingDescription,['units'])+')'"
+														v-model.number="parameters['runConfigs'][runType][settingName]" clearable>
+															<v-icon slot="append" @click="parameters['runConfigs'][runType][settingName] = JSON.parse(JSON.stringify(defaultParameters['runConfigs'][runType][settingName]))">settings_backup_restore</v-icon>
+														</v-text-field>
 													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
 														v-model="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
