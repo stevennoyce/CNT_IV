@@ -421,6 +421,10 @@
 								<v-toolbar-title>
 									Schedule Creator
 								</v-toolbar-title>
+								<v-spacer></v-spacer>
+								<v-btn icon @click="parameters = JSON.parse(JSON.stringify(defaultParameters))">
+									<v-icon>settings_backup_restore</v-icon>
+								</v-btn>
 							</v-toolbar>
 							<v-container fluid grid-list-md>
 								<v-layout row wrap>
@@ -467,6 +471,10 @@
 												<v-toolbar-title>
 													{{ runType }}
 												</v-toolbar-title>
+												<v-spacer></v-spacer>
+												<v-btn icon @click="parameters['runConfigs'][runType] = JSON.parse(JSON.stringify(defaultParameters['runConfigs'][runType]))">
+													<v-icon>settings_backup_restore</v-icon>
+												</v-btn>
 											</v-toolbar>
 											<v-list>
 												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['runConfigs'][runType]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
@@ -475,7 +483,7 @@
 													<v-text-field v-if="settingDescription.type == 'float'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
 														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'int'" :label="settingName" :suffix="' ('+_.get(settingDescription,['units'])+')'"
-														v-model.number="parameters['runConfigs'][runType][settingName]"></v-text-field>
+														v-model.number="parameters['runConfigs'][runType][settingName]" clearable clear-icon="settings_backup_restore" @click:clear.prevent="parameters['runConfigs'][runType][settingName] = 5"></v-text-field>
 													<v-text-field v-if="settingDescription.type == 'string'" :label="settingName"
 														v-model="parameters['runConfigs'][runType][settingName]"></v-text-field>
 													<v-select v-if="settingDescription.type == 'choice'" :label="settingName" :items="settingDescription.choices"
@@ -491,6 +499,10 @@
 												<v-toolbar-title>
 													{{ dependency }}
 												</v-toolbar-title>
+												<v-spacer></v-spacer>
+												<v-btn icon @click="parameters['runConfigs'][dependency] = JSON.parse(JSON.stringify(defaultParameters['runConfigs'][dependency]))">
+													<v-icon>settings_backup_restore</v-icon>
+												</v-btn>
 											</v-toolbar>
 											<v-list>
 												<v-list-tile v-for="(settingDescription, settingName) in parametersDescription['runConfigs'][dependency]" v-if="['bool','float','int','string','choice'].includes(settingDescription.type)">
