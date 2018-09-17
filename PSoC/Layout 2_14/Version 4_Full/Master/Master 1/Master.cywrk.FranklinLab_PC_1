@@ -491,8 +491,8 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Design01.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\WithIG1.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\WithIG1.cydsn\main.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -500,7 +500,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1300, 712" SelectedTabbedMdiWindow="af6117d1-8e97-4fdf-b89f-ce5357a1a59a"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="fa1ad35e-fc7e-4a60-ab0c-a652b93da960" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\WithIG1.cydsn\TopDesign\TopDesign.cysch" Guid="af6117d1-8e97-4fdf-b89f-ce5357a1a59a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1297, 712" SelectedTabbedMdiWindow="cb7f6914-38a3-4312-af78-e68121ae02c0"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d7c93930-86ca-4963-8b95-4460d2f4da30" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\WithIG1.cydsn\TopDesign\TopDesign.cysch" Guid="af6117d1-8e97-4fdf-b89f-ce5357a1a59a" /><DocumentWindow Key="C:\Users\FranklinLab_PC_1\Documents\Python Scripts\CNT_IV\PSoC\Layout 2_14\Version 4_Full\Master\Master 1\WithIG1.cydsn\main.c" Guid="cb7f6914-38a3-4312-af78-e68121ae02c0" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
