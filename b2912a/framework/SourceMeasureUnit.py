@@ -410,11 +410,15 @@ class PCB2v14(SourceMeasureUnit):
 
 	def formatMeasurement(self, measurement):
 		data = json.loads(str(measurement))
+		i_d = float(data[0])
+		v_gs = float(data[1])
+		v_ds = float(data[2])
+		i_g = float(data[3]) if(len(data) >= 4) else 0.0
 		return {
-			'V_ds':float(data[2]),
-			'I_d': float(data[0]),
-			'V_gs':float(data[1]),
-			'I_g': 0.0
+			'V_ds': v_ds,
+			'I_d':  i_d,
+			'V_gs': v_gs,
+			'I_g':  i_g
 		}
 
 	def setDevice(self, deviceID):
