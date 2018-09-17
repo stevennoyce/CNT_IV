@@ -5,6 +5,7 @@
 #include "USBUART_Helpers.h"
 
 
+
 struct Selector_I2C_Struct {
 	struct {
 		uint8 subAddress;
@@ -140,6 +141,17 @@ void Connect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
 	Update_Selector(intermediate);
 }
 
+void Disconnect_Channel_On_Intermediate(uint8 channel, uint8 intermediate) {
+	channel--;
+	intermediate--;
+	
+	if (channel >= CHANNEL_COUNT) return;
+	if (intermediate >= INTERMEDIATE_COUNT) return;
+	
+	selectors[intermediate].write.data[channel] = CONTACT_DISCONNECT_CODE;
+	Update_Selector(intermediate);
+}
+
 void Connect_Contact_To_Intermediate(uint8 contact, uint8 intermediate) {
 	contact--;
 	intermediate--;
@@ -227,9 +239,25 @@ void Connect_Intermediate(uint8 intermediate) {
 	}
 }
 
+void Disconnect_Intermediate(uint8 intermediate) {
+	switch (intermediate) {
+		case 1: Disconnect_Channel_On_Intermediate(33, 1); break;
+		case 2: Disconnect_Channel_On_Intermediate(33, 2); break;
+		case 3: Disconnect_Channel_On_Intermediate(33, 3); break;
+		case 4: Disconnect_Channel_On_Intermediate(33, 4); break;
+		default: return;
+	}
+}
+
 void Connect_Intermediates() {
 	for (uint8 i = 1; i <= INTERMEDIATE_COUNT; i++) {
 		Connect_Intermediate(i);
+	}
+}
+
+void Disconnect_Intermediates() {
+	for (uint8 i = 1; i <= INTERMEDIATE_COUNT; i++) {
+		Disconnect_Intermediate(i);
 	}
 }
 
@@ -744,8 +772,8 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
 	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
 	
-	float SAR1 = 1e-6*SAR1_Average;
-	float SAR2 = 1e-6*SAR2_Average;
+	float SAR1 = SAR1_Average;
+	float SAR2 = SAR2_Average;
 	
 	sprintf(TransmitBuffer, "[%e,%f,%f,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds(), SAR1, SAR2);
 	sendTransmitBuffer();
@@ -1009,10 +1037,14 @@ CY_ISR (CommunicationHandlerISR) {
 int main(void) {
 	CyGlobalIntEnable;
 	
+	//Setup communication to the MUXes
 	Setup_Selectors();
 	
+	//Start USB Interface
 	USBUART_Start(0u, USBUART_5V_OPERATION);
 	UART_1_Start();
+	
+	//Start All DACs, ADCs, and TIAs
 	VDAC_Vds_Start();
 	VDAC_Vgs_Start();
 	VDAC_Ref_Start();
@@ -1029,10 +1061,14 @@ int main(void) {
 	
 	CyDelay(1000);
 	
+	// === All components now active ===
+	
 	UART_1_PutString("\r\n# Starting\r\n");
 	
+	// Connect S1, S2, S3, S4 signals to the MUXes
 	Connect_Intermediates();
 	
+	// Prepare to receive commands from the host
 	newData = 0;
 	UART_Rx_Position = 0;
 	USBUART_Rx_Position = 0;
@@ -1040,10 +1076,13 @@ int main(void) {
 	CommunicationTimer_Start();
 	CommunicationInterrupt_StartEx(CommunicationHandlerISR);
 	
-	Current_Measurement_Sample_Count = 100;
+	// === Ready to receive commands ===
 	
+	//Calibrate Delta-Sigma ADC and set initial current range
 	Calibrate_ADC_Offset(300);
 	TIA_Set_Resistor(TIA_Selected_Resistor);
+	
+	Current_Measurement_Sample_Count = 100;
 	
 	while (1) {
 		G_Stop = 0;
@@ -1056,7 +1095,7 @@ int main(void) {
 			newData = 0;
 			
 			if (strstr(ReceiveBuffer, "measure ") == &ReceiveBuffer[0]) {
-				Measure(100, 10000, 10000);
+				Measure(100, 10, 10);
 			} else 
 			if (strstr(ReceiveBuffer, "measure-multiple ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
@@ -1195,6 +1234,15 @@ int main(void) {
 				sprintf(TransmitBuffer, "# Connected channel %u to %u\r\n", channel, intermediate);
 				sendTransmitBuffer();
 			} else 
+			if (strstr(ReceiveBuffer, "disconnect-c ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				uint8 channel = strtol(location, &location, 10);
+				uint8 intermediate = strtol(location, &location, 10);
+				Disconnect_Channel_On_Intermediate(channel, intermediate);
+				
+				sprintf(TransmitBuffer, "# Disconnected channel %u from %u\r\n", channel, intermediate);
+				sendTransmitBuffer();
+			} else 
 			if (strstr(ReceiveBuffer, "disconnect ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
 				uint8 contact = strtol(location, &location, 10);
@@ -1234,10 +1282,24 @@ int main(void) {
 				sprintf(TransmitBuffer, "# Connected intermediate %u\r\n", intermediate);
 				sendTransmitBuffer();
 			} else 
+			if (strstr(ReceiveBuffer, "disconnect-intermediate ") == &ReceiveBuffer[0]) {
+				char* location = strstr(ReceiveBuffer, " ");
+				uint8 intermediate = strtol(location, &location, 10);
+				Disconnect_Intermediate(intermediate);
+				
+				sprintf(TransmitBuffer, "# Disconnected intermediate %u\r\n", intermediate);
+				sendTransmitBuffer();
+			} else 
 			if (strstr(ReceiveBuffer, "connect-intermediates ") == &ReceiveBuffer[0]) {
 				Connect_Intermediates();
 				
 				sprintf(TransmitBuffer, "# Connected intermediates\r\n");
+				sendTransmitBuffer();
+			} else 
+			if (strstr(ReceiveBuffer, "disconnect-intermediates ") == &ReceiveBuffer[0]) {
+				Disconnect_Intermediates();
+				
+				sprintf(TransmitBuffer, "# Disconnected intermediates\r\n");
 				sendTransmitBuffer();
 			} else 
 			if (strstr(ReceiveBuffer, "Set_Current_Measurement_Sample_Count ") == &ReceiveBuffer[0]) {

@@ -771,8 +771,8 @@ void Measure(uint32 deltaSigmaSampleCount, uint32 SAR1_SampleCount, uint32 SAR2_
 //	SAR1_Measure_V(&SAR1_Average, &SAR1_SD, SAR1_SampleCount);
 //	SAR2_Measure_V(&SAR2_Average, &SAR2_SD, SAR2_SampleCount);
 //
-//	float SAR1 = 1e-6*SAR1_Average;
-//	float SAR2 = 1e-6*SAR2_Average;
+//	float SAR1 = SAR1_Average;
+//	float SAR2 = SAR2_Average;
 	
 	sprintf(TransmitBuffer, "[%e,%f,%f]\r\n", IdsAverageAmps, Get_Vgs(), Get_Vds());
 	sendTransmitBuffer();
@@ -1036,10 +1036,14 @@ CY_ISR (CommunicationHandlerISR) {
 int main(void) {
 	CyGlobalIntEnable;
 	
+	//Setup communication to the MUXes
 	Setup_Selectors();
 	
+	//Start USB Interface
 	USBUART_Start(0u, USBUART_5V_OPERATION);
 	UART_1_Start();
+	
+	//Start All DACs, ADCs, and TIAs
 	VDAC_Vds_Start();
 	VDAC_Vgs_Start();
 	VDAC_Ref_Start();
@@ -1049,6 +1053,7 @@ int main(void) {
 	ADC_SAR_1_Start();
 	ADC_SAR_2_Start();
 	
+	//Start the op-amp buffers
 	Opamp_1_Start();
 	Opamp_2_Start();
 	
@@ -1056,10 +1061,14 @@ int main(void) {
 	
 	CyDelay(1000);
 	
+	// === All components now active ===
+	
 	UART_1_PutString("\r\n# Starting\r\n");
 	
+	// Connect S1, S2, S3, S4 signals to the MUXes
 	Connect_Intermediates();
 	
+	// Prepare to receive commands from the host
 	newData = 0;
 	UART_Rx_Position = 0;
 	USBUART_Rx_Position = 0;
@@ -1067,10 +1076,13 @@ int main(void) {
 	CommunicationTimer_Start();
 	CommunicationInterrupt_StartEx(CommunicationHandlerISR);
 	
-	Current_Measurement_Sample_Count = 100;
+	// === Ready to receive commands ===
 	
+	//Calibrate Delta-Sigma ADC and set initial current range
 	Calibrate_ADC_Offset(300);
 	TIA_Set_Resistor(TIA_Selected_Resistor);
+	
+	Current_Measurement_Sample_Count = 100;
 	
 	while (1) {
 		G_Stop = 0;
@@ -1083,7 +1095,7 @@ int main(void) {
 			newData = 0;
 			
 			if (strstr(ReceiveBuffer, "measure ") == &ReceiveBuffer[0]) {
-				Measure(100, 1, 10);
+				Measure(100, 10, 10);
 			} else 
 			if (strstr(ReceiveBuffer, "measure-multiple ") == &ReceiveBuffer[0]) {
 				char* location = strstr(ReceiveBuffer, " ");
