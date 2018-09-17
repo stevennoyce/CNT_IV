@@ -93,9 +93,30 @@ for device in largeDevices:
 	if device in VT_vals and len(VT_vals[device]) >= experiment_num:
 		large_output.append(device + ", " + str(VT_vals[device][experiment_num - 1]) + ", " + str(gm_vals[device][experiment_num - 1]) + "\n")
 
-# Output data as CSV files
-saveToCSV(filepath, small_output, "data_out_small.csv")
-saveToCSV(filepath, medium_output, "data_out_medium.csv")
-saveToCSV(filepath, large_output, "data_out_large.csv")
+saveToCSV(filepath, small_output, "data_gmvt_small.csv")
+saveToCSV(filepath, medium_output, "data_gmvt_medium.csv")
+saveToCSV(filepath, large_output, "data_gmvt_large.csv")
 
+# Put raw data in table
+output = list()
+output.append("vgs, " +  str(allData['1-2'][experiment_num - 1]['Results']['vgs_data'][direction]).replace('[', '').replace(']', '') + "\n")
+for key in smallDevices:
+	if key in allData and len(allData[key]) >= experiment_num:
+		output.append(key + ", " +  str(allData[key][experiment_num - 1]['Results']['id_data'][direction]).replace('[', '').replace(']', '') + "\n")
+saveToCSV(filepath, output, "raw_data_small.csv")
+output.clear()
+
+output.append("vgs, " +  str(allData['1-2'][experiment_num - 1]['Results']['vgs_data'][direction]).replace('[', '').replace(']', '') + "\n")
+for key in mediumDevices:
+	if key in allData and len(allData[key]) >= experiment_num:
+		output.append(key + ", " +  str(allData[key][experiment_num - 1]['Results']['id_data'][direction]).replace('[', '').replace(']', '') + "\n")
+saveToCSV(filepath, output, "raw_data_medium.csv")
+output.clear()
+
+output.append("vgs, " +  str(allData['1-2'][experiment_num - 1]['Results']['vgs_data'][direction]).replace('[', '').replace(']', '') + "\n")
+for key in largeDevices:
+	if key in allData and len(allData[key]) >= experiment_num:
+		output.append(key + ", " +  str(allData[key][experiment_num - 1]['Results']['id_data'][direction]).replace('[', '').replace(']', '') + "\n")
+saveToCSV(filepath, output, "raw_data_large.csv")
+output.clear()
 
