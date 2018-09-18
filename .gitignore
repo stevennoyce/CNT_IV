@@ -43,3 +43,14 @@ Generated_Source/
 *.cyfit
 *.rpt
 *.svd
+
+*.log
+*.cyprj.*
+*.v
+*.vh2
+bitstream.txt
+
+
+
+
+
