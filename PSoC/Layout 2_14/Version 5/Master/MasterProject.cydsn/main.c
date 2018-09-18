@@ -587,7 +587,7 @@ void Set_Vgs_Raw(uint8 value) {
 
 // Set the raw value of the reference voltage
 void Set_Ref_Raw(uint8 value) {
-	if (value < 10) value = 10;
+	if (value < 6) value = 6;
 	
 	int8 increment = 1;
 	if (value < VDAC_Ref_Data) increment = -1;
