@@ -50,6 +50,9 @@ Generated_Source/
 *.vh2
 bitstream.txt
 
+autoseltemp/
+ComponentUpdateLog.txt
+
 
 
 
