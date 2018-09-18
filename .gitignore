@@ -46,10 +46,10 @@ Generated_Source/
 
 *.log
 *.cyprj.*
+*.cywrk.*
 *.v
 *.vh2
 bitstream.txt
-
 autoseltemp/
 ComponentUpdateLog.txt
 
