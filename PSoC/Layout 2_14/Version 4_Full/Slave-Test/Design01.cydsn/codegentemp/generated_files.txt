@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="us-ascii"?>
-
-<fileSet version="1" anchorPath="E:\Research\illumina\PSoC\Layout 2_14\Version 2\Slave-Test\Design01.cydsn\codegentemp" xsi:schemaLocation="http://cypress.com/xsd/cypathdictionary cypathdictionary.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cypress.com/xsd/cypathdictionary">
-</fileSet>
